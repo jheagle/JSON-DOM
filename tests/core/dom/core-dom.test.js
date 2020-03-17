@@ -1,4 +1,4 @@
-const jDomCoreDom = require('../../../src/js/core/dom/core.js')
+const jDomCoreDom = require('../../../src/core/dom/core.js')
 
 const coolFunc = () => 'hello'
 // appendAllHTML

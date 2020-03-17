@@ -1,4 +1,4 @@
-const PseudoEventTarget = require('../../../src/js/pseudoDom/class/PseudoEventTarget')
+const PseudoEventTarget = require('../../../src/pseudoDom/class/PseudoEventTarget')
 
 const testEventTarget = new PseudoEventTarget()
 

@@ -2,7 +2,7 @@
   "name": "json-dom",
   "description": "State management with JSON.",
   "version": "0.0.0",
-  "main": "src/js/main.js",
+  "main": "src/main.js",
   "author": "Joshua Heagle",
   "license": "MIT",
   "scripts": {

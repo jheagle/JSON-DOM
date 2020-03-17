@@ -1,4 +1,4 @@
-const LinkedList = require('../../src/js/collections/LinkedList')
+const LinkedList = require('../../src/collections/LinkedList')
 
 test('LinkedList can store elements', () => {
   const arrayData = ['one', 'two', 'three', 'four']

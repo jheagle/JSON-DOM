@@ -1,4 +1,4 @@
-const jDomObjectsMatrix = require('../../src/js/matrix/objects.js')
+const jDomObjectsMatrix = require('../../src/matrix/objects.js')
 
 // cube
 // matrix
