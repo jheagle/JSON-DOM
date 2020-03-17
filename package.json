@@ -25,7 +25,7 @@
     "gulp-if": "^3.0.0",
     "gulp-uglify-es": "^2.0.0",
     "jest": "^25.1.0",
-    "standard": "^14.3.1"
+    "standard": "^14.3.3"
   },
   "dependencies": {
     "gulp-cli": "^2.2.0",

@@ -141,7 +141,6 @@
    * @typedef {module:core/dom/objects.documentItem} documentItem
    */
   jsonDom.documentItem = jsonDom.domObjects.documentDomItem()
-  console.log(jsonDom)
 
   /**
    * Either export all functions to be exported, or assign to the Window context
