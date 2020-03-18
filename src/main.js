@@ -6,12 +6,6 @@
   let root = this || {}
 
   /**
-   * Verify availability of document
-   * @typedef {HTMLDocument|module:pseudoDom/objects.PseudoHTMLDocument} document
-   */
-  let document = root.document
-
-  /**
    * If document remains undefined, attempt to retrieve it as a module
    */
   if (!Object.keys(root).length) {
@@ -22,12 +16,11 @@
        * @typedef {Window|module:pseudoDom/objects.PseudoEventTarget} root
        */
       root = require('./pseudoDom/objects.js').generate(root)
-      document = root.document
     } else {
       console.error('main.js requires pseudoDom/objects')
     }
   }
-  root.document = document
+
   /*
    * Store reference to any pre-existing module of the same name
    * @type {jsonDom|*}
