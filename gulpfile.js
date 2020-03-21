@@ -19,12 +19,12 @@ gulp.task('distribute', () => gulp.src('src/**/*')
 
 // Prepare browser bundle
 gulp.task('browser-bundle', () => gulp.src([
-  'dist/core/core.js',
-  'dist/core/dom/objects.js',
-  'dist/core/dom/core.js',
-  'dist/matrix/objects.js',
-  'dist/matrix/core.js',
-  'dist/browser-main.js'
+  'src/core/core.js',
+  'src/core/dom/objects.js',
+  'src/core/dom/core.js',
+  'src/matrix/objects.js',
+  'src/matrix/core.js',
+  'src/browser-main.js'
 ])
   .pipe(concat('json-dom.js'))
   .pipe(gulp.dest('browser'))
