@@ -1,0 +1,1 @@
+"use strict";(function(){var o=this||{},t=o.jsonDom||{},e={};o.jsonDom=e,e.noConflict=function(){return o.jsonDom=t,e},e.core=o.core,e.domObjects=o.domObjects,e.domCore=o.domCore,e.matrixObjects=o.matrixObjects,e.matrixCore=o.matrixCore,e.documentItem=e.domObjects.documentDomItem()}).call(window||{});

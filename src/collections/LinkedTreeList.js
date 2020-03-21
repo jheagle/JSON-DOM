@@ -3,8 +3,6 @@
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
-'use strict'
-
 const LinkedList = require('./LinkedList')
 const TreeLinker = require('./TreeLinker')
 

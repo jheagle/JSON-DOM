@@ -1,14 +1,15 @@
-const gulp = require('gulp')
-const uglify = require('gulp-uglify-es').default
-const gulpIf = require('gulp-if')
 const del = require('del')
+const gulp = require('gulp')
 const babel = require('gulp-babel')
+const concat = require('gulp-concat')
+const gulpIf = require('gulp-if')
+const uglify = require('gulp-uglify-es').default
 
 // Development Tasks
 // -----------------
 
-// Optimizing CSS and JavaScript
-gulp.task('destination', () => gulp.src('src/**/*')
+// Optimizing JavaScript
+gulp.task('distribute', () => gulp.src('src/**/*')
   .pipe(gulpIf('*.js', babel({
     presets: ['@babel/preset-env']
   })))
@@ -16,11 +17,19 @@ gulp.task('destination', () => gulp.src('src/**/*')
   .pipe(gulp.dest('dist'))
 )
 
+// Prepare browser bundle
+gulp.task('browser-bundle', () => gulp.src('src/core/**/*', 'src/matrix/**/*', 'src/browser-main.js')
+  .pipe(concat('json-dom.js'))
+  .pipe(gulp.dest('browser'))
+)
+
 // Cleaning
-gulp.task('clean', () => del('dist'))
+gulp.task('clean:dist', () => del('dist'))
 
-gulp.task('clean:dist', () => del(['dist/**/*']))
+gulp.task('clean:browser', () => del('browser'))
 
-gulp.task('default', gulp.series('destination'))
+gulp.task('clean', gulp.series('clean:dist', 'clean:browser'))
 
-gulp.task('build', gulp.series('clean:dist', 'destination'))
+gulp.task('default', gulp.series('distribute'))
+
+gulp.task('build', gulp.series('clean', 'distribute', 'browser-bundle'))

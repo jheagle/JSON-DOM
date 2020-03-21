@@ -3,8 +3,6 @@
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
-'use strict'
-
 const TreeLinker = require('../../collections/TreeLinker')
 const PseudoEventTarget = require('./PseudoEventTarget')
 
