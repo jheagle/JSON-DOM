@@ -952,18 +952,18 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }
   /**
    * Verify availability of core
-   * @typedef {*|module:core/dom/objects} objects
+   * @typedef {*|module:core/dom/objects} domObjects
    */
 
 
-  var objects = root.objects;
+  var domObjects = root.domObjects;
   /**
-   * If objects remains undefined, attempt to retrieve it as a module
+   * If domObjects remains undefined, attempt to retrieve it as a module
    */
 
-  if (typeof objects === 'undefined') {
+  if (typeof domObjects === 'undefined') {
     if (typeof require !== 'undefined') {
-      objects = require('./objects.js');
+      domObjects = require('./objects.js');
     } else {
       console.error('core/dom/core requires core/dom/objects');
     }
@@ -1156,7 +1156,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   var appendAndReturnChild = function appendAndReturnChild(child) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : objects.documentItem.body;
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : domObjects.documentItem.body;
     retrieveParentItem(parent).element.appendChild(child.element);
     return child;
   };
@@ -1170,7 +1170,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   domCore.appendHTML = function (item) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : objects.documentItem.body;
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : domObjects.documentItem.body;
     return appendAndReturnChild(domCore.bindElement(item), core.setValue('children', addUniqueToArray(item, retrieveParentItem(parent).children), retrieveParentItem(parent)));
   };
   /**
@@ -1183,7 +1183,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   domCore.removeChild = function (item) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : objects.documentItem.body;
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : domObjects.documentItem.body;
     parent.element.removeChild(item.element);
     return parent.children.splice(parent.children.indexOf(item), 1);
   };
@@ -1216,7 +1216,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   domCore.registerListeners = function (listeners) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : objects.documentItem;
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : domObjects.documentItem;
     return core.mergeObjects(parent, {
       eventListeners: parent.eventListeners
     }, {
@@ -1234,7 +1234,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   domCore.retrieveListener = function (listenerName) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : objects.documentItem;
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : domObjects.documentItem;
     return core.inArray(Object.keys(parent.eventListeners), listenerName) ? parent.eventListeners[listenerName] : {};
   };
   /**
@@ -1417,7 +1417,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   domCore.getChildrenFromAttribute = function (attr, value) {
-    var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : objects.documentItem.body;
+    var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : domObjects.documentItem.body;
     return domCore.gatherChildItems(item, getChildTest(attr, value));
   };
   /**
@@ -1449,7 +1449,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
   domCore.getParentsFromAttribute = function (attr, value) {
-    var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : objects.documentItem.body;
+    var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : domObjects.documentItem.body;
     return Object.keys(item.parentItem).length ? (item.parentItem.attributes[attr] || item[attr] || false) === value ? domCore.getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem]) : domCore.getParentsFromAttribute(attr, value, item.parentItem) : [];
   };
   /**
@@ -1497,7 +1497,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   domCore.renderHTML = function (item) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : objects.documentItem;
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : domObjects.documentItem;
     return core.pipe(function (domItem) {
       return core.setValue('element', domItem.element && domItem.element.style ? domItem.element : domCore.bindElement(domItem).element, domItem);
     }, function (domItem) {
@@ -1512,7 +1512,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       return core.mapProperty('children', function (child) {
         return domCore.renderHTML(child, domItem);
       }, domItem);
-    })(core.mapObject(objects.createDomItem(item), function (prop) {
+    })(core.mapObject(domObjects.createDomItem(item), function (prop) {
       return prop;
     }, item));
   };

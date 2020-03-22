@@ -76,16 +76,16 @@
 
   /**
    * Verify availability of core
-   * @typedef {*|module:core/dom/objects} objects
+   * @typedef {*|module:core/dom/objects} domObjects
    */
-  let objects = root.objects
+  let domObjects = root.domObjects
 
   /**
-   * If objects remains undefined, attempt to retrieve it as a module
+   * If domObjects remains undefined, attempt to retrieve it as a module
    */
-  if (typeof objects === 'undefined') {
+  if (typeof domObjects === 'undefined') {
     if (typeof require !== 'undefined') {
-      objects = require('./objects.js')
+      domObjects = require('./objects.js')
     } else {
       console.error('core/dom/core requires core/dom/objects')
     }
@@ -288,7 +288,7 @@
    * @param {module:core/dom/objects.DomItem} parent - A parent item to have a new child appended
    * @returns {module:core/dom/objects.DomItem}
    */
-  const appendAndReturnChild = (child, parent = objects.documentItem.body) => {
+  const appendAndReturnChild = (child, parent = domObjects.documentItem.body) => {
     retrieveParentItem(parent).element.appendChild(child.element)
     return child
   }
@@ -300,7 +300,7 @@
    * @param {module:core/dom/objects.DomItem} parent - The parent to have DomItems appended
    * @returns {module:core/dom/objects.DomItem}
    */
-  domCore.appendHTML = (item, parent = objects.documentItem.body) => appendAndReturnChild(
+  domCore.appendHTML = (item, parent = domObjects.documentItem.body) => appendAndReturnChild(
     domCore.bindElement(item),
     core.setValue(
       'children',
@@ -316,7 +316,7 @@
    * @param {module:core/dom/objects.DomItem} parent - The parent of the items
    * @returns {Array.<HTMLElement|PseudoHTMLElement>}
    */
-  domCore.removeChild = (item, parent = objects.documentItem.body) => {
+  domCore.removeChild = (item, parent = domObjects.documentItem.body) => {
     parent.element.removeChild(item.element)
     return parent.children.splice(parent.children.indexOf(item), 1)
   }
@@ -345,7 +345,7 @@
    * stores has eventListeners property.
    * @returns {module:core/dom/objects.DomItemRoot|Object}
    */
-  domCore.registerListeners = (listeners, parent = objects.documentItem) => core.mergeObjects(
+  domCore.registerListeners = (listeners, parent = domObjects.documentItem) => core.mergeObjects(
     parent,
     { eventListeners: parent.eventListeners },
     { eventListeners: listeners }
@@ -359,7 +359,7 @@
    * stores has eventListeners property.
    * @returns {module:core/dom/objects~listenerFunction|function|Object}
    */
-  domCore.retrieveListener = (listenerName, parent = objects.documentItem) => core.inArray(
+  domCore.retrieveListener = (listenerName, parent = domObjects.documentItem) => core.inArray(
     Object.keys(parent.eventListeners),
     listenerName
   ) ? parent.eventListeners[listenerName] : {}
@@ -532,7 +532,7 @@
    * criteria
    * @returns {Array.<module:core/dom/objects.DomItem>}
    */
-  domCore.getChildrenFromAttribute = (attr, value, item = objects.documentItem.body) =>
+  domCore.getChildrenFromAttribute = (attr, value, item = domObjects.documentItem.body) =>
     domCore.gatherChildItems(
       item,
       getChildTest(attr, value)
@@ -564,7 +564,7 @@
    * attribute criteria
    * @returns {Array}
    */
-  domCore.getParentsFromAttribute = (attr, value, item = objects.documentItem.body) =>
+  domCore.getParentsFromAttribute = (attr, value, item = domObjects.documentItem.body) =>
     Object.keys(item.parentItem).length
       ? (item.parentItem.attributes[attr] || item[attr] || false) === value
         ? domCore.getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem])
@@ -612,7 +612,7 @@
    * @param {module:core/dom/objects.DomItemRoot} parent - The Base Dom item which is the parent of all the items
    * @returns {module:core/dom/objects.DomItem}
    */
-  domCore.renderHTML = (item, parent = objects.documentItem) => core.pipe(
+  domCore.renderHTML = (item, parent = domObjects.documentItem) => core.pipe(
     (domItem) => core.setValue(
       'element',
       (domItem.element && domItem.element.style) ? domItem.element : domCore.bindElement(domItem).element,
@@ -632,7 +632,7 @@
     core.curry(core.setValue)('parentItem', parent.body || parent),
     (domItem) => domCore.bindListeners(domCore.appendHTML(domItem, parent)),
     (domItem) => core.mapProperty('children', child => domCore.renderHTML(child, domItem), domItem)
-  )(core.mapObject(objects.createDomItem(item), prop => prop, item))
+  )(core.mapObject(domObjects.createDomItem(item), prop => prop, item))
 
   /**
    * Either export all functions to be exported, or assign to the Window context
