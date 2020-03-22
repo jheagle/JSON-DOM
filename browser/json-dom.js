@@ -1585,19 +1585,19 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }
   }
   /**
-   * Verify availability of objects
-   * @typedef {*|module:core/dom/objects} objects
+   * Verify availability of domObjects
+   * @typedef {*|module:core/dom/objects} domObjects
    */
 
 
-  var objects = root.objects;
+  var domObjects = root.domObjects;
   /**
-   * If objects remains undefined, attempt to retrieve it as a module
+   * If domObjects remains undefined, attempt to retrieve it as a module
    */
 
-  if (typeof objects === 'undefined') {
+  if (typeof domObjects === 'undefined') {
     if (typeof require !== 'undefined') {
-      objects = require('../core/dom/objects.js');
+      domObjects = require('../core/dom/objects.js');
     } else {
       console.error('core.js requires objects');
     }
@@ -1726,7 +1726,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   matrixObjects.matrix = function () {
-    var _objects, _objects2, _objects3, _objects4;
+    var _domObjects, _domObjects2, _domObjects3, _domObjects4;
 
     var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
       coordinate: 0,
@@ -1741,24 +1741,24 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       props: []
     };
     var matrixProps = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
-    return (_objects = objects).createDomItem.apply(_objects, [{
+    return (_domObjects = domObjects).createDomItem.apply(_domObjects, [{
       tagName: 'div',
       attributes: {
         className: 'matrix'
       },
-      children: core.buildArray((_objects2 = objects).createDomItem.apply(_objects2, [{
+      children: core.buildArray((_domObjects2 = domObjects).createDomItem.apply(_domObjects2, [{
         axis: 'z',
         tagName: 'div',
         attributes: {
           className: 'layer'
         },
-        children: core.buildArray((_objects3 = objects).createDomItem.apply(_objects3, [{
+        children: core.buildArray((_domObjects3 = domObjects).createDomItem.apply(_domObjects3, [{
           axis: 'y',
           tagName: 'div',
           attributes: {
             className: 'row'
           },
-          children: core.buildArray((_objects4 = objects).createDomItem.apply(_objects4, [{
+          children: core.buildArray((_domObjects4 = domObjects).createDomItem.apply(_domObjects4, [{
             axis: 'x',
             tagName: 'div',
             attributes: {

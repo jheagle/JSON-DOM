@@ -52,17 +52,17 @@
   }
 
   /**
-   * Verify availability of objects
-   * @typedef {*|module:core/dom/objects} objects
+   * Verify availability of domObjects
+   * @typedef {*|module:core/dom/objects} domObjects
    */
-  let objects = root.objects
+  let domObjects = root.domObjects
 
   /**
-   * If objects remains undefined, attempt to retrieve it as a module
+   * If domObjects remains undefined, attempt to retrieve it as a module
    */
-  if (typeof objects === 'undefined') {
+  if (typeof domObjects === 'undefined') {
     if (typeof require !== 'undefined') {
-      objects = require('../core/dom/objects.js')
+      domObjects = require('../core/dom/objects.js')
     } else {
       console.error('core.js requires objects')
     }
@@ -187,24 +187,24 @@
     y = { coordinate: 0, props: [] },
     z = { coordinate: 1, props: [] },
     matrixProps = []
-  ) => objects.createDomItem({
+  ) => domObjects.createDomItem({
     tagName: 'div',
     attributes: {
       className: 'matrix'
     },
-    children: core.buildArray(objects.createDomItem({
+    children: core.buildArray(domObjects.createDomItem({
       axis: 'z',
       tagName: 'div',
       attributes: {
         className: 'layer'
       },
-      children: core.buildArray(objects.createDomItem({
+      children: core.buildArray(domObjects.createDomItem({
         axis: 'y',
         tagName: 'div',
         attributes: {
           className: 'row'
         },
-        children: core.buildArray(objects.createDomItem({
+        children: core.buildArray(domObjects.createDomItem({
           axis: 'x',
           tagName: 'div',
           attributes: {
