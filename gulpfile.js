@@ -2,6 +2,7 @@ const del = require('del')
 const gulp = require('gulp')
 const babel = require('gulp-babel')
 const concat = require('gulp-concat')
+const rename = require('gulp-rename')
 const uglify = require('gulp-uglify-es').default
 
 // Development Tasks
@@ -29,7 +30,9 @@ gulp.task('browser-bundle', () => gulp.src([
   .pipe(babel({
     presets: ['@babel/preset-env']
   }))
+  .pipe(gulp.dest('browser'))
   .pipe(uglify())
+  .pipe(rename('json-dom.min.js'))
   .pipe(gulp.dest('browser'))
 )
 
