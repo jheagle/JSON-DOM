@@ -36,25 +36,25 @@
    * Store reference to any pre-existing module of the same name
    * @type {module|*}
    */
-  const previousJDomObjects = root.objects || {}
+  const previousJDomObjectsDom = root.domObjects || {}
 
   /**
-   * All methods exported from this module are encapsulated within objects
+   * All methods exported from this module are encapsulated within domObjects
    * @author Joshua Heagle <joshuaheagle@gmail.com>
-   * @typedef {Object} objects
+   * @typedef {Object} domObjects
    * @module core/dom/objects
    */
-  const objects = {}
-  root.objects = objects
+  const domObjects = {}
+  root.domObjects = domObjects
 
   /**
    * Return a reference to this library while preserving the original same-named library
    * @function noConflict
-   * @returns {objects}
+   * @returns {domObjects}
    */
-  objects.noConflict = () => {
-    root.objects = previousJDomObjects
-    return objects
+  domObjects.noConflict = () => {
+    root.domObjects = previousJDomObjectsDom
+    return domObjects
   }
 
   /**
@@ -76,7 +76,7 @@
 
   /**
    * This is the standard definition of a listenerFunction to be used
-   * @callback objects.listenerFunction
+   * @callback domObjects.listenerFunction
    * @callback listenerFunction
    * @param {Event|module:pseudoDom/objects.PseudoEvent} e - The event object passed to the listener
    * @param {module:core/dom/objects.DomItem} target - The element which triggered the event
@@ -109,7 +109,7 @@
 
   /**
    * An EventListener Object to be appended to the element within the DomItem
-   * @typedef {Object} objects.EventListener
+   * @typedef {Object} domObjects.EventListener
    * @typedef {Object} EventListener
    * @property {string} listenerFunc - A string function name matching an existing
    * {@link module:core/dom/objects~listenerFunction}.
@@ -139,7 +139,7 @@
    * @param {...Object} attributes - DomItem-like object(s) to be merged as a DomItem
    * @returns {module:core/dom/objects.DomItem}
    */
-  objects.createDomItem = (...attributes) => core.mergeObjectsMutable({
+  domObjects.createDomItem = (...attributes) => core.mergeObjectsMutable({
     tagName: 'div',
     attributes: {
       style: {}
@@ -175,13 +175,13 @@
    * @returns {Array.<module:core/dom/objects~DomItemHead|module:core/dom/objects~DomItemBody>}
    */
   const initChildren = () => [
-    objects.createDomItem({
+    domObjects.createDomItem({
       tagName: 'head',
       attributes: {},
       element: document.head,
       children: []
     }),
-    objects.createDomItem({
+    domObjects.createDomItem({
       tagName: 'body',
       attributes: {},
       element: document.body,
@@ -213,7 +213,7 @@
    * listeners to be registered in the Dom
    * @returns {module:core/dom/objects.DomItemRoot|module:core/dom/objects.DomItem}
    */
-  const initRoot = (children, listeners = {}) => objects.createDomItem({
+  const initRoot = (children, listeners = {}) => domObjects.createDomItem({
     tagName: 'html',
     attributes: {},
     element: document,
@@ -233,11 +233,11 @@
    * reference to DomItemRoot which will be defaulted with {@link initRoot}
    * @returns {module:core/dom/objects.DomItemRoot|module:core/dom/objects.DomItem}
    */
-  objects.documentDomItem = (listeners = [], rootItem = initRoot(initChildren(), listeners)) => {
-    rootItem.children = rootItem.children.map(child => objects.createDomItem(child, { parentItem: rootItem }))
+  domObjects.documentDomItem = (listeners = [], rootItem = initRoot(initChildren(), listeners)) => {
+    rootItem.children = rootItem.children.map(child => domObjects.createDomItem(child, { parentItem: rootItem }))
     Object.assign(rootItem.head, rootItem.children[0])
     Object.assign(rootItem.body, rootItem.children[1])
-    return objects.createDomItem(rootItem)
+    return domObjects.createDomItem(rootItem)
   }
 
   /**
@@ -245,16 +245,16 @@
    * @member documentItem
    * @type {module:core/dom/objects.DomItemRoot}
    */
-  objects.documentItem = objects.documentDomItem()
+  domObjects.documentItem = domObjects.documentDomItem()
 
   /**
    * Either export all functions to be exported, or assign to the Window context
    */
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = objects
+      exports = module.exports = domObjects
     }
-    exports = Object.assign(exports, objects)
+    exports = Object.assign(exports, domObjects)
   }
 }).call(this || window || {})
 // Use the external context to assign this, which will be Window if rendered via browser

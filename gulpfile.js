@@ -2,7 +2,6 @@ const del = require('del')
 const gulp = require('gulp')
 const babel = require('gulp-babel')
 const concat = require('gulp-concat')
-const gulpIf = require('gulp-if')
 const uglify = require('gulp-uglify-es').default
 
 // Development Tasks
@@ -10,10 +9,10 @@ const uglify = require('gulp-uglify-es').default
 
 // Optimizing JavaScript
 gulp.task('distribute', () => gulp.src('src/**/*')
-  .pipe(gulpIf('*.js', babel({
+  .pipe(babel({
     presets: ['@babel/preset-env']
-  })))
-  .pipe(gulpIf('*.js', uglify()))
+  }))
+  .pipe(uglify())
   .pipe(gulp.dest('dist'))
 )
 
@@ -27,6 +26,10 @@ gulp.task('browser-bundle', () => gulp.src([
   'src/browser-main.js'
 ])
   .pipe(concat('json-dom.js'))
+  .pipe(babel({
+    presets: ['@babel/preset-env']
+  }))
+  .pipe(uglify())
   .pipe(gulp.dest('browser'))
 )
 

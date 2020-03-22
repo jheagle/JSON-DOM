@@ -1,4 +1,8 @@
-'use strict'
+/**
+ * @file Access all modules available within JSON DOM from this file.
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @version 1.0.0
+ */
 ;(function () {
   /**
    * Store a reference to this scope which will be Window if rendered via browser
