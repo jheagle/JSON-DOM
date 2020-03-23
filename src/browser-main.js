@@ -33,38 +33,38 @@
   }
 
   /**
-   * Verify availability of core
-   * @typedef {*|module:core/core} core
+   * Verify availability of jDomCore
+   * @typedef {*|module:core/core} jDomCore
    */
-  jsonDom.core = root.core
+  jsonDom.jDomCore = root.jDomCore
 
   /**
    * Verify availability of objects
-   * @typedef {*|module:core/dom/objects} domObjects
+   * @typedef {*|module:core/dom/objects} jDomObjectsDom
    */
-  jsonDom.domObjects = root.domObjects
+  jsonDom.jDomObjectsDom = root.jDomObjectsDom
 
   /**
-   * Verify availability of coreDom
-   * @typedef {*|module:core/dom/core} domCore
+   * Verify availability of jDomCoreDom
+   * @typedef {*|module:core/dom/core} jDomCoreDom
    */
-  jsonDom.domCore = root.domCore
+  jsonDom.jDomCoreDom = root.jDomCoreDom
 
   /**
    * Verify availability of objects
-   * @typedef {*|module:matrix/objects} matrixObjects
+   * @typedef {*|module:matrix/objects} jDomMatrixObjects
    */
-  jsonDom.matrixObjects = root.matrixObjects
+  jsonDom.jDomMatrixObjects = root.jDomMatrixObjects
 
   /**
-   * Verify availability of coreDom
-   * @typedef {*|module:matrix/core} matrixCore
+   * Verify availability of jDomCoreDom
+   * @typedef {*|module:matrix/core} jDomMatrixCore
    */
-  jsonDom.matrixCore = root.matrixCore
+  jsonDom.jDomMatrixCore = root.jDomMatrixCore
 
   /**
    * Create new private reference to the document
    * @typedef {module:core/dom/objects.documentItem} documentItem
    */
-  jsonDom.documentItem = jsonDom.domObjects.documentDomItem()
+  jsonDom.documentItem = jsonDom.jDomObjectsDom.documentDomItem()
 }).call(this || window || {}) // Use the external context to assign this, which will be Window if rendered via browser

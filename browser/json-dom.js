@@ -13,7 +13,7 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 /**
- * @file All of the core system functions for stringing together functions and simplifying logic.
+ * @file All of the jDomCore system functions for stringing together functions and simplifying logic.
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
@@ -28,25 +28,25 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    * @type {module|*}
    */
 
-  var previousJDomCore = root.core || {};
+  var previousJDomCore = root.jDomCore || {};
   /**
-   * All methods exported from this module are encapsulated within core.
+   * All methods exported from this module are encapsulated within jDomCore.
    * @author Joshua Heagle <joshuaheagle@gmail.com>
-   * @typedef {Object} core
+   * @typedef {Object} jDomCore
    * @module core/core
    */
 
-  var core = {};
-  root.core = core;
+  var jDomCore = {};
+  root.jDomCore = jDomCore;
   /**
    * Return a reference to this library while preserving the original same-named library
    * @function noConflict
-   * @returns {core}
+   * @returns {jDomCore}
    */
 
-  core.noConflict = function () {
-    root.core = previousJDomCore;
-    return core;
+  jDomCore.noConflict = function () {
+    root.jDomCore = previousJDomCore;
+    return jDomCore;
   };
   /**
    * Return a curried version of the passed function.
@@ -58,7 +58,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.curry = function (fn) {
+  jDomCore.curry = function (fn) {
     return function () {
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
@@ -69,7 +69,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           a[_key2] = arguments[_key2];
         }
 
-        return core.curry(fn).apply(void 0, [].concat(args, a));
+        return jDomCore.curry(fn).apply(void 0, [].concat(args, a));
       };
     };
   };
@@ -83,7 +83,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.pipe = function () {
+  jDomCore.pipe = function () {
     for (var _len3 = arguments.length, fns = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
       fns[_key3] = arguments[_key3];
     }
@@ -104,7 +104,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.setValue = function (key, value, item) {
+  jDomCore.setValue = function (key, value, item) {
     item[key] = value;
     return item;
   };
@@ -118,7 +118,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.setAndReturnValue = function (item, key, value) {
+  jDomCore.setAndReturnValue = function (item, key, value) {
     item[key] = value;
     return value;
   };
@@ -143,10 +143,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.mapObject = function (obj, fn) {
+  jDomCore.mapObject = function (obj, fn) {
     var thisArg = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
     return Array.isArray(obj) ? obj.map(fn, thisArg) : Object.keys(obj).reduce(function (newObj, curr) {
-      return core.setValue(curr, fn.apply(void 0, _toConsumableArray([obj[curr], curr, obj].slice(0, fn.length || 2))), newObj);
+      return jDomCore.setValue(curr, fn.apply(void 0, _toConsumableArray([obj[curr], curr, obj].slice(0, fn.length || 2))), newObj);
     }, thisArg || {});
   };
   /**
@@ -159,8 +159,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.mapProperty = function (property, mapFunction, obj) {
-    obj[property] = core.mapObject(obj[property] || [], mapFunction);
+  jDomCore.mapProperty = function (property, mapFunction, obj) {
+    obj[property] = jDomCore.mapObject(obj[property] || [], mapFunction);
     return obj;
   };
   /**
@@ -185,7 +185,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.filterObject = function (obj, fn) {
+  jDomCore.filterObject = function (obj, fn) {
     var thisArg = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
     return Array.isArray(obj) ? obj.filter(fn, thisArg) : Object.keys(obj).reduce(function (newObj, curr) {
       if (fn.apply(void 0, _toConsumableArray([obj[curr], curr, obj].slice(0, fn.length || 2)))) {
@@ -223,7 +223,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.reduceObject = function (obj, fn) {
+  jDomCore.reduceObject = function (obj, fn) {
     var initialValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : obj[Object.keys(obj)[0]] || obj[0];
     return Array.isArray(obj) ? obj.reduce(fn, initialValue) : Object.keys(obj).reduce(function (newObj, curr) {
       return fn.apply(void 0, _toConsumableArray([newObj, obj[curr], curr, obj].slice(0, fn.length || 2)));
@@ -237,7 +237,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.notEmptyObjectOrArray = function (item) {
+  jDomCore.notEmptyObjectOrArray = function (item) {
     return !!(_typeof(item) === 'object' && Object.keys(item).length || Array.isArray(item) && item.length);
   };
   /**
@@ -250,7 +250,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   var cloneCopy = function cloneCopy(object, cloned) {
-    return core.notEmptyObjectOrArray(object) ? core.reduceObject(object, function (start, prop, key) {
+    return jDomCore.notEmptyObjectOrArray(object) ? jDomCore.reduceObject(object, function (start, prop, key) {
       start[key] = cloned[key] && !/^(parentItem|listenerArgs|element)$/.test(key) ? cloneCopy(prop, cloned[key]) : prop;
       return start;
     }, cloned) : cloned;
@@ -263,7 +263,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.cloneObject = function (object) {
+  jDomCore.cloneObject = function (object) {
     return cloneCopy(object, JSON.parse(JSON.stringify(object, function (key, val) {
       return !/^(parentItem|listenerArgs|element)$/.test(key) ? val : undefined;
     })));
@@ -286,9 +286,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var mergeObjectsBase = function mergeObjectsBase(fn, obj1, obj2) {
     var isMutable = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-    return core.notEmptyObjectOrArray(obj2) ? core.mapObject(obj2, function (prop, key) {
+    return jDomCore.notEmptyObjectOrArray(obj2) ? jDomCore.mapObject(obj2, function (prop, key) {
       return obj1[key] && !/^(parentItem|listenerArgs|element)$/.test(key) ? fn(obj1[key], prop) : prop;
-    }, isMutable ? obj1 : core.cloneObject(obj1)) : obj2;
+    }, isMutable ? obj1 : jDomCore.cloneObject(obj1)) : obj2;
   };
   /**
    * Perform a deep merge of objects. This will combine all objects and sub-objects,
@@ -302,12 +302,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.mergeObjects = function () {
+  jDomCore.mergeObjects = function () {
     for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
       args[_key4] = arguments[_key4];
     }
 
-    return args.length === 2 ? mergeObjectsBase(core.mergeObjects, args[0], args[1]) : args.length === 1 ? core.cloneObject(args[0]) : args.reduce(core.curry(mergeObjectsBase)(core.mergeObjects), {});
+    return args.length === 2 ? mergeObjectsBase(jDomCore.mergeObjects, args[0], args[1]) : args.length === 1 ? jDomCore.cloneObject(args[0]) : args.reduce(jDomCore.curry(mergeObjectsBase)(jDomCore.mergeObjects), {});
   };
   /**
    * Perform a deep merge of objects. This will combine all objects and sub-objects,
@@ -322,12 +322,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.mergeObjectsMutable = function () {
+  jDomCore.mergeObjectsMutable = function () {
     for (var _len5 = arguments.length, args = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
       args[_key5] = arguments[_key5];
     }
 
-    return args.length === 2 ? mergeObjectsBase(core.mergeObjectsMutable, args[0], args[1], true) : args.length === 1 ? args[0] : args.reduce(core.curry(mergeObjectsBase)(core.mergeObjectsMutable), {});
+    return args.length === 2 ? mergeObjectsBase(jDomCore.mergeObjectsMutable, args[0], args[1], true) : args.length === 1 ? args[0] : args.reduce(jDomCore.curry(mergeObjectsBase)(jDomCore.mergeObjectsMutable), {});
   };
   /**
    * Generate an array filled with a copy of the provided item or references to the provided item.
@@ -343,7 +343,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var buildArrayBase = function buildArrayBase(useReference, item, length) {
     var arr = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
-    return --length > 0 ? buildArrayBase(useReference, useReference ? item : core.cloneObject(item), length, arr.concat([item])) : arr.concat([item]);
+    return --length > 0 ? buildArrayBase(useReference, useReference ? item : jDomCore.cloneObject(item), length, arr.concat([item])) : arr.concat([item]);
   };
   /**
    * Leverage buildArrayBase to generate an array filled with a copy of the provided item.
@@ -356,7 +356,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.buildArray = core.curry(buildArrayBase)(false);
+  jDomCore.buildArray = jDomCore.curry(buildArrayBase)(false);
   /**
    * Leverage buildArrayBase to generate an array filled with references to the provided item.
    * The length defines how long the array should be.
@@ -367,7 +367,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    * @returns {Array.<*>}
    */
 
-  core.buildArrayOfReferences = core.curry(buildArrayBase)(true);
+  jDomCore.buildArrayOfReferences = jDomCore.curry(buildArrayBase)(true);
   /**
    * A simple function to check if an item is in an array
    * @function inArray
@@ -376,7 +376,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    * @returns {boolean}
    */
 
-  core.inArray = function (arr, prop) {
+  jDomCore.inArray = function (arr, prop) {
     return arr.indexOf(prop) >= 0;
   };
   /**
@@ -388,7 +388,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.getAbsoluteMax = function (num1, num2) {
+  jDomCore.getAbsoluteMax = function (num1, num2) {
     return Math.abs(num1) > Math.abs(num2) ? num1 : num2;
   };
   /**
@@ -400,7 +400,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.getAbsoluteMin = function (num1, num2) {
+  jDomCore.getAbsoluteMin = function (num1, num2) {
     return Math.abs(num1) < Math.abs(num2) ? num1 : num2;
   };
   /**
@@ -415,7 +415,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.randomNumber = function (range) {
+  jDomCore.randomNumber = function (range) {
     var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     var interval = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
     return (Math.random() * range + offset) * interval;
@@ -432,7 +432,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.randomInteger = function (range) {
+  jDomCore.randomInteger = function (range) {
     var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     var interval = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
     return (Math.floor(Math.random() * range) + offset) * interval;
@@ -449,7 +449,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.compare = function (val1, val2) {
+  jDomCore.compare = function (val1, val2) {
     return val1 === val2 ? 0 : val1 > val2 ? 1 : -1;
   };
   /**
@@ -465,7 +465,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    * or more.
    * @example
    * // example of input and resulting output
-   * core.compareArrays(
+   * jDomCore.compareArrays(
    *   ['match1', 'firstMismatch1', 'match2', 'firstMismatch2', 'badMatch1'],
    *   ['match1', 'match2', 'secondMismatch1', 'badMatch1', 'badMatch1']
    * )
@@ -480,13 +480,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.compareArrays = function (arr1, arr2) {
+  jDomCore.compareArrays = function (arr1, arr2) {
     return arr2.filter(function (attr) {
-      return !core.inArray(arr1, attr);
+      return !jDomCore.inArray(arr1, attr);
     }).concat(arr1).reduce(function (returnObj, attr) {
-      return core.setValue(typeof attr === 'string' ? attr : JSON.stringify(attr, function (key, val) {
+      return jDomCore.setValue(typeof attr === 'string' ? attr : JSON.stringify(attr, function (key, val) {
         return !/^(parentItem|listenerArgs|element)$/.test(key) ? val : undefined;
-      }), core.compare(arr1.filter(function (val) {
+      }), jDomCore.compare(arr1.filter(function (val) {
         return val === attr;
       }).length, arr2.filter(function (val) {
         return val === attr;
@@ -504,7 +504,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.trace = function (label) {
+  jDomCore.trace = function (label) {
     return function (value) {
       console.info("".concat(label, ": "), value);
       return value;
@@ -523,13 +523,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  core.queueTimeout = function () {
+  jDomCore.queueTimeout = function () {
     var fn = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var time = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     // Track the queue to be processed in FIFO
-    core.queueTimeout.queue = core.queueTimeout.queue || []; // Do not run more than one queued item at a time
+    jDomCore.queueTimeout.queue = jDomCore.queueTimeout.queue || []; // Do not run more than one queued item at a time
 
-    core.queueTimeout.isRunning = core.queueTimeout.isRunning || false; // Construct an object which will store the queued function data
+    jDomCore.queueTimeout.isRunning = jDomCore.queueTimeout.isRunning || false; // Construct an object which will store the queued function data
 
     for (var _len6 = arguments.length, args = new Array(_len6 > 2 ? _len6 - 2 : 0), _key6 = 2; _key6 < _len6; _key6++) {
       args[_key6 - 2] = arguments[_key6];
@@ -545,23 +545,23 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     if (fn) {
       // When the function is valid, append it to the end of the queue
-      core.queueTimeout.queue.push(queueItem);
+      jDomCore.queueTimeout.queue.push(queueItem);
     }
 
-    if (core.queueTimeout.queue.length && !core.queueTimeout.isRunning) {
+    if (jDomCore.queueTimeout.queue.length && !jDomCore.queueTimeout.isRunning) {
       // Check that the queue is not empty, and it is not running a queued item
       // Set isRunning flag to begin processing the next queued item
-      core.queueTimeout.isRunning = true; // Pick an item off the front of the queue, and thereby reduce the queue size
+      jDomCore.queueTimeout.isRunning = true; // Pick an item off the front of the queue, and thereby reduce the queue size
 
-      var toRun = core.queueTimeout.queue.shift(); // Get the timeout ID when it has begun
+      var toRun = jDomCore.queueTimeout.queue.shift(); // Get the timeout ID when it has begun
 
       toRun.id = setTimeout(function () {
         // Run the function after the provided timeout
         toRun.result = toRun.func.apply(toRun, _toConsumableArray(toRun.args)); // Reset isRunning flag
 
-        core.queueTimeout.isRunning = false; // Re-run the queue which will get the next queued item if there is one
+        jDomCore.queueTimeout.isRunning = false; // Re-run the queue which will get the next queued item if there is one
 
-        return core.queueTimeout(false);
+        return jDomCore.queueTimeout(false);
       }, toRun.timeout); // Return whatever object we have for the current queued item being processed, likely incomplete because the
       // function will complete in the future
 
@@ -578,10 +578,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = core;
+      exports = module.exports = jDomCore;
     }
 
-    exports = Object.assign(exports, core);
+    exports = Object.assign(exports, jDomCore);
   }
 }).call(void 0 || window || {}) // Use the external context to assign this, which will be Window if rendered via browser
 
@@ -626,47 +626,47 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  var previousJDomObjectsDom = root.domObjects || {};
+  var previousJDomObjectsDom = root.jDomObjectsDom || {};
   /**
-   * All methods exported from this module are encapsulated within domObjects
+   * All methods exported from this module are encapsulated within jDomObjectsDom
    * @author Joshua Heagle <joshuaheagle@gmail.com>
-   * @typedef {Object} domObjects
+   * @typedef {Object} jDomObjectsDom
    * @module core/dom/objects
    */
 
-  var domObjects = {};
-  root.domObjects = domObjects;
+  var jDomObjectsDom = {};
+  root.jDomObjectsDom = jDomObjectsDom;
   /**
    * Return a reference to this library while preserving the original same-named library
    * @function noConflict
-   * @returns {domObjects}
+   * @returns {jDomObjectsDom}
    */
 
-  domObjects.noConflict = function () {
-    root.domObjects = previousJDomObjectsDom;
-    return domObjects;
+  jDomObjectsDom.noConflict = function () {
+    root.jDomObjectsDom = previousJDomObjectsDom;
+    return jDomObjectsDom;
   };
   /**
-   * Verify availability of core
-   * @typedef {*|module:core/core} core
+   * Verify availability of jDomCore
+   * @typedef {*|module:core/core} jDomCore
    */
 
 
-  var core = root.core;
+  var jDomCore = root.jDomCore;
   /**
-   * If core remains undefined, attempt to retrieve it as a module
+   * If jDomCore remains undefined, attempt to retrieve it as a module
    */
 
-  if (typeof core === 'undefined') {
+  if (typeof jDomCore === 'undefined') {
     if (typeof require !== 'undefined') {
-      core = require('../core.js');
+      jDomCore = require('../core.js');
     } else {
       console.error('core/dom/objects requires core/core');
     }
   }
   /**
    * This is the standard definition of a listenerFunction to be used
-   * @callback domObjects.listenerFunction
+   * @callback jDomObjectsDom.listenerFunction
    * @callback listenerFunction
    * @param {Event|module:pseudoDom/objects.PseudoEvent} e - The event object passed to the listener
    * @param {module:core/dom/objects.DomItem} target - The element which triggered the event
@@ -699,7 +699,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   /**
    * An EventListener Object to be appended to the element within the DomItem
-   * @typedef {Object} domObjects.EventListener
+   * @typedef {Object} jDomObjectsDom.EventListener
    * @typedef {Object} EventListener
    * @property {string} listenerFunc - A string function name matching an existing
    * {@link module:core/dom/objects~listenerFunction}.
@@ -731,14 +731,14 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domObjects.createDomItem = function () {
-    var _core;
+  jDomObjectsDom.createDomItem = function () {
+    var _jDomCore;
 
     for (var _len7 = arguments.length, attributes = new Array(_len7), _key7 = 0; _key7 < _len7; _key7++) {
       attributes[_key7] = arguments[_key7];
     }
 
-    return (_core = core).mergeObjectsMutable.apply(_core, [{
+    return (_jDomCore = jDomCore).mergeObjectsMutable.apply(_jDomCore, [{
       tagName: 'div',
       attributes: {
         style: {}
@@ -776,12 +776,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   var initChildren = function initChildren() {
-    return [domObjects.createDomItem({
+    return [jDomObjectsDom.createDomItem({
       tagName: 'head',
       attributes: {},
       element: document.head,
       children: []
-    }), domObjects.createDomItem({
+    }), jDomObjectsDom.createDomItem({
       tagName: 'body',
       attributes: {},
       element: document.body,
@@ -816,7 +816,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var initRoot = function initRoot(children) {
     var listeners = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    return domObjects.createDomItem({
+    return jDomObjectsDom.createDomItem({
       tagName: 'html',
       attributes: {},
       element: document,
@@ -838,17 +838,17 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domObjects.documentDomItem = function () {
+  jDomObjectsDom.documentDomItem = function () {
     var listeners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
     var rootItem = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : initRoot(initChildren(), listeners);
     rootItem.children = rootItem.children.map(function (child) {
-      return domObjects.createDomItem(child, {
+      return jDomObjectsDom.createDomItem(child, {
         parentItem: rootItem
       });
     });
     Object.assign(rootItem.head, rootItem.children[0]);
     Object.assign(rootItem.body, rootItem.children[1]);
-    return domObjects.createDomItem(rootItem);
+    return jDomObjectsDom.createDomItem(rootItem);
   };
   /**
    * Create reference for storing document changes
@@ -857,17 +857,17 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domObjects.documentItem = domObjects.documentDomItem();
+  jDomObjectsDom.documentItem = jDomObjectsDom.documentDomItem();
   /**
    * Either export all functions to be exported, or assign to the Window context
    */
 
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = domObjects;
+      exports = module.exports = jDomObjectsDom;
     }
 
-    exports = Object.assign(exports, domObjects);
+    exports = Object.assign(exports, jDomObjectsDom);
   }
 }).call(void 0 || window || {}) // Use the external context to assign this, which will be Window if rendered via browser
 
@@ -887,25 +887,25 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    * @type {module|*}
    */
 
-  var previousJDomCoreDom = root.domCore || {};
+  var previousJDomCoreDom = root.jDomCoreDom || {};
   /**
-   * All methods exported from this module are encapsulated within domCore.
+   * All methods exported from this module are encapsulated within jDomCoreDom.
    * @author Joshua Heagle <joshuaheagle@gmail.com>
-   * @typedef {Object} domCore
+   * @typedef {Object} jDomCoreDom
    * @module core/dom/core
    */
 
-  var domCore = {};
-  root.domCore = domCore;
+  var jDomCoreDom = {};
+  root.jDomCoreDom = jDomCoreDom;
   /**
    * Return a reference to this library while preserving the original same-named library
    * @function noConflict
-   * @returns {domCore}
+   * @returns {jDomCoreDom}
    */
 
-  domCore.noConflict = function () {
-    root.domCore = previousJDomCoreDom;
-    return domCore;
+  jDomCoreDom.noConflict = function () {
+    root.jDomCoreDom = previousJDomCoreDom;
+    return jDomCoreDom;
   };
   /**
    * Verify availability of document
@@ -933,37 +933,37 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }
   }
   /**
-   * Verify availability of core
-   * @typedef {*|module:core/core} core
+   * Verify availability of jDomCore
+   * @typedef {*|module:core/core} jDomCore
    */
 
 
-  var core = root.core;
+  var jDomCore = root.jDomCore;
   /**
-   * If core remains undefined, attempt to retrieve it as a module
+   * If jDomCore remains undefined, attempt to retrieve it as a module
    */
 
-  if (typeof core === 'undefined') {
+  if (typeof jDomCore === 'undefined') {
     if (typeof require !== 'undefined') {
-      core = require('../core.js');
+      jDomCore = require('../core.js');
     } else {
       console.error('core/dom/core requires core/core');
     }
   }
   /**
-   * Verify availability of core
-   * @typedef {*|module:core/dom/objects} domObjects
+   * Verify availability of jDomCore
+   * @typedef {*|module:core/dom/objects} jDomObjectsDom
    */
 
 
-  var domObjects = root.domObjects;
+  var jDomObjectsDom = root.jDomObjectsDom;
   /**
-   * If domObjects remains undefined, attempt to retrieve it as a module
+   * If jDomObjectsDom remains undefined, attempt to retrieve it as a module
    */
 
-  if (typeof domObjects === 'undefined') {
+  if (typeof jDomObjectsDom === 'undefined') {
     if (typeof require !== 'undefined') {
-      domObjects = require('./objects.js');
+      jDomObjectsDom = require('./objects.js');
     } else {
       console.error('core/dom/core requires core/dom/objects');
     }
@@ -979,7 +979,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.elementHasAttribute = function (element, key, attr) {
+  jDomCoreDom.elementHasAttribute = function (element, key, attr) {
     if (!element.style) {
       // if element is not a valid element then return false
       return false;
@@ -988,7 +988,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     if (/^(style|className)$/.test(key)) {
       // For attributes which are objects or multi-part strings
       // -1 = remove attribute, 0 = no change, 1 = add attribute
-      return core.compareArrays(typeof attr === 'string' ? attr.split(' ') : Object.keys(attr), typeof attr === 'string' ? element[key].split(' ') : Object.keys(element[key]));
+      return jDomCore.compareArrays(typeof attr === 'string' ? attr.split(' ') : Object.keys(attr), typeof attr === 'string' ? element[key].split(' ') : Object.keys(element[key]));
     } // Check that the key is a property of the element
     // Compare current to new one
 
@@ -1004,11 +1004,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.elementCompareClassList = function (element, classes) {
-    return core.compareArrays(classes.split(' '), [].from(element.classList));
+  jDomCoreDom.elementCompareClassList = function (element, classes) {
+    return jDomCore.compareArrays(classes.split(' '), [].from(element.classList));
   };
   /**
-   * Given a objects.DomItem as config, this function will return the changes to be applied
+   * Given a jDomObjectsDom.DomItem as config, this function will return the changes to be applied
    * to the stored element property.
    * @function elementChanges
    * @param {module:core/dom/objects.DomItem} config - The DomItem having config changes to be applied to its
@@ -1017,18 +1017,18 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.elementChanges = function (config) {
+  jDomCoreDom.elementChanges = function (config) {
     return config.element.tagName.toLowerCase() !== config.tagName.toLowerCase() ? // Generate a new element since the tag has changed
-    domCore.generateElement(config) // Remove all the similarities
-    : core.setValue('attributes', core.filterObject(config.attributes, // For each attribute, check if it becomes true / false based on the comparison results
+    jDomCoreDom.generateElement(config) // Remove all the similarities
+    : jDomCore.setValue('attributes', jDomCore.filterObject(config.attributes, // For each attribute, check if it becomes true / false based on the comparison results
     function (attr1, key1) {
-      return core.filterObject( // Get attributes as object of truthy and falsy values
-      core.mapObject(config.attributes, function (attr2, key2) {
+      return jDomCore.filterObject( // Get attributes as object of truthy and falsy values
+      jDomCore.mapObject(config.attributes, function (attr2, key2) {
         return _typeof(attr2) === 'object' || key2 === 'className' ? // Apply custom logic for class and styles, only keep the updates
-        core.filterObject(domCore.elementHasAttribute(config.element, key2, attr2), function (attr3) {
+        jDomCore.filterObject(jDomCoreDom.elementHasAttribute(config.element, key2, attr2), function (attr3) {
           return attr3 === 1;
         }) // True when the element does not already have the attribute
-        : !domCore.elementHasAttribute(config.element, key2, attr2);
+        : !jDomCoreDom.elementHasAttribute(config.element, key2, attr2);
       }), // Remove when the attr4 value is 0 or false, or not empty object
       function (attr4) {
         return !!attr4;
@@ -1046,7 +1046,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.setAttribute = function (config, name, value) {
+  jDomCoreDom.setAttribute = function (config, name, value) {
     config.element.setAttribute(name, value);
     return config;
   };
@@ -1061,7 +1061,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.setAndReturnAttribute = function (config, name, value) {
+  jDomCoreDom.setAndReturnAttribute = function (config, name, value) {
     config.element.setAttribute(name, value);
     return value;
   };
@@ -1074,17 +1074,17 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.updateElement = function (config) {
+  jDomCoreDom.updateElement = function (config) {
     return !config.element.style // if element is not a valid element then return the config without changes
     ? config // Set the the current attributes to contain all the changes
-    : core.setValue('attributes', core.mapObject( // Retrieve only the changes to be applied from the attributes
-    domCore.elementChanges(config).attributes, function (attr, key) {
-      return core.notEmptyObjectOrArray(attr) ? core.mapObject(core.filterObject( // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
+    : jDomCore.setValue('attributes', jDomCore.mapObject( // Retrieve only the changes to be applied from the attributes
+    jDomCoreDom.elementChanges(config).attributes, function (attr, key) {
+      return jDomCore.notEmptyObjectOrArray(attr) ? jDomCore.mapObject(jDomCore.filterObject( // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
       attr, function (param, k) {
         return /^\D+$/.test(k);
       }), function (p, i) {
-        return core.setAndReturnValue(config.element.style, i, p);
-      }, config.element.style) : key in config.element ? core.setAndReturnValue(config.element, key, attr) : domCore.setAndReturnAttribute(config, key, attr);
+        return jDomCore.setAndReturnValue(config.element.style, i, p);
+      }, config.element.style) : key in config.element ? jDomCore.setAndReturnValue(config.element, key, attr) : jDomCoreDom.setAndReturnAttribute(config, key, attr);
     }), config);
   };
   /**
@@ -1097,10 +1097,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.updateElements = function (config) {
-    return core.mapProperty('children', function (child) {
-      return domCore.updateElements(child);
-    }, domCore.updateElement(config));
+  jDomCoreDom.updateElements = function (config) {
+    return jDomCore.mapProperty('children', function (child) {
+      return jDomCoreDom.updateElements(child);
+    }, jDomCoreDom.updateElement(config));
   };
   /**
    * Create an HTML element based on the provided attributes and return the element as an Object.
@@ -1110,8 +1110,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.generateElement = function (config) {
-    return domCore.updateElement(core.setValue('element', document.createElement(config.tagName), config));
+  jDomCoreDom.generateElement = function (config) {
+    return jDomCoreDom.updateElement(jDomCore.setValue('element', document.createElement(config.tagName), config));
   };
   /**
    * Generate HTML element data for a provided DomItem
@@ -1121,8 +1121,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.bindElement = function (item) {
-    return core.setValue('element', !item.element || !item.element.style ? domCore.generateElement(item).element : item.element, item);
+  jDomCoreDom.bindElement = function (item) {
+    return jDomCore.setValue('element', !item.element || !item.element.style ? jDomCoreDom.generateElement(item).element : item.element, item);
   };
   /**
    * Simplify detecting the parent item which can be appended to, whether root, or just a parent at any part of the tree
@@ -1145,7 +1145,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   var addUniqueToArray = function addUniqueToArray(item, array) {
-    return !core.inArray(array, item) ? array.concat([item]) : array;
+    return !jDomCore.inArray(array, item) ? array.concat([item]) : array;
   };
   /**
    * Provide a DomItem to be appended to a parent item, return the DomItem.
@@ -1156,7 +1156,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   var appendAndReturnChild = function appendAndReturnChild(child) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : domObjects.documentItem.body;
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjectsDom.documentItem.body;
     retrieveParentItem(parent).element.appendChild(child.element);
     return child;
   };
@@ -1169,9 +1169,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.appendHTML = function (item) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : domObjects.documentItem.body;
-    return appendAndReturnChild(domCore.bindElement(item), core.setValue('children', addUniqueToArray(item, retrieveParentItem(parent).children), retrieveParentItem(parent)));
+  jDomCoreDom.appendHTML = function (item) {
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjectsDom.documentItem.body;
+    return appendAndReturnChild(jDomCoreDom.bindElement(item), jDomCore.setValue('children', addUniqueToArray(item, retrieveParentItem(parent).children), retrieveParentItem(parent)));
   };
   /**
    * Reverse of appendHTML, remove a DomItem and have the associated element removed.
@@ -1182,13 +1182,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.removeChild = function (item) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : domObjects.documentItem.body;
+  jDomCoreDom.removeChild = function (item) {
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjectsDom.documentItem.body;
     parent.element.removeChild(item.element);
     return parent.children.splice(parent.children.indexOf(item), 1);
   };
   /**
-   * Register a single listener function as part of the root objects.DomItem.
+   * Register a single listener function as part of the root jDomObjectsDom.DomItem.
    * @function registerListener
    * @param {module:core/dom/objects~listenerFunction|function} listener - Provide a function which will be called
    * when a Dom event is triggered.
@@ -1199,9 +1199,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.registerListener = function (listener) {
+  jDomCoreDom.registerListener = function (listener) {
     var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : listener.name;
-    var parent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : objects.documentItem;
+    var parent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : jDomObjectsDom.documentItem;
     return Object.assign(parent.eventListeners, _defineProperty({}, name, listener));
   };
   /**
@@ -1215,16 +1215,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.registerListeners = function (listeners) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : domObjects.documentItem;
-    return core.mergeObjects(parent, {
+  jDomCoreDom.registerListeners = function (listeners) {
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjectsDom.documentItem;
+    return jDomCore.mergeObjects(parent, {
       eventListeners: parent.eventListeners
     }, {
       eventListeners: listeners
     });
   };
   /**
-   * Based on the provided function / listener name, retrieve the associated function from the root objects.DomItem
+   * Based on the provided function / listener name, retrieve the associated function from the root jDomObjectsDom.DomItem
    * @function retrieveListener
    * @param {string} listenerName - The name of one of the registered listener functions.
    * @param {module:core/dom/objects.DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which
@@ -1233,9 +1233,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.retrieveListener = function (listenerName) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : domObjects.documentItem;
-    return core.inArray(Object.keys(parent.eventListeners), listenerName) ? parent.eventListeners[listenerName] : {};
+  jDomCoreDom.retrieveListener = function (listenerName) {
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjectsDom.documentItem;
+    return jDomCore.inArray(Object.keys(parent.eventListeners), listenerName) ? parent.eventListeners[listenerName] : {};
   };
   /**
    * Provide compatibility for using the options parameter of addEventListener
@@ -1277,7 +1277,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.assignListener = function (trigger, elem, fn, options) {
+  jDomCoreDom.assignListener = function (trigger, elem, fn, options) {
     // Attaching a listener may be done differently based on the browser support
     if (elem.addEventListener) {
       // Latest support is provided fro addEventListener with the options parameter varying slightly
@@ -1307,12 +1307,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.appendListeners = function (item, event, listener) {
+  jDomCoreDom.appendListeners = function (item, event, listener) {
     var args = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
     var options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
-    return core.mapProperty('children', function (i) {
-      return domCore.appendListeners(i, event, listener, args, options);
-    }, core.setValue('eventListeners', core.setValue(event, {
+    return jDomCore.mapProperty('children', function (i) {
+      return jDomCoreDom.appendListeners(i, event, listener, args, options);
+    }, jDomCore.setValue('eventListeners', jDomCore.setValue(event, {
       listenerFunc: listener,
       listenerArgs: args,
       listenerOptions: options
@@ -1326,15 +1326,15 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   var bindElementListeners = function bindElementListeners(item) {
-    return core.mapProperty('eventListeners', function (attr, event) {
-      return domCore.assignListener(event, item.element, function (e) {
+    return jDomCore.mapProperty('eventListeners', function (attr, event) {
+      return jDomCoreDom.assignListener(event, item.element, function (e) {
         return attr.listenerFunc(e, item, attr.listenerArgs);
       }, attr.listenerOptions);
     }, item);
   };
   /**
    * Based on the eventListeners property of the provided item, bind the
-   * listeners to the associated element property for the provided objects.DomItem.
+   * listeners to the associated element property for the provided jDomObjectsDom.DomItem.
    * @function bindListeners
    * @param {module:core/dom/objects.DomItem} item - The DomItem which may have eventListeners to apply to its
    * element
@@ -1342,12 +1342,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.bindListeners = function (item) {
+  jDomCoreDom.bindListeners = function (item) {
     return item.eventListeners && Object.keys(item.eventListeners).length && item.element.style ? bindElementListeners(item) : item;
   };
   /**
    * Based on the eventListeners property of the provided item, bind the listeners to the associated element property
-   * for each item in the objects.DomItem structure.
+   * for each item in the jDomObjectsDom.DomItem structure.
    * WARNING: This is a recursive function.
    * @function bindAllListeners
    * @param {module:core/dom/objects.DomItem} item - The DomItem with an associated HTMLElement to have a listener
@@ -1356,13 +1356,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.bindAllListeners = function (item) {
-    return core.mapProperty('children', function (i) {
-      return domCore.bindAllListeners(i);
-    }, domCore.bindListeners(item));
+  jDomCoreDom.bindAllListeners = function (item) {
+    return jDomCore.mapProperty('children', function (i) {
+      return jDomCoreDom.bindAllListeners(i);
+    }, jDomCoreDom.bindListeners(item));
   };
   /**
-   * To be used with domCore.gatherChildItems which will start at item and recurse over all child items, this test
+   * To be used with jDomCoreDom.gatherChildItems which will start at item and recurse over all child items, this test
    * will then choose which child items will be returned as the result of the test.
    * @callback module:core/dom/core~testChildItem
    * @param {module:core/dom/objects.DomItem|Object} item - The DomItem is the child being tested
@@ -1372,7 +1372,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
   /**
-   * A selector function for retrieving existing child objects.DomItems from the given parent item.
+   * A selector function for retrieving existing child jDomObjectsDom.DomItems from the given parent item.
    * This function will check all the children starting from and including item, and run the test function on each
    * child encountered. The return array contains children returned from the test from all levels.
    * WARNING: This is a recursive function.
@@ -1384,9 +1384,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.gatherChildItems = function (item, test) {
+  jDomCoreDom.gatherChildItems = function (item, test) {
     return test(item, item.children.reduce(function (a, b) {
-      return a.concat(domCore.gatherChildItems(b, test));
+      return a.concat(jDomCoreDom.gatherChildItems(b, test));
     }, []));
   };
   /**
@@ -1403,7 +1403,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     };
   };
   /**
-   * A selector function for retrieving existing child objects.DomItems from the given parent item.
+   * A selector function for retrieving existing child jDomObjectsDom.DomItems from the given parent item.
    * This function will check all the children starting from item, and scan the attributes
    * property for matches. The returned array contains children matching from all levels.
    * WARNING: This calls a recursive function.
@@ -1416,27 +1416,27 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.getChildrenFromAttribute = function (attr, value) {
-    var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : domObjects.documentItem.body;
-    return domCore.gatherChildItems(item, getChildTest(attr, value));
+  jDomCoreDom.getChildrenFromAttribute = function (attr, value) {
+    var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : jDomObjectsDom.documentItem.body;
+    return jDomCoreDom.gatherChildItems(item, getChildTest(attr, value));
   };
   /**
-   * Helper for getting all objects.DomItems starting at parent and having specified className attribute
+   * Helper for getting all jDomObjectsDom.DomItems starting at parent and having specified className attribute
    * @function getChildrenByClass
    * @returns {module:core/dom/objects.DomItem[]}
    */
 
 
-  domCore.getChildrenByClass = core.curry(domCore.getChildrenFromAttribute)('className');
+  jDomCoreDom.getChildrenByClass = jDomCore.curry(jDomCoreDom.getChildrenFromAttribute)('className');
   /**
-   * Helper for getting all objects.DomItems starting at parent and having specified name attribute
+   * Helper for getting all jDomObjectsDom.DomItems starting at parent and having specified name attribute
    * @function getChildrenByName
    * @returns {module:core/dom/objects.DomItem[]}
    */
 
-  domCore.getChildrenByName = core.curry(domCore.getChildrenFromAttribute)('name');
+  jDomCoreDom.getChildrenByName = jDomCore.curry(jDomCoreDom.getChildrenFromAttribute)('name');
   /**
-   * A selector function for retrieving existing child objects.DomItems from the given parent item.
+   * A selector function for retrieving existing child jDomObjectsDom.DomItems from the given parent item.
    * This function will check all the children starting from item, and scan the attributes
    * property for matches. The return array contains children matching from all levels.
    * WARNING: This is a recursive function.
@@ -1448,42 +1448,42 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    * @returns {Array}
    */
 
-  domCore.getParentsFromAttribute = function (attr, value) {
-    var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : domObjects.documentItem.body;
-    return Object.keys(item.parentItem).length ? (item.parentItem.attributes[attr] || item[attr] || false) === value ? domCore.getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem]) : domCore.getParentsFromAttribute(attr, value, item.parentItem) : [];
+  jDomCoreDom.getParentsFromAttribute = function (attr, value) {
+    var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : jDomObjectsDom.documentItem.body;
+    return Object.keys(item.parentItem).length ? (item.parentItem.attributes[attr] || item[attr] || false) === value ? jDomCoreDom.getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem]) : jDomCoreDom.getParentsFromAttribute(attr, value, item.parentItem) : [];
   };
   /**
-   * Helper for getting all objects.DomItems starting at child and having specified className attribute
+   * Helper for getting all jDomObjectsDom.DomItems starting at child and having specified className attribute
    * @function getParentsByClass
    * @returns {Array}
    */
 
 
-  domCore.getParentsByClass = core.curry(domCore.getParentsFromAttribute)('className');
+  jDomCoreDom.getParentsByClass = jDomCore.curry(jDomCoreDom.getParentsFromAttribute)('className');
   /**
-   * Helper for getting all objects.DomItems starting at child and having specified name attribute
+   * Helper for getting all jDomObjectsDom.DomItems starting at child and having specified name attribute
    * @function getParentsByName
    * @returns {Array}
    */
 
-  domCore.getParentsByName = core.curry(domCore.getParentsFromAttribute)('name');
+  jDomCoreDom.getParentsByName = jDomCore.curry(jDomCoreDom.getParentsFromAttribute)('name');
   /**
-   * Helper for getting all objects.DomItems starting at child and having specified tagName
+   * Helper for getting all jDomObjectsDom.DomItems starting at child and having specified tagName
    * @function getParentsByTagName
    * @returns {Array}
    */
 
-  domCore.getParentsByTagName = core.curry(domCore.getParentsFromAttribute)('tagName');
+  jDomCoreDom.getParentsByTagName = jDomCore.curry(jDomCoreDom.getParentsFromAttribute)('tagName');
   /**
-   * Get the upper parentItem for the provided child. (usually this is a objects.documentItem reference)
+   * Get the upper parentItem for the provided child. (usually this is a jDomObjectsDom.documentItem reference)
    * WARNING: This is a recursive function.
    * @function getTopParentItem
    * @param {module:core/dom/objects.DomItem} item - The DomItem which we want the highest parent item of
    * @returns {module:core/dom/objects.DomItemRoot}
    */
 
-  domCore.getTopParentItem = function (item) {
-    return Object.keys(item.parentItem).length ? domCore.getTopParentItem(item.parentItem) : item;
+  jDomCoreDom.getTopParentItem = function (item) {
+    return Object.keys(item.parentItem).length ? jDomCoreDom.getTopParentItem(item.parentItem) : item;
   };
   /**
    * This is a shortcut for building the specified HTML elements and appending them to the Dom
@@ -1496,23 +1496,23 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  domCore.renderHTML = function (item) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : domObjects.documentItem;
-    return core.pipe(function (domItem) {
-      return core.setValue('element', domItem.element && domItem.element.style ? domItem.element : domCore.bindElement(domItem).element, domItem);
+  jDomCoreDom.renderHTML = function (item) {
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjectsDom.documentItem;
+    return jDomCore.pipe(function (domItem) {
+      return jDomCore.setValue('element', domItem.element && domItem.element.style ? domItem.element : jDomCoreDom.bindElement(domItem).element, domItem);
     }, function (domItem) {
-      return core.setValue('eventListeners', core.mapObject(domItem.eventListeners, function (prop) {
-        return core.mergeObjects(prop, {
-          listenerFunc: domCore.retrieveListener(prop.listenerFunc, domCore.getTopParentItem(parent))
+      return jDomCore.setValue('eventListeners', jDomCore.mapObject(domItem.eventListeners, function (prop) {
+        return jDomCore.mergeObjects(prop, {
+          listenerFunc: jDomCoreDom.retrieveListener(prop.listenerFunc, jDomCoreDom.getTopParentItem(parent))
         });
       }), domItem);
-    }, core.curry(core.setValue)('parentItem', parent.body || parent), function (domItem) {
-      return domCore.bindListeners(domCore.appendHTML(domItem, parent));
+    }, jDomCore.curry(jDomCore.setValue)('parentItem', parent.body || parent), function (domItem) {
+      return jDomCoreDom.bindListeners(jDomCoreDom.appendHTML(domItem, parent));
     }, function (domItem) {
-      return core.mapProperty('children', function (child) {
-        return domCore.renderHTML(child, domItem);
+      return jDomCore.mapProperty('children', function (child) {
+        return jDomCoreDom.renderHTML(child, domItem);
       }, domItem);
-    })(core.mapObject(domObjects.createDomItem(item), function (prop) {
+    })(jDomCore.mapObject(jDomObjectsDom.createDomItem(item), function (prop) {
       return prop;
     }, item));
   };
@@ -1523,10 +1523,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = domCore;
+      exports = module.exports = jDomCoreDom;
     }
 
-    exports = Object.assign(exports, domCore);
+    exports = Object.assign(exports, jDomCoreDom);
   }
 }).call(void 0 || window || {}) // Use the external context to assign this, which will be Window if rendered via browser
 
@@ -1546,58 +1546,58 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    * @type {module|*}
    */
 
-  var previousJDomMatrixObjects = root.matrixObjects || {};
+  var previousJDomMatrixObjects = root.jDomMatrixObjects || {};
   /**
-   * All methods exported from this module are encapsulated within matrixObjects.
+   * All methods exported from this module are encapsulated within jDomMatrixObjects.
    * @author Joshua Heagle <joshuaheagle@gmail.com>
-   * @typedef {Object} matrixObjects
+   * @typedef {Object} jDomMatrixObjects
    * @module matrix/objects
    */
 
-  var matrixObjects = {};
-  root.matrixObjects = matrixObjects;
+  var jDomMatrixObjects = {};
+  root.jDomMatrixObjects = jDomMatrixObjects;
   /**
    * Return a reference to this library while preserving the original same-named library
    * @function noConflict
-   * @returns {matrixObjects}
+   * @returns {jDomMatrixObjects}
    */
 
-  matrixObjects.noConflict = function () {
-    root.matrixObjects = previousJDomMatrixObjects;
-    return matrixObjects;
+  jDomMatrixObjects.noConflict = function () {
+    root.jDomMatrixObjects = previousJDomMatrixObjects;
+    return jDomMatrixObjects;
   };
   /**
-   * Verify availability of core
-   * @typedef {*|module:core/core} core
+   * Verify availability of jDomCore
+   * @typedef {*|module:core/core} jDomCore
    */
 
 
-  var core = root.core;
+  var jDomCore = root.jDomCore;
   /**
-   * If core remains undefined, attempt to retrieve it as a module
+   * If jDomCore remains undefined, attempt to retrieve it as a module
    */
 
-  if (typeof core === 'undefined') {
+  if (typeof jDomCore === 'undefined') {
     if (typeof require !== 'undefined') {
-      core = require('../core/core.js');
+      jDomCore = require('../core/core.js');
     } else {
-      console.error('objects.js requires core');
+      console.error('objects.js requires jDomCore');
     }
   }
   /**
-   * Verify availability of domObjects
-   * @typedef {*|module:core/dom/objects} domObjects
+   * Verify availability of jDomObjectsDom
+   * @typedef {*|module:core/dom/objects} jDomObjectsDom
    */
 
 
-  var domObjects = root.domObjects;
+  var jDomObjectsDom = root.jDomObjectsDom;
   /**
-   * If domObjects remains undefined, attempt to retrieve it as a module
+   * If jDomObjectsDom remains undefined, attempt to retrieve it as a module
    */
 
-  if (typeof domObjects === 'undefined') {
+  if (typeof jDomObjectsDom === 'undefined') {
     if (typeof require !== 'undefined') {
-      domObjects = require('../core/dom/objects.js');
+      jDomObjectsDom = require('../core/dom/objects.js');
     } else {
       console.error('core.js requires objects');
     }
@@ -1642,7 +1642,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixObjects.point = function (x, y) {
+  jDomMatrixObjects.point = function (x, y) {
     var z = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
     return {
       x: x,
@@ -1666,7 +1666,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixObjects.tile = function () {
+  jDomMatrixObjects.tile = function () {
     return {
       point: {}
     };
@@ -1725,8 +1725,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixObjects.matrix = function () {
-    var _domObjects, _domObjects2, _domObjects3, _domObjects4;
+  jDomMatrixObjects.matrix = function () {
+    var _jDomObjectsDom, _jDomObjectsDom2, _jDomObjectsDom3, _jDomObjectsDom4;
 
     var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
       coordinate: 0,
@@ -1741,24 +1741,24 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       props: []
     };
     var matrixProps = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
-    return (_domObjects = domObjects).createDomItem.apply(_domObjects, [{
+    return (_jDomObjectsDom = jDomObjectsDom).createDomItem.apply(_jDomObjectsDom, [{
       tagName: 'div',
       attributes: {
         className: 'matrix'
       },
-      children: core.buildArray((_domObjects2 = domObjects).createDomItem.apply(_domObjects2, [{
+      children: jDomCore.buildArray((_jDomObjectsDom2 = jDomObjectsDom).createDomItem.apply(_jDomObjectsDom2, [{
         axis: 'z',
         tagName: 'div',
         attributes: {
           className: 'layer'
         },
-        children: core.buildArray((_domObjects3 = domObjects).createDomItem.apply(_domObjects3, [{
+        children: jDomCore.buildArray((_jDomObjectsDom3 = jDomObjectsDom).createDomItem.apply(_jDomObjectsDom3, [{
           axis: 'y',
           tagName: 'div',
           attributes: {
             className: 'row'
           },
-          children: core.buildArray((_domObjects4 = domObjects).createDomItem.apply(_domObjects4, [{
+          children: jDomCore.buildArray((_jDomObjectsDom4 = jDomObjectsDom).createDomItem.apply(_jDomObjectsDom4, [{
             axis: 'x',
             tagName: 'div',
             attributes: {
@@ -1782,7 +1782,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixObjects.square = function () {
+  jDomMatrixObjects.square = function () {
     var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         _ref$x = _ref.x,
         x = _ref$x === void 0 ? [] : _ref$x,
@@ -1794,7 +1794,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         matrixProps = _ref$matrixProps === void 0 ? [] : _ref$matrixProps;
 
     var size = arguments.length > 1 ? arguments[1] : undefined;
-    return matrixObjects.matrix({
+    return jDomMatrixObjects.matrix({
       coordinate: size,
       props: x
     }, {
@@ -1818,7 +1818,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixObjects.cube = function () {
+  jDomMatrixObjects.cube = function () {
     var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         _ref2$x = _ref2.x,
         x = _ref2$x === void 0 ? [] : _ref2$x,
@@ -1830,7 +1830,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         matrixProps = _ref2$matrixProps === void 0 ? [] : _ref2$matrixProps;
 
     var size = arguments.length > 1 ? arguments[1] : undefined;
-    return matrixObjects.matrix({
+    return jDomMatrixObjects.matrix({
       coordinate: size,
       props: x
     }, {
@@ -1848,15 +1848,15 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = matrixObjects;
+      exports = module.exports = jDomMatrixObjects;
     }
 
-    exports = Object.assign(exports, matrixObjects);
+    exports = Object.assign(exports, jDomMatrixObjects);
   }
 }).call(void 0 || window || {}) // Use the external context to assign this, which will be Window if rendered via browser
 
 /**
- * @file All of the core matrix functions for working with a grid of points.
+ * @file All of the jDomCore matrix functions for working with a grid of points.
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
@@ -1871,58 +1871,58 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    * @type {module|*}
    */
 
-  var previousJDomMatrixCore = root.matrixCore || {};
+  var previousJDomMatrixCore = root.jDomMatrixCore || {};
   /**
-   * All methods exported from this module are encapsulated within matrixCore.
+   * All methods exported from this module are encapsulated within jDomMatrixCore.
    * @author Joshua Heagle <joshuaheagle@gmail.com>
-   * @typedef {Object} matrixCore
+   * @typedef {Object} jDomMatrixCore
    * @module matrix/core
    */
 
-  var matrixCore = {};
-  root.matrixCore = matrixCore;
+  var jDomMatrixCore = {};
+  root.jDomMatrixCore = jDomMatrixCore;
   /**
    * Return a reference to this library while preserving the original same-named library
    * @function noConflict
-   * @returns {matrixCore}
+   * @returns {jDomMatrixCore}
    */
 
-  matrixCore.noConflict = function () {
-    root.matrixCore = previousJDomMatrixCore;
-    return matrixCore;
+  jDomMatrixCore.noConflict = function () {
+    root.jDomMatrixCore = previousJDomMatrixCore;
+    return jDomMatrixCore;
   };
   /**
-   * Verify availability of matrixObjects
-   * @typedef {*|module:core/core} core
+   * Verify availability of jDomMatrixObjects
+   * @typedef {*|module:core/core} jDomCore
    */
 
 
-  var core = root.core;
+  var jDomCore = root.jDomCore;
   /**
-   * If core remains undefined, attempt to retrieve it as a module
+   * If jDomCore remains undefined, attempt to retrieve it as a module
    */
 
-  if (typeof core === 'undefined') {
+  if (typeof jDomCore === 'undefined') {
     if (typeof require !== 'undefined') {
-      core = require('../core/core.js');
+      jDomCore = require('../core/core.js');
     } else {
       console.error('matrix/core requires core/core');
     }
   }
   /**
-   * Verify availability of matrixObjects
-   * @typedef {*|module:matrix/objects} matrixObjects
+   * Verify availability of jDomMatrixObjects
+   * @typedef {*|module:matrix/objects} jDomMatrixObjects
    */
 
 
-  var matrixObjects = root.matrixObjects;
+  var jDomMatrixObjects = root.jDomMatrixObjects;
   /**
-   * If coreDom remains undefined, attempt to retrieve it as a module
+   * If jDomCoreDom remains undefined, attempt to retrieve it as a module
    */
 
-  if (typeof matrixObjects === 'undefined') {
+  if (typeof jDomMatrixObjects === 'undefined') {
     if (typeof require !== 'undefined') {
-      matrixObjects = require('./objects.js');
+      jDomMatrixObjects = require('./objects.js');
     } else {
       console.error('matrix/core requires matrix/objects');
     }
@@ -1938,13 +1938,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.bindPointData = function (item) {
-    var pnt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : matrixObjects.point(0, 0, 0);
-    return core.mergeObjects(item, item.point ? {
-      point: core.cloneObject(pnt)
+  jDomMatrixCore.bindPointData = function (item) {
+    var pnt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomMatrixObjects.point(0, 0, 0);
+    return jDomCore.mergeObjects(item, item.point ? {
+      point: jDomCore.cloneObject(pnt)
     } : {
       children: item.children.map(function (el, i) {
-        return matrixCore.bindPointData(el, Object.assign(pnt, _defineProperty({}, el.axis, i)));
+        return jDomMatrixCore.bindPointData(el, Object.assign(pnt, _defineProperty({}, el.axis, i)));
       })
     });
   };
@@ -1957,8 +1957,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.nextCell = function (pnt, dir) {
-    return matrixObjects.point(pnt.x + dir.x, pnt.y + dir.y, pnt.z + dir.z);
+  jDomMatrixCore.nextCell = function (pnt, dir) {
+    return jDomMatrixObjects.point(pnt.x + dir.x, pnt.y + dir.y, pnt.z + dir.z);
   };
   /**
    * Based on provided point and another point, get a point with the difference between each axis
@@ -1969,8 +1969,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.pointDifference = function (start, end) {
-    return matrixObjects.point(end.x - start.x, end.y - start.y, end.z - start.z);
+  jDomMatrixCore.pointDifference = function (start, end) {
+    return jDomMatrixObjects.point(end.x - start.x, end.y - start.y, end.z - start.z);
   };
   /**
    * Given two points, compare the x, y, and z of each to see if they are the same
@@ -1981,7 +1981,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.areEqualPoints = function (p1, p2) {
+  jDomMatrixCore.areEqualPoints = function (p1, p2) {
     return p1.x === p2.x && p1.y === p2.y && p1.z === p2.z;
   };
   /**
@@ -1992,8 +1992,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.getHighestAbsoluteCoordinate = function (pnt) {
-    return core.reduceObject(pnt, core.getAbsoluteMax, 0);
+  jDomMatrixCore.getHighestAbsoluteCoordinate = function (pnt) {
+    return jDomCore.reduceObject(pnt, jDomCore.getAbsoluteMax, 0);
   };
   /**
    * Having provided a coordinate number, find all corresponding axis, return the first match.
@@ -2004,7 +2004,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.getFirstAxisOfCoordinate = function (pnt, coordinate) {
+  jDomMatrixCore.getFirstAxisOfCoordinate = function (pnt, coordinate) {
     return Object.keys(pnt).filter(function (key) {
       return pnt[key] === coordinate;
     })[0] || false;
@@ -2020,8 +2020,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var pointAndCoordinateToDirection = function pointAndCoordinateToDirection(pnt, highestCoordinate) {
     return function (axis) {
-      return axis !== false ? core.mergeObjects(matrixObjects.point(0, 0, 0), _defineProperty({}, "".concat(axis), highestCoordinate > 0 ? 1 : -1)) : matrixObjects.point(0, 0, 0);
-    }(matrixCore.getFirstAxisOfCoordinate(pnt, highestCoordinate));
+      return axis !== false ? jDomCore.mergeObjects(jDomMatrixObjects.point(0, 0, 0), _defineProperty({}, "".concat(axis), highestCoordinate > 0 ? 1 : -1)) : jDomMatrixObjects.point(0, 0, 0);
+    }(jDomMatrixCore.getFirstAxisOfCoordinate(pnt, highestCoordinate));
   };
   /**
    * Having a point, convert it to a direction where the axis with the highest coordinate value will be set to -1 or 1.
@@ -2031,7 +2031,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   var pointToDirection = function pointToDirection(pnt) {
-    return pointAndCoordinateToDirection(pnt, matrixCore.getHighestAbsoluteCoordinate(pnt));
+    return pointAndCoordinateToDirection(pnt, jDomMatrixCore.getHighestAbsoluteCoordinate(pnt));
   };
   /**
    * Retrieve a directional coordinate value based on two provided points
@@ -2043,8 +2043,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.pointsToDirection = function (start, end) {
-    return pointToDirection(matrixCore.pointDifference(start, end));
+  jDomMatrixCore.pointsToDirection = function (start, end) {
+    return pointToDirection(jDomMatrixCore.pointDifference(start, end));
   };
   /**
    * Generate a random starting point for a line with the provided length and direction.
@@ -2056,9 +2056,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.randomStart = function (length, dir) {
-    var lengthLimits = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : matrixObjects.point(10, 10, 10);
-    return matrixObjects.point(core.randomInteger(lengthLimits.x - (length - 1) * dir.x), core.randomInteger(lengthLimits.y - (length - 1) * dir.y), core.randomInteger(lengthLimits.z - (length - 1) * dir.z));
+  jDomMatrixCore.randomStart = function (length, dir) {
+    var lengthLimits = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : jDomMatrixObjects.point(10, 10, 10);
+    return jDomMatrixObjects.point(jDomCore.randomInteger(lengthLimits.x - (length - 1) * dir.x), jDomCore.randomInteger(lengthLimits.y - (length - 1) * dir.y), jDomCore.randomInteger(lengthLimits.z - (length - 1) * dir.z));
   };
   /**
    * Given a start point, line length, and a direction, generate the end point of the line.
@@ -2070,8 +2070,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.lineEndPoint = function (start, length, dir) {
-    return matrixObjects.point(start.x + dir.x * (length - 1), start.y + dir.y * (length - 1), start.z + dir.z * (length - 1));
+  jDomMatrixCore.lineEndPoint = function (start, length, dir) {
+    return jDomMatrixObjects.point(start.x + dir.x * (length - 1), start.y + dir.y * (length - 1), start.z + dir.z * (length - 1));
   };
   /**
    * Having provided two points, return an array of transition points connecting 'start' and 'end'. Return array
@@ -2084,9 +2084,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.getPointsLine = function (start, end) {
+  jDomMatrixCore.getPointsLine = function (start, end) {
     var line = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    return matrixCore.areEqualPoints(start, end) ? line.concat([start]) : matrixCore.getPointsLine(matrixCore.nextCell(start, matrixCore.pointsToDirection(start, end)), end, line.concat([start]));
+    return jDomMatrixCore.areEqualPoints(start, end) ? line.concat([start]) : jDomMatrixCore.getPointsLine(jDomMatrixCore.nextCell(start, jDomMatrixCore.pointsToDirection(start, end)), end, line.concat([start]));
   };
   /**
    * Takes an array of arrays containing two points each. Calls getPointsLine for each array of points. Returns an
@@ -2097,9 +2097,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.getPointsLines = function (lines) {
+  jDomMatrixCore.getPointsLines = function (lines) {
     return lines.reduce(function (pointsArray, line) {
-      return pointsArray.concat(matrixCore.getPointsLine.apply(matrixCore, _toConsumableArray(line)));
+      return pointsArray.concat(jDomMatrixCore.getPointsLine.apply(jDomMatrixCore, _toConsumableArray(line)));
     }, []);
   };
   /**
@@ -2123,12 +2123,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.testPointsBetween = function (start, end, matrix, func) {
+  jDomMatrixCore.testPointsBetween = function (start, end, matrix, func) {
     var inclusive = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;
-    return matrixCore.getPointsLine(start, end).filter(function (prop, i, line) {
+    return jDomMatrixCore.getPointsLine(start, end).filter(function (prop, i, line) {
       return i !== 0 && i !== line.length - 1 || inclusive;
     }).reduce(function (newPoints, next) {
-      return core.mergeObjects(newPoints, _defineProperty({}, "".concat(func(next, matrix)), [next]));
+      return jDomCore.mergeObjects(newPoints, _defineProperty({}, "".concat(func(next, matrix)), [next]));
     }, {
       "true": [],
       "false": []
@@ -2143,8 +2143,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.checkInBetween = function () {
-    return !!matrixCore.testPointsBetween.apply(matrixCore, arguments)["true"].length;
+  jDomMatrixCore.checkInBetween = function () {
+    return !!jDomMatrixCore.testPointsBetween.apply(jDomMatrixCore, arguments)["true"].length;
   };
   /**
    * Return point-like object with all of the axis lengths.
@@ -2154,8 +2154,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.getAxisLengths = function (matrix) {
-    return matrixObjects.point(matrix.children[0].children[0].children.length, matrix.children[0].children.length, matrix.children.length);
+  jDomMatrixCore.getAxisLengths = function (matrix) {
+    return jDomMatrixObjects.point(matrix.children[0].children[0].children.length, matrix.children[0].children.length, matrix.children.length);
   };
   /**
    * Get random direction point
@@ -2165,9 +2165,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.randDirection = function () {
+  jDomMatrixCore.randDirection = function () {
     var useCoordinates = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-    return useCoordinates.length ? useCoordinates[core.randomInteger(useCoordinates.length)] : matrixObjects.point(0, 0, 0);
+    return useCoordinates.length ? useCoordinates[jDomCore.randomInteger(useCoordinates.length)] : jDomMatrixObjects.point(0, 0, 0);
   };
   /**
    * Test if the provided point exists in the matrix.
@@ -2178,7 +2178,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.checkValidPoint = function (pnt, matrix) {
+  jDomMatrixCore.checkValidPoint = function (pnt, matrix) {
     return !!matrix.children[pnt.z] && !!matrix.children[pnt.z].children[pnt.y] && !!matrix.children[pnt.z].children[pnt.y].children[pnt.x] && !!matrix.children[pnt.z].children[pnt.y].children[pnt.x].point;
   };
   /**
@@ -2190,8 +2190,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.getDomItemFromPoint = function (pnt, matrix) {
-    return matrixCore.checkValidPoint(pnt, matrix) ? matrix.children[pnt.z].children[pnt.y].children[pnt.x] : false;
+  jDomMatrixCore.getDomItemFromPoint = function (pnt, matrix) {
+    return jDomMatrixCore.checkValidPoint(pnt, matrix) ? matrix.children[pnt.z].children[pnt.y].children[pnt.x] : false;
   };
   /**
    * Return an array of all the points in the matrix
@@ -2203,10 +2203,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.getAllPoints = function (matrix) {
+  jDomMatrixCore.getAllPoints = function (matrix) {
     var allPoints = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
     return matrix.point ? allPoints.concat([matrix.point]) : matrix.children.reduce(function (allPoints, child) {
-      return allPoints.concat(matrixCore.getAllPoints(child, []));
+      return allPoints.concat(jDomMatrixCore.getAllPoints(child, []));
     }, []);
   };
   /**
@@ -2218,11 +2218,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.adjacentPoints = function (pnt, matrix) {
-    return matrixCore.getPointsLines([[matrixObjects.point(-1, 1, 1), matrixObjects.point(1, -1, -1)], [matrixObjects.point(1, 1, 1), matrixObjects.point(-1, 1, -1)], [matrixObjects.point(-1, -1, 1), matrixObjects.point(1, -1, 1)], [matrixObjects.point(1, 0, 0), matrixObjects.point(1, 1, -1)], [matrixObjects.point(-1, 1, 0), matrixObjects.point(1, 1, 0)]]).concat([matrixObjects.point(0, 0, 1), matrixObjects.point(1, 0, 0), matrixObjects.point(-1, 0, -1), matrixObjects.point(0, 0, -1)]).map(function (p) {
-      return matrixCore.nextCell(pnt, p);
+  jDomMatrixCore.adjacentPoints = function (pnt, matrix) {
+    return jDomMatrixCore.getPointsLines([[jDomMatrixObjects.point(-1, 1, 1), jDomMatrixObjects.point(1, -1, -1)], [jDomMatrixObjects.point(1, 1, 1), jDomMatrixObjects.point(-1, 1, -1)], [jDomMatrixObjects.point(-1, -1, 1), jDomMatrixObjects.point(1, -1, 1)], [jDomMatrixObjects.point(1, 0, 0), jDomMatrixObjects.point(1, 1, -1)], [jDomMatrixObjects.point(-1, 1, 0), jDomMatrixObjects.point(1, 1, 0)]]).concat([jDomMatrixObjects.point(0, 0, 1), jDomMatrixObjects.point(1, 0, 0), jDomMatrixObjects.point(-1, 0, -1), jDomMatrixObjects.point(0, 0, -1)]).map(function (p) {
+      return jDomMatrixCore.nextCell(pnt, p);
     }).filter(function (p) {
-      return matrixCore.checkValidPoint(matrixCore.nextCell(pnt, p), matrix);
+      return jDomMatrixCore.checkValidPoint(jDomMatrixCore.nextCell(pnt, p), matrix);
     });
   };
   /**
@@ -2234,11 +2234,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.adjacentEdgePoints = function (pnt, matrix) {
-    return [matrixObjects.point(-1, 0, 0), matrixObjects.point(1, 0, 0), matrixObjects.point(0, -1, 0), matrixObjects.point(0, 1, 0), matrixObjects.point(0, 0, -1), matrixObjects.point(0, 0, 1)].map(function (p) {
-      return matrixCore.nextCell(pnt, p);
+  jDomMatrixCore.adjacentEdgePoints = function (pnt, matrix) {
+    return [jDomMatrixObjects.point(-1, 0, 0), jDomMatrixObjects.point(1, 0, 0), jDomMatrixObjects.point(0, -1, 0), jDomMatrixObjects.point(0, 1, 0), jDomMatrixObjects.point(0, 0, -1), jDomMatrixObjects.point(0, 0, 1)].map(function (p) {
+      return jDomMatrixCore.nextCell(pnt, p);
     }).filter(function (p) {
-      return matrixCore.checkValidPoint(p, matrix);
+      return jDomMatrixCore.checkValidPoint(p, matrix);
     });
   };
   /**
@@ -2250,8 +2250,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.getPointFromElement = function (elem) {
-    return matrixObjects.point(Array.from(elem.parentNode.childNodes).indexOf(elem), Array.from(elem.parentNode.parentNode.childNodes).indexOf(elem.parentNode), Array.from(elem.parentNode.parentNode.parentNode.childNodes).indexOf(elem.parentNode.parentNode));
+  jDomMatrixCore.getPointFromElement = function (elem) {
+    return jDomMatrixObjects.point(Array.from(elem.parentNode.childNodes).indexOf(elem), Array.from(elem.parentNode.parentNode.childNodes).indexOf(elem.parentNode), Array.from(elem.parentNode.parentNode.parentNode.childNodes).indexOf(elem.parentNode.parentNode));
   };
   /**
    * Retrieve the DomItem associated with the provided element in the matrix
@@ -2263,8 +2263,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  matrixCore.getDomItemFromElement = function (elem, matrix) {
-    return matrixCore.getDomItemFromPoint(matrixCore.getPointFromElement(elem), matrix);
+  jDomMatrixCore.getDomItemFromElement = function (elem, matrix) {
+    return jDomMatrixCore.getDomItemFromPoint(jDomMatrixCore.getPointFromElement(elem), matrix);
   };
   /**
    * Either export all functions to be exported, or assign to the Window context
@@ -2273,10 +2273,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = matrixCore;
+      exports = module.exports = jDomMatrixCore;
     }
 
-    exports = Object.assign(exports, matrixCore);
+    exports = Object.assign(exports, jDomMatrixCore);
   }
 }).call(void 0 || window || {}) // Use the external context to assign this, which will be Window if rendered via browser
 
@@ -2315,40 +2315,40 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     return jsonDom;
   };
   /**
-   * Verify availability of core
-   * @typedef {*|module:core/core} core
+   * Verify availability of jDomCore
+   * @typedef {*|module:core/core} jDomCore
    */
 
 
-  jsonDom.core = root.core;
+  jsonDom.jDomCore = root.jDomCore;
   /**
    * Verify availability of objects
-   * @typedef {*|module:core/dom/objects} domObjects
+   * @typedef {*|module:core/dom/objects} jDomObjectsDom
    */
 
-  jsonDom.domObjects = root.domObjects;
+  jsonDom.jDomObjectsDom = root.jDomObjectsDom;
   /**
-   * Verify availability of coreDom
-   * @typedef {*|module:core/dom/core} domCore
+   * Verify availability of jDomCoreDom
+   * @typedef {*|module:core/dom/core} jDomCoreDom
    */
 
-  jsonDom.domCore = root.domCore;
+  jsonDom.jDomCoreDom = root.jDomCoreDom;
   /**
    * Verify availability of objects
-   * @typedef {*|module:matrix/objects} matrixObjects
+   * @typedef {*|module:matrix/objects} jDomMatrixObjects
    */
 
-  jsonDom.matrixObjects = root.matrixObjects;
+  jsonDom.jDomMatrixObjects = root.jDomMatrixObjects;
   /**
-   * Verify availability of coreDom
-   * @typedef {*|module:matrix/core} matrixCore
+   * Verify availability of jDomCoreDom
+   * @typedef {*|module:matrix/core} jDomMatrixCore
    */
 
-  jsonDom.matrixCore = root.matrixCore;
+  jsonDom.jDomMatrixCore = root.jDomMatrixCore;
   /**
    * Create new private reference to the document
    * @typedef {module:core/dom/objects.documentItem} documentItem
    */
 
-  jsonDom.documentItem = jsonDom.domObjects.documentDomItem();
+  jsonDom.documentItem = jsonDom.jDomObjectsDom.documentDomItem();
 }).call(void 0 || window || {}); // Use the external context to assign this, which will be Window if rendered via browser

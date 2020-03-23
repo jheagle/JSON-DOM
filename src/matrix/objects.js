@@ -13,56 +13,56 @@
    * Store reference to any pre-existing module of the same name
    * @type {module|*}
    */
-  const previousJDomMatrixObjects = root.matrixObjects || {}
+  const previousJDomMatrixObjects = root.jDomMatrixObjects || {}
 
   /**
-   * All methods exported from this module are encapsulated within matrixObjects.
+   * All methods exported from this module are encapsulated within jDomMatrixObjects.
    * @author Joshua Heagle <joshuaheagle@gmail.com>
-   * @typedef {Object} matrixObjects
+   * @typedef {Object} jDomMatrixObjects
    * @module matrix/objects
    */
-  const matrixObjects = {}
-  root.matrixObjects = matrixObjects
+  const jDomMatrixObjects = {}
+  root.jDomMatrixObjects = jDomMatrixObjects
 
   /**
    * Return a reference to this library while preserving the original same-named library
    * @function noConflict
-   * @returns {matrixObjects}
+   * @returns {jDomMatrixObjects}
    */
-  matrixObjects.noConflict = () => {
-    root.matrixObjects = previousJDomMatrixObjects
-    return matrixObjects
+  jDomMatrixObjects.noConflict = () => {
+    root.jDomMatrixObjects = previousJDomMatrixObjects
+    return jDomMatrixObjects
   }
 
   /**
-   * Verify availability of core
-   * @typedef {*|module:core/core} core
+   * Verify availability of jDomCore
+   * @typedef {*|module:core/core} jDomCore
    */
-  let core = root.core
+  let jDomCore = root.jDomCore
 
   /**
-   * If core remains undefined, attempt to retrieve it as a module
+   * If jDomCore remains undefined, attempt to retrieve it as a module
    */
-  if (typeof core === 'undefined') {
+  if (typeof jDomCore === 'undefined') {
     if (typeof require !== 'undefined') {
-      core = require('../core/core.js')
+      jDomCore = require('../core/core.js')
     } else {
-      console.error('objects.js requires core')
+      console.error('objects.js requires jDomCore')
     }
   }
 
   /**
-   * Verify availability of domObjects
-   * @typedef {*|module:core/dom/objects} domObjects
+   * Verify availability of jDomObjectsDom
+   * @typedef {*|module:core/dom/objects} jDomObjectsDom
    */
-  let domObjects = root.domObjects
+  let jDomObjectsDom = root.jDomObjectsDom
 
   /**
-   * If domObjects remains undefined, attempt to retrieve it as a module
+   * If jDomObjectsDom remains undefined, attempt to retrieve it as a module
    */
-  if (typeof domObjects === 'undefined') {
+  if (typeof jDomObjectsDom === 'undefined') {
     if (typeof require !== 'undefined') {
-      domObjects = require('../core/dom/objects.js')
+      jDomObjectsDom = require('../core/dom/objects.js')
     } else {
       console.error('core.js requires objects')
     }
@@ -106,7 +106,7 @@
    * {@link module:matrix/objects.Matrix})
    * @returns {module:matrix/objects.Point}
    */
-  matrixObjects.point = (x, y, z = 0) => ({
+  jDomMatrixObjects.point = (x, y, z = 0) => ({
     x: x,
     y: y,
     z: z
@@ -126,7 +126,7 @@
    * @function tile
    * @returns {module:matrix/objects.MatrixTile}
    */
-  matrixObjects.tile = () => ({
+  jDomMatrixObjects.tile = () => ({
     point: {}
   })
 
@@ -182,29 +182,29 @@
    * @param {Array.<module:matrix/objects.Matrix>} matrixProps - Properties to be added to the matrix
    * @returns {module:matrix/objects.Matrix}
    */
-  matrixObjects.matrix = (
+  jDomMatrixObjects.matrix = (
     x = { coordinate: 0, props: [] },
     y = { coordinate: 0, props: [] },
     z = { coordinate: 1, props: [] },
     matrixProps = []
-  ) => domObjects.createDomItem({
+  ) => jDomObjectsDom.createDomItem({
     tagName: 'div',
     attributes: {
       className: 'matrix'
     },
-    children: core.buildArray(domObjects.createDomItem({
+    children: jDomCore.buildArray(jDomObjectsDom.createDomItem({
       axis: 'z',
       tagName: 'div',
       attributes: {
         className: 'layer'
       },
-      children: core.buildArray(domObjects.createDomItem({
+      children: jDomCore.buildArray(jDomObjectsDom.createDomItem({
         axis: 'y',
         tagName: 'div',
         attributes: {
           className: 'row'
         },
-        children: core.buildArray(domObjects.createDomItem({
+        children: jDomCore.buildArray(jDomObjectsDom.createDomItem({
           axis: 'x',
           tagName: 'div',
           attributes: {
@@ -226,7 +226,7 @@
    * @param {number} size - Used to define height and width as equal values (depth is set to 1)
    * @returns {module:matrix/objects.Matrix}
    */
-  matrixObjects.square = ({ x = [], y = [], z = [], matrixProps = [] } = {}, size) => matrixObjects.matrix(
+  jDomMatrixObjects.square = ({ x = [], y = [], z = [], matrixProps = [] } = {}, size) => jDomMatrixObjects.matrix(
     { coordinate: size, props: x },
     { coordinate: size, props: y },
     { coordinate: 1, props: z },
@@ -244,7 +244,7 @@
    * @param {number} size - Used to define height, width, and depth as equal values
    * @returns {module:matrix/objects.Matrix}
    */
-  matrixObjects.cube = ({ x = [], y = [], z = [], matrixProps = [] } = {}, size) => matrixObjects.matrix(
+  jDomMatrixObjects.cube = ({ x = [], y = [], z = [], matrixProps = [] } = {}, size) => jDomMatrixObjects.matrix(
     { coordinate: size, props: x },
     { coordinate: size, props: y },
     { coordinate: size, props: z },
@@ -256,9 +256,9 @@
    */
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = matrixObjects
+      exports = module.exports = jDomMatrixObjects
     }
-    exports = Object.assign(exports, matrixObjects)
+    exports = Object.assign(exports, jDomMatrixObjects)
   }
 }).call(this || window || {})
 // Use the external context to assign this, which will be Window if rendered via browser

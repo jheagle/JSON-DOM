@@ -49,17 +49,17 @@
   }
 
   /**
-   * Verify availability of core
-   * @typedef {*|module:core/core} core
+   * Verify availability of jDomCore
+   * @typedef {*|module:core/core} jDomCore
    */
-  jsonDom.core = root.core
+  jsonDom.jDomCore = root.jDomCore
 
   /**
-   * If core remains undefined, attempt to retrieve it as a module
+   * If jDomCore remains undefined, attempt to retrieve it as a module
    */
-  if (typeof jsonDom.core === 'undefined') {
+  if (typeof jsonDom.jDomCore === 'undefined') {
     if (typeof require !== 'undefined') {
-      jsonDom.core = require('./core/core.js')
+      jsonDom.jDomCore = require('./core/core.js')
     } else {
       console.error('main.js requires core/core')
     }
@@ -67,33 +67,33 @@
 
   /**
    * Verify availability of objects
-   * @typedef {*|module:core/dom/objects} domObjects
+   * @typedef {*|module:core/dom/objects} jDomObjectsDom
    */
-  jsonDom.domObjects = root.domObjects
+  jsonDom.jDomObjectsDom = root.jDomObjectsDom
 
   /**
    * If objects remains undefined, attempt to retrieve it as a module
    */
-  if (typeof jsonDom.domObjects === 'undefined') {
+  if (typeof jsonDom.jDomObjectsDom === 'undefined') {
     if (typeof require !== 'undefined') {
-      jsonDom.domObjects = require('./core/dom/objects.js')
+      jsonDom.jDomObjectsDom = require('./core/dom/objects.js')
     } else {
       console.error('main.js requires core/dom/objects')
     }
   }
 
   /**
-   * Verify availability of coreDom
-   * @typedef {*|module:core/dom/core} domCore
+   * Verify availability of jDomCoreDom
+   * @typedef {*|module:core/dom/core} jDomCoreDom
    */
-  jsonDom.domCore = root.domCore
+  jsonDom.jDomCoreDom = root.jDomCoreDom
 
   /**
-   * If coreDom remains undefined, attempt to retrieve it as a module
+   * If jDomCoreDom remains undefined, attempt to retrieve it as a module
    */
-  if (typeof jsonDom.domCore === 'undefined') {
+  if (typeof jsonDom.jDomCoreDom === 'undefined') {
     if (typeof require !== 'undefined') {
-      jsonDom.domCore = require('./core/dom/core.js')
+      jsonDom.jDomCoreDom = require('./core/dom/core.js')
     } else {
       console.error('main.js requires core/dom/core')
     }
@@ -101,33 +101,33 @@
 
   /**
    * Verify availability of objects
-   * @typedef {*|module:matrix/objects} matrixObjects
+   * @typedef {*|module:matrix/objects} jDomMatrixObjects
    */
-  jsonDom.matrixObjects = root.matrixObjects
+  jsonDom.jDomMatrixObjects = root.jDomMatrixObjects
 
   /**
    * If objects remains undefined, attempt to retrieve it as a module
    */
-  if (typeof jsonDom.matrixObjects === 'undefined') {
+  if (typeof jsonDom.jDomMatrixObjects === 'undefined') {
     if (typeof require !== 'undefined') {
-      jsonDom.matrixObjects = require('./matrix/objects.js')
+      jsonDom.jDomMatrixObjects = require('./matrix/objects.js')
     } else {
       console.error('main.js requires matrix/objects')
     }
   }
 
   /**
-   * Verify availability of coreDom
-   * @typedef {*|module:matrix/core} matrixCore
+   * Verify availability of jDomCoreDom
+   * @typedef {*|module:matrix/core} jDomMatrixCore
    */
-  jsonDom.matrixCore = root.matrixCore
+  jsonDom.jDomMatrixCore = root.jDomMatrixCore
 
   /**
-   * If coreDom remains undefined, attempt to retrieve it as a module
+   * If jDomCoreDom remains undefined, attempt to retrieve it as a module
    */
-  if (typeof jsonDom.matrixCore === 'undefined') {
+  if (typeof jsonDom.jDomMatrixCore === 'undefined') {
     if (typeof require !== 'undefined') {
-      jsonDom.matrixCore = require('./matrix/core.js')
+      jsonDom.jDomMatrixCore = require('./matrix/core.js')
     } else {
       console.error('main.js requires matrix/core')
     }
@@ -137,7 +137,7 @@
    * Create new private reference to the document
    * @typedef {module:core/dom/objects.documentItem} documentItem
    */
-  jsonDom.documentItem = jsonDom.domObjects.documentDomItem()
+  jsonDom.documentItem = jsonDom.jDomObjectsDom.documentDomItem()
 
   /**
    * Either export all functions to be exported, or assign to the Window context

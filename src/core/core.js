@@ -1,5 +1,5 @@
 /**
- * @file All of the core system functions for stringing together functions and simplifying logic.
+ * @file All of the jDomCore system functions for stringing together functions and simplifying logic.
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
@@ -13,25 +13,25 @@
    * Store reference to any pre-existing module of the same name
    * @type {module|*}
    */
-  const previousJDomCore = root.core || {}
+  const previousJDomCore = root.jDomCore || {}
 
   /**
-   * All methods exported from this module are encapsulated within core.
+   * All methods exported from this module are encapsulated within jDomCore.
    * @author Joshua Heagle <joshuaheagle@gmail.com>
-   * @typedef {Object} core
+   * @typedef {Object} jDomCore
    * @module core/core
    */
-  const core = {}
-  root.core = core
+  const jDomCore = {}
+  root.jDomCore = jDomCore
 
   /**
    * Return a reference to this library while preserving the original same-named library
    * @function noConflict
-   * @returns {core}
+   * @returns {jDomCore}
    */
-  core.noConflict = () => {
-    root.core = previousJDomCore
-    return core
+  jDomCore.noConflict = () => {
+    root.jDomCore = previousJDomCore
+    return jDomCore
   }
 
   /**
@@ -42,9 +42,9 @@
    * @param {function} fn - Receives a function to be curried
    * @returns {function(...[*]): function(...[*])}
    */
-  core.curry = (fn) => (...args) => args.length >= fn.length
+  jDomCore.curry = (fn) => (...args) => args.length >= fn.length
     ? fn(...args)
-    : (...a) => core.curry(fn)(...[...args, ...a])
+    : (...a) => jDomCore.curry(fn)(...[...args, ...a])
 
   /**
    * This was copied from a blog post on Composing Software written by Eric Elliott. The idea is to begin to make this
@@ -54,7 +54,7 @@
    * @param {...function} fns - Takes a series of functions having the same parameter, which parameter is also returned.
    * @returns {function(*=): (*|any)}
    */
-  core.pipe = (...fns) => x => fns.reduce((y, f) => f(y), x)
+  jDomCore.pipe = (...fns) => x => fns.reduce((y, f) => f(y), x)
 
   /**
    * Set a value on an item, then return the item
@@ -64,7 +64,7 @@
    * @param {Object|Array} item - An object or array to be updated
    * @returns {Object|Array}
    */
-  core.setValue = (key, value, item) => {
+  jDomCore.setValue = (key, value, item) => {
     item[key] = value
     return item
   }
@@ -77,7 +77,7 @@
    * @param {*} value - Any value to be applied to the key
    * @returns {*}
    */
-  core.setAndReturnValue = (item, key, value) => {
+  jDomCore.setAndReturnValue = (item, key, value) => {
     item[key] = value
     return value
   }
@@ -101,10 +101,10 @@
    * @param {Object|Array} [thisArg] - Optional. Value to use as this when executing callback.
    * @returns {Object|Array}
    */
-  core.mapObject = (obj, fn, thisArg = undefined) => Array.isArray(obj)
+  jDomCore.mapObject = (obj, fn, thisArg = undefined) => Array.isArray(obj)
     ? obj.map(fn, thisArg)
     : Object.keys(obj).reduce(
-      (newObj, curr) => core.setValue(curr, fn(...[obj[curr], curr, obj].slice(0, fn.length || 2)), newObj),
+      (newObj, curr) => jDomCore.setValue(curr, fn(...[obj[curr], curr, obj].slice(0, fn.length || 2)), newObj),
       thisArg || {}
     )
 
@@ -116,8 +116,8 @@
    * @param {Object|Array} obj - An object having an array property
    * @returns {object}
    */
-  core.mapProperty = (property, mapFunction, obj) => {
-    obj[property] = core.mapObject(obj[property] || [], mapFunction)
+  jDomCore.mapProperty = (property, mapFunction, obj) => {
+    obj[property] = jDomCore.mapObject(obj[property] || [], mapFunction)
     return obj
   }
 
@@ -141,7 +141,7 @@
    * @param {Object|Array} [thisArg] - Optional. Value to use as this when executing callback.
    * @returns {Object|Array}
    */
-  core.filterObject = (obj, fn, thisArg = undefined) => Array.isArray(obj)
+  jDomCore.filterObject = (obj, fn, thisArg = undefined) => Array.isArray(obj)
     ? obj.filter(fn, thisArg)
     : Object.keys(obj).reduce((newObj, curr) => {
       if (fn(...[obj[curr], curr, obj].slice(0, fn.length || 2))) {
@@ -176,7 +176,7 @@
    * array without an initial value is an error.
    * @returns {Object|Array}
    */
-  core.reduceObject = (obj, fn, initialValue = obj[Object.keys(obj)[0]] || obj[0]) => Array.isArray(obj)
+  jDomCore.reduceObject = (obj, fn, initialValue = obj[Object.keys(obj)[0]] || obj[0]) => Array.isArray(obj)
     ? obj.reduce(fn, initialValue)
     : Object.keys(obj).reduce(
       (newObj, curr) => fn(...[newObj, obj[curr], curr, obj].slice(0, fn.length || 2)),
@@ -189,7 +189,7 @@
    * @param {Object|Array} item - Object or Array to test
    * @returns {boolean}
    */
-  core.notEmptyObjectOrArray = item => !!(
+  jDomCore.notEmptyObjectOrArray = item => !!(
     (typeof item === 'object' && Object.keys(item).length) || (Array.isArray(item) && item.length)
   )
 
@@ -201,8 +201,8 @@
    * @returns {Object|Array}
    */
   const cloneCopy = (object, cloned) =>
-    core.notEmptyObjectOrArray(object)
-      ? core.reduceObject(object, (start, prop, key) => {
+    jDomCore.notEmptyObjectOrArray(object)
+      ? jDomCore.reduceObject(object, (start, prop, key) => {
         start[key] = (cloned[key] && !/^(parentItem|listenerArgs|element)$/.test(key))
           ? cloneCopy(prop, cloned[key])
           : prop
@@ -216,7 +216,7 @@
    * @param {Object} object - The original object that is being cloned
    * @returns {Object}
    */
-  core.cloneObject = object => cloneCopy(object, JSON.parse(
+  jDomCore.cloneObject = object => cloneCopy(object, JSON.parse(
     JSON.stringify(object, (key, val) => !/^(parentItem|listenerArgs|element)$/.test(key)
       ? val
       : undefined)
@@ -236,13 +236,13 @@
    * modify them
    * @returns {Object}
    */
-  const mergeObjectsBase = (fn, obj1, obj2, isMutable = false) => core.notEmptyObjectOrArray(obj2)
-    ? core.mapObject(
+  const mergeObjectsBase = (fn, obj1, obj2, isMutable = false) => jDomCore.notEmptyObjectOrArray(obj2)
+    ? jDomCore.mapObject(
       obj2,
       (prop, key) => (obj1[key] && !/^(parentItem|listenerArgs|element)$/.test(key))
         ? fn(obj1[key], prop)
         : prop,
-      isMutable ? obj1 : core.cloneObject(obj1)
+      isMutable ? obj1 : jDomCore.cloneObject(obj1)
     )
     : obj2
 
@@ -256,11 +256,11 @@
    * object
    * @returns {Object}
    */
-  core.mergeObjects = (...args) => args.length === 2
-    ? mergeObjectsBase(core.mergeObjects, args[0], args[1])
+  jDomCore.mergeObjects = (...args) => args.length === 2
+    ? mergeObjectsBase(jDomCore.mergeObjects, args[0], args[1])
     : args.length === 1
-      ? core.cloneObject(args[0])
-      : args.reduce(core.curry(mergeObjectsBase)(core.mergeObjects), {})
+      ? jDomCore.cloneObject(args[0])
+      : args.reduce(jDomCore.curry(mergeObjectsBase)(jDomCore.mergeObjects), {})
 
   /**
    * Perform a deep merge of objects. This will combine all objects and sub-objects,
@@ -273,11 +273,11 @@
    * object
    * @returns {Object}
    */
-  core.mergeObjectsMutable = (...args) => args.length === 2
-    ? mergeObjectsBase(core.mergeObjectsMutable, args[0], args[1], true)
+  jDomCore.mergeObjectsMutable = (...args) => args.length === 2
+    ? mergeObjectsBase(jDomCore.mergeObjectsMutable, args[0], args[1], true)
     : args.length === 1
       ? args[0]
-      : args.reduce(core.curry(mergeObjectsBase)(core.mergeObjectsMutable), {})
+      : args.reduce(jDomCore.curry(mergeObjectsBase)(jDomCore.mergeObjectsMutable), {})
 
   /**
    * Generate an array filled with a copy of the provided item or references to the provided item.
@@ -290,7 +290,7 @@
    * @returns {Array.<*>}
    */
   const buildArrayBase = (useReference, item, length, arr = []) => --length > 0
-    ? buildArrayBase(useReference, (useReference ? item : core.cloneObject(item)), length, arr.concat([item]))
+    ? buildArrayBase(useReference, (useReference ? item : jDomCore.cloneObject(item)), length, arr.concat([item]))
     : arr.concat([item])
 
   /**
@@ -302,7 +302,7 @@
    * @param {Array} [arr=[]] - The in-progress array of elements to be built and returned, will be used internally
    * @returns {Array.<*>}
    */
-  core.buildArray = core.curry(buildArrayBase)(false)
+  jDomCore.buildArray = jDomCore.curry(buildArrayBase)(false)
 
   /**
    * Leverage buildArrayBase to generate an array filled with references to the provided item.
@@ -313,7 +313,7 @@
    * @param {Array} [arr=[]] - The in-progress array of elements to be built and returned, will be used internally
    * @returns {Array.<*>}
    */
-  core.buildArrayOfReferences = core.curry(buildArrayBase)(true)
+  jDomCore.buildArrayOfReferences = jDomCore.curry(buildArrayBase)(true)
 
   /**
    * A simple function to check if an item is in an array
@@ -322,7 +322,7 @@
    * @param {*} prop - Needle to be found within the haystack
    * @returns {boolean}
    */
-  core.inArray = (arr, prop) => arr.indexOf(prop) >= 0
+  jDomCore.inArray = (arr, prop) => arr.indexOf(prop) >= 0
 
   /**
    * Helper for returning the absolute max value
@@ -331,7 +331,7 @@
    * @param {number} num2 - Another number to be compared against
    * @returns {number}
    */
-  core.getAbsoluteMax = (num1, num2) => Math.abs(num1) > Math.abs(num2) ? num1 : num2
+  jDomCore.getAbsoluteMax = (num1, num2) => Math.abs(num1) > Math.abs(num2) ? num1 : num2
 
   /**
    * Helper for returning the absolute min value
@@ -340,7 +340,7 @@
    * @param {number} num2 - Another number to be compared against
    * @returns {number}
    */
-  core.getAbsoluteMin = (num1, num2) => Math.abs(num1) < Math.abs(num2) ? num1 : num2
+  jDomCore.getAbsoluteMin = (num1, num2) => Math.abs(num1) < Math.abs(num2) ? num1 : num2
 
   /**
    * Create a single random number within provided range. And with optional offset,
@@ -352,7 +352,7 @@
    * offset, 2 for range)
    * @returns {number}
    */
-  core.randomNumber = (range, offset = 0, interval = 1) => (Math.random() * range + offset) * interval
+  jDomCore.randomNumber = (range, offset = 0, interval = 1) => (Math.random() * range + offset) * interval
 
   /**
    * Create a single random integer within provide range. And with optional offset,
@@ -364,7 +364,7 @@
    * offset, 2 for range)
    * @returns {number}
    */
-  core.randomInteger = (range, offset = 0, interval = 1) => (Math.floor(Math.random() * range) + offset) * interval
+  jDomCore.randomInteger = (range, offset = 0, interval = 1) => (Math.floor(Math.random() * range) + offset) * interval
 
   /**
    * Compare two numbers and return:
@@ -376,7 +376,7 @@
    * @param {number} val2 - The second number to compare
    * @returns {number}
    */
-  core.compare = (val1, val2) => val1 === val2 ? 0 : val1 > val2 ? 1 : -1
+  jDomCore.compare = (val1, val2) => val1 === val2 ? 0 : val1 > val2 ? 1 : -1
 
   /**
    * Compare two Arrays and return the Object where the value for each property is as follows:
@@ -391,7 +391,7 @@
    * or more.
    * @example
    * // example of input and resulting output
-   * core.compareArrays(
+   * jDomCore.compareArrays(
    *   ['match1', 'firstMismatch1', 'match2', 'firstMismatch2', 'badMatch1'],
    *   ['match1', 'match2', 'secondMismatch1', 'badMatch1', 'badMatch1']
    * )
@@ -404,15 +404,15 @@
    * @param {Array} arr2 - The second array to compare
    * @returns {Object.<string, number>}
    */
-  core.compareArrays = (arr1, arr2) =>
-    arr2.filter(attr => !core.inArray(arr1, attr))
+  jDomCore.compareArrays = (arr1, arr2) =>
+    arr2.filter(attr => !jDomCore.inArray(arr1, attr))
       .concat(arr1)
       .reduce(
-        (returnObj, attr) => core.setValue(
+        (returnObj, attr) => jDomCore.setValue(
           (typeof attr === 'string')
             ? attr
             : JSON.stringify(attr, (key, val) => !/^(parentItem|listenerArgs|element)$/.test(key) ? val : undefined),
-          core.compare(arr1.filter(val => val === attr).length, arr2.filter(val => val === attr).length),
+          jDomCore.compare(arr1.filter(val => val === attr).length, arr2.filter(val => val === attr).length),
           returnObj
         ),
         {}
@@ -427,7 +427,7 @@
    * @param {string} label - Pass an identifying label of the value being output.
    * @returns {function(*=)}
    */
-  core.trace = label => value => {
+  jDomCore.trace = label => value => {
     console.info(`${label}: `, value)
     return value
   }
@@ -443,31 +443,31 @@
    * @param {...*} args - Arguments to be passed to the callback once it is implemented.
    * @returns {{id: number, func: function, timeout: number, args: {Array}, result: *}}
    */
-  core.queueTimeout = (fn = {}, time = 0, ...args) => {
+  jDomCore.queueTimeout = (fn = {}, time = 0, ...args) => {
     // Track the queue to be processed in FIFO
-    core.queueTimeout.queue = core.queueTimeout.queue || []
+    jDomCore.queueTimeout.queue = jDomCore.queueTimeout.queue || []
     // Do not run more than one queued item at a time
-    core.queueTimeout.isRunning = core.queueTimeout.isRunning || false
+    jDomCore.queueTimeout.isRunning = jDomCore.queueTimeout.isRunning || false
     // Construct an object which will store the queued function data
     const queueItem = { id: 0, func: fn, timeout: time, args: args, result: 0 }
     if (fn) {
       // When the function is valid, append it to the end of the queue
-      core.queueTimeout.queue.push(queueItem)
+      jDomCore.queueTimeout.queue.push(queueItem)
     }
-    if (core.queueTimeout.queue.length && !core.queueTimeout.isRunning) {
+    if (jDomCore.queueTimeout.queue.length && !jDomCore.queueTimeout.isRunning) {
       // Check that the queue is not empty, and it is not running a queued item
       // Set isRunning flag to begin processing the next queued item
-      core.queueTimeout.isRunning = true
+      jDomCore.queueTimeout.isRunning = true
       // Pick an item off the front of the queue, and thereby reduce the queue size
-      const toRun = core.queueTimeout.queue.shift()
+      const toRun = jDomCore.queueTimeout.queue.shift()
       // Get the timeout ID when it has begun
       toRun.id = setTimeout(() => {
         // Run the function after the provided timeout
         toRun.result = toRun.func(...toRun.args)
         // Reset isRunning flag
-        core.queueTimeout.isRunning = false
+        jDomCore.queueTimeout.isRunning = false
         // Re-run the queue which will get the next queued item if there is one
-        return core.queueTimeout(false)
+        return jDomCore.queueTimeout(false)
       }, toRun.timeout)
       // Return whatever object we have for the current queued item being processed, likely incomplete because the
       // function will complete in the future
@@ -482,9 +482,9 @@
    */
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = core
+      exports = module.exports = jDomCore
     }
-    exports = Object.assign(exports, core)
+    exports = Object.assign(exports, jDomCore)
   }
 }).call(this || window || {})
 // Use the external context to assign this, which will be Window if rendered via browser

@@ -36,39 +36,39 @@
    * Store reference to any pre-existing module of the same name
    * @type {module|*}
    */
-  const previousJDomObjectsDom = root.domObjects || {}
+  const previousJDomObjectsDom = root.jDomObjectsDom || {}
 
   /**
-   * All methods exported from this module are encapsulated within domObjects
+   * All methods exported from this module are encapsulated within jDomObjectsDom
    * @author Joshua Heagle <joshuaheagle@gmail.com>
-   * @typedef {Object} domObjects
+   * @typedef {Object} jDomObjectsDom
    * @module core/dom/objects
    */
-  const domObjects = {}
-  root.domObjects = domObjects
+  const jDomObjectsDom = {}
+  root.jDomObjectsDom = jDomObjectsDom
 
   /**
    * Return a reference to this library while preserving the original same-named library
    * @function noConflict
-   * @returns {domObjects}
+   * @returns {jDomObjectsDom}
    */
-  domObjects.noConflict = () => {
-    root.domObjects = previousJDomObjectsDom
-    return domObjects
+  jDomObjectsDom.noConflict = () => {
+    root.jDomObjectsDom = previousJDomObjectsDom
+    return jDomObjectsDom
   }
 
   /**
-   * Verify availability of core
-   * @typedef {*|module:core/core} core
+   * Verify availability of jDomCore
+   * @typedef {*|module:core/core} jDomCore
    */
-  let core = root.core
+  let jDomCore = root.jDomCore
 
   /**
-   * If core remains undefined, attempt to retrieve it as a module
+   * If jDomCore remains undefined, attempt to retrieve it as a module
    */
-  if (typeof core === 'undefined') {
+  if (typeof jDomCore === 'undefined') {
     if (typeof require !== 'undefined') {
-      core = require('../core.js')
+      jDomCore = require('../core.js')
     } else {
       console.error('core/dom/objects requires core/core')
     }
@@ -76,7 +76,7 @@
 
   /**
    * This is the standard definition of a listenerFunction to be used
-   * @callback domObjects.listenerFunction
+   * @callback jDomObjectsDom.listenerFunction
    * @callback listenerFunction
    * @param {Event|module:pseudoDom/objects.PseudoEvent} e - The event object passed to the listener
    * @param {module:core/dom/objects.DomItem} target - The element which triggered the event
@@ -109,7 +109,7 @@
 
   /**
    * An EventListener Object to be appended to the element within the DomItem
-   * @typedef {Object} domObjects.EventListener
+   * @typedef {Object} jDomObjectsDom.EventListener
    * @typedef {Object} EventListener
    * @property {string} listenerFunc - A string function name matching an existing
    * {@link module:core/dom/objects~listenerFunction}.
@@ -139,7 +139,7 @@
    * @param {...Object} attributes - DomItem-like object(s) to be merged as a DomItem
    * @returns {module:core/dom/objects.DomItem}
    */
-  domObjects.createDomItem = (...attributes) => core.mergeObjectsMutable({
+  jDomObjectsDom.createDomItem = (...attributes) => jDomCore.mergeObjectsMutable({
     tagName: 'div',
     attributes: {
       style: {}
@@ -175,13 +175,13 @@
    * @returns {Array.<module:core/dom/objects~DomItemHead|module:core/dom/objects~DomItemBody>}
    */
   const initChildren = () => [
-    domObjects.createDomItem({
+    jDomObjectsDom.createDomItem({
       tagName: 'head',
       attributes: {},
       element: document.head,
       children: []
     }),
-    domObjects.createDomItem({
+    jDomObjectsDom.createDomItem({
       tagName: 'body',
       attributes: {},
       element: document.body,
@@ -213,7 +213,7 @@
    * listeners to be registered in the Dom
    * @returns {module:core/dom/objects.DomItemRoot|module:core/dom/objects.DomItem}
    */
-  const initRoot = (children, listeners = {}) => domObjects.createDomItem({
+  const initRoot = (children, listeners = {}) => jDomObjectsDom.createDomItem({
     tagName: 'html',
     attributes: {},
     element: document,
@@ -233,11 +233,11 @@
    * reference to DomItemRoot which will be defaulted with {@link initRoot}
    * @returns {module:core/dom/objects.DomItemRoot|module:core/dom/objects.DomItem}
    */
-  domObjects.documentDomItem = (listeners = [], rootItem = initRoot(initChildren(), listeners)) => {
-    rootItem.children = rootItem.children.map(child => domObjects.createDomItem(child, { parentItem: rootItem }))
+  jDomObjectsDom.documentDomItem = (listeners = [], rootItem = initRoot(initChildren(), listeners)) => {
+    rootItem.children = rootItem.children.map(child => jDomObjectsDom.createDomItem(child, { parentItem: rootItem }))
     Object.assign(rootItem.head, rootItem.children[0])
     Object.assign(rootItem.body, rootItem.children[1])
-    return domObjects.createDomItem(rootItem)
+    return jDomObjectsDom.createDomItem(rootItem)
   }
 
   /**
@@ -245,16 +245,16 @@
    * @member documentItem
    * @type {module:core/dom/objects.DomItemRoot}
    */
-  domObjects.documentItem = domObjects.documentDomItem()
+  jDomObjectsDom.documentItem = jDomObjectsDom.documentDomItem()
 
   /**
    * Either export all functions to be exported, or assign to the Window context
    */
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = domObjects
+      exports = module.exports = jDomObjectsDom
     }
-    exports = Object.assign(exports, domObjects)
+    exports = Object.assign(exports, jDomObjectsDom)
   }
 }).call(this || window || {})
 // Use the external context to assign this, which will be Window if rendered via browser
