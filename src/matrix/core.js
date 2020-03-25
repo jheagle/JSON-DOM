@@ -1,5 +1,5 @@
 /**
- * @file All of the jDomCore matrix functions for working with a grid of points.
+ * @file All of the functionalHelpers matrix functions for working with a grid of points.
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
@@ -36,16 +36,16 @@
 
   /**
    * Verify availability of jDomMatrixObjects
-   * @typedef {*|module:core/core} jDomCore
+   * @typedef {*|module:core/core} functionalHelpers
    */
-  let jDomCore = root.jDomCore
+  let functionalHelpers = root.functionalHelpers
 
   /**
-   * If jDomCore remains undefined, attempt to retrieve it as a module
+   * If functionalHelpers remains undefined, attempt to retrieve it as a module
    */
-  if (typeof jDomCore === 'undefined') {
+  if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      jDomCore = require('../core/core.js')
+      functionalHelpers = require('../core/core.js')
     } else {
       console.error('matrix/core requires core/core')
     }
@@ -58,7 +58,7 @@
   let jDomMatrixObjects = root.jDomMatrixObjects
 
   /**
-   * If jDomCoreDom remains undefined, attempt to retrieve it as a module
+   * If jDomCore remains undefined, attempt to retrieve it as a module
    */
   if (typeof jDomMatrixObjects === 'undefined') {
     if (typeof require !== 'undefined') {
@@ -77,9 +77,9 @@
    * @param {module:matrix/objects.Point} pnt - A point to be added to a specific Matrix Column
    * @returns {module:matrix/objects.MatrixColumn|module:matrix/objects.MatrixRow}
    */
-  jDomMatrixCore.bindPointData = (item, pnt = jDomMatrixObjects.point(0, 0, 0)) => jDomCore.mergeObjects(
+  jDomMatrixCore.bindPointData = (item, pnt = jDomMatrixObjects.point(0, 0, 0)) => functionalHelpers.mergeObjects(
     item,
-    item.point ? { point: jDomCore.cloneObject(pnt) } : {
+    item.point ? { point: functionalHelpers.cloneObject(pnt) } : {
       children: item.children.map(
         (el, i) => jDomMatrixCore.bindPointData(el, Object.assign(pnt, { [el.axis]: i }))
       )
@@ -123,7 +123,7 @@
    * @param {module:matrix/objects.Point} pnt - A Point to be assessed.
    * @returns {module:matrix/objects.coordinate}
    */
-  jDomMatrixCore.getHighestAbsoluteCoordinate = pnt => jDomCore.reduceObject(pnt, jDomCore.getAbsoluteMax, 0)
+  jDomMatrixCore.getHighestAbsoluteCoordinate = pnt => functionalHelpers.reduceObject(pnt, functionalHelpers.getAbsoluteMax, 0)
 
   /**
    * Having provided a coordinate number, find all corresponding axis, return the first match.
@@ -145,7 +145,7 @@
    */
   const pointAndCoordinateToDirection = (pnt, highestCoordinate) => (
     axis => axis !== false
-      ? jDomCore.mergeObjects(jDomMatrixObjects.point(0, 0, 0), { [`${axis}`]: highestCoordinate > 0 ? 1 : -1 })
+      ? functionalHelpers.mergeObjects(jDomMatrixObjects.point(0, 0, 0), { [`${axis}`]: highestCoordinate > 0 ? 1 : -1 })
       : jDomMatrixObjects.point(0, 0, 0)
   )(jDomMatrixCore.getFirstAxisOfCoordinate(pnt, highestCoordinate))
 
@@ -179,9 +179,9 @@
     dir,
     lengthLimits = jDomMatrixObjects.point(10, 10, 10)
   ) => jDomMatrixObjects.point(
-    jDomCore.randomInteger(lengthLimits.x - ((length - 1) * dir.x)),
-    jDomCore.randomInteger(lengthLimits.y - ((length - 1) * dir.y)),
-    jDomCore.randomInteger(lengthLimits.z - ((length - 1) * dir.z))
+    functionalHelpers.randomInteger(lengthLimits.x - ((length - 1) * dir.x)),
+    functionalHelpers.randomInteger(lengthLimits.y - ((length - 1) * dir.y)),
+    functionalHelpers.randomInteger(lengthLimits.z - ((length - 1) * dir.z))
   )
 
   /**
@@ -250,7 +250,7 @@
     jDomMatrixCore.getPointsLine(start, end).filter(
       (prop, i, line) => ((i !== 0 && i !== line.length - 1) || inclusive)
     ).reduce(
-      (newPoints, next) => jDomCore.mergeObjects(newPoints, { [`${func(next, matrix)}`]: [next] }), {
+      (newPoints, next) => functionalHelpers.mergeObjects(newPoints, { [`${func(next, matrix)}`]: [next] }), {
         true: [],
         false: []
       }
@@ -284,7 +284,7 @@
    * @returns {module:matrix/objects.Direction}
    */
   jDomMatrixCore.randDirection = (useCoordinates = []) => useCoordinates.length
-    ? useCoordinates[jDomCore.randomInteger(useCoordinates.length)]
+    ? useCoordinates[functionalHelpers.randomInteger(useCoordinates.length)]
     : jDomMatrixObjects.point(0, 0, 0)
 
   /**

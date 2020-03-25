@@ -1,5 +1,5 @@
 /**
- * @file All of the jDomCore system functions for stringing together functions and simplifying logic.
+ * @file All of the functionalHelpers system functions for stringing together functions and simplifying logic.
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
@@ -13,25 +13,25 @@
    * Store reference to any pre-existing module of the same name
    * @type {module|*}
    */
-  const previousJDomCore = root.jDomCore || {}
+  const previousJDomCore = root.functionalHelpers || {}
 
   /**
-   * All methods exported from this module are encapsulated within jDomCore.
+   * All methods exported from this module are encapsulated within functionalHelpers.
    * @author Joshua Heagle <joshuaheagle@gmail.com>
-   * @typedef {Object} jDomCore
+   * @typedef {Object} functionalHelpers
    * @module core/core
    */
-  const jDomCore = {}
-  root.jDomCore = jDomCore
+  const functionalHelpers = {}
+  root.functionalHelpers = functionalHelpers
 
   /**
    * Return a reference to this library while preserving the original same-named library
    * @function noConflict
-   * @returns {jDomCore}
+   * @returns {functionalHelpers}
    */
-  jDomCore.noConflict = () => {
-    root.jDomCore = previousJDomCore
-    return jDomCore
+  functionalHelpers.noConflict = () => {
+    root.functionalHelpers = previousJDomCore
+    return functionalHelpers
   }
 
   /**
@@ -42,9 +42,9 @@
    * @param {function} fn - Receives a function to be curried
    * @returns {function(...[*]): function(...[*])}
    */
-  jDomCore.curry = (fn) => (...args) => args.length >= fn.length
+  functionalHelpers.curry = (fn) => (...args) => args.length >= fn.length
     ? fn(...args)
-    : (...a) => jDomCore.curry(fn)(...[...args, ...a])
+    : (...a) => functionalHelpers.curry(fn)(...[...args, ...a])
 
   /**
    * This was copied from a blog post on Composing Software written by Eric Elliott. The idea is to begin to make this
@@ -54,7 +54,7 @@
    * @param {...function} fns - Takes a series of functions having the same parameter, which parameter is also returned.
    * @returns {function(*=): (*|any)}
    */
-  jDomCore.pipe = (...fns) => x => fns.reduce((y, f) => f(y), x)
+  functionalHelpers.pipe = (...fns) => x => fns.reduce((y, f) => f(y), x)
 
   /**
    * Set a value on an item, then return the item
@@ -64,7 +64,7 @@
    * @param {Object|Array} item - An object or array to be updated
    * @returns {Object|Array}
    */
-  jDomCore.setValue = (key, value, item) => {
+  functionalHelpers.setValue = (key, value, item) => {
     item[key] = value
     return item
   }
@@ -77,7 +77,7 @@
    * @param {*} value - Any value to be applied to the key
    * @returns {*}
    */
-  jDomCore.setAndReturnValue = (item, key, value) => {
+  functionalHelpers.setAndReturnValue = (item, key, value) => {
     item[key] = value
     return value
   }
@@ -101,10 +101,10 @@
    * @param {Object|Array} [thisArg] - Optional. Value to use as this when executing callback.
    * @returns {Object|Array}
    */
-  jDomCore.mapObject = (obj, fn, thisArg = undefined) => Array.isArray(obj)
+  functionalHelpers.mapObject = (obj, fn, thisArg = undefined) => Array.isArray(obj)
     ? obj.map(fn, thisArg)
     : Object.keys(obj).reduce(
-      (newObj, curr) => jDomCore.setValue(curr, fn(...[obj[curr], curr, obj].slice(0, fn.length || 2)), newObj),
+      (newObj, curr) => functionalHelpers.setValue(curr, fn(...[obj[curr], curr, obj].slice(0, fn.length || 2)), newObj),
       thisArg || {}
     )
 
@@ -116,8 +116,8 @@
    * @param {Object|Array} obj - An object having an array property
    * @returns {object}
    */
-  jDomCore.mapProperty = (property, mapFunction, obj) => {
-    obj[property] = jDomCore.mapObject(obj[property] || [], mapFunction)
+  functionalHelpers.mapProperty = (property, mapFunction, obj) => {
+    obj[property] = functionalHelpers.mapObject(obj[property] || [], mapFunction)
     return obj
   }
 
@@ -141,7 +141,7 @@
    * @param {Object|Array} [thisArg] - Optional. Value to use as this when executing callback.
    * @returns {Object|Array}
    */
-  jDomCore.filterObject = (obj, fn, thisArg = undefined) => Array.isArray(obj)
+  functionalHelpers.filterObject = (obj, fn, thisArg = undefined) => Array.isArray(obj)
     ? obj.filter(fn, thisArg)
     : Object.keys(obj).reduce((newObj, curr) => {
       if (fn(...[obj[curr], curr, obj].slice(0, fn.length || 2))) {
@@ -176,7 +176,7 @@
    * array without an initial value is an error.
    * @returns {Object|Array}
    */
-  jDomCore.reduceObject = (obj, fn, initialValue = obj[Object.keys(obj)[0]] || obj[0]) => Array.isArray(obj)
+  functionalHelpers.reduceObject = (obj, fn, initialValue = obj[Object.keys(obj)[0]] || obj[0]) => Array.isArray(obj)
     ? obj.reduce(fn, initialValue)
     : Object.keys(obj).reduce(
       (newObj, curr) => fn(...[newObj, obj[curr], curr, obj].slice(0, fn.length || 2)),
@@ -189,7 +189,7 @@
    * @param {Object|Array} item - Object or Array to test
    * @returns {boolean}
    */
-  jDomCore.notEmptyObjectOrArray = item => !!(
+  functionalHelpers.notEmptyObjectOrArray = item => !!(
     (typeof item === 'object' && Object.keys(item).length) || (Array.isArray(item) && item.length)
   )
 
@@ -201,8 +201,8 @@
    * @returns {Object|Array}
    */
   const cloneCopy = (object, cloned) =>
-    jDomCore.notEmptyObjectOrArray(object)
-      ? jDomCore.reduceObject(object, (start, prop, key) => {
+    functionalHelpers.notEmptyObjectOrArray(object)
+      ? functionalHelpers.reduceObject(object, (start, prop, key) => {
         start[key] = (cloned[key] && !/^(parentItem|listenerArgs|element)$/.test(key))
           ? cloneCopy(prop, cloned[key])
           : prop
@@ -216,7 +216,7 @@
    * @param {Object} object - The original object that is being cloned
    * @returns {Object}
    */
-  jDomCore.cloneObject = object => cloneCopy(object, JSON.parse(
+  functionalHelpers.cloneObject = object => cloneCopy(object, JSON.parse(
     JSON.stringify(object, (key, val) => !/^(parentItem|listenerArgs|element)$/.test(key)
       ? val
       : undefined)
@@ -236,13 +236,13 @@
    * modify them
    * @returns {Object}
    */
-  const mergeObjectsBase = (fn, obj1, obj2, isMutable = false) => jDomCore.notEmptyObjectOrArray(obj2)
-    ? jDomCore.mapObject(
+  const mergeObjectsBase = (fn, obj1, obj2, isMutable = false) => functionalHelpers.notEmptyObjectOrArray(obj2)
+    ? functionalHelpers.mapObject(
       obj2,
       (prop, key) => (obj1[key] && !/^(parentItem|listenerArgs|element)$/.test(key))
         ? fn(obj1[key], prop)
         : prop,
-      isMutable ? obj1 : jDomCore.cloneObject(obj1)
+      isMutable ? obj1 : functionalHelpers.cloneObject(obj1)
     )
     : obj2
 
@@ -256,11 +256,11 @@
    * object
    * @returns {Object}
    */
-  jDomCore.mergeObjects = (...args) => args.length === 2
-    ? mergeObjectsBase(jDomCore.mergeObjects, args[0], args[1])
+  functionalHelpers.mergeObjects = (...args) => args.length === 2
+    ? mergeObjectsBase(functionalHelpers.mergeObjects, args[0], args[1])
     : args.length === 1
-      ? jDomCore.cloneObject(args[0])
-      : args.reduce(jDomCore.curry(mergeObjectsBase)(jDomCore.mergeObjects), {})
+      ? functionalHelpers.cloneObject(args[0])
+      : args.reduce(functionalHelpers.curry(mergeObjectsBase)(functionalHelpers.mergeObjects), {})
 
   /**
    * Perform a deep merge of objects. This will combine all objects and sub-objects,
@@ -273,11 +273,11 @@
    * object
    * @returns {Object}
    */
-  jDomCore.mergeObjectsMutable = (...args) => args.length === 2
-    ? mergeObjectsBase(jDomCore.mergeObjectsMutable, args[0], args[1], true)
+  functionalHelpers.mergeObjectsMutable = (...args) => args.length === 2
+    ? mergeObjectsBase(functionalHelpers.mergeObjectsMutable, args[0], args[1], true)
     : args.length === 1
       ? args[0]
-      : args.reduce(jDomCore.curry(mergeObjectsBase)(jDomCore.mergeObjectsMutable), {})
+      : args.reduce(functionalHelpers.curry(mergeObjectsBase)(functionalHelpers.mergeObjectsMutable), {})
 
   /**
    * Generate an array filled with a copy of the provided item or references to the provided item.
@@ -290,7 +290,7 @@
    * @returns {Array.<*>}
    */
   const buildArrayBase = (useReference, item, length, arr = []) => --length > 0
-    ? buildArrayBase(useReference, (useReference ? item : jDomCore.cloneObject(item)), length, arr.concat([item]))
+    ? buildArrayBase(useReference, (useReference ? item : functionalHelpers.cloneObject(item)), length, arr.concat([item]))
     : arr.concat([item])
 
   /**
@@ -302,7 +302,7 @@
    * @param {Array} [arr=[]] - The in-progress array of elements to be built and returned, will be used internally
    * @returns {Array.<*>}
    */
-  jDomCore.buildArray = jDomCore.curry(buildArrayBase)(false)
+  functionalHelpers.buildArray = functionalHelpers.curry(buildArrayBase)(false)
 
   /**
    * Leverage buildArrayBase to generate an array filled with references to the provided item.
@@ -313,7 +313,7 @@
    * @param {Array} [arr=[]] - The in-progress array of elements to be built and returned, will be used internally
    * @returns {Array.<*>}
    */
-  jDomCore.buildArrayOfReferences = jDomCore.curry(buildArrayBase)(true)
+  functionalHelpers.buildArrayOfReferences = functionalHelpers.curry(buildArrayBase)(true)
 
   /**
    * A simple function to check if an item is in an array
@@ -322,7 +322,7 @@
    * @param {*} prop - Needle to be found within the haystack
    * @returns {boolean}
    */
-  jDomCore.inArray = (arr, prop) => arr.indexOf(prop) >= 0
+  functionalHelpers.inArray = (arr, prop) => arr.indexOf(prop) >= 0
 
   /**
    * Helper for returning the absolute max value
@@ -331,7 +331,7 @@
    * @param {number} num2 - Another number to be compared against
    * @returns {number}
    */
-  jDomCore.getAbsoluteMax = (num1, num2) => Math.abs(num1) > Math.abs(num2) ? num1 : num2
+  functionalHelpers.getAbsoluteMax = (num1, num2) => Math.abs(num1) > Math.abs(num2) ? num1 : num2
 
   /**
    * Helper for returning the absolute min value
@@ -340,7 +340,7 @@
    * @param {number} num2 - Another number to be compared against
    * @returns {number}
    */
-  jDomCore.getAbsoluteMin = (num1, num2) => Math.abs(num1) < Math.abs(num2) ? num1 : num2
+  functionalHelpers.getAbsoluteMin = (num1, num2) => Math.abs(num1) < Math.abs(num2) ? num1 : num2
 
   /**
    * Create a single random number within provided range. And with optional offset,
@@ -352,7 +352,7 @@
    * offset, 2 for range)
    * @returns {number}
    */
-  jDomCore.randomNumber = (range, offset = 0, interval = 1) => (Math.random() * range + offset) * interval
+  functionalHelpers.randomNumber = (range, offset = 0, interval = 1) => (Math.random() * range + offset) * interval
 
   /**
    * Create a single random integer within provide range. And with optional offset,
@@ -364,7 +364,7 @@
    * offset, 2 for range)
    * @returns {number}
    */
-  jDomCore.randomInteger = (range, offset = 0, interval = 1) => (Math.floor(Math.random() * range) + offset) * interval
+  functionalHelpers.randomInteger = (range, offset = 0, interval = 1) => (Math.floor(Math.random() * range) + offset) * interval
 
   /**
    * Compare two numbers and return:
@@ -376,7 +376,7 @@
    * @param {number} val2 - The second number to compare
    * @returns {number}
    */
-  jDomCore.compare = (val1, val2) => val1 === val2 ? 0 : val1 > val2 ? 1 : -1
+  functionalHelpers.compare = (val1, val2) => val1 === val2 ? 0 : val1 > val2 ? 1 : -1
 
   /**
    * Compare two Arrays and return the Object where the value for each property is as follows:
@@ -391,7 +391,7 @@
    * or more.
    * @example
    * // example of input and resulting output
-   * jDomCore.compareArrays(
+   * functionalHelpers.compareArrays(
    *   ['match1', 'firstMismatch1', 'match2', 'firstMismatch2', 'badMatch1'],
    *   ['match1', 'match2', 'secondMismatch1', 'badMatch1', 'badMatch1']
    * )
@@ -404,15 +404,15 @@
    * @param {Array} arr2 - The second array to compare
    * @returns {Object.<string, number>}
    */
-  jDomCore.compareArrays = (arr1, arr2) =>
-    arr2.filter(attr => !jDomCore.inArray(arr1, attr))
+  functionalHelpers.compareArrays = (arr1, arr2) =>
+    arr2.filter(attr => !functionalHelpers.inArray(arr1, attr))
       .concat(arr1)
       .reduce(
-        (returnObj, attr) => jDomCore.setValue(
+        (returnObj, attr) => functionalHelpers.setValue(
           (typeof attr === 'string')
             ? attr
             : JSON.stringify(attr, (key, val) => !/^(parentItem|listenerArgs|element)$/.test(key) ? val : undefined),
-          jDomCore.compare(arr1.filter(val => val === attr).length, arr2.filter(val => val === attr).length),
+          functionalHelpers.compare(arr1.filter(val => val === attr).length, arr2.filter(val => val === attr).length),
           returnObj
         ),
         {}
@@ -427,7 +427,7 @@
    * @param {string} label - Pass an identifying label of the value being output.
    * @returns {function(*=)}
    */
-  jDomCore.trace = label => value => {
+  functionalHelpers.trace = label => value => {
     console.info(`${label}: `, value)
     return value
   }
@@ -443,31 +443,31 @@
    * @param {...*} args - Arguments to be passed to the callback once it is implemented.
    * @returns {{id: number, func: function, timeout: number, args: {Array}, result: *}}
    */
-  jDomCore.queueTimeout = (fn = {}, time = 0, ...args) => {
+  functionalHelpers.queueTimeout = (fn = {}, time = 0, ...args) => {
     // Track the queue to be processed in FIFO
-    jDomCore.queueTimeout.queue = jDomCore.queueTimeout.queue || []
+    functionalHelpers.queueTimeout.queue = functionalHelpers.queueTimeout.queue || []
     // Do not run more than one queued item at a time
-    jDomCore.queueTimeout.isRunning = jDomCore.queueTimeout.isRunning || false
+    functionalHelpers.queueTimeout.isRunning = functionalHelpers.queueTimeout.isRunning || false
     // Construct an object which will store the queued function data
     const queueItem = { id: 0, func: fn, timeout: time, args: args, result: 0 }
     if (fn) {
       // When the function is valid, append it to the end of the queue
-      jDomCore.queueTimeout.queue.push(queueItem)
+      functionalHelpers.queueTimeout.queue.push(queueItem)
     }
-    if (jDomCore.queueTimeout.queue.length && !jDomCore.queueTimeout.isRunning) {
+    if (functionalHelpers.queueTimeout.queue.length && !functionalHelpers.queueTimeout.isRunning) {
       // Check that the queue is not empty, and it is not running a queued item
       // Set isRunning flag to begin processing the next queued item
-      jDomCore.queueTimeout.isRunning = true
+      functionalHelpers.queueTimeout.isRunning = true
       // Pick an item off the front of the queue, and thereby reduce the queue size
-      const toRun = jDomCore.queueTimeout.queue.shift()
+      const toRun = functionalHelpers.queueTimeout.queue.shift()
       // Get the timeout ID when it has begun
       toRun.id = setTimeout(() => {
         // Run the function after the provided timeout
         toRun.result = toRun.func(...toRun.args)
         // Reset isRunning flag
-        jDomCore.queueTimeout.isRunning = false
+        functionalHelpers.queueTimeout.isRunning = false
         // Re-run the queue which will get the next queued item if there is one
-        return jDomCore.queueTimeout(false)
+        return functionalHelpers.queueTimeout(false)
       }, toRun.timeout)
       // Return whatever object we have for the current queued item being processed, likely incomplete because the
       // function will complete in the future
@@ -482,9 +482,9 @@
    */
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = jDomCore
+      exports = module.exports = functionalHelpers
     }
-    exports = Object.assign(exports, jDomCore)
+    exports = Object.assign(exports, functionalHelpers)
   }
 }).call(this || window || {})
 // Use the external context to assign this, which will be Window if rendered via browser

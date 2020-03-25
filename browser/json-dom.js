@@ -13,7 +13,7 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 /**
- * @file All of the jDomCore system functions for stringing together functions and simplifying logic.
+ * @file All of the functionalHelpers system functions for stringing together functions and simplifying logic.
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
@@ -28,25 +28,25 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    * @type {module|*}
    */
 
-  var previousJDomCore = root.jDomCore || {};
+  var previousJDomCore = root.functionalHelpers || {};
   /**
-   * All methods exported from this module are encapsulated within jDomCore.
+   * All methods exported from this module are encapsulated within functionalHelpers.
    * @author Joshua Heagle <joshuaheagle@gmail.com>
-   * @typedef {Object} jDomCore
+   * @typedef {Object} functionalHelpers
    * @module core/core
    */
 
-  var jDomCore = {};
-  root.jDomCore = jDomCore;
+  var functionalHelpers = {};
+  root.functionalHelpers = functionalHelpers;
   /**
    * Return a reference to this library while preserving the original same-named library
    * @function noConflict
-   * @returns {jDomCore}
+   * @returns {functionalHelpers}
    */
 
-  jDomCore.noConflict = function () {
-    root.jDomCore = previousJDomCore;
-    return jDomCore;
+  functionalHelpers.noConflict = function () {
+    root.functionalHelpers = previousJDomCore;
+    return functionalHelpers;
   };
   /**
    * Return a curried version of the passed function.
@@ -58,7 +58,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.curry = function (fn) {
+  functionalHelpers.curry = function (fn) {
     return function () {
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
@@ -69,7 +69,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           a[_key2] = arguments[_key2];
         }
 
-        return jDomCore.curry(fn).apply(void 0, [].concat(args, a));
+        return functionalHelpers.curry(fn).apply(void 0, [].concat(args, a));
       };
     };
   };
@@ -83,7 +83,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.pipe = function () {
+  functionalHelpers.pipe = function () {
     for (var _len3 = arguments.length, fns = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
       fns[_key3] = arguments[_key3];
     }
@@ -104,7 +104,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.setValue = function (key, value, item) {
+  functionalHelpers.setValue = function (key, value, item) {
     item[key] = value;
     return item;
   };
@@ -118,7 +118,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.setAndReturnValue = function (item, key, value) {
+  functionalHelpers.setAndReturnValue = function (item, key, value) {
     item[key] = value;
     return value;
   };
@@ -143,10 +143,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.mapObject = function (obj, fn) {
+  functionalHelpers.mapObject = function (obj, fn) {
     var thisArg = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
     return Array.isArray(obj) ? obj.map(fn, thisArg) : Object.keys(obj).reduce(function (newObj, curr) {
-      return jDomCore.setValue(curr, fn.apply(void 0, _toConsumableArray([obj[curr], curr, obj].slice(0, fn.length || 2))), newObj);
+      return functionalHelpers.setValue(curr, fn.apply(void 0, _toConsumableArray([obj[curr], curr, obj].slice(0, fn.length || 2))), newObj);
     }, thisArg || {});
   };
   /**
@@ -159,8 +159,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.mapProperty = function (property, mapFunction, obj) {
-    obj[property] = jDomCore.mapObject(obj[property] || [], mapFunction);
+  functionalHelpers.mapProperty = function (property, mapFunction, obj) {
+    obj[property] = functionalHelpers.mapObject(obj[property] || [], mapFunction);
     return obj;
   };
   /**
@@ -185,7 +185,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.filterObject = function (obj, fn) {
+  functionalHelpers.filterObject = function (obj, fn) {
     var thisArg = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
     return Array.isArray(obj) ? obj.filter(fn, thisArg) : Object.keys(obj).reduce(function (newObj, curr) {
       if (fn.apply(void 0, _toConsumableArray([obj[curr], curr, obj].slice(0, fn.length || 2)))) {
@@ -223,7 +223,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.reduceObject = function (obj, fn) {
+  functionalHelpers.reduceObject = function (obj, fn) {
     var initialValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : obj[Object.keys(obj)[0]] || obj[0];
     return Array.isArray(obj) ? obj.reduce(fn, initialValue) : Object.keys(obj).reduce(function (newObj, curr) {
       return fn.apply(void 0, _toConsumableArray([newObj, obj[curr], curr, obj].slice(0, fn.length || 2)));
@@ -237,7 +237,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.notEmptyObjectOrArray = function (item) {
+  functionalHelpers.notEmptyObjectOrArray = function (item) {
     return !!(_typeof(item) === 'object' && Object.keys(item).length || Array.isArray(item) && item.length);
   };
   /**
@@ -250,7 +250,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   var cloneCopy = function cloneCopy(object, cloned) {
-    return jDomCore.notEmptyObjectOrArray(object) ? jDomCore.reduceObject(object, function (start, prop, key) {
+    return functionalHelpers.notEmptyObjectOrArray(object) ? functionalHelpers.reduceObject(object, function (start, prop, key) {
       start[key] = cloned[key] && !/^(parentItem|listenerArgs|element)$/.test(key) ? cloneCopy(prop, cloned[key]) : prop;
       return start;
     }, cloned) : cloned;
@@ -263,7 +263,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.cloneObject = function (object) {
+  functionalHelpers.cloneObject = function (object) {
     return cloneCopy(object, JSON.parse(JSON.stringify(object, function (key, val) {
       return !/^(parentItem|listenerArgs|element)$/.test(key) ? val : undefined;
     })));
@@ -286,9 +286,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var mergeObjectsBase = function mergeObjectsBase(fn, obj1, obj2) {
     var isMutable = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-    return jDomCore.notEmptyObjectOrArray(obj2) ? jDomCore.mapObject(obj2, function (prop, key) {
+    return functionalHelpers.notEmptyObjectOrArray(obj2) ? functionalHelpers.mapObject(obj2, function (prop, key) {
       return obj1[key] && !/^(parentItem|listenerArgs|element)$/.test(key) ? fn(obj1[key], prop) : prop;
-    }, isMutable ? obj1 : jDomCore.cloneObject(obj1)) : obj2;
+    }, isMutable ? obj1 : functionalHelpers.cloneObject(obj1)) : obj2;
   };
   /**
    * Perform a deep merge of objects. This will combine all objects and sub-objects,
@@ -302,12 +302,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.mergeObjects = function () {
+  functionalHelpers.mergeObjects = function () {
     for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
       args[_key4] = arguments[_key4];
     }
 
-    return args.length === 2 ? mergeObjectsBase(jDomCore.mergeObjects, args[0], args[1]) : args.length === 1 ? jDomCore.cloneObject(args[0]) : args.reduce(jDomCore.curry(mergeObjectsBase)(jDomCore.mergeObjects), {});
+    return args.length === 2 ? mergeObjectsBase(functionalHelpers.mergeObjects, args[0], args[1]) : args.length === 1 ? functionalHelpers.cloneObject(args[0]) : args.reduce(functionalHelpers.curry(mergeObjectsBase)(functionalHelpers.mergeObjects), {});
   };
   /**
    * Perform a deep merge of objects. This will combine all objects and sub-objects,
@@ -322,12 +322,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.mergeObjectsMutable = function () {
+  functionalHelpers.mergeObjectsMutable = function () {
     for (var _len5 = arguments.length, args = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
       args[_key5] = arguments[_key5];
     }
 
-    return args.length === 2 ? mergeObjectsBase(jDomCore.mergeObjectsMutable, args[0], args[1], true) : args.length === 1 ? args[0] : args.reduce(jDomCore.curry(mergeObjectsBase)(jDomCore.mergeObjectsMutable), {});
+    return args.length === 2 ? mergeObjectsBase(functionalHelpers.mergeObjectsMutable, args[0], args[1], true) : args.length === 1 ? args[0] : args.reduce(functionalHelpers.curry(mergeObjectsBase)(functionalHelpers.mergeObjectsMutable), {});
   };
   /**
    * Generate an array filled with a copy of the provided item or references to the provided item.
@@ -343,7 +343,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var buildArrayBase = function buildArrayBase(useReference, item, length) {
     var arr = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
-    return --length > 0 ? buildArrayBase(useReference, useReference ? item : jDomCore.cloneObject(item), length, arr.concat([item])) : arr.concat([item]);
+    return --length > 0 ? buildArrayBase(useReference, useReference ? item : functionalHelpers.cloneObject(item), length, arr.concat([item])) : arr.concat([item]);
   };
   /**
    * Leverage buildArrayBase to generate an array filled with a copy of the provided item.
@@ -356,7 +356,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.buildArray = jDomCore.curry(buildArrayBase)(false);
+  functionalHelpers.buildArray = functionalHelpers.curry(buildArrayBase)(false);
   /**
    * Leverage buildArrayBase to generate an array filled with references to the provided item.
    * The length defines how long the array should be.
@@ -367,7 +367,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    * @returns {Array.<*>}
    */
 
-  jDomCore.buildArrayOfReferences = jDomCore.curry(buildArrayBase)(true);
+  functionalHelpers.buildArrayOfReferences = functionalHelpers.curry(buildArrayBase)(true);
   /**
    * A simple function to check if an item is in an array
    * @function inArray
@@ -376,7 +376,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    * @returns {boolean}
    */
 
-  jDomCore.inArray = function (arr, prop) {
+  functionalHelpers.inArray = function (arr, prop) {
     return arr.indexOf(prop) >= 0;
   };
   /**
@@ -388,7 +388,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.getAbsoluteMax = function (num1, num2) {
+  functionalHelpers.getAbsoluteMax = function (num1, num2) {
     return Math.abs(num1) > Math.abs(num2) ? num1 : num2;
   };
   /**
@@ -400,7 +400,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.getAbsoluteMin = function (num1, num2) {
+  functionalHelpers.getAbsoluteMin = function (num1, num2) {
     return Math.abs(num1) < Math.abs(num2) ? num1 : num2;
   };
   /**
@@ -415,7 +415,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.randomNumber = function (range) {
+  functionalHelpers.randomNumber = function (range) {
     var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     var interval = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
     return (Math.random() * range + offset) * interval;
@@ -432,7 +432,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.randomInteger = function (range) {
+  functionalHelpers.randomInteger = function (range) {
     var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     var interval = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
     return (Math.floor(Math.random() * range) + offset) * interval;
@@ -449,7 +449,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.compare = function (val1, val2) {
+  functionalHelpers.compare = function (val1, val2) {
     return val1 === val2 ? 0 : val1 > val2 ? 1 : -1;
   };
   /**
@@ -465,7 +465,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    * or more.
    * @example
    * // example of input and resulting output
-   * jDomCore.compareArrays(
+   * functionalHelpers.compareArrays(
    *   ['match1', 'firstMismatch1', 'match2', 'firstMismatch2', 'badMatch1'],
    *   ['match1', 'match2', 'secondMismatch1', 'badMatch1', 'badMatch1']
    * )
@@ -480,13 +480,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.compareArrays = function (arr1, arr2) {
+  functionalHelpers.compareArrays = function (arr1, arr2) {
     return arr2.filter(function (attr) {
-      return !jDomCore.inArray(arr1, attr);
+      return !functionalHelpers.inArray(arr1, attr);
     }).concat(arr1).reduce(function (returnObj, attr) {
-      return jDomCore.setValue(typeof attr === 'string' ? attr : JSON.stringify(attr, function (key, val) {
+      return functionalHelpers.setValue(typeof attr === 'string' ? attr : JSON.stringify(attr, function (key, val) {
         return !/^(parentItem|listenerArgs|element)$/.test(key) ? val : undefined;
-      }), jDomCore.compare(arr1.filter(function (val) {
+      }), functionalHelpers.compare(arr1.filter(function (val) {
         return val === attr;
       }).length, arr2.filter(function (val) {
         return val === attr;
@@ -504,7 +504,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.trace = function (label) {
+  functionalHelpers.trace = function (label) {
     return function (value) {
       console.info("".concat(label, ": "), value);
       return value;
@@ -523,13 +523,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCore.queueTimeout = function () {
+  functionalHelpers.queueTimeout = function () {
     var fn = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var time = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     // Track the queue to be processed in FIFO
-    jDomCore.queueTimeout.queue = jDomCore.queueTimeout.queue || []; // Do not run more than one queued item at a time
+    functionalHelpers.queueTimeout.queue = functionalHelpers.queueTimeout.queue || []; // Do not run more than one queued item at a time
 
-    jDomCore.queueTimeout.isRunning = jDomCore.queueTimeout.isRunning || false; // Construct an object which will store the queued function data
+    functionalHelpers.queueTimeout.isRunning = functionalHelpers.queueTimeout.isRunning || false; // Construct an object which will store the queued function data
 
     for (var _len6 = arguments.length, args = new Array(_len6 > 2 ? _len6 - 2 : 0), _key6 = 2; _key6 < _len6; _key6++) {
       args[_key6 - 2] = arguments[_key6];
@@ -545,23 +545,23 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     if (fn) {
       // When the function is valid, append it to the end of the queue
-      jDomCore.queueTimeout.queue.push(queueItem);
+      functionalHelpers.queueTimeout.queue.push(queueItem);
     }
 
-    if (jDomCore.queueTimeout.queue.length && !jDomCore.queueTimeout.isRunning) {
+    if (functionalHelpers.queueTimeout.queue.length && !functionalHelpers.queueTimeout.isRunning) {
       // Check that the queue is not empty, and it is not running a queued item
       // Set isRunning flag to begin processing the next queued item
-      jDomCore.queueTimeout.isRunning = true; // Pick an item off the front of the queue, and thereby reduce the queue size
+      functionalHelpers.queueTimeout.isRunning = true; // Pick an item off the front of the queue, and thereby reduce the queue size
 
-      var toRun = jDomCore.queueTimeout.queue.shift(); // Get the timeout ID when it has begun
+      var toRun = functionalHelpers.queueTimeout.queue.shift(); // Get the timeout ID when it has begun
 
       toRun.id = setTimeout(function () {
         // Run the function after the provided timeout
         toRun.result = toRun.func.apply(toRun, _toConsumableArray(toRun.args)); // Reset isRunning flag
 
-        jDomCore.queueTimeout.isRunning = false; // Re-run the queue which will get the next queued item if there is one
+        functionalHelpers.queueTimeout.isRunning = false; // Re-run the queue which will get the next queued item if there is one
 
-        return jDomCore.queueTimeout(false);
+        return functionalHelpers.queueTimeout(false);
       }, toRun.timeout); // Return whatever object we have for the current queued item being processed, likely incomplete because the
       // function will complete in the future
 
@@ -578,10 +578,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = jDomCore;
+      exports = module.exports = functionalHelpers;
     }
 
-    exports = Object.assign(exports, jDomCore);
+    exports = Object.assign(exports, functionalHelpers);
   }
 }).call(void 0 || window || {}) // Use the external context to assign this, which will be Window if rendered via browser
 
@@ -626,47 +626,47 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  var previousJDomObjectsDom = root.jDomObjectsDom || {};
+  var previousJDomObjectsDom = root.jDomObjects || {};
   /**
-   * All methods exported from this module are encapsulated within jDomObjectsDom
+   * All methods exported from this module are encapsulated within jDomObjects
    * @author Joshua Heagle <joshuaheagle@gmail.com>
-   * @typedef {Object} jDomObjectsDom
+   * @typedef {Object} jDomObjects
    * @module core/dom/objects
    */
 
-  var jDomObjectsDom = {};
-  root.jDomObjectsDom = jDomObjectsDom;
+  var jDomObjects = {};
+  root.jDomObjects = jDomObjects;
   /**
    * Return a reference to this library while preserving the original same-named library
    * @function noConflict
-   * @returns {jDomObjectsDom}
+   * @returns {jDomObjects}
    */
 
-  jDomObjectsDom.noConflict = function () {
-    root.jDomObjectsDom = previousJDomObjectsDom;
-    return jDomObjectsDom;
+  jDomObjects.noConflict = function () {
+    root.jDomObjects = previousJDomObjectsDom;
+    return jDomObjects;
   };
   /**
-   * Verify availability of jDomCore
-   * @typedef {*|module:core/core} jDomCore
+   * Verify availability of functionalHelpers
+   * @typedef {*|module:core/core} functionalHelpers
    */
 
 
-  var jDomCore = root.jDomCore;
+  var functionalHelpers = root.functionalHelpers;
   /**
-   * If jDomCore remains undefined, attempt to retrieve it as a module
+   * If functionalHelpers remains undefined, attempt to retrieve it as a module
    */
 
-  if (typeof jDomCore === 'undefined') {
+  if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      jDomCore = require('../core.js');
+      functionalHelpers = require('../core.js');
     } else {
       console.error('core/dom/objects requires core/core');
     }
   }
   /**
    * This is the standard definition of a listenerFunction to be used
-   * @callback jDomObjectsDom.listenerFunction
+   * @callback jDomObjects.listenerFunction
    * @callback listenerFunction
    * @param {Event|module:pseudoDom/objects.PseudoEvent} e - The event object passed to the listener
    * @param {module:core/dom/objects.DomItem} target - The element which triggered the event
@@ -699,7 +699,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   /**
    * An EventListener Object to be appended to the element within the DomItem
-   * @typedef {Object} jDomObjectsDom.EventListener
+   * @typedef {Object} jDomObjects.EventListener
    * @typedef {Object} EventListener
    * @property {string} listenerFunc - A string function name matching an existing
    * {@link module:core/dom/objects~listenerFunction}.
@@ -731,14 +731,14 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomObjectsDom.createDomItem = function () {
-    var _jDomCore;
+  jDomObjects.createDomItem = function () {
+    var _functionalHelpers;
 
     for (var _len7 = arguments.length, attributes = new Array(_len7), _key7 = 0; _key7 < _len7; _key7++) {
       attributes[_key7] = arguments[_key7];
     }
 
-    return (_jDomCore = jDomCore).mergeObjectsMutable.apply(_jDomCore, [{
+    return (_functionalHelpers = functionalHelpers).mergeObjectsMutable.apply(_functionalHelpers, [{
       tagName: 'div',
       attributes: {
         style: {}
@@ -776,12 +776,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   var initChildren = function initChildren() {
-    return [jDomObjectsDom.createDomItem({
+    return [jDomObjects.createDomItem({
       tagName: 'head',
       attributes: {},
       element: document.head,
       children: []
-    }), jDomObjectsDom.createDomItem({
+    }), jDomObjects.createDomItem({
       tagName: 'body',
       attributes: {},
       element: document.body,
@@ -816,7 +816,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var initRoot = function initRoot(children) {
     var listeners = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    return jDomObjectsDom.createDomItem({
+    return jDomObjects.createDomItem({
       tagName: 'html',
       attributes: {},
       element: document,
@@ -838,17 +838,17 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomObjectsDom.documentDomItem = function () {
+  jDomObjects.documentDomItem = function () {
     var listeners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
     var rootItem = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : initRoot(initChildren(), listeners);
     rootItem.children = rootItem.children.map(function (child) {
-      return jDomObjectsDom.createDomItem(child, {
+      return jDomObjects.createDomItem(child, {
         parentItem: rootItem
       });
     });
     Object.assign(rootItem.head, rootItem.children[0]);
     Object.assign(rootItem.body, rootItem.children[1]);
-    return jDomObjectsDom.createDomItem(rootItem);
+    return jDomObjects.createDomItem(rootItem);
   };
   /**
    * Create reference for storing document changes
@@ -857,17 +857,17 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomObjectsDom.documentItem = jDomObjectsDom.documentDomItem();
+  jDomObjects.documentItem = jDomObjects.documentDomItem();
   /**
    * Either export all functions to be exported, or assign to the Window context
    */
 
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = jDomObjectsDom;
+      exports = module.exports = jDomObjects;
     }
 
-    exports = Object.assign(exports, jDomObjectsDom);
+    exports = Object.assign(exports, jDomObjects);
   }
 }).call(void 0 || window || {}) // Use the external context to assign this, which will be Window if rendered via browser
 
@@ -887,25 +887,25 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    * @type {module|*}
    */
 
-  var previousJDomCoreDom = root.jDomCoreDom || {};
+  var previousJDomCoreDom = root.jDomCore || {};
   /**
-   * All methods exported from this module are encapsulated within jDomCoreDom.
+   * All methods exported from this module are encapsulated within jDomCore.
    * @author Joshua Heagle <joshuaheagle@gmail.com>
-   * @typedef {Object} jDomCoreDom
+   * @typedef {Object} jDomCore
    * @module core/dom/core
    */
 
-  var jDomCoreDom = {};
-  root.jDomCoreDom = jDomCoreDom;
+  var jDomCore = {};
+  root.jDomCore = jDomCore;
   /**
    * Return a reference to this library while preserving the original same-named library
    * @function noConflict
-   * @returns {jDomCoreDom}
+   * @returns {jDomCore}
    */
 
-  jDomCoreDom.noConflict = function () {
-    root.jDomCoreDom = previousJDomCoreDom;
-    return jDomCoreDom;
+  jDomCore.noConflict = function () {
+    root.jDomCore = previousJDomCoreDom;
+    return jDomCore;
   };
   /**
    * Verify availability of document
@@ -933,37 +933,37 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }
   }
   /**
-   * Verify availability of jDomCore
-   * @typedef {*|module:core/core} jDomCore
+   * Verify availability of functionalHelpers
+   * @typedef {*|module:core/core} functionalHelpers
    */
 
 
-  var jDomCore = root.jDomCore;
+  var functionalHelpers = root.functionalHelpers;
   /**
-   * If jDomCore remains undefined, attempt to retrieve it as a module
+   * If functionalHelpers remains undefined, attempt to retrieve it as a module
    */
 
-  if (typeof jDomCore === 'undefined') {
+  if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      jDomCore = require('../core.js');
+      functionalHelpers = require('../core.js');
     } else {
       console.error('core/dom/core requires core/core');
     }
   }
   /**
-   * Verify availability of jDomCore
-   * @typedef {*|module:core/dom/objects} jDomObjectsDom
+   * Verify availability of functionalHelpers
+   * @typedef {*|module:core/dom/objects} jDomObjects
    */
 
 
-  var jDomObjectsDom = root.jDomObjectsDom;
+  var jDomObjects = root.jDomObjects;
   /**
-   * If jDomObjectsDom remains undefined, attempt to retrieve it as a module
+   * If jDomObjects remains undefined, attempt to retrieve it as a module
    */
 
-  if (typeof jDomObjectsDom === 'undefined') {
+  if (typeof jDomObjects === 'undefined') {
     if (typeof require !== 'undefined') {
-      jDomObjectsDom = require('./objects.js');
+      jDomObjects = require('./objects.js');
     } else {
       console.error('core/dom/core requires core/dom/objects');
     }
@@ -979,7 +979,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.elementHasAttribute = function (element, key, attr) {
+  jDomCore.elementHasAttribute = function (element, key, attr) {
     if (!element.style) {
       // if element is not a valid element then return false
       return false;
@@ -988,7 +988,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     if (/^(style|className)$/.test(key)) {
       // For attributes which are objects or multi-part strings
       // -1 = remove attribute, 0 = no change, 1 = add attribute
-      return jDomCore.compareArrays(typeof attr === 'string' ? attr.split(' ') : Object.keys(attr), typeof attr === 'string' ? element[key].split(' ') : Object.keys(element[key]));
+      return functionalHelpers.compareArrays(typeof attr === 'string' ? attr.split(' ') : Object.keys(attr), typeof attr === 'string' ? element[key].split(' ') : Object.keys(element[key]));
     } // Check that the key is a property of the element
     // Compare current to new one
 
@@ -1004,11 +1004,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.elementCompareClassList = function (element, classes) {
-    return jDomCore.compareArrays(classes.split(' '), [].from(element.classList));
+  jDomCore.elementCompareClassList = function (element, classes) {
+    return functionalHelpers.compareArrays(classes.split(' '), [].from(element.classList));
   };
   /**
-   * Given a jDomObjectsDom.DomItem as config, this function will return the changes to be applied
+   * Given a jDomObjects.DomItem as config, this function will return the changes to be applied
    * to the stored element property.
    * @function elementChanges
    * @param {module:core/dom/objects.DomItem} config - The DomItem having config changes to be applied to its
@@ -1017,18 +1017,18 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.elementChanges = function (config) {
+  jDomCore.elementChanges = function (config) {
     return config.element.tagName.toLowerCase() !== config.tagName.toLowerCase() ? // Generate a new element since the tag has changed
-    jDomCoreDom.generateElement(config) // Remove all the similarities
-    : jDomCore.setValue('attributes', jDomCore.filterObject(config.attributes, // For each attribute, check if it becomes true / false based on the comparison results
+    jDomCore.generateElement(config) // Remove all the similarities
+    : functionalHelpers.setValue('attributes', functionalHelpers.filterObject(config.attributes, // For each attribute, check if it becomes true / false based on the comparison results
     function (attr1, key1) {
-      return jDomCore.filterObject( // Get attributes as object of truthy and falsy values
-      jDomCore.mapObject(config.attributes, function (attr2, key2) {
+      return functionalHelpers.filterObject( // Get attributes as object of truthy and falsy values
+      functionalHelpers.mapObject(config.attributes, function (attr2, key2) {
         return _typeof(attr2) === 'object' || key2 === 'className' ? // Apply custom logic for class and styles, only keep the updates
-        jDomCore.filterObject(jDomCoreDom.elementHasAttribute(config.element, key2, attr2), function (attr3) {
+        functionalHelpers.filterObject(jDomCore.elementHasAttribute(config.element, key2, attr2), function (attr3) {
           return attr3 === 1;
         }) // True when the element does not already have the attribute
-        : !jDomCoreDom.elementHasAttribute(config.element, key2, attr2);
+        : !jDomCore.elementHasAttribute(config.element, key2, attr2);
       }), // Remove when the attr4 value is 0 or false, or not empty object
       function (attr4) {
         return !!attr4;
@@ -1046,7 +1046,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.setAttribute = function (config, name, value) {
+  jDomCore.setAttribute = function (config, name, value) {
     config.element.setAttribute(name, value);
     return config;
   };
@@ -1061,7 +1061,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.setAndReturnAttribute = function (config, name, value) {
+  jDomCore.setAndReturnAttribute = function (config, name, value) {
     config.element.setAttribute(name, value);
     return value;
   };
@@ -1074,17 +1074,17 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.updateElement = function (config) {
+  jDomCore.updateElement = function (config) {
     return !config.element.style // if element is not a valid element then return the config without changes
     ? config // Set the the current attributes to contain all the changes
-    : jDomCore.setValue('attributes', jDomCore.mapObject( // Retrieve only the changes to be applied from the attributes
-    jDomCoreDom.elementChanges(config).attributes, function (attr, key) {
-      return jDomCore.notEmptyObjectOrArray(attr) ? jDomCore.mapObject(jDomCore.filterObject( // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
+    : functionalHelpers.setValue('attributes', functionalHelpers.mapObject( // Retrieve only the changes to be applied from the attributes
+    jDomCore.elementChanges(config).attributes, function (attr, key) {
+      return functionalHelpers.notEmptyObjectOrArray(attr) ? functionalHelpers.mapObject(functionalHelpers.filterObject( // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
       attr, function (param, k) {
         return /^\D+$/.test(k);
       }), function (p, i) {
-        return jDomCore.setAndReturnValue(config.element.style, i, p);
-      }, config.element.style) : key in config.element ? jDomCore.setAndReturnValue(config.element, key, attr) : jDomCoreDom.setAndReturnAttribute(config, key, attr);
+        return functionalHelpers.setAndReturnValue(config.element.style, i, p);
+      }, config.element.style) : key in config.element ? functionalHelpers.setAndReturnValue(config.element, key, attr) : jDomCore.setAndReturnAttribute(config, key, attr);
     }), config);
   };
   /**
@@ -1097,10 +1097,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.updateElements = function (config) {
-    return jDomCore.mapProperty('children', function (child) {
-      return jDomCoreDom.updateElements(child);
-    }, jDomCoreDom.updateElement(config));
+  jDomCore.updateElements = function (config) {
+    return functionalHelpers.mapProperty('children', function (child) {
+      return jDomCore.updateElements(child);
+    }, jDomCore.updateElement(config));
   };
   /**
    * Create an HTML element based on the provided attributes and return the element as an Object.
@@ -1110,8 +1110,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.generateElement = function (config) {
-    return jDomCoreDom.updateElement(jDomCore.setValue('element', document.createElement(config.tagName), config));
+  jDomCore.generateElement = function (config) {
+    return jDomCore.updateElement(functionalHelpers.setValue('element', document.createElement(config.tagName), config));
   };
   /**
    * Generate HTML element data for a provided DomItem
@@ -1121,8 +1121,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.bindElement = function (item) {
-    return jDomCore.setValue('element', !item.element || !item.element.style ? jDomCoreDom.generateElement(item).element : item.element, item);
+  jDomCore.bindElement = function (item) {
+    return functionalHelpers.setValue('element', !item.element || !item.element.style ? jDomCore.generateElement(item).element : item.element, item);
   };
   /**
    * Simplify detecting the parent item which can be appended to, whether root, or just a parent at any part of the tree
@@ -1145,7 +1145,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   var addUniqueToArray = function addUniqueToArray(item, array) {
-    return !jDomCore.inArray(array, item) ? array.concat([item]) : array;
+    return !functionalHelpers.inArray(array, item) ? array.concat([item]) : array;
   };
   /**
    * Provide a DomItem to be appended to a parent item, return the DomItem.
@@ -1156,7 +1156,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   var appendAndReturnChild = function appendAndReturnChild(child) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjectsDom.documentItem.body;
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjects.documentItem.body;
     retrieveParentItem(parent).element.appendChild(child.element);
     return child;
   };
@@ -1169,9 +1169,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.appendHTML = function (item) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjectsDom.documentItem.body;
-    return appendAndReturnChild(jDomCoreDom.bindElement(item), jDomCore.setValue('children', addUniqueToArray(item, retrieveParentItem(parent).children), retrieveParentItem(parent)));
+  jDomCore.appendHTML = function (item) {
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjects.documentItem.body;
+    return appendAndReturnChild(jDomCore.bindElement(item), functionalHelpers.setValue('children', addUniqueToArray(item, retrieveParentItem(parent).children), retrieveParentItem(parent)));
   };
   /**
    * Reverse of appendHTML, remove a DomItem and have the associated element removed.
@@ -1182,13 +1182,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.removeChild = function (item) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjectsDom.documentItem.body;
+  jDomCore.removeChild = function (item) {
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjects.documentItem.body;
     parent.element.removeChild(item.element);
     return parent.children.splice(parent.children.indexOf(item), 1);
   };
   /**
-   * Register a single listener function as part of the root jDomObjectsDom.DomItem.
+   * Register a single listener function as part of the root jDomObjects.DomItem.
    * @function registerListener
    * @param {module:core/dom/objects~listenerFunction|function} listener - Provide a function which will be called
    * when a Dom event is triggered.
@@ -1199,9 +1199,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.registerListener = function (listener) {
+  jDomCore.registerListener = function (listener) {
     var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : listener.name;
-    var parent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : jDomObjectsDom.documentItem;
+    var parent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : jDomObjects.documentItem;
     return Object.assign(parent.eventListeners, _defineProperty({}, name, listener));
   };
   /**
@@ -1215,16 +1215,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.registerListeners = function (listeners) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjectsDom.documentItem;
-    return jDomCore.mergeObjects(parent, {
+  jDomCore.registerListeners = function (listeners) {
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjects.documentItem;
+    return functionalHelpers.mergeObjects(parent, {
       eventListeners: parent.eventListeners
     }, {
       eventListeners: listeners
     });
   };
   /**
-   * Based on the provided function / listener name, retrieve the associated function from the root jDomObjectsDom.DomItem
+   * Based on the provided function / listener name, retrieve the associated function from the root jDomObjects.DomItem
    * @function retrieveListener
    * @param {string} listenerName - The name of one of the registered listener functions.
    * @param {module:core/dom/objects.DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which
@@ -1233,9 +1233,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.retrieveListener = function (listenerName) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjectsDom.documentItem;
-    return jDomCore.inArray(Object.keys(parent.eventListeners), listenerName) ? parent.eventListeners[listenerName] : {};
+  jDomCore.retrieveListener = function (listenerName) {
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjects.documentItem;
+    return functionalHelpers.inArray(Object.keys(parent.eventListeners), listenerName) ? parent.eventListeners[listenerName] : {};
   };
   /**
    * Provide compatibility for using the options parameter of addEventListener
@@ -1277,7 +1277,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.assignListener = function (trigger, elem, fn, options) {
+  jDomCore.assignListener = function (trigger, elem, fn, options) {
     // Attaching a listener may be done differently based on the browser support
     if (elem.addEventListener) {
       // Latest support is provided fro addEventListener with the options parameter varying slightly
@@ -1307,12 +1307,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.appendListeners = function (item, event, listener) {
+  jDomCore.appendListeners = function (item, event, listener) {
     var args = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
     var options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
-    return jDomCore.mapProperty('children', function (i) {
-      return jDomCoreDom.appendListeners(i, event, listener, args, options);
-    }, jDomCore.setValue('eventListeners', jDomCore.setValue(event, {
+    return functionalHelpers.mapProperty('children', function (i) {
+      return jDomCore.appendListeners(i, event, listener, args, options);
+    }, functionalHelpers.setValue('eventListeners', functionalHelpers.setValue(event, {
       listenerFunc: listener,
       listenerArgs: args,
       listenerOptions: options
@@ -1326,15 +1326,15 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   var bindElementListeners = function bindElementListeners(item) {
-    return jDomCore.mapProperty('eventListeners', function (attr, event) {
-      return jDomCoreDom.assignListener(event, item.element, function (e) {
+    return functionalHelpers.mapProperty('eventListeners', function (attr, event) {
+      return jDomCore.assignListener(event, item.element, function (e) {
         return attr.listenerFunc(e, item, attr.listenerArgs);
       }, attr.listenerOptions);
     }, item);
   };
   /**
    * Based on the eventListeners property of the provided item, bind the
-   * listeners to the associated element property for the provided jDomObjectsDom.DomItem.
+   * listeners to the associated element property for the provided jDomObjects.DomItem.
    * @function bindListeners
    * @param {module:core/dom/objects.DomItem} item - The DomItem which may have eventListeners to apply to its
    * element
@@ -1342,12 +1342,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.bindListeners = function (item) {
+  jDomCore.bindListeners = function (item) {
     return item.eventListeners && Object.keys(item.eventListeners).length && item.element.style ? bindElementListeners(item) : item;
   };
   /**
    * Based on the eventListeners property of the provided item, bind the listeners to the associated element property
-   * for each item in the jDomObjectsDom.DomItem structure.
+   * for each item in the jDomObjects.DomItem structure.
    * WARNING: This is a recursive function.
    * @function bindAllListeners
    * @param {module:core/dom/objects.DomItem} item - The DomItem with an associated HTMLElement to have a listener
@@ -1356,13 +1356,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.bindAllListeners = function (item) {
-    return jDomCore.mapProperty('children', function (i) {
-      return jDomCoreDom.bindAllListeners(i);
-    }, jDomCoreDom.bindListeners(item));
+  jDomCore.bindAllListeners = function (item) {
+    return functionalHelpers.mapProperty('children', function (i) {
+      return jDomCore.bindAllListeners(i);
+    }, jDomCore.bindListeners(item));
   };
   /**
-   * To be used with jDomCoreDom.gatherChildItems which will start at item and recurse over all child items, this test
+   * To be used with jDomCore.gatherChildItems which will start at item and recurse over all child items, this test
    * will then choose which child items will be returned as the result of the test.
    * @callback module:core/dom/core~testChildItem
    * @param {module:core/dom/objects.DomItem|Object} item - The DomItem is the child being tested
@@ -1372,7 +1372,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
   /**
-   * A selector function for retrieving existing child jDomObjectsDom.DomItems from the given parent item.
+   * A selector function for retrieving existing child jDomObjects.DomItems from the given parent item.
    * This function will check all the children starting from and including item, and run the test function on each
    * child encountered. The return array contains children returned from the test from all levels.
    * WARNING: This is a recursive function.
@@ -1384,9 +1384,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.gatherChildItems = function (item, test) {
+  jDomCore.gatherChildItems = function (item, test) {
     return test(item, item.children.reduce(function (a, b) {
-      return a.concat(jDomCoreDom.gatherChildItems(b, test));
+      return a.concat(jDomCore.gatherChildItems(b, test));
     }, []));
   };
   /**
@@ -1403,7 +1403,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     };
   };
   /**
-   * A selector function for retrieving existing child jDomObjectsDom.DomItems from the given parent item.
+   * A selector function for retrieving existing child jDomObjects.DomItems from the given parent item.
    * This function will check all the children starting from item, and scan the attributes
    * property for matches. The returned array contains children matching from all levels.
    * WARNING: This calls a recursive function.
@@ -1416,27 +1416,27 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.getChildrenFromAttribute = function (attr, value) {
-    var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : jDomObjectsDom.documentItem.body;
-    return jDomCoreDom.gatherChildItems(item, getChildTest(attr, value));
+  jDomCore.getChildrenFromAttribute = function (attr, value) {
+    var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : jDomObjects.documentItem.body;
+    return jDomCore.gatherChildItems(item, getChildTest(attr, value));
   };
   /**
-   * Helper for getting all jDomObjectsDom.DomItems starting at parent and having specified className attribute
+   * Helper for getting all jDomObjects.DomItems starting at parent and having specified className attribute
    * @function getChildrenByClass
    * @returns {module:core/dom/objects.DomItem[]}
    */
 
 
-  jDomCoreDom.getChildrenByClass = jDomCore.curry(jDomCoreDom.getChildrenFromAttribute)('className');
+  jDomCore.getChildrenByClass = functionalHelpers.curry(jDomCore.getChildrenFromAttribute)('className');
   /**
-   * Helper for getting all jDomObjectsDom.DomItems starting at parent and having specified name attribute
+   * Helper for getting all jDomObjects.DomItems starting at parent and having specified name attribute
    * @function getChildrenByName
    * @returns {module:core/dom/objects.DomItem[]}
    */
 
-  jDomCoreDom.getChildrenByName = jDomCore.curry(jDomCoreDom.getChildrenFromAttribute)('name');
+  jDomCore.getChildrenByName = functionalHelpers.curry(jDomCore.getChildrenFromAttribute)('name');
   /**
-   * A selector function for retrieving existing child jDomObjectsDom.DomItems from the given parent item.
+   * A selector function for retrieving existing child jDomObjects.DomItems from the given parent item.
    * This function will check all the children starting from item, and scan the attributes
    * property for matches. The return array contains children matching from all levels.
    * WARNING: This is a recursive function.
@@ -1448,42 +1448,42 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    * @returns {Array}
    */
 
-  jDomCoreDom.getParentsFromAttribute = function (attr, value) {
-    var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : jDomObjectsDom.documentItem.body;
-    return Object.keys(item.parentItem).length ? (item.parentItem.attributes[attr] || item[attr] || false) === value ? jDomCoreDom.getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem]) : jDomCoreDom.getParentsFromAttribute(attr, value, item.parentItem) : [];
+  jDomCore.getParentsFromAttribute = function (attr, value) {
+    var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : jDomObjects.documentItem.body;
+    return Object.keys(item.parentItem).length ? (item.parentItem.attributes[attr] || item[attr] || false) === value ? jDomCore.getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem]) : jDomCore.getParentsFromAttribute(attr, value, item.parentItem) : [];
   };
   /**
-   * Helper for getting all jDomObjectsDom.DomItems starting at child and having specified className attribute
+   * Helper for getting all jDomObjects.DomItems starting at child and having specified className attribute
    * @function getParentsByClass
    * @returns {Array}
    */
 
 
-  jDomCoreDom.getParentsByClass = jDomCore.curry(jDomCoreDom.getParentsFromAttribute)('className');
+  jDomCore.getParentsByClass = functionalHelpers.curry(jDomCore.getParentsFromAttribute)('className');
   /**
-   * Helper for getting all jDomObjectsDom.DomItems starting at child and having specified name attribute
+   * Helper for getting all jDomObjects.DomItems starting at child and having specified name attribute
    * @function getParentsByName
    * @returns {Array}
    */
 
-  jDomCoreDom.getParentsByName = jDomCore.curry(jDomCoreDom.getParentsFromAttribute)('name');
+  jDomCore.getParentsByName = functionalHelpers.curry(jDomCore.getParentsFromAttribute)('name');
   /**
-   * Helper for getting all jDomObjectsDom.DomItems starting at child and having specified tagName
+   * Helper for getting all jDomObjects.DomItems starting at child and having specified tagName
    * @function getParentsByTagName
    * @returns {Array}
    */
 
-  jDomCoreDom.getParentsByTagName = jDomCore.curry(jDomCoreDom.getParentsFromAttribute)('tagName');
+  jDomCore.getParentsByTagName = functionalHelpers.curry(jDomCore.getParentsFromAttribute)('tagName');
   /**
-   * Get the upper parentItem for the provided child. (usually this is a jDomObjectsDom.documentItem reference)
+   * Get the upper parentItem for the provided child. (usually this is a jDomObjects.documentItem reference)
    * WARNING: This is a recursive function.
    * @function getTopParentItem
    * @param {module:core/dom/objects.DomItem} item - The DomItem which we want the highest parent item of
    * @returns {module:core/dom/objects.DomItemRoot}
    */
 
-  jDomCoreDom.getTopParentItem = function (item) {
-    return Object.keys(item.parentItem).length ? jDomCoreDom.getTopParentItem(item.parentItem) : item;
+  jDomCore.getTopParentItem = function (item) {
+    return Object.keys(item.parentItem).length ? jDomCore.getTopParentItem(item.parentItem) : item;
   };
   /**
    * This is a shortcut for building the specified HTML elements and appending them to the Dom
@@ -1496,23 +1496,23 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    */
 
 
-  jDomCoreDom.renderHTML = function (item) {
-    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjectsDom.documentItem;
-    return jDomCore.pipe(function (domItem) {
-      return jDomCore.setValue('element', domItem.element && domItem.element.style ? domItem.element : jDomCoreDom.bindElement(domItem).element, domItem);
+  jDomCore.renderHTML = function (item) {
+    var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjects.documentItem;
+    return functionalHelpers.pipe(function (domItem) {
+      return functionalHelpers.setValue('element', domItem.element && domItem.element.style ? domItem.element : jDomCore.bindElement(domItem).element, domItem);
     }, function (domItem) {
-      return jDomCore.setValue('eventListeners', jDomCore.mapObject(domItem.eventListeners, function (prop) {
-        return jDomCore.mergeObjects(prop, {
-          listenerFunc: jDomCoreDom.retrieveListener(prop.listenerFunc, jDomCoreDom.getTopParentItem(parent))
+      return functionalHelpers.setValue('eventListeners', functionalHelpers.mapObject(domItem.eventListeners, function (prop) {
+        return functionalHelpers.mergeObjects(prop, {
+          listenerFunc: jDomCore.retrieveListener(prop.listenerFunc, jDomCore.getTopParentItem(parent))
         });
       }), domItem);
-    }, jDomCore.curry(jDomCore.setValue)('parentItem', parent.body || parent), function (domItem) {
-      return jDomCoreDom.bindListeners(jDomCoreDom.appendHTML(domItem, parent));
+    }, functionalHelpers.curry(functionalHelpers.setValue)('parentItem', parent.body || parent), function (domItem) {
+      return jDomCore.bindListeners(jDomCore.appendHTML(domItem, parent));
     }, function (domItem) {
-      return jDomCore.mapProperty('children', function (child) {
-        return jDomCoreDom.renderHTML(child, domItem);
+      return functionalHelpers.mapProperty('children', function (child) {
+        return jDomCore.renderHTML(child, domItem);
       }, domItem);
-    })(jDomCore.mapObject(jDomObjectsDom.createDomItem(item), function (prop) {
+    })(functionalHelpers.mapObject(jDomObjects.createDomItem(item), function (prop) {
       return prop;
     }, item));
   };
@@ -1523,10 +1523,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = jDomCoreDom;
+      exports = module.exports = jDomCore;
     }
 
-    exports = Object.assign(exports, jDomCoreDom);
+    exports = Object.assign(exports, jDomCore);
   }
 }).call(void 0 || window || {}) // Use the external context to assign this, which will be Window if rendered via browser
 
@@ -1567,37 +1567,37 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     return jDomMatrixObjects;
   };
   /**
-   * Verify availability of jDomCore
-   * @typedef {*|module:core/core} jDomCore
+   * Verify availability of functionalHelpers
+   * @typedef {*|module:core/core} functionalHelpers
    */
 
 
-  var jDomCore = root.jDomCore;
+  var functionalHelpers = root.functionalHelpers;
   /**
-   * If jDomCore remains undefined, attempt to retrieve it as a module
+   * If functionalHelpers remains undefined, attempt to retrieve it as a module
    */
 
-  if (typeof jDomCore === 'undefined') {
+  if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      jDomCore = require('../core/core.js');
+      functionalHelpers = require('../core/core.js');
     } else {
-      console.error('objects.js requires jDomCore');
+      console.error('objects.js requires functionalHelpers');
     }
   }
   /**
-   * Verify availability of jDomObjectsDom
-   * @typedef {*|module:core/dom/objects} jDomObjectsDom
+   * Verify availability of jDomObjects
+   * @typedef {*|module:core/dom/objects} jDomObjects
    */
 
 
-  var jDomObjectsDom = root.jDomObjectsDom;
+  var jDomObjects = root.jDomObjects;
   /**
-   * If jDomObjectsDom remains undefined, attempt to retrieve it as a module
+   * If jDomObjects remains undefined, attempt to retrieve it as a module
    */
 
-  if (typeof jDomObjectsDom === 'undefined') {
+  if (typeof jDomObjects === 'undefined') {
     if (typeof require !== 'undefined') {
-      jDomObjectsDom = require('../core/dom/objects.js');
+      jDomObjects = require('../core/dom/objects.js');
     } else {
       console.error('core.js requires objects');
     }
@@ -1726,7 +1726,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   jDomMatrixObjects.matrix = function () {
-    var _jDomObjectsDom, _jDomObjectsDom2, _jDomObjectsDom3, _jDomObjectsDom4;
+    var _jDomObjects, _jDomObjects2, _jDomObjects3, _jDomObjects4;
 
     var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
       coordinate: 0,
@@ -1741,24 +1741,24 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       props: []
     };
     var matrixProps = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
-    return (_jDomObjectsDom = jDomObjectsDom).createDomItem.apply(_jDomObjectsDom, [{
+    return (_jDomObjects = jDomObjects).createDomItem.apply(_jDomObjects, [{
       tagName: 'div',
       attributes: {
         className: 'matrix'
       },
-      children: jDomCore.buildArray((_jDomObjectsDom2 = jDomObjectsDom).createDomItem.apply(_jDomObjectsDom2, [{
+      children: functionalHelpers.buildArray((_jDomObjects2 = jDomObjects).createDomItem.apply(_jDomObjects2, [{
         axis: 'z',
         tagName: 'div',
         attributes: {
           className: 'layer'
         },
-        children: jDomCore.buildArray((_jDomObjectsDom3 = jDomObjectsDom).createDomItem.apply(_jDomObjectsDom3, [{
+        children: functionalHelpers.buildArray((_jDomObjects3 = jDomObjects).createDomItem.apply(_jDomObjects3, [{
           axis: 'y',
           tagName: 'div',
           attributes: {
             className: 'row'
           },
-          children: jDomCore.buildArray((_jDomObjectsDom4 = jDomObjectsDom).createDomItem.apply(_jDomObjectsDom4, [{
+          children: functionalHelpers.buildArray((_jDomObjects4 = jDomObjects).createDomItem.apply(_jDomObjects4, [{
             axis: 'x',
             tagName: 'div',
             attributes: {
@@ -1856,7 +1856,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 }).call(void 0 || window || {}) // Use the external context to assign this, which will be Window if rendered via browser
 
 /**
- * @file All of the jDomCore matrix functions for working with a grid of points.
+ * @file All of the functionalHelpers matrix functions for working with a grid of points.
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
@@ -1893,18 +1893,18 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   };
   /**
    * Verify availability of jDomMatrixObjects
-   * @typedef {*|module:core/core} jDomCore
+   * @typedef {*|module:core/core} functionalHelpers
    */
 
 
-  var jDomCore = root.jDomCore;
+  var functionalHelpers = root.functionalHelpers;
   /**
-   * If jDomCore remains undefined, attempt to retrieve it as a module
+   * If functionalHelpers remains undefined, attempt to retrieve it as a module
    */
 
-  if (typeof jDomCore === 'undefined') {
+  if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      jDomCore = require('../core/core.js');
+      functionalHelpers = require('../core/core.js');
     } else {
       console.error('matrix/core requires core/core');
     }
@@ -1917,7 +1917,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var jDomMatrixObjects = root.jDomMatrixObjects;
   /**
-   * If jDomCoreDom remains undefined, attempt to retrieve it as a module
+   * If jDomCore remains undefined, attempt to retrieve it as a module
    */
 
   if (typeof jDomMatrixObjects === 'undefined') {
@@ -1940,8 +1940,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   jDomMatrixCore.bindPointData = function (item) {
     var pnt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomMatrixObjects.point(0, 0, 0);
-    return jDomCore.mergeObjects(item, item.point ? {
-      point: jDomCore.cloneObject(pnt)
+    return functionalHelpers.mergeObjects(item, item.point ? {
+      point: functionalHelpers.cloneObject(pnt)
     } : {
       children: item.children.map(function (el, i) {
         return jDomMatrixCore.bindPointData(el, Object.assign(pnt, _defineProperty({}, el.axis, i)));
@@ -1993,7 +1993,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   jDomMatrixCore.getHighestAbsoluteCoordinate = function (pnt) {
-    return jDomCore.reduceObject(pnt, jDomCore.getAbsoluteMax, 0);
+    return functionalHelpers.reduceObject(pnt, functionalHelpers.getAbsoluteMax, 0);
   };
   /**
    * Having provided a coordinate number, find all corresponding axis, return the first match.
@@ -2020,7 +2020,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var pointAndCoordinateToDirection = function pointAndCoordinateToDirection(pnt, highestCoordinate) {
     return function (axis) {
-      return axis !== false ? jDomCore.mergeObjects(jDomMatrixObjects.point(0, 0, 0), _defineProperty({}, "".concat(axis), highestCoordinate > 0 ? 1 : -1)) : jDomMatrixObjects.point(0, 0, 0);
+      return axis !== false ? functionalHelpers.mergeObjects(jDomMatrixObjects.point(0, 0, 0), _defineProperty({}, "".concat(axis), highestCoordinate > 0 ? 1 : -1)) : jDomMatrixObjects.point(0, 0, 0);
     }(jDomMatrixCore.getFirstAxisOfCoordinate(pnt, highestCoordinate));
   };
   /**
@@ -2058,7 +2058,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   jDomMatrixCore.randomStart = function (length, dir) {
     var lengthLimits = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : jDomMatrixObjects.point(10, 10, 10);
-    return jDomMatrixObjects.point(jDomCore.randomInteger(lengthLimits.x - (length - 1) * dir.x), jDomCore.randomInteger(lengthLimits.y - (length - 1) * dir.y), jDomCore.randomInteger(lengthLimits.z - (length - 1) * dir.z));
+    return jDomMatrixObjects.point(functionalHelpers.randomInteger(lengthLimits.x - (length - 1) * dir.x), functionalHelpers.randomInteger(lengthLimits.y - (length - 1) * dir.y), functionalHelpers.randomInteger(lengthLimits.z - (length - 1) * dir.z));
   };
   /**
    * Given a start point, line length, and a direction, generate the end point of the line.
@@ -2128,7 +2128,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     return jDomMatrixCore.getPointsLine(start, end).filter(function (prop, i, line) {
       return i !== 0 && i !== line.length - 1 || inclusive;
     }).reduce(function (newPoints, next) {
-      return jDomCore.mergeObjects(newPoints, _defineProperty({}, "".concat(func(next, matrix)), [next]));
+      return functionalHelpers.mergeObjects(newPoints, _defineProperty({}, "".concat(func(next, matrix)), [next]));
     }, {
       "true": [],
       "false": []
@@ -2167,7 +2167,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   jDomMatrixCore.randDirection = function () {
     var useCoordinates = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-    return useCoordinates.length ? useCoordinates[jDomCore.randomInteger(useCoordinates.length)] : jDomMatrixObjects.point(0, 0, 0);
+    return useCoordinates.length ? useCoordinates[functionalHelpers.randomInteger(useCoordinates.length)] : jDomMatrixObjects.point(0, 0, 0);
   };
   /**
    * Test if the provided point exists in the matrix.
@@ -2315,24 +2315,24 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     return jsonDom;
   };
   /**
-   * Verify availability of jDomCore
-   * @typedef {*|module:core/core} jDomCore
+   * Verify availability of functionalHelpers
+   * @typedef {*|module:core/core} functionalHelpers
    */
 
 
-  jsonDom.jDomCore = root.jDomCore;
+  jsonDom.functionalHelpers = root.functionalHelpers;
   /**
    * Verify availability of objects
-   * @typedef {*|module:core/dom/objects} jDomObjectsDom
+   * @typedef {*|module:core/dom/objects} jDomObjects
    */
 
-  jsonDom.jDomObjectsDom = root.jDomObjectsDom;
+  jsonDom.jDomObjects = root.jDomObjects;
   /**
-   * Verify availability of jDomCoreDom
-   * @typedef {*|module:core/dom/core} jDomCoreDom
+   * Verify availability of jDomCore
+   * @typedef {*|module:core/dom/core} jDomCore
    */
 
-  jsonDom.jDomCoreDom = root.jDomCoreDom;
+  jsonDom.jDomCore = root.jDomCore;
   /**
    * Verify availability of objects
    * @typedef {*|module:matrix/objects} jDomMatrixObjects
@@ -2340,7 +2340,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   jsonDom.jDomMatrixObjects = root.jDomMatrixObjects;
   /**
-   * Verify availability of jDomCoreDom
+   * Verify availability of jDomCore
    * @typedef {*|module:matrix/core} jDomMatrixCore
    */
 
@@ -2350,5 +2350,5 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    * @typedef {module:core/dom/objects.documentItem} documentItem
    */
 
-  jsonDom.documentItem = jsonDom.jDomObjectsDom.documentDomItem();
+  jsonDom.documentItem = jsonDom.jDomObjects.documentDomItem();
 }).call(void 0 || window || {}); // Use the external context to assign this, which will be Window if rendered via browser

@@ -33,22 +33,22 @@
   }
 
   /**
-   * Verify availability of jDomCore
-   * @typedef {*|module:core/core} jDomCore
+   * Verify availability of functionalHelpers
+   * @typedef {*|module:core/core} functionalHelpers
    */
-  jsonDom.jDomCore = root.jDomCore
+  jsonDom.functionalHelpers = root.functionalHelpers
 
   /**
    * Verify availability of objects
-   * @typedef {*|module:core/dom/objects} jDomObjectsDom
+   * @typedef {*|module:core/dom/objects} jDomObjects
    */
-  jsonDom.jDomObjectsDom = root.jDomObjectsDom
+  jsonDom.jDomObjects = root.jDomObjects
 
   /**
-   * Verify availability of jDomCoreDom
-   * @typedef {*|module:core/dom/core} jDomCoreDom
+   * Verify availability of jDomCore
+   * @typedef {*|module:core/dom/core} jDomCore
    */
-  jsonDom.jDomCoreDom = root.jDomCoreDom
+  jsonDom.jDomCore = root.jDomCore
 
   /**
    * Verify availability of objects
@@ -57,7 +57,7 @@
   jsonDom.jDomMatrixObjects = root.jDomMatrixObjects
 
   /**
-   * Verify availability of jDomCoreDom
+   * Verify availability of jDomCore
    * @typedef {*|module:matrix/core} jDomMatrixCore
    */
   jsonDom.jDomMatrixCore = root.jDomMatrixCore
@@ -66,5 +66,5 @@
    * Create new private reference to the document
    * @typedef {module:core/dom/objects.documentItem} documentItem
    */
-  jsonDom.documentItem = jsonDom.jDomObjectsDom.documentDomItem()
+  jsonDom.documentItem = jsonDom.jDomObjects.documentDomItem()
 }).call(this || window || {}) // Use the external context to assign this, which will be Window if rendered via browser

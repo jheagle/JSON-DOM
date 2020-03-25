@@ -35,34 +35,34 @@
   }
 
   /**
-   * Verify availability of jDomCore
-   * @typedef {*|module:core/core} jDomCore
+   * Verify availability of functionalHelpers
+   * @typedef {*|module:core/core} functionalHelpers
    */
-  let jDomCore = root.jDomCore
+  let functionalHelpers = root.functionalHelpers
 
   /**
-   * If jDomCore remains undefined, attempt to retrieve it as a module
+   * If functionalHelpers remains undefined, attempt to retrieve it as a module
    */
-  if (typeof jDomCore === 'undefined') {
+  if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      jDomCore = require('../core/core.js')
+      functionalHelpers = require('../core/core.js')
     } else {
-      console.error('objects.js requires jDomCore')
+      console.error('objects.js requires functionalHelpers')
     }
   }
 
   /**
-   * Verify availability of jDomObjectsDom
-   * @typedef {*|module:core/dom/objects} jDomObjectsDom
+   * Verify availability of jDomObjects
+   * @typedef {*|module:core/dom/objects} jDomObjects
    */
-  let jDomObjectsDom = root.jDomObjectsDom
+  let jDomObjects = root.jDomObjects
 
   /**
-   * If jDomObjectsDom remains undefined, attempt to retrieve it as a module
+   * If jDomObjects remains undefined, attempt to retrieve it as a module
    */
-  if (typeof jDomObjectsDom === 'undefined') {
+  if (typeof jDomObjects === 'undefined') {
     if (typeof require !== 'undefined') {
-      jDomObjectsDom = require('../core/dom/objects.js')
+      jDomObjects = require('../core/dom/objects.js')
     } else {
       console.error('core.js requires objects')
     }
@@ -187,24 +187,24 @@
     y = { coordinate: 0, props: [] },
     z = { coordinate: 1, props: [] },
     matrixProps = []
-  ) => jDomObjectsDom.createDomItem({
+  ) => jDomObjects.createDomItem({
     tagName: 'div',
     attributes: {
       className: 'matrix'
     },
-    children: jDomCore.buildArray(jDomObjectsDom.createDomItem({
+    children: functionalHelpers.buildArray(jDomObjects.createDomItem({
       axis: 'z',
       tagName: 'div',
       attributes: {
         className: 'layer'
       },
-      children: jDomCore.buildArray(jDomObjectsDom.createDomItem({
+      children: functionalHelpers.buildArray(jDomObjects.createDomItem({
         axis: 'y',
         tagName: 'div',
         attributes: {
           className: 'row'
         },
-        children: jDomCore.buildArray(jDomObjectsDom.createDomItem({
+        children: functionalHelpers.buildArray(jDomObjects.createDomItem({
           axis: 'x',
           tagName: 'div',
           attributes: {

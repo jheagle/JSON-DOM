@@ -49,8 +49,42 @@
   }
 
   /**
+   * Verify availability of functionalHelpers
+   * @typedef {*|module:core/core} functionalHelpers
+   */
+  jsonDom.functionalHelpers = root.functionalHelpers
+
+  /**
+   * If functionalHelpers remains undefined, attempt to retrieve it as a module
+   */
+  if (typeof jsonDom.functionalHelpers === 'undefined') {
+    if (typeof require !== 'undefined') {
+      jsonDom.functionalHelpers = require('./core/core.js')
+    } else {
+      console.error('main.js requires core/core')
+    }
+  }
+
+  /**
+   * Verify availability of objects
+   * @typedef {*|module:core/dom/objects} jDomObjects
+   */
+  jsonDom.jDomObjects = root.jDomObjects
+
+  /**
+   * If objects remains undefined, attempt to retrieve it as a module
+   */
+  if (typeof jsonDom.jDomObjects === 'undefined') {
+    if (typeof require !== 'undefined') {
+      jsonDom.jDomObjects = require('./core/dom/objects.js')
+    } else {
+      console.error('main.js requires core/dom/objects')
+    }
+  }
+
+  /**
    * Verify availability of jDomCore
-   * @typedef {*|module:core/core} jDomCore
+   * @typedef {*|module:core/dom/core} jDomCore
    */
   jsonDom.jDomCore = root.jDomCore
 
@@ -59,41 +93,7 @@
    */
   if (typeof jsonDom.jDomCore === 'undefined') {
     if (typeof require !== 'undefined') {
-      jsonDom.jDomCore = require('./core/core.js')
-    } else {
-      console.error('main.js requires core/core')
-    }
-  }
-
-  /**
-   * Verify availability of objects
-   * @typedef {*|module:core/dom/objects} jDomObjectsDom
-   */
-  jsonDom.jDomObjectsDom = root.jDomObjectsDom
-
-  /**
-   * If objects remains undefined, attempt to retrieve it as a module
-   */
-  if (typeof jsonDom.jDomObjectsDom === 'undefined') {
-    if (typeof require !== 'undefined') {
-      jsonDom.jDomObjectsDom = require('./core/dom/objects.js')
-    } else {
-      console.error('main.js requires core/dom/objects')
-    }
-  }
-
-  /**
-   * Verify availability of jDomCoreDom
-   * @typedef {*|module:core/dom/core} jDomCoreDom
-   */
-  jsonDom.jDomCoreDom = root.jDomCoreDom
-
-  /**
-   * If jDomCoreDom remains undefined, attempt to retrieve it as a module
-   */
-  if (typeof jsonDom.jDomCoreDom === 'undefined') {
-    if (typeof require !== 'undefined') {
-      jsonDom.jDomCoreDom = require('./core/dom/core.js')
+      jsonDom.jDomCore = require('./core/dom/core.js')
     } else {
       console.error('main.js requires core/dom/core')
     }
@@ -117,13 +117,13 @@
   }
 
   /**
-   * Verify availability of jDomCoreDom
+   * Verify availability of jDomCore
    * @typedef {*|module:matrix/core} jDomMatrixCore
    */
   jsonDom.jDomMatrixCore = root.jDomMatrixCore
 
   /**
-   * If jDomCoreDom remains undefined, attempt to retrieve it as a module
+   * If jDomCore remains undefined, attempt to retrieve it as a module
    */
   if (typeof jsonDom.jDomMatrixCore === 'undefined') {
     if (typeof require !== 'undefined') {
@@ -137,7 +137,7 @@
    * Create new private reference to the document
    * @typedef {module:core/dom/objects.documentItem} documentItem
    */
-  jsonDom.documentItem = jsonDom.jDomObjectsDom.documentDomItem()
+  jsonDom.documentItem = jsonDom.jDomObjects.documentDomItem()
 
   /**
    * Either export all functions to be exported, or assign to the Window context
