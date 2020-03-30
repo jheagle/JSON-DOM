@@ -3,7 +3,6 @@
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
-const { curry } = require('../../core/core.js')
 
 /**
  * Simulate the behaviour of the Event Class when there is no DOM available.
@@ -97,8 +96,8 @@ class PseudoEvent {
    * @param {PseudoNode} node
    * @returns {Array.<PseudoNode>}
    */
-  static getParentNodes () {
-    return curry(PseudoEvent.getParentNodesFromAttribute)('', false)()
+  static getParentNodes (node) {
+    return PseudoEvent.getParentNodesFromAttribute('', false, node)
   }
 
   /**
