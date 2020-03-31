@@ -84,10 +84,10 @@ class PseudoEvent {
    * @returns {Array.<PseudoNode>}
    */
   static getParentNodesFromAttribute (attr, value, node) {
-    return Object.keys(node.parent).length
-      ? (node.parent[attr] || false) === value
-        ? PseudoEvent.getParentNodesFromAttribute(attr, value, node.parent).concat([node.parent])
-        : PseudoEvent.getParentNodesFromAttribute(attr, value, node.parent)
+    return Object.keys(node.parentNode).length
+      ? (node.parentNode[attr] || false) === value
+        ? PseudoEvent.getParentNodesFromAttribute(attr, value, node.parentNode).concat([node.parentNode])
+        : PseudoEvent.getParentNodesFromAttribute(attr, value, node.parentNode)
       : []
   }
 
