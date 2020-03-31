@@ -56,7 +56,7 @@ class PseudoHTMLDocument extends PseudoHTMLElement {
    */
   createElement (tagName = 'div') {
     const returnElement = new PseudoHTMLElement({ tagName })
-    returnElement.parentNode = this
+    returnElement.parent = this
     return returnElement
   }
 }
