@@ -3,7 +3,7 @@
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
-;(function () {
+;(() => {
   /**
    * Store a reference to this scope which will be Window if rendered via browser
    */
@@ -13,7 +13,7 @@
    * Store reference to any pre-existing module of the same name
    * @type {module|*}
    */
-  const previousJDomCore = root.functionalHelpers || {}
+  const previousFunctionalHelpers = root.functionalHelpers || {}
 
   /**
    * All methods exported from this module are encapsulated within functionalHelpers.
@@ -30,7 +30,7 @@
    * @returns {functionalHelpers}
    */
   functionalHelpers.noConflict = () => {
-    root.functionalHelpers = previousJDomCore
+    root.functionalHelpers = previousFunctionalHelpers
     return functionalHelpers
   }
 
@@ -42,7 +42,7 @@
    * @param {function} fn - Receives a function to be curried
    * @returns {function(...[*]): function(...[*])}
    */
-  functionalHelpers.curry = (fn) => (...args) => args.length >= fn.length
+  functionalHelpers.curry = fn => (...args) => args.length >= fn.length
     ? fn(...args)
     : (...a) => functionalHelpers.curry(fn)(...[...args, ...a])
 
