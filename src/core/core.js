@@ -47,14 +47,24 @@
     : (...a) => functionalHelpers.curry(fn)(...[...args, ...a])
 
   /**
-   * This was copied from a blog post on Composing Software written by Eric Elliott. The idea is to begin to make this
-   * code base somewhat easier to parse and introduce point-free notation.
-   * @author Eric Elliott
+   * Take one or more function with a single parameter and return value.
+   * Pass a paramter and the value will be transformed by each function then returned.
    * @function pipe
-   * @param {...function} fns - Takes a series of functions having the same parameter, which parameter is also returned.
+   * @param {...function} fns - Takes a series of functions having the same parameter
    * @returns {function(*=): (*|any)}
    */
   functionalHelpers.pipe = (...fns) => x => fns.reduce((y, f) => f(y), x)
+
+  /**
+   * Given a function, call with the correct number of paramters from an array of possible parameters.
+   * @function callWithParams
+   * @param {function} fn
+   * @param {Array} params
+   * @param {number} [minimum]
+   * @returns {*}
+   */
+  functionalHelpers.callWithParams = (fn, params = [], minimum = 2) =>
+    fn(...params.slice(0, fn.length || minimum))
 
   /**
    * Set a value on an item, then return the item
@@ -104,7 +114,11 @@
   functionalHelpers.mapObject = (obj, fn, thisArg = undefined) => Array.isArray(obj)
     ? obj.map(fn, thisArg)
     : Object.keys(obj).reduce(
-      (newObj, curr) => functionalHelpers.setValue(curr, fn(...[obj[curr], curr, obj].slice(0, fn.length || 2)), newObj),
+      (newObj, curr) => functionalHelpers.setValue(
+        curr,
+        functionalHelpers.callWithParams(fn, [obj[curr], curr, obj], 2),
+        newObj
+      ),
       thisArg || {}
     )
 
@@ -144,7 +158,7 @@
   functionalHelpers.filterObject = (obj, fn, thisArg = undefined) => Array.isArray(obj)
     ? obj.filter(fn, thisArg)
     : Object.keys(obj).reduce((newObj, curr) => {
-      if (fn(...[obj[curr], curr, obj].slice(0, fn.length || 2))) {
+      if (functionalHelpers.callWithParams(fn, [obj[curr], curr, obj], 2)) {
         newObj[curr] = obj[curr]
       } else {
         delete newObj[curr]
@@ -179,7 +193,7 @@
   functionalHelpers.reduceObject = (obj, fn, initialValue = obj[Object.keys(obj)[0]] || obj[0]) => Array.isArray(obj)
     ? obj.reduce(fn, initialValue)
     : Object.keys(obj).reduce(
-      (newObj, curr) => fn(...[newObj, obj[curr], curr, obj].slice(0, fn.length || 2)),
+      (newObj, curr) => functionalHelpers.callWithParams(fn, [newObj, obj[curr], curr, obj], 2),
       initialValue
     )
 

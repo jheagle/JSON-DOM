@@ -80,11 +80,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     };
   };
   /**
-   * This was copied from a blog post on Composing Software written by Eric Elliott. The idea is to begin to make this
-   * code base somewhat easier to parse and introduce point-free notation.
-   * @author Eric Elliott
+   * Take one or more function with a single parameter and return value.
+   * Pass a paramter and the value will be transformed by each function then returned.
    * @function pipe
-   * @param {...function} fns - Takes a series of functions having the same parameter, which parameter is also returned.
+   * @param {...function} fns - Takes a series of functions having the same parameter
    * @returns {function(*=): (*|any)}
    */
 
@@ -99,6 +98,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return f(y);
       }, x);
     };
+  };
+  /**
+   * Given a function, call with the correct number of paramters from an array of possible parameters.
+   * @function callWithParams
+   * @param {function} fn
+   * @param {Array} params
+   * @param {number} [minimum]
+   * @returns {*}
+   */
+
+
+  functionalHelpers.callWithParams = function (fn) {
+    var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+    var minimum = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 2;
+    return fn.apply(void 0, _toConsumableArray(params.slice(0, fn.length || minimum)));
   };
   /**
    * Set a value on an item, then return the item
@@ -152,7 +166,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   functionalHelpers.mapObject = function (obj, fn) {
     var thisArg = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
     return Array.isArray(obj) ? obj.map(fn, thisArg) : Object.keys(obj).reduce(function (newObj, curr) {
-      return functionalHelpers.setValue(curr, fn.apply(void 0, _toConsumableArray([obj[curr], curr, obj].slice(0, fn.length || 2))), newObj);
+      return functionalHelpers.setValue(curr, functionalHelpers.callWithParams(fn, [obj[curr], curr, obj], 2), newObj);
     }, thisArg || {});
   };
   /**
@@ -194,7 +208,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   functionalHelpers.filterObject = function (obj, fn) {
     var thisArg = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
     return Array.isArray(obj) ? obj.filter(fn, thisArg) : Object.keys(obj).reduce(function (newObj, curr) {
-      if (fn.apply(void 0, _toConsumableArray([obj[curr], curr, obj].slice(0, fn.length || 2)))) {
+      if (functionalHelpers.callWithParams(fn, [obj[curr], curr, obj], 2)) {
         newObj[curr] = obj[curr];
       } else {
         delete newObj[curr];
@@ -232,7 +246,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   functionalHelpers.reduceObject = function (obj, fn) {
     var initialValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : obj[Object.keys(obj)[0]] || obj[0];
     return Array.isArray(obj) ? obj.reduce(fn, initialValue) : Object.keys(obj).reduce(function (newObj, curr) {
-      return fn.apply(void 0, _toConsumableArray([newObj, obj[curr], curr, obj].slice(0, fn.length || 2)));
+      return functionalHelpers.callWithParams(fn, [newObj, obj[curr], curr, obj], 2);
     }, initialValue);
   };
   /**
