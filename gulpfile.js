@@ -19,9 +19,8 @@ gulp.task('distribute', () => gulp.src('src/**/*')
 
 // Prepare browser bundle
 gulp.task('browser-bundle', () => gulp.src([
-  'src/core/core.js',
-  'src/core/dom/objects.js',
-  'src/core/dom/core.js',
+  'src/dom/objects.js',
+  'src/dom/core.js',
   'src/matrix/objects.js',
   'src/matrix/core.js',
   'src/browser-main.js'
