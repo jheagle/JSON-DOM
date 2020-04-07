@@ -62,7 +62,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * All methods exported from this module are encapsulated within jDomObjects
    * @author Joshua Heagle <joshuaheagle@gmail.com>
    * @typedef {Object} jDomObjects
-   * @module dom//objects
+   * @module dom/objects
    */
 
   var jDomObjects = {};
@@ -90,9 +90,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      functionalHelpers = require('functional-helpers');
+      functionalHelpers = require('functional-helpers/dist/helpers.js');
     } else {
-      console.error('dom//objects requires functional-helpers');
+      console.error('dom/objects requires functional-helpers');
     }
   }
   /**
@@ -100,19 +100,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * @callback jDomObjects.listenerFunction
    * @callback listenerFunction
    * @param {Event|module:pseudoDom/objects.PseudoEvent} e - The event object passed to the listener
-   * @param {module:dom//objects.DomItem} target - The element which triggered the event
+   * @param {module:dom/objects.DomItem} target - The element which triggered the event
    * @param {...*} [args] - Optional args as required by the listener
    */
 
   /**
    * A Boolean indicating whether events of this type will be dispatched to the registered listerFunction before being
    * dispatched to any EventTarget beneath it in the Dom tree.
-   * @typedef {boolean} module:dom//objects.UseCapture
+   * @typedef {boolean} module:dom/objects.UseCapture
    */
 
   /**
    * OptionsObject defines the structure for the options to be passed to addEventListener
-   * @typedef {Object} module:dom//objects.OptionsObject
+   * @typedef {Object} module:dom/objects.OptionsObject
    * @property {boolean} capture - Indicate that events of this type will be dispatched to the registered
    * listenerFunction before being dispatched to any EventTarget beneath it in the Dom tree.
    * @property {boolean} once - Indicate that the listenerFunction should be invoked at most once after being added. If
@@ -124,8 +124,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   /**
    * EventListenerOptions is either a boolean as UseCapture or an Object as OptionsObject
    * @typedef {
-   * module:dom//objects.OptionsObject|module:dom//objects.UseCapture
-   * } module:dom//objects.EventListenerOptions
+   * module:dom/objects.OptionsObject|module:dom/objects.UseCapture
+   * } module:dom/objects.EventListenerOptions
    */
 
   /**
@@ -133,24 +133,24 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * @typedef {Object} jDomObjects.EventListener
    * @typedef {Object} EventListener
    * @property {string} listenerFunc - A string function name matching an existing
-   * {@link module:dom//objects~listenerFunction}.
+   * {@link module:dom/objects~listenerFunction}.
    * @property {Object} listenerArgs - Additional args required for the listener function
-   * @property {module:dom//objects.EventListenerOptions} listenerOptions - Provides support for options
+   * @property {module:dom/objects.EventListenerOptions} listenerOptions - Provides support for options
    * parameter of addEventListener, or false for default
    */
 
   /**
    * DomItem defines the structure for a single element in the Dom
-   * @typedef {Object} module:dom//objects.DomItem
+   * @typedef {Object} module:dom/objects.DomItem
    * @property {string} tagName - This is any valid HTMLElement tagName
    * @property {Object.<string, string|Object>} attributes - All potential HTML element attributes can be defined here
    * (including the defaulted style object)
    * @property {(Object|HTMLElement|module:pseudoDom/objects.PseudoHTMLElement)} element - A reference to an existing HTML element will be stored here (default
    * empty object)
-   * @property {Object.<Event, module:dom//objects~EventListener>} eventListeners - An object holding all
+   * @property {Object.<Event, module:dom/objects~EventListener>} eventListeners - An object holding all
    * events to be registered for the associated element
-   * @property {module:dom//objects.DomItem} parentItem - A reference to the parent of this object
-   * @property {Array.<module:dom//objects.DomItem>} children - A reference to an array of child objects
+   * @property {module:dom/objects.DomItem} parentItem - A reference to the parent of this object
+   * @property {Array.<module:dom/objects.DomItem>} children - A reference to an array of child objects
    */
 
   /**
@@ -158,7 +158,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * to the specified format.
    * @function createDomItem
    * @param {...Object} attributes - DomItem-like object(s) to be merged as a DomItem
-   * @returns {module:dom//objects.DomItem}
+   * @returns {module:dom/objects.DomItem}
    */
 
 
@@ -182,27 +182,27 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
   /**
    * DomItemHead defines the structure for a single element in the Dom
-   * @typedef {module:dom//objects.DomItem} module:dom//objects.DomItemHead
-   * @typedef {module:dom//objects.DomItem} DomItemHead
+   * @typedef {module:dom/objects.DomItem} module:dom/objects.DomItemHead
+   * @typedef {module:dom/objects.DomItem} DomItemHead
    * @property {string} [tagName=head] - This is set to the string head referring to the HTML element of the same name
    * @property {Object.<string, string|Object>} attributes - All potential HTML element attributes can be defined here
    * @property {HTMLHeadElement|module:pseudoDom/objects.PseudoHTMLElement} element - A reference to the HTML head element
-   * @property {Array.<module:dom//objects.DomItem>} children - A reference to an array of child objects
+   * @property {Array.<module:dom/objects.DomItem>} children - A reference to an array of child objects
    */
 
   /**
    * DomItemBody defines the structure for a single element in the Dom
-   * @typedef {module:dom//objects.DomItem} module:dom//objects.DomItemBody
-   * @typedef {module:dom//objects.DomItem} DomItemBody
+   * @typedef {module:dom/objects.DomItem} module:dom/objects.DomItemBody
+   * @typedef {module:dom/objects.DomItem} DomItemBody
    * @property {string} [tagName=body] - This is set to the string body referring to the HTML element of the same name
    * @property {Object.<string, string|Object>} attributes - All potential HTML element attributes can be defined here
    * @property {HTMLBodyElement|module:pseudoDom/objects.PseudoHTMLElement} element - A reference to the HTML body element
-   * @property {Array.<module:dom//objects.DomItem>} children - A reference to an array of child objects
+   * @property {Array.<module:dom/objects.DomItem>} children - A reference to an array of child objects
    */
 
   /**
    * Initiate the children of Root / DocumentItem. This is a helper for {@link documentDomItem}.
-   * @returns {Array.<module:dom//objects~DomItemHead|module:dom//objects~DomItemBody>}
+   * @returns {Array.<module:dom/objects~DomItemHead|module:dom/objects~DomItemBody>}
    */
 
 
@@ -221,27 +221,27 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
   /**
    * DomItemRoot defines the structure for a single element in the Dom
-   * @typedef {module:dom//objects.DomItem} module:dom//objects.DomItemRoot
+   * @typedef {module:dom/objects.DomItem} module:dom/objects.DomItemRoot
    * @property {string} [tagName=html] - This is set to the string html referring to the HTML element of the same name
    * @property {Object} attributes - Empty object as attributes placeholder
    * @property {HTMLDocument|module:pseudoDom/objects.PseudoHTMLDocument} element - A reference to the entire Document
-   * @property {Object.<string, module:dom//objects~listenerFunction>} eventListeners - all registered
+   * @property {Object.<string, module:dom/objects~listenerFunction>} eventListeners - all registered
    * listeners stored as listener name and function pairs
    * @property {
-   * Array.<module:dom//objects~DomItemHead|module:dom//objects~DomItemBody>
+   * Array.<module:dom/objects~DomItemHead|module:dom/objects~DomItemBody>
    *   } children - Two references: for head and body
-   * @property {module:dom//objects~DomItemHead} head - A specific reference to head item
-   * @property {module:dom//objects~DomItemBody} body - A specific reference to body item
+   * @property {module:dom/objects~DomItemHead} head - A specific reference to head item
+   * @property {module:dom/objects~DomItemBody} body - A specific reference to body item
    */
 
   /**
    * Initiate the Root for DocumentItem. This is primary a helper for {@link documentDomItem}.
    * @param {
-   * Array.<module:dom//objects~DomItemHead|module:dom//objects~DomItemBody>
+   * Array.<module:dom/objects~DomItemHead|module:dom/objects~DomItemBody>
    *   } children - Provide an array of Head and Body (usually via {@link initChildren})
-   * @param {Object.<string, module:dom//objects~listenerFunction>} listeners - An object of all event
+   * @param {Object.<string, module:dom/objects~listenerFunction>} listeners - An object of all event
    * listeners to be registered in the Dom
-   * @returns {module:dom//objects.DomItemRoot|module:dom//objects.DomItem}
+   * @returns {module:dom/objects.DomItemRoot|module:dom/objects.DomItem}
    */
 
 
@@ -261,11 +261,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * Return a DomItem reference to the document. The rootItem argument is a system variable and not necessary to
    * implement.
    * @function documentDomItem
-   * @param {Object.<string, module:dom//objects~listenerFunction>} listeners - An object of all event
+   * @param {Object.<string, module:dom/objects~listenerFunction>} listeners - An object of all event
    * listeners to be registered in the Dom
-   * @param {module:dom//objects.DomItemRoot|module:dom//objects.DomItem} [rootItem] - This is a
+   * @param {module:dom/objects.DomItemRoot|module:dom/objects.DomItem} [rootItem] - This is a
    * reference to DomItemRoot which will be defaulted with {@link initRoot}
-   * @returns {module:dom//objects.DomItemRoot|module:dom//objects.DomItem}
+   * @returns {module:dom/objects.DomItemRoot|module:dom/objects.DomItem}
    */
 
 
@@ -284,7 +284,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   /**
    * Create reference for storing document changes
    * @member documentItem
-   * @type {module:dom//objects.DomItemRoot}
+   * @type {module:dom/objects.DomItemRoot}
    */
 
 
@@ -323,7 +323,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * All methods exported from this module are encapsulated within jDomCore.
    * @author Joshua Heagle <joshuaheagle@gmail.com>
    * @typedef {Object} jDomCore
-   * @module dom//core
+   * @module dom/core
    */
 
   var jDomCore = {};
@@ -360,7 +360,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       root = require('../pseudoDom/objects.js').generate(root);
       document = root.document;
     } else {
-      console.error('dom//core requires pseudoDom/objects');
+      console.error('dom/core requires pseudoDom/objects');
     }
   }
   /**
@@ -376,14 +376,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      functionalHelpers = require('functional-helpers');
+      functionalHelpers = require('functional-helpers/dist/helpers.js');
     } else {
-      console.error('dom//core requires functional-helpers');
+      console.error('dom/core requires functional-helpers');
     }
   }
   /**
    * Verify availability of jDomObjects
-   * @typedef {*|module:dom//objects} jDomObjects
+   * @typedef {*|module:dom/objects} jDomObjects
    */
 
 
@@ -396,7 +396,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     if (typeof require !== 'undefined') {
       jDomObjects = require('./objects.js');
     } else {
-      console.error('dom//core requires dom//objects');
+      console.error('dom/core requires dom/objects');
     }
   }
   /**
@@ -442,9 +442,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * Given a jDomObjects.DomItem as config, this function will return the changes to be applied
    * to the stored element property.
    * @function elementChanges
-   * @param {module:dom//objects.DomItem} config - The DomItem having config changes to be applied to its
+   * @param {module:dom/objects.DomItem} config - The DomItem having config changes to be applied to its
    * element
-   * @returns {module:dom//objects.DomItem}
+   * @returns {module:dom/objects.DomItem}
    */
 
 
@@ -469,11 +469,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   /**
    * Set an attribute on the element within a DomItem, then return the config data.
    * @function setAttribute
-   * @param {module:dom//objects.DomItem} config - The DomItem having config changes to be applied to its
+   * @param {module:dom/objects.DomItem} config - The DomItem having config changes to be applied to its
    * element
    * @param {string} name - The attribute name to be updated
    * @param {string} value - The new value to be applied to the attribute
-   * @returns {module:dom//objects.DomItem}
+   * @returns {module:dom/objects.DomItem}
    */
 
 
@@ -484,7 +484,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   /**
    * Set an attribute on the element within a DomItem, then return the attribute.
    * @function setAndReturnAttribute
-   * @param {module:dom//objects.DomItem} config - The DomItem having config changes to be applied to its
+   * @param {module:dom/objects.DomItem} config - The DomItem having config changes to be applied to its
    * element
    * @param {string} name - The attribute name to be updated
    * @param {string} value - The new value to be applied to the attribute
@@ -499,9 +499,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   /**
    * Update a single objects.DomItem element with the provided attributes / style / elementProperties
    * @function updateElement
-   * @param {module:dom//objects.DomItem} config - The DomItem having config changes to be applied to its
+   * @param {module:dom/objects.DomItem} config - The DomItem having config changes to be applied to its
    * element
-   * @returns {module:dom//objects.DomItem}
+   * @returns {module:dom/objects.DomItem}
    */
 
 
@@ -522,9 +522,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * Generate HTML element data for each object in the matrix
    * WARNING: This is a recursive function.
    * @function updateElements
-   * @param {module:dom//objects.DomItem} config - The DomItem having child DomItems with config changes to be
+   * @param {module:dom/objects.DomItem} config - The DomItem having child DomItems with config changes to be
    * applied
-   * @returns {module:dom//objects.DomItem}
+   * @returns {module:dom/objects.DomItem}
    */
 
 
@@ -536,8 +536,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   /**
    * Create an HTML element based on the provided attributes and return the element as an Object.
    * @function generateElement
-   * @param {module:dom//objects.DomItem} config - The DomItem requiring matching HTML element property
-   * @return {module:dom//objects.DomItem}
+   * @param {module:dom/objects.DomItem} config - The DomItem requiring matching HTML element property
+   * @return {module:dom/objects.DomItem}
    */
 
 
@@ -547,8 +547,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   /**
    * Generate HTML element data for a provided DomItem
    * @function bindElement
-   * @param {module:dom//objects.DomItem} item - The DomItem needing element to be generated
-   * @return {module:dom//objects.DomItem}
+   * @param {module:dom/objects.DomItem} item - The DomItem needing element to be generated
+   * @return {module:dom/objects.DomItem}
    */
 
 
@@ -558,9 +558,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   /**
    * Simplify detecting the parent item which can be appended to, whether root, or just a parent at any part of the tree
    * @param {
-   * module:dom//objects.DomItemRoot|module:dom//objects.DomItem
+   * module:dom/objects.DomItemRoot|module:dom/objects.DomItem
    * } parent - A parent DomItem which may or may not have a body
-   * @returns {module:dom//objects.DomItemBody|module:dom//objects.DomItem}
+   * @returns {module:dom/objects.DomItemBody|module:dom/objects.DomItem}
    */
 
 
@@ -569,7 +569,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
   /**
    * Having an array and a potential new array element, check if the element is in the array, if not append to array.
-   * @param {module:dom//objects.DomItem|*} item - An potential array element, possibly a DomItem
+   * @param {module:dom/objects.DomItem|*} item - An potential array element, possibly a DomItem
    * @param {Array} array - An array where an element may be appended.
    * @returns {Array|Buffer|*|T[]|string}
    */
@@ -580,9 +580,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
   /**
    * Provide a DomItem to be appended to a parent item, return the DomItem.
-   * @param {module:dom//objects.DomItem} child - A DomItem to be appended
-   * @param {module:dom//objects.DomItem} parent - A parent item to have a new child appended
-   * @returns {module:dom//objects.DomItem}
+   * @param {module:dom/objects.DomItem} child - A DomItem to be appended
+   * @param {module:dom/objects.DomItem} parent - A parent item to have a new child appended
+   * @returns {module:dom/objects.DomItem}
    */
 
 
@@ -594,9 +594,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   /**
    * Append a new DomItem which has the element generated.
    * @function appendHTML
-   * @param {module:dom//objects.DomItem} item - A new DomItem to append
-   * @param {module:dom//objects.DomItem} parent - The parent to have DomItems appended
-   * @returns {module:dom//objects.DomItem}
+   * @param {module:dom/objects.DomItem} item - A new DomItem to append
+   * @param {module:dom/objects.DomItem} parent - The parent to have DomItems appended
+   * @returns {module:dom/objects.DomItem}
    */
 
 
@@ -607,8 +607,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   /**
    * Reverse of appendHTML, remove a DomItem and have the associated element removed.
    * @function removeChild
-   * @param {module:dom//objects.DomItem} item - The DomItem with HTMLElement to be removed
-   * @param {module:dom//objects.DomItem} parent - The parent of the items
+   * @param {module:dom/objects.DomItem} item - The DomItem with HTMLElement to be removed
+   * @param {module:dom/objects.DomItem} parent - The parent of the items
    * @returns {Array.<HTMLElement|PseudoHTMLElement>}
    */
 
@@ -621,12 +621,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   /**
    * Register a single listener function as part of the root jDomObjects.DomItem.
    * @function registerListener
-   * @param {module:dom//objects~listenerFunction|function} listener - Provide a function which will be called
+   * @param {module:dom/objects~listenerFunction|function} listener - Provide a function which will be called
    * when a Dom event is triggered.
    * @param {string} [name] - The name of the listener to be used.
-   * @param {module:dom//objects.DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which
+   * @param {module:dom/objects.DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which
    * stores has eventListeners property.
-   * @returns {Object.<string, module:dom//objects~listenerFunction>}
+   * @returns {Object.<string, module:dom/objects~listenerFunction>}
    */
 
 
@@ -638,11 +638,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   /**
    * Register multiple listeners from an array of functions.
    * @function registerListeners
-   * @param {Array.<module:dom//objects~listenerFunction|function>} listeners - An array of functions to be
+   * @param {Array.<module:dom/objects~listenerFunction|function>} listeners - An array of functions to be
    * used as the registered event listeners.
-   * @param {module:dom//objects.DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which
+   * @param {module:dom/objects.DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which
    * stores has eventListeners property.
-   * @returns {module:dom//objects.DomItemRoot|Object}
+   * @returns {module:dom/objects.DomItemRoot|Object}
    */
 
 
@@ -658,9 +658,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * Based on the provided function / listener name, retrieve the associated function from the root jDomObjects.DomItem
    * @function retrieveListener
    * @param {string} listenerName - The name of one of the registered listener functions.
-   * @param {module:dom//objects.DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which
+   * @param {module:dom/objects.DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which
    * stores has eventListeners property.
-   * @returns {module:dom//objects~listenerFunction|function|Object}
+   * @returns {module:dom/objects~listenerFunction|function|Object}
    */
 
 
@@ -670,7 +670,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
   /**
    * Provide compatibility for using the options parameter of addEventListener
-   * @param {module:dom//objects.EventListenerOptions} options - An object or boolean with the listener options
+   * @param {module:dom/objects.EventListenerOptions} options - An object or boolean with the listener options
    * @returns {boolean}
    */
 
@@ -700,11 +700,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * @function assignListener
    * @param {string} trigger - The name of the event which will trigger the listenerFunction on the element.
    * @param {HTMLElement|module:pseudoDom/objects~PseudoHTMLElement} elem - An element to append the listener onto
-   * @param {module:dom//objects~listenerFunction|function} fn - The function which will be invoked when the
+   * @param {module:dom/objects~listenerFunction|function} fn - The function which will be invoked when the
    * event is triggered
-   * @param {module:dom//objects.EventListenerOptions} options - Additional options to how the event will be
+   * @param {module:dom/objects.EventListenerOptions} options - Additional options to how the event will be
    * fired
-   * @returns {module:dom//objects~listenerFunction|function}
+   * @returns {module:dom/objects~listenerFunction|function}
    */
 
 
@@ -729,12 +729,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * used to achieve this.
    * WARNING: This is a recursive function.
    * @function appendListeners
-   * @param {module:dom//objects.DomItem} item - The DomItem which will have its eventListeners updated.
+   * @param {module:dom/objects.DomItem} item - The DomItem which will have its eventListeners updated.
    * @param {string} event - The string name of the event trigger type to be added.
    * @param {string} listener - The name of the function to be called once the event is triggered.
    * @param {Object} args - Additional arguments to be used in the listener function.
-   * @param {module:dom//objects.EventListenerOptions} options - The strategy used when the event is triggered.
-   * @returns {module:dom//objects.DomItem}
+   * @param {module:dom/objects.EventListenerOptions} options - The strategy used when the event is triggered.
+   * @returns {module:dom/objects.DomItem}
    */
 
 
@@ -751,8 +751,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
   /**
    * Receive a DomItem with eventListeners and apply the event listeners onto the Dom element.
-   * @param {module:dom//objects.DomItem} item - The DomItem which has eventListeners to apply to its element
-   * @returns {module:dom//objects.DomItem}
+   * @param {module:dom/objects.DomItem} item - The DomItem which has eventListeners to apply to its element
+   * @returns {module:dom/objects.DomItem}
    */
 
 
@@ -767,9 +767,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * Based on the eventListeners property of the provided item, bind the
    * listeners to the associated element property for the provided jDomObjects.DomItem.
    * @function bindListeners
-   * @param {module:dom//objects.DomItem} item - The DomItem which may have eventListeners to apply to its
+   * @param {module:dom/objects.DomItem} item - The DomItem which may have eventListeners to apply to its
    * element
-   * @returns {module:dom//objects.DomItem}
+   * @returns {module:dom/objects.DomItem}
    */
 
 
@@ -781,9 +781,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * for each item in the jDomObjects.DomItem structure.
    * WARNING: This is a recursive function.
    * @function bindAllListeners
-   * @param {module:dom//objects.DomItem} item - The DomItem with an associated HTMLElement to have a listener
+   * @param {module:dom/objects.DomItem} item - The DomItem with an associated HTMLElement to have a listener
    * assigned
-   * @returns {module:dom//objects.DomItem}
+   * @returns {module:dom/objects.DomItem}
    */
 
 
@@ -795,11 +795,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   /**
    * To be used with jDomCore.gatherChildItems which will start at item and recurse over all child items, this test
    * will then choose which child items will be returned as the result of the test.
-   * @callback module:dom//core~testChildItem
-   * @param {module:dom//objects.DomItem|Object} item - The DomItem is the child being tested
-   * @param {Array.<module:dom//objects.DomItem>} gatheredResults - All of the child items gathered based on
+   * @callback module:dom/core~testChildItem
+   * @param {module:dom/objects.DomItem|Object} item - The DomItem is the child being tested
+   * @param {Array.<module:dom/objects.DomItem>} gatheredResults - All of the child items gathered based on
    * the test
-   * @returns {Array.<module:dom//objects.DomItem>}
+   * @returns {Array.<module:dom/objects.DomItem>}
    */
 
   /**
@@ -808,10 +808,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * child encountered. The return array contains children returned from the test from all levels.
    * WARNING: This is a recursive function.
    * @function gatherChildItems
-   * @param {module:dom//objects.DomItem} item - The DomItem which may have child items matching the attribute
+   * @param {module:dom/objects.DomItem} item - The DomItem which may have child items matching the attribute
    * criteria
-   * @param {module:dom//core~testChildItem} test - Assess each child, and return the ones which qualify
-   * @returns {Array.<module:dom//objects.DomItem>}
+   * @param {module:dom/core~testChildItem} test - Assess each child, and return the ones which qualify
+   * @returns {Array.<module:dom/objects.DomItem>}
    */
 
 
@@ -821,10 +821,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }, []));
   };
   /**
-   * Retrieve the {@link module:dom//core~testChildItem} function by providing an attribute and value to check.
+   * Retrieve the {@link module:dom/core~testChildItem} function by providing an attribute and value to check.
    * @param {string} attr - Provide the attribute name to be searched
    * @param {*} value - The attribute value to be compared
-   * @returns {module:dom//core~testChildItem}
+   * @returns {module:dom/core~testChildItem}
    */
 
 
@@ -841,9 +841,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * @function getChildrenFromAttribute
    * @param {string} attr - Provide the attribute name to be searched
    * @param {*} value - The attribute value to be compared
-   * @param {module:dom//objects.DomItem} item - The DomItem which may have child items matching the attribute
+   * @param {module:dom/objects.DomItem} item - The DomItem which may have child items matching the attribute
    * criteria
-   * @returns {Array.<module:dom//objects.DomItem>}
+   * @returns {Array.<module:dom/objects.DomItem>}
    */
 
 
@@ -854,7 +854,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   /**
    * Helper for getting all jDomObjects.DomItems starting at parent and having specified className attribute
    * @function getChildrenByClass
-   * @returns {module:dom//objects.DomItem[]}
+   * @returns {module:dom/objects.DomItem[]}
    */
 
 
@@ -862,7 +862,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   /**
    * Helper for getting all jDomObjects.DomItems starting at parent and having specified name attribute
    * @function getChildrenByName
-   * @returns {module:dom//objects.DomItem[]}
+   * @returns {module:dom/objects.DomItem[]}
    */
 
   jDomCore.getChildrenByName = functionalHelpers.curry(jDomCore.getChildrenFromAttribute)('name');
@@ -874,7 +874,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * @function getParentsFromAttribute
    * @param {string} attr - Provide the attribute name to be searched
    * @param {*} value - The attribute value to be compared
-   * @param {module:dom//objects.DomItem} item - The DomItem which may have parent items matching the
+   * @param {module:dom/objects.DomItem} item - The DomItem which may have parent items matching the
    * attribute criteria
    * @returns {Array}
    */
@@ -909,8 +909,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * Get the upper parentItem for the provided child. (usually this is a jDomObjects.documentItem reference)
    * WARNING: This is a recursive function.
    * @function getTopParentItem
-   * @param {module:dom//objects.DomItem} item - The DomItem which we want the highest parent item of
-   * @returns {module:dom//objects.DomItemRoot}
+   * @param {module:dom/objects.DomItem} item - The DomItem which we want the highest parent item of
+   * @returns {module:dom/objects.DomItemRoot}
    */
 
   jDomCore.getTopParentItem = function (item) {
@@ -921,9 +921,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * with associated listeners.
    * The final argument is specific for adding event listeners with options.
    * @function renderHTML
-   * @param {module:dom//objects.DomItem} item - The DomItem that we want to render the element for
-   * @param {module:dom//objects.DomItemRoot} parent - The Base Dom item which is the parent of all the items
-   * @returns {module:dom//objects.DomItem}
+   * @param {module:dom/objects.DomItem} item - The DomItem that we want to render the element for
+   * @param {module:dom/objects.DomItemRoot} parent - The Base Dom item which is the parent of all the items
+   * @returns {module:dom/objects.DomItem}
    */
 
 
@@ -1010,14 +1010,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      functionalHelpers = require('functional-helpers');
+      functionalHelpers = require('functional-helpers/dist/helpers.js');
     } else {
       console.error('objects.js requires functional-helpers');
     }
   }
   /**
    * Verify availability of jDomObjects
-   * @typedef {*|module:dom//objects} jDomObjects
+   * @typedef {*|module:dom/objects} jDomObjects
    */
 
 
@@ -1028,7 +1028,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   if (typeof jDomObjects === 'undefined') {
     if (typeof require !== 'undefined') {
-      jDomObjects = require('../dom//objects.js');
+      jDomObjects = require('../dom/objects.js');
     } else {
       console.error('core.js requires objects');
     }
@@ -1105,13 +1105,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   /**
    * MatrixColumn is a DomItem which represents the x axis and also stores {@link module:matrix/objects.MatrixTile}
    * @typedef {
-   * module:dom//objects.DomItem|module:matrix/objects.MatrixTile
+   * module:dom/objects.DomItem|module:matrix/objects.MatrixTile
    * } module:matrix/objects.MatrixColumn
    */
 
   /**
    * MatrixRow is the parent of a group of {@link module:matrix/objects.MatrixTile}
-   * @typedef {module:dom//objects.DomItem} module:matrix/objects.MatrixRow
+   * @typedef {module:dom/objects.DomItem} module:matrix/objects.MatrixRow
    * @property {module:matrix/objects.axis} axis - The axis will be 'y'
    * @property {Array.<module:matrix/objects.MatrixColumn>} children - all of the MatrixTile items as part of this
    * MatrixRow
@@ -1119,14 +1119,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   /**
    * MatrixLayer is the parent of a group of {@link module:matrix/objects.MatrixTile}
-   * @typedef {module:dom//objects.DomItem} module:matrix/objects.MatrixLayer
+   * @typedef {module:dom/objects.DomItem} module:matrix/objects.MatrixLayer
    * @property {module:matrix/objects.axis} axis - The axis will be 'y'
    * @property {Array.<module:matrix/objects.MatrixRow>} children - all of the MatrixRow items as part of this
    * MatrixLayer
    */
 
   /**
-   * Matrix is a multi-level {@link module:dom//objects.DomItem} which is used to visually represent a
+   * Matrix is a multi-level {@link module:dom/objects.DomItem} which is used to visually represent a
    * mathematical grid / matrix.
    * The matrix consists of four DomItem levels, at the top tier is the Matrix container with class matrix.
    * The second tier represents the z axis (with property axis='z') and has the class layer.
@@ -1135,8 +1135,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * The {@link module:matrix/objects.MatrixTile} is attached on the x axis tier.
    * The number of children at each level is defined by the size of the matrix, the end result is a multidimensional
    * array.
-   * @typedef {module:dom//objects.DomItem} module:matrix/objects.Matrix
-   * @augments module:dom//objects.DomItem
+   * @typedef {module:dom/objects.DomItem} module:matrix/objects.Matrix
+   * @augments module:dom/objects.DomItem
    */
 
   /**
@@ -1335,7 +1335,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      functionalHelpers = require('functional-helpers');
+      functionalHelpers = require('functional-helpers/dist/helpers.js');
     } else {
       console.error('matrix/core requires functional-helpers');
     }
@@ -1617,7 +1617,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * @function getDomItemFromPoint
    * @param {module:matrix/objects.Point} pnt - A point corresponding to a DomItem.
    * @param {module:matrix/objects.Matrix} matrix - The matrix containing the point.
-   * @returns {false|module:dom//objects.DomItem}
+   * @returns {false|module:dom/objects.DomItem}
    */
 
 
@@ -1690,7 +1690,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * @param {Node|HTMLElement|module:pseudoDom/objects.PseudoHTMLElement} elem - Provide an element having an
    * associated DomItem.
    * @param {module:matrix/objects.Matrix} matrix - The matrix potentially containing the DomItem with Point.
-   * @returns {module:dom//objects.DomItem}
+   * @returns {module:dom/objects.DomItem}
    */
 
 
@@ -1747,14 +1747,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
   /**
    * Verify availability of objects
-   * @typedef {*|module:dom//objects} jDomObjects
+   * @typedef {*|module:dom/objects} jDomObjects
    */
 
 
   jsonDom.jDomObjects = root.jDomObjects;
   /**
    * Verify availability of jDomCore
-   * @typedef {*|module:dom//core} jDomCore
+   * @typedef {*|module:dom/core} jDomCore
    */
 
   jsonDom.jDomCore = root.jDomCore;
@@ -1772,7 +1772,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   jsonDom.jDomMatrixCore = root.jDomMatrixCore;
   /**
    * Create new private reference to the document
-   * @typedef {module:dom//objects.documentItem} documentItem
+   * @typedef {module:dom/objects.documentItem} documentItem
    */
 
   jsonDom.documentItem = jsonDom.jDomObjects.documentDomItem();

@@ -45,7 +45,7 @@
    */
   if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      functionalHelpers = require('functional-helpers')
+      functionalHelpers = require('functional-helpers/dist/helpers.js')
     } else {
       console.error('objects.js requires functional-helpers')
     }
@@ -53,7 +53,7 @@
 
   /**
    * Verify availability of jDomObjects
-   * @typedef {*|module:dom//objects} jDomObjects
+   * @typedef {*|module:dom/objects} jDomObjects
    */
   let jDomObjects = root.jDomObjects
 
@@ -62,7 +62,7 @@
    */
   if (typeof jDomObjects === 'undefined') {
     if (typeof require !== 'undefined') {
-      jDomObjects = require('../dom//objects.js')
+      jDomObjects = require('../dom/objects.js')
     } else {
       console.error('core.js requires objects')
     }
@@ -133,13 +133,13 @@
   /**
    * MatrixColumn is a DomItem which represents the x axis and also stores {@link module:matrix/objects.MatrixTile}
    * @typedef {
-   * module:dom//objects.DomItem|module:matrix/objects.MatrixTile
+   * module:dom/objects.DomItem|module:matrix/objects.MatrixTile
    * } module:matrix/objects.MatrixColumn
    */
 
   /**
    * MatrixRow is the parent of a group of {@link module:matrix/objects.MatrixTile}
-   * @typedef {module:dom//objects.DomItem} module:matrix/objects.MatrixRow
+   * @typedef {module:dom/objects.DomItem} module:matrix/objects.MatrixRow
    * @property {module:matrix/objects.axis} axis - The axis will be 'y'
    * @property {Array.<module:matrix/objects.MatrixColumn>} children - all of the MatrixTile items as part of this
    * MatrixRow
@@ -147,14 +147,14 @@
 
   /**
    * MatrixLayer is the parent of a group of {@link module:matrix/objects.MatrixTile}
-   * @typedef {module:dom//objects.DomItem} module:matrix/objects.MatrixLayer
+   * @typedef {module:dom/objects.DomItem} module:matrix/objects.MatrixLayer
    * @property {module:matrix/objects.axis} axis - The axis will be 'y'
    * @property {Array.<module:matrix/objects.MatrixRow>} children - all of the MatrixRow items as part of this
    * MatrixLayer
    */
 
   /**
-   * Matrix is a multi-level {@link module:dom//objects.DomItem} which is used to visually represent a
+   * Matrix is a multi-level {@link module:dom/objects.DomItem} which is used to visually represent a
    * mathematical grid / matrix.
    * The matrix consists of four DomItem levels, at the top tier is the Matrix container with class matrix.
    * The second tier represents the z axis (with property axis='z') and has the class layer.
@@ -163,8 +163,8 @@
    * The {@link module:matrix/objects.MatrixTile} is attached on the x axis tier.
    * The number of children at each level is defined by the size of the matrix, the end result is a multidimensional
    * array.
-   * @typedef {module:dom//objects.DomItem} module:matrix/objects.Matrix
-   * @augments module:dom//objects.DomItem
+   * @typedef {module:dom/objects.DomItem} module:matrix/objects.Matrix
+   * @augments module:dom/objects.DomItem
    */
 
   /**

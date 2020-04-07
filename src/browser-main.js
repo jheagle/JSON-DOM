@@ -34,13 +34,13 @@
 
   /**
    * Verify availability of objects
-   * @typedef {*|module:dom//objects} jDomObjects
+   * @typedef {*|module:dom/objects} jDomObjects
    */
   jsonDom.jDomObjects = root.jDomObjects
 
   /**
    * Verify availability of jDomCore
-   * @typedef {*|module:dom//core} jDomCore
+   * @typedef {*|module:dom/core} jDomCore
    */
   jsonDom.jDomCore = root.jDomCore
 
@@ -58,7 +58,7 @@
 
   /**
    * Create new private reference to the document
-   * @typedef {module:dom//objects.documentItem} documentItem
+   * @typedef {module:dom/objects.documentItem} documentItem
    */
   jsonDom.documentItem = jsonDom.jDomObjects.documentDomItem()
 }).call(this || window || {}) // Use the external context to assign this, which will be Window if rendered via browser

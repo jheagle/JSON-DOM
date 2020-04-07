@@ -50,7 +50,7 @@
 
   /**
    * Verify availability of objects
-   * @typedef {*|module:dom//objects} jDomObjects
+   * @typedef {*|module:dom/objects} jDomObjects
    */
   jsonDom.jDomObjects = root.jDomObjects
 
@@ -59,15 +59,15 @@
    */
   if (typeof jsonDom.jDomObjects === 'undefined') {
     if (typeof require !== 'undefined') {
-      jsonDom.jDomObjects = require('./dom//objects.js')
+      jsonDom.jDomObjects = require('./dom/objects.js')
     } else {
-      console.error('main.js requires dom//objects')
+      console.error('main.js requires dom/objects')
     }
   }
 
   /**
    * Verify availability of jDomCore
-   * @typedef {*|module:dom//core} jDomCore
+   * @typedef {*|module:dom/core} jDomCore
    */
   jsonDom.jDomCore = root.jDomCore
 
@@ -76,9 +76,9 @@
    */
   if (typeof jsonDom.jDomCore === 'undefined') {
     if (typeof require !== 'undefined') {
-      jsonDom.jDomCore = require('./dom//core.js')
+      jsonDom.jDomCore = require('./dom/core.js')
     } else {
-      console.error('main.js requires dom//core')
+      console.error('main.js requires dom/core')
     }
   }
 
@@ -118,7 +118,7 @@
 
   /**
    * Create new private reference to the document
-   * @typedef {module:dom//objects.documentItem} documentItem
+   * @typedef {module:dom/objects.documentItem} documentItem
    */
   jsonDom.documentItem = jsonDom.jDomObjects.documentDomItem()
 

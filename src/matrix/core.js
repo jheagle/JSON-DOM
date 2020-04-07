@@ -45,7 +45,7 @@
    */
   if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      functionalHelpers = require('functional-helpers')
+      functionalHelpers = require('functional-helpers/dist/helpers.js')
     } else {
       console.error('matrix/core requires functional-helpers')
     }
@@ -304,7 +304,7 @@
    * @function getDomItemFromPoint
    * @param {module:matrix/objects.Point} pnt - A point corresponding to a DomItem.
    * @param {module:matrix/objects.Matrix} matrix - The matrix containing the point.
-   * @returns {false|module:dom//objects.DomItem}
+   * @returns {false|module:dom/objects.DomItem}
    */
   jDomMatrixCore.getDomItemFromPoint = (pnt, matrix) => jDomMatrixCore.checkValidPoint(pnt, matrix)
     ? matrix.children[pnt.z].children[pnt.y].children[pnt.x]
@@ -378,7 +378,7 @@
    * @param {Node|HTMLElement|module:pseudoDom/objects.PseudoHTMLElement} elem - Provide an element having an
    * associated DomItem.
    * @param {module:matrix/objects.Matrix} matrix - The matrix potentially containing the DomItem with Point.
-   * @returns {module:dom//objects.DomItem}
+   * @returns {module:dom/objects.DomItem}
    */
   jDomMatrixCore.getDomItemFromElement = (elem, matrix) => jDomMatrixCore.getDomItemFromPoint(
     jDomMatrixCore.getPointFromElement(elem),
