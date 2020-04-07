@@ -68,7 +68,7 @@
    */
   if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      functionalHelpers = require('functional-helpers/dist/helpers.js')
+      functionalHelpers = require('functional-helpers')
     } else {
       console.error('dom/objects requires functional-helpers')
     }

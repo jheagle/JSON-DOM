@@ -90,7 +90,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      functionalHelpers = require('functional-helpers/dist/helpers.js');
+      functionalHelpers = require('functional-helpers');
     } else {
       console.error('dom/objects requires functional-helpers');
     }
@@ -376,7 +376,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      functionalHelpers = require('functional-helpers/dist/helpers.js');
+      functionalHelpers = require('functional-helpers');
     } else {
       console.error('dom/core requires functional-helpers');
     }
@@ -1010,7 +1010,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      functionalHelpers = require('functional-helpers/dist/helpers.js');
+      functionalHelpers = require('functional-helpers');
     } else {
       console.error('objects.js requires functional-helpers');
     }
@@ -1335,7 +1335,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   if (typeof functionalHelpers === 'undefined') {
     if (typeof require !== 'undefined') {
-      functionalHelpers = require('functional-helpers/dist/helpers.js');
+      functionalHelpers = require('functional-helpers');
     } else {
       console.error('matrix/core requires functional-helpers');
     }
