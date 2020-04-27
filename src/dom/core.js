@@ -280,7 +280,7 @@
    * @param {Array} array - An array where an element may be appended.
    * @returns {Array|Buffer|*|T[]|string}
    */
-  const addUniqueToArray = (item, array) => !functionalHelpers.inArray(array, item) ? array.concat([item]) : array
+  const addUniqueToArray = (item, array) => !array.includes(item) ? array.concat([item]) : array
 
   /**
    * Provide a DomItem to be appended to a parent item, return the DomItem.
@@ -359,10 +359,9 @@
    * stores has eventListeners property.
    * @returns {module:dom/objects~listenerFunction|function|Object}
    */
-  jDomCore.retrieveListener = (listenerName, parent = jDomObjects.documentItem) => functionalHelpers.inArray(
-    Object.keys(parent.eventListeners),
-    listenerName
-  ) ? parent.eventListeners[listenerName] : {}
+  jDomCore.retrieveListener = (listenerName, parent = jDomObjects.documentItem) => Object.keys(parent.eventListeners).includes(listenerName)
+    ? parent.eventListeners[listenerName]
+    : {}
 
   /**
    * Provide compatibility for using the options parameter of addEventListener

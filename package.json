@@ -6,7 +6,8 @@
   "author": "Joshua Heagle",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "readme": "echo '# JSON-DOM\nState management with JSON\n' > README.md && jsdoc2md src/**/*.js >> README.md"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -26,7 +27,8 @@
     "gulp-concat": "^2.6.1",
     "gulp-rename": "^2.0.0",
     "gulp-uglify-es": "^2.0.0",
-    "jest": "^25.2.7",
+    "jest": "^25.4.0",
+    "jsdoc-to-markdown": "^5.0.3",
     "standard": "^14.3.3"
   },
   "dependencies": {

@@ -576,7 +576,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
   var addUniqueToArray = function addUniqueToArray(item, array) {
-    return !functionalHelpers.inArray(array, item) ? array.concat([item]) : array;
+    return !array.includes(item) ? array.concat([item]) : array;
   };
   /**
    * Provide a DomItem to be appended to a parent item, return the DomItem.
@@ -666,7 +666,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   jDomCore.retrieveListener = function (listenerName) {
     var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : jDomObjects.documentItem;
-    return functionalHelpers.inArray(Object.keys(parent.eventListeners), listenerName) ? parent.eventListeners[listenerName] : {};
+    return Object.keys(parent.eventListeners).includes(listenerName) ? parent.eventListeners[listenerName] : {};
   };
   /**
    * Provide compatibility for using the options parameter of addEventListener
