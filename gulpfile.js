@@ -42,6 +42,6 @@ gulp.task('clean:browser', () => del('browser'))
 
 gulp.task('clean', gulp.series('clean:dist', 'clean:browser'))
 
-gulp.task('default', gulp.series('distribute'))
+gulp.task('default', gulp.series('distribute', 'browser-bundle'))
 
 gulp.task('build', gulp.series('clean', 'distribute', 'browser-bundle'))
