@@ -1,1 +1,244 @@
-"use strict";function _defineProperty(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function _defineProperties(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function _createClass(e,t,r){return t&&_defineProperties(e.prototype,t),r&&_defineProperties(e,r),e}var PseudoEvent=function(){function e(){var t=this,r=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},o=n.bubbles,a=void 0===o||o,i=n.cancelable,u=void 0===i||i,s=n.composed,c=void 0===s||s;_classCallCheck(this,e);var l={bubbles:a,cancelable:u,composed:c,currentTarget:function(){},defaultPrevented:!1,immediatePropagationStopped:!1,propagationStopped:!1,eventPhase:"",target:function(){},timeStamp:Math.floor(Date.now()/1e3),type:r,isTrusted:!0};this.setReadOnlyProperties=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};return l=Object.assign({},l,e),t.getReadOnlyProperties=function(e){return function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";return e[t]}}(l),l},this.setReadOnlyProperties(),Object.keys(l).map((function(e){return Object.defineProperty(t,e,{enumerable:!0,get:function(){return t.getReadOnlyProperties(e)}})}))}return _createClass(e,[{key:"composedPath",value:function(){switch(this.eventPhase){case e.CAPTURING_PHASE:return e.getParentNodes(this.target);case e.BUBBLING_PHASE:return e.getParentNodes(this.target).slice().reverse();case e.AT_TARGET:return[this.target];default:return[]}}},{key:"preventDefault",value:function(){return this.setReadOnlyProperties({defaultPrevented:!0}),null}},{key:"stopImmediatePropagation",value:function(){return this.setReadOnlyProperties({immediatePropagationStopped:!0}),null}},{key:"stopPropagation",value:function(){return this.setReadOnlyProperties({propagationStopped:!0}),null}}],[{key:"getParentNodesFromAttribute",value:function(t,r,n){return Object.keys(n.parentNode).length?(n.parentNode[t]||!1)===r?e.getParentNodesFromAttribute(t,r,n.parentNode).concat([n.parentNode]):e.getParentNodesFromAttribute(t,r,n.parentNode):[]}},{key:"getParentNodes",value:function(t){return e.getParentNodesFromAttribute("",!1,t)}}]),e}();["NONE","CAPTURING_PHASE","AT_TARGET","BUBBLING_PHASE"].reduce((function(e,t,r){return Object.defineProperty(PseudoEvent,t,{value:r,writable:!1,static:{get:function(){return r}}}),Object.assign({},e,_defineProperty({},"".concat(t),r))}),{}),module.exports=PseudoEvent;
+'use strict'
+
+require('core-js/modules/es.array.concat')
+
+require('core-js/modules/es.array.map')
+
+require('core-js/modules/es.array.reduce')
+
+require('core-js/modules/es.array.reverse')
+
+require('core-js/modules/es.array.slice')
+
+require('core-js/modules/es.object.assign')
+
+require('core-js/modules/es.object.keys')
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+})
+exports.PseudoEvent = void 0
+
+function _defineProperty (obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }) } else { obj[key] = value } return obj }
+
+function _classCallCheck (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function') } }
+
+function _defineProperties (target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } }
+
+function _createClass (Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor }
+
+/**
+ * @file Substitute for the DOM Event Class.
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @version 1.0.0
+ */
+
+/**
+ * Simulate the behaviour of the Event Class when there is no DOM available.
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @class
+ * @property {number} NONE
+ * @property {number} CAPTURING_PHASE
+ * @property {number} AT_TARGET
+ * @property {number} BUBBLING_PHASE
+ * @property {boolean} bubbles - A Boolean indicating whether the event bubbles up through the Dom or not.
+ * @property {boolean} cancelable - A Boolean indicating whether the event is cancelable.
+ * @property {boolean} composed - A Boolean value indicating whether or not the event can bubble across the boundary
+ * between the shadow Dom and the regular Dom.
+ * @property {function|PseudoEventTarget} currentTarget - A reference to the currently registered target for the event. This
+ * is the object to which the event is currently slated to be sent; it's possible this has been changed along the way
+ * through re-targeting.
+ * @property {boolean} defaultPrevented - Indicates whether or not event.preventDefault() has been called on the event.
+ * @property {boolean} immediatePropagationStopped - Flag that no further propagation should occur, including on current
+ * target.
+ * @property {boolean} propagationStopped - Flag that no further propagation should occur.
+ * @property {int} eventPhase - Indicates which phase of the event flow is being processed. Uses PseudoEvent constants.
+ * @property {EventTarget|PseudoEventTarget} target - A reference to the target to which the event was originally
+ * dispatched.
+ * @property {int} timeStamp - The time at which the event was created (in milliseconds). By specification, this
+ * value is time since epoch, but in reality browsers' definitions vary; in addition, work is underway to change this
+ * to be a DomHighResTimeStamp instead.
+ * @property {string} type - The name of the event (case-insensitive).
+ * @property {boolean} isTrusted - Indicates whether or not the event was initiated by the browser (after a user
+ * click for instance) or by a script (using an event creation method, like event.initEvent)
+ */
+var PseudoEvent = /* #__PURE__ */(function () {
+  /**
+   *
+   * @param typeArg
+   * @param bubbles
+   * @param cancelable
+   * @param composed
+   * @returns {PseudoEvent}
+   * @constructor
+   */
+  function PseudoEvent () {
+    var _this = this
+
+    var typeArg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ''
+
+    var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
+    var _ref$bubbles = _ref.bubbles
+    var bubbles = _ref$bubbles === void 0 ? true : _ref$bubbles
+    var _ref$cancelable = _ref.cancelable
+    var cancelable = _ref$cancelable === void 0 ? true : _ref$cancelable
+    var _ref$composed = _ref.composed
+    var composed = _ref$composed === void 0 ? true : _ref$composed
+
+    _classCallCheck(this, PseudoEvent)
+
+    var properties = {
+      bubbles: bubbles,
+      cancelable: cancelable,
+      composed: composed,
+      currentTarget: function currentTarget () {
+        return undefined
+      },
+      defaultPrevented: false,
+      immediatePropagationStopped: false,
+      propagationStopped: false,
+      eventPhase: '',
+      target: function target () {
+        return undefined
+      },
+      timeStamp: Math.floor(Date.now() / 1000),
+      type: typeArg,
+      isTrusted: true
+    }
+
+    this.setReadOnlyProperties = function () {
+      var updateProps = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
+      properties = Object.assign({}, properties, updateProps)
+
+      _this.getReadOnlyProperties = (function (properties) {
+        return function () {
+          var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ''
+          return properties[name]
+        }
+      }(properties))
+
+      return properties
+    }
+
+    this.setReadOnlyProperties()
+    Object.keys(properties).map(function (propKey) {
+      return Object.defineProperty(_this, propKey, {
+        enumerable: true,
+        get: function get () {
+          return _this.getReadOnlyProperties(propKey)
+        }
+      })
+    })
+  }
+  /**
+   * A selector function for retrieving existing parent PseudoNode from the given child item.
+   * This function will check all the parents starting from node, and scan the attributes
+   * property for matches. The return array contains all matching parent ancestors.
+   * WARNING: This is a recursive function.
+   * @param {string} attr
+   * @param {number|string} value
+   * @param {PseudoNode} node
+   * @returns {Array.<PseudoNode>}
+   */
+
+  _createClass(PseudoEvent, [{
+    key: 'composedPath',
+
+    /**
+     * Return an array of targets that will have the event executed open them. The order is based on the eventPhase
+     * @method
+     * @returns {Array.<PseudoEventTarget>}
+     */
+    value: function composedPath () {
+      switch (this.eventPhase) {
+        case PseudoEvent.CAPTURING_PHASE:
+          return PseudoEvent.getParentNodes(this.target)
+
+        case PseudoEvent.BUBBLING_PHASE:
+          return PseudoEvent.getParentNodes(this.target).slice().reverse()
+
+        case PseudoEvent.AT_TARGET:
+          return [this.target]
+
+        default:
+          return []
+      }
+    }
+    /**
+     * Cancels the event (if it is cancelable).
+     * @method
+     * @returns {null}
+     */
+
+  }, {
+    key: 'preventDefault',
+    value: function preventDefault () {
+      this.setReadOnlyProperties({
+        defaultPrevented: true
+      })
+      return null
+    }
+    /**
+     * For this particular event, no other listener will be called.
+     * Neither those attached on the same element, nor those attached on elements which will be traversed later (in
+     * capture phase, for instance)
+     * @method
+     * @returns {null}
+     */
+
+  }, {
+    key: 'stopImmediatePropagation',
+    value: function stopImmediatePropagation () {
+      this.setReadOnlyProperties({
+        immediatePropagationStopped: true
+      })
+      return null
+    }
+    /**
+     * Stops the propagation of events further along in the Dom.
+     * @method
+     * @returns {null}
+     */
+
+  }, {
+    key: 'stopPropagation',
+    value: function stopPropagation () {
+      this.setReadOnlyProperties({
+        propagationStopped: true
+      })
+      return null
+    }
+  }], [{
+    key: 'getParentNodesFromAttribute',
+    value: function getParentNodesFromAttribute (attr, value, node) {
+      return Object.keys(node.parentNode).length ? (node.parentNode[attr] || false) === value ? PseudoEvent.getParentNodesFromAttribute(attr, value, node.parentNode).concat([node.parentNode]) : PseudoEvent.getParentNodesFromAttribute(attr, value, node.parentNode) : []
+    }
+    /**
+     * A helper selector function for retrieving all parent PseudoNode for the given child node.
+     * @param {PseudoNode} node
+     * @returns {Array.<PseudoNode>}
+     */
+
+  }, {
+    key: 'getParentNodes',
+    value: function getParentNodes (node) {
+      return PseudoEvent.getParentNodesFromAttribute('', false, node)
+    }
+  }])
+
+  return PseudoEvent
+}()) // Set up the class constants
+
+exports.PseudoEvent = PseudoEvent;
+['NONE', 'CAPTURING_PHASE', 'AT_TARGET', 'BUBBLING_PHASE'].reduce(function (phases, phase, key) {
+  Object.defineProperty(PseudoEvent, phase, {
+    value: key,
+    writable: false,
+    static: {
+      get: function get () {
+        return key
+      }
+    }
+  })
+  return Object.assign({}, phases, _defineProperty({}, ''.concat(phase), key))
+}, {})

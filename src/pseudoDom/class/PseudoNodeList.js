@@ -3,7 +3,7 @@
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
-module.exports.nodeListFactory = innerList => {
+export const nodeListFactory = innerList => {
   class PseudoNodeList {
     get length () {
       return innerList.length
@@ -40,6 +40,5 @@ module.exports.nodeListFactory = innerList => {
       }
     }
   }
-  module.exports.PseudoNodeList = PseudoNodeList
   return new PseudoNodeList()
 }

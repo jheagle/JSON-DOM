@@ -3,8 +3,8 @@
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
-const TreeLinker = require('../../collections/TreeLinker')
-const PseudoEventTarget = require('./PseudoEventTarget')
+import { TreeLinker } from '../../collections/classes/TreeLinker'
+import { PseudoEventTarget } from './PseudoEventTarget'
 
 /**
  * Simulate the behaviour of the Node Class when there is no DOM available.
@@ -15,7 +15,7 @@ const PseudoEventTarget = require('./PseudoEventTarget')
  * @property {function} appendChild
  * @property {function} removeChild
  */
-class PseudoNode extends PseudoEventTarget {
+export class PseudoNode extends PseudoEventTarget {
   /**
    *
    * @constructor
@@ -145,10 +145,10 @@ class PseudoNode extends PseudoEventTarget {
 
   replaceChild () {}
 }
-module.exports.PseudoNode = PseudoNode
 
-class NodeFactory extends TreeLinker {}
-module.exports.generateNode = () => {
+export class NodeFactory extends TreeLinker {}
+
+export const generateNode = () => {
   NodeFactory.fromArray = (values = [], LinkerClass = NodeFactory) => values.reduce(
     (list, element) => {
       if (typeof element !== 'object') {
@@ -301,4 +301,3 @@ module.exports.generateNode = () => {
   )
   return NodeFactory
 }
-module.exports.NodeFactory = NodeFactory

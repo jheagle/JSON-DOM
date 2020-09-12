@@ -3,7 +3,7 @@
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
-const PseudoEvent = require('./PseudoEvent')
+import { PseudoEvent } from './PseudoEvent'
 
 /**
  * Handle events as they are stored and implemented.
@@ -13,7 +13,7 @@ const PseudoEvent = require('./PseudoEvent')
  * @property {Object} eventOptions
  * @property {boolean} isDefault
  */
-const PseudoEventListener = {
+export const PseudoEventListener = {
   eventType: '',
   eventOptions: { capture: false, once: false, passive: false },
   isDefault: false,
@@ -100,5 +100,3 @@ const PseudoEventListener = {
     return this.nonPassiveHalt(event) || this.skipPhase(event)
   }
 }
-
-module.exports = PseudoEventListener

@@ -3,6 +3,8 @@
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
+import { PseudoElement } from './PseudoElement'
+
 /**
  * Simulate the behaviour of the HTMLElement Class when there is no DOM available.
  * @author Joshua Heagle <joshuaheagle@gmail.com>
@@ -17,7 +19,7 @@
  * @property {Object} style - A container to define all applied inline-styles
  * @property {string} title - The title attribute which affects the text visible on hover
  */
-class PseudoHTMLElement extends require('./PseudoElement') {
+export class PseudoHTMLElement extends PseudoElement {
   /**
    * Simulate the HTMLELement object when the Dom is not available
    * @param {string} [tagName=''] - The
@@ -44,5 +46,3 @@ class PseudoHTMLElement extends require('./PseudoElement') {
     })
   }
 }
-
-module.exports = PseudoHTMLElement

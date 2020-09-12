@@ -1,1 +1,287 @@
-"use strict";function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function _defineProperties(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function _createClass(e,t,n){return t&&_defineProperties(e.prototype,t),n&&_defineProperties(e,n),e}var PseudoEvent=require("./PseudoEvent"),PseudoEventListener=require("./PseudoEventListener"),PseudoEventTarget=function(){function e(){_classCallCheck(this,e),this.listeners=[],this.defaultEvent=[]}return _createClass(e,[{key:"runEvents",value:function(e){if(!(e.type in this.listeners))return!0;var t=this.listeners[e.type],n=null;return this.listeners[e.type]=t.reduce((function(t,r){return e.immediatePropagationStopped||r.rejectEvent(e)?t.concat(r):(n=r.handleEvent(e),r.eventOptions.once?(e.currentTarget.removeEventListener(e.eventType,e.handleEvent),t):t.concat(r))}),[]),n}},{key:"setDefaultEvent",value:function(e,t){var n=this;e in this.listeners||(this[e]=function(){return n.startEvents(e)},this.listeners[e]=[]),this.defaultEvent[e]=t}},{key:"runDefaultEvent",value:function(e){if(e.defaultPrevented)return!1;this.defaultEvent[e.type](e)}},{key:"startEvents",value:function(e){var t=this,n=new PseudoEvent(e);return n.setReadOnlyProperties({target:this}),console.log("startEvents",n.type,n.target),[PseudoEvent.CAPTURING_PHASE,PseudoEvent.AT_TARGET,PseudoEvent.BUBBLING_PHASE].forEach((function(r){var s=null;r!==PseudoEvent.AT_TARGET&&n.propagationStopped||(n.setReadOnlyProperties({eventPhase:r}),n.composedPath().forEach((function(e){n.setReadOnlyProperties({currentTarget:e}),s=n.currentTarget.runEvents(n)}))),n.eventPhase===PseudoEvent.AT_TARGET&&"boolean"!=typeof s&&t.defaultEvent[e]&&t.runDefaultEvent(n)})),!0}},{key:"addEventListener",value:function(e,t){var n=this,r=arguments.length>2&&void 0!==arguments[2]&&arguments[2],s={capture:!1,once:!1,passive:!1};"object"===_typeof(r)?s=Object.keys(r).reduce((function(e,t){return e[t]=r[t],e}),s):s.capture=r,e in this.listeners||(this[e]=function(){return n.startEvents(e)},this.listeners[e]=[]),this.listeners[e]=this.listeners[e].concat([Object.assign(Object.create(PseudoEventListener),PseudoEventListener,{eventType:e,eventOptions:Object.assign({},PseudoEventListener.eventOptions,s),handleEvent:(t.handleEvent||t).bind(this)})]);var i=this.listeners[e].reduce((function(e,t){return t.isDefault?Object.assign({},e,{default:e.default.concat([t])}):Object.assign({},e,{explicit:e.explicit.concat([t])})}),{explicit:[],default:[]});this.listeners[e]=[].concat(i.explicit,i.default)}},{key:"removeEventListener",value:function(e,t){if(e in this.listeners)for(var n=this.listeners[e],r=0,s=n.length;r<s;r++)if(n[r].handleEvent===t&&!n[r].isDefault)return void n.splice(r,1)}},{key:"dispatchEvent",value:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:this;return e.setReadOnlyProperties({target:t}),!(e.type in this.listeners)||(this.runEvents(e),!e.defaultPrevented)}}]),e}();module.exports=PseudoEventTarget;
+'use strict'
+
+require('core-js/modules/es.symbol')
+
+require('core-js/modules/es.symbol.description')
+
+require('core-js/modules/es.symbol.iterator')
+
+require('core-js/modules/es.array.concat')
+
+require('core-js/modules/es.array.for-each')
+
+require('core-js/modules/es.array.iterator')
+
+require('core-js/modules/es.array.reduce')
+
+require('core-js/modules/es.array.splice')
+
+require('core-js/modules/es.object.assign')
+
+require('core-js/modules/es.object.keys')
+
+require('core-js/modules/es.object.to-string')
+
+require('core-js/modules/es.string.iterator')
+
+require('core-js/modules/web.dom-collections.for-each')
+
+require('core-js/modules/web.dom-collections.iterator')
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+})
+exports.PseudoEventTarget = void 0
+
+var _PseudoEvent = require('./PseudoEvent')
+
+var _PseudoEventListener = require('./PseudoEventListener')
+
+function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
+
+function _classCallCheck (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function') } }
+
+function _defineProperties (target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } }
+
+function _createClass (Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor }
+
+/**
+ * Simulate the behaviour of the EventTarget Class when there is no DOM available.
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @class
+ * @property {Object.<string, Array.<PseudoEventListener>>} listeners
+ * @property {function} addEventListener
+ * @property {function} removeEventListener
+ * @property {function} dispatchEvent
+ */
+var PseudoEventTarget = /* #__PURE__ */(function () {
+  /**
+   * @constructor
+   */
+  function PseudoEventTarget () {
+    _classCallCheck(this, PseudoEventTarget)
+
+    this.listeners = []
+    this.defaultEvent = []
+  }
+  /**
+   *
+   * @param {PseudoEvent} event
+   * @returns {boolean}
+   */
+
+  _createClass(PseudoEventTarget, [{
+    key: 'runEvents',
+    value: function runEvents (event) {
+      if (!(event.type in this.listeners)) {
+        return true
+      }
+      /**
+       *
+       * @type {Array<PseudoEventListener>}
+       */
+
+      var stack = this.listeners[event.type]
+      var eventReturn = null
+      this.listeners[event.type] = stack.reduce(
+      /**
+       *
+       * @param {Array<PseudoEventListener>} listeners
+       * @param {PseudoEventListener} listener
+       * @returns {Array<PseudoEventListener>}
+       */
+        function (listeners, listener) {
+          if (event.immediatePropagationStopped || listener.rejectEvent(event)) {
+            return listeners.concat(listener)
+          }
+
+          eventReturn = listener.handleEvent(event)
+
+          if (listener.eventOptions.once) {
+            event.currentTarget.removeEventListener(event.eventType, event.handleEvent)
+            return listeners
+          }
+
+          return listeners.concat(listener)
+        }, [])
+      return eventReturn
+    }
+    /**
+     *
+     * @param {string} type
+     * @param {Function} callback
+     */
+
+  }, {
+    key: 'setDefaultEvent',
+    value: function setDefaultEvent (type, callback) {
+      var _this = this
+
+      if (!(type in this.listeners)) {
+        this[type] = function () {
+          return _this.startEvents(type)
+        }
+
+        this.listeners[type] = []
+      }
+
+      this.defaultEvent[type] = callback
+    }
+    /**
+     *
+     * @param {PseudoEvent} event
+     * @returns {boolean}
+     */
+
+  }, {
+    key: 'runDefaultEvent',
+    value: function runDefaultEvent (event) {
+      if (event.defaultPrevented) {
+        return false
+      }
+
+      this.defaultEvent[event.type](event)
+    }
+    /**
+     *
+     * @param {PseudoEvent} eventType
+     * @returns {boolean}
+     */
+
+  }, {
+    key: 'startEvents',
+    value: function startEvents (eventType) {
+      var _this2 = this
+
+      /**
+       * type PseudoEvent
+       */
+      var event = new _PseudoEvent.PseudoEvent(eventType)
+      event.setReadOnlyProperties({
+        target: this
+      })
+      console.log('startEvents', event.type, event.target);
+      [_PseudoEvent.PseudoEvent.CAPTURING_PHASE, _PseudoEvent.PseudoEvent.AT_TARGET, _PseudoEvent.PseudoEvent.BUBBLING_PHASE].forEach(function (phase) {
+        var continueEvents = null
+
+        if (phase === _PseudoEvent.PseudoEvent.AT_TARGET || !event.propagationStopped) {
+          event.setReadOnlyProperties({
+            eventPhase: phase
+          })
+          event.composedPath().forEach(function (target) {
+            event.setReadOnlyProperties({
+              currentTarget: target
+            })
+            continueEvents = event.currentTarget.runEvents(event)
+          })
+        }
+
+        if (event.eventPhase === _PseudoEvent.PseudoEvent.AT_TARGET && typeof continueEvents !== 'boolean' && _this2.defaultEvent[eventType]) {
+          _this2.runDefaultEvent(event)
+        }
+      })
+      return true
+    }
+    /**
+     *
+     * @param {string} type
+     * @param {function|Object} callback
+     * @param {boolean|Object} [useCapture=false]
+     */
+
+  }, {
+    key: 'addEventListener',
+    value: function addEventListener (type, callback) {
+      var _this3 = this
+
+      var useCapture = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false
+      var options = {
+        capture: false,
+        once: false,
+        passive: false
+      }
+
+      if (_typeof(useCapture) === 'object') {
+        options = Object.keys(useCapture).reduce(function (opts, opt) {
+          opts[opt] = useCapture[opt]
+          return opts
+        }, options)
+      } else {
+        options.capture = useCapture
+      }
+
+      if (!(type in this.listeners)) {
+        this[type] = function () {
+          return _this3.startEvents(type)
+        }
+
+        this.listeners[type] = []
+      }
+
+      this.listeners[type] = this.listeners[type].concat([Object.assign(Object.create(_PseudoEventListener.PseudoEventListener), _PseudoEventListener.PseudoEventListener, {
+        eventType: type,
+        eventOptions: Object.assign({}, _PseudoEventListener.PseudoEventListener.eventOptions, options),
+        handleEvent: (callback.handleEvent || callback).bind(this)
+      })])
+      var groupedDefault = this.listeners[type].reduce(function (listeners, listener) {
+        return listener.isDefault ? Object.assign({}, listeners, {
+          default: listeners.default.concat([listener])
+        }) : Object.assign({}, listeners, {
+          explicit: listeners.explicit.concat([listener])
+        })
+      }, {
+        explicit: [],
+        default: []
+      })
+      this.listeners[type] = [].concat(groupedDefault.explicit, groupedDefault.default)
+    }
+    /**
+     *
+     * @param {string} type
+     * @param {function} callback
+     */
+
+  }, {
+    key: 'removeEventListener',
+    value: function removeEventListener (type, callback) {
+      if (!(type in this.listeners)) {
+        return
+      }
+
+      var stack = this.listeners[type]
+
+      for (var i = 0, l = stack.length; i < l; i++) {
+        if (stack[i].handleEvent === callback && !stack[i].isDefault) {
+          stack.splice(i, 1)
+          return
+        }
+      }
+    }
+    /**
+     *
+     * @param {Event|PseudoEvent} event
+     * @param {EventTarget|PseudoEventTarget} target
+     * @returns {boolean}
+     */
+
+  }, {
+    key: 'dispatchEvent',
+    value: function dispatchEvent (event) {
+      var target = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this
+      event.setReadOnlyProperties({
+        target: target
+      })
+
+      if (!(event.type in this.listeners)) {
+        return true
+      }
+
+      this.runEvents(event)
+      return !event.defaultPrevented
+    }
+  }])
+
+  return PseudoEventTarget
+}())
+
+exports.PseudoEventTarget = PseudoEventTarget

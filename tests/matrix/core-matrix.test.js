@@ -1,5 +1,5 @@
-const jDomObjectsMatrix = require('../../src/matrix/objects.js')
-const jDomCoreMatrix = require('../../src/matrix/core.js')
+import * as jDomObjectsMatrix from '../../dist/matrix/source/objects.js'
+import * as jDomCoreMatrix from '../../dist/matrix/source/functions.js'
 
 const p1 = jDomObjectsMatrix.point(1, 2, 3)
 const p2 = jDomObjectsMatrix.point(2, 3, 4)

@@ -7,7 +7,7 @@
  *
  * @type {PseudoHTMLElement}
  */
-const PseudoHTMLElement = require('./PseudoHTMLElement')
+import { PseudoHTMLElement } from './PseudoHTMLElement'
 
 /**
  * Simulate the behaviour of the HTMLDocument Class when there is no DOM available.
@@ -18,7 +18,7 @@ const PseudoHTMLElement = require('./PseudoHTMLElement')
  * @property {PseudoHTMLElement} body - A reference to the Body child element
  * @property {function} createElement - Generate a new PseudoHTMLElement with parent of document
  */
-class PseudoHTMLDocument extends PseudoHTMLElement {
+export class PseudoHTMLDocument extends PseudoHTMLElement {
   /**
    * The root HTML element is acts as the parent to all HTML elements in the document.
    * @returns {PseudoHTMLDocument}
@@ -60,5 +60,3 @@ class PseudoHTMLDocument extends PseudoHTMLElement {
     return returnElement
   }
 }
-
-module.exports = PseudoHTMLDocument

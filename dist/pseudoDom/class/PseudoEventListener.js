@@ -1,1 +1,123 @@
-"use strict";var PseudoEvent=require("./PseudoEvent"),PseudoEventListener={eventType:"",eventOptions:{capture:!1,once:!1,passive:!1},isDefault:!1,handleEvent:function(e){},doCapturePhase:function(e){return e.eventPhase===PseudoEvent.CAPTURING_PHASE&&this.eventOptions.capture},doTargetPhase:function(e){return e.eventPhase===PseudoEvent.AT_TARGET},doBubblePhase:function(e){return e.eventPhase===PseudoEvent.BUBBLING_PHASE&&(e.bubbles||!this.eventOptions.capture)},skipPhase:function(e){return!this.doCapturePhase(e)&&!this.doTargetPhase(e)&&!this.doBubblePhase(e)},skipDefault:function(e){return this.isDefault&&e.defaultPrevented},stopPropagation:function(e){return!this.doTargetPhase(e)&&e.propagationStopped},nonPassiveHalt:function(e){return!this.eventOptions.passive&&(this.skipDefault(e)||e.immediatePropagationStopped||this.stopPropagation(e))},rejectEvent:function(e){return this.nonPassiveHalt(e)||this.skipPhase(e)}};module.exports=PseudoEventListener;
+'use strict'
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+})
+exports.PseudoEventListener = void 0
+
+var _PseudoEvent = require('./PseudoEvent')
+
+/**
+ * @file Substitute for the DOM EventEventListener Class.
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @version 1.0.0
+ */
+
+/**
+ * Handle events as they are stored and implemented.
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @class
+ * @property {string} eventTypes
+ * @property {Object} eventOptions
+ * @property {boolean} isDefault
+ */
+var PseudoEventListener = {
+  eventType: '',
+  eventOptions: {
+    capture: false,
+    once: false,
+    passive: false
+  },
+  isDefault: false,
+
+  /**
+   * @method
+   * @name PseudoEventListener#handleEvent
+   * @param {PseudoEvent} event
+   * @returns {undefined}
+   */
+  handleEvent: function handleEvent (event) {
+    return undefined
+  },
+
+  /**
+   * @method
+   * @name PseudoEventListener#doCapturePhase
+   * @param {PseudoEvent} event
+   * @returns {boolean}
+   */
+  doCapturePhase: function doCapturePhase (event) {
+    return event.eventPhase === _PseudoEvent.PseudoEvent.CAPTURING_PHASE && this.eventOptions.capture
+  },
+
+  /**
+   * @method
+   * @name PseudoEventListener#doTargetPhase
+   * @param {PseudoEvent} event
+   * @returns {boolean}
+   */
+  doTargetPhase: function doTargetPhase (event) {
+    return event.eventPhase === _PseudoEvent.PseudoEvent.AT_TARGET
+  },
+
+  /**
+   * @method
+   * @name PseudoEventListener#doBubblePhase
+   * @param {PseudoEvent} event
+   * @returns {boolean|*}
+   */
+  doBubblePhase: function doBubblePhase (event) {
+    return event.eventPhase === _PseudoEvent.PseudoEvent.BUBBLING_PHASE && (event.bubbles || !this.eventOptions.capture)
+  },
+
+  /**
+   * @method
+   * @name PseudoEventListener#skipPhase
+   * @param {PseudoEvent} event
+   * @returns {boolean}
+   */
+  skipPhase: function skipPhase (event) {
+    return !this.doCapturePhase(event) && !this.doTargetPhase(event) && !this.doBubblePhase(event)
+  },
+
+  /**
+   * @method
+   * @name PseudoEventListener#skipDefault
+   * @param {PseudoEvent} event
+   * @returns {boolean|*}
+   */
+  skipDefault: function skipDefault (event) {
+    return this.isDefault && event.defaultPrevented
+  },
+
+  /**
+   * @method
+   * @name PseudoEventListener#stopPropagation
+   * @param {PseudoEvent} event
+   * @returns {boolean}
+   */
+  stopPropagation: function stopPropagation (event) {
+    return !this.doTargetPhase(event) && event.propagationStopped
+  },
+
+  /**
+   * @method
+   * @name PseudoEventListener#nonPassiveHalt
+   * @param {PseudoEvent} event
+   * @returns {boolean|*}
+   */
+  nonPassiveHalt: function nonPassiveHalt (event) {
+    return !this.eventOptions.passive && (this.skipDefault(event) || event.immediatePropagationStopped || this.stopPropagation(event))
+  },
+
+  /**
+   * @method
+   * @name PseudoEventListener#rejectEvent
+   * @param {PseudoEvent} event
+   * @returns {*|boolean}
+   */
+  rejectEvent: function rejectEvent (event) {
+    return this.nonPassiveHalt(event) || this.skipPhase(event)
+  }
+}
+exports.PseudoEventListener = PseudoEventListener

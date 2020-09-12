@@ -3,9 +3,8 @@
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
-const PseudoEvent = require('./PseudoEvent')
-
-const PseudoEventListener = require('./PseudoEventListener')
+import { PseudoEvent } from './PseudoEvent'
+import { PseudoEventListener } from './PseudoEventListener'
 
 /**
  * Simulate the behaviour of the EventTarget Class when there is no DOM available.
@@ -16,7 +15,7 @@ const PseudoEventListener = require('./PseudoEventListener')
  * @property {function} removeEventListener
  * @property {function} dispatchEvent
  */
-class PseudoEventTarget {
+export class PseudoEventTarget {
   /**
    * @constructor
    */
@@ -193,5 +192,3 @@ class PseudoEventTarget {
     return !event.defaultPrevented
   }
 }
-
-module.exports = PseudoEventTarget

@@ -1,4 +1,4 @@
-const jDomCoreDom = require('../../src/dom/core')
+import * as jDomCoreDom from '../../dist/dom/source/functions'
 
 const coolFunc = () => 'hello'
 // appendAllHTML

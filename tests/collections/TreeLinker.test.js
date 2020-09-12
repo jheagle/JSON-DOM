@@ -1,4 +1,4 @@
-const TreeLinker = require('../../src/collections/TreeLinker')
+import { TreeLinker } from '../../dist/collections/classes/TreeLinker'
 
 const sampleArrayData = () => ([
   {

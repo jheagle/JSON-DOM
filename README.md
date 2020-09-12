@@ -1,20 +1,21 @@
 # JSON-DOM
+
 State management with JSON
 
 ## Modules
 
 <dl>
-<dt><a href="#module_dom/core">dom/core</a> : <code>Object</code></dt>
-<dd><p>All methods exported from this module are encapsulated within jDomCore.</p>
+<dt><a href="#module_jsonDom">jsonDom</a></dt>
+<dd><p>All of the JSON DOM system functions for creating JSON components.</p>
 </dd>
-<dt><a href="#module_dom/objects">dom/objects</a> : <code>Object</code></dt>
-<dd><p>All methods exported from this module are encapsulated within jDomObjects</p>
+<dt><a href="#module_collections">collections</a></dt>
+<dd><p>All of the JSON DOM system functions for creating JSON components.</p>
 </dd>
-<dt><a href="#module_matrix/core">matrix/core</a> : <code>Object</code></dt>
-<dd><p>All methods exported from this module are encapsulated within jDomMatrixCore.</p>
+<dt><a href="#module_jDom">jDom</a></dt>
+<dd><p>All of the JSON DOM system functions for creating JSON components.</p>
 </dd>
-<dt><a href="#module_matrix/objects">matrix/objects</a> : <code>Object</code></dt>
-<dd><p>All methods exported from this module are encapsulated within jDomMatrixObjects.</p>
+<dt><a href="#module_jDomMatrix">jDomMatrix</a></dt>
+<dd><p>Add matrix ability using JSON DOM components</p>
 </dd>
 <dt><a href="#module_pseudoDom/objects">pseudoDom/objects</a> : <code>Object</code></dt>
 <dd><p>All methods exported from this module are encapsulated within pseudoDom.</p>
@@ -24,1159 +25,433 @@ State management with JSON
 ## Classes
 
 <dl>
-<dt><a href="#LinkedList">LinkedList</a></dt>
+<dt><a href="#PseudoEventListener">PseudoEventListener</a></dt>
 <dd></dd>
-<dt><a href="#Linker">Linker</a></dt>
-<dd></dd>
-<dt><a href="#TreeLinker">TreeLinker</a></dt>
-<dd></dd>
+<dt><a href="#PseudoNodeAttached">PseudoNodeAttached</a> ⇐ <code><a href="#PseudoEventTarget">PseudoEventTarget</a></code></dt>
+<dd><p>Simulate the behaviour of the Node Class when there is no DOM available.</p>
+</dd>
+</dl>
+
+## Members
+
+<dl>
+<dt><a href="#documentItem">documentItem</a> : <code><a href="#module_dom/objects.DomItemRoot">DomItemRoot</a></code></dt>
+<dd><p>Create reference for storing document changes</p>
+</dd>
+</dl>
+
+## Constants
+
+<dl>
+<dt><a href="#elementCompareClassList">elementCompareClassList</a> ⇒ <code>Object.&lt;string, number&gt;</code> | <code>*</code></dt>
+<dd><p>Check if a class exists on the element, return object with keys for each class and a -1, 0, 1 difference indicator.</p>
+</dd>
+<dt><a href="#root">root</a></dt>
+<dd><p>Store a reference to this scope which will be Window if rendered via browser</p>
+</dd>
+<dt><a href="#previousPseudoDom">previousPseudoDom</a> : <code>module</code> | <code>*</code></dt>
+<dd><p>Store reference to any pre-existing module of the same name</p>
+</dd>
+</dl>
+
+## Functions
+
+<dl>
+<dt><a href="#elementHasAttribute">elementHasAttribute(element, key, attr)</a> ⇒ <code>boolean</code> | <code>Object.&lt;string, number&gt;</code></dt>
+<dd><p>Check if the provided Element has the provided attributes.
+Returns a boolean, or an array of 1 / 0 / -1 based on the comparison status.</p>
+</dd>
+<dt><a href="#elementChanges">elementChanges(config)</a> ⇒ <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>Given a jDomObjects.DomItem as config, this function will return the changes to be applied
+to the stored element property.</p>
+</dd>
+<dt><a href="#setAttribute">setAttribute(config, name, value)</a> ⇒ <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>Set an attribute on the element within a DomItem, then return the config data.</p>
+</dd>
+<dt><a href="#setAndReturnAttribute">setAndReturnAttribute(config, name, value)</a> ⇒ <code>string</code></dt>
+<dd><p>Set an attribute on the element within a DomItem, then return the attribute.</p>
+</dd>
+<dt><a href="#updateElement">updateElement(config)</a> ⇒ <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>Update a single objects.DomItem element with the provided attributes / style / elementProperties</p>
+</dd>
+<dt><a href="#updateElements">updateElements(config)</a> ⇒ <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>Generate HTML element data for each object in the matrix
+WARNING: This is a recursive function.</p>
+</dd>
+<dt><a href="#generateElement">generateElement(config)</a> ⇒ <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>Create an HTML element based on the provided attributes and return the element as an Object.</p>
+</dd>
+<dt><a href="#bindElement">bindElement(item)</a> ⇒ <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>Generate HTML element data for a provided DomItem</p>
+</dd>
+<dt><a href="#retrieveParentItem">retrieveParentItem(parent)</a> ⇒ <code>module:dom/objects.DomItemBody</code> | <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>Simplify detecting the parent item which can be appended to, whether root, or just a parent at any part of the tree</p>
+</dd>
+<dt><a href="#addUniqueToArray">addUniqueToArray(item, array)</a> ⇒ <code>Array</code> | <code>Buffer</code> | <code>*</code> | <code>Array.&lt;T&gt;</code> | <code>string</code></dt>
+<dd><p>Having an array and a potential new array element, check if the element is in the array, if not append to array.</p>
+</dd>
+<dt><a href="#appendAndReturnChild">appendAndReturnChild(child, parent)</a> ⇒ <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>Provide a DomItem to be appended to a parent item, return the DomItem.</p>
+</dd>
+<dt><a href="#appendHTML">appendHTML(item, parent)</a> ⇒ <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>Append a new DomItem which has the element generated.</p>
+</dd>
+<dt><a href="#removeChild">removeChild(item, parent)</a> ⇒ <code>Array.&lt;(HTMLElement|PseudoHTMLElement)&gt;</code></dt>
+<dd><p>Reverse of appendHTML, remove a DomItem and have the associated element removed.</p>
+</dd>
+<dt><a href="#registerListener">registerListener(listener, [name], [parent])</a> ⇒ <code>Object.&lt;string, module:dom/objects~listenerFunction&gt;</code></dt>
+<dd><p>Register a single listener function as part of the root jDomObjects.DomItem.</p>
+</dd>
+<dt><a href="#registerListeners">registerListeners(listeners, [parent])</a> ⇒ <code><a href="#module_dom/objects.DomItemRoot">DomItemRoot</a></code> | <code>Object</code></dt>
+<dd><p>Register multiple listeners from an array of functions.</p>
+</dd>
+<dt><a href="#retrieveListener">retrieveListener(listenerName, [parent])</a> ⇒ <code>module:dom/objects~listenerFunction</code> | <code>function</code> | <code>Object</code></dt>
+<dd><p>Based on the provided function / listener name, retrieve the associated function from the root jDomObjects.DomItem</p>
+</dd>
+<dt><a href="#listenerOptions">listenerOptions(options)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Provide compatibility for using the options parameter of addEventListener</p>
+</dd>
+<dt><a href="#assignListener">assignListener(trigger, elem, fn, options)</a> ⇒ <code>module:dom/objects~listenerFunction</code> | <code>function</code></dt>
+<dd><p>Provide compatibility for assigning listeners.</p>
+</dd>
+<dt><a href="#appendListeners">appendListeners(item, event, listener, args, options)</a> ⇒ <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>When there may be extra data needed for the event listener function call, this function may be used as a helper
+to pass the additional data. Also, if it is desirable to add event listeners during run-time, this function can be
+used to achieve this.
+WARNING: This is a recursive function.</p>
+</dd>
+<dt><a href="#bindElementListeners">bindElementListeners(item)</a> ⇒ <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>Receive a DomItem with eventListeners and apply the event listeners onto the Dom element.</p>
+</dd>
+<dt><a href="#bindListeners">bindListeners(item)</a> ⇒ <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>Based on the eventListeners property of the provided item, bind the
+listeners to the associated element property for the provided jDomObjects.DomItem.</p>
+</dd>
+<dt><a href="#bindAllListeners">bindAllListeners(item)</a> ⇒ <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>Based on the eventListeners property of the provided item, bind the listeners to the associated element property
+for each item in the jDomObjects.DomItem structure.
+WARNING: This is a recursive function.</p>
+</dd>
+<dt><a href="#gatherChildItems">gatherChildItems(item, test)</a> ⇒ <code><a href="#module_dom/objects.DomItem">Array.&lt;DomItem&gt;</a></code></dt>
+<dd><p>A selector function for retrieving existing child jDomObjects.DomItems from the given parent item.
+This function will check all the children starting from and including item, and run the test function on each
+child encountered. The return array contains children returned from the test from all levels.
+WARNING: This is a recursive function.</p>
+</dd>
+<dt><a href="#getChildTest">getChildTest(attr, value)</a> ⇒ <code><a href="#module_dom/core..testChildItem">testChildItem</a></code></dt>
+<dd><p>Retrieve the <a href="#module_dom/core..testChildItem">testChildItem</a> function by providing an attribute and value to check.</p>
+</dd>
+<dt><a href="#getChildrenFromAttribute">getChildrenFromAttribute(attr, value, item)</a> ⇒ <code><a href="#module_dom/objects.DomItem">Array.&lt;DomItem&gt;</a></code></dt>
+<dd><p>A selector function for retrieving existing child jDomObjects.DomItems from the given parent item.
+This function will check all the children starting from item, and scan the attributes
+property for matches. The returned array contains children matching from all levels.
+WARNING: This calls a recursive function.</p>
+</dd>
+<dt><a href="#getChildrenByClass">getChildrenByClass()</a> ⇒ <code><a href="#module_dom/objects.DomItem">Array.&lt;DomItem&gt;</a></code></dt>
+<dd><p>Helper for getting all jDomObjects.DomItems starting at parent and having specified className attribute</p>
+</dd>
+<dt><a href="#getChildrenByName">getChildrenByName()</a> ⇒ <code><a href="#module_dom/objects.DomItem">Array.&lt;DomItem&gt;</a></code></dt>
+<dd><p>Helper for getting all jDomObjects.DomItems starting at parent and having specified name attribute</p>
+</dd>
+<dt><a href="#getParentsFromAttribute">getParentsFromAttribute(attr, value, item)</a> ⇒ <code>Array</code></dt>
+<dd><p>A selector function for retrieving existing child jDomObjects.DomItems from the given parent item.
+This function will check all the children starting from item, and scan the attributes
+property for matches. The return array contains children matching from all levels.
+WARNING: This is a recursive function.</p>
+</dd>
+<dt><a href="#getParentsByClass">getParentsByClass()</a> ⇒ <code>Array</code></dt>
+<dd><p>Helper for getting all jDomObjects.DomItems starting at child and having specified className attribute</p>
+</dd>
+<dt><a href="#getParentsByName">getParentsByName()</a> ⇒ <code>Array</code></dt>
+<dd><p>Helper for getting all jDomObjects.DomItems starting at child and having specified name attribute</p>
+</dd>
+<dt><a href="#getParentsByTagName">getParentsByTagName()</a> ⇒ <code>Array</code></dt>
+<dd><p>Helper for getting all jDomObjects.DomItems starting at child and having specified tagName</p>
+</dd>
+<dt><a href="#getTopParentItem">getTopParentItem(item)</a> ⇒ <code><a href="#module_dom/objects.DomItemRoot">DomItemRoot</a></code></dt>
+<dd><p>Get the upper parentItem for the provided child. (usually this is a jDomObjects.documentItem reference)
+WARNING: This is a recursive function.</p>
+</dd>
+<dt><a href="#renderHTML">renderHTML(item, parent)</a> ⇒ <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>This is a shortcut for building the specified HTML elements and appending them to the Dom
+with associated listeners.
+The final argument is specific for adding event listeners with options.</p>
+</dd>
+<dt><a href="#createDomItem">createDomItem(...attributes)</a> ⇒ <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>This is the basic Object for representing the Dom in a virtual perspective. All incoming attributes will be merged
+to the specified format.</p>
+</dd>
+<dt><a href="#initChildren">initChildren()</a> ⇒ <code>Array.&lt;(module:dom/objects~DomItemHead|module:dom/objects~DomItemBody)&gt;</code></dt>
+<dd><p>Initiate the children of Root / DocumentItem. This is a helper for <a href="#documentDomItem">documentDomItem</a>.</p>
+</dd>
+<dt><a href="#initRoot">initRoot(children, listeners)</a> ⇒ <code><a href="#module_dom/objects.DomItemRoot">DomItemRoot</a></code> | <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>Initiate the Root for DocumentItem. This is primary a helper for <a href="#documentDomItem">documentDomItem</a>.</p>
+</dd>
+<dt><a href="#documentDomItem">documentDomItem(listeners, [rootItem])</a> ⇒ <code><a href="#module_dom/objects.DomItemRoot">DomItemRoot</a></code> | <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>Return a DomItem reference to the document. The rootItem argument is a system variable and not necessary to
+implement.</p>
+</dd>
+<dt><a href="#bindPointData">bindPointData(item, pnt)</a> ⇒ <code><a href="#module_matrix/objects.MatrixColumn">MatrixColumn</a></code> | <code><a href="#module_matrix/objects.MatrixRow">MatrixRow</a></code></dt>
+<dd><p>Generate point data for each item in the matrix
+WARNING: This is a recursive function.</p>
+</dd>
+<dt><a href="#nextCell">nextCell(pnt, dir)</a> ⇒ <code><a href="#module_matrix/objects.Point">Point</a></code></dt>
+<dd><p>Based on provided point and point direction generate next point.</p>
+</dd>
+<dt><a href="#pointDifference">pointDifference(start, end)</a> ⇒ <code><a href="#module_matrix/objects.Point">Point</a></code></dt>
+<dd><p>Based on provided point and another point, get a point with the difference between each axis</p>
+</dd>
+<dt><a href="#areEqualPoints">areEqualPoints(p1, p2)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Given two points, compare the x, y, and z of each to see if they are the same</p>
+</dd>
+<dt><a href="#getHighestAbsoluteCoordinate">getHighestAbsoluteCoordinate(pnt)</a> ⇒ <code><a href="#module_matrix/objects.coordinate">coordinate</a></code></dt>
+<dd><p>Return the first coordinate number with the highest absolute value.</p>
+</dd>
+<dt><a href="#getFirstAxisOfCoordinate">getFirstAxisOfCoordinate(pnt, coordinate)</a> ⇒ <code>false</code> | <code><a href="#module_matrix/objects.axis">axis</a></code></dt>
+<dd><p>Having provided a coordinate number, find all corresponding axis, return the first match.</p>
+</dd>
+<dt><a href="#pointAndCoordinateToDirection">pointAndCoordinateToDirection(pnt, highestCoordinate)</a> ⇒ <code><a href="#module_matrix/objects.Direction">Direction</a></code></dt>
+<dd><p>Given a point and the value of the highest coordinate select the corresponding axis which will be the direction
+(-1 or 1) to and set the other axis to 0.</p>
+</dd>
+<dt><a href="#pointToDirection">pointToDirection(pnt)</a> ⇒ <code><a href="#module_matrix/objects.Direction">Direction</a></code></dt>
+<dd><p>Having a point, convert it to a direction where the axis with the highest coordinate value will be set to -1 or 1.</p>
+</dd>
+<dt><a href="#pointsToDirection">pointsToDirection(start, end)</a> ⇒ <code><a href="#module_matrix/objects.Direction">Direction</a></code></dt>
+<dd><p>Retrieve a directional coordinate value based on two provided points
+(directions consist of two zero coordinates and a single coordinate of 1 / -1)</p>
+</dd>
+<dt><a href="#randomStart">randomStart(length, dir, [lengthLimits])</a> ⇒ <code><a href="#module_matrix/objects.Point">Point</a></code></dt>
+<dd><p>Generate a random starting point for a line with the provided length and direction.</p>
+</dd>
+<dt><a href="#lineEndPoint">lineEndPoint(start, length, dir)</a> ⇒ <code><a href="#module_matrix/objects.Point">Point</a></code></dt>
+<dd><p>Given a start point, line length, and a direction, generate the end point of the line.</p>
+</dd>
+<dt><a href="#getPointsLine">getPointsLine(start, end, [line])</a> ⇒ <code><a href="#module_matrix/objects.Point">Array.&lt;Point&gt;</a></code></dt>
+<dd><p>Having provided two points, return an array of transition points connecting &#39;start&#39; and &#39;end&#39;. Return array
+includes &#39;start&#39; (line[0]) and &#39;end&#39; (line[line.length-1])</p>
+</dd>
+<dt><a href="#getPointsLines">getPointsLines(lines)</a> ⇒ <code>Array.&lt;Array.&lt;module:matrix/objects.Point&gt;&gt;</code></dt>
+<dd><p>Takes an array of arrays containing two points each. Calls getPointsLine for each array of points. Returns an
+array of all points captured for each line segment</p>
+</dd>
+<dt><a href="#checkInBetween">checkInBetween(...args)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Given two points, check the cells between using specified function.
+When inclusive is set to true the provided start and end points will also be tested</p>
+</dd>
+<dt><a href="#getAxisLengths">getAxisLengths(matrix)</a> ⇒ <code><a href="#module_matrix/objects.Point">Point</a></code></dt>
+<dd><p>Return point-like object with all of the axis lengths.</p>
+</dd>
+<dt><a href="#randDirection">randDirection([useCoordinates])</a> ⇒ <code><a href="#module_matrix/objects.Direction">Direction</a></code></dt>
+<dd><p>Get random direction point</p>
+</dd>
+<dt><a href="#checkValidPoint">checkValidPoint(pnt, matrix)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Test if the provided point exists in the matrix.</p>
+</dd>
+<dt><a href="#getDomItemFromPoint">getDomItemFromPoint(pnt, matrix)</a> ⇒ <code>false</code> | <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>Retrieve the DomItem associated with the provided point</p>
+</dd>
+<dt><a href="#getAllPoints">getAllPoints(matrix, [allPoints])</a> ⇒ <code><a href="#module_matrix/objects.Point">Array.&lt;Point&gt;</a></code></dt>
+<dd><p>Return an array of all the points in the matrix</p>
+</dd>
+<dt><a href="#adjacentPoints">adjacentPoints(pnt, matrix)</a> ⇒ <code><a href="#module_matrix/objects.Point">Array.&lt;Point&gt;</a></code></dt>
+<dd><p>Return all valid points surrounding a provided point</p>
+</dd>
+<dt><a href="#adjacentEdgePoints">adjacentEdgePoints(pnt, matrix)</a> ⇒ <code><a href="#module_matrix/objects.Point">Array.&lt;Point&gt;</a></code></dt>
+<dd><p>Return all points which touch on edges (not diagonal)</p>
+</dd>
+<dt><a href="#getPointFromElement">getPointFromElement(elem)</a> ⇒ <code><a href="#module_matrix/objects.Point">Point</a></code></dt>
+<dd><p>Retrieve the point associated with the provided element.</p>
+</dd>
+<dt><a href="#getDomItemFromElement">getDomItemFromElement(elem, matrix)</a> ⇒ <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>Retrieve the DomItem associated with the provided element in the matrix</p>
+</dd>
+<dt><a href="#point">point(x, y, [z])</a> ⇒ <code><a href="#module_matrix/objects.Point">Point</a></code></dt>
+<dd><p>Store the point data for an x, y, z <a href="#module_matrix/objects.Matrix">Matrix</a>.</p>
+</dd>
+<dt><a href="#tile">tile()</a> ⇒ <code><a href="#module_matrix/objects.MatrixTile">MatrixTile</a></code></dt>
+<dd><p>A default tile in the <a href="#module_matrix/objects.Matrix">Matrix</a></p>
+</dd>
+<dt><a href="#matrix">matrix(x, y, z, matrixProps)</a> ⇒ <code><a href="#module_matrix/objects.Matrix">Matrix</a></code></dt>
+<dd><p>Create a 3d matrix of i with x by y by z size, add additional objects for each layer as well</p>
+</dd>
+<dt><a href="#square">square([x], [y], [z], [matrixProps], size)</a> ⇒ <code><a href="#module_matrix/objects.Matrix">Matrix</a></code></dt>
+<dd><p>Return a single layer matrix where x and y are equal</p>
+</dd>
+<dt><a href="#cube">cube([x], [y], [z], [matrixProps], size)</a> ⇒ <code><a href="#module_matrix/objects.Matrix">Matrix</a></code></dt>
+<dd><p>Return a matrix where x, y, and z are equal</p>
+</dd>
 </dl>
 
 ## Typedefs
 
 <dl>
-<dt><a href="#document">document</a> : <code>HTMLDocument</code> | <code>module:pseudoDom/objects.PseudoHTMLDocument</code></dt>
-<dd><p>Verify availability of document</p>
+<dt><a href="#listenerFunction">listenerFunction</a> : <code>function</code></dt>
+<dd><p>This is the standard definition of a listenerFunction to be used</p>
 </dd>
-<dt><a href="#root">root</a> : <code>Window</code> | <code>module:pseudoDom/objects.PseudoEventTarget</code></dt>
-<dd></dd>
+<dt><a href="#EventListener">EventListener</a> : <code>Object</code></dt>
+<dd><p>An EventListener Object to be appended to the element within the DomItem</p>
+</dd>
+<dt><a href="#DomItemHead">DomItemHead</a> : <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>DomItemHead defines the structure for a single element in the Dom</p>
+</dd>
+<dt><a href="#DomItemBody">DomItemBody</a> : <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
+<dd><p>DomItemBody defines the structure for a single element in the Dom</p>
+</dd>
 </dl>
 
-<a name="module_dom/core"></a>
+<a name="module_jsonDom"></a>
 
-## dom/core : <code>Object</code>
-All methods exported from this module are encapsulated within jDomCore.
+## jsonDom
+All of the JSON DOM system functions for creating JSON components.
 
+**Version**: 1.0.0  
 **Author**: Joshua Heagle <joshuaheagle@gmail.com>  
 
-* [dom/core](#module_dom/core) : <code>Object</code>
-    * [~noConflict()](#module_dom/core..noConflict) ⇒ <code>jDomCore</code>
-    * [~elementHasAttribute(element, key, attr)](#module_dom/core..elementHasAttribute) ⇒ <code>boolean</code> \| <code>Object.&lt;string, number&gt;</code>
-    * [~elementChanges(config)](#module_dom/core..elementChanges) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-    * [~setAttribute(config, name, value)](#module_dom/core..setAttribute) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-    * [~setAndReturnAttribute(config, name, value)](#module_dom/core..setAndReturnAttribute) ⇒ <code>string</code>
-    * [~updateElement(config)](#module_dom/core..updateElement) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-    * [~updateElements(config)](#module_dom/core..updateElements) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-    * [~generateElement(config)](#module_dom/core..generateElement) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-    * [~bindElement(item)](#module_dom/core..bindElement) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-    * [~appendHTML(item, parent)](#module_dom/core..appendHTML) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-    * [~removeChild(item, parent)](#module_dom/core..removeChild) ⇒ <code>Array.&lt;(HTMLElement\|PseudoHTMLElement)&gt;</code>
-    * [~registerListener(listener, [name], [parent])](#module_dom/core..registerListener) ⇒ <code>Object.&lt;string, module:dom/objects~listenerFunction&gt;</code>
-    * [~registerListeners(listeners, [parent])](#module_dom/core..registerListeners) ⇒ [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) \| <code>Object</code>
-    * [~retrieveListener(listenerName, [parent])](#module_dom/core..retrieveListener) ⇒ [<code>listenerFunction</code>](#module_dom/objects..listenerFunction) \| <code>function</code> \| <code>Object</code>
-    * [~assignListener(trigger, elem, fn, options)](#module_dom/core..assignListener) ⇒ [<code>listenerFunction</code>](#module_dom/objects..listenerFunction) \| <code>function</code>
-    * [~appendListeners(item, event, listener, args, options)](#module_dom/core..appendListeners) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-    * [~bindListeners(item)](#module_dom/core..bindListeners) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-    * [~bindAllListeners(item)](#module_dom/core..bindAllListeners) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-    * [~gatherChildItems(item, test)](#module_dom/core..gatherChildItems) ⇒ [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem)
-    * [~getChildrenFromAttribute(attr, value, item)](#module_dom/core..getChildrenFromAttribute) ⇒ [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem)
-    * [~getChildrenByClass()](#module_dom/core..getChildrenByClass) ⇒ [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem)
-    * [~getChildrenByName()](#module_dom/core..getChildrenByName) ⇒ [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem)
-    * [~getParentsFromAttribute(attr, value, item)](#module_dom/core..getParentsFromAttribute) ⇒ <code>Array</code>
-    * [~getParentsByClass()](#module_dom/core..getParentsByClass) ⇒ <code>Array</code>
-    * [~getParentsByName()](#module_dom/core..getParentsByName) ⇒ <code>Array</code>
-    * [~getParentsByTagName()](#module_dom/core..getParentsByTagName) ⇒ <code>Array</code>
-    * [~getTopParentItem(item)](#module_dom/core..getTopParentItem) ⇒ [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot)
-    * [~renderHTML(item, parent)](#module_dom/core..renderHTML) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-    * [~document](#module_dom/core..document) : <code>HTMLDocument</code> \| <code>module:pseudoDom/objects.PseudoHTMLDocument</code>
-    * [~root](#module_dom/core..root) : <code>Window</code> \| <code>module:pseudoDom/objects.PseudoEventTarget</code>
-    * [~functionalHelpers](#module_dom/core..functionalHelpers) : <code>\*</code> \| <code>module:functionalHelpers</code>
-    * [~jDomObjects](#module_dom/core..jDomObjects) : <code>\*</code> \| [<code>dom/objects</code>](#module_dom/objects)
-    * [~testChildItem](#module_dom/core..testChildItem) ⇒ [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem)
+* [jsonDom](#module_jsonDom)
+    * [~root](#module_jsonDom..root)
+    * [~previousJsonDom](#module_jsonDom..previousJsonDom) : <code>module</code> \| <code>\*</code>
+    * [~noConflict()](#module_jsonDom..noConflict) ⇒ [<code>jsonDom</code>](#module_jsonDom..jsonDom)
+    * [~jsonDom](#module_jsonDom..jsonDom) : [<code>jsonDom</code>](#module_jsonDom) \| [<code>collections</code>](#module_collections) \| [<code>jDom</code>](#module_jDom) \| <code>module:pseudoDom</code> \| <code>module:matrix</code>
 
-<a name="module_dom/core..noConflict"></a>
+<a name="module_jsonDom..root"></a>
 
-### dom/core~noConflict() ⇒ <code>jDomCore</code>
+### jsonDom~root
+Store a reference to this scope which will be Window if rendered via browser
+
+**Kind**: inner constant of [<code>jsonDom</code>](#module_jsonDom)  
+<a name="module_jsonDom..previousJsonDom"></a>
+
+### jsonDom~previousJsonDom : <code>module</code> \| <code>\*</code>
+Store reference to any pre-existing module of the same name
+
+**Kind**: inner constant of [<code>jsonDom</code>](#module_jsonDom)  
+<a name="module_jsonDom..noConflict"></a>
+
+### jsonDom~noConflict() ⇒ [<code>jsonDom</code>](#module_jsonDom..jsonDom)
 Return a reference to this library while preserving the original same-named library
 
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-<a name="module_dom/core..elementHasAttribute"></a>
+**Kind**: inner method of [<code>jsonDom</code>](#module_jsonDom)  
+<a name="module_jsonDom..jsonDom"></a>
 
-### dom/core~elementHasAttribute(element, key, attr) ⇒ <code>boolean</code> \| <code>Object.&lt;string, number&gt;</code>
-Check if the provided Element has the provided attributes.
-Returns a boolean, or an array of 1 / 0 / -1 based on the comparison status.
+### jsonDom~jsonDom : [<code>jsonDom</code>](#module_jsonDom) \| [<code>collections</code>](#module_collections) \| [<code>jDom</code>](#module_jDom) \| <code>module:pseudoDom</code> \| <code>module:matrix</code>
+All methods exported from this module are encapsulated within jsonDom.
 
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
+**Kind**: inner typedef of [<code>jsonDom</code>](#module_jsonDom)  
+<a name="module_collections"></a>
 
-| Param | Type | Description |
-| --- | --- | --- |
-| element | <code>HTMLElement</code> \| <code>module:pseudoDom/objects.PseudoHTMLElement</code> | Receive the element to be assessed |
-| key | <code>string</code> | The attribute name to search for |
-| attr | <code>string</code> \| <code>Object</code> | The expected value of the attribute to compare against |
+## collections
+All of the JSON DOM system functions for creating JSON components.
 
-<a name="module_dom/core..elementChanges"></a>
-
-### dom/core~elementChanges(config) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-Given a jDomObjects.DomItem as config, this function will return the changes to be applied
-to the stored element property.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| config | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem having config changes to be applied to its element |
-
-<a name="module_dom/core..setAttribute"></a>
-
-### dom/core~setAttribute(config, name, value) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-Set an attribute on the element within a DomItem, then return the config data.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| config | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem having config changes to be applied to its element |
-| name | <code>string</code> | The attribute name to be updated |
-| value | <code>string</code> | The new value to be applied to the attribute |
-
-<a name="module_dom/core..setAndReturnAttribute"></a>
-
-### dom/core~setAndReturnAttribute(config, name, value) ⇒ <code>string</code>
-Set an attribute on the element within a DomItem, then return the attribute.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| config | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem having config changes to be applied to its element |
-| name | <code>string</code> | The attribute name to be updated |
-| value | <code>string</code> | The new value to be applied to the attribute |
-
-<a name="module_dom/core..updateElement"></a>
-
-### dom/core~updateElement(config) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-Update a single objects.DomItem element with the provided attributes / style / elementProperties
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| config | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem having config changes to be applied to its element |
-
-<a name="module_dom/core..updateElements"></a>
-
-### dom/core~updateElements(config) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-Generate HTML element data for each object in the matrix
-WARNING: This is a recursive function.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| config | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem having child DomItems with config changes to be applied |
-
-<a name="module_dom/core..generateElement"></a>
-
-### dom/core~generateElement(config) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-Create an HTML element based on the provided attributes and return the element as an Object.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| config | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem requiring matching HTML element property |
-
-<a name="module_dom/core..bindElement"></a>
-
-### dom/core~bindElement(item) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-Generate HTML element data for a provided DomItem
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem needing element to be generated |
-
-<a name="module_dom/core..appendHTML"></a>
-
-### dom/core~appendHTML(item, parent) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-Append a new DomItem which has the element generated.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | A new DomItem to append |
-| parent | [<code>DomItem</code>](#module_dom/objects.DomItem) | The parent to have DomItems appended |
-
-<a name="module_dom/core..removeChild"></a>
-
-### dom/core~removeChild(item, parent) ⇒ <code>Array.&lt;(HTMLElement\|PseudoHTMLElement)&gt;</code>
-Reverse of appendHTML, remove a DomItem and have the associated element removed.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem with HTMLElement to be removed |
-| parent | [<code>DomItem</code>](#module_dom/objects.DomItem) | The parent of the items |
-
-<a name="module_dom/core..registerListener"></a>
-
-### dom/core~registerListener(listener, [name], [parent]) ⇒ <code>Object.&lt;string, module:dom/objects~listenerFunction&gt;</code>
-Register a single listener function as part of the root jDomObjects.DomItem.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| listener | [<code>listenerFunction</code>](#module_dom/objects..listenerFunction) \| <code>function</code> | Provide a function which will be called when a Dom event is triggered. |
-| [name] | <code>string</code> | The name of the listener to be used. |
-| [parent] | [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) \| <code>Object</code> | The parent DomItem which is DomItemRoot which stores has eventListeners property. |
-
-<a name="module_dom/core..registerListeners"></a>
-
-### dom/core~registerListeners(listeners, [parent]) ⇒ [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) \| <code>Object</code>
-Register multiple listeners from an array of functions.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| listeners | <code>Array.&lt;(module:dom/objects~listenerFunction\|function())&gt;</code> | An array of functions to be used as the registered event listeners. |
-| [parent] | [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) \| <code>Object</code> | The parent DomItem which is DomItemRoot which stores has eventListeners property. |
-
-<a name="module_dom/core..retrieveListener"></a>
-
-### dom/core~retrieveListener(listenerName, [parent]) ⇒ [<code>listenerFunction</code>](#module_dom/objects..listenerFunction) \| <code>function</code> \| <code>Object</code>
-Based on the provided function / listener name, retrieve the associated function from the root jDomObjects.DomItem
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| listenerName | <code>string</code> | The name of one of the registered listener functions. |
-| [parent] | [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) \| <code>Object</code> | The parent DomItem which is DomItemRoot which stores has eventListeners property. |
-
-<a name="module_dom/core..assignListener"></a>
-
-### dom/core~assignListener(trigger, elem, fn, options) ⇒ [<code>listenerFunction</code>](#module_dom/objects..listenerFunction) \| <code>function</code>
-Provide compatibility for assigning listeners.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| trigger | <code>string</code> | The name of the event which will trigger the listenerFunction on the element. |
-| elem | <code>HTMLElement</code> \| <code>module:pseudoDom/objects~PseudoHTMLElement</code> | An element to append the listener onto |
-| fn | [<code>listenerFunction</code>](#module_dom/objects..listenerFunction) \| <code>function</code> | The function which will be invoked when the event is triggered |
-| options | [<code>EventListenerOptions</code>](#module_dom/objects.EventListenerOptions) | Additional options to how the event will be fired |
-
-<a name="module_dom/core..appendListeners"></a>
-
-### dom/core~appendListeners(item, event, listener, args, options) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-When there may be extra data needed for the event listener function call, this function may be used as a helper
-to pass the additional data. Also, if it is desirable to add event listeners during run-time, this function can be
-used to achieve this.
-WARNING: This is a recursive function.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem which will have its eventListeners updated. |
-| event | <code>string</code> | The string name of the event trigger type to be added. |
-| listener | <code>string</code> | The name of the function to be called once the event is triggered. |
-| args | <code>Object</code> | Additional arguments to be used in the listener function. |
-| options | [<code>EventListenerOptions</code>](#module_dom/objects.EventListenerOptions) | The strategy used when the event is triggered. |
-
-<a name="module_dom/core..bindListeners"></a>
-
-### dom/core~bindListeners(item) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-Based on the eventListeners property of the provided item, bind the
-listeners to the associated element property for the provided jDomObjects.DomItem.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem which may have eventListeners to apply to its element |
-
-<a name="module_dom/core..bindAllListeners"></a>
-
-### dom/core~bindAllListeners(item) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-Based on the eventListeners property of the provided item, bind the listeners to the associated element property
-for each item in the jDomObjects.DomItem structure.
-WARNING: This is a recursive function.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem with an associated HTMLElement to have a listener assigned |
-
-<a name="module_dom/core..gatherChildItems"></a>
-
-### dom/core~gatherChildItems(item, test) ⇒ [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem)
-A selector function for retrieving existing child jDomObjects.DomItems from the given parent item.
-This function will check all the children starting from and including item, and run the test function on each
-child encountered. The return array contains children returned from the test from all levels.
-WARNING: This is a recursive function.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem which may have child items matching the attribute criteria |
-| test | [<code>testChildItem</code>](#module_dom/core..testChildItem) | Assess each child, and return the ones which qualify |
-
-<a name="module_dom/core..getChildrenFromAttribute"></a>
-
-### dom/core~getChildrenFromAttribute(attr, value, item) ⇒ [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem)
-A selector function for retrieving existing child jDomObjects.DomItems from the given parent item.
-This function will check all the children starting from item, and scan the attributes
-property for matches. The returned array contains children matching from all levels.
-WARNING: This calls a recursive function.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| attr | <code>string</code> | Provide the attribute name to be searched |
-| value | <code>\*</code> | The attribute value to be compared |
-| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem which may have child items matching the attribute criteria |
-
-<a name="module_dom/core..getChildrenByClass"></a>
-
-### dom/core~getChildrenByClass() ⇒ [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem)
-Helper for getting all jDomObjects.DomItems starting at parent and having specified className attribute
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-<a name="module_dom/core..getChildrenByName"></a>
-
-### dom/core~getChildrenByName() ⇒ [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem)
-Helper for getting all jDomObjects.DomItems starting at parent and having specified name attribute
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-<a name="module_dom/core..getParentsFromAttribute"></a>
-
-### dom/core~getParentsFromAttribute(attr, value, item) ⇒ <code>Array</code>
-A selector function for retrieving existing child jDomObjects.DomItems from the given parent item.
-This function will check all the children starting from item, and scan the attributes
-property for matches. The return array contains children matching from all levels.
-WARNING: This is a recursive function.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| attr | <code>string</code> | Provide the attribute name to be searched |
-| value | <code>\*</code> | The attribute value to be compared |
-| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem which may have parent items matching the attribute criteria |
-
-<a name="module_dom/core..getParentsByClass"></a>
-
-### dom/core~getParentsByClass() ⇒ <code>Array</code>
-Helper for getting all jDomObjects.DomItems starting at child and having specified className attribute
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-<a name="module_dom/core..getParentsByName"></a>
-
-### dom/core~getParentsByName() ⇒ <code>Array</code>
-Helper for getting all jDomObjects.DomItems starting at child and having specified name attribute
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-<a name="module_dom/core..getParentsByTagName"></a>
-
-### dom/core~getParentsByTagName() ⇒ <code>Array</code>
-Helper for getting all jDomObjects.DomItems starting at child and having specified tagName
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-<a name="module_dom/core..getTopParentItem"></a>
-
-### dom/core~getTopParentItem(item) ⇒ [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot)
-Get the upper parentItem for the provided child. (usually this is a jDomObjects.documentItem reference)
-WARNING: This is a recursive function.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem which we want the highest parent item of |
-
-<a name="module_dom/core..renderHTML"></a>
-
-### dom/core~renderHTML(item, parent) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-This is a shortcut for building the specified HTML elements and appending them to the Dom
-with associated listeners.
-The final argument is specific for adding event listeners with options.
-
-**Kind**: inner method of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem that we want to render the element for |
-| parent | [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) | The Base Dom item which is the parent of all the items |
-
-<a name="module_dom/core..document"></a>
-
-### dom/core~document : <code>HTMLDocument</code> \| <code>module:pseudoDom/objects.PseudoHTMLDocument</code>
-Verify availability of document
-
-**Kind**: inner typedef of [<code>dom/core</code>](#module_dom/core)  
-<a name="module_dom/core..root"></a>
-
-### dom/core~root : <code>Window</code> \| <code>module:pseudoDom/objects.PseudoEventTarget</code>
-**Kind**: inner typedef of [<code>dom/core</code>](#module_dom/core)  
-**See**: module:pseudoDom/objects.generate  
-<a name="module_dom/core..functionalHelpers"></a>
-
-### dom/core~functionalHelpers : <code>\*</code> \| <code>module:functionalHelpers</code>
-Verify availability of functionalHelpers
-
-**Kind**: inner typedef of [<code>dom/core</code>](#module_dom/core)  
-<a name="module_dom/core..jDomObjects"></a>
-
-### dom/core~jDomObjects : <code>\*</code> \| [<code>dom/objects</code>](#module_dom/objects)
-Verify availability of jDomObjects
-
-**Kind**: inner typedef of [<code>dom/core</code>](#module_dom/core)  
-<a name="module_dom/core..testChildItem"></a>
-
-### dom/core~testChildItem ⇒ [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem)
-To be used with jDomCore.gatherChildItems which will start at item and recurse over all child items, this test
-will then choose which child items will be returned as the result of the test.
-
-**Kind**: inner typedef of [<code>dom/core</code>](#module_dom/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| item | [<code>DomItem</code>](#module_dom/objects.DomItem) \| <code>Object</code> | The DomItem is the child being tested |
-| gatheredResults | [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem) | All of the child items gathered based on the test |
-
-<a name="module_dom/objects"></a>
-
-## dom/objects : <code>Object</code>
-All methods exported from this module are encapsulated within jDomObjects
-
+**Version**: 1.0.0  
 **Author**: Joshua Heagle <joshuaheagle@gmail.com>  
 
-* [dom/objects](#module_dom/objects) : <code>Object</code>
-    * _static_
-        * [.UseCapture](#module_dom/objects.UseCapture) : <code>boolean</code>
-        * [.OptionsObject](#module_dom/objects.OptionsObject) : <code>Object</code>
-        * [.EventListenerOptions](#module_dom/objects.EventListenerOptions) : [<code>OptionsObject</code>](#module_dom/objects.OptionsObject) \| [<code>UseCapture</code>](#module_dom/objects.UseCapture)
-        * [.DomItem](#module_dom/objects.DomItem) : <code>Object</code>
-        * [.DomItemRoot](#module_dom/objects.DomItemRoot) : [<code>DomItem</code>](#module_dom/objects.DomItem)
-    * _inner_
-        * [~documentItem](#module_dom/objects..documentItem) : [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot)
-        * [~noConflict()](#module_dom/objects..noConflict) ⇒ <code>jDomObjects</code>
-        * [~createDomItem(...attributes)](#module_dom/objects..createDomItem) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-        * [~documentDomItem(listeners, [rootItem])](#module_dom/objects..documentDomItem) ⇒ [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) \| [<code>DomItem</code>](#module_dom/objects.DomItem)
-        * [~functionalHelpers](#module_dom/objects..functionalHelpers) : <code>\*</code> \| <code>module:functionalHelpers</code>
-        * [~listenerFunction](#module_dom/objects..listenerFunction) : <code>function</code>
-        * [~EventListener](#module_dom/objects..EventListener) : <code>Object</code>
-        * [~DomItemHead](#module_dom/objects..DomItemHead) : [<code>DomItem</code>](#module_dom/objects.DomItem)
-        * [~DomItemBody](#module_dom/objects..DomItemBody) : [<code>DomItem</code>](#module_dom/objects.DomItem)
+* [collections](#module_collections)
+    * [~root](#module_collections..root)
+    * [~previousCollections](#module_collections..previousCollections) : <code>module</code> \| <code>\*</code>
+    * [~noConflict()](#module_collections..noConflict) ⇒ [<code>collections</code>](#module_collections..collections)
+    * [~collections](#module_collections..collections) : [<code>collections</code>](#module_collections) \| [<code>collections</code>](#module_collections) \| [<code>jDom</code>](#module_jDom) \| <code>module:pseudoDom</code> \| <code>module:matrix</code>
 
-<a name="module_dom/objects.UseCapture"></a>
+<a name="module_collections..root"></a>
 
-### dom/objects.UseCapture : <code>boolean</code>
-A Boolean indicating whether events of this type will be dispatched to the registered listerFunction before being
-dispatched to any EventTarget beneath it in the Dom tree.
+### collections~root
+Store a reference to this scope which will be Window if rendered via browser
 
-**Kind**: static typedef of [<code>dom/objects</code>](#module_dom/objects)  
-<a name="module_dom/objects.OptionsObject"></a>
+**Kind**: inner constant of [<code>collections</code>](#module_collections)  
+<a name="module_collections..previousCollections"></a>
 
-### dom/objects.OptionsObject : <code>Object</code>
-OptionsObject defines the structure for the options to be passed to addEventListener
+### collections~previousCollections : <code>module</code> \| <code>\*</code>
+Store reference to any pre-existing module of the same name
 
-**Kind**: static typedef of [<code>dom/objects</code>](#module_dom/objects)  
-**Properties**
+**Kind**: inner constant of [<code>collections</code>](#module_collections)  
+<a name="module_collections..noConflict"></a>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| capture | <code>boolean</code> | Indicate that events of this type will be dispatched to the registered listenerFunction before being dispatched to any EventTarget beneath it in the Dom tree. |
-| once | <code>boolean</code> | Indicate that the listenerFunction should be invoked at most once after being added. If 'true', the listenerFunction would be automatically removed when invoked. |
-| passive | <code>boolean</code> | Indicate that, if 'true', indicates that the listenerFunction will never call preventDefault(). If preventDefault() is called, the user agent will do nothing with it. |
-
-<a name="module_dom/objects.EventListenerOptions"></a>
-
-### dom/objects.EventListenerOptions : [<code>OptionsObject</code>](#module_dom/objects.OptionsObject) \| [<code>UseCapture</code>](#module_dom/objects.UseCapture)
-EventListenerOptions is either a boolean as UseCapture or an Object as OptionsObject
-
-**Kind**: static typedef of [<code>dom/objects</code>](#module_dom/objects)  
-<a name="module_dom/objects.DomItem"></a>
-
-### dom/objects.DomItem : <code>Object</code>
-DomItem defines the structure for a single element in the Dom
-
-**Kind**: static typedef of [<code>dom/objects</code>](#module_dom/objects)  
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| tagName | <code>string</code> | This is any valid HTMLElement tagName |
-| attributes | <code>Object.&lt;string, (string\|Object)&gt;</code> | All potential HTML element attributes can be defined here (including the defaulted style object) |
-| element | <code>Object</code> \| <code>HTMLElement</code> \| <code>module:pseudoDom/objects.PseudoHTMLElement</code> | A reference to an existing HTML element will be stored here (default empty object) |
-| eventListeners | <code>Object.&lt;Event, module:dom/objects~EventListener&gt;</code> | An object holding all events to be registered for the associated element |
-| parentItem | [<code>DomItem</code>](#module_dom/objects.DomItem) | A reference to the parent of this object |
-| children | [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem) | A reference to an array of child objects |
-
-<a name="module_dom/objects.DomItemRoot"></a>
-
-### dom/objects.DomItemRoot : [<code>DomItem</code>](#module_dom/objects.DomItem)
-DomItemRoot defines the structure for a single element in the Dom
-
-**Kind**: static typedef of [<code>dom/objects</code>](#module_dom/objects)  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| [tagName] | <code>string</code> | <code>&quot;html&quot;</code> | This is set to the string html referring to the HTML element of the same name |
-| attributes | <code>Object</code> |  | Empty object as attributes placeholder |
-| element | <code>HTMLDocument</code> \| <code>module:pseudoDom/objects.PseudoHTMLDocument</code> |  | A reference to the entire Document |
-| eventListeners | <code>Object.&lt;string, module:dom/objects~listenerFunction&gt;</code> |  | all registered listeners stored as listener name and function pairs |
-| children | <code>Array.&lt;(module:dom/objects~DomItemHead\|module:dom/objects~DomItemBody)&gt;</code> |  | Two references: for head and body |
-| head | [<code>DomItemHead</code>](#module_dom/objects..DomItemHead) |  | A specific reference to head item |
-| body | [<code>DomItemBody</code>](#module_dom/objects..DomItemBody) |  | A specific reference to body item |
-
-<a name="module_dom/objects..documentItem"></a>
-
-### dom/objects~documentItem : [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot)
-Create reference for storing document changes
-
-**Kind**: inner property of [<code>dom/objects</code>](#module_dom/objects)  
-<a name="module_dom/objects..noConflict"></a>
-
-### dom/objects~noConflict() ⇒ <code>jDomObjects</code>
+### collections~noConflict() ⇒ [<code>collections</code>](#module_collections..collections)
 Return a reference to this library while preserving the original same-named library
 
-**Kind**: inner method of [<code>dom/objects</code>](#module_dom/objects)  
-<a name="module_dom/objects..createDomItem"></a>
+**Kind**: inner method of [<code>collections</code>](#module_collections)  
+<a name="module_collections..collections"></a>
 
-### dom/objects~createDomItem(...attributes) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-This is the basic Object for representing the Dom in a virtual perspective. All incoming attributes will be merged
-to the specified format.
+### collections~collections : [<code>collections</code>](#module_collections) \| [<code>collections</code>](#module_collections) \| [<code>jDom</code>](#module_jDom) \| <code>module:pseudoDom</code> \| <code>module:matrix</code>
+All methods exported from this module are encapsulated within collections.
 
-**Kind**: inner method of [<code>dom/objects</code>](#module_dom/objects)  
+**Kind**: inner typedef of [<code>collections</code>](#module_collections)  
+<a name="module_jDom"></a>
 
-| Param | Type | Description |
-| --- | --- | --- |
-| ...attributes | <code>Object</code> | DomItem-like object(s) to be merged as a DomItem |
+## jDom
+All of the JSON DOM system functions for creating JSON components.
 
-<a name="module_dom/objects..documentDomItem"></a>
-
-### dom/objects~documentDomItem(listeners, [rootItem]) ⇒ [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) \| [<code>DomItem</code>](#module_dom/objects.DomItem)
-Return a DomItem reference to the document. The rootItem argument is a system variable and not necessary to
-implement.
-
-**Kind**: inner method of [<code>dom/objects</code>](#module_dom/objects)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| listeners | <code>Object.&lt;string, module:dom/objects~listenerFunction&gt;</code> | An object of all event listeners to be registered in the Dom |
-| [rootItem] | [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) \| [<code>DomItem</code>](#module_dom/objects.DomItem) | This is a reference to DomItemRoot which will be defaulted with [initRoot](initRoot) |
-
-<a name="module_dom/objects..functionalHelpers"></a>
-
-### dom/objects~functionalHelpers : <code>\*</code> \| <code>module:functionalHelpers</code>
-Verify availability of functionalHelpers
-
-**Kind**: inner typedef of [<code>dom/objects</code>](#module_dom/objects)  
-<a name="module_dom/objects..listenerFunction"></a>
-
-### dom/objects~listenerFunction : <code>function</code>
-This is the standard definition of a listenerFunction to be used
-
-**Kind**: inner typedef of [<code>dom/objects</code>](#module_dom/objects)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| e | <code>Event</code> \| <code>module:pseudoDom/objects.PseudoEvent</code> | The event object passed to the listener |
-| target | [<code>DomItem</code>](#module_dom/objects.DomItem) | The element which triggered the event |
-| [...args] | <code>\*</code> | Optional args as required by the listener |
-
-<a name="module_dom/objects..EventListener"></a>
-
-### dom/objects~EventListener : <code>Object</code>
-An EventListener Object to be appended to the element within the DomItem
-
-**Kind**: inner typedef of [<code>dom/objects</code>](#module_dom/objects)  
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| listenerFunc | <code>string</code> | A string function name matching an existing [listenerFunction](#module_dom/objects..listenerFunction). |
-| listenerArgs | <code>Object</code> | Additional args required for the listener function |
-| listenerOptions | [<code>EventListenerOptions</code>](#module_dom/objects.EventListenerOptions) | Provides support for options parameter of addEventListener, or false for default |
-
-<a name="module_dom/objects..DomItemHead"></a>
-
-### dom/objects~DomItemHead : [<code>DomItem</code>](#module_dom/objects.DomItem)
-DomItemHead defines the structure for a single element in the Dom
-
-**Kind**: inner typedef of [<code>dom/objects</code>](#module_dom/objects)  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| [tagName] | <code>string</code> | <code>&quot;head&quot;</code> | This is set to the string head referring to the HTML element of the same name |
-| attributes | <code>Object.&lt;string, (string\|Object)&gt;</code> |  | All potential HTML element attributes can be defined here |
-| element | <code>HTMLHeadElement</code> \| <code>module:pseudoDom/objects.PseudoHTMLElement</code> |  | A reference to the HTML head element |
-| children | [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem) |  | A reference to an array of child objects |
-
-<a name="module_dom/objects..DomItemBody"></a>
-
-### dom/objects~DomItemBody : [<code>DomItem</code>](#module_dom/objects.DomItem)
-DomItemBody defines the structure for a single element in the Dom
-
-**Kind**: inner typedef of [<code>dom/objects</code>](#module_dom/objects)  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| [tagName] | <code>string</code> | <code>&quot;body&quot;</code> | This is set to the string body referring to the HTML element of the same name |
-| attributes | <code>Object.&lt;string, (string\|Object)&gt;</code> |  | All potential HTML element attributes can be defined here |
-| element | <code>HTMLBodyElement</code> \| <code>module:pseudoDom/objects.PseudoHTMLElement</code> |  | A reference to the HTML body element |
-| children | [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem) |  | A reference to an array of child objects |
-
-<a name="module_matrix/core"></a>
-
-## matrix/core : <code>Object</code>
-All methods exported from this module are encapsulated within jDomMatrixCore.
-
+**Version**: 1.0.0  
 **Author**: Joshua Heagle <joshuaheagle@gmail.com>  
 
-* [matrix/core](#module_matrix/core) : <code>Object</code>
-    * [~noConflict()](#module_matrix/core..noConflict) ⇒ <code>jDomMatrixCore</code>
-    * [~bindPointData(item, pnt)](#module_matrix/core..bindPointData) ⇒ [<code>MatrixColumn</code>](#module_matrix/objects.MatrixColumn) \| [<code>MatrixRow</code>](#module_matrix/objects.MatrixRow)
-    * [~nextCell(pnt, dir)](#module_matrix/core..nextCell) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
-    * [~pointDifference(start, end)](#module_matrix/core..pointDifference) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
-    * [~areEqualPoints(p1, p2)](#module_matrix/core..areEqualPoints) ⇒ <code>boolean</code>
-    * [~getHighestAbsoluteCoordinate(pnt)](#module_matrix/core..getHighestAbsoluteCoordinate) ⇒ [<code>coordinate</code>](#module_matrix/objects.coordinate)
-    * [~getFirstAxisOfCoordinate(pnt, coordinate)](#module_matrix/core..getFirstAxisOfCoordinate) ⇒ <code>false</code> \| [<code>axis</code>](#module_matrix/objects.axis)
-    * [~pointsToDirection(start, end)](#module_matrix/core..pointsToDirection) ⇒ [<code>Direction</code>](#module_matrix/objects.Direction)
-    * [~randomStart(length, dir, [lengthLimits])](#module_matrix/core..randomStart) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
-    * [~lineEndPoint(start, length, dir)](#module_matrix/core..lineEndPoint) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
-    * [~getPointsLine(start, end, [line])](#module_matrix/core..getPointsLine) ⇒ [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point)
-    * [~getPointsLines(lines)](#module_matrix/core..getPointsLines) ⇒ <code>Array.&lt;Array.&lt;module:matrix/objects.Point&gt;&gt;</code>
-    * [~testPointsBetween(start, end, matrix, func, [inclusive])](#module_matrix/core..testPointsBetween) ⇒ <code>Object.&lt;string, Array.&lt;module:matrix/objects.Point&gt;&gt;</code>
-    * [~checkInBetween(...args)](#module_matrix/core..checkInBetween) ⇒ <code>boolean</code>
-    * [~getAxisLengths(matrix)](#module_matrix/core..getAxisLengths) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
-    * [~randDirection([useCoordinates])](#module_matrix/core..randDirection) ⇒ [<code>Direction</code>](#module_matrix/objects.Direction)
-    * [~checkValidPoint(pnt, matrix)](#module_matrix/core..checkValidPoint) ⇒ <code>boolean</code>
-    * [~getDomItemFromPoint(pnt, matrix)](#module_matrix/core..getDomItemFromPoint) ⇒ <code>false</code> \| [<code>DomItem</code>](#module_dom/objects.DomItem)
-    * [~getAllPoints(matrix, [allPoints])](#module_matrix/core..getAllPoints) ⇒ [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point)
-    * [~adjacentPoints(pnt, matrix)](#module_matrix/core..adjacentPoints) ⇒ [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point)
-    * [~adjacentEdgePoints(pnt, matrix)](#module_matrix/core..adjacentEdgePoints) ⇒ [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point)
-    * [~getPointFromElement(elem)](#module_matrix/core..getPointFromElement) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
-    * [~getDomItemFromElement(elem, matrix)](#module_matrix/core..getDomItemFromElement) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-    * [~functionalHelpers](#module_matrix/core..functionalHelpers) : <code>\*</code> \| <code>module:functionalHelpers</code>
-    * [~jDomMatrixObjects](#module_matrix/core..jDomMatrixObjects) : <code>\*</code> \| [<code>matrix/objects</code>](#module_matrix/objects)
-    * [~testPointStatus](#module_matrix/core..testPointStatus) ⇒ <code>boolean</code>
+* [jDom](#module_jDom)
+    * [~root](#module_jDom..root)
+    * [~previousJDom](#module_jDom..previousJDom) : <code>module</code> \| <code>\*</code>
+    * [~noConflict()](#module_jDom..noConflict) ⇒ [<code>jDom</code>](#module_jDom..jDom)
+    * [~jDom](#module_jDom..jDom) : [<code>jDom</code>](#module_jDom) \| <code>module:jDomCore</code> \| <code>module:jDomObjects</code>
 
-<a name="module_matrix/core..noConflict"></a>
+<a name="module_jDom..root"></a>
 
-### matrix/core~noConflict() ⇒ <code>jDomMatrixCore</code>
+### jDom~root
+Store a reference to this scope which will be Window if rendered via browser
+
+**Kind**: inner constant of [<code>jDom</code>](#module_jDom)  
+<a name="module_jDom..previousJDom"></a>
+
+### jDom~previousJDom : <code>module</code> \| <code>\*</code>
+Store reference to any pre-existing module of the same name
+
+**Kind**: inner constant of [<code>jDom</code>](#module_jDom)  
+<a name="module_jDom..noConflict"></a>
+
+### jDom~noConflict() ⇒ [<code>jDom</code>](#module_jDom..jDom)
 Return a reference to this library while preserving the original same-named library
 
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-<a name="module_matrix/core..bindPointData"></a>
+**Kind**: inner method of [<code>jDom</code>](#module_jDom)  
+<a name="module_jDom..jDom"></a>
 
-### matrix/core~bindPointData(item, pnt) ⇒ [<code>MatrixColumn</code>](#module_matrix/objects.MatrixColumn) \| [<code>MatrixRow</code>](#module_matrix/objects.MatrixRow)
-Generate point data for each item in the matrix
-WARNING: This is a recursive function.
+### jDom~jDom : [<code>jDom</code>](#module_jDom) \| <code>module:jDomCore</code> \| <code>module:jDomObjects</code>
+All methods exported from this module are encapsulated within jDom.
 
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
+**Kind**: inner typedef of [<code>jDom</code>](#module_jDom)  
+<a name="module_jDomMatrix"></a>
 
-| Param | Type | Description |
-| --- | --- | --- |
-| item | [<code>MatrixColumn</code>](#module_matrix/objects.MatrixColumn) \| [<code>MatrixRow</code>](#module_matrix/objects.MatrixRow) | A special DomItem which is either a layer, row, or column in a matrix. |
-| pnt | [<code>Point</code>](#module_matrix/objects.Point) | A point to be added to a specific Matrix Column |
+## jDomMatrix
+Add matrix ability using JSON DOM components
 
-<a name="module_matrix/core..nextCell"></a>
-
-### matrix/core~nextCell(pnt, dir) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
-Based on provided point and point direction generate next point.
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| pnt | [<code>Point</code>](#module_matrix/objects.Point) | Provide the current / initial point |
-| dir | [<code>Direction</code>](#module_matrix/objects.Direction) | Provide the direction to be applied to find the next point |
-
-<a name="module_matrix/core..pointDifference"></a>
-
-### matrix/core~pointDifference(start, end) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
-Based on provided point and another point, get a point with the difference between each axis
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| start | [<code>Point</code>](#module_matrix/objects.Point) | The first point to compare |
-| end | [<code>Point</code>](#module_matrix/objects.Point) | The other point to be compared |
-
-<a name="module_matrix/core..areEqualPoints"></a>
-
-### matrix/core~areEqualPoints(p1, p2) ⇒ <code>boolean</code>
-Given two points, compare the x, y, and z of each to see if they are the same
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| p1 | [<code>Point</code>](#module_matrix/objects.Point) | The first point to compare |
-| p2 | [<code>Point</code>](#module_matrix/objects.Point) | The other point to be compared |
-
-<a name="module_matrix/core..getHighestAbsoluteCoordinate"></a>
-
-### matrix/core~getHighestAbsoluteCoordinate(pnt) ⇒ [<code>coordinate</code>](#module_matrix/objects.coordinate)
-Return the first coordinate number with the highest absolute value.
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| pnt | [<code>Point</code>](#module_matrix/objects.Point) | A Point to be assessed. |
-
-<a name="module_matrix/core..getFirstAxisOfCoordinate"></a>
-
-### matrix/core~getFirstAxisOfCoordinate(pnt, coordinate) ⇒ <code>false</code> \| [<code>axis</code>](#module_matrix/objects.axis)
-Having provided a coordinate number, find all corresponding axis, return the first match.
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| pnt | [<code>Point</code>](#module_matrix/objects.Point) | The Point containing a matching coordinate. |
-| coordinate | [<code>coordinate</code>](#module_matrix/objects.coordinate) | The coordinate to search for. |
-
-<a name="module_matrix/core..pointsToDirection"></a>
-
-### matrix/core~pointsToDirection(start, end) ⇒ [<code>Direction</code>](#module_matrix/objects.Direction)
-Retrieve a directional coordinate value based on two provided points
-(directions consist of two zero coordinates and a single coordinate of 1 / -1)
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| start | [<code>Point</code>](#module_matrix/objects.Point) | The first point to assess. |
-| end | [<code>Point</code>](#module_matrix/objects.Point) | The other point to assess. |
-
-<a name="module_matrix/core..randomStart"></a>
-
-### matrix/core~randomStart(length, dir, [lengthLimits]) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
-Generate a random starting point for a line with the provided length and direction.
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| length | <code>number</code> |  | The intended length the resulting line. |
-| dir | [<code>Direction</code>](#module_matrix/objects.Direction) |  | The direction the line will extend towards. |
-| [lengthLimits] | [<code>Point</code>](#module_matrix/objects.Point) | <code>{x: 10, y: 10, z: 10}</code> | The maximum grid size. |
-
-<a name="module_matrix/core..lineEndPoint"></a>
-
-### matrix/core~lineEndPoint(start, length, dir) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
-Given a start point, line length, and a direction, generate the end point of the line.
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| start | [<code>Point</code>](#module_matrix/objects.Point) | The selected starting point. |
-| length | <code>number</code> | The total length of the line. |
-| dir | [<code>Direction</code>](#module_matrix/objects.Direction) | The direction of the line. |
-
-<a name="module_matrix/core..getPointsLine"></a>
-
-### matrix/core~getPointsLine(start, end, [line]) ⇒ [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point)
-Having provided two points, return an array of transition points connecting 'start' and 'end'. Return array
-includes 'start' (line[0]) and 'end' (line[line.length-1])
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| start | [<code>Point</code>](#module_matrix/objects.Point) |  | The starting location of the line. |
-| end | [<code>Point</code>](#module_matrix/objects.Point) |  | The final line destination. |
-| [line] | [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point) | <code>[]</code> | The resulting line to connect start and end. |
-
-<a name="module_matrix/core..getPointsLines"></a>
-
-### matrix/core~getPointsLines(lines) ⇒ <code>Array.&lt;Array.&lt;module:matrix/objects.Point&gt;&gt;</code>
-Takes an array of arrays containing two points each. Calls getPointsLine for each array of points. Returns an
-array of all points captured for each line segment
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| lines | <code>Array.&lt;Array.&lt;module:matrix/objects.Point&gt;&gt;</code> | An array of lines only containing start and end. |
-
-<a name="module_matrix/core..testPointsBetween"></a>
-
-### matrix/core~testPointsBetween(start, end, matrix, func, [inclusive]) ⇒ <code>Object.&lt;string, Array.&lt;module:matrix/objects.Point&gt;&gt;</code>
-Given a start and end point, test the points between with the provided function. Return the points as part of true
-and / or false properties based on the test.
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| start | [<code>Point</code>](#module_matrix/objects.Point) |  | The beginning point to check. |
-| end | [<code>Point</code>](#module_matrix/objects.Point) |  | The terminating point to check between. |
-| matrix | [<code>Matrix</code>](#module_matrix/objects.Matrix) |  | The grid of points all the points can exist on. |
-| func | [<code>testPointStatus</code>](#module_matrix/core..testPointStatus) |  | The test function which will return true or false. |
-| [inclusive] | <code>boolean</code> | <code>true</code> | Choose whether to include or exclude the start and end points in the results. |
-
-<a name="module_matrix/core..checkInBetween"></a>
-
-### matrix/core~checkInBetween(...args) ⇒ <code>boolean</code>
-Given two points, check the cells between using specified function.
-When inclusive is set to true the provided start and end points will also be tested
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| ...args | <code>\*</code> | These args match the parameter list for [testPointsBetween](#module_matrix/core..testPointsBetween) |
-
-<a name="module_matrix/core..getAxisLengths"></a>
-
-### matrix/core~getAxisLengths(matrix) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
-Return point-like object with all of the axis lengths.
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| matrix | [<code>Matrix</code>](#module_matrix/objects.Matrix) | The matrix to get the dimensions of. |
-
-<a name="module_matrix/core..randDirection"></a>
-
-### matrix/core~randDirection([useCoordinates]) ⇒ [<code>Direction</code>](#module_matrix/objects.Direction)
-Get random direction point
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [useCoordinates] | [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point) | <code>[]</code> | An array of possible directions. |
-
-<a name="module_matrix/core..checkValidPoint"></a>
-
-### matrix/core~checkValidPoint(pnt, matrix) ⇒ <code>boolean</code>
-Test if the provided point exists in the matrix.
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| pnt | [<code>Point</code>](#module_matrix/objects.Point) | Provide a point to validate. |
-| matrix | [<code>Matrix</code>](#module_matrix/objects.Matrix) | The matrix that contains valid points. |
-
-<a name="module_matrix/core..getDomItemFromPoint"></a>
-
-### matrix/core~getDomItemFromPoint(pnt, matrix) ⇒ <code>false</code> \| [<code>DomItem</code>](#module_dom/objects.DomItem)
-Retrieve the DomItem associated with the provided point
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| pnt | [<code>Point</code>](#module_matrix/objects.Point) | A point corresponding to a DomItem. |
-| matrix | [<code>Matrix</code>](#module_matrix/objects.Matrix) | The matrix containing the point. |
-
-<a name="module_matrix/core..getAllPoints"></a>
-
-### matrix/core~getAllPoints(matrix, [allPoints]) ⇒ [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point)
-Return an array of all the points in the matrix
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| matrix | [<code>Matrix</code>](#module_matrix/objects.Matrix) \| [<code>MatrixColumn</code>](#module_matrix/objects.MatrixColumn) |  | The matrix to retrieve points from. |
-| [allPoints] | [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point) | <code>[]</code> | The array of points to be returned |
-
-<a name="module_matrix/core..adjacentPoints"></a>
-
-### matrix/core~adjacentPoints(pnt, matrix) ⇒ [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point)
-Return all valid points surrounding a provided point
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| pnt | [<code>Point</code>](#module_matrix/objects.Point) | The point we want to find adjacent points for. |
-| matrix | [<code>Matrix</code>](#module_matrix/objects.Matrix) | The matrix having the point. |
-
-<a name="module_matrix/core..adjacentEdgePoints"></a>
-
-### matrix/core~adjacentEdgePoints(pnt, matrix) ⇒ [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point)
-Return all points which touch on edges (not diagonal)
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| pnt | [<code>Point</code>](#module_matrix/objects.Point) | The point we want to find adjacent points for. |
-| matrix | [<code>Matrix</code>](#module_matrix/objects.Matrix) | The matrix having the point. |
-
-<a name="module_matrix/core..getPointFromElement"></a>
-
-### matrix/core~getPointFromElement(elem) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
-Retrieve the point associated with the provided element.
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| elem | <code>Node</code> \| <code>HTMLElement</code> \| <code>module:pseudoDom/objects.PseudoHTMLElement</code> | Provide an element associated with a point. |
-
-<a name="module_matrix/core..getDomItemFromElement"></a>
-
-### matrix/core~getDomItemFromElement(elem, matrix) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
-Retrieve the DomItem associated with the provided element in the matrix
-
-**Kind**: inner method of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| elem | <code>Node</code> \| <code>HTMLElement</code> \| <code>module:pseudoDom/objects.PseudoHTMLElement</code> | Provide an element having an associated DomItem. |
-| matrix | [<code>Matrix</code>](#module_matrix/objects.Matrix) | The matrix potentially containing the DomItem with Point. |
-
-<a name="module_matrix/core..functionalHelpers"></a>
-
-### matrix/core~functionalHelpers : <code>\*</code> \| <code>module:functionalHelpers</code>
-Verify availability of jDomMatrixObjects
-
-**Kind**: inner typedef of [<code>matrix/core</code>](#module_matrix/core)  
-<a name="module_matrix/core..jDomMatrixObjects"></a>
-
-### matrix/core~jDomMatrixObjects : <code>\*</code> \| [<code>matrix/objects</code>](#module_matrix/objects)
-Verify availability of jDomMatrixObjects
-
-**Kind**: inner typedef of [<code>matrix/core</code>](#module_matrix/core)  
-<a name="module_matrix/core..testPointStatus"></a>
-
-### matrix/core~testPointStatus ⇒ <code>boolean</code>
-Function that produces a property of the new Object, taking three arguments
-
-**Kind**: inner typedef of [<code>matrix/core</code>](#module_matrix/core)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| pnt | [<code>MatrixColumn</code>](#module_matrix/objects.MatrixColumn) \| <code>Object</code> | A point which may have some status. |
-| matrix | [<code>Matrix</code>](#module_matrix/objects.Matrix) \| <code>Object</code> | A matrix of points to find the point within. |
-
-<a name="module_matrix/objects"></a>
-
-## matrix/objects : <code>Object</code>
-All methods exported from this module are encapsulated within jDomMatrixObjects.
-
+**Version**: 1.0.0  
 **Author**: Joshua Heagle <joshuaheagle@gmail.com>  
 
-* [matrix/objects](#module_matrix/objects) : <code>Object</code>
-    * _static_
-        * [.axis](#module_matrix/objects.axis) : <code>string</code>
-        * [.coordinate](#module_matrix/objects.coordinate) : <code>number</code>
-        * [.Point](#module_matrix/objects.Point) : <code>Object.&lt;module:matrix/objects.axis, module:matrix/objects.coordinate&gt;</code>
-        * [.Direction](#module_matrix/objects.Direction) : [<code>Point</code>](#module_matrix/objects.Point)
-        * [.MatrixTile](#module_matrix/objects.MatrixTile) : <code>Object.&lt;string, module:matrix/objects.Point&gt;</code>
-        * [.MatrixColumn](#module_matrix/objects.MatrixColumn) : [<code>DomItem</code>](#module_dom/objects.DomItem) \| [<code>MatrixTile</code>](#module_matrix/objects.MatrixTile)
-        * [.MatrixRow](#module_matrix/objects.MatrixRow) : [<code>DomItem</code>](#module_dom/objects.DomItem)
-        * [.MatrixLayer](#module_matrix/objects.MatrixLayer) : [<code>DomItem</code>](#module_dom/objects.DomItem)
-        * [.Matrix](#module_matrix/objects.Matrix) : [<code>DomItem</code>](#module_dom/objects.DomItem)
-    * _inner_
-        * [~noConflict()](#module_matrix/objects..noConflict) ⇒ <code>jDomMatrixObjects</code>
-        * [~point(x, y, [z])](#module_matrix/objects..point) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
-        * [~tile()](#module_matrix/objects..tile) ⇒ [<code>MatrixTile</code>](#module_matrix/objects.MatrixTile)
-        * [~matrix(x, y, z, matrixProps)](#module_matrix/objects..matrix) ⇒ [<code>Matrix</code>](#module_matrix/objects.Matrix)
-        * [~square([x], [y], [z], [matrixProps], size)](#module_matrix/objects..square) ⇒ [<code>Matrix</code>](#module_matrix/objects.Matrix)
-        * [~cube([x], [y], [z], [matrixProps], size)](#module_matrix/objects..cube) ⇒ [<code>Matrix</code>](#module_matrix/objects.Matrix)
-        * [~functionalHelpers](#module_matrix/objects..functionalHelpers) : <code>\*</code> \| <code>module:functionalHelpers</code>
-        * [~jDomObjects](#module_matrix/objects..jDomObjects) : <code>\*</code> \| [<code>dom/objects</code>](#module_dom/objects)
+* [jDomMatrix](#module_jDomMatrix)
+    * [~root](#module_jDomMatrix..root)
+    * [~previousJDomMatrix](#module_jDomMatrix..previousJDomMatrix) : <code>module</code> \| <code>\*</code>
+    * [~noConflict()](#module_jDomMatrix..noConflict) ⇒ [<code>jDomMatrix</code>](#module_jDomMatrix..jDomMatrix)
+    * [~jDomMatrix](#module_jDomMatrix..jDomMatrix) : [<code>jDomMatrix</code>](#module_jDomMatrix) \| <code>module:jDomMatrixCore</code> \| <code>module:jDomMatrixObjects</code>
 
-<a name="module_matrix/objects.axis"></a>
+<a name="module_jDomMatrix..root"></a>
 
-### matrix/objects.axis : <code>string</code>
-A string representing an axis: x, y, z
+### jDomMatrix~root
+Store a reference to this scope which will be Window if rendered via browser
 
-**Kind**: static typedef of [<code>matrix/objects</code>](#module_matrix/objects)  
-<a name="module_matrix/objects.coordinate"></a>
+**Kind**: inner constant of [<code>jDomMatrix</code>](#module_jDomMatrix)  
+<a name="module_jDomMatrix..previousJDomMatrix"></a>
 
-### matrix/objects.coordinate : <code>number</code>
-A number representing a coordinate in a [Matrix](#module_matrix/objects.Matrix)
+### jDomMatrix~previousJDomMatrix : <code>module</code> \| <code>\*</code>
+Store reference to any pre-existing module of the same name
 
-**Kind**: static typedef of [<code>matrix/objects</code>](#module_matrix/objects)  
-<a name="module_matrix/objects.Point"></a>
+**Kind**: inner constant of [<code>jDomMatrix</code>](#module_jDomMatrix)  
+<a name="module_jDomMatrix..noConflict"></a>
 
-### matrix/objects.Point : <code>Object.&lt;module:matrix/objects.axis, module:matrix/objects.coordinate&gt;</code>
-Point stores a location in a [Matrix](#module_matrix/objects.Matrix) defined by three key-value pairs
-([axis](#module_matrix/objects.axis)=>[coordinate](#module_matrix/objects.coordinate))
-
-**Kind**: static typedef of [<code>matrix/objects</code>](#module_matrix/objects)  
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| x | [<code>coordinate</code>](#module_matrix/objects.coordinate) | The X-coordinate of a Point |
-| y | [<code>coordinate</code>](#module_matrix/objects.coordinate) | The Y-coordinate of a Point |
-| z | [<code>coordinate</code>](#module_matrix/objects.coordinate) | The Z-coordinate of a Point |
-
-<a name="module_matrix/objects.Direction"></a>
-
-### matrix/objects.Direction : [<code>Point</code>](#module_matrix/objects.Point)
-Point stores a location in a [Matrix](#module_matrix/objects.Matrix) defined by three key-value pairs
-
-**Kind**: static typedef of [<code>matrix/objects</code>](#module_matrix/objects)  
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| x | [<code>coordinate</code>](#module_matrix/objects.coordinate) | The X-coordinate must be either -1, 0, or 1 |
-| y | [<code>coordinate</code>](#module_matrix/objects.coordinate) | The Y-coordinate must be either -1, 0, or 1 |
-| z | [<code>coordinate</code>](#module_matrix/objects.coordinate) | The Z-coordinate must be either -1, 0, or 1 |
-
-<a name="module_matrix/objects.MatrixTile"></a>
-
-### matrix/objects.MatrixTile : <code>Object.&lt;string, module:matrix/objects.Point&gt;</code>
-MatrixTile is an Object which stores a reference a [Point](Point) and can be populated with additionally associated
-fields.
-
-**Kind**: static typedef of [<code>matrix/objects</code>](#module_matrix/objects)  
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| point | [<code>Point</code>](#module_matrix/objects.Point) | a reference to its location in a [Matrix](#module_matrix/objects.Matrix) |
-| axis | [<code>axis</code>](#module_matrix/objects.axis) | The axis will be 'x' |
-
-<a name="module_matrix/objects.MatrixColumn"></a>
-
-### matrix/objects.MatrixColumn : [<code>DomItem</code>](#module_dom/objects.DomItem) \| [<code>MatrixTile</code>](#module_matrix/objects.MatrixTile)
-MatrixColumn is a DomItem which represents the x axis and also stores [MatrixTile](#module_matrix/objects.MatrixTile)
-
-**Kind**: static typedef of [<code>matrix/objects</code>](#module_matrix/objects)  
-<a name="module_matrix/objects.MatrixRow"></a>
-
-### matrix/objects.MatrixRow : [<code>DomItem</code>](#module_dom/objects.DomItem)
-MatrixRow is the parent of a group of [MatrixTile](#module_matrix/objects.MatrixTile)
-
-**Kind**: static typedef of [<code>matrix/objects</code>](#module_matrix/objects)  
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| axis | [<code>axis</code>](#module_matrix/objects.axis) | The axis will be 'y' |
-| children | [<code>Array.&lt;MatrixColumn&gt;</code>](#module_matrix/objects.MatrixColumn) | all of the MatrixTile items as part of this MatrixRow |
-
-<a name="module_matrix/objects.MatrixLayer"></a>
-
-### matrix/objects.MatrixLayer : [<code>DomItem</code>](#module_dom/objects.DomItem)
-MatrixLayer is the parent of a group of [MatrixTile](#module_matrix/objects.MatrixTile)
-
-**Kind**: static typedef of [<code>matrix/objects</code>](#module_matrix/objects)  
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| axis | [<code>axis</code>](#module_matrix/objects.axis) | The axis will be 'y' |
-| children | [<code>Array.&lt;MatrixRow&gt;</code>](#module_matrix/objects.MatrixRow) | all of the MatrixRow items as part of this MatrixLayer |
-
-<a name="module_matrix/objects.Matrix"></a>
-
-### matrix/objects.Matrix : [<code>DomItem</code>](#module_dom/objects.DomItem)
-Matrix is a multi-level [DomItem](#module_dom/objects.DomItem) which is used to visually represent a
-mathematical grid / matrix.
-The matrix consists of four DomItem levels, at the top tier is the Matrix container with class matrix.
-The second tier represents the z axis (with property axis='z') and has the class layer.
-The third tier represents the y axis (with property axis='y') and has the class row.
-The fourth (final) tier represents the x axis (with property axis='x') and has the class column.
-The [MatrixTile](#module_matrix/objects.MatrixTile) is attached on the x axis tier.
-The number of children at each level is defined by the size of the matrix, the end result is a multidimensional
-array.
-
-**Kind**: static typedef of [<code>matrix/objects</code>](#module_matrix/objects)  
-**Extends**: [<code>DomItem</code>](#module_dom/objects.DomItem)  
-<a name="module_matrix/objects..noConflict"></a>
-
-### matrix/objects~noConflict() ⇒ <code>jDomMatrixObjects</code>
+### jDomMatrix~noConflict() ⇒ [<code>jDomMatrix</code>](#module_jDomMatrix..jDomMatrix)
 Return a reference to this library while preserving the original same-named library
 
-**Kind**: inner method of [<code>matrix/objects</code>](#module_matrix/objects)  
-<a name="module_matrix/objects..point"></a>
+**Kind**: inner method of [<code>jDomMatrix</code>](#module_jDomMatrix)  
+<a name="module_jDomMatrix..jDomMatrix"></a>
 
-### matrix/objects~point(x, y, [z]) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
-Store the point data for an x, y, z [Matrix](#module_matrix/objects.Matrix).
+### jDomMatrix~jDomMatrix : [<code>jDomMatrix</code>](#module_jDomMatrix) \| <code>module:jDomMatrixCore</code> \| <code>module:jDomMatrixObjects</code>
+All methods exported from this module are encapsulated within jDomMatrix.
 
-**Kind**: inner method of [<code>matrix/objects</code>](#module_matrix/objects)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| x | [<code>coordinate</code>](#module_matrix/objects.coordinate) |  | The numeric value for X-coordinate |
-| y | [<code>coordinate</code>](#module_matrix/objects.coordinate) |  | The numeric value for Y-coordinate |
-| [z] | [<code>coordinate</code>](#module_matrix/objects.coordinate) | <code>0</code> | The numeric value for Z-coordinate (default to 0 for 2D [Matrix](#module_matrix/objects.Matrix)) |
-
-<a name="module_matrix/objects..tile"></a>
-
-### matrix/objects~tile() ⇒ [<code>MatrixTile</code>](#module_matrix/objects.MatrixTile)
-A default tile in the [Matrix](#module_matrix/objects.Matrix)
-
-**Kind**: inner method of [<code>matrix/objects</code>](#module_matrix/objects)  
-<a name="module_matrix/objects..matrix"></a>
-
-### matrix/objects~matrix(x, y, z, matrixProps) ⇒ [<code>Matrix</code>](#module_matrix/objects.Matrix)
-Create a 3d matrix of i with x by y by z size, add additional objects for each layer as well
-
-**Kind**: inner method of [<code>matrix/objects</code>](#module_matrix/objects)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| x | <code>Object</code> | Properties and a coordinate defining the width of the matrix. |
-| y | <code>Object</code> | Properties and a coordinate defining the height of the matrix. |
-| z | <code>Object</code> | Properties and a coordinate defining the depth of the matrix. |
-| matrixProps | [<code>Array.&lt;Matrix&gt;</code>](#module_matrix/objects.Matrix) | Properties to be added to the matrix |
-
-<a name="module_matrix/objects..square"></a>
-
-### matrix/objects~square([x], [y], [z], [matrixProps], size) ⇒ [<code>Matrix</code>](#module_matrix/objects.Matrix)
-Return a single layer matrix where x and y are equal
-
-**Kind**: inner method of [<code>matrix/objects</code>](#module_matrix/objects)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [x] | [<code>Array.&lt;MatrixTile&gt;</code>](#module_matrix/objects.MatrixTile) | <code>[]</code> | All the data to be presented as part of the specified point, requires MatrixTile base |
-| [y] | [<code>Array.&lt;MatrixRow&gt;</code>](#module_matrix/objects.MatrixRow) | <code>[]</code> | Additional data to append to the MatrixRow |
-| [z] | [<code>Array.&lt;MatrixLayer&gt;</code>](#module_matrix/objects.MatrixLayer) | <code>[]</code> | Additional data to append to the MatrixLayer |
-| [matrixProps] | [<code>Array.&lt;Matrix&gt;</code>](#module_matrix/objects.Matrix) | <code>[]</code> | Additional data to append to the Matrix |
-| size | <code>number</code> |  | Used to define height and width as equal values (depth is set to 1) |
-
-<a name="module_matrix/objects..cube"></a>
-
-### matrix/objects~cube([x], [y], [z], [matrixProps], size) ⇒ [<code>Matrix</code>](#module_matrix/objects.Matrix)
-Return a matrix where x, y, and z are equal
-
-**Kind**: inner method of [<code>matrix/objects</code>](#module_matrix/objects)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [x] | [<code>Array.&lt;MatrixTile&gt;</code>](#module_matrix/objects.MatrixTile) | <code>[]</code> | All the data to be presented as part of the specified point, requires MatrixTile base |
-| [y] | [<code>Array.&lt;MatrixRow&gt;</code>](#module_matrix/objects.MatrixRow) | <code>[]</code> | Additional data to append to the MatrixRow |
-| [z] | [<code>Array.&lt;MatrixLayer&gt;</code>](#module_matrix/objects.MatrixLayer) | <code>[]</code> | Additional data to append to the MatrixLayer |
-| [matrixProps] | [<code>Array.&lt;Matrix&gt;</code>](#module_matrix/objects.Matrix) | <code>[]</code> | Additional data to append to the Matrix |
-| size | <code>number</code> |  | Used to define height, width, and depth as equal values |
-
-<a name="module_matrix/objects..functionalHelpers"></a>
-
-### matrix/objects~functionalHelpers : <code>\*</code> \| <code>module:functionalHelpers</code>
-Verify availability of functionalHelpers
-
-**Kind**: inner typedef of [<code>matrix/objects</code>](#module_matrix/objects)  
-<a name="module_matrix/objects..jDomObjects"></a>
-
-### matrix/objects~jDomObjects : <code>\*</code> \| [<code>dom/objects</code>](#module_dom/objects)
-Verify availability of jDomObjects
-
-**Kind**: inner typedef of [<code>matrix/objects</code>](#module_matrix/objects)  
+**Kind**: inner typedef of [<code>jDomMatrix</code>](#module_jDomMatrix)  
 <a name="module_pseudoDom/objects"></a>
 
 ## pseudoDom/objects : <code>Object</code>
@@ -1186,7 +461,7 @@ All methods exported from this module are encapsulated within pseudoDom.
 
 * [pseudoDom/objects](#module_pseudoDom/objects) : <code>Object</code>
     * [~noConflict()](#module_pseudoDom/objects..noConflict) ⇒ <code>pseudoDom</code>
-    * [~generate(context)](#module_pseudoDom/objects..generate) ⇒ <code>Window</code> \| <code>PseudoEventTarget</code>
+    * [~generate(context)](#module_pseudoDom/objects..generate) ⇒ <code>Window</code> \| [<code>PseudoEventTarget</code>](#PseudoEventTarget)
 
 <a name="module_pseudoDom/objects..noConflict"></a>
 
@@ -1196,7 +471,7 @@ Return a reference to this library while preserving the original same-named libr
 **Kind**: inner method of [<code>pseudoDom/objects</code>](#module_pseudoDom/objects)  
 <a name="module_pseudoDom/objects..generate"></a>
 
-### pseudoDom/objects~generate(context) ⇒ <code>Window</code> \| <code>PseudoEventTarget</code>
+### pseudoDom/objects~generate(context) ⇒ <code>Window</code> \| [<code>PseudoEventTarget</code>](#PseudoEventTarget)
 Construct the Pseudo Dom to provide access to Dom objects which are otherwise not available outside of the browser
 context.
 
@@ -1206,169 +481,1128 @@ context.
 | --- | --- |
 | context | <code>Object</code> | 
 
-<a name="LinkedList"></a>
+<a name="PseudoEventListener"></a>
 
-## LinkedList
+## PseudoEventListener
 **Kind**: global class  
+**Author**: Joshua Heagle <joshuaheagle@gmail.com>  
+**Properties**
 
-* [LinkedList](#LinkedList)
-    * [new LinkedList(LinkerClass, ListClass)](#new_LinkedList_new)
-    * _instance_
-        * [.first](#LinkedList+first) ⇒ [<code>Linker</code>](#Linker)
-        * [.last](#LinkedList+last) ⇒ [<code>Linker</code>](#Linker)
-        * [.length](#LinkedList+length) ⇒ <code>number</code>
-        * [.append(node)](#LinkedList+append)
-        * [.prepend(node)](#LinkedList+prepend)
-        * [.item(index)](#LinkedList+item) ⇒ <code>null</code> \| <code>\*</code>
-        * [.forEach(callback)](#LinkedList+forEach)
-    * _static_
-        * [.fromArray(values, LinkerClass, ListClass)](#LinkedList.fromArray) ⇒ [<code>LinkedList</code>](#LinkedList)
+| Name | Type |
+| --- | --- |
+| eventTypes | <code>string</code> | 
+| eventOptions | <code>Object</code> | 
+| isDefault | <code>boolean</code> | 
 
-<a name="new_LinkedList_new"></a>
 
-### new LinkedList(LinkerClass, ListClass)
+* [PseudoEventListener](#PseudoEventListener)
+    * [new exports.PseudoEventListener()](#new_PseudoEventListener_new)
+    * [.handleEvent(event)](#PseudoEventListener+handleEvent) ⇒ <code>undefined</code>
+    * [.doCapturePhase(event)](#PseudoEventListener+doCapturePhase) ⇒ <code>boolean</code>
+    * [.doTargetPhase(event)](#PseudoEventListener+doTargetPhase) ⇒ <code>boolean</code>
+    * [.doBubblePhase(event)](#PseudoEventListener+doBubblePhase) ⇒ <code>boolean</code> \| <code>\*</code>
+    * [.skipPhase(event)](#PseudoEventListener+skipPhase) ⇒ <code>boolean</code>
+    * [.skipDefault(event)](#PseudoEventListener+skipDefault) ⇒ <code>boolean</code> \| <code>\*</code>
+    * [.stopPropagation(event)](#PseudoEventListener+stopPropagation) ⇒ <code>boolean</code>
+    * [.nonPassiveHalt(event)](#PseudoEventListener+nonPassiveHalt) ⇒ <code>boolean</code> \| <code>\*</code>
+    * [.rejectEvent(event)](#PseudoEventListener+rejectEvent) ⇒ <code>\*</code> \| <code>boolean</code>
 
-| Param |
-| --- |
-| LinkerClass | 
-| ListClass | 
+<a name="new_PseudoEventListener_new"></a>
 
-<a name="LinkedList+first"></a>
+### new exports.PseudoEventListener()
+Handle events as they are stored and implemented.
 
-### linkedList.first ⇒ [<code>Linker</code>](#Linker)
-**Kind**: instance property of [<code>LinkedList</code>](#LinkedList)  
-<a name="LinkedList+last"></a>
+<a name="PseudoEventListener+handleEvent"></a>
 
-### linkedList.last ⇒ [<code>Linker</code>](#Linker)
-**Kind**: instance property of [<code>LinkedList</code>](#LinkedList)  
-<a name="LinkedList+length"></a>
+### pseudoEventListener.handleEvent(event) ⇒ <code>undefined</code>
+**Kind**: instance method of [<code>PseudoEventListener</code>](#PseudoEventListener)  
 
-### linkedList.length ⇒ <code>number</code>
-**Kind**: instance property of [<code>LinkedList</code>](#LinkedList)  
-<a name="LinkedList+append"></a>
+| Param | Type |
+| --- | --- |
+| event | [<code>PseudoEvent</code>](#PseudoEvent) | 
 
-### linkedList.append(node)
-**Kind**: instance method of [<code>LinkedList</code>](#LinkedList)  
+<a name="PseudoEventListener+doCapturePhase"></a>
 
-| Param |
-| --- |
-| node | 
+### pseudoEventListener.doCapturePhase(event) ⇒ <code>boolean</code>
+**Kind**: instance method of [<code>PseudoEventListener</code>](#PseudoEventListener)  
 
-<a name="LinkedList+prepend"></a>
+| Param | Type |
+| --- | --- |
+| event | [<code>PseudoEvent</code>](#PseudoEvent) | 
 
-### linkedList.prepend(node)
-**Kind**: instance method of [<code>LinkedList</code>](#LinkedList)  
+<a name="PseudoEventListener+doTargetPhase"></a>
 
-| Param |
-| --- |
-| node | 
+### pseudoEventListener.doTargetPhase(event) ⇒ <code>boolean</code>
+**Kind**: instance method of [<code>PseudoEventListener</code>](#PseudoEventListener)  
 
-<a name="LinkedList+item"></a>
+| Param | Type |
+| --- | --- |
+| event | [<code>PseudoEvent</code>](#PseudoEvent) | 
 
-### linkedList.item(index) ⇒ <code>null</code> \| <code>\*</code>
-**Kind**: instance method of [<code>LinkedList</code>](#LinkedList)  
+<a name="PseudoEventListener+doBubblePhase"></a>
 
-| Param |
-| --- |
-| index | 
+### pseudoEventListener.doBubblePhase(event) ⇒ <code>boolean</code> \| <code>\*</code>
+**Kind**: instance method of [<code>PseudoEventListener</code>](#PseudoEventListener)  
 
-<a name="LinkedList+forEach"></a>
+| Param | Type |
+| --- | --- |
+| event | [<code>PseudoEvent</code>](#PseudoEvent) | 
 
-### linkedList.forEach(callback)
-**Kind**: instance method of [<code>LinkedList</code>](#LinkedList)  
+<a name="PseudoEventListener+skipPhase"></a>
 
-| Param |
-| --- |
-| callback | 
+### pseudoEventListener.skipPhase(event) ⇒ <code>boolean</code>
+**Kind**: instance method of [<code>PseudoEventListener</code>](#PseudoEventListener)  
 
-<a name="LinkedList.fromArray"></a>
+| Param | Type |
+| --- | --- |
+| event | [<code>PseudoEvent</code>](#PseudoEvent) | 
 
-### LinkedList.fromArray(values, LinkerClass, ListClass) ⇒ [<code>LinkedList</code>](#LinkedList)
-**Kind**: static method of [<code>LinkedList</code>](#LinkedList)  
+<a name="PseudoEventListener+skipDefault"></a>
 
-| Param |
-| --- |
-| values | 
-| LinkerClass | 
-| ListClass | 
+### pseudoEventListener.skipDefault(event) ⇒ <code>boolean</code> \| <code>\*</code>
+**Kind**: instance method of [<code>PseudoEventListener</code>](#PseudoEventListener)  
 
-<a name="Linker"></a>
+| Param | Type |
+| --- | --- |
+| event | [<code>PseudoEvent</code>](#PseudoEvent) | 
 
-## Linker
+<a name="PseudoEventListener+stopPropagation"></a>
+
+### pseudoEventListener.stopPropagation(event) ⇒ <code>boolean</code>
+**Kind**: instance method of [<code>PseudoEventListener</code>](#PseudoEventListener)  
+
+| Param | Type |
+| --- | --- |
+| event | [<code>PseudoEvent</code>](#PseudoEvent) | 
+
+<a name="PseudoEventListener+nonPassiveHalt"></a>
+
+### pseudoEventListener.nonPassiveHalt(event) ⇒ <code>boolean</code> \| <code>\*</code>
+**Kind**: instance method of [<code>PseudoEventListener</code>](#PseudoEventListener)  
+
+| Param | Type |
+| --- | --- |
+| event | [<code>PseudoEvent</code>](#PseudoEvent) | 
+
+<a name="PseudoEventListener+rejectEvent"></a>
+
+### pseudoEventListener.rejectEvent(event) ⇒ <code>\*</code> \| <code>boolean</code>
+**Kind**: instance method of [<code>PseudoEventListener</code>](#PseudoEventListener)  
+
+| Param | Type |
+| --- | --- |
+| event | [<code>PseudoEvent</code>](#PseudoEvent) | 
+
+<a name="PseudoNodeAttached"></a>
+
+## PseudoNodeAttached ⇐ [<code>PseudoEventTarget</code>](#PseudoEventTarget)
+Simulate the behaviour of the Node Class when there is no DOM available.
+
 **Kind**: global class  
+**Extends**: [<code>PseudoEventTarget</code>](#PseudoEventTarget)  
+**Author**: Joshua Heagle <joshuaheagle@gmail.com>  
+**Properties**
 
-* [Linker](#Linker)
-    * [new Linker(data, prev, next, LinkerClass)](#new_Linker_new)
-    * _instance_
-        * [.after(node)](#Linker+after) ⇒ [<code>Linker</code>](#Linker)
-        * [.before(node)](#Linker+before) ⇒ [<code>Linker</code>](#Linker)
-    * _static_
-        * [.fromArray(values, LinkerClass)](#Linker.fromArray) ⇒ [<code>Linker</code>](#Linker)
+| Name | Type |
+| --- | --- |
+| name | <code>string</code> | 
+| appendChild | <code>function</code> | 
+| removeChild | <code>function</code> | 
 
-<a name="new_Linker_new"></a>
 
-### new Linker(data, prev, next, LinkerClass)
+* [PseudoNodeAttached](#PseudoNodeAttached) ⇐ [<code>PseudoEventTarget</code>](#PseudoEventTarget)
+    * [.PseudoEventTarget](#PseudoEventTarget)
+    * [.PseudoEventTarget](#PseudoEventTarget)
+    * [.appendChild(childNode)](#PseudoNodeAttached+appendChild) ⇒ [<code>PseudoNode</code>](#PseudoNode)
+    * [.removeChild(childElement)](#PseudoNodeAttached+removeChild) ⇒ [<code>PseudoNode</code>](#PseudoNode)
+    * [.runEvents(event)](#PseudoEventTarget+runEvents) ⇒ <code>boolean</code>
+    * [.setDefaultEvent(type, callback)](#PseudoEventTarget+setDefaultEvent)
+    * [.runDefaultEvent(event)](#PseudoEventTarget+runDefaultEvent) ⇒ <code>boolean</code>
+    * [.startEvents(eventType)](#PseudoEventTarget+startEvents) ⇒ <code>boolean</code>
+    * [.addEventListener(type, callback, [useCapture])](#PseudoEventTarget+addEventListener)
+    * [.removeEventListener(type, callback)](#PseudoEventTarget+removeEventListener)
+    * [.dispatchEvent(event, target)](#PseudoEventTarget+dispatchEvent) ⇒ <code>boolean</code>
 
-| Param |
-| --- |
-| data | 
-| prev | 
-| next | 
-| LinkerClass | 
+<a name="PseudoEventTarget"></a>
 
-<a name="Linker+after"></a>
+### pseudoNodeAttached.PseudoEventTarget
+Simulate the behaviour of the EventTarget Class when there is no DOM available.
 
-### linker.after(node) ⇒ [<code>Linker</code>](#Linker)
-**Kind**: instance method of [<code>Linker</code>](#Linker)  
+**Kind**: instance class of [<code>PseudoNodeAttached</code>](#PseudoNodeAttached)  
+**Author**: Joshua Heagle <joshuaheagle@gmail.com>  
+**Properties**
 
-| Param |
-| --- |
-| node | 
+| Name | Type |
+| --- | --- |
+| listeners | <code>Object.&lt;string, Array.&lt;PseudoEventListener&gt;&gt;</code> | 
+| addEventListener | <code>function</code> | 
+| removeEventListener | <code>function</code> | 
+| dispatchEvent | <code>function</code> | 
 
-<a name="Linker+before"></a>
+<a name="PseudoEventTarget"></a>
 
-### linker.before(node) ⇒ [<code>Linker</code>](#Linker)
-**Kind**: instance method of [<code>Linker</code>](#Linker)  
+### pseudoNodeAttached.PseudoEventTarget
+Simulate the behaviour of the EventTarget Class when there is no DOM available.
 
-| Param |
-| --- |
-| node | 
+**Kind**: instance class of [<code>PseudoNodeAttached</code>](#PseudoNodeAttached)  
+**Author**: Joshua Heagle <joshuaheagle@gmail.com>  
+**Properties**
 
-<a name="Linker.fromArray"></a>
+| Name | Type |
+| --- | --- |
+| listeners | <code>Object.&lt;string, Array.&lt;PseudoEventListener&gt;&gt;</code> | 
+| addEventListener | <code>function</code> | 
+| removeEventListener | <code>function</code> | 
+| dispatchEvent | <code>function</code> | 
 
-### Linker.fromArray(values, LinkerClass) ⇒ [<code>Linker</code>](#Linker)
-**Kind**: static method of [<code>Linker</code>](#Linker)  
+<a name="PseudoNodeAttached+appendChild"></a>
 
-| Param |
-| --- |
-| values | 
-| LinkerClass | 
+### pseudoNodeAttached.appendChild(childNode) ⇒ [<code>PseudoNode</code>](#PseudoNode)
+**Kind**: instance method of [<code>PseudoNodeAttached</code>](#PseudoNodeAttached)  
 
-<a name="TreeLinker"></a>
+| Param | Type |
+| --- | --- |
+| childNode | [<code>PseudoNode</code>](#PseudoNode) | 
 
-## TreeLinker
-**Kind**: global class  
-<a name="new_TreeLinker_new"></a>
+<a name="PseudoNodeAttached+removeChild"></a>
 
-### new TreeLinker(data, prev, next, children, parent, LinkerClass)
+### pseudoNodeAttached.removeChild(childElement) ⇒ [<code>PseudoNode</code>](#PseudoNode)
+**Kind**: instance method of [<code>PseudoNodeAttached</code>](#PseudoNodeAttached)  
 
-| Param |
-| --- |
-| data | 
-| prev | 
-| next | 
-| children | 
-| parent | 
-| LinkerClass | 
+| Param | Type |
+| --- | --- |
+| childElement | [<code>PseudoNode</code>](#PseudoNode) | 
 
-<a name="document"></a>
+<a name="PseudoEventTarget+runEvents"></a>
 
-## document : <code>HTMLDocument</code> \| <code>module:pseudoDom/objects.PseudoHTMLDocument</code>
-Verify availability of document
+### pseudoNodeAttached.runEvents(event) ⇒ <code>boolean</code>
+**Kind**: instance method of [<code>PseudoNodeAttached</code>](#PseudoNodeAttached)  
+**Overrides**: [<code>runEvents</code>](#PseudoEventTarget+runEvents)  
 
-**Kind**: global typedef  
+| Param | Type |
+| --- | --- |
+| event | [<code>PseudoEvent</code>](#PseudoEvent) | 
+
+<a name="PseudoEventTarget+setDefaultEvent"></a>
+
+### pseudoNodeAttached.setDefaultEvent(type, callback)
+**Kind**: instance method of [<code>PseudoNodeAttached</code>](#PseudoNodeAttached)  
+**Overrides**: [<code>setDefaultEvent</code>](#PseudoEventTarget+setDefaultEvent)  
+
+| Param | Type |
+| --- | --- |
+| type | <code>string</code> | 
+| callback | <code>function</code> | 
+
+<a name="PseudoEventTarget+runDefaultEvent"></a>
+
+### pseudoNodeAttached.runDefaultEvent(event) ⇒ <code>boolean</code>
+**Kind**: instance method of [<code>PseudoNodeAttached</code>](#PseudoNodeAttached)  
+**Overrides**: [<code>runDefaultEvent</code>](#PseudoEventTarget+runDefaultEvent)  
+
+| Param | Type |
+| --- | --- |
+| event | [<code>PseudoEvent</code>](#PseudoEvent) | 
+
+<a name="PseudoEventTarget+startEvents"></a>
+
+### pseudoNodeAttached.startEvents(eventType) ⇒ <code>boolean</code>
+**Kind**: instance method of [<code>PseudoNodeAttached</code>](#PseudoNodeAttached)  
+**Overrides**: [<code>startEvents</code>](#PseudoEventTarget+startEvents)  
+
+| Param | Type |
+| --- | --- |
+| eventType | [<code>PseudoEvent</code>](#PseudoEvent) | 
+
+<a name="PseudoEventTarget+addEventListener"></a>
+
+### pseudoNodeAttached.addEventListener(type, callback, [useCapture])
+**Kind**: instance method of [<code>PseudoNodeAttached</code>](#PseudoNodeAttached)  
+**Overrides**: [<code>addEventListener</code>](#PseudoEventTarget+addEventListener)  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| type | <code>string</code> |  | 
+| callback | <code>function</code> \| <code>Object</code> |  | 
+| [useCapture] | <code>boolean</code> \| <code>Object</code> | <code>false</code> | 
+
+<a name="PseudoEventTarget+removeEventListener"></a>
+
+### pseudoNodeAttached.removeEventListener(type, callback)
+**Kind**: instance method of [<code>PseudoNodeAttached</code>](#PseudoNodeAttached)  
+**Overrides**: [<code>removeEventListener</code>](#PseudoEventTarget+removeEventListener)  
+
+| Param | Type |
+| --- | --- |
+| type | <code>string</code> | 
+| callback | <code>function</code> | 
+
+<a name="PseudoEventTarget+dispatchEvent"></a>
+
+### pseudoNodeAttached.dispatchEvent(event, target) ⇒ <code>boolean</code>
+**Kind**: instance method of [<code>PseudoNodeAttached</code>](#PseudoNodeAttached)  
+**Overrides**: [<code>dispatchEvent</code>](#PseudoEventTarget+dispatchEvent)  
+
+| Param | Type |
+| --- | --- |
+| event | <code>Event</code> \| [<code>PseudoEvent</code>](#PseudoEvent) | 
+| target | <code>EventTarget</code> \| [<code>PseudoEventTarget</code>](#PseudoEventTarget) | 
+
+<a name="documentItem"></a>
+
+## documentItem : [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot)
+Create reference for storing document changes
+
+**Kind**: global variable  
+<a name="elementCompareClassList"></a>
+
+## elementCompareClassList ⇒ <code>Object.&lt;string, number&gt;</code> \| <code>\*</code>
+Check if a class exists on the element, return object with keys for each class and a -1, 0, 1 difference indicator.
+
+**Kind**: global constant  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>HTMLElement</code> \| <code>module:pseudoDom/objects.PseudoHTMLElement</code> | Provide an element to check classes on. |
+| classes | <code>string</code> | A string of classes (like the content of the 'class' attribute) to be compared |
+
 <a name="root"></a>
 
-## root : <code>Window</code> \| <code>module:pseudoDom/objects.PseudoEventTarget</code>
+## root
+Store a reference to this scope which will be Window if rendered via browser
+
+**Kind**: global constant  
+<a name="previousPseudoDom"></a>
+
+## previousPseudoDom : <code>module</code> \| <code>\*</code>
+Store reference to any pre-existing module of the same name
+
+**Kind**: global constant  
+<a name="elementHasAttribute"></a>
+
+## elementHasAttribute(element, key, attr) ⇒ <code>boolean</code> \| <code>Object.&lt;string, number&gt;</code>
+Check if the provided Element has the provided attributes.
+Returns a boolean, or an array of 1 / 0 / -1 based on the comparison status.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>HTMLElement</code> \| <code>module:pseudoDom/objects.PseudoHTMLElement</code> | Receive the element to be assessed |
+| key | <code>string</code> | The attribute name to search for |
+| attr | <code>string</code> \| <code>Object</code> | The expected value of the attribute to compare against |
+
+<a name="elementChanges"></a>
+
+## elementChanges(config) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
+Given a jDomObjects.DomItem as config, this function will return the changes to be applied
+to the stored element property.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| config | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem having config changes to be applied to its element |
+
+<a name="setAttribute"></a>
+
+## setAttribute(config, name, value) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
+Set an attribute on the element within a DomItem, then return the config data.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| config | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem having config changes to be applied to its element |
+| name | <code>string</code> | The attribute name to be updated |
+| value | <code>string</code> | The new value to be applied to the attribute |
+
+<a name="setAndReturnAttribute"></a>
+
+## setAndReturnAttribute(config, name, value) ⇒ <code>string</code>
+Set an attribute on the element within a DomItem, then return the attribute.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| config | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem having config changes to be applied to its element |
+| name | <code>string</code> | The attribute name to be updated |
+| value | <code>string</code> | The new value to be applied to the attribute |
+
+<a name="updateElement"></a>
+
+## updateElement(config) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
+Update a single objects.DomItem element with the provided attributes / style / elementProperties
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| config | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem having config changes to be applied to its element |
+
+<a name="updateElements"></a>
+
+## updateElements(config) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
+Generate HTML element data for each object in the matrix
+WARNING: This is a recursive function.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| config | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem having child DomItems with config changes to be applied |
+
+<a name="generateElement"></a>
+
+## generateElement(config) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
+Create an HTML element based on the provided attributes and return the element as an Object.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| config | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem requiring matching HTML element property |
+
+<a name="bindElement"></a>
+
+## bindElement(item) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
+Generate HTML element data for a provided DomItem
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem needing element to be generated |
+
+<a name="retrieveParentItem"></a>
+
+## retrieveParentItem(parent) ⇒ <code>module:dom/objects.DomItemBody</code> \| [<code>DomItem</code>](#module_dom/objects.DomItem)
+Simplify detecting the parent item which can be appended to, whether root, or just a parent at any part of the tree
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| parent | [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) \| [<code>DomItem</code>](#module_dom/objects.DomItem) | A parent DomItem which may or may not have a body |
+
+<a name="addUniqueToArray"></a>
+
+## addUniqueToArray(item, array) ⇒ <code>Array</code> \| <code>Buffer</code> \| <code>\*</code> \| <code>Array.&lt;T&gt;</code> \| <code>string</code>
+Having an array and a potential new array element, check if the element is in the array, if not append to array.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | [<code>DomItem</code>](#module_dom/objects.DomItem) \| <code>\*</code> | An potential array element, possibly a DomItem |
+| array | <code>Array</code> | An array where an element may be appended. |
+
+<a name="appendAndReturnChild"></a>
+
+## appendAndReturnChild(child, parent) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
+Provide a DomItem to be appended to a parent item, return the DomItem.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| child | [<code>DomItem</code>](#module_dom/objects.DomItem) | A DomItem to be appended |
+| parent | [<code>DomItem</code>](#module_dom/objects.DomItem) | A parent item to have a new child appended |
+
+<a name="appendHTML"></a>
+
+## appendHTML(item, parent) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
+Append a new DomItem which has the element generated.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | A new DomItem to append |
+| parent | [<code>DomItem</code>](#module_dom/objects.DomItem) | The parent to have DomItems appended |
+
+<a name="removeChild"></a>
+
+## removeChild(item, parent) ⇒ <code>Array.&lt;(HTMLElement\|PseudoHTMLElement)&gt;</code>
+Reverse of appendHTML, remove a DomItem and have the associated element removed.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem with HTMLElement to be removed |
+| parent | [<code>DomItem</code>](#module_dom/objects.DomItem) | The parent of the items |
+
+<a name="registerListener"></a>
+
+## registerListener(listener, [name], [parent]) ⇒ <code>Object.&lt;string, module:dom/objects~listenerFunction&gt;</code>
+Register a single listener function as part of the root jDomObjects.DomItem.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| listener | <code>module:dom/objects~listenerFunction</code> \| <code>function</code> | Provide a function which will be called when a Dom event is triggered. |
+| [name] | <code>string</code> | The name of the listener to be used. |
+| [parent] | [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) \| <code>Object</code> | The parent DomItem which is DomItemRoot which stores has eventListeners property. |
+
+<a name="registerListeners"></a>
+
+## registerListeners(listeners, [parent]) ⇒ [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) \| <code>Object</code>
+Register multiple listeners from an array of functions.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| listeners | <code>Array.&lt;(module:dom/objects~listenerFunction\|function())&gt;</code> | An array of functions to be used as the registered event listeners. |
+| [parent] | [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) \| <code>Object</code> | The parent DomItem which is DomItemRoot which stores has eventListeners property. |
+
+<a name="retrieveListener"></a>
+
+## retrieveListener(listenerName, [parent]) ⇒ <code>module:dom/objects~listenerFunction</code> \| <code>function</code> \| <code>Object</code>
+Based on the provided function / listener name, retrieve the associated function from the root jDomObjects.DomItem
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| listenerName | <code>string</code> | The name of one of the registered listener functions. |
+| [parent] | [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) \| <code>Object</code> | The parent DomItem which is DomItemRoot which stores has eventListeners property. |
+
+<a name="listenerOptions"></a>
+
+## listenerOptions(options) ⇒ <code>boolean</code>
+Provide compatibility for using the options parameter of addEventListener
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| options | [<code>EventListenerOptions</code>](#module_dom/objects.EventListenerOptions) | An object or boolean with the listener options |
+
+<a name="assignListener"></a>
+
+## assignListener(trigger, elem, fn, options) ⇒ <code>module:dom/objects~listenerFunction</code> \| <code>function</code>
+Provide compatibility for assigning listeners.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| trigger | <code>string</code> | The name of the event which will trigger the listenerFunction on the element. |
+| elem | <code>HTMLElement</code> \| <code>module:pseudoDom/objects~PseudoHTMLElement</code> | An element to append the listener onto |
+| fn | <code>module:dom/objects~listenerFunction</code> \| <code>function</code> | The function which will be invoked when the event is triggered |
+| options | [<code>EventListenerOptions</code>](#module_dom/objects.EventListenerOptions) | Additional options to how the event will be fired |
+
+<a name="appendListeners"></a>
+
+## appendListeners(item, event, listener, args, options) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
+When there may be extra data needed for the event listener function call, this function may be used as a helper
+to pass the additional data. Also, if it is desirable to add event listeners during run-time, this function can be
+used to achieve this.
+WARNING: This is a recursive function.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem which will have its eventListeners updated. |
+| event | <code>string</code> | The string name of the event trigger type to be added. |
+| listener | <code>string</code> | The name of the function to be called once the event is triggered. |
+| args | <code>Object</code> | Additional arguments to be used in the listener function. |
+| options | [<code>EventListenerOptions</code>](#module_dom/objects.EventListenerOptions) | The strategy used when the event is triggered. |
+
+<a name="bindElementListeners"></a>
+
+## bindElementListeners(item) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
+Receive a DomItem with eventListeners and apply the event listeners onto the Dom element.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem which has eventListeners to apply to its element |
+
+<a name="bindListeners"></a>
+
+## bindListeners(item) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
+Based on the eventListeners property of the provided item, bind the
+listeners to the associated element property for the provided jDomObjects.DomItem.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem which may have eventListeners to apply to its element |
+
+<a name="bindAllListeners"></a>
+
+## bindAllListeners(item) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
+Based on the eventListeners property of the provided item, bind the listeners to the associated element property
+for each item in the jDomObjects.DomItem structure.
+WARNING: This is a recursive function.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem with an associated HTMLElement to have a listener assigned |
+
+<a name="gatherChildItems"></a>
+
+## gatherChildItems(item, test) ⇒ [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem)
+A selector function for retrieving existing child jDomObjects.DomItems from the given parent item.
+This function will check all the children starting from and including item, and run the test function on each
+child encountered. The return array contains children returned from the test from all levels.
+WARNING: This is a recursive function.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem which may have child items matching the attribute criteria |
+| test | [<code>testChildItem</code>](#module_dom/core..testChildItem) | Assess each child, and return the ones which qualify |
+
+<a name="getChildTest"></a>
+
+## getChildTest(attr, value) ⇒ [<code>testChildItem</code>](#module_dom/core..testChildItem)
+Retrieve the [testChildItem](#module_dom/core..testChildItem) function by providing an attribute and value to check.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| attr | <code>string</code> | Provide the attribute name to be searched |
+| value | <code>\*</code> | The attribute value to be compared |
+
+<a name="getChildrenFromAttribute"></a>
+
+## getChildrenFromAttribute(attr, value, item) ⇒ [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem)
+A selector function for retrieving existing child jDomObjects.DomItems from the given parent item.
+This function will check all the children starting from item, and scan the attributes
+property for matches. The returned array contains children matching from all levels.
+WARNING: This calls a recursive function.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| attr | <code>string</code> | Provide the attribute name to be searched |
+| value | <code>\*</code> | The attribute value to be compared |
+| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem which may have child items matching the attribute criteria |
+
+<a name="getChildrenByClass"></a>
+
+## getChildrenByClass() ⇒ [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem)
+Helper for getting all jDomObjects.DomItems starting at parent and having specified className attribute
+
+**Kind**: global function  
+<a name="getChildrenByName"></a>
+
+## getChildrenByName() ⇒ [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem)
+Helper for getting all jDomObjects.DomItems starting at parent and having specified name attribute
+
+**Kind**: global function  
+<a name="getParentsFromAttribute"></a>
+
+## getParentsFromAttribute(attr, value, item) ⇒ <code>Array</code>
+A selector function for retrieving existing child jDomObjects.DomItems from the given parent item.
+This function will check all the children starting from item, and scan the attributes
+property for matches. The return array contains children matching from all levels.
+WARNING: This is a recursive function.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| attr | <code>string</code> | Provide the attribute name to be searched |
+| value | <code>\*</code> | The attribute value to be compared |
+| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem which may have parent items matching the attribute criteria |
+
+<a name="getParentsByClass"></a>
+
+## getParentsByClass() ⇒ <code>Array</code>
+Helper for getting all jDomObjects.DomItems starting at child and having specified className attribute
+
+**Kind**: global function  
+<a name="getParentsByName"></a>
+
+## getParentsByName() ⇒ <code>Array</code>
+Helper for getting all jDomObjects.DomItems starting at child and having specified name attribute
+
+**Kind**: global function  
+<a name="getParentsByTagName"></a>
+
+## getParentsByTagName() ⇒ <code>Array</code>
+Helper for getting all jDomObjects.DomItems starting at child and having specified tagName
+
+**Kind**: global function  
+<a name="getTopParentItem"></a>
+
+## getTopParentItem(item) ⇒ [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot)
+Get the upper parentItem for the provided child. (usually this is a jDomObjects.documentItem reference)
+WARNING: This is a recursive function.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem which we want the highest parent item of |
+
+<a name="renderHTML"></a>
+
+## renderHTML(item, parent) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
+This is a shortcut for building the specified HTML elements and appending them to the Dom
+with associated listeners.
+The final argument is specific for adding event listeners with options.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | [<code>DomItem</code>](#module_dom/objects.DomItem) | The DomItem that we want to render the element for |
+| parent | [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) | The Base Dom item which is the parent of all the items |
+
+<a name="createDomItem"></a>
+
+## createDomItem(...attributes) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
+This is the basic Object for representing the Dom in a virtual perspective. All incoming attributes will be merged
+to the specified format.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ...attributes | <code>Object</code> | DomItem-like object(s) to be merged as a DomItem |
+
+<a name="initChildren"></a>
+
+## initChildren() ⇒ <code>Array.&lt;(module:dom/objects~DomItemHead\|module:dom/objects~DomItemBody)&gt;</code>
+Initiate the children of Root / DocumentItem. This is a helper for [documentDomItem](#documentDomItem).
+
+**Kind**: global function  
+<a name="initRoot"></a>
+
+## initRoot(children, listeners) ⇒ [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) \| [<code>DomItem</code>](#module_dom/objects.DomItem)
+Initiate the Root for DocumentItem. This is primary a helper for [documentDomItem](#documentDomItem).
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| children | <code>Array.&lt;(module:dom/objects~DomItemHead\|module:dom/objects~DomItemBody)&gt;</code> | Provide an array of Head and Body (usually via [initChildren](#initChildren)) |
+| listeners | <code>Object.&lt;string, module:dom/objects~listenerFunction&gt;</code> | An object of all event listeners to be registered in the Dom |
+
+<a name="documentDomItem"></a>
+
+## documentDomItem(listeners, [rootItem]) ⇒ [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) \| [<code>DomItem</code>](#module_dom/objects.DomItem)
+Return a DomItem reference to the document. The rootItem argument is a system variable and not necessary to
+implement.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| listeners | <code>Object.&lt;string, module:dom/objects~listenerFunction&gt;</code> | An object of all event listeners to be registered in the Dom |
+| [rootItem] | [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot) \| [<code>DomItem</code>](#module_dom/objects.DomItem) | This is a reference to DomItemRoot which will be defaulted with [initRoot](#initRoot) |
+
+<a name="bindPointData"></a>
+
+## bindPointData(item, pnt) ⇒ [<code>MatrixColumn</code>](#module_matrix/objects.MatrixColumn) \| [<code>MatrixRow</code>](#module_matrix/objects.MatrixRow)
+Generate point data for each item in the matrix
+WARNING: This is a recursive function.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | [<code>MatrixColumn</code>](#module_matrix/objects.MatrixColumn) \| [<code>MatrixRow</code>](#module_matrix/objects.MatrixRow) | A special DomItem which is either a layer, row, or column in a matrix. |
+| pnt | [<code>Point</code>](#module_matrix/objects.Point) | A point to be added to a specific Matrix Column |
+
+<a name="nextCell"></a>
+
+## nextCell(pnt, dir) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
+Based on provided point and point direction generate next point.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| pnt | [<code>Point</code>](#module_matrix/objects.Point) | Provide the current / initial point |
+| dir | [<code>Direction</code>](#module_matrix/objects.Direction) | Provide the direction to be applied to find the next point |
+
+<a name="pointDifference"></a>
+
+## pointDifference(start, end) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
+Based on provided point and another point, get a point with the difference between each axis
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| start | [<code>Point</code>](#module_matrix/objects.Point) | The first point to compare |
+| end | [<code>Point</code>](#module_matrix/objects.Point) | The other point to be compared |
+
+<a name="areEqualPoints"></a>
+
+## areEqualPoints(p1, p2) ⇒ <code>boolean</code>
+Given two points, compare the x, y, and z of each to see if they are the same
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| p1 | [<code>Point</code>](#module_matrix/objects.Point) | The first point to compare |
+| p2 | [<code>Point</code>](#module_matrix/objects.Point) | The other point to be compared |
+
+<a name="getHighestAbsoluteCoordinate"></a>
+
+## getHighestAbsoluteCoordinate(pnt) ⇒ [<code>coordinate</code>](#module_matrix/objects.coordinate)
+Return the first coordinate number with the highest absolute value.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| pnt | [<code>Point</code>](#module_matrix/objects.Point) | A Point to be assessed. |
+
+<a name="getFirstAxisOfCoordinate"></a>
+
+## getFirstAxisOfCoordinate(pnt, coordinate) ⇒ <code>false</code> \| [<code>axis</code>](#module_matrix/objects.axis)
+Having provided a coordinate number, find all corresponding axis, return the first match.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| pnt | [<code>Point</code>](#module_matrix/objects.Point) | The Point containing a matching coordinate. |
+| coordinate | [<code>coordinate</code>](#module_matrix/objects.coordinate) | The coordinate to search for. |
+
+<a name="pointAndCoordinateToDirection"></a>
+
+## pointAndCoordinateToDirection(pnt, highestCoordinate) ⇒ [<code>Direction</code>](#module_matrix/objects.Direction)
+Given a point and the value of the highest coordinate select the corresponding axis which will be the direction
+(-1 or 1) to and set the other axis to 0.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| pnt | [<code>Point</code>](#module_matrix/objects.Point) | The which will be converted to a direction. |
+| highestCoordinate | [<code>coordinate</code>](#module_matrix/objects.coordinate) | The highest coordinate provided by the point. |
+
+<a name="pointToDirection"></a>
+
+## pointToDirection(pnt) ⇒ [<code>Direction</code>](#module_matrix/objects.Direction)
+Having a point, convert it to a direction where the axis with the highest coordinate value will be set to -1 or 1.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| pnt | [<code>Point</code>](#module_matrix/objects.Point) | The point to be converted to a direction. |
+
+<a name="pointsToDirection"></a>
+
+## pointsToDirection(start, end) ⇒ [<code>Direction</code>](#module_matrix/objects.Direction)
+Retrieve a directional coordinate value based on two provided points
+(directions consist of two zero coordinates and a single coordinate of 1 / -1)
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| start | [<code>Point</code>](#module_matrix/objects.Point) | The first point to assess. |
+| end | [<code>Point</code>](#module_matrix/objects.Point) | The other point to assess. |
+
+<a name="randomStart"></a>
+
+## randomStart(length, dir, [lengthLimits]) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
+Generate a random starting point for a line with the provided length and direction.
+
+**Kind**: global function  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| length | <code>number</code> |  | The intended length the resulting line. |
+| dir | [<code>Direction</code>](#module_matrix/objects.Direction) |  | The direction the line will extend towards. |
+| [lengthLimits] | [<code>Point</code>](#module_matrix/objects.Point) | <code>{x: 10, y: 10, z: 10}</code> | The maximum grid size. |
+
+<a name="lineEndPoint"></a>
+
+## lineEndPoint(start, length, dir) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
+Given a start point, line length, and a direction, generate the end point of the line.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| start | [<code>Point</code>](#module_matrix/objects.Point) | The selected starting point. |
+| length | <code>number</code> | The total length of the line. |
+| dir | [<code>Direction</code>](#module_matrix/objects.Direction) | The direction of the line. |
+
+<a name="getPointsLine"></a>
+
+## getPointsLine(start, end, [line]) ⇒ [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point)
+Having provided two points, return an array of transition points connecting 'start' and 'end'. Return array
+includes 'start' (line[0]) and 'end' (line[line.length-1])
+
+**Kind**: global function  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| start | [<code>Point</code>](#module_matrix/objects.Point) |  | The starting location of the line. |
+| end | [<code>Point</code>](#module_matrix/objects.Point) |  | The final line destination. |
+| [line] | [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point) | <code>[]</code> | The resulting line to connect start and end. |
+
+<a name="getPointsLines"></a>
+
+## getPointsLines(lines) ⇒ <code>Array.&lt;Array.&lt;module:matrix/objects.Point&gt;&gt;</code>
+Takes an array of arrays containing two points each. Calls getPointsLine for each array of points. Returns an
+array of all points captured for each line segment
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| lines | <code>Array.&lt;Array.&lt;module:matrix/objects.Point&gt;&gt;</code> | An array of lines only containing start and end. |
+
+<a name="checkInBetween"></a>
+
+## checkInBetween(...args) ⇒ <code>boolean</code>
+Given two points, check the cells between using specified function.
+When inclusive is set to true the provided start and end points will also be tested
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ...args | <code>\*</code> | These args match the parameter list for [testPointsBetween](#module_matrix/core..testPointsBetween) |
+
+<a name="getAxisLengths"></a>
+
+## getAxisLengths(matrix) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
+Return point-like object with all of the axis lengths.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| matrix | [<code>Matrix</code>](#module_matrix/objects.Matrix) | The matrix to get the dimensions of. |
+
+<a name="randDirection"></a>
+
+## randDirection([useCoordinates]) ⇒ [<code>Direction</code>](#module_matrix/objects.Direction)
+Get random direction point
+
+**Kind**: global function  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [useCoordinates] | [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point) | <code>[]</code> | An array of possible directions. |
+
+<a name="checkValidPoint"></a>
+
+## checkValidPoint(pnt, matrix) ⇒ <code>boolean</code>
+Test if the provided point exists in the matrix.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| pnt | [<code>Point</code>](#module_matrix/objects.Point) | Provide a point to validate. |
+| matrix | [<code>Matrix</code>](#module_matrix/objects.Matrix) | The matrix that contains valid points. |
+
+<a name="getDomItemFromPoint"></a>
+
+## getDomItemFromPoint(pnt, matrix) ⇒ <code>false</code> \| [<code>DomItem</code>](#module_dom/objects.DomItem)
+Retrieve the DomItem associated with the provided point
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| pnt | [<code>Point</code>](#module_matrix/objects.Point) | A point corresponding to a DomItem. |
+| matrix | [<code>Matrix</code>](#module_matrix/objects.Matrix) | The matrix containing the point. |
+
+<a name="getAllPoints"></a>
+
+## getAllPoints(matrix, [allPoints]) ⇒ [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point)
+Return an array of all the points in the matrix
+
+**Kind**: global function  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| matrix | [<code>Matrix</code>](#module_matrix/objects.Matrix) \| [<code>MatrixColumn</code>](#module_matrix/objects.MatrixColumn) |  | The matrix to retrieve points from. |
+| [allPoints] | [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point) | <code>[]</code> | The array of points to be returned |
+
+<a name="adjacentPoints"></a>
+
+## adjacentPoints(pnt, matrix) ⇒ [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point)
+Return all valid points surrounding a provided point
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| pnt | [<code>Point</code>](#module_matrix/objects.Point) | The point we want to find adjacent points for. |
+| matrix | [<code>Matrix</code>](#module_matrix/objects.Matrix) | The matrix having the point. |
+
+<a name="adjacentEdgePoints"></a>
+
+## adjacentEdgePoints(pnt, matrix) ⇒ [<code>Array.&lt;Point&gt;</code>](#module_matrix/objects.Point)
+Return all points which touch on edges (not diagonal)
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| pnt | [<code>Point</code>](#module_matrix/objects.Point) | The point we want to find adjacent points for. |
+| matrix | [<code>Matrix</code>](#module_matrix/objects.Matrix) | The matrix having the point. |
+
+<a name="getPointFromElement"></a>
+
+## getPointFromElement(elem) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
+Retrieve the point associated with the provided element.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| elem | <code>Node</code> \| <code>HTMLElement</code> \| <code>module:pseudoDom/objects.PseudoHTMLElement</code> | Provide an element associated with a point. |
+
+<a name="getDomItemFromElement"></a>
+
+## getDomItemFromElement(elem, matrix) ⇒ [<code>DomItem</code>](#module_dom/objects.DomItem)
+Retrieve the DomItem associated with the provided element in the matrix
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| elem | <code>Node</code> \| <code>HTMLElement</code> \| <code>module:pseudoDom/objects.PseudoHTMLElement</code> | Provide an element having an associated DomItem. |
+| matrix | [<code>Matrix</code>](#module_matrix/objects.Matrix) | The matrix potentially containing the DomItem with Point. |
+
+<a name="point"></a>
+
+## point(x, y, [z]) ⇒ [<code>Point</code>](#module_matrix/objects.Point)
+Store the point data for an x, y, z [Matrix](#module_matrix/objects.Matrix).
+
+**Kind**: global function  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| x | [<code>coordinate</code>](#module_matrix/objects.coordinate) |  | The numeric value for X-coordinate |
+| y | [<code>coordinate</code>](#module_matrix/objects.coordinate) |  | The numeric value for Y-coordinate |
+| [z] | [<code>coordinate</code>](#module_matrix/objects.coordinate) | <code>0</code> | The numeric value for Z-coordinate (default to 0 for 2D [Matrix](#module_matrix/objects.Matrix)) |
+
+<a name="tile"></a>
+
+## tile() ⇒ [<code>MatrixTile</code>](#module_matrix/objects.MatrixTile)
+A default tile in the [Matrix](#module_matrix/objects.Matrix)
+
+**Kind**: global function  
+<a name="matrix"></a>
+
+## matrix(x, y, z, matrixProps) ⇒ [<code>Matrix</code>](#module_matrix/objects.Matrix)
+Create a 3d matrix of i with x by y by z size, add additional objects for each layer as well
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| x | <code>Object</code> | Properties and a coordinate defining the width of the matrix. |
+| y | <code>Object</code> | Properties and a coordinate defining the height of the matrix. |
+| z | <code>Object</code> | Properties and a coordinate defining the depth of the matrix. |
+| matrixProps | [<code>Array.&lt;Matrix&gt;</code>](#module_matrix/objects.Matrix) | Properties to be added to the matrix |
+
+<a name="square"></a>
+
+## square([x], [y], [z], [matrixProps], size) ⇒ [<code>Matrix</code>](#module_matrix/objects.Matrix)
+Return a single layer matrix where x and y are equal
+
+**Kind**: global function  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [x] | [<code>Array.&lt;MatrixTile&gt;</code>](#module_matrix/objects.MatrixTile) | <code>[]</code> | All the data to be presented as part of the specified point, requires MatrixTile base |
+| [y] | [<code>Array.&lt;MatrixRow&gt;</code>](#module_matrix/objects.MatrixRow) | <code>[]</code> | Additional data to append to the MatrixRow |
+| [z] | [<code>Array.&lt;MatrixLayer&gt;</code>](#module_matrix/objects.MatrixLayer) | <code>[]</code> | Additional data to append to the MatrixLayer |
+| [matrixProps] | [<code>Array.&lt;Matrix&gt;</code>](#module_matrix/objects.Matrix) | <code>[]</code> | Additional data to append to the Matrix |
+| size | <code>number</code> |  | Used to define height and width as equal values (depth is set to 1) |
+
+<a name="cube"></a>
+
+## cube([x], [y], [z], [matrixProps], size) ⇒ [<code>Matrix</code>](#module_matrix/objects.Matrix)
+Return a matrix where x, y, and z are equal
+
+**Kind**: global function  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [x] | [<code>Array.&lt;MatrixTile&gt;</code>](#module_matrix/objects.MatrixTile) | <code>[]</code> | All the data to be presented as part of the specified point, requires MatrixTile base |
+| [y] | [<code>Array.&lt;MatrixRow&gt;</code>](#module_matrix/objects.MatrixRow) | <code>[]</code> | Additional data to append to the MatrixRow |
+| [z] | [<code>Array.&lt;MatrixLayer&gt;</code>](#module_matrix/objects.MatrixLayer) | <code>[]</code> | Additional data to append to the MatrixLayer |
+| [matrixProps] | [<code>Array.&lt;Matrix&gt;</code>](#module_matrix/objects.Matrix) | <code>[]</code> | Additional data to append to the Matrix |
+| size | <code>number</code> |  | Used to define height, width, and depth as equal values |
+
+<a name="listenerFunction"></a>
+
+## listenerFunction : <code>function</code>
+This is the standard definition of a listenerFunction to be used
+
 **Kind**: global typedef  
-**See**: module:pseudoDom/objects.generate  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| e | <code>Event</code> \| <code>module:pseudoDom/objects.PseudoEvent</code> | The event object passed to the listener |
+| target | [<code>DomItem</code>](#module_dom/objects.DomItem) | The element which triggered the event |
+| [...args] | <code>\*</code> | Optional args as required by the listener |
+
+<a name="EventListener"></a>
+
+## EventListener : <code>Object</code>
+An EventListener Object to be appended to the element within the DomItem
+
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| listenerFunc | <code>string</code> | A string function name matching an existing [module:dom/objects~listenerFunction](module:dom/objects~listenerFunction). |
+| listenerArgs | <code>Object</code> | Additional args required for the listener function |
+| listenerOptions | [<code>EventListenerOptions</code>](#module_dom/objects.EventListenerOptions) | Provides support for options parameter of addEventListener, or false for default |
+
+<a name="DomItemHead"></a>
+
+## DomItemHead : [<code>DomItem</code>](#module_dom/objects.DomItem)
+DomItemHead defines the structure for a single element in the Dom
+
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| [tagName] | <code>string</code> | <code>&quot;head&quot;</code> | This is set to the string head referring to the HTML element of the same name |
+| attributes | <code>Object.&lt;string, (string\|Object)&gt;</code> |  | All potential HTML element attributes can be defined here |
+| element | <code>HTMLHeadElement</code> \| <code>module:pseudoDom/objects.PseudoHTMLElement</code> |  | A reference to the HTML head element |
+| children | [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem) |  | A reference to an array of child objects |
+
+<a name="DomItemBody"></a>
+
+## DomItemBody : [<code>DomItem</code>](#module_dom/objects.DomItem)
+DomItemBody defines the structure for a single element in the Dom
+
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| [tagName] | <code>string</code> | <code>&quot;body&quot;</code> | This is set to the string body referring to the HTML element of the same name |
+| attributes | <code>Object.&lt;string, (string\|Object)&gt;</code> |  | All potential HTML element attributes can be defined here |
+| element | <code>HTMLBodyElement</code> \| <code>module:pseudoDom/objects.PseudoHTMLElement</code> |  | A reference to the HTML body element |
+| children | [<code>Array.&lt;DomItem&gt;</code>](#module_dom/objects.DomItem) |  | A reference to an array of child objects |
+

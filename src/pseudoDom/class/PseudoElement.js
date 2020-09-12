@@ -3,7 +3,7 @@
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
-const PseudoNode = require('./PseudoNode').PseudoNode
+import { PseudoNode } from './PseudoNode'
 
 /**
  * Simulate the behaviour of the Element Class when there is no DOM available.
@@ -20,7 +20,7 @@ const PseudoNode = require('./PseudoNode').PseudoNode
  * @property {function} getAttribute
  * @property {function} removeAttribute
  */
-class PseudoElement extends PseudoNode {
+export class PseudoElement extends PseudoNode {
   /**
    * Simulate the Element object when the Dom is not available
    * @param {string} [tagName=''] - The
@@ -132,5 +132,3 @@ class PseudoElement extends PseudoNode {
     return null
   }
 }
-
-module.exports = PseudoElement

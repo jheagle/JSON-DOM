@@ -2,39 +2,45 @@
   "name": "json-dom",
   "description": "State management with JSON.",
   "version": "0.0.0",
-  "main": "src/main.js",
+  "main": "dist/main.js",
   "author": "Joshua Heagle",
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "readme": "echo '# JSON-DOM\nState management with JSON\n' > README.md && jsdoc2md src/**/*.js >> README.md"
+    "readme": "cp MAIN.md README.md && echo \"\" >> README.md && jsdoc2md src/main.js src/collections/main.js src/collections/classes/*.js src/dom/main.js src/dom/source/*.js src/matrix/main.js src/matrix/source/*.js src/pseudoDom/main.js src/pseudoDom/class/*.js >> README.md",
+    "htmldocs": "jsdoc -R MAIN.md -r src/ -d docs"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-env": "^7.9.5",
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-env": "^7.11.5",
+    "babel-jest": "^26.3.0",
     "del": "^5.1.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.8.1",
     "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^24.0.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
-    "gulp-cli": "^2.2.0",
-    "gulp-concat": "^2.6.1",
+    "gulp-cli": "^2.3.0",
+    "gulp-eslint": "^6.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-uglify-es": "^2.0.0",
-    "jest": "^25.4.0",
-    "jsdoc-to-markdown": "^5.0.3",
-    "standard": "^14.3.3"
+    "jest": "^26.4.2",
+    "jsdoc": "^3.6.5",
+    "jsdoc-to-markdown": "^6.0.1",
+    "standard": "^14.3.4"
   },
   "dependencies": {
+    "@babel/runtime-corejs3": "^7.11.2",
+    "core-js": "^3.6.5",
     "functional-helpers": "github:jheagle/functional-helpers",
     "json-dom": "github:jheagle/functional-helpers",
-    "npm": "^6.14.4"
+    "npm": "^6.14.8",
+    "regenerator-runtime": "^0.13.7"
   },
   "directories": {
     "test": "tests"

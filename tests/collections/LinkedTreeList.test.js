@@ -1,4 +1,4 @@
-const LinkedTreeList = require('../../src/collections/LinkedTreeList')
+import { LinkedTreeList } from '../../dist/collections/classes/LinkedTreeList'
 
 test('LinkedTreeList can store elements', () => {
   const arrayData = ['one', 'two', 'three', 'four']

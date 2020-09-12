@@ -1,1 +1,66 @@
-"use strict";(function(){var e=this||{};Object.keys(e).length||("undefined"!=typeof require?e=require("./pseudoDom/objects.js").generate(e):console.error("main.js requires pseudoDom/objects"));var o=e.jsonDom||{},r={};e.jsonDom=r,r.noConflict=function(){return e.jsonDom=o,r},r.jDomObjects=e.jDomObjects,void 0===r.jDomObjects&&("undefined"!=typeof require?r.jDomObjects=require("./dom/objects.js"):console.error("main.js requires dom/objects")),r.jDomCore=e.jDomCore,void 0===r.jDomCore&&("undefined"!=typeof require?r.jDomCore=require("./dom/core.js"):console.error("main.js requires dom/core")),r.jDomMatrixObjects=e.jDomMatrixObjects,void 0===r.jDomMatrixObjects&&("undefined"!=typeof require?r.jDomMatrixObjects=require("./matrix/objects.js"):console.error("main.js requires matrix/objects")),r.jDomMatrixCore=e.jDomMatrixCore,void 0===r.jDomMatrixCore&&("undefined"!=typeof require?r.jDomMatrixCore=require("./matrix/core.js"):console.error("main.js requires matrix/core")),r.documentItem=r.jDomObjects.documentDomItem(),"undefined"!=typeof exports&&("undefined"!=typeof module&&module.exports&&(exports=module.exports=r),exports=Object.assign(exports,r))}).call(window||{});
+'use strict'
+
+function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
+
+require('core-js/modules/es.object.assign')
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+})
+exports.default = void 0
+
+require('core-js/stable')
+
+var collections = _interopRequireWildcard(require('./collections/main'))
+
+var jDom = _interopRequireWildcard(require('./dom/main'))
+
+var pseudoDom = _interopRequireWildcard(require('./pseudoDom/main'))
+
+var matrix = _interopRequireWildcard(require('./matrix/main'))
+
+function _getRequireWildcardCache () { if (typeof WeakMap !== 'function') return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache () { return cache }; return cache }
+
+function _interopRequireWildcard (obj) { if (obj && obj.__esModule) { return obj } if (obj === null || _typeof(obj) !== 'object' && typeof obj !== 'function') { return { default: obj } } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj) } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc) } else { newObj[key] = obj[key] } } } newObj.default = obj; if (cache) { cache.set(obj, newObj) } return newObj }
+
+/**
+ * All of the JSON DOM system functions for creating JSON components.
+ * @file
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @version 1.0.0
+ * @module jsonDom
+ */
+
+/**
+   * Store a reference to this scope which will be Window if rendered via browser
+   */
+var root = void 0 || {}
+/**
+   * Store reference to any pre-existing module of the same name
+   * @type {module|*}
+   */
+
+var previousJsonDom = root.jsonDom || {}
+/**
+   * All methods exported from this module are encapsulated within jsonDom.
+   * @typedef {module:jsonDom|module:collections|module:jDom|module:pseudoDom|module:matrix} jsonDom
+   */
+
+var jsonDom = {}
+root.jsonDom = jsonDom
+/**
+   * Return a reference to this library while preserving the original same-named library
+   * @function
+   * @returns {module:jsonDom~jsonDom}
+   */
+
+var noConflict = function noConflict () {
+  root.jsonDom = previousJsonDom
+  return jsonDom
+}
+
+jsonDom.noConflict = noConflict
+
+var _default = Object.assign(jsonDom, collections, jDom, pseudoDom, matrix)
+
+exports.default = _default

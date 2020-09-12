@@ -1,6 +1,6 @@
-const LinkedTreeList = require('../../../src/collections/LinkedTreeList')
-const nodeListFactory = require('../../../src/pseudoDom/class/PseudoNodeList').nodeListFactory
-const generateNode = require('../../../src/pseudoDom/class/PseudoNode').generateNode
+import { LinkedTreeList } from '../../../dist/collections/classes/LinkedTreeList'
+import { nodeListFactory } from '../../../dist/pseudoDom/class/PseudoNodeList'
+import { generateNode } from '../../../dist/pseudoDom/class/PseudoNode'
 
 test('NodeList can store elements', () => {
   const arrayData = ['one', 'two', 'three', 'four']

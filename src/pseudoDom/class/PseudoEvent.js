@@ -33,7 +33,7 @@
  * @property {boolean} isTrusted - Indicates whether or not the event was initiated by the browser (after a user
  * click for instance) or by a script (using an event creation method, like event.initEvent)
  */
-class PseudoEvent {
+export class PseudoEvent {
   /**
    *
    * @param typeArg
@@ -165,5 +165,3 @@ class PseudoEvent {
   })
   return Object.assign({}, phases, { [`${phase}`]: key })
 }, {})
-
-module.exports = PseudoEvent

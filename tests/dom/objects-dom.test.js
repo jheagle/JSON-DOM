@@ -1,4 +1,4 @@
-const jDomObjects = require('../../src/dom/objects')
+import * as jDomObjects from '../../dist/dom/source/objects'
 
 // documentItem
 test('documentItem has valid head', () => {

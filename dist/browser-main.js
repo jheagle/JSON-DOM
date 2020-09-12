@@ -1,1 +1,0 @@
-"use strict";(function(){var o=this||{},t=o.jsonDom||{},j={};o.jsonDom=j,j.noConflict=function(){return o.jsonDom=t,j},j.jDomObjects=o.jDomObjects,j.jDomCore=o.jDomCore,j.jDomMatrixObjects=o.jDomMatrixObjects,j.jDomMatrixCore=o.jDomMatrixCore,j.documentItem=j.jDomObjects.documentDomItem()}).call(window||{});

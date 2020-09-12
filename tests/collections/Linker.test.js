@@ -1,4 +1,4 @@
-const Linker = require('../../src/collections/Linker')
+import { Linker } from '../../dist/collections/classes/Linker'
 
 test('Linker can store data and pointer to next and previous linkers', () => {
   const arrayData = ['one', 'two', 'three']

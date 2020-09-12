@@ -1,1 +1,129 @@
-"use strict";function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function _defineProperties(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function _createClass(e,t,r){return t&&_defineProperties(e.prototype,t),r&&_defineProperties(e,r),e}function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&_setPrototypeOf(e,t)}function _setPrototypeOf(e,t){return(_setPrototypeOf=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function _createSuper(e){return function(){var t,r=_getPrototypeOf(e);if(_isNativeReflectConstruct()){var n=_getPrototypeOf(this).constructor;t=Reflect.construct(r,arguments,n)}else t=r.apply(this,arguments);return _possibleConstructorReturn(this,t)}}function _possibleConstructorReturn(e,t){return!t||"object"!==_typeof(t)&&"function"!=typeof t?_assertThisInitialized(e):t}function _assertThisInitialized(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function _isNativeReflectConstruct(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Date.prototype.toString.call(Reflect.construct(Date,[],(function(){}))),!0}catch(e){return!1}}function _getPrototypeOf(e){return(_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}var PseudoHTMLElement=require("./PseudoHTMLElement"),PseudoHTMLDocument=function(e){_inherits(r,PseudoHTMLElement);var t=_createSuper(r);function r(){var e;_classCallCheck(this,r),e=t.call(this);var n=new PseudoHTMLElement({tagName:"html",parent:_assertThisInitialized(e)});return e.head=new PseudoHTMLElement({tagName:"head",parent:n}),e.body=new PseudoHTMLElement({tagName:"body",parent:n}),n.children=[e.head,e.body],e.children=[n],e}return _createClass(r,[{key:"createElement",value:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"div",t=new PseudoHTMLElement({tagName:e});return t.parent=this,t}}]),r}();module.exports=PseudoHTMLDocument;
+'use strict'
+
+require('core-js/modules/es.symbol')
+
+require('core-js/modules/es.symbol.description')
+
+require('core-js/modules/es.symbol.iterator')
+
+require('core-js/modules/es.array.iterator')
+
+require('core-js/modules/es.object.get-prototype-of')
+
+require('core-js/modules/es.object.to-string')
+
+require('core-js/modules/es.reflect.construct')
+
+require('core-js/modules/es.regexp.to-string')
+
+require('core-js/modules/es.string.iterator')
+
+require('core-js/modules/web.dom-collections.iterator')
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+})
+exports.PseudoHTMLDocument = void 0
+
+var _PseudoHTMLElement2 = require('./PseudoHTMLElement')
+
+function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
+
+function _classCallCheck (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function') } }
+
+function _defineProperties (target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } }
+
+function _createClass (Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor }
+
+function _inherits (subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function') } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass) }
+
+function _setPrototypeOf (o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf (o, p) { o.__proto__ = p; return o }; return _setPrototypeOf(o, p) }
+
+function _createSuper (Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal () { var Super = _getPrototypeOf(Derived); var result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget) } else { result = Super.apply(this, arguments) } return _possibleConstructorReturn(this, result) } }
+
+function _possibleConstructorReturn (self, call) { if (call && (_typeof(call) === 'object' || typeof call === 'function')) { return call } return _assertThisInitialized(self) }
+
+function _assertThisInitialized (self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called") } return self }
+
+function _isNativeReflectConstruct () { if (typeof Reflect === 'undefined' || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === 'function') return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true } catch (e) { return false } }
+
+function _getPrototypeOf (o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf (o) { return o.__proto__ || Object.getPrototypeOf(o) }; return _getPrototypeOf(o) }
+
+/**
+ * Simulate the behaviour of the HTMLDocument Class when there is no DOM available.
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @class
+ * @augments PseudoHTMLElement
+ * @property {PseudoHTMLElement} head - A reference to the Head child element
+ * @property {PseudoHTMLElement} body - A reference to the Body child element
+ * @property {function} createElement - Generate a new PseudoHTMLElement with parent of document
+ */
+var PseudoHTMLDocument = /* #__PURE__ */(function (_PseudoHTMLElement) {
+  _inherits(PseudoHTMLDocument, _PseudoHTMLElement)
+
+  var _super = _createSuper(PseudoHTMLDocument)
+
+  /**
+   * The root HTML element is acts as the parent to all HTML elements in the document.
+   * @returns {PseudoHTMLDocument}
+   * @constructor
+   */
+  function PseudoHTMLDocument () {
+    var _this
+
+    _classCallCheck(this, PseudoHTMLDocument)
+
+    _this = _super.call(this)
+    var html = new _PseudoHTMLElement2.PseudoHTMLElement({
+      tagName: 'html',
+      parent: _assertThisInitialized(_this)
+    })
+    /**
+     * Create document head element
+     * @type {PseudoHTMLElement}
+     */
+
+    _this.head = new _PseudoHTMLElement2.PseudoHTMLElement({
+      tagName: 'head',
+      parent: html
+    })
+    /**
+     * Create document body element
+     * @type {PseudoHTMLElement}
+     */
+
+    _this.body = new _PseudoHTMLElement2.PseudoHTMLElement({
+      tagName: 'body',
+      parent: html
+    })
+    html.children = [_this.head, _this.body]
+    /**
+     * Create document child element
+     * @type {PseudoHTMLElement[]}
+     */
+
+    _this.children = [html]
+    return _this
+  }
+  /**
+   * Create and return a PseudoHTMLElement
+   * @param {string} tagName - Tag Name is a string representing the type of Dom element this represents
+   * @returns {PseudoHTMLElement}
+   */
+
+  _createClass(PseudoHTMLDocument, [{
+    key: 'createElement',
+    value: function createElement () {
+      var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div'
+      var returnElement = new _PseudoHTMLElement2.PseudoHTMLElement({
+        tagName: tagName
+      })
+      returnElement.parent = this
+      return returnElement
+    }
+  }])
+
+  return PseudoHTMLDocument
+}(_PseudoHTMLElement2.PseudoHTMLElement))
+
+exports.PseudoHTMLDocument = PseudoHTMLDocument

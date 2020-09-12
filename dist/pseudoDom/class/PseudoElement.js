@@ -1,1 +1,259 @@
-"use strict";function _typeof(t){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function _defineProperties(t,e){for(var r=0;r<e.length;r++){var n=e[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}function _createClass(t,e,r){return e&&_defineProperties(t.prototype,e),r&&_defineProperties(t,r),t}function _get(t,e,r){return(_get="undefined"!=typeof Reflect&&Reflect.get?Reflect.get:function(t,e,r){var n=_superPropBase(t,e);if(n){var o=Object.getOwnPropertyDescriptor(n,e);return o.get?o.get.call(r):o.value}})(t,e,r||t)}function _superPropBase(t,e){for(;!Object.prototype.hasOwnProperty.call(t,e)&&null!==(t=_getPrototypeOf(t)););return t}function _inherits(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function");t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,writable:!0,configurable:!0}}),e&&_setPrototypeOf(t,e)}function _setPrototypeOf(t,e){return(_setPrototypeOf=Object.setPrototypeOf||function(t,e){return t.__proto__=e,t})(t,e)}function _createSuper(t){return function(){var e,r=_getPrototypeOf(t);if(_isNativeReflectConstruct()){var n=_getPrototypeOf(this).constructor;e=Reflect.construct(r,arguments,n)}else e=r.apply(this,arguments);return _possibleConstructorReturn(this,e)}}function _possibleConstructorReturn(t,e){return!e||"object"!==_typeof(e)&&"function"!=typeof e?_assertThisInitialized(t):e}function _assertThisInitialized(t){if(void 0===t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return t}function _isNativeReflectConstruct(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Date.prototype.toString.call(Reflect.construct(Date,[],(function(){}))),!0}catch(t){return!1}}function _getPrototypeOf(t){return(_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function(t){return t.__proto__||Object.getPrototypeOf(t)})(t)}var PseudoNode=require("./PseudoNode").PseudoNode,PseudoElement=function(t){_inherits(r,PseudoNode);var e=_createSuper(r);function r(){var t,n=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},o=n.tagName,i=void 0===o?"":o,u=n.attributes,a=void 0===u?[]:u,s=n.parent,c=void 0===s?{}:s,f=n.children,l=void 0===f?[]:f;return _classCallCheck(this,r),(t=e.call(this,{parent:c,children:l})).tagName=i,t.attributes=a.concat([{name:"className",value:""},{name:"id",value:""},{name:"innerHTML",value:""}]),t.attributes.map((function(e){var r=e.name,n=e.value;return t[r]=n,{name:r,value:n}})),t.classList=t.className,t}return _createClass(r,[{key:"applyDefaultEvent",value:function(){var t=this,e=function(t){};switch(this.tagName){case"form":this.addEventListener("submit",e);break;case"button":case"input":/^(submit|image)$/i.test(this.type||"")&&(e=function(e){var r=require("./PseudoEvent").getParentNodesFromAttribute("tagName","form",t);r&&r[0].submit()},_get(_getPrototypeOf(r.prototype),"setDefaultEvent",this).call(this,"click",e))}return e}},{key:"appendChild",value:function(t){return _get(_getPrototypeOf(r.prototype),"appendChild",this).call(this,t),t.applyDefaultEvent(),t}},{key:"hasAttribute",value:function(t){return"undefined"!==this.getAttribute(t)}},{key:"setAttribute",value:function(t,e){(this.hasAttribute(t)||"undefined"===this[t])&&(this[t]=e,this.attributes.push({name:t,value:e}))}},{key:"getAttribute",value:function(t){return this.attributes.find((function(e){return e.name===t}))}},{key:"removeAttribute",value:function(t){return this.hasAttribute(t)&&(delete this[t],this.getAttribute(t)),null}}]),r}();module.exports=PseudoElement;
+'use strict'
+
+require('core-js/modules/es.symbol')
+
+require('core-js/modules/es.symbol.description')
+
+require('core-js/modules/es.symbol.iterator')
+
+require('core-js/modules/es.array.concat')
+
+require('core-js/modules/es.array.find')
+
+require('core-js/modules/es.array.iterator')
+
+require('core-js/modules/es.array.map')
+
+require('core-js/modules/es.function.name')
+
+require('core-js/modules/es.object.get-own-property-descriptor')
+
+require('core-js/modules/es.object.get-prototype-of')
+
+require('core-js/modules/es.object.to-string')
+
+require('core-js/modules/es.reflect.construct')
+
+require('core-js/modules/es.reflect.get')
+
+require('core-js/modules/es.regexp.to-string')
+
+require('core-js/modules/es.string.iterator')
+
+require('core-js/modules/web.dom-collections.iterator')
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+})
+exports.PseudoElement = void 0
+
+var _PseudoNode2 = require('./PseudoNode')
+
+function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
+
+function _classCallCheck (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function') } }
+
+function _defineProperties (target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } }
+
+function _createClass (Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor }
+
+function _get (target, property, receiver) { if (typeof Reflect !== 'undefined' && Reflect.get) { _get = Reflect.get } else { _get = function _get (target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver) } return desc.value } } return _get(target, property, receiver || target) }
+
+function _superPropBase (object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break } return object }
+
+function _inherits (subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function') } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass) }
+
+function _setPrototypeOf (o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf (o, p) { o.__proto__ = p; return o }; return _setPrototypeOf(o, p) }
+
+function _createSuper (Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal () { var Super = _getPrototypeOf(Derived); var result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget) } else { result = Super.apply(this, arguments) } return _possibleConstructorReturn(this, result) } }
+
+function _possibleConstructorReturn (self, call) { if (call && (_typeof(call) === 'object' || typeof call === 'function')) { return call } return _assertThisInitialized(self) }
+
+function _assertThisInitialized (self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called") } return self }
+
+function _isNativeReflectConstruct () { if (typeof Reflect === 'undefined' || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === 'function') return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true } catch (e) { return false } }
+
+function _getPrototypeOf (o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf (o) { return o.__proto__ || Object.getPrototypeOf(o) }; return _getPrototypeOf(o) }
+
+/**
+ * Simulate the behaviour of the Element Class when there is no DOM available.
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @class
+ * @augments PseudoNode
+ * @property {string} tagName
+ * @property {string} className
+ * @property {string} id
+ * @property {string} innerHtml
+ * @property {Array} attributes
+ * @property {function} hasAttribute
+ * @property {function} setAttribute
+ * @property {function} getAttribute
+ * @property {function} removeAttribute
+ */
+var PseudoElement = /* #__PURE__ */(function (_PseudoNode) {
+  _inherits(PseudoElement, _PseudoNode)
+
+  var _super = _createSuper(PseudoElement)
+
+  /**
+   * Simulate the Element object when the Dom is not available
+   * @param {string} [tagName=''] - The
+   * @param {array} [attributes=[]]
+   * @param {PseudoNode|Object} [parent={}]
+   * @param {Array} [children=[]]
+   * @constructor
+   */
+  function PseudoElement () {
+    var _this
+
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
+    var _ref$tagName = _ref.tagName
+    var tagName = _ref$tagName === void 0 ? '' : _ref$tagName
+    var _ref$attributes = _ref.attributes
+    var attributes = _ref$attributes === void 0 ? [] : _ref$attributes
+    var _ref$parent = _ref.parent
+    var parent = _ref$parent === void 0 ? {} : _ref$parent
+    var _ref$children = _ref.children
+    var children = _ref$children === void 0 ? [] : _ref$children
+
+    _classCallCheck(this, PseudoElement)
+
+    _this = _super.call(this, {
+      parent: parent,
+      children: children
+    })
+    _this.tagName = tagName
+    _this.attributes = attributes.concat([{
+      name: 'className',
+      value: ''
+    }, {
+      name: 'id',
+      value: ''
+    }, {
+      name: 'innerHTML',
+      value: ''
+    }])
+    /**
+     * Map all incoming attributes to the attributes array and attach each as a property of this element
+     */
+
+    _this.attributes.map(function (_ref2) {
+      var name = _ref2.name
+      var value = _ref2.value
+      _this[name] = value
+      return {
+        name: name,
+        value: value
+      }
+    }) // this.classList = new DOMSettableTokenList(this.className)
+
+    _this.classList = _this.className
+    return _this
+  }
+  /**
+   *
+   * @returns {Function}
+   */
+
+  _createClass(PseudoElement, [{
+    key: 'applyDefaultEvent',
+    value: function applyDefaultEvent () {
+      var _this2 = this
+
+      var callback = function callback (event) {
+        return undefined
+      }
+
+      switch (this.tagName) {
+        case 'form':
+          this.addEventListener('submit', callback)
+          break
+
+        case 'button':
+        case 'input':
+          if (/^(submit|image)$/i.test(this.type || '')) {
+            callback = function callback (event) {
+              var forms = require('./PseudoEvent').getParentNodesFromAttribute('tagName', 'form', _this2)
+
+              if (forms) {
+                forms[0].submit()
+              }
+            }
+
+            _get(_getPrototypeOf(PseudoElement.prototype), 'setDefaultEvent', this).call(this, 'click', callback)
+          }
+      }
+
+      return callback
+    }
+    /**
+     *
+     * @param {PseudoNode|PseudoElement} childElement
+     * @returns {PseudoNode}
+     */
+
+  }, {
+    key: 'appendChild',
+    value: function appendChild (childElement) {
+      _get(_getPrototypeOf(PseudoElement.prototype), 'appendChild', this).call(this, childElement)
+
+      childElement.applyDefaultEvent()
+      return childElement
+    }
+    /**
+     * Check if an attribute is assigned to this element.
+     * @param {string} attributeName - The attribute name to check
+     * @returns {boolean}
+     */
+
+  }, {
+    key: 'hasAttribute',
+    value: function hasAttribute (attributeName) {
+      return this.getAttribute(attributeName) !== 'undefined'
+    }
+    /**
+     * Assign a new attribute or overwrite an assigned attribute with name and value.
+     * @param {string} attributeName - The name key of the attribute to append
+     * @param {string|Object} attributeValue - The value of the attribute to append
+     * @returns {undefined}
+     */
+
+  }, {
+    key: 'setAttribute',
+    value: function setAttribute (attributeName, attributeValue) {
+      if (this.hasAttribute(attributeName) || this[attributeName] === 'undefined') {
+        this[attributeName] = attributeValue
+        this.attributes.push({
+          name: attributeName,
+          value: attributeValue
+        })
+      }
+
+      return undefined
+    }
+    /**
+     * Retrieve the value of the specified attribute from the Element
+     * @param {string} attributeName - A string representing the name of the attribute to be retrieved
+     * @returns {string|Object}
+     */
+
+  }, {
+    key: 'getAttribute',
+    value: function getAttribute (attributeName) {
+      return this.attributes.find(function (attribute) {
+        return attribute.name === attributeName
+      })
+    } // noinspection JSUnusedGlobalSymbols
+
+    /**
+     * Remove an assigned attribute from the Element
+     * @param {string} attributeName - The string name of the attribute to be removed
+     * @returns {null}
+     */
+
+  }, {
+    key: 'removeAttribute',
+    value: function removeAttribute (attributeName) {
+      if (this.hasAttribute(attributeName)) {
+        delete this[attributeName]
+        delete this.getAttribute(attributeName)
+      }
+
+      return null
+    }
+  }])
+
+  return PseudoElement
+}(_PseudoNode2.PseudoNode))
+
+exports.PseudoElement = PseudoElement

@@ -1,47 +1,22 @@
-const del = require('del')
-const gulp = require('gulp')
 const babel = require('gulp-babel')
-const concat = require('gulp-concat')
+const del = require('del')
+const eslint = require('gulp-eslint')
+const gulp = require('gulp')
 const rename = require('gulp-rename')
 const uglify = require('gulp-uglify-es').default
 
-// Development Tasks
-// -----------------
-
-// Optimizing JavaScript
-gulp.task('distribute', () => gulp.src('src/**/*')
-  .pipe(babel({
-    presets: ['@babel/preset-env']
-  }))
+gulp.task('dist', () => gulp.src('src/**/*.js')
+  .pipe(babel())
+  .pipe(eslint({ fix: true }))
+  .pipe(eslint.format())
+  .pipe(gulp.dest('dist'))
   .pipe(uglify())
+  .pipe(rename({ extname: '.min.js' }))
   .pipe(gulp.dest('dist'))
 )
 
-// Prepare browser bundle
-gulp.task('browser-bundle', () => gulp.src([
-  'src/dom/objects.js',
-  'src/dom/core.js',
-  'src/matrix/objects.js',
-  'src/matrix/core.js',
-  'src/browser-main.js'
-])
-  .pipe(concat('json-dom.js'))
-  .pipe(babel({
-    presets: ['@babel/preset-env']
-  }))
-  .pipe(gulp.dest('browser'))
-  .pipe(uglify())
-  .pipe(rename('json-dom.min.js'))
-  .pipe(gulp.dest('browser'))
-)
+gulp.task('clean', () => del('dist'))
 
-// Cleaning
-gulp.task('clean:dist', () => del('dist'))
+gulp.task('default', gulp.series('dist'))
 
-gulp.task('clean:browser', () => del('browser'))
-
-gulp.task('clean', gulp.series('clean:dist', 'clean:browser'))
-
-gulp.task('default', gulp.series('distribute', 'browser-bundle'))
-
-gulp.task('build', gulp.series('clean', 'distribute', 'browser-bundle'))
+gulp.task('build', gulp.series('clean', 'dist'))

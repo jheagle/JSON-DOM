@@ -1,4 +1,4 @@
-const PseudoEvent = require('../../../src/pseudoDom/class/PseudoEvent')
+import { PseudoEvent } from '../../../dist/pseudoDom/class/PseudoEvent'
 
 const testEvent = new PseudoEvent('click')
 

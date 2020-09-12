@@ -1,4 +1,4 @@
-const LinkedList = require('../../src/collections/LinkedList')
+import { LinkedList } from '../../dist/collections/classes/LinkedList'
 
 test('LinkedList can store elements', () => {
   const arrayData = ['one', 'two', 'three', 'four']
