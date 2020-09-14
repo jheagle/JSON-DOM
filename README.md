@@ -169,7 +169,7 @@ WARNING: This is a recursive function.</p>
 <dd><p>Helper for getting all jDomObjects.DomItems starting at child and having specified tagName</p>
 </dd>
 <dt><a href="#getTopParentItem">getTopParentItem(item)</a> ⇒ <code><a href="#module_dom/objects.DomItemRoot">DomItemRoot</a></code></dt>
-<dd><p>Get the upper parentItem for the provided child. (usually this is a jDomObjects.documentItem reference)
+<dd><p>Get the upper parentItem for the provided child. (usually this is a documentItem reference)
 WARNING: This is a recursive function.</p>
 </dd>
 <dt><a href="#renderHTML">renderHTML(item, parent)</a> ⇒ <code><a href="#module_dom/objects.DomItem">DomItem</a></code></dt>
@@ -1142,7 +1142,7 @@ Helper for getting all jDomObjects.DomItems starting at child and having specifi
 <a name="getTopParentItem"></a>
 
 ## getTopParentItem(item) ⇒ [<code>DomItemRoot</code>](#module_dom/objects.DomItemRoot)
-Get the upper parentItem for the provided child. (usually this is a jDomObjects.documentItem reference)
+Get the upper parentItem for the provided child. (usually this is a documentItem reference)
 WARNING: This is a recursive function.
 
 **Kind**: global function  
