@@ -34,7 +34,7 @@ function _interopRequireWildcard (obj) { if (obj && obj.__esModule) { return obj
 /**
    * Store a reference to this scope which will be Window if rendered via browser
    */
-var root = void 0 || {}
+var root = void 0 || window || global || {}
 /**
    * Store reference to any pre-existing module of the same name
    * @type {module|*}
@@ -60,7 +60,6 @@ var noConflict = function noConflict () {
 }
 
 jsonDom.noConflict = noConflict
-
-var _default = Object.assign(jsonDom, collections, jDom, pseudoDom, matrix)
-
+root.jsonDom = Object.assign(jsonDom, collections, jDom, pseudoDom, matrix)
+var _default = root.jsonDom
 exports.default = _default

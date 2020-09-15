@@ -15,7 +15,7 @@ import * as matrix from './matrix/main'
 /**
    * Store a reference to this scope which will be Window if rendered via browser
    */
-const root = this || {}
+const root = this || window || global || {}
 
 /**
    * Store reference to any pre-existing module of the same name
@@ -41,10 +41,12 @@ const noConflict = () => {
 }
 jsonDom.noConflict = noConflict
 
-export default Object.assign(
+root.jsonDom = Object.assign(
   jsonDom,
   collections,
   jDom,
   pseudoDom,
   matrix
 )
+
+export default root.jsonDom
