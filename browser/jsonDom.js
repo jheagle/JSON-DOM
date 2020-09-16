@@ -2416,15 +2416,15 @@
      *
      * @type {Window|PseudoEventTarget}
      */
-      var window = typeof root.document === 'undefined' ? root : new pseudoDom.PseudoEventTarget()
+      var newWindow = typeof root.document === 'undefined' ? root : new pseudoDom.PseudoEventTarget()
       /**
      * @type {Node|PseudoNode}
      */
 
       var Node = root.Node || new pseudoDom.PseudoNode()
 
-      if (typeof window.Node === 'undefined') {
-        window.Node = Node
+      if (typeof newWindow.Node === 'undefined') {
+        newWindow.Node = Node
       }
       /**
      *
@@ -2433,8 +2433,8 @@
 
       var Element = root.Element || new pseudoDom.PseudoElement()
 
-      if (typeof window.Element === 'undefined') {
-        window.Element = Element
+      if (typeof newWindow.Element === 'undefined') {
+        newWindow.Element = Element
       }
       /**
      * Create an instance of HTMLElement if not available
@@ -2443,8 +2443,8 @@
 
       var HTMLElement = root.HTMLElement || new pseudoDom.PseudoHTMLElement()
 
-      if (typeof window.HTMLElement === 'undefined') {
-        window.HTMLElement = HTMLElement
+      if (typeof newWindow.HTMLElement === 'undefined') {
+        newWindow.HTMLElement = HTMLElement
       }
       /**
      * Define document when not available
@@ -2453,11 +2453,11 @@
 
       var document = root.document || new pseudoDom.PseudoHTMLDocument()
 
-      if (typeof window.document === 'undefined') {
-        window.document = document
+      if (typeof newWindow.document === 'undefined') {
+        newWindow.document = document
       }
 
-      return context ? Object.assign(context, pseudoDom, window) : Object.assign(root, window)
+      return context ? Object.assign(context, pseudoDom, newWindow) : Object.assign(root, newWindow)
     }
 
     var _default = Object.assign(pseudoDom, PseudoEvent, PseudoEventTarget, PseudoNode, PseudoElement, PseudoHTMLElement, PseudoHTMLDocument)

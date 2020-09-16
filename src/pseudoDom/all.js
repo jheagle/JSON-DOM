@@ -32,14 +32,14 @@ pseudoDom.generate = (root, context = {}) => {
      *
      * @type {Window|PseudoEventTarget}
      */
-  const window = typeof root.document === 'undefined' ? root : new pseudoDom.PseudoEventTarget()
+  const newWindow = typeof root.document === 'undefined' ? root : new pseudoDom.PseudoEventTarget()
 
   /**
      * @type {Node|PseudoNode}
      */
   const Node = root.Node || new pseudoDom.PseudoNode()
-  if (typeof window.Node === 'undefined') {
-    window.Node = Node
+  if (typeof newWindow.Node === 'undefined') {
+    newWindow.Node = Node
   }
 
   /**
@@ -47,8 +47,8 @@ pseudoDom.generate = (root, context = {}) => {
      * @type {Element|PseudoElement}
      */
   const Element = root.Element || new pseudoDom.PseudoElement()
-  if (typeof window.Element === 'undefined') {
-    window.Element = Element
+  if (typeof newWindow.Element === 'undefined') {
+    newWindow.Element = Element
   }
 
   /**
@@ -56,8 +56,8 @@ pseudoDom.generate = (root, context = {}) => {
      * @type {HTMLElement|PseudoHTMLElement}
      */
   const HTMLElement = root.HTMLElement || new pseudoDom.PseudoHTMLElement()
-  if (typeof window.HTMLElement === 'undefined') {
-    window.HTMLElement = HTMLElement
+  if (typeof newWindow.HTMLElement === 'undefined') {
+    newWindow.HTMLElement = HTMLElement
   }
 
   /**
@@ -65,11 +65,11 @@ pseudoDom.generate = (root, context = {}) => {
      * @type {Document|PseudoHTMLDocument}
      */
   const document = root.document || new pseudoDom.PseudoHTMLDocument()
-  if (typeof window.document === 'undefined') {
-    window.document = document
+  if (typeof newWindow.document === 'undefined') {
+    newWindow.document = document
   }
 
-  return context ? Object.assign(context, pseudoDom, window) : Object.assign(root, window)
+  return context ? Object.assign(context, pseudoDom, newWindow) : Object.assign(root, newWindow)
 }
 
 export default Object.assign(
