@@ -1323,7 +1323,7 @@
         return _functionalHelpers.default.mapProperty('children', function (child) {
           return renderHTML(child, domItem)
         }, domItem)
-      })(_functionalHelpers.default.mapObject(jDomObjects.createDomItem(item), function (prop) {
+      })(_functionalHelpers.default.mapObject((0, _objects.createDomItem)(item), function (prop) {
         return prop
       }, item))
     }

@@ -5,7 +5,7 @@
  */
 
 import functionalHelpers from 'functional-helpers'
-import { documentItem } from './objects'
+import { createDomItem, documentItem } from './objects'
 
 /**
    * Check if the provided Element has the provided attributes.
@@ -547,4 +547,4 @@ export const renderHTML = (item, parent = documentItem) => functionalHelpers.pip
   functionalHelpers.curry(functionalHelpers.setValue)('parentItem', parent.body || parent),
   (domItem) => bindListeners(appendHTML(domItem, parent)),
   (domItem) => functionalHelpers.mapProperty('children', child => renderHTML(child, domItem), domItem)
-)(functionalHelpers.mapObject(jDomObjects.createDomItem(item), prop => prop, item))
+)(functionalHelpers.mapObject(createDomItem(item), prop => prop, item))
