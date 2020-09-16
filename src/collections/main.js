@@ -7,15 +7,12 @@
  */
 
 import 'core-js/stable'
-import * as Linker from './classes/Linker'
-import * as LinkedList from './classes/LinkedList'
-import * as TreeLinker from './classes/TreeLinker'
-import * as LinkedTreeList from './classes/LinkedTreeList'
+import allCollections from './all'
 
 /**
  * Store a reference to this scope which will be Window if rendered via browser
  */
-const root = this || {}
+const root = this || window || global || {}
 
 /**
  * Store reference to any pre-existing module of the same name
@@ -43,8 +40,5 @@ collections.noConflict = noConflict
 
 export default Object.assign(
   collections,
-  Linker,
-  LinkedList,
-  TreeLinker,
-  LinkedTreeList
+  allCollections
 )

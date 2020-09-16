@@ -7,10 +7,10 @@
  */
 
 import 'core-js/stable'
-import * as collections from './collections/main'
-import * as jDom from './dom/main'
-import * as pseudoDom from './pseudoDom/main'
-import * as matrix from './matrix/main'
+import collections from './collections/all'
+import jDom from './dom/all'
+import pseudoDom from './pseudoDom/all'
+import matrix from './matrix/all'
 
 /**
    * Store a reference to this scope which will be Window if rendered via browser
@@ -41,12 +41,10 @@ const noConflict = () => {
 }
 jsonDom.noConflict = noConflict
 
-root.jsonDom = Object.assign(
+export default root.jsonDom = Object.assign(
   jsonDom,
   collections,
   jDom,
   pseudoDom,
   matrix
 )
-
-export default root.jsonDom

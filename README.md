@@ -20,6 +20,9 @@ State management with JSON
 <dt><a href="#module_pseudoDom/objects">pseudoDom/objects</a> : <code>Object</code></dt>
 <dd><p>All methods exported from this module are encapsulated within pseudoDom.</p>
 </dd>
+<dt><a href="#module_pseudoDom/objects">pseudoDom/objects</a> : <code>Object</code></dt>
+<dd><p>All methods exported from this module are encapsulated within pseudoDom.</p>
+</dd>
 </dl>
 
 ## Classes
@@ -460,18 +463,12 @@ All methods exported from this module are encapsulated within pseudoDom.
 **Author**: Joshua Heagle <joshuaheagle@gmail.com>  
 
 * [pseudoDom/objects](#module_pseudoDom/objects) : <code>Object</code>
+    * [~generate(root, context)](#module_pseudoDom/objects..generate) ⇒ <code>Window</code> \| [<code>PseudoEventTarget</code>](#PseudoEventTarget)
     * [~noConflict()](#module_pseudoDom/objects..noConflict) ⇒ <code>pseudoDom</code>
-    * [~generate(context)](#module_pseudoDom/objects..generate) ⇒ <code>Window</code> \| [<code>PseudoEventTarget</code>](#PseudoEventTarget)
 
-<a name="module_pseudoDom/objects..noConflict"></a>
-
-### pseudoDom/objects~noConflict() ⇒ <code>pseudoDom</code>
-Return a reference to this library while preserving the original same-named library
-
-**Kind**: inner method of [<code>pseudoDom/objects</code>](#module_pseudoDom/objects)  
 <a name="module_pseudoDom/objects..generate"></a>
 
-### pseudoDom/objects~generate(context) ⇒ <code>Window</code> \| [<code>PseudoEventTarget</code>](#PseudoEventTarget)
+### pseudoDom/objects~generate(root, context) ⇒ <code>Window</code> \| [<code>PseudoEventTarget</code>](#PseudoEventTarget)
 Construct the Pseudo Dom to provide access to Dom objects which are otherwise not available outside of the browser
 context.
 
@@ -479,8 +476,45 @@ context.
 
 | Param | Type |
 | --- | --- |
+| root | <code>Object</code> | 
 | context | <code>Object</code> | 
 
+<a name="module_pseudoDom/objects..noConflict"></a>
+
+### pseudoDom/objects~noConflict() ⇒ <code>pseudoDom</code>
+Return a reference to this library while preserving the original same-named library
+
+**Kind**: inner method of [<code>pseudoDom/objects</code>](#module_pseudoDom/objects)  
+<a name="module_pseudoDom/objects"></a>
+
+## pseudoDom/objects : <code>Object</code>
+All methods exported from this module are encapsulated within pseudoDom.
+
+**Author**: Joshua Heagle <joshuaheagle@gmail.com>  
+
+* [pseudoDom/objects](#module_pseudoDom/objects) : <code>Object</code>
+    * [~generate(root, context)](#module_pseudoDom/objects..generate) ⇒ <code>Window</code> \| [<code>PseudoEventTarget</code>](#PseudoEventTarget)
+    * [~noConflict()](#module_pseudoDom/objects..noConflict) ⇒ <code>pseudoDom</code>
+
+<a name="module_pseudoDom/objects..generate"></a>
+
+### pseudoDom/objects~generate(root, context) ⇒ <code>Window</code> \| [<code>PseudoEventTarget</code>](#PseudoEventTarget)
+Construct the Pseudo Dom to provide access to Dom objects which are otherwise not available outside of the browser
+context.
+
+**Kind**: inner method of [<code>pseudoDom/objects</code>](#module_pseudoDom/objects)  
+
+| Param | Type |
+| --- | --- |
+| root | <code>Object</code> | 
+| context | <code>Object</code> | 
+
+<a name="module_pseudoDom/objects..noConflict"></a>
+
+### pseudoDom/objects~noConflict() ⇒ <code>pseudoDom</code>
+Return a reference to this library while preserving the original same-named library
+
+**Kind**: inner method of [<code>pseudoDom/objects</code>](#module_pseudoDom/objects)  
 <a name="PseudoEventListener"></a>
 
 ## PseudoEventListener

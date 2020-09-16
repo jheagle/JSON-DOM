@@ -1,4 +1,4 @@
-import { PseudoEventTarget } from '../../../dist/pseudoDom/class/PseudoEventTarget'
+import { PseudoEventTarget } from '../../dist/pseudoDom/class/PseudoEventTarget'
 
 const testEventTarget = new PseudoEventTarget()
 

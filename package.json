@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "readme": "cp MAIN.md README.md && echo \"\" >> README.md && jsdoc2md src/main.js src/collections/main.js src/collections/classes/*.js src/dom/main.js src/dom/source/*.js src/matrix/main.js src/matrix/source/*.js src/pseudoDom/main.js src/pseudoDom/class/*.js >> README.md",
+    "readme": "cp MAIN.md README.md && echo \"\" >> README.md && jsdoc2md src/main.js src/collections/main.js src/collections/classes/*.js src/dom/main.js src/dom/source/*.js src/matrix/main.js src/matrix/source/*.js src/pseudoDom/all.js src/pseudoDom/main.js src/pseudoDom/class/*.js >> README.md",
     "htmldocs": "jsdoc -R MAIN.md -r src/ -d docs"
   },
   "devDependencies": {

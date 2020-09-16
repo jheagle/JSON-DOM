@@ -1,6 +1,6 @@
-import { LinkedTreeList } from '../../../dist/collections/classes/LinkedTreeList'
-import { nodeListFactory } from '../../../dist/pseudoDom/class/PseudoNodeList'
-import { generateNode } from '../../../dist/pseudoDom/class/PseudoNode'
+import { LinkedTreeList } from '../../dist/collections/classes/LinkedTreeList'
+import { nodeListFactory } from '../../dist/pseudoDom/class/PseudoNodeList'
+import { generateNode } from '../../dist/pseudoDom/class/PseudoNode'
 
 test('NodeList can store elements', () => {
   const arrayData = ['one', 'two', 'three', 'four']

@@ -7,13 +7,12 @@
  */
 
 import 'core-js/stable'
-import * as jDomMatrixCore from './source/functions'
-import * as jDomMatrixObjects from './source/objects'
+import allMatrix from './all'
 
 /**
  * Store a reference to this scope which will be Window if rendered via browser
  */
-const root = this || {}
+const root = this || window || global || {}
 
 /**
  * Store reference to any pre-existing module of the same name
@@ -41,6 +40,5 @@ jDomMatrix.noConflict = noConflict
 
 export default Object.assign(
   jDomMatrix,
-  jDomMatrixCore,
-  jDomMatrixObjects
+  allMatrix
 )
