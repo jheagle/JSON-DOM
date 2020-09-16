@@ -12839,7 +12839,15 @@
     exports.reduceObject = reduceObject
 
     var notEmptyObjectOrArray = function notEmptyObjectOrArray (item) {
-      return !!(_typeof(item) === 'object' && Object.keys(item).length || Array.isArray(item) && item.length)
+      if (_typeof(item) !== 'object' || item === null) {
+        return false
+      }
+
+      if (Array.isArray(item)) {
+        return !!item.length
+      }
+
+      return !!Object.keys(item).length
     }
     /**
  * Clone objects for manipulation without data corruption, returns a copy of the provided object.
