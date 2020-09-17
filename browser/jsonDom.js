@@ -15837,7 +15837,8 @@
     function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
 
     /**
- * Set a value on an item, then return the item
+ * Set a value on an item, then return the item.
+ * NOTE: Argument order designed for usage with pipe
  * @function
  * @param {string|number} key - The key on the item which will have its value set
  * @param {*} value - Any value to be applied to the key
@@ -16395,12 +16396,8 @@
         return false
       }
 
-      if (descriptor1.isArray && descriptor1.length !== descriptor2.length) {
-        return false
-      }
-
-      if (descriptor1.length === 0) {
-        return descriptor2.length === 0
+      if (descriptor2.length === 0) {
+        return descriptor1.length === 0
       }
 
       var smallerDescriptor = descriptor1.length <= descriptor2.length ? descriptor1 : descriptor2
@@ -16719,7 +16716,7 @@
           }
 
           var objectToRef = focusObject[key]
-          var descriptorRefIndex = Array.isArray(objectToRef) && detail.arrayReference ? detail.arrayReference : detail.objectReference
+          var descriptorRefIndex = Array.isArray(objectToRef) && detail.arrayReference !== null ? detail.arrayReference : detail.objectReference
           newReferenceMap[newRef.object[key]] = mapOriginal(objectToRef, descriptorMap[descriptorRefIndex], newRef.object[key], --limit)
           return newRef
         }, newReferenceMap[index])
