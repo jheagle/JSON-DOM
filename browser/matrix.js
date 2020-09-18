@@ -13414,7 +13414,10 @@
             index = existingDescriptorIndex
 
             if (tempDescriptor.length && sameDescriptor(tempDescriptor, descriptorMap[existingDescriptorIndex])) {
-              descriptor = descriptorMap[existingDescriptorIndex]
+              if (descriptor.index === existingDescriptorIndex) {
+                descriptor = descriptorMap[existingDescriptorIndex]
+              }
+
               descriptor.details[referenceId].circular = true
             }
           }
@@ -13711,6 +13714,8 @@
 
       var arrayHelpers = _interopRequireWildcard(require('./helpers/arrays'))
 
+      var descriptors = _interopRequireWildcard(require('./helpers/objects/descriptors'))
+
       var functionHelpers = _interopRequireWildcard(require('./helpers/functions'))
 
       var numberHelpers = _interopRequireWildcard(require('./helpers/numbers'))
@@ -13759,11 +13764,11 @@
 
       functionalHelpers.noConflict = noConflict
 
-      var _default = Object.assign(functionalHelpers, arrayHelpers, functionHelpers, numberHelpers, objectHelpers)
+      var _default = Object.assign(functionalHelpers, arrayHelpers, descriptors, functionHelpers, numberHelpers, objectHelpers)
 
       exports.default = _default
     }).call(this, typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : {})
-  }, { './helpers/arrays': 380, './helpers/functions': 381, './helpers/numbers': 382, './helpers/objects': 383, 'core-js/modules/es.object.assign': 238, 'core-js/stable': 378 }],
+  }, { './helpers/arrays': 380, './helpers/functions': 381, './helpers/numbers': 382, './helpers/objects': 383, './helpers/objects/descriptors': 384, 'core-js/modules/es.object.assign': 238, 'core-js/stable': 378 }],
   386: [function (require, module, exports) {
     /**
  * Copyright (c) 2014-present, Facebook, Inc.
