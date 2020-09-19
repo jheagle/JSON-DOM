@@ -15809,13 +15809,17 @@
 
     require('core-js/modules/es.array.filter')
 
+    require('core-js/modules/es.array.includes')
+
     require('core-js/modules/es.array.iterator')
 
     require('core-js/modules/es.array.map')
 
     require('core-js/modules/es.array.reduce')
 
-    require('core-js/modules/es.object.keys')
+    require('core-js/modules/es.function.name')
+
+    require('core-js/modules/es.object.get-own-property-names')
 
     require('core-js/modules/es.object.to-string')
 
@@ -15826,7 +15830,7 @@
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.mergeObjectsMutable = exports.mergeObjects = exports.cloneObject = exports.notEmptyObjectOrArray = exports.reduceObject = exports.filterObject = exports.mapProperty = exports.mapObject = exports.setAndReturnValue = exports.setValue = void 0
+    exports.mergeObjectsMutable = exports.mergeObjects = exports.cloneObject = exports.notEmptyObjectOrArray = exports.reduceObject = exports.filterObject = exports.mapProperty = exports.mapObject = exports.isInstanceObject = exports.objectValues = exports.objectKeys = exports.setAndReturnValue = exports.setValue = void 0
 
     require('core-js/stable')
 
@@ -15865,6 +15869,62 @@
       return value
     }
     /**
+ * Get an array of keys from any object or array. Will return empty array when invalid or there are no keys.
+ * Optional flag will include the inherited keys from prototype chain when set.
+ * @param {Object|Array} object
+ * @param {boolean} [includeInherited=false]
+ * @returns {Array.<string>}
+ */
+
+    exports.setAndReturnValue = setAndReturnValue
+
+    var objectKeys = function objectKeys (object) {
+      var includeInherited = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false
+      var keys = []
+
+      if (typeof object !== 'function' && (_typeof(object) !== 'object' || object === null)) {
+        return keys
+      }
+
+      for (var key in object) {
+        if (includeInherited || Object.prototype.hasOwnProperty.call(object, key)) {
+          keys.push(key)
+        }
+      }
+
+      return keys
+    }
+    /**
+ * Get an array of values from any object or array. Will return empty array when invalid or there are no values.
+ * Optional flag will include the inherited values from prototype chain when set.
+ * @param {Object|Array} object
+ * @param {boolean} includeInherited
+ * @returns {Array}
+ */
+
+    exports.objectKeys = objectKeys
+
+    var objectValues = function objectValues (object, includeInherited) {
+      return objectKeys(object, includeInherited).map(function (key) {
+        return object[key]
+      })
+    }
+    /**
+ * Check if the current object has inherited properties.
+ * @param {Object|Array} object
+ */
+
+    exports.objectValues = objectValues
+
+    var isInstanceObject = function isInstanceObject (object) {
+      if (!['Array', 'Function', 'Object'].includes(object.constructor.name)) {
+        return true
+      }
+
+      var instanceLength = Object.getOwnPropertyNames(object).length || objectKeys(object, true).length
+      return object.constructor.name !== 'Array' && instanceLength > objectKeys(object).length
+    }
+    /**
  * Function that produces a property of the new Object, taking three arguments
  * @callback mapCallback
  * @param {*} currentProperty - The current property being processed in the object.
@@ -15884,11 +15944,11 @@
  * @returns {Object|Array}
  */
 
-    exports.setAndReturnValue = setAndReturnValue
+    exports.isInstanceObject = isInstanceObject
 
     var mapObject = function mapObject (obj, fn) {
       var thisArg = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined
-      return Array.isArray(obj) ? obj.map(fn, thisArg) : Object.keys(obj).reduce(function (newObj, curr) {
+      return Array.isArray(obj) ? obj.map(fn, thisArg) : objectKeys(obj).reduce(function (newObj, curr) {
         return setValue(curr, (0, _functions.callWithParams)(fn, [obj[curr], curr, obj], 2), newObj)
       }, thisArg || {})
     }
@@ -15932,7 +15992,7 @@
 
     var filterObject = function filterObject (obj, fn) {
       var thisArg = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined
-      return Array.isArray(obj) ? obj.filter(fn, thisArg) : Object.keys(obj).reduce(function (newObj, curr) {
+      return Array.isArray(obj) ? obj.filter(fn, thisArg) : objectKeys(obj).reduce(function (newObj, curr) {
         if ((0, _functions.callWithParams)(fn, [obj[curr], curr, obj], 2)) {
           newObj[curr] = obj[curr]
         } else {
@@ -15970,8 +16030,8 @@
     exports.filterObject = filterObject
 
     var reduceObject = function reduceObject (obj, fn) {
-      var initialValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : obj[Object.keys(obj)[0]] || obj[0]
-      return Array.isArray(obj) ? obj.reduce(fn, initialValue) : Object.keys(obj).reduce(function (newObj, curr) {
+      var initialValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : obj[objectKeys(obj)[0]] || obj[0]
+      return Array.isArray(obj) ? obj.reduce(fn, initialValue) : objectKeys(obj).reduce(function (newObj, curr) {
         return (0, _functions.callWithParams)(fn, [newObj, obj[curr], curr, obj], 2)
       }, initialValue)
     }
@@ -15993,7 +16053,7 @@
         return !!item.length
       }
 
-      return !!Object.keys(item).length
+      return !!objectKeys(item).length
     }
     /**
  * Clone objects for manipulation without data corruption, returns a copy of the provided object.
@@ -16095,7 +16155,7 @@
     }
 
     exports.mergeObjectsMutable = mergeObjectsMutable
-  }, { './functions': 396, './objects/descriptors': 399, 'core-js/modules/es.array.filter': 185, 'core-js/modules/es.array.iterator': 195, 'core-js/modules/es.array.map': 198, 'core-js/modules/es.array.reduce': 201, 'core-js/modules/es.object.keys': 270, 'core-js/modules/es.object.to-string': 276, 'core-js/modules/es.string.iterator': 315, 'core-js/modules/es.symbol': 339, 'core-js/modules/es.symbol.description': 335, 'core-js/modules/es.symbol.iterator': 338, 'core-js/modules/web.dom-collections.iterator': 386, 'core-js/stable': 393 }],
+  }, { './functions': 396, './objects/descriptors': 399, 'core-js/modules/es.array.filter': 185, 'core-js/modules/es.array.includes': 192, 'core-js/modules/es.array.iterator': 195, 'core-js/modules/es.array.map': 198, 'core-js/modules/es.array.reduce': 201, 'core-js/modules/es.function.name': 218, 'core-js/modules/es.object.get-own-property-names': 264, 'core-js/modules/es.object.to-string': 276, 'core-js/modules/es.string.iterator': 315, 'core-js/modules/es.symbol': 339, 'core-js/modules/es.symbol.description': 335, 'core-js/modules/es.symbol.iterator': 338, 'core-js/modules/web.dom-collections.iterator': 386, 'core-js/stable': 393 }],
   399: [function (require, module, exports) {
     'use strict'
 
@@ -16134,8 +16194,6 @@
     require('core-js/modules/es.function.name')
 
     require('core-js/modules/es.object.assign')
-
-    require('core-js/modules/es.object.keys')
 
     require('core-js/modules/es.object.to-string')
 
@@ -16188,7 +16246,6 @@
 
       var type = _typeof(value)
 
-      var isReference = type === 'object' && value !== null
       return {
         index: index,
         key: key,
@@ -16197,7 +16254,7 @@
         nullable: value === null,
         optional: false,
         circular: false,
-        isReference: isReference,
+        isReference: type === 'object' && value !== null && !(0, _objects.isInstanceObject)(value),
         arrayReference: null,
         objectReference: null
       }
@@ -16253,8 +16310,8 @@
       var copyMap = {}
       copyMap.index = originalMap.index || 0
       copyMap.details = originalMap.details.map(function (detail) {
-        var copyDetail = {}
-        Object.keys(detail).forEach(function (key) {
+        var copyDetail = {};
+        (0, _objects.objectKeys)(detail).forEach(function (key) {
           copyDetail[key] = Array.isArray(detail[key]) ? detail[key].map(function (value) {
             return value
           }) : detail[key]
@@ -16459,7 +16516,7 @@
           var index = descriptorMap.length
           var val = descriptor.details[referenceId].value[descriptor.details[referenceId].value.length - 1]
 
-          if (_typeof(val) !== 'object' || val === null || typeof val === 'undefined' || descriptor.details[referenceId].circular) {
+          if (_typeof(val) !== 'object' || val === null || typeof val === 'undefined' || descriptor.details[referenceId].circular || (0, _objects.isInstanceObject)(val)) {
             return referenceId
           }
 
@@ -16657,7 +16714,7 @@
               return newRef
             }
 
-            if (_typeof(focusObject[detail.key]) !== 'object' || focusObject[detail.key] === null) {
+            if (_typeof(focusObject[detail.key]) !== 'object' || focusObject[detail.key] === null || (0, _objects.isInstanceObject)(focusObject[detail.key])) {
               newRef[detail.key] = focusObject[detail.key]
               return newRef
             }
@@ -16754,7 +16811,7 @@
     }
 
     exports.assignNewReferences = assignNewReferences
-  }, { '../arrays': 395, '../objects': 398, 'core-js/modules/es.array.concat': 181, 'core-js/modules/es.array.every': 183, 'core-js/modules/es.array.filter': 185, 'core-js/modules/es.array.find': 187, 'core-js/modules/es.array.find-index': 186, 'core-js/modules/es.array.for-each': 190, 'core-js/modules/es.array.from': 191, 'core-js/modules/es.array.includes': 192, 'core-js/modules/es.array.iterator': 195, 'core-js/modules/es.array.map': 198, 'core-js/modules/es.array.reduce': 201, 'core-js/modules/es.array.slice': 203, 'core-js/modules/es.array.some': 204, 'core-js/modules/es.function.name': 218, 'core-js/modules/es.object.assign': 253, 'core-js/modules/es.object.keys': 270, 'core-js/modules/es.object.to-string': 276, 'core-js/modules/es.regexp.to-string': 301, 'core-js/modules/es.string.includes': 313, 'core-js/modules/es.string.iterator': 315, 'core-js/modules/es.symbol': 339, 'core-js/modules/es.symbol.description': 335, 'core-js/modules/es.symbol.iterator': 338, 'core-js/modules/web.dom-collections.for-each': 385, 'core-js/modules/web.dom-collections.iterator': 386, 'core-js/stable': 393 }],
+  }, { '../arrays': 395, '../objects': 398, 'core-js/modules/es.array.concat': 181, 'core-js/modules/es.array.every': 183, 'core-js/modules/es.array.filter': 185, 'core-js/modules/es.array.find': 187, 'core-js/modules/es.array.find-index': 186, 'core-js/modules/es.array.for-each': 190, 'core-js/modules/es.array.from': 191, 'core-js/modules/es.array.includes': 192, 'core-js/modules/es.array.iterator': 195, 'core-js/modules/es.array.map': 198, 'core-js/modules/es.array.reduce': 201, 'core-js/modules/es.array.slice': 203, 'core-js/modules/es.array.some': 204, 'core-js/modules/es.function.name': 218, 'core-js/modules/es.object.assign': 253, 'core-js/modules/es.object.to-string': 276, 'core-js/modules/es.regexp.to-string': 301, 'core-js/modules/es.string.includes': 313, 'core-js/modules/es.string.iterator': 315, 'core-js/modules/es.symbol': 339, 'core-js/modules/es.symbol.description': 335, 'core-js/modules/es.symbol.iterator': 338, 'core-js/modules/web.dom-collections.for-each': 385, 'core-js/modules/web.dom-collections.iterator': 386, 'core-js/stable': 393 }],
   400: [function (require, module, exports) {
     (function (global) {
       'use strict'
