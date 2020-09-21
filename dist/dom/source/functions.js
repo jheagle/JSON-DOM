@@ -164,7 +164,7 @@ var updateElement = function updateElement (config) {
     ? config // Set the the current attributes to contain all the changes
     : _functionalHelpers.default.setValue('attributes', _functionalHelpers.default.mapObject( // Retrieve only the changes to be applied from the attributes
       elementChanges(config).attributes, function (attr, key) {
-        return _functionalHelpers.default.notEmptyObjectOrArray(attr) ? _functionalHelpers.default.mapObject(_functionalHelpers.default.filterObject( // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
+        return !_functionalHelpers.default.emptyObject(attr) ? _functionalHelpers.default.mapObject(_functionalHelpers.default.filterObject( // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
           attr, function (param, k) {
             return /^\D+$/.test(k)
           }), function (p, i) {

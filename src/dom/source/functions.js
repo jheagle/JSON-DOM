@@ -128,7 +128,7 @@ export const updateElement = config => !config.element.style
     functionalHelpers.mapObject(
       // Retrieve only the changes to be applied from the attributes
       elementChanges(config).attributes,
-      (attr, key) => (functionalHelpers.notEmptyObjectOrArray(attr))
+      (attr, key) => (!functionalHelpers.emptyObject(attr))
         ? functionalHelpers.mapObject(
           functionalHelpers.filterObject(
             // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
