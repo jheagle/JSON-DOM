@@ -12815,7 +12815,7 @@
  * Optional flag will include the inherited keys from prototype chain when set.
  * @param {Object|Array} object
  * @param {boolean} [includeInherited=false]
- * @returns {Array.<string>}
+ * @returns {Array.<string|number>}
  */
 
     exports.setAndReturnValue = setAndReturnValue
@@ -12839,6 +12839,11 @@
 
       for (var key in object) {
         if (includeInherited || Object.prototype.hasOwnProperty.call(object, key)) {
+          if (Array.isArray(object)) {
+            keys.push(parseInt(key))
+            continue
+          }
+
           keys.push(key)
         }
       }
@@ -13017,25 +13022,19 @@
 
     var cloneObject = function cloneObject (object) {
       var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
-      var _ref$descriptorMap = _ref.descriptorMap
-      var descriptorMap = _ref$descriptorMap === void 0 ? [] : _ref$descriptorMap
       var _ref$mapLimit = _ref.mapLimit
       var mapLimit = _ref$mapLimit === void 0 ? 1000 : _ref$mapLimit
       var _ref$depthLimit = _ref.depthLimit
       var depthLimit = _ref$depthLimit === void 0 ? -1 : _ref$depthLimit
 
-      if (!descriptorMap.length) {
-        descriptorMap = (0, _descriptors.describeObjectMap)(object, {
-          mapLimit: mapLimit,
-          depthLimit: depthLimit
-        })
-      }
-
+      // if (!descriptorMap.length) {
+      //   descriptorMap = describeObjectMap(object, { mapLimit, depthLimit })
+      // }
       var newReferenceMap = []
-      newReferenceMap[0] = (0, _descriptors.mapOriginalObject)(descriptorMap, newReferenceMap, {
+      newReferenceMap[0] = (0, _descriptors.mapOriginalObject)(newReferenceMap, {
         mapLimit: mapLimit,
         depthLimit: depthLimit
-      })(object, descriptorMap[0])
+      })(object)
       return (0, _descriptors.assignNewReferences)(newReferenceMap)(newReferenceMap[0])
     }
     /**
@@ -13180,6 +13179,14 @@
     function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
 
     /**
+ * Determine if the value is a reference instance
+ * @param {Array|Object|*} value
+ * @returns {boolean}
+ */
+    var isReferenceObject = function isReferenceObject (value) {
+      return _typeof(value) === 'object' && value !== null && !(0, _objects.isInstanceObject)(value) && !(0, _objects.emptyObject)(value)
+    }
+    /**
  * Trace an object's attribute and provide details about it.
  * @function
  * @param {*} value
@@ -13187,13 +13194,13 @@
  * @param {number} [index=0]
  * @returns {module:descriptorSamples~descriptorDetail}
  */
+
     var describeObjectDetail = function describeObjectDetail (value) {
       var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0
       var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0
 
       var type = _typeof(value)
 
-      var isInstance = (0, _objects.isInstanceObject)(value)
       return {
         index: index,
         key: key,
@@ -13202,51 +13209,28 @@
         nullable: value === null,
         optional: false,
         circular: false,
-        isReference: type === 'object' && value !== null && !isInstance && !(0, _objects.emptyObject)(value),
-        isInstance: isInstance,
+        isReference: isReferenceObject(value),
+        isInstance: (0, _objects.isInstanceObject)(value),
         arrayReference: null,
         objectReference: null
       }
     }
     /**
- * Build an array of all keys from the details of this descriptor.
- * @function
- * @param {module:descriptorSamples~descriptor} descriptor
- * @returns {Array.<string>}
+ * Get a new copy of an existing Descriptor Detail
+ * @param {module:descriptorSamples~descriptorDetail} originalDetail
+ * @returns {module:descriptorSamples~descriptorDetail}
  */
 
     exports.describeObjectDetail = describeObjectDetail
 
-    var descriptorKeys = function descriptorKeys (descriptor) {
-      return (0, _arrays.uniqueArray)(descriptor.details.map(function (detail) {
-        return detail.key
-      }))
-    }
-    /**
- * Create an array of the indexes in the details that contain references.
- * @function
- * @param {module:descriptorSamples~descriptor} descriptor
- * @returns {Array.<number>}
- */
-
-    var descriptorReferences = function descriptorReferences (descriptor) {
-      return (0, _arrays.uniqueArray)(descriptor.details.filter(function (detail) {
-        return detail.isReference
-      }).map(function (detail) {
-        return detail.index
-      }))
-    }
-    /**
- * Check based on the detail keys if this descriptor represents an array.
- * @function
- * @param {module:descriptorSamples~descriptor} descriptor
- * @returns {boolean}
- */
-
-    var descriptorIsArray = function descriptorIsArray (descriptor) {
-      return descriptor.length ? descriptor.details.every(function (detail) {
-        return typeof detail.key === 'number'
-      }) : descriptor.isArray
+    var cloneDescriptorDetail = function cloneDescriptorDetail (originalDetail) {
+      var copyDetail = {};
+      (0, _objects.objectKeys)(originalDetail).forEach(function (key) {
+        copyDetail[key] = Array.isArray(originalDetail[key]) ? originalDetail[key].map(function (value) {
+          return value
+        }) : originalDetail[key]
+      })
+      return copyDetail
     }
     /**
  * Make a copy of an object descriptor so that the original will not be mutated.
@@ -13258,15 +13242,7 @@
     var cloneDescriptor = function cloneDescriptor (originalMap) {
       var copyMap = {}
       copyMap.index = originalMap.index || 0
-      copyMap.details = originalMap.details.map(function (detail) {
-        var copyDetail = {};
-        (0, _objects.objectKeys)(detail).forEach(function (key) {
-          copyDetail[key] = Array.isArray(detail[key]) ? detail[key].map(function (value) {
-            return value
-          }) : detail[key]
-        })
-        return copyDetail
-      })
+      copyMap.details = originalMap.details.map(cloneDescriptorDetail)
       copyMap.length = originalMap.length
       copyMap.keys = originalMap.keys.map(function (key) {
         return key
@@ -13279,6 +13255,37 @@
       return copyMap
     }
     /**
+ * Assign properties from other details onto an existing detail.
+ * @param {module:descriptorSamples~descriptorDetail} originalDetail
+ * @param  {...module:descriptorSamples~descriptorDetail} details
+ * @returns {module:descriptorSamples~descriptorDetail}
+ */
+
+    var assignDescriptorDetail = function assignDescriptorDetail (originalDetail) {
+      for (var _len = arguments.length, details = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        details[_key - 1] = arguments[_key]
+      }
+
+      return details.reduce(function (existingDetail, newDetail) {
+        existingDetail.type = (0, _arrays.uniqueArray)([].concat(_toConsumableArray(existingDetail.type), _toConsumableArray(newDetail.type)))
+        existingDetail.value = (0, _arrays.uniqueArray)([].concat(_toConsumableArray(existingDetail.value), _toConsumableArray(newDetail.value)))
+        existingDetail.nullable = existingDetail.nullable || newDetail.nullable
+        existingDetail.optional = existingDetail.optional || newDetail.optional
+        existingDetail.circular = existingDetail.circular || newDetail.circular
+        existingDetail.isReference = existingDetail.isReference || newDetail.isReference
+        existingDetail.isInstance = existingDetail.isInstance || newDetail.isInstance
+        existingDetail.arrayReference = [existingDetail.arrayReference, newDetail.arrayReference].find(function (ref) {
+          return typeof ref === 'number'
+        })
+        existingDetail.objectReference = [existingDetail.objectReference, newDetail.objectReference].find(function (ref) {
+          return typeof ref === 'number'
+        })
+        existingDetail.arrayReference = typeof existingDetail.arrayReference === 'undefined' ? null : existingDetail.arrayReference
+        existingDetail.objectReference = typeof existingDetail.objectReference === 'undefined' ? null : existingDetail.objectReference
+        return existingDetail
+      }, cloneDescriptorDetail(originalDetail))
+    }
+    /**
  * Apply one or more descriptors to an existing descriptor so that they represent a merged version of the descriptors.
  * @function
  * @param {module:descriptorSamples~descriptor} originalMap
@@ -13287,8 +13294,8 @@
  */
 
     var assignDescriptor = function assignDescriptor (originalMap) {
-      for (var _len = arguments.length, descriptors = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        descriptors[_key - 1] = arguments[_key]
+      for (var _len2 = arguments.length, descriptors = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        descriptors[_key2 - 1] = arguments[_key2]
       }
 
       return descriptors.reduce(function (assignedDescriptor, descriptor) {
@@ -13304,20 +13311,7 @@
           if (diff.result.every(function (result) {
             return result === 0
           })) {
-            assignedDescriptor.details[existingDetail.index] = Object.assign({}, existingDetail, {
-              type: (0, _arrays.uniqueArray)([].concat(_toConsumableArray(existingDetail.type), _toConsumableArray(newDetail.type))),
-              value: (0, _arrays.uniqueArray)([].concat(_toConsumableArray(existingDetail.value), _toConsumableArray(newDetail.value))),
-              nullable: existingDetail.nullable || newDetail.nullable,
-              isReference: existingDetail.isReference || newDetail.isReference,
-              arrayReference: [existingDetail.arrayReference, newDetail.arrayReference].find(function (ref) {
-                return typeof ref === 'number'
-              }),
-              objectReference: [existingDetail.objectReference, newDetail.objectReference].find(function (ref) {
-                return typeof ref === 'number'
-              })
-            })
-            assignedDescriptor.details[existingDetail.index].arrayReference = typeof assignedDescriptor.details[existingDetail.index].arrayReference === 'undefined' ? null : assignedDescriptor.details[existingDetail.index].arrayReference
-            assignedDescriptor.details[existingDetail.index].objectReference = typeof assignedDescriptor.details[existingDetail.index].objectReference === 'undefined' ? null : assignedDescriptor.details[existingDetail.index].objectReference
+            assignedDescriptor.details[existingDetail.index] = assignDescriptorDetail(existingDetail, newDetail)
             return assignedDescriptor
           }
 
@@ -13336,9 +13330,17 @@
           assignedDescriptor.length = assignedDescriptor.length < assignedDescriptor.details.length ? assignedDescriptor.details.length : assignedDescriptor.length
           return assignedDescriptor
         })
-        assignedDescriptor.keys = descriptorKeys(assignedDescriptor)
-        assignedDescriptor.references = descriptorReferences(assignedDescriptor)
-        assignedDescriptor.isArray = descriptorIsArray(assignedDescriptor)
+        assignedDescriptor.keys = (0, _arrays.uniqueArray)(assignedDescriptor.details.map(function (detail) {
+          return detail.key
+        }))
+        assignedDescriptor.references = (0, _arrays.uniqueArray)(assignedDescriptor.details.filter(function (detail) {
+          return detail.isReference
+        }).map(function (detail) {
+          return detail.index
+        }))
+        assignedDescriptor.isArray = assignedDescriptor.length ? assignedDescriptor.details.every(function (detail) {
+          return typeof detail.key === 'number'
+        }) : assignedDescriptor.isArray
         assignedDescriptor.complete = !assignedDescriptor.references.length || assignedDescriptor.complete || descriptor.complete
         return assignedDescriptor
       }, cloneDescriptor(originalMap))
@@ -13353,26 +13355,7 @@
     exports.assignDescriptor = assignDescriptor
 
     var describeObject = function describeObject (object) {
-      var descriptor = (0, _objects.reduceObject)(object, function (descriptor, value, key) {
-        if (typeof key === 'number' && descriptor.details.length) {
-          var type = _typeof(value)
-
-          var isReference = type === 'object' && value !== null
-
-          if (value !== null) {
-            descriptor.details[0].type = (0, _arrays.uniqueArray)([].concat(_toConsumableArray(descriptor.details[0].type), [type]))
-          }
-
-          descriptor.details[0].value = (0, _arrays.uniqueArray)([].concat(_toConsumableArray(descriptor.details[0].value), [value]))
-          descriptor.details[0].nullable = descriptor.details[0].nullable || value === null
-          descriptor.details[0].isReference = descriptor.details[0].isReference || isReference
-          ++descriptor.length
-          return descriptor
-        }
-
-        descriptor.details = [].concat(_toConsumableArray(descriptor.details), [describeObjectDetail(value, key, descriptor.length++)])
-        return descriptor
-      }, {
+      var descriptor = {
         index: 0,
         details: [],
         length: 0,
@@ -13380,10 +13363,33 @@
         references: [],
         isArray: false,
         complete: false
-      })
-      descriptor.keys = descriptorKeys(descriptor)
-      descriptor.references = descriptorReferences(descriptor)
-      descriptor.isArray = Array.isArray(object) || descriptorIsArray(descriptor)
+      }
+      var keys = (0, _objects.objectKeys)(object)
+
+      for (var i = 0; i < keys.length; ++i) {
+        var key = keys[i]
+        var newDetail = describeObjectDetail(object[key], key, descriptor.length++)
+
+        if (typeof key === 'number' && descriptor.details.length) {
+          descriptor.details[0] = assignDescriptorDetail(descriptor.details[0], newDetail)
+          descriptor.keys = [0]
+
+          if (newDetail.isReference) {
+            descriptor.references = [0]
+          }
+
+          continue
+        }
+
+        descriptor.details.push(newDetail)
+        descriptor.keys.push(newDetail.key)
+
+        if (newDetail.isReference) {
+          descriptor.references.push(newDetail.index)
+        }
+      }
+
+      descriptor.isArray = Array.isArray(object)
       descriptor.complete = !descriptor.references.length
       return descriptor
     }
@@ -13428,14 +13434,55 @@
         })
       })
     }
+    /**
+ * Find the index of the next descriptorDetail to build a resource for.
+ * @param {module:descriptorSamples~descriptor} descriptor
+ * @param {number} currentReference
+ * @returns {number|undefined}
+ */
 
     exports.sameDescriptor = sameDescriptor
 
-    var tempDescriptorReference = function tempDescriptorReference (descriptor, mapIndex) {
-      return {
-        tempDescriptor: descriptor,
-        refIndex: mapIndex
-      }
+    var nextReference = function nextReference (descriptor, currentReference) {
+      return descriptor.references.find(function (nextRef) {
+        if (nextRef <= currentReference) {
+          return false
+        }
+
+        var val = descriptor.details[nextRef].value[descriptor.details[nextRef].value.length - 1]
+
+        if (_typeof(val) !== 'object' || val === null || typeof val === 'undefined' || descriptor.details[nextRef].circular || descriptor.details[nextRef].isInstance) {
+          return false
+        }
+
+        return !!(0, _objects.objectKeys)(val).length
+      })
+    }
+    /**
+ * Check if the descriptors references have all been built and set complete to true if they have.
+ * @param {module:descriptorSamples~descriptor} descriptor
+ * @returns {module:descriptorSamples~descriptor}
+ */
+
+    var checkDescriptorComplete = function checkDescriptorComplete (descriptor) {
+      return (0, _objects.setValue)('complete', descriptor.references.every(function (refId) {
+        return [descriptor.details[refId].arrayReference, descriptor.details[refId].objectReference].some(function (ref) {
+          return typeof ref === 'number'
+        })
+      }), descriptor)
+    }
+    /**
+ * Check if we should clear the values on this descriptor
+ * @param {module:descriptorSamples~descriptor} descriptor
+ * @param {boolean} [keepValues=false]
+ * @returns {module:descriptorSamples~descriptor}
+ */
+
+    var checkClearValues = function checkClearValues (descriptor) {
+      var keepValues = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false
+      return (0, _objects.setValue)('details', descriptor.complete && !keepValues ? descriptor.details.map(function (detail) {
+        return (0, _objects.setValue)('value', [], detail)
+      }) : descriptor.details, descriptor)
     }
     /**
  * Trace out the entire object including nested objects.
@@ -13460,124 +13507,94 @@
       var descriptorMap = [describeObject(object)]
       descriptorMap[0].index = 0
 
-      var describeReferences = function describeReferences (descriptor, limit) {
-        descriptor.references = descriptor.references.map(function (referenceId) {
-          var index = descriptorMap.length
-          var val = descriptor.details[referenceId].value[descriptor.details[referenceId].value.length - 1]
+      var describeReferences = function describeReferences (descriptor, currentDetail) {
+        var limit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : -1
+        var returnCallback = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : function (returnMap) {
+          return returnMap
+        }
+        var index = descriptorMap.length
+        var nextRef = currentDetail ? nextReference(descriptor, currentDetail.index) : undefined
+        var nextDetail = typeof nextRef !== 'undefined' ? descriptor.details[nextRef] : null
 
-          if (_typeof(val) !== 'object' || val === null || typeof val === 'undefined' || descriptor.details[referenceId].circular || descriptor.details[referenceId].isInstance) {
-            return referenceId
-          }
+        if (currentDetail) {
+          var vals = descriptor.isArray ? currentDetail.value : [currentDetail.value[currentDetail.value.length - 1]]
+          vals.forEach(function (val) {
+            var tempDescriptor = describeObject(val)
+            var existingDescriptorIndex = descriptorMap.findIndex(function (existingDescriptor) {
+              return compareDescriptor(tempDescriptor, existingDescriptor)
+            })
 
-          var tempDescriptor = describeObject(val)
+            if (existingDescriptorIndex >= 0) {
+              index = existingDescriptorIndex
 
-          if (!tempDescriptor.length) {
-            return referenceId
-          }
-
-          var existingDescriptorIndex = descriptorMap.findIndex(function (existingDescriptor) {
-            return compareDescriptor(tempDescriptor, existingDescriptor)
-          })
-
-          if (existingDescriptorIndex >= 0) {
-            index = existingDescriptorIndex
-
-            if (tempDescriptor.length && sameDescriptor(tempDescriptor, descriptorMap[existingDescriptorIndex])) {
-              if (descriptor.index === existingDescriptorIndex) {
-                descriptor = descriptorMap[existingDescriptorIndex]
+              if (tempDescriptor.length && sameDescriptor(tempDescriptor, descriptorMap[existingDescriptorIndex])) {
+                currentDetail.circular = true
+                descriptor.details[currentDetail.index] = currentDetail
               }
-
-              descriptor.details[referenceId].circular = true
             }
-          }
 
-          if (index >= mapLimit) {
-            return referenceId
-          }
+            if (index >= mapLimit) {
+              return descriptorMap
+            }
 
-          if (limit === 0) {
-            return referenceId
-          }
+            if (limit === 0) {
+              return descriptorMap
+            }
 
-          if (tempDescriptor.isArray) {
-            var _descriptor$details$r
+            if (tempDescriptor.isArray) {
+              var _currentDetail$arrayR
 
-            index = (_descriptor$details$r = descriptor.details[referenceId].arrayReference) !== null && _descriptor$details$r !== void 0 ? _descriptor$details$r : index
-            descriptor.details[referenceId].arrayReference = tempDescriptorReference(tempDescriptor, index)
-          } else {
-            var _descriptor$details$r2
+              index = (_currentDetail$arrayR = currentDetail.arrayReference) !== null && _currentDetail$arrayR !== void 0 ? _currentDetail$arrayR : index
+              descriptor.details[currentDetail.index].arrayReference = index
+            } else {
+              var _currentDetail$object
 
-            index = (_descriptor$details$r2 = descriptor.details[referenceId].objectReference) !== null && _descriptor$details$r2 !== void 0 ? _descriptor$details$r2 : index
-            descriptor.details[referenceId].objectReference = tempDescriptorReference(tempDescriptor, index)
-          }
+              index = (_currentDetail$object = currentDetail.objectReference) !== null && _currentDetail$object !== void 0 ? _currentDetail$object : index
+              descriptor.details[currentDetail.index].objectReference = index
+            }
 
-          tempDescriptor.index = index
+            tempDescriptor.index = index
 
-          if (existingDescriptorIndex < 0) {
-            descriptorMap[index] = descriptorMap[index] ? assignDescriptor(descriptorMap[index], tempDescriptor) : tempDescriptor
-          }
+            if (existingDescriptorIndex < 0) {
+              descriptorMap[index] = descriptorMap[index] ? assignDescriptor(descriptorMap[index], tempDescriptor) : tempDescriptor
+            }
 
-          return referenceId
-        })
-        descriptor.references = descriptor.references.map(function (referenceId) {
-          var tempDescriptor = null
-          var refIndex = -1
+            descriptorMap[descriptor.index] = assignDescriptor(descriptorMap[descriptor.index], descriptor)
+            currentDetail = descriptorMap[descriptor.index].details.find(function (detail) {
+              return detail.key === currentDetail.key
+            })
 
-          if (descriptor.details[referenceId].arrayReference !== null) {
-            ;
-            var _descriptor$details$r3 = descriptor.details[referenceId].arrayReference
-            tempDescriptor = _descriptor$details$r3.tempDescriptor
-            refIndex = _descriptor$details$r3.refIndex
-            descriptor.details[referenceId].arrayReference = refIndex
-          }
-
-          if (descriptor.details[referenceId].objectReference !== null) {
-            ;
-            var _descriptor$details$r4 = descriptor.details[referenceId].objectReference
-            tempDescriptor = _descriptor$details$r4.tempDescriptor
-            refIndex = _descriptor$details$r4.refIndex
-            descriptor.details[referenceId].objectReference = refIndex
-          }
-
-          if (tempDescriptor === null) {
-            return referenceId
-          }
-
-          if (!descriptorMap[refIndex]) {
-            return referenceId
-          }
-
-          descriptorMap[refIndex] = assignDescriptor(descriptorMap[refIndex], tempDescriptor)
-
-          if (!descriptor.details[referenceId].circular) {
-            describeReferences(tempDescriptor, --limit)
-          }
-
-          return referenceId
-        })
-        descriptor.complete = descriptor.references.every(function (refId) {
-          return [descriptor.details[refId].arrayReference, descriptor.details[refId].objectReference].some(function (ref) {
-            return typeof ref === 'number'
-          })
-        })
-        descriptorMap[descriptor.index] = assignDescriptor(descriptorMap[descriptor.index], descriptor)
-
-        if (descriptor.complete && !keepValues) {
-          descriptorMap[descriptor.index].details = descriptorMap[descriptor.index].details.map(function (detail) {
-            return (0, _objects.setValue)('value', [], detail)
+            if (!currentDetail.circular) {
+              var newReference = nextReference(tempDescriptor, -1)
+              var newDetail = typeof newReference !== 'undefined' ? tempDescriptor.details[newReference] : null
+              return describeReferences(tempDescriptor, newDetail, --limit, function (returnMap) {
+                return describeReferences(descriptor, nextDetail, --limit)
+              })
+            }
           })
         }
 
+        descriptorMap[descriptor.index] = assignDescriptor(descriptorMap[descriptor.index], checkDescriptorComplete(descriptor))
+        descriptorMap[descriptor.index] = checkClearValues(descriptorMap[descriptor.index], keepValues)
+        return nextDetail ? describeReferences(descriptor, nextDetail, --limit) : returnCallback(descriptorMap)
+      }
+
+      var descriptor = descriptorMap[0]
+      var currentReference = nextReference(descriptor, -1)
+
+      if (typeof currentReference === 'undefined') {
+        descriptorMap[0] = assignDescriptor(descriptorMap[0], checkDescriptorComplete(descriptor, keepValues))
+        descriptorMap[0] = checkClearValues(descriptorMap[0], keepValues)
         return descriptorMap
       }
 
-      return describeReferences(descriptorMap[0], depthLimit)
+      return describeReferences(descriptor, descriptor.details[currentReference], depthLimit)
     }
     /**
  * @typedef {Object.<string, number|Object|Array>} referenceIdentifier
  * @property {number} index
  * @property {Array|Object} object
- * @property {descriptor} descriptor
+ * @property {module:descriptorSamples~descriptor} descriptor
  * @property {Array.<string|number>} references
  * @property {Array.<string|number>} circular
  */
@@ -13597,7 +13614,7 @@
       return Object.assign({}, {
         index: index,
         object: object,
-        descriptor: describeObject(object || {}),
+        original: object,
         references: [],
         circular: []
       })
@@ -13605,7 +13622,6 @@
     /**
  * Prepare to map over an object and return the callback that will be used for each reference.
  * @function
- * @param {descriptorMap} [descriptorMap=null]
  * @param {Array.<referenceIdentifier>} [newReferenceMap=[]]
  * @param {Object} [options={}]
  * @param {number} [options.mapLimit=1000]
@@ -13614,10 +13630,9 @@
  */
 
     var mapOriginalObject = function mapOriginalObject () {
-      var descriptorMap = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null
-      var newReferenceMap = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : []
+      var newReferenceMap = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : []
 
-      var _ref2 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {}
+      var _ref2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
       var _ref2$mapLimit = _ref2.mapLimit
       var mapLimit = _ref2$mapLimit === void 0 ? 1000 : _ref2$mapLimit
       var _ref2$depthLimit = _ref2.depthLimit
@@ -13627,14 +13642,13 @@
      * Map over the provided object and generate an array of cloned references.
      * @function
      * @param {Array|Object} focusObject
-     * @param {descriptor} descriptor
      * @param {number} index
      * @param {number|null} limit
      * @returns {Array.<referenceIdentifier>}
      */
-      var mapOriginal = function mapOriginal (focusObject, descriptor) {
-        var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0
-        var limit = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null
+      var mapOriginal = function mapOriginal (focusObject) {
+        var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0
+        var limit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null
 
         if (limit === null) {
           limit = depthLimit
@@ -13646,16 +13660,17 @@
 
         var skip = limit === 0
 
-        if (descriptor.isArray && Array.isArray(focusObject)) {
-          var detail = descriptor.details[0]
+        if (Array.isArray(focusObject)) {
           newReferenceMap[index].object = focusObject.map(function (item, id) {
-            if (!detail.isReference) {
+            var isReference = isReferenceObject(item)
+
+            if (!isReference) {
               return item
             }
 
             skip = skip || index + newReferenceMap[index].references.length + 1 >= mapLimit
 
-            if (detail.isReference && !(0, _objects.emptyObject)(item) && !skip) {
+            if (isReference && !(0, _objects.emptyObject)(item) && !skip) {
               newReferenceMap[index].references.push(id)
               return null
             }
@@ -13663,41 +13678,37 @@
             return Array.isArray(item) ? [] : {}
           }, [])
         } else {
-          newReferenceMap[index].object = descriptor.details.reduce(function (newRef, detail) {
-            if (!(detail.key in focusObject)) {
+          newReferenceMap[index].object = (0, _objects.objectKeys)(focusObject).reduce(function (newRef, key) {
+            if (!(key in focusObject)) {
               return newRef
             }
 
-            if (_typeof(focusObject[detail.key]) !== 'object' || focusObject[detail.key] === null || detail.isInstance) {
-              newRef[detail.key] = focusObject[detail.key]
+            if (_typeof(focusObject[key]) !== 'object' || focusObject[key] === null || (0, _objects.isInstanceObject)(focusObject[key])) {
+              newRef[key] = focusObject[key]
               return newRef
             }
 
             skip = skip || index + newReferenceMap[index].references.length + 1 >= mapLimit
 
-            if (detail.isReference && !(0, _objects.emptyObject)(focusObject[detail.key]) && !skip) {
-              newReferenceMap[index].references.push(detail.key)
-              newRef[detail.key] = null
+            if (isReferenceObject(focusObject[key]) && !(0, _objects.emptyObject)(focusObject[key]) && !skip) {
+              newReferenceMap[index].references.push(key)
+              newRef[key] = null
               return newRef
             }
 
-            newRef[detail.key] = Array.isArray(focusObject[detail.key]) ? [] : {}
+            newRef[key] = Array.isArray(focusObject[key]) ? [] : {}
             return newRef
           }, {})
         }
 
-        newReferenceMap[index] = newReferenceMap[index].references.reduce(function (newRef, key) {
-          var detail = descriptor.isArray ? descriptor.details[0] : descriptor.details.find(function (detail) {
-            return detail.key === key
-          })
+        return newReferenceMap[index].references.reduce(function (newRef, key) {
           var newRefIndex = newReferenceMap.length
           var objectToRef = focusObject[key]
+          var existingIndex = newReferenceMap.findIndex(function (existing) {
+            return objectToRef === existing.original
+          })
 
-          if (detail.circular) {
-            var tempDescriptor = describeObject(objectToRef)
-            var existingIndex = newReferenceMap.findIndex(function (existing) {
-              return sameDescriptor(tempDescriptor, existing.descriptor)
-            })
+          if (existingIndex >= 0) {
             newRef.object[key] = existingIndex
             newRef.circular.push(key)
             return newRef
@@ -13712,26 +13723,8 @@
             return newReferenceMap[index]
           }
 
-          newReferenceMap[newRefIndex] = createReferenceIdentifier(focusObject[key], newRefIndex)
           newRef.object[key] = newRefIndex
-          return newRef
-        }, newReferenceMap[index])
-        return newReferenceMap[index].references.reduce(function (newRef, key) {
-          if (typeof newRef.object[key] !== 'number') {
-            return newRef
-          }
-
-          var detail = descriptor.isArray ? descriptor.details[0] : descriptor.details.find(function (detail) {
-            return detail.key === key
-          })
-
-          if (detail.circular) {
-            return newRef
-          }
-
-          var objectToRef = focusObject[key]
-          var descriptorRefIndex = Array.isArray(objectToRef) && detail.arrayReference !== null ? detail.arrayReference : detail.objectReference
-          newReferenceMap[newRef.object[key]] = mapOriginal(objectToRef, descriptorMap[descriptorRefIndex], newRef.object[key], --limit)
+          newReferenceMap[newRefIndex] = mapOriginal(objectToRef, newRef.object[key], --limit)
           return newRef
         }, newReferenceMap[index])
       }
