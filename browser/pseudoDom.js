@@ -2001,58 +2001,60 @@
   }, { '../../collections/classes/TreeLinker': 2, './PseudoEventTarget': 7, 'core-js/modules/es.array.index-of': 100, 'core-js/modules/es.array.iterator': 101, 'core-js/modules/es.array.reduce': 103, 'core-js/modules/es.array.splice': 106, 'core-js/modules/es.function.name': 107, 'core-js/modules/es.object.assign': 108, 'core-js/modules/es.object.get-prototype-of': 110, 'core-js/modules/es.object.to-string': 112, 'core-js/modules/es.reflect.construct': 113, 'core-js/modules/es.regexp.to-string': 115, 'core-js/modules/es.string.iterator': 116, 'core-js/modules/es.symbol': 119, 'core-js/modules/es.symbol.description': 117, 'core-js/modules/es.symbol.iterator': 118, 'core-js/modules/web.dom-collections.iterator': 121 }],
   11: [function (require, module, exports) {
     (function (global) {
-      'use strict'
+      (function () {
+        'use strict'
 
-      require('core-js/modules/es.object.assign')
+        require('core-js/modules/es.object.assign')
 
-      Object.defineProperty(exports, '__esModule', {
-        value: true
-      })
-      exports.default = void 0
+        Object.defineProperty(exports, '__esModule', {
+          value: true
+        })
+        exports.default = void 0
 
-      var _all = _interopRequireDefault(require('./all'))
+        var _all = _interopRequireDefault(require('./all'))
 
-      function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+        function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
-      /**
+        /**
  * @file All of the Pseudo Dom Helper Objects functions for simulating parts of the DOM when running scripts in NodeJs.
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
 */
 
-      /**
+        /**
    * Store a reference to this scope which will be Window if rendered via browser
    */
-      var root = void 0 || window || global || {}
-      /**
+        var root = void 0 || window || global || {}
+        /**
    * Store reference to any pre-existing module of the same name
    * @type {module|*}
    */
 
-      var previousPseudoDom = root.pseudoDom || {}
-      /**
+        var previousPseudoDom = root.pseudoDom || {}
+        /**
    * All methods exported from this module are encapsulated within pseudoDom.
    * @author Joshua Heagle <joshuaheagle@gmail.com>
    * @typedef {Object} pseudoDom
    * @module pseudoDom/objects
    */
 
-      var pseudoDom = {}
-      root.pseudoDom = pseudoDom
-      /**
+        var pseudoDom = {}
+        root.pseudoDom = pseudoDom
+        /**
    * Return a reference to this library while preserving the original same-named library
    * @function noConflict
    * @returns {pseudoDom}
    */
 
-      pseudoDom.noConflict = function () {
-        root.pseudoDom = previousPseudoDom
-        return pseudoDom
-      }
+        pseudoDom.noConflict = function () {
+          root.pseudoDom = previousPseudoDom
+          return pseudoDom
+        }
 
-      var _default = Object.assign(pseudoDom, _all.default)
+        var _default = Object.assign(pseudoDom, _all.default)
 
-      exports.default = _default
+        exports.default = _default
+      }).call(this)
     }).call(this, typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : {})
   }, { './all': 3, 'core-js/modules/es.object.assign': 108 }],
   12: [function (require, module, exports) {
@@ -2810,12 +2812,13 @@
   }, { '../internals/global': 45, '../internals/path': 76 }],
   45: [function (require, module, exports) {
     (function (global) {
-      var check = function (it) {
-        return it && it.Math == Math && it
-      }
+      (function () {
+        var check = function (it) {
+          return it && it.Math == Math && it
+        }
 
-      // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-      module.exports =
+        // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+        module.exports =
   // eslint-disable-next-line no-undef
   check(typeof globalThis === 'object' && globalThis) ||
   check(typeof window === 'object' && window) ||
@@ -2823,6 +2826,7 @@
   check(typeof global === 'object' && global) ||
   // eslint-disable-next-line no-new-func
   Function('return this')()
+      }).call(this)
     }).call(this, typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : {})
   }, {}],
   46: [function (require, module, exports) {

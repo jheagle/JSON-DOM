@@ -34,22 +34,23 @@
   }, { './source/functions': 3, './source/objects': 4, 'core-js/modules/es.object.assign': 237, 'core-js/stable': 377 }],
   2: [function (require, module, exports) {
     (function (global) {
-      'use strict'
+      (function () {
+        'use strict'
 
-      require('core-js/modules/es.object.assign')
+        require('core-js/modules/es.object.assign')
 
-      Object.defineProperty(exports, '__esModule', {
-        value: true
-      })
-      exports.default = void 0
+        Object.defineProperty(exports, '__esModule', {
+          value: true
+        })
+        exports.default = void 0
 
-      require('core-js/stable')
+        require('core-js/stable')
 
-      var _all = _interopRequireDefault(require('./all'))
+        var _all = _interopRequireDefault(require('./all'))
 
-      function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+        function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
-      /**
+        /**
  * All of the JSON DOM system functions for creating JSON components.
  * @file
  * @author Joshua Heagle <joshuaheagle@gmail.com>
@@ -57,39 +58,40 @@
  * @module jDom
  */
 
-      /**
+        /**
  * Store a reference to this scope which will be Window if rendered via browser
  */
-      var root = void 0 || window || global || {}
-      /**
+        var root = void 0 || window || global || {}
+        /**
  * Store reference to any pre-existing module of the same name
  * @type {module|*}
  */
 
-      var previousJDom = root.jDom || {}
-      /**
+        var previousJDom = root.jDom || {}
+        /**
  * All methods exported from this module are encapsulated within jDom.
  * @typedef {module:jDom|module:jDomCore|module:jDomObjects} jDom
  */
 
-      var jDom = {}
-      root.jDom = jDom
-      /**
+        var jDom = {}
+        root.jDom = jDom
+        /**
  * Return a reference to this library while preserving the original same-named library
  * @function
  * @returns {module:jDom~jDom}
  */
 
-      var noConflict = function noConflict () {
-        root.jDom = previousJDom
-        return jDom
-      }
+        var noConflict = function noConflict () {
+          root.jDom = previousJDom
+          return jDom
+        }
 
-      jDom.noConflict = noConflict
+        jDom.noConflict = noConflict
 
-      var _default = Object.assign(jDom, _all.default)
+        var _default = Object.assign(jDom, _all.default)
 
-      exports.default = _default
+        exports.default = _default
+      }).call(this)
     }).call(this, typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : {})
   }, { './all': 1, 'core-js/modules/es.object.assign': 237, 'core-js/stable': 377 }],
   3: [function (require, module, exports) {
@@ -3205,12 +3207,13 @@
   }, { '../internals/an-object': 11, '../internals/get-iterator-method': 61 }],
   63: [function (require, module, exports) {
     (function (global) {
-      var check = function (it) {
-        return it && it.Math == Math && it
-      }
+      (function () {
+        var check = function (it) {
+          return it && it.Math == Math && it
+        }
 
-      // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-      module.exports =
+        // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+        module.exports =
   // eslint-disable-next-line no-undef
   check(typeof globalThis === 'object' && globalThis) ||
   check(typeof window === 'object' && window) ||
@@ -3218,6 +3221,7 @@
   check(typeof global === 'object' && global) ||
   // eslint-disable-next-line no-new-func
   Function('return this')()
+      }).call(this)
     }).call(this, typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : {})
   }, {}],
   64: [function (require, module, exports) {
@@ -13099,8 +13103,6 @@
 
     require('core-js/modules/es.array.concat')
 
-    require('core-js/modules/es.array.every')
-
     require('core-js/modules/es.array.find-index')
 
     require('core-js/modules/es.array.for-each')
@@ -13355,6 +13357,7 @@
     /**
  * Store a bundle containing an object, references array, and remove array.
  * @typedef {Object} objectReferencesRemove
+ * @property {number} index
  * @property {Array|Object} object
  * @property {Array.<string|number>} references
  * @property {module:objectHelpers~referenceMap} remove
@@ -13365,14 +13368,17 @@
  * @function
  * @param {Array|Object} object
  * @param {Array.<string|number>} [references=[]]
+ * @param {number} [index=0]
  * @returns {module:objectHelpers~objectReferencesRemove}
  */
 
     var objectAndReferences = function objectAndReferences (object) {
       var references = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : []
+      var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0
       return Object.assign({}, {
+        index: index,
         object: object || {},
-        references: references || [],
+        references: references,
         remove: []
       })
     }
@@ -13413,8 +13419,15 @@
 
         if (Array.isArray(key)) {
           var remove = []
+          var nextObject = results.object[keyArray[0]]
 
-          var _keyArray$1$reduce = keyArray[1].reduce(linkReferenceObject(referenceMap), objectAndReferences(results.object[keyArray[0]], keyArray[1]))
+          if (typeof nextObject === 'number') {
+            results.index = nextObject
+          }
+
+          ;
+
+          var _keyArray$1$reduce = keyArray[1].reduce(linkReferenceObject(referenceMap), objectAndReferences(nextObject, keyArray[1], results.index))
 
           results.object[keyArray[0]] = _keyArray$1$reduce.object
           remove = _keyArray$1$reduce.remove
@@ -13429,6 +13442,9 @@
         }
 
         results.object[key] = nextRef.object
+        nextRef.referers.splice(nextRef.referers.findIndex(function (i) {
+          return i === results.index
+        }), 1)
         var nextReferences = nextRef.references.map(function (ref) {
           return nextRef.circular.includes(ref) ? [ref, null] : ref
         })
@@ -13462,16 +13478,9 @@
 
     var removeFromReferenceMap = function removeFromReferenceMap (referenceMap) {
       return function (referenceIdentifier) {
-        var withoutReferer = referenceIdentifier.referers.every(function (referer) {
-          if (referer >= referenceIdentifier.index) {
-            return findReferenceIndex(referenceMap, referer) < 0
-          }
-
-          return true
-        })
         var removeIndex = findReferenceIndex(referenceMap, referenceIdentifier.index)
 
-        if (removeIndex <= 0 || !withoutReferer) {
+        if (removeIndex <= 0 || referenceIdentifier.referers.length) {
           return false
         }
 
@@ -13501,7 +13510,7 @@
 
       var remove = []
 
-      var _referenceMap$0$refer = referenceMap[0].references.reduce(linkReferenceObject(referenceMap), objectAndReferences(referenceMap[0].object, referenceMap[0].references))
+      var _referenceMap$0$refer = referenceMap[0].references.reduce(linkReferenceObject(referenceMap), objectAndReferences(referenceMap[0].object, referenceMap[0].references, 0))
 
       referenceMap[0].object = _referenceMap$0$refer.object
       referenceMap[0].references = _referenceMap$0$refer.references
@@ -13511,7 +13520,7 @@
     }
 
     exports.linkReferences = linkReferences
-  }, { '../objects': 382, 'core-js/modules/es.array.concat': 165, 'core-js/modules/es.array.every': 167, 'core-js/modules/es.array.find-index': 170, 'core-js/modules/es.array.for-each': 174, 'core-js/modules/es.array.from': 175, 'core-js/modules/es.array.includes': 176, 'core-js/modules/es.array.index-of': 177, 'core-js/modules/es.array.iterator': 179, 'core-js/modules/es.array.map': 182, 'core-js/modules/es.array.reduce': 185, 'core-js/modules/es.array.slice': 187, 'core-js/modules/es.array.some': 188, 'core-js/modules/es.array.splice': 191, 'core-js/modules/es.function.name': 202, 'core-js/modules/es.object.assign': 237, 'core-js/modules/es.object.to-string': 260, 'core-js/modules/es.regexp.to-string': 285, 'core-js/modules/es.string.includes': 297, 'core-js/modules/es.string.iterator': 299, 'core-js/modules/es.symbol': 323, 'core-js/modules/es.symbol.description': 319, 'core-js/modules/es.symbol.iterator': 322, 'core-js/modules/web.dom-collections.for-each': 369, 'core-js/modules/web.dom-collections.iterator': 370 }],
+  }, { '../objects': 382, 'core-js/modules/es.array.concat': 165, 'core-js/modules/es.array.find-index': 170, 'core-js/modules/es.array.for-each': 174, 'core-js/modules/es.array.from': 175, 'core-js/modules/es.array.includes': 176, 'core-js/modules/es.array.index-of': 177, 'core-js/modules/es.array.iterator': 179, 'core-js/modules/es.array.map': 182, 'core-js/modules/es.array.reduce': 185, 'core-js/modules/es.array.slice': 187, 'core-js/modules/es.array.some': 188, 'core-js/modules/es.array.splice': 191, 'core-js/modules/es.function.name': 202, 'core-js/modules/es.object.assign': 237, 'core-js/modules/es.object.to-string': 260, 'core-js/modules/es.regexp.to-string': 285, 'core-js/modules/es.string.includes': 297, 'core-js/modules/es.string.iterator': 299, 'core-js/modules/es.symbol': 323, 'core-js/modules/es.symbol.description': 319, 'core-js/modules/es.symbol.iterator': 322, 'core-js/modules/web.dom-collections.for-each': 369, 'core-js/modules/web.dom-collections.iterator': 370 }],
   384: [function (require, module, exports) {
     'use strict'
 
@@ -13996,36 +14005,37 @@
   }, { '../arrays': 379, '../objects': 382, 'core-js/modules/es.array.concat': 165, 'core-js/modules/es.array.every': 167, 'core-js/modules/es.array.filter': 169, 'core-js/modules/es.array.find': 171, 'core-js/modules/es.array.find-index': 170, 'core-js/modules/es.array.for-each': 174, 'core-js/modules/es.array.from': 175, 'core-js/modules/es.array.includes': 176, 'core-js/modules/es.array.iterator': 179, 'core-js/modules/es.array.map': 182, 'core-js/modules/es.array.reduce': 185, 'core-js/modules/es.array.slice': 187, 'core-js/modules/es.array.some': 188, 'core-js/modules/es.function.name': 202, 'core-js/modules/es.object.assign': 237, 'core-js/modules/es.object.to-string': 260, 'core-js/modules/es.regexp.to-string': 285, 'core-js/modules/es.string.includes': 297, 'core-js/modules/es.string.iterator': 299, 'core-js/modules/es.symbol': 323, 'core-js/modules/es.symbol.description': 319, 'core-js/modules/es.symbol.iterator': 322, 'core-js/modules/web.dom-collections.for-each': 369, 'core-js/modules/web.dom-collections.iterator': 370, 'core-js/stable': 377 }],
   385: [function (require, module, exports) {
     (function (global) {
-      'use strict'
+      (function () {
+        'use strict'
 
-      function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
+        function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
 
-      require('core-js/modules/es.object.assign')
+        require('core-js/modules/es.object.assign')
 
-      Object.defineProperty(exports, '__esModule', {
-        value: true
-      })
-      exports.default = void 0
+        Object.defineProperty(exports, '__esModule', {
+          value: true
+        })
+        exports.default = void 0
 
-      require('core-js/stable')
+        require('core-js/stable')
 
-      var arrayHelpers = _interopRequireWildcard(require('./helpers/arrays'))
+        var arrayHelpers = _interopRequireWildcard(require('./helpers/arrays'))
 
-      var cloneHelpers = _interopRequireWildcard(require('./helpers/objects/cloneHelpers'))
+        var cloneHelpers = _interopRequireWildcard(require('./helpers/objects/cloneHelpers'))
 
-      var descriptors = _interopRequireWildcard(require('./helpers/objects/descriptors'))
+        var descriptors = _interopRequireWildcard(require('./helpers/objects/descriptors'))
 
-      var functionHelpers = _interopRequireWildcard(require('./helpers/functions'))
+        var functionHelpers = _interopRequireWildcard(require('./helpers/functions'))
 
-      var numberHelpers = _interopRequireWildcard(require('./helpers/numbers'))
+        var numberHelpers = _interopRequireWildcard(require('./helpers/numbers'))
 
-      var objectHelpers = _interopRequireWildcard(require('./helpers/objects'))
+        var objectHelpers = _interopRequireWildcard(require('./helpers/objects'))
 
-      function _getRequireWildcardCache () { if (typeof WeakMap !== 'function') return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache () { return cache }; return cache }
+        function _getRequireWildcardCache () { if (typeof WeakMap !== 'function') return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache () { return cache }; return cache }
 
-      function _interopRequireWildcard (obj) { if (obj && obj.__esModule) { return obj } if (obj === null || _typeof(obj) !== 'object' && typeof obj !== 'function') { return { default: obj } } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj) } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc) } else { newObj[key] = obj[key] } } } newObj.default = obj; if (cache) { cache.set(obj, newObj) } return newObj }
+        function _interopRequireWildcard (obj) { if (obj && obj.__esModule) { return obj } if (obj === null || _typeof(obj) !== 'object' && typeof obj !== 'function') { return { default: obj } } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj) } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc) } else { newObj[key] = obj[key] } } } newObj.default = obj; if (cache) { cache.set(obj, newObj) } return newObj }
 
-      /**
+        /**
  * All of the functionalHelpers system functions for stringing together functions and simplifying logic.
  * @file
  * @author Joshua Heagle <joshuaheagle@gmail.com>
@@ -14033,39 +14043,40 @@
  * @module functionalHelpers
  */
 
-      /**
+        /**
    * Store a reference to this scope which will be Window if rendered via browser
    */
-      var root = void 0 || window || global || {}
-      /**
+        var root = void 0 || window || global || {}
+        /**
    * Store reference to any pre-existing module of the same name
    * @type {module|*}
    */
 
-      var previousFunctionalHelpers = root.functionalHelpers || {}
-      /**
+        var previousFunctionalHelpers = root.functionalHelpers || {}
+        /**
    * All methods exported from this module are encapsulated within functionalHelpers.
    * @typedef {module:functionalHelpers|module:arrayHelpers|module:functionHelpers|module:numberHelpers|module:objectHelpers} functionalHelpers
    */
 
-      var functionalHelpers = {}
-      root.functionalHelpers = functionalHelpers
-      /**
+        var functionalHelpers = {}
+        root.functionalHelpers = functionalHelpers
+        /**
    * Return a reference to this library while preserving the original same-named library
    * @function
    * @returns {module:functionalHelpers~functionalHelpers}
    */
 
-      var noConflict = function noConflict () {
-        root.functionalHelpers = previousFunctionalHelpers
-        return functionalHelpers
-      }
+        var noConflict = function noConflict () {
+          root.functionalHelpers = previousFunctionalHelpers
+          return functionalHelpers
+        }
 
-      functionalHelpers.noConflict = noConflict
+        functionalHelpers.noConflict = noConflict
 
-      var _default = Object.assign(functionalHelpers, arrayHelpers, cloneHelpers, descriptors, functionHelpers, numberHelpers, objectHelpers)
+        var _default = Object.assign(functionalHelpers, arrayHelpers, cloneHelpers, descriptors, functionHelpers, numberHelpers, objectHelpers)
 
-      exports.default = _default
+        exports.default = _default
+      }).call(this)
     }).call(this, typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : {})
   }, { './helpers/arrays': 379, './helpers/functions': 380, './helpers/numbers': 381, './helpers/objects': 382, './helpers/objects/cloneHelpers': 383, './helpers/objects/descriptors': 384, 'core-js/modules/es.object.assign': 237, 'core-js/stable': 377 }],
   386: [function (require, module, exports) {
