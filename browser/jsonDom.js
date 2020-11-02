@@ -865,17 +865,29 @@
     exports.setAndReturnAttribute = setAndReturnAttribute
 
     var updateElement = function updateElement (config) {
-      return !config.element.style // if element is not a valid element then return the config without changes
-        ? config // Set the the current attributes to contain all the changes
-        : _functionalHelpers.default.setValue('attributes', _functionalHelpers.default.mapObject( // Retrieve only the changes to be applied from the attributes
-          elementChanges(config).attributes, function (attr, key) {
-            return !_functionalHelpers.default.emptyObject(attr) ? _functionalHelpers.default.mapObject(_functionalHelpers.default.filterObject( // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
-              attr, function (param, k) {
-                return /^\D+$/.test(k)
-              }), function (p, i) {
-              return _functionalHelpers.default.setAndReturnValue(config.element.style, i, p)
-            }, config.element.style) : key in config.element ? _functionalHelpers.default.setAndReturnValue(config.element, key, attr) : setAndReturnAttribute(config, key, attr)
-          }), config)
+      if (!config.element.style) {
+        // if element is not a valid element then return the config without changes
+        return config
+      }
+
+      var domItem = elementChanges(config) // Set the the current attributes to contain all the changes
+
+      domItem.attributes = _functionalHelpers.default.mapObject( // Retrieve only the changes to be applied from the attributes
+        domItem.attributes, function (attr, key) {
+          if (_functionalHelpers.default.emptyObject(attr)) {
+            return key in config.element ? _functionalHelpers.default.setAndReturnValue(config.element, key, attr) : setAndReturnAttribute(config, key, attr)
+          }
+
+          var cleanedStyles = _functionalHelpers.default.filterObject( // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
+            attr, function (param, k) {
+              return /^\D+$/.test(k)
+            })
+
+          return _functionalHelpers.default.reduceObject(cleanedStyles, function (newStyle, p, i) {
+            return _functionalHelpers.default.setValue(i, p, newStyle)
+          }, config.element.style)
+        })
+      return domItem
     }
     /**
    * Generate HTML element data for each object in the matrix
@@ -889,9 +901,10 @@
     exports.updateElement = updateElement
 
     var updateElements = function updateElements (config) {
-      return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(config.children, function (child) {
+      var domItem = updateElement(config)
+      return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(domItem.children, function (child) {
         return updateElements(child)
-      }), updateElement(config))
+      }), domItem)
     }
     /**
    * Create an HTML element based on the provided attributes and return the element as an Object.

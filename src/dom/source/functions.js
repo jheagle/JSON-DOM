@@ -119,31 +119,36 @@ export const setAndReturnAttribute = (config, name, value) => {
    * element
    * @returns {module:dom/objects.DomItem}
    */
-export const updateElement = config => !config.element.style
-// if element is not a valid element then return the config without changes
-  ? config
-// Set the the current attributes to contain all the changes
-  : functionalHelpers.setValue(
-    'attributes',
-    functionalHelpers.mapObject(
-      // Retrieve only the changes to be applied from the attributes
-      elementChanges(config).attributes,
-      (attr, key) => (!functionalHelpers.emptyObject(attr))
-        ? functionalHelpers.mapObject(
-          functionalHelpers.filterObject(
-            // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
-            attr,
-            (param, k) => /^\D+$/.test(k)
-          ),
-          (p, i) => functionalHelpers.setAndReturnValue(config.element.style, i, p),
-          config.element.style
-        )
-        : (key in config.element)
+export const updateElement = config => {
+  if (!config.element.style) {
+    // if element is not a valid element then return the config without changes
+    return config
+  }
+  const domItem = elementChanges(config)
+  // Set the the current attributes to contain all the changes
+  domItem.attributes = functionalHelpers.mapObject(
+    // Retrieve only the changes to be applied from the attributes
+    domItem.attributes,
+    (attr, key) => {
+      if (functionalHelpers.emptyObject(attr)) {
+        return (key in config.element)
           ? functionalHelpers.setAndReturnValue(config.element, key, attr)
           : setAndReturnAttribute(config, key, attr)
-    ),
-    config
+      }
+      const cleanedStyles = functionalHelpers.filterObject(
+        // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
+        attr,
+        (param, k) => /^\D+$/.test(k)
+      )
+      return functionalHelpers.reduceObject(
+        cleanedStyles,
+        (newStyle, p, i) => functionalHelpers.setValue(i, p, newStyle),
+        config.element.style
+      )
+    }
   )
+  return domItem
+}
 
 /**
    * Generate HTML element data for each object in the matrix
@@ -153,11 +158,14 @@ export const updateElement = config => !config.element.style
    * applied
    * @returns {module:dom/objects.DomItem}
    */
-export const updateElements = config => functionalHelpers.setValue(
-  'children',
-  functionalHelpers.mapObject(config.children, child => updateElements(child)),
-  updateElement(config)
-)
+export const updateElements = config => {
+  const domItem = updateElement(config)
+  return functionalHelpers.setValue(
+    'children',
+    functionalHelpers.mapObject(domItem.children, child => updateElements(child)),
+    domItem
+  )
+}
 
 /**
    * Create an HTML element based on the provided attributes and return the element as an Object.
@@ -340,7 +348,10 @@ export const assignListener = (trigger, elem, fn, options) => {
    */
 export const appendListeners = (item, event, listener, args = {}, options = false) => functionalHelpers.setValue(
   'children',
-  functionalHelpers.mapObject(item.children, i => appendListeners(i, event, listener, args, options)),
+  functionalHelpers.mapObject(
+    item.children,
+    i => appendListeners(i, event, listener, args, options)
+  ),
   functionalHelpers.setValue(
     'eventListeners',
     functionalHelpers.setValue(
@@ -528,12 +539,12 @@ export const getTopParentItem = item => Object.keys(item.parentItem).length
    * @returns {module:dom/objects.DomItem}
    */
 export const renderHTML = (item, parent = documentItem) => functionalHelpers.pipe(
-  (domItem) => functionalHelpers.setValue(
+  domItem => functionalHelpers.setValue(
     'element',
     (domItem.element && domItem.element.style) ? domItem.element : bindElement(domItem).element,
     domItem
   ),
-  (domItem) => functionalHelpers.setValue(
+  domItem => functionalHelpers.setValue(
     'eventListeners',
     functionalHelpers.mapObject(
       domItem.eventListeners,
@@ -545,6 +556,6 @@ export const renderHTML = (item, parent = documentItem) => functionalHelpers.pip
     domItem
   ),
   functionalHelpers.curry(functionalHelpers.setValue)('parentItem', parent.body || parent),
-  (domItem) => bindListeners(appendHTML(domItem, parent)),
-  (domItem) => functionalHelpers.setValue('children', functionalHelpers.mapObject(domItem.children, child => renderHTML(child, domItem)), domItem)
+  domItem => bindListeners(appendHTML(domItem, parent)),
+  domItem => functionalHelpers.setValue('children', functionalHelpers.mapObject(domItem.children, child => renderHTML(child, domItem)), domItem)
 )(functionalHelpers.mapObject(createDomItem(item), prop => prop, item))
