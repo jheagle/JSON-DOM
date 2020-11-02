@@ -153,9 +153,9 @@ export const updateElement = config => !config.element.style
    * applied
    * @returns {module:dom/objects.DomItem}
    */
-export const updateElements = config => functionalHelpers.mapProperty(
+export const updateElements = config => functionalHelpers.setValue(
   'children',
-  child => updateElements(child),
+  functionalHelpers.mapObject(config.children, child => updateElements(child)),
   updateElement(config)
 )
 
@@ -338,9 +338,9 @@ export const assignListener = (trigger, elem, fn, options) => {
    * @param {module:dom/objects.EventListenerOptions} options - The strategy used when the event is triggered.
    * @returns {module:dom/objects.DomItem}
    */
-export const appendListeners = (item, event, listener, args = {}, options = false) => functionalHelpers.mapProperty(
+export const appendListeners = (item, event, listener, args = {}, options = false) => functionalHelpers.setValue(
   'children',
-  i => appendListeners(i, event, listener, args, options),
+  functionalHelpers.mapObject(item.children, i => appendListeners(i, event, listener, args, options)),
   functionalHelpers.setValue(
     'eventListeners',
     functionalHelpers.setValue(
@@ -361,13 +361,13 @@ export const appendListeners = (item, event, listener, args = {}, options = fals
    * @param {module:dom/objects.DomItem} item - The DomItem which has eventListeners to apply to its element
    * @returns {module:dom/objects.DomItem}
    */
-const bindElementListeners = item => functionalHelpers.mapProperty(
+const bindElementListeners = item => functionalHelpers.setValue(
   'eventListeners',
-  (attr, event) => assignListener(
+  functionalHelpers.mapObject(item.eventListeners, (attr, event) => assignListener(
     event,
     item.element,
     e => attr.listenerFunc(e, item, attr.listenerArgs), attr.listenerOptions
-  ),
+  )),
   item
 )
 
@@ -393,9 +393,9 @@ export const bindListeners = item =>
    * assigned
    * @returns {module:dom/objects.DomItem}
    */
-export const bindAllListeners = item => functionalHelpers.mapProperty(
+export const bindAllListeners = item => functionalHelpers.setValue(
   'children',
-  i => bindAllListeners(i),
+  functionalHelpers.mapObject(item.children, i => bindAllListeners(i)),
   bindListeners(item)
 )
 
@@ -546,5 +546,5 @@ export const renderHTML = (item, parent = documentItem) => functionalHelpers.pip
   ),
   functionalHelpers.curry(functionalHelpers.setValue)('parentItem', parent.body || parent),
   (domItem) => bindListeners(appendHTML(domItem, parent)),
-  (domItem) => functionalHelpers.mapProperty('children', child => renderHTML(child, domItem), domItem)
+  (domItem) => functionalHelpers.setValue('children', functionalHelpers.mapObject(domItem.children, child => renderHTML(child, domItem)), domItem)
 )(functionalHelpers.mapObject(createDomItem(item), prop => prop, item))

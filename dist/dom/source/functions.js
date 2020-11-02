@@ -184,9 +184,9 @@ var updateElement = function updateElement (config) {
 exports.updateElement = updateElement
 
 var updateElements = function updateElements (config) {
-  return _functionalHelpers.default.mapProperty('children', function (child) {
+  return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(config.children, function (child) {
     return updateElements(child)
-  }, updateElement(config))
+  }), updateElement(config))
 }
 /**
    * Create an HTML element based on the provided attributes and return the element as an Object.
@@ -401,9 +401,9 @@ exports.assignListener = assignListener
 var appendListeners = function appendListeners (item, event, listener) {
   var args = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {}
   var options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false
-  return _functionalHelpers.default.mapProperty('children', function (i) {
+  return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(item.children, function (i) {
     return appendListeners(i, event, listener, args, options)
-  }, _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.setValue(event, {
+  }), _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.setValue(event, {
     listenerFunc: listener,
     listenerArgs: args,
     listenerOptions: options
@@ -418,11 +418,11 @@ var appendListeners = function appendListeners (item, event, listener) {
 exports.appendListeners = appendListeners
 
 var bindElementListeners = function bindElementListeners (item) {
-  return _functionalHelpers.default.mapProperty('eventListeners', function (attr, event) {
+  return _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.mapObject(item.eventListeners, function (attr, event) {
     return assignListener(event, item.element, function (e) {
       return attr.listenerFunc(e, item, attr.listenerArgs)
     }, attr.listenerOptions)
-  }, item)
+  }), item)
 }
 /**
    * Based on the eventListeners property of the provided item, bind the
@@ -449,9 +449,9 @@ var bindListeners = function bindListeners (item) {
 exports.bindListeners = bindListeners
 
 var bindAllListeners = function bindAllListeners (item) {
-  return _functionalHelpers.default.mapProperty('children', function (i) {
+  return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(item.children, function (i) {
     return bindAllListeners(i)
-  }, bindListeners(item))
+  }), bindListeners(item))
 }
 /**
    * To be used with gatherChildItems which will start at item and recurse over all child items, this test
@@ -615,9 +615,9 @@ var renderHTML = function renderHTML (item) {
   }, _functionalHelpers.default.curry(_functionalHelpers.default.setValue)('parentItem', parent.body || parent), function (domItem) {
     return bindListeners(appendHTML(domItem, parent))
   }, function (domItem) {
-    return _functionalHelpers.default.mapProperty('children', function (child) {
+    return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(domItem.children, function (child) {
       return renderHTML(child, domItem)
-    }, domItem)
+    }), domItem)
   })(_functionalHelpers.default.mapObject((0, _objects.createDomItem)(item), function (prop) {
     return prop
   }, item))
