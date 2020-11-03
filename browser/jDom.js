@@ -416,7 +416,7 @@
 
     var registerListeners = function registerListeners (listeners) {
       var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem
-      return _functionalHelpers.default.mergeObjects(parent, {
+      return _functionalHelpers.default.mergeObjects({}, parent, {
         eventListeners: parent.eventListeners
       }, {
         eventListeners: listeners
@@ -718,7 +718,7 @@
         return _functionalHelpers.default.setValue('element', domItem.element && domItem.element.style ? domItem.element : bindElement(domItem).element, domItem)
       }, function (domItem) {
         return _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.mapObject(domItem.eventListeners, function (prop) {
-          return _functionalHelpers.default.mergeObjects(prop, {
+          return _functionalHelpers.default.mergeObjects({}, prop, {
             listenerFunc: retrieveListener(prop.listenerFunc, getTopParentItem(parent))
           })
         }), domItem)
@@ -829,7 +829,7 @@
         attributes[_key] = arguments[_key]
       }
 
-      return _functionalHelpers.default.mergeObjectsMutable.apply(_functionalHelpers.default, [{
+      return _functionalHelpers.default.mergeObjects.apply(_functionalHelpers.default, [{
         tagName: 'div',
         attributes: {
           style: {}

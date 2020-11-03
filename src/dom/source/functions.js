@@ -270,6 +270,7 @@ export const registerListener = (listener, name = listener.name, parent = docume
    * @returns {module:dom/objects.DomItemRoot|Object}
    */
 export const registerListeners = (listeners, parent = documentItem) => functionalHelpers.mergeObjects(
+  {},
   parent,
   { eventListeners: parent.eventListeners },
   { eventListeners: listeners }
@@ -549,6 +550,7 @@ export const renderHTML = (item, parent = documentItem) => functionalHelpers.pip
     functionalHelpers.mapObject(
       domItem.eventListeners,
       prop => functionalHelpers.mergeObjects(
+        {},
         prop,
         { listenerFunc: retrieveListener(prop.listenerFunc, getTopParentItem(parent)) }
       )

@@ -71,7 +71,7 @@ import functionalHelpers from 'functional-helpers'
    * @param {...Object} attributes - DomItem-like object(s) to be merged as a DomItem
    * @returns {module:dom/objects.DomItem}
    */
-export const createDomItem = (...attributes) => functionalHelpers.mergeObjectsMutable({
+export const createDomItem = (...attributes) => functionalHelpers.mergeObjects({
   tagName: 'div',
   attributes: {
     style: {}

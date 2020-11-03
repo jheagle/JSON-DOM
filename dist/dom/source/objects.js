@@ -91,7 +91,7 @@ var createDomItem = function createDomItem () {
     attributes[_key] = arguments[_key]
   }
 
-  return _functionalHelpers.default.mergeObjectsMutable.apply(_functionalHelpers.default, [{
+  return _functionalHelpers.default.mergeObjects.apply(_functionalHelpers.default, [{
     tagName: 'div',
     attributes: {
       style: {}

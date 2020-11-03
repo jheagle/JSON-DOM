@@ -28,8 +28,30 @@ State management with JSON
 ## Classes
 
 <dl>
+<dt><a href="#LinkedList">LinkedList</a></dt>
+<dd></dd>
+<dt><a href="#Linker">Linker</a></dt>
+<dd></dd>
+<dt><a href="#PseudoElement">PseudoElement</a> ⇐ <code><a href="#PseudoNode">PseudoNode</a></code></dt>
+<dd><p>Simulate the behaviour of the Element Class when there is no DOM available.</p>
+</dd>
+<dt><a href="#PseudoEvent">PseudoEvent</a></dt>
+<dd><p>Simulate the behaviour of the Event Class when there is no DOM available.</p>
+</dd>
 <dt><a href="#PseudoEventListener">PseudoEventListener</a></dt>
 <dd></dd>
+<dt><a href="#PseudoEventTarget">PseudoEventTarget</a></dt>
+<dd><p>Simulate the behaviour of the EventTarget Class when there is no DOM available.</p>
+</dd>
+<dt><a href="#PseudoHTMLDocument">PseudoHTMLDocument</a> ⇐ <code><a href="#PseudoHTMLElement">PseudoHTMLElement</a></code></dt>
+<dd><p>Simulate the behaviour of the HTMLDocument Class when there is no DOM available.</p>
+</dd>
+<dt><a href="#PseudoHTMLElement">PseudoHTMLElement</a> ⇐ <code><a href="#PseudoElement">PseudoElement</a></code></dt>
+<dd><p>Simulate the behaviour of the HTMLElement Class when there is no DOM available.</p>
+</dd>
+<dt><a href="#PseudoNode">PseudoNode</a> ⇐ <code><a href="#PseudoEventTarget">PseudoEventTarget</a></code></dt>
+<dd><p>Simulate the behaviour of the Node Class when there is no DOM available.</p>
+</dd>
 <dt><a href="#PseudoNodeAttached">PseudoNodeAttached</a> ⇐ <code><a href="#PseudoEventTarget">PseudoEventTarget</a></code></dt>
 <dd><p>Simulate the behaviour of the Node Class when there is no DOM available.</p>
 </dd>
@@ -645,8 +667,6 @@ Simulate the behaviour of the Node Class when there is no DOM available.
 
 
 * [PseudoNodeAttached](#PseudoNodeAttached) ⇐ [<code>PseudoEventTarget</code>](#PseudoEventTarget)
-    * [.PseudoEventTarget](#PseudoEventTarget)
-    * [.PseudoEventTarget](#PseudoEventTarget)
     * [.appendChild(childNode)](#PseudoNodeAttached+appendChild) ⇒ [<code>PseudoNode</code>](#PseudoNode)
     * [.removeChild(childElement)](#PseudoNodeAttached+removeChild) ⇒ [<code>PseudoNode</code>](#PseudoNode)
     * [.runEvents(event)](#PseudoEventTarget+runEvents) ⇒ <code>boolean</code>
@@ -656,38 +676,6 @@ Simulate the behaviour of the Node Class when there is no DOM available.
     * [.addEventListener(type, callback, [useCapture])](#PseudoEventTarget+addEventListener)
     * [.removeEventListener(type, callback)](#PseudoEventTarget+removeEventListener)
     * [.dispatchEvent(event, target)](#PseudoEventTarget+dispatchEvent) ⇒ <code>boolean</code>
-
-<a name="PseudoEventTarget"></a>
-
-### pseudoNodeAttached.PseudoEventTarget
-Simulate the behaviour of the EventTarget Class when there is no DOM available.
-
-**Kind**: instance class of [<code>PseudoNodeAttached</code>](#PseudoNodeAttached)  
-**Author**: Joshua Heagle <joshuaheagle@gmail.com>  
-**Properties**
-
-| Name | Type |
-| --- | --- |
-| listeners | <code>Object.&lt;string, Array.&lt;PseudoEventListener&gt;&gt;</code> | 
-| addEventListener | <code>function</code> | 
-| removeEventListener | <code>function</code> | 
-| dispatchEvent | <code>function</code> | 
-
-<a name="PseudoEventTarget"></a>
-
-### pseudoNodeAttached.PseudoEventTarget
-Simulate the behaviour of the EventTarget Class when there is no DOM available.
-
-**Kind**: instance class of [<code>PseudoNodeAttached</code>](#PseudoNodeAttached)  
-**Author**: Joshua Heagle <joshuaheagle@gmail.com>  
-**Properties**
-
-| Name | Type |
-| --- | --- |
-| listeners | <code>Object.&lt;string, Array.&lt;PseudoEventListener&gt;&gt;</code> | 
-| addEventListener | <code>function</code> | 
-| removeEventListener | <code>function</code> | 
-| dispatchEvent | <code>function</code> | 
 
 <a name="PseudoNodeAttached+appendChild"></a>
 

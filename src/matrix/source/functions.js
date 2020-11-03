@@ -17,6 +17,7 @@ import { point } from './objects'
    * @returns {module:matrix/objects.MatrixColumn|module:matrix/objects.MatrixRow}
    */
 export const bindPointData = (item, pnt = point(0, 0, 0)) => functionalHelpers.mergeObjects(
+  {},
   item,
   item.point ? { point: functionalHelpers.cloneObject(pnt) } : {
     children: item.children.map(
@@ -84,7 +85,7 @@ export const getFirstAxisOfCoordinate = (pnt, coordinate) => Object.keys(pnt).fi
    */
 const pointAndCoordinateToDirection = (pnt, highestCoordinate) => (
   axis => axis !== false
-    ? functionalHelpers.mergeObjects(point(0, 0, 0), { [`${axis}`]: highestCoordinate > 0 ? 1 : -1 })
+    ? functionalHelpers.mergeObjects({}, point(0, 0, 0), { [`${axis}`]: highestCoordinate > 0 ? 1 : -1 })
     : point(0, 0, 0)
 )(getFirstAxisOfCoordinate(pnt, highestCoordinate))
 
@@ -189,7 +190,7 @@ export const testPointsBetween = (start, end, matrix, func, inclusive = true) =>
   getPointsLine(start, end).filter(
     (prop, i, line) => ((i !== 0 && i !== line.length - 1) || inclusive)
   ).reduce(
-    (newPoints, next) => functionalHelpers.mergeObjects(newPoints, { [`${func(next, matrix)}`]: [next] }), {
+    (newPoints, next) => functionalHelpers.mergeObjects({}, newPoints, { [`${func(next, matrix)}`]: [next] }), {
       true: [],
       false: []
     }

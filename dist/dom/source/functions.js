@@ -319,7 +319,7 @@ exports.registerListener = registerListener
 
 var registerListeners = function registerListeners (listeners) {
   var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem
-  return _functionalHelpers.default.mergeObjects(parent, {
+  return _functionalHelpers.default.mergeObjects({}, parent, {
     eventListeners: parent.eventListeners
   }, {
     eventListeners: listeners
@@ -621,7 +621,7 @@ var renderHTML = function renderHTML (item) {
     return _functionalHelpers.default.setValue('element', domItem.element && domItem.element.style ? domItem.element : bindElement(domItem).element, domItem)
   }, function (domItem) {
     return _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.mapObject(domItem.eventListeners, function (prop) {
-      return _functionalHelpers.default.mergeObjects(prop, {
+      return _functionalHelpers.default.mergeObjects({}, prop, {
         listenerFunc: retrieveListener(prop.listenerFunc, getTopParentItem(parent))
       })
     }), domItem)

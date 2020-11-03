@@ -93,7 +93,7 @@
         attributes[_key] = arguments[_key]
       }
 
-      return _functionalHelpers.default.mergeObjectsMutable.apply(_functionalHelpers.default, [{
+      return _functionalHelpers.default.mergeObjects.apply(_functionalHelpers.default, [{
         tagName: 'div',
         attributes: {
           style: {}
@@ -384,7 +384,7 @@
    */
     var bindPointData = function bindPointData (item) {
       var pnt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _objects.point)(0, 0, 0)
-      return _functionalHelpers.default.mergeObjects(item, item.point ? {
+      return _functionalHelpers.default.mergeObjects({}, item, item.point ? {
         point: _functionalHelpers.default.cloneObject(pnt)
       } : {
         children: item.children.map(function (el, i) {
@@ -470,7 +470,7 @@
 
     var pointAndCoordinateToDirection = function pointAndCoordinateToDirection (pnt, highestCoordinate) {
       return (function (axis) {
-        return axis !== false ? _functionalHelpers.default.mergeObjects((0, _objects.point)(0, 0, 0), _defineProperty({}, ''.concat(axis), highestCoordinate > 0 ? 1 : -1)) : (0, _objects.point)(0, 0, 0)
+        return axis !== false ? _functionalHelpers.default.mergeObjects({}, (0, _objects.point)(0, 0, 0), _defineProperty({}, ''.concat(axis), highestCoordinate > 0 ? 1 : -1)) : (0, _objects.point)(0, 0, 0)
       }(getFirstAxisOfCoordinate(pnt, highestCoordinate)))
     }
     /**
@@ -581,7 +581,7 @@
       return getPointsLine(start, end).filter(function (prop, i, line) {
         return i !== 0 && i !== line.length - 1 || inclusive
       }).reduce(function (newPoints, next) {
-        return _functionalHelpers.default.mergeObjects(newPoints, _defineProperty({}, ''.concat(func(next, matrix)), [next]))
+        return _functionalHelpers.default.mergeObjects({}, newPoints, _defineProperty({}, ''.concat(func(next, matrix)), [next]))
       }, {
         true: [],
         false: []
