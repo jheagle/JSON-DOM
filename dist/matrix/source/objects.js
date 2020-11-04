@@ -16,6 +16,8 @@ require('core-js/modules/es.array.slice')
 
 require('core-js/modules/es.function.name')
 
+require('core-js/modules/es.object.assign')
+
 require('core-js/modules/es.object.to-string')
 
 require('core-js/modules/es.regexp.to-string')
@@ -87,11 +89,11 @@ function _arrayLikeToArray (arr, len) { if (len == null || len > arr.length) len
    */
 var point = function point (x, y) {
   var z = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0
-  return {
+  return Object.assign({}, {
     x: x,
     y: y,
     z: z
-  }
+  })
 }
 /**
    * MatrixTile is an Object which stores a reference a {@link Point} and can be populated with additionally associated

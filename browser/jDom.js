@@ -12134,8 +12134,6 @@
 
     require('core-js/stable')
 
-    var _functions = require('./functions')
-
     var _objects = require('./objects')
 
     function _toConsumableArray (arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread() }
@@ -12151,45 +12149,43 @@
     function _arrayLikeToArray (arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i] } return arr2 }
 
     /**
- * Generate an array filled with a copy of the provided item or references to the provided item.
- * The length defines how long the array should be.
- * @function
- * @param {boolean} useReference - Choose to multiply by clone or reference, true is by reference
- * @param {*} item - The item to be used for each array element
- * @param {number} length - The desired length of the array
- * @param {Array} [arr=[]] - The in-progress array of elements to be built and returned, will be used internally
- * @returns {Array.<*>}
- */
-    var buildArrayBase = (function () {
-      return function (useReference, item, length) {
-        var arr = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : []
-        item = useReference ? item : (0, _objects.cloneObject)(item)
-        return --length > 0 ? buildArrayBase(useReference, item, length, [].concat(_toConsumableArray(arr), [item])) : [].concat(_toConsumableArray(arr), [item])
-      }
-    }())
-    /**
  * Leverage buildArrayBase to generate an array filled with a copy of the provided item.
  * The length defines how long the array should be.
  * @function
  * @param {*} item - The item to be used for each array element
  * @param {number} length - The desired length of the array
- * @param {Array} [arr=[]] - The in-progress array of elements to be built and returned, will be used internally
  * @returns {Array.<*>}
  */
+    var buildArray = function buildArray (item, length) {
+      var arr = []
 
-    var buildArray = (0, _functions.curry)(buildArrayBase)(false)
+      while (arr.length < length) {
+        var cloned = (0, _objects.cloneObject)(item)
+        arr.push(cloned)
+      }
+
+      return arr
+    }
     /**
  * Leverage buildArrayBase to generate an array filled with references to the provided item.
  * The length defines how long the array should be.
  * @function
  * @param {*} item - The item to be used for each array element
  * @param {number} length - The desired length of the array
- * @param {Array} [arr=[]] - The in-progress array of elements to be built and returned, will be used internally
  * @returns {Array.<*>}
  */
 
     exports.buildArray = buildArray
-    var buildArrayOfReferences = (0, _functions.curry)(buildArrayBase)(true)
+
+    var buildArrayOfReferences = function buildArrayOfReferences (item, length) {
+      var arr = []
+
+      while (arr.length < length) {
+        arr.push(item)
+      }
+
+      return arr
+    }
     /**
  * Remove duplicate values from an array.
  * @function uniqueArray
@@ -12300,7 +12296,7 @@
     }
 
     exports.compareArrays = compareArrays
-  }, { './functions': 380, './objects': 382, 'core-js/modules/es.array.concat': 165, 'core-js/modules/es.array.every': 167, 'core-js/modules/es.array.filter': 169, 'core-js/modules/es.array.from': 175, 'core-js/modules/es.array.includes': 176, 'core-js/modules/es.array.index-of': 177, 'core-js/modules/es.array.iterator': 179, 'core-js/modules/es.array.map': 182, 'core-js/modules/es.array.reduce': 185, 'core-js/modules/es.array.slice': 187, 'core-js/modules/es.function.name': 202, 'core-js/modules/es.object.to-string': 260, 'core-js/modules/es.regexp.to-string': 285, 'core-js/modules/es.string.includes': 297, 'core-js/modules/es.string.iterator': 299, 'core-js/modules/es.symbol': 323, 'core-js/modules/es.symbol.description': 319, 'core-js/modules/es.symbol.iterator': 322, 'core-js/modules/web.dom-collections.iterator': 370, 'core-js/stable': 377 }],
+  }, { './objects': 382, 'core-js/modules/es.array.concat': 165, 'core-js/modules/es.array.every': 167, 'core-js/modules/es.array.filter': 169, 'core-js/modules/es.array.from': 175, 'core-js/modules/es.array.includes': 176, 'core-js/modules/es.array.index-of': 177, 'core-js/modules/es.array.iterator': 179, 'core-js/modules/es.array.map': 182, 'core-js/modules/es.array.reduce': 185, 'core-js/modules/es.array.slice': 187, 'core-js/modules/es.function.name': 202, 'core-js/modules/es.object.to-string': 260, 'core-js/modules/es.regexp.to-string': 285, 'core-js/modules/es.string.includes': 297, 'core-js/modules/es.string.iterator': 299, 'core-js/modules/es.symbol': 323, 'core-js/modules/es.symbol.description': 319, 'core-js/modules/es.symbol.iterator': 322, 'core-js/modules/web.dom-collections.iterator': 370, 'core-js/stable': 377 }],
   380: [function (require, module, exports) {
     'use strict'
 
@@ -12696,11 +12692,7 @@
 
     require('core-js/modules/es.symbol.iterator')
 
-    require('core-js/modules/es.array.concat')
-
     require('core-js/modules/es.array.filter')
-
-    require('core-js/modules/es.array.from')
 
     require('core-js/modules/es.array.includes')
 
@@ -12710,17 +12702,11 @@
 
     require('core-js/modules/es.array.reduce')
 
-    require('core-js/modules/es.array.slice')
-
     require('core-js/modules/es.function.name')
 
     require('core-js/modules/es.object.get-own-property-names')
 
     require('core-js/modules/es.object.to-string')
-
-    require('core-js/modules/es.regexp.to-string')
-
-    require('core-js/modules/es.string.includes')
 
     require('core-js/modules/es.string.iterator')
 
@@ -12729,25 +12715,13 @@
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.mergeObjectsMutable = exports.mergeObjects = exports.cloneObject = exports.isCloneable = exports.isInstanceObject = exports.emptyObject = exports.reduceObject = exports.filterObject = exports.mapObject = exports.objectValues = exports.objectKeys = exports.setAndReturnValue = exports.setValue = void 0
+    exports.mergeObjects = exports.cloneObject = exports.isCloneable = exports.isInstanceObject = exports.emptyObject = exports.reduceObject = exports.filterObject = exports.mapObject = exports.objectValues = exports.objectKeys = exports.setAndReturnValue = exports.setValue = void 0
 
     require('core-js/stable')
 
     var _functions = require('./functions')
 
     var _cloneHelpers = require('./objects/cloneHelpers')
-
-    function _toConsumableArray (arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread() }
-
-    function _nonIterableSpread () { throw new TypeError('Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.') }
-
-    function _unsupportedIterableToArray (o, minLen) { if (!o) return; if (typeof o === 'string') return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === 'Object' && o.constructor) n = o.constructor.name; if (n === 'Map' || n === 'Set') return Array.from(o); if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen) }
-
-    function _iterableToArray (iter) { if (typeof Symbol !== 'undefined' && Symbol.iterator in Object(iter)) return Array.from(iter) }
-
-    function _arrayWithoutHoles (arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr) }
-
-    function _arrayLikeToArray (arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i] } return arr2 }
 
     function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
 
@@ -12979,7 +12953,6 @@
  * @function
  * @param {Object} object - The original object that is being cloned
  * @param {Object} [options={}]
- * @param {module:descriptorSamples~descriptorMap} options.descriptorMap - The map of the object
  * @param {number} [options.mapLimit=100]
  * @param {depthLimit} [options.depthLimit=-1]
  * @returns {Object}
@@ -12997,58 +12970,14 @@
       var referenceMap = [(0, _cloneHelpers.createReferenceIdentifier)(object, 0)]
       var moreReferences = [referenceMap[0]]
 
-      var _loop = function _loop () {
-        var currentIdentifier = moreReferences.shift()
-        var index = (0, _cloneHelpers.findReferenceIndex)(referenceMap, currentIdentifier.index)
-        referenceMap[index] = (0, _cloneHelpers.findObjectReferences)(referenceMap[index])
-        var maxDepth = (0, _cloneHelpers.getIdentifierDepth)(referenceMap, referenceMap[index]) === depthLimit
-        referenceMap[index] = (0, _cloneHelpers.findReferenceKeys)(referenceMap, index, maxDepth)
-
-        if (maxDepth) {
-          referenceMap[index].references = referenceMap[index].circular
-        }
-
-        referenceMap[index].complete = true
-        var references = referenceMap[index].references.filter(function (refKey) {
-          return !referenceMap[index].circular.includes(refKey)
-        })
-        moreReferences = [].concat(_toConsumableArray(moreReferences), _toConsumableArray(references.map(function (key) {
-          return referenceMap[referenceMap[index].object[key]]
-        })))
-
-        if (referenceMap.length >= mapLimit) {
-          referenceMap = (0, _cloneHelpers.linkReferences)(referenceMap)
-        }
-      }
-
       do {
-        _loop()
+        moreReferences = (0, _cloneHelpers.processIdentifier)(referenceMap, moreReferences, {
+          mapLimit: mapLimit,
+          depthLimit: depthLimit
+        })
       } while (moreReferences.length > 0)
 
       return (0, _cloneHelpers.linkReferences)(referenceMap)[0].object
-    }
-    /**
- * Merge two objects and provide clone or original on the provided function.
- * The passed function should accept a minimum of two objects to be merged.
- * If the desire is to mutate the input objects, then the function name should
- * have the word 'mutable' in the name (case-insensitive).
- * @function
- * @param {boolean} isMutable - An optional flag which indicates whether we will clone objects or directly
- * @param {module:objectHelpers.mergeObjects|module:objectHelpers.mergeObjectsMutable|Function} fn - Pass one of
- * the mergeObjects functions to be used
- * @param {Object} obj1 - The receiving object; this is the object which will have it's properties overridden
- * @param {Object} obj2 - The contributing object; this is the object which will contribute new properties and
- * override existing ones
- * modify them
- * @returns {Object}
- */
-
-    exports.cloneObject = cloneObject
-
-    var mergeObjectsBase = function mergeObjectsBase (isMutable, fn, obj1, obj2) {
-      return !emptyObject(obj2) ? reduceObject(obj2, function (newObj, prop, key) {
-        return setValue(key, obj1[key] ? fn(obj1[key], prop) : prop, newObj)
-      }, isMutable ? obj1 : cloneObject(obj1)) : obj2
     }
     /**
  * Perform a deep merge of objects. This will combine all objects and sub-objects,
@@ -13061,37 +12990,26 @@
  * @returns {Object}
  */
 
+    exports.cloneObject = cloneObject
+
     var mergeObjects = function mergeObjects () {
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key]
       }
 
-      return args.length === 2 ? mergeObjectsBase(false, mergeObjects, args[0], args[1]) : args.length === 1 ? cloneObject(args[0]) : args.reduce((0, _functions.curry)(mergeObjectsBase)(false, mergeObjects), {})
+      return args.reduce(function (newObj, arg) {
+        return reduceObject(arg, function (returnObj, value, key) {
+          if (isCloneable(value) && isCloneable(newObj[key])) {
+            return setValue(key, mergeObjects(newObj[key], value), newObj)
+          }
+
+          return setValue(key, value, newObj)
+        }, newObj)
+      }, args[0])
     }
-    /**
- * Perform a deep merge of objects. This will combine all objects and sub-objects,
- * objects having the same attributes will overwrite starting from the end of the argument
- * list and bubbling up to return the overwritten first object.
- * WARNING: This is a recursive function.
- * WARNING: This will mutate the first object passed in as input
- * @function
- * @param {...Object} args - Provide a list of objects which will be merged starting from the end up into the first
- * object
- * @returns {Object}
- */
 
     exports.mergeObjects = mergeObjects
-
-    var mergeObjectsMutable = function mergeObjectsMutable () {
-      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-        args[_key2] = arguments[_key2]
-      }
-
-      return args.length === 2 ? mergeObjectsBase(true, mergeObjectsMutable, args[0], args[1]) : args.length === 1 ? args[0] : args.reduce((0, _functions.curry)(mergeObjectsBase)(true, mergeObjectsMutable), {})
-    }
-
-    exports.mergeObjectsMutable = mergeObjectsMutable
-  }, { './functions': 380, './objects/cloneHelpers': 383, 'core-js/modules/es.array.concat': 165, 'core-js/modules/es.array.filter': 169, 'core-js/modules/es.array.from': 175, 'core-js/modules/es.array.includes': 176, 'core-js/modules/es.array.iterator': 179, 'core-js/modules/es.array.map': 182, 'core-js/modules/es.array.reduce': 185, 'core-js/modules/es.array.slice': 187, 'core-js/modules/es.function.name': 202, 'core-js/modules/es.object.get-own-property-names': 248, 'core-js/modules/es.object.to-string': 260, 'core-js/modules/es.regexp.to-string': 285, 'core-js/modules/es.string.includes': 297, 'core-js/modules/es.string.iterator': 299, 'core-js/modules/es.symbol': 323, 'core-js/modules/es.symbol.description': 319, 'core-js/modules/es.symbol.iterator': 322, 'core-js/modules/web.dom-collections.iterator': 370, 'core-js/stable': 377 }],
+  }, { './functions': 380, './objects/cloneHelpers': 383, 'core-js/modules/es.array.filter': 169, 'core-js/modules/es.array.includes': 176, 'core-js/modules/es.array.iterator': 179, 'core-js/modules/es.array.map': 182, 'core-js/modules/es.array.reduce': 185, 'core-js/modules/es.function.name': 202, 'core-js/modules/es.object.get-own-property-names': 248, 'core-js/modules/es.object.to-string': 260, 'core-js/modules/es.string.iterator': 299, 'core-js/modules/es.symbol': 323, 'core-js/modules/es.symbol.description': 319, 'core-js/modules/es.symbol.iterator': 322, 'core-js/modules/web.dom-collections.iterator': 370, 'core-js/stable': 377 }],
   383: [function (require, module, exports) {
     'use strict'
 
@@ -13102,6 +13020,8 @@
     require('core-js/modules/es.symbol.iterator')
 
     require('core-js/modules/es.array.concat')
+
+    require('core-js/modules/es.array.filter')
 
     require('core-js/modules/es.array.find-index')
 
@@ -13144,7 +13064,9 @@
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.linkReferences = exports.removeFromReferenceMap = exports.linkReferenceObject = exports.objectAndReferences = exports.getIdentifierDepth = exports.findReference = exports.findReferenceIndex = exports.findReferenceKeys = exports.findObjectReferences = exports.createReferenceIdentifier = void 0
+    exports.processIdentifier = exports.linkReferences = exports.removeFromReferenceMap = exports.linkReferenceObject = exports.objectAndReferences = exports.getIdentifierDepth = exports.findReference = exports.findReferenceIndex = exports.findReferenceKeys = exports.findObjectReferences = exports.createReferenceIdentifier = void 0
+
+    var _functions = require('../functions')
 
     var _objects = require('../objects')
 
@@ -13187,7 +13109,7 @@
  * @param {Array|Object} [object=null]
  * @param {number} [index=0]
  * @param {Array.<number>} [referers=[]]
- * @returns {module:objectHelpers~referenceIdentifier}
+ * @returns {module:cloneHelpers~referenceIdentifier}
  */
 
     var createReferenceIdentifier = function createReferenceIdentifier () {
@@ -13208,8 +13130,8 @@
  * Update the object of this reference identifier by cloning the object or array and setting child references to null.
  * Every reference that is found has it's key added to the array array of references.
  * @function
- * @param {module:objectHelpers~referenceIdentifier} referenceIdentifier
- * @returns {module:objectHelpers~referenceIdentifier}
+ * @param {module:cloneHelpers~referenceIdentifier} referenceIdentifier
+ * @returns {module:cloneHelpers~referenceIdentifier}
  */
 
     exports.createReferenceIdentifier = createReferenceIdentifier
@@ -13226,17 +13148,17 @@
     }
     /**
  * An array of reference identifiers linked together.
- * @typedef {Array.<module:objectHelpers~referenceMap>} referenceMap
+ * @typedef {Array.<module:cloneHelpers~referenceMap>} referenceMap
  */
 
     /**
  * For all of the identified references, find the index of the corresponding referenceIdentifier
  * or create a new one and set the index instead of null.
  * @function
- * @param {module:objectHelpers~referenceMap} [referenceMap=[]]
+ * @param {module:cloneHelpers~referenceMap} [referenceMap=[]]
  * @param {number} [index=0]
  * @param {boolean} [maxDepth=false]
- * @returns {module:objectHelpers~referenceIdentifier}
+ * @returns {module:cloneHelpers~referenceIdentifier}
  */
 
     exports.findObjectReferences = findObjectReferences
@@ -13272,7 +13194,7 @@
     /**
  * Find the array index of the provided reference identifier within the reference map.
  * @function
- * @param {module:objectHelpers~referenceMap} referenceMap
+ * @param {module:cloneHelpers~referenceMap} referenceMap
  * @param {number} [index=0]
  * @returns {number}
  */
@@ -13304,9 +13226,9 @@
     /**
  * Find a referenced identifier by index form the reference map.
  * @function
- * @param {module:objectHelpers~referenceMap} referenceMap
+ * @param {module:cloneHelpers~referenceMap} referenceMap
  * @param {number} [index=0]
- * @returns {module:objectHelpers~referenceIdentifier}
+ * @returns {module:cloneHelpers~referenceIdentifier}
  */
 
     exports.findReferenceIndex = findReferenceIndex
@@ -13343,7 +13265,7 @@
     }
     /**
  * Check if there are any remaining reference identifiers which are complete, excluded first in map.
- * @param {module:objectHelpers~referenceMap} referenceMap
+ * @param {module:cloneHelpers~referenceMap} referenceMap
  * @returns {boolean}
  */
 
@@ -13360,7 +13282,7 @@
  * @property {number} index
  * @property {Array|Object} object
  * @property {Array.<string|number>} references
- * @property {module:objectHelpers~referenceMap} remove
+ * @property {module:cloneHelpers~referenceMap} remove
  */
 
     /**
@@ -13369,7 +13291,7 @@
  * @param {Array|Object} object
  * @param {Array.<string|number>} [references=[]]
  * @param {number} [index=0]
- * @returns {module:objectHelpers~objectReferencesRemove}
+ * @returns {module:cloneHelpers~objectReferencesRemove}
  */
 
     var objectAndReferences = function objectAndReferences (object) {
@@ -13388,17 +13310,17 @@
  * containing the linked object, updated references array, and an array of identifiers to be deleted
  * since these are no longer required in the reference map.
  * @typedef {Function} referencesReduce
- * @param {module:objectHelpers~objectReferencesRemove} results
+ * @param {module:cloneHelpers~objectReferencesRemove} results
  * @param {number|string} key
  * @param {number} i
- * @returns {module:objectHelpers~objectReferencesRemove}
+ * @returns {module:cloneHelpers~objectReferencesRemove}
  */
 
     /**
  * Return the referencesReduce callback.
  * @function
- * @param {module:objectHelpers~referenceMap} referenceMap
- * @returns {module:objectHelpers~referencesReduce}
+ * @param {module:cloneHelpers~referenceMap} referenceMap
+ * @returns {module:cloneHelpers~referencesReduce}
  */
 
     exports.objectAndReferences = objectAndReferences
@@ -13463,15 +13385,15 @@
  * Given a referenceIdentifier, find it in the referenceMap and remove it, return true. If unable
  * to remove then return false.
  * @typedef {Function} removeReferenceIdentifier
- * @param {module:objectHelpers~referenceIdentifier} results
+ * @param {module:cloneHelpers~referenceIdentifier} results
  * @returns {boolean}
  */
 
     /**
  * Return the remove reference identifier callback.
  * @function
- * @param {module:objectHelpers~referenceMap} referenceMap
- * @returns {module:objectHelpers~removeReferenceIdentifier}
+ * @param {module:cloneHelpers~referenceMap} referenceMap
+ * @returns {module:cloneHelpers~removeReferenceIdentifier}
  */
 
     exports.linkReferenceObject = linkReferenceObject
@@ -13497,8 +13419,8 @@
     /**
  * Find each of the unlinked references and assign the newly cloned reference for each.
  * @function
- * @param {module:objectHelpers~referenceMap} referenceMap
- * @returns {module:objectHelpers~referenceMap}
+ * @param {module:cloneHelpers~referenceMap} referenceMap
+ * @returns {module:cloneHelpers~referenceMap}
  */
 
     exports.removeFromReferenceMap = removeFromReferenceMap
@@ -13518,9 +13440,60 @@
       remove.forEach(removeFromReferenceMap(referenceMap))
       return hasCompletedReferences(referenceMap) ? linkReferences(referenceMap) : referenceMap
     }
+    /**
+ * Bundle all of the functions needed for processing an identifier in the reference map
+ * @param {module:cloneHelpers~referenceMap} referenceMap
+ * @param {Array.<module:cloneHelpers~referenceIdentifier>} moreReferences
+ * @param {Object} [options={}]
+ * @param {number} [options.mapLimit=100]
+ * @param {depthLimit} [options.depthLimit=-1]
+ * @returns {Array.<module:cloneHelpers~referenceIdentifier>}
+ */
 
     exports.linkReferences = linkReferences
-  }, { '../objects': 382, 'core-js/modules/es.array.concat': 165, 'core-js/modules/es.array.find-index': 170, 'core-js/modules/es.array.for-each': 174, 'core-js/modules/es.array.from': 175, 'core-js/modules/es.array.includes': 176, 'core-js/modules/es.array.index-of': 177, 'core-js/modules/es.array.iterator': 179, 'core-js/modules/es.array.map': 182, 'core-js/modules/es.array.reduce': 185, 'core-js/modules/es.array.slice': 187, 'core-js/modules/es.array.some': 188, 'core-js/modules/es.array.splice': 191, 'core-js/modules/es.function.name': 202, 'core-js/modules/es.object.assign': 237, 'core-js/modules/es.object.to-string': 260, 'core-js/modules/es.regexp.to-string': 285, 'core-js/modules/es.string.includes': 297, 'core-js/modules/es.string.iterator': 299, 'core-js/modules/es.symbol': 323, 'core-js/modules/es.symbol.description': 319, 'core-js/modules/es.symbol.iterator': 322, 'core-js/modules/web.dom-collections.for-each': 369, 'core-js/modules/web.dom-collections.iterator': 370 }],
+
+    var processIdentifier = function processIdentifier (referenceMap, moreReferences) {
+      var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {}
+      var _ref$mapLimit = _ref.mapLimit
+      var mapLimit = _ref$mapLimit === void 0 ? 100 : _ref$mapLimit
+      var _ref$depthLimit = _ref.depthLimit
+      var depthLimit = _ref$depthLimit === void 0 ? -1 : _ref$depthLimit
+
+      var currentIndex = 0
+      var isMaxDepth = false
+      referenceMap = (0, _functions.pipe)(function (identifier) {
+        return findReferenceIndex(referenceMap, identifier.index)
+      }, function (index) {
+        currentIndex = index
+        return findObjectReferences(referenceMap[currentIndex])
+      }, function (identifier) {
+        return getIdentifierDepth(referenceMap, identifier)
+      }, function (currentDepth) {
+        return currentDepth === depthLimit
+      }, function (maxDepth) {
+        isMaxDepth = maxDepth
+        return findReferenceKeys(referenceMap, currentIndex, isMaxDepth)
+      }, function (identifier) {
+        if (isMaxDepth) {
+          referenceMap[currentIndex].references = identifier.circular
+        }
+
+        referenceMap[currentIndex].complete = true
+        var references = referenceMap[currentIndex].references.filter(function (refKey) {
+          return !identifier.circular.includes(refKey)
+        })
+        moreReferences = [].concat(_toConsumableArray(moreReferences), _toConsumableArray(references.map(function (key) {
+          return referenceMap[identifier.object[key]]
+        })))
+        return referenceMap.length >= mapLimit
+      }, function (maxLimit) {
+        return maxLimit ? linkReferences(referenceMap) : referenceMap
+      })(moreReferences.shift())
+      return moreReferences
+    }
+
+    exports.processIdentifier = processIdentifier
+  }, { '../functions': 380, '../objects': 382, 'core-js/modules/es.array.concat': 165, 'core-js/modules/es.array.filter': 169, 'core-js/modules/es.array.find-index': 170, 'core-js/modules/es.array.for-each': 174, 'core-js/modules/es.array.from': 175, 'core-js/modules/es.array.includes': 176, 'core-js/modules/es.array.index-of': 177, 'core-js/modules/es.array.iterator': 179, 'core-js/modules/es.array.map': 182, 'core-js/modules/es.array.reduce': 185, 'core-js/modules/es.array.slice': 187, 'core-js/modules/es.array.some': 188, 'core-js/modules/es.array.splice': 191, 'core-js/modules/es.function.name': 202, 'core-js/modules/es.object.assign': 237, 'core-js/modules/es.object.to-string': 260, 'core-js/modules/es.regexp.to-string': 285, 'core-js/modules/es.string.includes': 297, 'core-js/modules/es.string.iterator': 299, 'core-js/modules/es.symbol': 323, 'core-js/modules/es.symbol.description': 319, 'core-js/modules/es.symbol.iterator': 322, 'core-js/modules/web.dom-collections.for-each': 369, 'core-js/modules/web.dom-collections.iterator': 370 }],
   384: [function (require, module, exports) {
     'use strict'
 
