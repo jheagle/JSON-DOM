@@ -1,40 +1,40 @@
 'use strict'
 
-require('core-js/modules/es.symbol')
+require('core-js/modules/es.symbol.js')
 
-require('core-js/modules/es.symbol.description')
+require('core-js/modules/es.symbol.description.js')
 
-require('core-js/modules/es.symbol.iterator')
+require('core-js/modules/es.symbol.iterator.js')
 
-require('core-js/modules/es.array.concat')
+require('core-js/modules/es.array.concat.js')
 
-require('core-js/modules/es.array.includes')
+require('core-js/modules/es.array.includes.js')
 
-require('core-js/modules/es.array.index-of')
+require('core-js/modules/es.array.index-of.js')
 
-require('core-js/modules/es.array.iterator')
+require('core-js/modules/es.array.iterator.js')
 
-require('core-js/modules/es.array.reduce')
+require('core-js/modules/es.array.reduce.js')
 
-require('core-js/modules/es.array.splice')
+require('core-js/modules/es.array.splice.js')
 
-require('core-js/modules/es.function.name')
+require('core-js/modules/es.function.name.js')
 
-require('core-js/modules/es.object.assign')
+require('core-js/modules/es.object.assign.js')
 
-require('core-js/modules/es.object.keys')
+require('core-js/modules/es.object.keys.js')
 
-require('core-js/modules/es.object.to-string')
+require('core-js/modules/es.object.to-string.js')
 
-require('core-js/modules/es.regexp.exec')
+require('core-js/modules/es.regexp.exec.js')
 
-require('core-js/modules/es.string.includes')
+require('core-js/modules/es.string.includes.js')
 
-require('core-js/modules/es.string.iterator')
+require('core-js/modules/es.string.iterator.js')
 
-require('core-js/modules/es.string.split')
+require('core-js/modules/es.string.split.js')
 
-require('core-js/modules/web.dom-collections.iterator')
+require('core-js/modules/web.dom-collections.iterator.js')
 
 Object.defineProperty(exports, '__esModule', {
   value: true

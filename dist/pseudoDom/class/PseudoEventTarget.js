@@ -1,32 +1,18 @@
 'use strict'
 
-require('core-js/modules/es.symbol')
+require('core-js/modules/es.array.concat.js')
 
-require('core-js/modules/es.symbol.description')
+require('core-js/modules/es.array.for-each.js')
 
-require('core-js/modules/es.symbol.iterator')
+require('core-js/modules/es.array.reduce.js')
 
-require('core-js/modules/es.array.concat')
+require('core-js/modules/es.array.splice.js')
 
-require('core-js/modules/es.array.for-each')
+require('core-js/modules/es.object.assign.js')
 
-require('core-js/modules/es.array.iterator')
+require('core-js/modules/es.object.keys.js')
 
-require('core-js/modules/es.array.reduce')
-
-require('core-js/modules/es.array.splice')
-
-require('core-js/modules/es.object.assign')
-
-require('core-js/modules/es.object.keys')
-
-require('core-js/modules/es.object.to-string')
-
-require('core-js/modules/es.string.iterator')
-
-require('core-js/modules/web.dom-collections.for-each')
-
-require('core-js/modules/web.dom-collections.iterator')
+require('core-js/modules/web.dom-collections.for-each.js')
 
 Object.defineProperty(exports, '__esModule', {
   value: true

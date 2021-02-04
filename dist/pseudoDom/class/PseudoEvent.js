@@ -1,18 +1,16 @@
 'use strict'
 
-require('core-js/modules/es.array.concat')
+require('core-js/modules/es.array.concat.js')
 
-require('core-js/modules/es.array.map')
+require('core-js/modules/es.array.map.js')
 
-require('core-js/modules/es.array.reduce')
+require('core-js/modules/es.array.reduce.js')
 
-require('core-js/modules/es.array.reverse')
+require('core-js/modules/es.array.slice.js')
 
-require('core-js/modules/es.array.slice')
+require('core-js/modules/es.object.assign.js')
 
-require('core-js/modules/es.object.assign')
-
-require('core-js/modules/es.object.keys')
+require('core-js/modules/es.object.keys.js')
 
 Object.defineProperty(exports, '__esModule', {
   value: true
@@ -143,13 +141,13 @@ var PseudoEvent = /* #__PURE__ */(function () {
 
   _createClass(PseudoEvent, [{
     key: 'composedPath',
-
+    value:
     /**
      * Return an array of targets that will have the event executed open them. The order is based on the eventPhase
      * @method
      * @returns {Array.<PseudoEventTarget>}
      */
-    value: function composedPath () {
+    function composedPath () {
       switch (this.eventPhase) {
         case PseudoEvent.CAPTURING_PHASE:
           return PseudoEvent.getParentNodes(this.target)

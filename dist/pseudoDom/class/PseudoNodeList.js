@@ -1,26 +1,26 @@
 'use strict'
 
-require('core-js/modules/es.symbol')
+require('core-js/modules/es.symbol.js')
 
-require('core-js/modules/es.symbol.description')
+require('core-js/modules/es.symbol.description.js')
 
-require('core-js/modules/es.symbol.iterator')
+require('core-js/modules/es.symbol.iterator.js')
 
-require('core-js/modules/es.array.for-each')
+require('core-js/modules/es.array.for-each.js')
 
-require('core-js/modules/es.array.from')
+require('core-js/modules/es.array.from.js')
 
-require('core-js/modules/es.array.iterator')
+require('core-js/modules/es.array.iterator.js')
 
-require('core-js/modules/es.array.map')
+require('core-js/modules/es.array.map.js')
 
-require('core-js/modules/es.object.to-string')
+require('core-js/modules/es.object.to-string.js')
 
-require('core-js/modules/es.string.iterator')
+require('core-js/modules/es.string.iterator.js')
 
-require('core-js/modules/web.dom-collections.for-each')
+require('core-js/modules/web.dom-collections.for-each.js')
 
-require('core-js/modules/web.dom-collections.iterator')
+require('core-js/modules/web.dom-collections.iterator.js')
 
 Object.defineProperty(exports, '__esModule', {
   value: true
@@ -45,6 +45,28 @@ var nodeListFactory = function nodeListFactory (innerList) {
     }
 
     _createClass(PseudoNodeList, [{
+      key: 'length',
+      get: function get () {
+        return innerList.length
+      }
+    }, {
+      key: 'entries',
+      get: function get () {
+        return Array.from(this)
+      }
+    }, {
+      key: 'keys',
+      get: function get () {
+        return Array.from(innerList).keys
+      }
+    }, {
+      key: 'values',
+      get: function get () {
+        return Array.from(innerList).map(function (item) {
+          return item.data
+        }).values
+      }
+    }, {
       key: 'item',
       value: function item (index) {
         return innerList.item(index)
@@ -70,28 +92,6 @@ var nodeListFactory = function nodeListFactory (innerList) {
             return result
           }
         }
-      }
-    }, {
-      key: 'length',
-      get: function get () {
-        return innerList.length
-      }
-    }, {
-      key: 'entries',
-      get: function get () {
-        return Array.from(this)
-      }
-    }, {
-      key: 'keys',
-      get: function get () {
-        return Array.from(innerList).keys
-      }
-    }, {
-      key: 'values',
-      get: function get () {
-        return Array.from(innerList).map(function (item) {
-          return item.data
-        }).values
       }
     }])
 

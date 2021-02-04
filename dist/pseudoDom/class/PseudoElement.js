@@ -1,36 +1,16 @@
 'use strict'
 
-require('core-js/modules/es.symbol')
+function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
 
-require('core-js/modules/es.symbol.description')
+require('core-js/modules/es.array.concat.js')
 
-require('core-js/modules/es.symbol.iterator')
+require('core-js/modules/es.array.find.js')
 
-require('core-js/modules/es.array.concat')
+require('core-js/modules/es.array.map.js')
 
-require('core-js/modules/es.array.find')
+require('core-js/modules/es.function.name.js')
 
-require('core-js/modules/es.array.iterator')
-
-require('core-js/modules/es.array.map')
-
-require('core-js/modules/es.function.name')
-
-require('core-js/modules/es.object.get-own-property-descriptor')
-
-require('core-js/modules/es.object.get-prototype-of')
-
-require('core-js/modules/es.object.to-string')
-
-require('core-js/modules/es.reflect.construct')
-
-require('core-js/modules/es.reflect.get')
-
-require('core-js/modules/es.regexp.to-string')
-
-require('core-js/modules/es.string.iterator')
-
-require('core-js/modules/web.dom-collections.iterator')
+require('core-js/modules/es.object.get-prototype-of.js')
 
 Object.defineProperty(exports, '__esModule', {
   value: true
@@ -38,8 +18,6 @@ Object.defineProperty(exports, '__esModule', {
 exports.PseudoElement = void 0
 
 var _PseudoNode2 = require('./PseudoNode')
-
-function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
 
 function _classCallCheck (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function') } }
 

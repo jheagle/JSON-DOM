@@ -1,28 +1,14 @@
 'use strict'
 
-require('core-js/modules/es.symbol')
+function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
 
-require('core-js/modules/es.symbol.description')
+require('core-js/modules/es.array.from.js')
 
-require('core-js/modules/es.symbol.iterator')
+require('core-js/modules/es.array.index-of.js')
 
-require('core-js/modules/es.array.from')
+require('core-js/modules/es.object.get-prototype-of.js')
 
-require('core-js/modules/es.array.index-of')
-
-require('core-js/modules/es.array.iterator')
-
-require('core-js/modules/es.object.get-prototype-of')
-
-require('core-js/modules/es.object.to-string')
-
-require('core-js/modules/es.reflect.construct')
-
-require('core-js/modules/es.regexp.to-string')
-
-require('core-js/modules/es.string.iterator')
-
-require('core-js/modules/web.dom-collections.iterator')
+require('core-js/modules/es.string.iterator.js')
 
 Object.defineProperty(exports, '__esModule', {
   value: true
@@ -32,8 +18,6 @@ exports.LinkedTreeList = void 0
 var _LinkedList2 = require('./LinkedList')
 
 var _TreeLinker = require('./TreeLinker')
-
-function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
 
 function _classCallCheck (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function') } }
 
@@ -70,23 +54,15 @@ var LinkedTreeList = /* #__PURE__ */(function (_LinkedList) {
   }
 
   _createClass(LinkedTreeList, [{
-    key: 'setChildren',
-    value: function setChildren (item) {
-      var children = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null
-
-      if (Array.from(this).indexOf(item) < 0) {
-        console.error('item is not a child of this')
-      }
-
-      children.parent = item
-    }
-  }, {
     key: 'parent',
     get: function get () {
       return this.first.parent
     },
-    set: function set () {
-      var parent = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null
+    set: function set (parent) {
+      if (parent === void 0) {
+        parent = null
+      }
+
       var current = this.first
 
       while (current !== null) {
@@ -110,6 +86,17 @@ var LinkedTreeList = /* #__PURE__ */(function (_LinkedList) {
       }
 
       return current
+    }
+  }, {
+    key: 'setChildren',
+    value: function setChildren (item) {
+      var children = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null
+
+      if (Array.from(this).indexOf(item) < 0) {
+        console.error('item is not a child of this')
+      }
+
+      children.parent = item
     }
   }])
 

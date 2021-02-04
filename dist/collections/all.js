@@ -2,7 +2,7 @@
 
 function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
 
-require('core-js/modules/es.object.assign')
+require('core-js/modules/es.object.assign.js')
 
 Object.defineProperty(exports, '__esModule', {
   value: true

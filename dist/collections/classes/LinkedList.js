@@ -1,18 +1,18 @@
 'use strict'
 
-require('core-js/modules/es.symbol')
+require('core-js/modules/es.symbol.js')
 
-require('core-js/modules/es.symbol.description')
+require('core-js/modules/es.symbol.description.js')
 
-require('core-js/modules/es.symbol.iterator')
+require('core-js/modules/es.symbol.iterator.js')
 
-require('core-js/modules/es.array.iterator')
+require('core-js/modules/es.array.iterator.js')
 
-require('core-js/modules/es.object.to-string')
+require('core-js/modules/es.object.to-string.js')
 
-require('core-js/modules/es.string.iterator')
+require('core-js/modules/es.string.iterator.js')
 
-require('core-js/modules/web.dom-collections.iterator')
+require('core-js/modules/web.dom-collections.iterator.js')
 
 Object.defineProperty(exports, '__esModule', {
   value: true
@@ -52,12 +52,61 @@ var LinkedList = /* #__PURE__ */(function () {
    */
 
   _createClass(LinkedList, [{
-    key: 'append',
+    key: 'first',
+    get: function get () {
+      var head = this.innerList
+      var prev = head.prev
 
+      while (prev !== null) {
+        head = prev
+        prev = head.prev
+      }
+
+      return head
+    }
+    /**
+     *
+     * @returns {Linker}
+     */
+
+  }, {
+    key: 'last',
+    get: function get () {
+      var tail = this.innerList
+      var next = tail.next
+
+      while (next !== null) {
+        tail = next
+        next = tail.next
+      }
+
+      return tail
+    }
+    /**
+     *
+     * @returns {number}
+     */
+
+  }, {
+    key: 'length',
+    get: function get () {
+      var current = this.first
+      var length = 0
+
+      while (current !== null) {
+        ++length
+        current = current.next
+      }
+
+      return length
+    }
     /**
      *
      * @param node
      */
+
+  }, {
+    key: 'append',
     value: function append (node) {
       this.last.after(node)
       return this.first
@@ -141,55 +190,6 @@ var LinkedList = /* #__PURE__ */(function () {
           return result
         }
       }
-    }
-  }, {
-    key: 'first',
-    get: function get () {
-      var head = this.innerList
-      var prev = head.prev
-
-      while (prev !== null) {
-        head = prev
-        prev = head.prev
-      }
-
-      return head
-    }
-    /**
-     *
-     * @returns {Linker}
-     */
-
-  }, {
-    key: 'last',
-    get: function get () {
-      var tail = this.innerList
-      var next = tail.next
-
-      while (next !== null) {
-        tail = next
-        next = tail.next
-      }
-
-      return tail
-    }
-    /**
-     *
-     * @returns {number}
-     */
-
-  }, {
-    key: 'length',
-    get: function get () {
-      var current = this.first
-      var length = 0
-
-      while (current !== null) {
-        ++length
-        current = current.next
-      }
-
-      return length
     }
   }])
 
