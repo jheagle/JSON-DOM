@@ -1,15 +1,15 @@
 'use strict'
 
+Object.defineProperty(exports, '__esModule', {
+  value: true
+})
+exports.documentItem = exports.documentDomItem = exports.createDomItem = void 0
+
 require('core-js/modules/es.array.concat.js')
 
 require('core-js/modules/es.array.map.js')
 
 require('core-js/modules/es.object.assign.js')
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-})
-exports.documentItem = exports.documentDomItem = exports.createDomItem = void 0
 
 var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 

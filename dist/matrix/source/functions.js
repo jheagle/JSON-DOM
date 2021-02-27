@@ -1,27 +1,41 @@
 'use strict'
 
-require('core-js/modules/es.array.concat.js')
+require('core-js/modules/es.symbol.js')
 
-require('core-js/modules/es.array.filter.js')
+require('core-js/modules/es.symbol.description.js')
 
-require('core-js/modules/es.array.from.js')
+require('core-js/modules/es.object.to-string.js')
 
-require('core-js/modules/es.array.index-of.js')
+require('core-js/modules/es.symbol.iterator.js')
 
-require('core-js/modules/es.array.map.js')
+require('core-js/modules/es.array.iterator.js')
 
-require('core-js/modules/es.array.reduce.js')
+require('core-js/modules/web.dom-collections.iterator.js')
 
-require('core-js/modules/es.object.assign.js')
+require('core-js/modules/es.array.slice.js')
 
-require('core-js/modules/es.object.keys.js')
-
-require('core-js/modules/es.string.iterator.js')
+require('core-js/modules/es.function.name.js')
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.getDomItemFromElement = exports.getPointFromElement = exports.adjacentEdgePoints = exports.adjacentPoints = exports.getAllPoints = exports.getDomItemFromPoint = exports.checkValidPoint = exports.randDirection = exports.getAxisLengths = exports.checkInBetween = exports.testPointsBetween = exports.getPointsLines = exports.getPointsLine = exports.lineEndPoint = exports.randomStart = exports.pointsToDirection = exports.getFirstAxisOfCoordinate = exports.getHighestAbsoluteCoordinate = exports.areEqualPoints = exports.pointDifference = exports.nextCell = exports.bindPointData = void 0
+
+require('core-js/modules/es.array.map.js')
+
+require('core-js/modules/es.object.assign.js')
+
+require('core-js/modules/es.array.filter.js')
+
+require('core-js/modules/es.object.keys.js')
+
+require('core-js/modules/es.array.concat.js')
+
+require('core-js/modules/es.array.reduce.js')
+
+require('core-js/modules/es.array.from.js')
+
+require('core-js/modules/es.string.iterator.js')
 
 var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 

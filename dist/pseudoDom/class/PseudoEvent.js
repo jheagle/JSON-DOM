@@ -1,21 +1,21 @@
 'use strict'
 
-require('core-js/modules/es.array.concat.js')
-
-require('core-js/modules/es.array.map.js')
-
-require('core-js/modules/es.array.reduce.js')
-
-require('core-js/modules/es.array.slice.js')
-
-require('core-js/modules/es.object.assign.js')
-
-require('core-js/modules/es.object.keys.js')
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.PseudoEvent = void 0
+
+require('core-js/modules/es.object.assign.js')
+
+require('core-js/modules/es.array.map.js')
+
+require('core-js/modules/es.object.keys.js')
+
+require('core-js/modules/es.array.slice.js')
+
+require('core-js/modules/es.array.concat.js')
+
+require('core-js/modules/es.array.reduce.js')
 
 function _defineProperty (obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }) } else { obj[key] = value } return obj }
 

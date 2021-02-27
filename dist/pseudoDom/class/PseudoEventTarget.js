@@ -1,23 +1,35 @@
 'use strict'
 
-require('core-js/modules/es.array.concat.js')
+require('core-js/modules/es.symbol.js')
 
-require('core-js/modules/es.array.for-each.js')
+require('core-js/modules/es.symbol.description.js')
 
-require('core-js/modules/es.array.reduce.js')
+require('core-js/modules/es.object.to-string.js')
 
-require('core-js/modules/es.array.splice.js')
+require('core-js/modules/es.symbol.iterator.js')
 
-require('core-js/modules/es.object.assign.js')
+require('core-js/modules/es.string.iterator.js')
 
-require('core-js/modules/es.object.keys.js')
+require('core-js/modules/es.array.iterator.js')
 
-require('core-js/modules/web.dom-collections.for-each.js')
+require('core-js/modules/web.dom-collections.iterator.js')
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.PseudoEventTarget = void 0
+
+require('core-js/modules/es.array.reduce.js')
+
+require('core-js/modules/es.array.concat.js')
+
+require('core-js/modules/web.dom-collections.for-each.js')
+
+require('core-js/modules/es.object.keys.js')
+
+require('core-js/modules/es.object.assign.js')
+
+require('core-js/modules/es.array.splice.js')
 
 var _PseudoEvent = require('./PseudoEvent')
 

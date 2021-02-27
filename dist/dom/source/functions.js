@@ -4,35 +4,13 @@ require('core-js/modules/es.symbol.js')
 
 require('core-js/modules/es.symbol.description.js')
 
-require('core-js/modules/es.symbol.iterator.js')
-
-require('core-js/modules/es.array.concat.js')
-
-require('core-js/modules/es.array.includes.js')
-
-require('core-js/modules/es.array.index-of.js')
-
-require('core-js/modules/es.array.iterator.js')
-
-require('core-js/modules/es.array.reduce.js')
-
-require('core-js/modules/es.array.splice.js')
-
-require('core-js/modules/es.function.name.js')
-
-require('core-js/modules/es.object.assign.js')
-
-require('core-js/modules/es.object.keys.js')
-
 require('core-js/modules/es.object.to-string.js')
 
-require('core-js/modules/es.regexp.exec.js')
-
-require('core-js/modules/es.string.includes.js')
+require('core-js/modules/es.symbol.iterator.js')
 
 require('core-js/modules/es.string.iterator.js')
 
-require('core-js/modules/es.string.split.js')
+require('core-js/modules/es.array.iterator.js')
 
 require('core-js/modules/web.dom-collections.iterator.js')
 
@@ -40,6 +18,26 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.renderHTML = exports.getTopParentItem = exports.getParentsByTagName = exports.getParentsByName = exports.getParentsByClass = exports.getParentsFromAttribute = exports.getChildrenByName = exports.getChildrenByClass = exports.getChildrenFromAttribute = exports.gatherChildItems = exports.bindAllListeners = exports.bindListeners = exports.appendListeners = exports.assignListener = exports.retrieveListener = exports.registerListeners = exports.registerListener = exports.removeChild = exports.appendHTML = exports.bindElement = exports.generateElement = exports.updateElements = exports.updateElement = exports.setAndReturnAttribute = exports.setAttribute = exports.elementChanges = exports.elementCompareClassList = exports.elementHasAttribute = void 0
+
+require('core-js/modules/es.string.split.js')
+
+require('core-js/modules/es.regexp.exec.js')
+
+require('core-js/modules/es.object.keys.js')
+
+require('core-js/modules/es.array.includes.js')
+
+require('core-js/modules/es.string.includes.js')
+
+require('core-js/modules/es.array.concat.js')
+
+require('core-js/modules/es.array.splice.js')
+
+require('core-js/modules/es.function.name.js')
+
+require('core-js/modules/es.object.assign.js')
+
+require('core-js/modules/es.array.reduce.js')
 
 var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 

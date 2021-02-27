@@ -1,21 +1,35 @@
 'use strict'
 
-require('core-js/modules/es.array.index-of.js')
+require('core-js/modules/es.reflect.construct.js')
 
-require('core-js/modules/es.array.reduce.js')
+require('core-js/modules/es.symbol.js')
 
-require('core-js/modules/es.array.splice.js')
+require('core-js/modules/es.symbol.description.js')
 
-require('core-js/modules/es.function.name.js')
+require('core-js/modules/es.object.to-string.js')
 
-require('core-js/modules/es.object.assign.js')
+require('core-js/modules/es.symbol.iterator.js')
 
-require('core-js/modules/es.object.get-prototype-of.js')
+require('core-js/modules/es.string.iterator.js')
+
+require('core-js/modules/es.array.iterator.js')
+
+require('core-js/modules/web.dom-collections.iterator.js')
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.generateNode = exports.NodeFactory = exports.PseudoNode = void 0
+
+require('core-js/modules/es.function.name.js')
+
+require('core-js/modules/es.array.splice.js')
+
+require('core-js/modules/es.array.reduce.js')
+
+require('core-js/modules/es.object.assign.js')
+
+require('core-js/modules/es.object.get-prototype-of.js')
 
 var _TreeLinker2 = require('../../collections/classes/TreeLinker')
 
@@ -39,7 +53,7 @@ function _possibleConstructorReturn (self, call) { if (call && (_typeof(call) ==
 
 function _assertThisInitialized (self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called") } return self }
 
-function _isNativeReflectConstruct () { if (typeof Reflect === 'undefined' || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === 'function') return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true } catch (e) { return false } }
+function _isNativeReflectConstruct () { if (typeof Reflect === 'undefined' || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === 'function') return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true } catch (e) { return false } }
 
 function _getPrototypeOf (o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf (o) { return o.__proto__ || Object.getPrototypeOf(o) }; return _getPrototypeOf(o) }
 
