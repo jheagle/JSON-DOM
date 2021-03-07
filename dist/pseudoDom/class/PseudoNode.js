@@ -25,8 +25,6 @@ require('core-js/modules/es.function.name.js')
 
 require('core-js/modules/es.array.splice.js')
 
-require('core-js/modules/es.array.reduce.js')
-
 require('core-js/modules/es.object.assign.js')
 
 require('core-js/modules/es.object.get-prototype-of.js')

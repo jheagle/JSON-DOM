@@ -37,8 +37,6 @@ require('core-js/modules/es.function.name.js')
 
 require('core-js/modules/es.object.assign.js')
 
-require('core-js/modules/es.array.reduce.js')
-
 var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
 var _objects = require('./objects')

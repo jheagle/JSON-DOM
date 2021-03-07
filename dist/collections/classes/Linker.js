@@ -19,8 +19,6 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.Linker = void 0
 
-require('core-js/modules/es.array.reduce.js')
-
 require('core-js/modules/es.object.assign.js')
 
 function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }

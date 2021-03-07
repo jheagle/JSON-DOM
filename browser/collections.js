@@ -431,8 +431,6 @@
     })
     exports.Linker = void 0
 
-    require('core-js/modules/es.array.reduce.js')
-
     require('core-js/modules/es.object.assign.js')
 
     function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
@@ -568,7 +566,7 @@
         return Linker.prototype.after.apply(list, [element])
       }, null)
     }
-  }, { 'core-js/modules/es.array.iterator.js': 187, 'core-js/modules/es.array.reduce.js': 193, 'core-js/modules/es.object.assign.js': 245, 'core-js/modules/es.object.to-string.js': 268, 'core-js/modules/es.string.iterator.js': 309, 'core-js/modules/es.symbol.description.js': 330, 'core-js/modules/es.symbol.iterator.js': 333, 'core-js/modules/es.symbol.js': 334, 'core-js/modules/web.dom-collections.iterator.js': 382 }],
+  }, { 'core-js/modules/es.array.iterator.js': 187, 'core-js/modules/es.object.assign.js': 245, 'core-js/modules/es.object.to-string.js': 268, 'core-js/modules/es.string.iterator.js': 309, 'core-js/modules/es.symbol.description.js': 330, 'core-js/modules/es.symbol.iterator.js': 333, 'core-js/modules/es.symbol.js': 334, 'core-js/modules/web.dom-collections.iterator.js': 382 }],
   5: [function (require, module, exports) {
     'use strict'
 
@@ -3034,8 +3032,8 @@
 
     var floor = Math.floor
     var replace = ''.replace
-    var SUBSTITUTION_SYMBOLS = /\$([$&'`]|\d\d?|<[^>]*>)/g
-    var SUBSTITUTION_SYMBOLS_NO_NAMED = /\$([$&'`]|\d\d?)/g
+    var SUBSTITUTION_SYMBOLS = /\$([$&'`]|\d{1,2}|<[^>]*>)/g
+    var SUBSTITUTION_SYMBOLS_NO_NAMED = /\$([$&'`]|\d{1,2})/g
 
     // https://tc39.es/ecma262/#sec-getsubstitution
     module.exports = function (matched, str, position, captures, namedCaptures, replacement) {
@@ -3738,14 +3736,18 @@
     module.exports = global.Promise
   }, { '../internals/global': 68 }],
   97: [function (require, module, exports) {
+    var IS_NODE = require('../internals/engine-is-node')
+    var V8_VERSION = require('../internals/engine-v8-version')
     var fails = require('../internals/fails')
 
     module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
-      // Chrome 38 Symbol has incorrect toString conversion
       /* global Symbol -- required for testing */
-      return !String(Symbol())
+      return !Symbol.sham &&
+    // Chrome 38 Symbol has incorrect toString conversion
+    // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
+    (IS_NODE ? V8_VERSION === 38 : V8_VERSION > 37 && V8_VERSION < 41)
     })
-  }, { '../internals/fails': 58 }],
+  }, { '../internals/engine-is-node': 52, '../internals/engine-v8-version': 55, '../internals/fails': 58 }],
   98: [function (require, module, exports) {
     var fails = require('../internals/fails')
     var wellKnownSymbol = require('../internals/well-known-symbol')
@@ -4586,7 +4588,7 @@
     (module.exports = function (key, value) {
       return store[key] || (store[key] = value !== undefined ? value : {})
     })('versions', []).push({
-      version: '3.9.0',
+      version: '3.9.1',
       mode: IS_PURE ? 'pure' : 'global',
       copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
     })
@@ -5490,9 +5492,12 @@
     var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol : Symbol && Symbol.withoutSetter || uid
 
     module.exports = function (name) {
-      if (!has(WellKnownSymbolsStore, name)) {
-        if (NATIVE_SYMBOL && has(Symbol, name)) WellKnownSymbolsStore[name] = Symbol[name]
-        else WellKnownSymbolsStore[name] = createWellKnownSymbol('Symbol.' + name)
+      if (!has(WellKnownSymbolsStore, name) || !(NATIVE_SYMBOL || typeof WellKnownSymbolsStore[name] === 'string')) {
+        if (NATIVE_SYMBOL && has(Symbol, name)) {
+          WellKnownSymbolsStore[name] = Symbol[name]
+        } else {
+          WellKnownSymbolsStore[name] = createWellKnownSymbol('Symbol.' + name)
+        }
       } return WellKnownSymbolsStore[name]
     }
   }, { '../internals/global': 68, '../internals/has': 69, '../internals/native-symbol': 97, '../internals/shared': 138, '../internals/uid': 164, '../internals/use-symbol-as-uid': 165 }],

@@ -31,8 +31,6 @@ require('core-js/modules/es.object.keys.js')
 
 require('core-js/modules/es.array.concat.js')
 
-require('core-js/modules/es.array.reduce.js')
-
 require('core-js/modules/es.array.from.js')
 
 require('core-js/modules/es.string.iterator.js')

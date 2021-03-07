@@ -19,8 +19,6 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.PseudoEventTarget = void 0
 
-require('core-js/modules/es.array.reduce.js')
-
 require('core-js/modules/es.array.concat.js')
 
 require('core-js/modules/web.dom-collections.for-each.js')

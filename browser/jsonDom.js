@@ -431,8 +431,6 @@
     })
     exports.Linker = void 0
 
-    require('core-js/modules/es.array.reduce.js')
-
     require('core-js/modules/es.object.assign.js')
 
     function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
@@ -568,7 +566,7 @@
         return Linker.prototype.after.apply(list, [element])
       }, null)
     }
-  }, { 'core-js/modules/es.array.iterator.js': 201, 'core-js/modules/es.array.reduce.js': 207, 'core-js/modules/es.object.assign.js': 259, 'core-js/modules/es.object.to-string.js': 282, 'core-js/modules/es.string.iterator.js': 323, 'core-js/modules/es.symbol.description.js': 344, 'core-js/modules/es.symbol.iterator.js': 347, 'core-js/modules/es.symbol.js': 348, 'core-js/modules/web.dom-collections.iterator.js': 396 }],
+  }, { 'core-js/modules/es.array.iterator.js': 201, 'core-js/modules/es.object.assign.js': 259, 'core-js/modules/es.object.to-string.js': 282, 'core-js/modules/es.string.iterator.js': 323, 'core-js/modules/es.symbol.description.js': 344, 'core-js/modules/es.symbol.iterator.js': 347, 'core-js/modules/es.symbol.js': 348, 'core-js/modules/web.dom-collections.iterator.js': 396 }],
   5: [function (require, module, exports) {
     'use strict'
 
@@ -778,8 +776,6 @@
     require('core-js/modules/es.function.name.js')
 
     require('core-js/modules/es.object.assign.js')
-
-    require('core-js/modules/es.array.reduce.js')
 
     var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
@@ -1377,7 +1373,7 @@
     }
 
     exports.renderHTML = renderHTML
-  }, { './objects': 8, 'core-js/modules/es.array.concat.js': 187, 'core-js/modules/es.array.includes.js': 198, 'core-js/modules/es.array.iterator.js': 201, 'core-js/modules/es.array.reduce.js': 207, 'core-js/modules/es.array.splice.js': 213, 'core-js/modules/es.function.name.js': 224, 'core-js/modules/es.object.assign.js': 259, 'core-js/modules/es.object.keys.js': 276, 'core-js/modules/es.object.to-string.js': 282, 'core-js/modules/es.regexp.exec.js': 305, 'core-js/modules/es.string.includes.js': 321, 'core-js/modules/es.string.iterator.js': 323, 'core-js/modules/es.string.split.js': 335, 'core-js/modules/es.symbol.description.js': 344, 'core-js/modules/es.symbol.iterator.js': 347, 'core-js/modules/es.symbol.js': 348, 'core-js/modules/web.dom-collections.iterator.js': 396, 'functional-helpers': 412 }],
+  }, { './objects': 8, 'core-js/modules/es.array.concat.js': 187, 'core-js/modules/es.array.includes.js': 198, 'core-js/modules/es.array.iterator.js': 201, 'core-js/modules/es.array.splice.js': 213, 'core-js/modules/es.function.name.js': 224, 'core-js/modules/es.object.assign.js': 259, 'core-js/modules/es.object.keys.js': 276, 'core-js/modules/es.object.to-string.js': 282, 'core-js/modules/es.regexp.exec.js': 305, 'core-js/modules/es.string.includes.js': 321, 'core-js/modules/es.string.iterator.js': 323, 'core-js/modules/es.string.split.js': 335, 'core-js/modules/es.symbol.description.js': 344, 'core-js/modules/es.symbol.iterator.js': 347, 'core-js/modules/es.symbol.js': 348, 'core-js/modules/web.dom-collections.iterator.js': 396, 'functional-helpers': 412 }],
   8: [function (require, module, exports) {
     'use strict'
 
@@ -1747,8 +1743,6 @@
     require('core-js/modules/es.object.keys.js')
 
     require('core-js/modules/es.array.concat.js')
-
-    require('core-js/modules/es.array.reduce.js')
 
     require('core-js/modules/es.array.from.js')
 
@@ -2132,7 +2126,7 @@
     }
 
     exports.getDomItemFromElement = getDomItemFromElement
-  }, { './objects': 12, 'core-js/modules/es.array.concat.js': 187, 'core-js/modules/es.array.filter.js': 191, 'core-js/modules/es.array.from.js': 197, 'core-js/modules/es.array.iterator.js': 201, 'core-js/modules/es.array.map.js': 204, 'core-js/modules/es.array.reduce.js': 207, 'core-js/modules/es.array.slice.js': 209, 'core-js/modules/es.function.name.js': 224, 'core-js/modules/es.object.assign.js': 259, 'core-js/modules/es.object.keys.js': 276, 'core-js/modules/es.object.to-string.js': 282, 'core-js/modules/es.string.iterator.js': 323, 'core-js/modules/es.symbol.description.js': 344, 'core-js/modules/es.symbol.iterator.js': 347, 'core-js/modules/es.symbol.js': 348, 'core-js/modules/web.dom-collections.iterator.js': 396, 'functional-helpers': 412 }],
+  }, { './objects': 12, 'core-js/modules/es.array.concat.js': 187, 'core-js/modules/es.array.filter.js': 191, 'core-js/modules/es.array.from.js': 197, 'core-js/modules/es.array.iterator.js': 201, 'core-js/modules/es.array.map.js': 204, 'core-js/modules/es.array.slice.js': 209, 'core-js/modules/es.function.name.js': 224, 'core-js/modules/es.object.assign.js': 259, 'core-js/modules/es.object.keys.js': 276, 'core-js/modules/es.object.to-string.js': 282, 'core-js/modules/es.string.iterator.js': 323, 'core-js/modules/es.symbol.description.js': 344, 'core-js/modules/es.symbol.iterator.js': 347, 'core-js/modules/es.symbol.js': 348, 'core-js/modules/web.dom-collections.iterator.js': 396, 'functional-helpers': 412 }],
   12: [function (require, module, exports) {
     'use strict'
 
@@ -2827,8 +2821,6 @@
 
     require('core-js/modules/es.array.concat.js')
 
-    require('core-js/modules/es.array.reduce.js')
-
     function _defineProperty (obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }) } else { obj[key] = value } return obj }
 
     function _classCallCheck (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function') } }
@@ -3052,7 +3044,7 @@
       })
       return Object.assign({}, phases, _defineProperty({}, ''.concat(phase), key))
     }, {})
-  }, { 'core-js/modules/es.array.concat.js': 187, 'core-js/modules/es.array.map.js': 204, 'core-js/modules/es.array.reduce.js': 207, 'core-js/modules/es.array.slice.js': 209, 'core-js/modules/es.object.assign.js': 259, 'core-js/modules/es.object.keys.js': 276 }],
+  }, { 'core-js/modules/es.array.concat.js': 187, 'core-js/modules/es.array.map.js': 204, 'core-js/modules/es.array.slice.js': 209, 'core-js/modules/es.object.assign.js': 259, 'core-js/modules/es.object.keys.js': 276 }],
   16: [function (require, module, exports) {
     'use strict'
 
@@ -3199,8 +3191,6 @@
       value: true
     })
     exports.PseudoEventTarget = void 0
-
-    require('core-js/modules/es.array.reduce.js')
 
     require('core-js/modules/es.array.concat.js')
 
@@ -3464,7 +3454,7 @@
     }())
 
     exports.PseudoEventTarget = PseudoEventTarget
-  }, { './PseudoEvent': 15, './PseudoEventListener': 16, 'core-js/modules/es.array.concat.js': 187, 'core-js/modules/es.array.iterator.js': 201, 'core-js/modules/es.array.reduce.js': 207, 'core-js/modules/es.array.splice.js': 213, 'core-js/modules/es.object.assign.js': 259, 'core-js/modules/es.object.keys.js': 276, 'core-js/modules/es.object.to-string.js': 282, 'core-js/modules/es.string.iterator.js': 323, 'core-js/modules/es.symbol.description.js': 344, 'core-js/modules/es.symbol.iterator.js': 347, 'core-js/modules/es.symbol.js': 348, 'core-js/modules/web.dom-collections.for-each.js': 395, 'core-js/modules/web.dom-collections.iterator.js': 396 }],
+  }, { './PseudoEvent': 15, './PseudoEventListener': 16, 'core-js/modules/es.array.concat.js': 187, 'core-js/modules/es.array.iterator.js': 201, 'core-js/modules/es.array.splice.js': 213, 'core-js/modules/es.object.assign.js': 259, 'core-js/modules/es.object.keys.js': 276, 'core-js/modules/es.object.to-string.js': 282, 'core-js/modules/es.string.iterator.js': 323, 'core-js/modules/es.symbol.description.js': 344, 'core-js/modules/es.symbol.iterator.js': 347, 'core-js/modules/es.symbol.js': 348, 'core-js/modules/web.dom-collections.for-each.js': 395, 'core-js/modules/web.dom-collections.iterator.js': 396 }],
   18: [function (require, module, exports) {
     'use strict'
 
@@ -3742,8 +3732,6 @@
     require('core-js/modules/es.function.name.js')
 
     require('core-js/modules/es.array.splice.js')
-
-    require('core-js/modules/es.array.reduce.js')
 
     require('core-js/modules/es.object.assign.js')
 
@@ -4151,7 +4139,7 @@
     }
 
     exports.generateNode = generateNode
-  }, { '../../collections/classes/TreeLinker': 5, './PseudoEventTarget': 17, 'core-js/modules/es.array.iterator.js': 201, 'core-js/modules/es.array.reduce.js': 207, 'core-js/modules/es.array.splice.js': 213, 'core-js/modules/es.function.name.js': 224, 'core-js/modules/es.object.assign.js': 259, 'core-js/modules/es.object.get-prototype-of.js': 271, 'core-js/modules/es.object.to-string.js': 282, 'core-js/modules/es.reflect.construct.js': 291, 'core-js/modules/es.string.iterator.js': 323, 'core-js/modules/es.symbol.description.js': 344, 'core-js/modules/es.symbol.iterator.js': 347, 'core-js/modules/es.symbol.js': 348, 'core-js/modules/web.dom-collections.iterator.js': 396 }],
+  }, { '../../collections/classes/TreeLinker': 5, './PseudoEventTarget': 17, 'core-js/modules/es.array.iterator.js': 201, 'core-js/modules/es.array.splice.js': 213, 'core-js/modules/es.function.name.js': 224, 'core-js/modules/es.object.assign.js': 259, 'core-js/modules/es.object.get-prototype-of.js': 271, 'core-js/modules/es.object.to-string.js': 282, 'core-js/modules/es.reflect.construct.js': 291, 'core-js/modules/es.string.iterator.js': 323, 'core-js/modules/es.symbol.description.js': 344, 'core-js/modules/es.symbol.iterator.js': 347, 'core-js/modules/es.symbol.js': 348, 'core-js/modules/web.dom-collections.iterator.js': 396 }],
   21: [function (require, module, exports) {
     require('../modules/es.symbol')
     require('../modules/es.symbol.async-iterator')
@@ -6438,8 +6426,8 @@
 
     var floor = Math.floor
     var replace = ''.replace
-    var SUBSTITUTION_SYMBOLS = /\$([$&'`]|\d\d?|<[^>]*>)/g
-    var SUBSTITUTION_SYMBOLS_NO_NAMED = /\$([$&'`]|\d\d?)/g
+    var SUBSTITUTION_SYMBOLS = /\$([$&'`]|\d{1,2}|<[^>]*>)/g
+    var SUBSTITUTION_SYMBOLS_NO_NAMED = /\$([$&'`]|\d{1,2})/g
 
     // https://tc39.es/ecma262/#sec-getsubstitution
     module.exports = function (matched, str, position, captures, namedCaptures, replacement) {
@@ -7142,14 +7130,18 @@
     module.exports = global.Promise
   }, { '../internals/global': 82 }],
   111: [function (require, module, exports) {
+    var IS_NODE = require('../internals/engine-is-node')
+    var V8_VERSION = require('../internals/engine-v8-version')
     var fails = require('../internals/fails')
 
     module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
-      // Chrome 38 Symbol has incorrect toString conversion
       /* global Symbol -- required for testing */
-      return !String(Symbol())
+      return !Symbol.sham &&
+    // Chrome 38 Symbol has incorrect toString conversion
+    // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
+    (IS_NODE ? V8_VERSION === 38 : V8_VERSION > 37 && V8_VERSION < 41)
     })
-  }, { '../internals/fails': 72 }],
+  }, { '../internals/engine-is-node': 66, '../internals/engine-v8-version': 69, '../internals/fails': 72 }],
   112: [function (require, module, exports) {
     var fails = require('../internals/fails')
     var wellKnownSymbol = require('../internals/well-known-symbol')
@@ -7990,7 +7982,7 @@
     (module.exports = function (key, value) {
       return store[key] || (store[key] = value !== undefined ? value : {})
     })('versions', []).push({
-      version: '3.9.0',
+      version: '3.9.1',
       mode: IS_PURE ? 'pure' : 'global',
       copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
     })
@@ -8894,9 +8886,12 @@
     var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol : Symbol && Symbol.withoutSetter || uid
 
     module.exports = function (name) {
-      if (!has(WellKnownSymbolsStore, name)) {
-        if (NATIVE_SYMBOL && has(Symbol, name)) WellKnownSymbolsStore[name] = Symbol[name]
-        else WellKnownSymbolsStore[name] = createWellKnownSymbol('Symbol.' + name)
+      if (!has(WellKnownSymbolsStore, name) || !(NATIVE_SYMBOL || typeof WellKnownSymbolsStore[name] === 'string')) {
+        if (NATIVE_SYMBOL && has(Symbol, name)) {
+          WellKnownSymbolsStore[name] = Symbol[name]
+        } else {
+          WellKnownSymbolsStore[name] = createWellKnownSymbol('Symbol.' + name)
+        }
       } return WellKnownSymbolsStore[name]
     }
   }, { '../internals/global': 82, '../internals/has': 83, '../internals/native-symbol': 111, '../internals/shared': 152, '../internals/uid': 178, '../internals/use-symbol-as-uid': 179 }],
@@ -16203,10 +16198,6 @@
   408: [function (require, module, exports) {
     'use strict'
 
-    require('core-js/modules/es.array.from.js')
-
-    require('core-js/modules/es.array.slice.js')
-
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
@@ -16245,18 +16236,6 @@
     var _cloneHelpers = require('./objects/cloneHelpers')
 
     var _mergeHelpers = require('./objects/mergeHelpers')
-
-    function _toConsumableArray (arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread() }
-
-    function _nonIterableSpread () { throw new TypeError('Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.') }
-
-    function _unsupportedIterableToArray (o, minLen) { if (!o) return; if (typeof o === 'string') return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === 'Object' && o.constructor) n = o.constructor.name; if (n === 'Map' || n === 'Set') return Array.from(o); if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen) }
-
-    function _iterableToArray (iter) { if (typeof Symbol !== 'undefined' && Symbol.iterator in Object(iter)) return Array.from(iter) }
-
-    function _arrayWithoutHoles (arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr) }
-
-    function _arrayLikeToArray (arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i] } return arr2 }
 
     function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
 
@@ -16533,24 +16512,21 @@
       var depthLimit = _ref2$depthLimit === void 0 ? -1 : _ref2$depthLimit
 
       return function () {
-        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key]
+        for (var _len = arguments.length, objects = new Array(_len), _key = 0; _key < _len; _key++) {
+          objects[_key] = arguments[_key]
         }
 
-        var base = args.shift()
-        return args.reduce(function (newObj, arg) {
-          return arg ? _mergeHelpers.mergeReferences.apply(void 0, _toConsumableArray((0, _mergeHelpers.processMergeIdentifiers)(newObj, arg, {
-            mapLimit: mapLimit,
-            depthLimit: depthLimit
-          })))[0].object : newObj
-        }, base || {})
+        return (0, _cloneHelpers.linkReferences)((0, _mergeHelpers.processMergeIdentifiers)(objects, {
+          mapLimit: mapLimit,
+          depthLimit: depthLimit
+        }))[0].object
       }
     }
 
     exports.mergeObjectsSettings = mergeObjectsSettings
     var mergeObjects = mergeObjectsSettings()
     exports.mergeObjects = mergeObjects
-  }, { './functions': 406, './objects/cloneHelpers': 409, './objects/mergeHelpers': 411, 'core-js/modules/es.array.filter.js': 191, 'core-js/modules/es.array.from.js': 197, 'core-js/modules/es.array.includes.js': 198, 'core-js/modules/es.array.iterator.js': 201, 'core-js/modules/es.array.map.js': 204, 'core-js/modules/es.array.reduce.js': 207, 'core-js/modules/es.array.slice.js': 209, 'core-js/modules/es.function.name.js': 224, 'core-js/modules/es.object.get-own-property-names.js': 270, 'core-js/modules/es.object.to-string.js': 282, 'core-js/modules/es.string.iterator.js': 323, 'core-js/modules/es.symbol.description.js': 344, 'core-js/modules/es.symbol.iterator.js': 347, 'core-js/modules/es.symbol.js': 348, 'core-js/modules/web.dom-collections.iterator.js': 396, 'core-js/stable': 403 }],
+  }, { './functions': 406, './objects/cloneHelpers': 409, './objects/mergeHelpers': 411, 'core-js/modules/es.array.filter.js': 191, 'core-js/modules/es.array.includes.js': 198, 'core-js/modules/es.array.iterator.js': 201, 'core-js/modules/es.array.map.js': 204, 'core-js/modules/es.array.reduce.js': 207, 'core-js/modules/es.function.name.js': 224, 'core-js/modules/es.object.get-own-property-names.js': 270, 'core-js/modules/es.object.to-string.js': 282, 'core-js/modules/es.string.iterator.js': 323, 'core-js/modules/es.symbol.description.js': 344, 'core-js/modules/es.symbol.iterator.js': 347, 'core-js/modules/es.symbol.js': 348, 'core-js/modules/web.dom-collections.iterator.js': 396, 'core-js/stable': 403 }],
   409: [function (require, module, exports) {
     'use strict'
 
@@ -16577,7 +16553,7 @@
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.processIdentifiers = exports.processIdentifier = exports.linkReferences = exports.removeFromReferenceMap = exports.linkReferenceObject = exports.objectAndReferences = exports.getIdentifierDepth = exports.findReference = exports.findReferenceIndex = exports.findReferenceKeys = exports.findObjectReferences = exports.createReferenceIdentifier = void 0
+    exports.processIdentifiers = exports.processIdentifier = exports.linkReferences = exports.removeFromReferenceMap = exports.linkReferenceObject = exports.objectAndReferences = exports.getIdentifierDepth = exports.findReference = exports.findReferenceIndex = exports.findReferenceKeys = exports.findObjectReferences = exports.createReferenceIdentifier = exports.nonReference = void 0
 
     require('core-js/modules/es.object.assign.js')
 
@@ -16617,6 +16593,7 @@
 
     /**
  * Check if this value represents an object that needs to be used as a reference.
+ * @function
  * @param {*} value - Some value to test if it is a reference.
  * @returns {boolean}
  */
@@ -16645,6 +16622,8 @@
  * @returns {module:cloneHelpers~referenceIdentifier}
  */
 
+    exports.nonReference = nonReference
+
     var createReferenceIdentifier = function createReferenceIdentifier () {
       var object = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null
       var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0
@@ -16661,7 +16640,7 @@
     }
     /**
  * Update the object of this reference identifier by cloning the object or array and setting child references to null.
- * Every reference that is found has it's key added to the array array of references.
+ * Every reference that is found has it's key added to the array of references.
  * @function
  * @param {module:cloneHelpers~referenceIdentifier} referenceIdentifier
  * @returns {module:cloneHelpers~referenceIdentifier}
@@ -16681,7 +16660,7 @@
     }
     /**
  * An array of reference identifiers linked together.
- * @typedef {Array.<module:cloneHelpers~referenceMap>} referenceMap
+ * @typedef {Array.<module:cloneHelpers~referenceIdentifier>} referenceMap
  */
 
     /**
@@ -16719,8 +16698,8 @@
         }
 
         var newRefIndex = referenceMap[referenceMap.length - 1].index + 1
-        newRef.object[key] = referenceMap[referenceMap.length - 1].index + 1
-        referenceMap[newRefIndex] = createReferenceIdentifier(objectToRef, newRef.object[key], [index])
+        newRef.object[key] = newRefIndex
+        referenceMap[newRefIndex] = createReferenceIdentifier(objectToRef, newRefIndex, [index])
         return newRef
       }, referenceMap[index])
     }
@@ -16807,7 +16786,7 @@
     var hasCompletedReferences = function hasCompletedReferences (referenceMap) {
       return referenceMap.some(function (newRef) {
         return newRef.index > 0 && newRef.complete
-      })
+      }) || referenceMap.length === 1 && referenceMap[0].references.length
     }
     /**
  * Store a bundle containing an object, references array, and remove array.
@@ -17558,23 +17537,19 @@
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.processMergeIdentifiers = exports.processMergeIdentifer = exports.mergeReferences = exports.mergeReferenceObject = exports.mergeReferenceArrays = exports.mergeNonReferences = exports.createReferenceReplica = exports.getSimilarObject = void 0
+    exports.processMergeIdentifiers = exports.processMergeIdentifier = exports.zipper = exports.findMergeReferenceKeys = exports.mergeReferenceArrays = exports.createMergeReferenceIdentifier = void 0
 
-    require('core-js/modules/es.array.filter.js')
+    require('core-js/modules/es.array.map.js')
+
+    require('core-js/modules/es.array.find-index.js')
+
+    require('core-js/modules/es.array.reduce.js')
+
+    require('core-js/modules/es.array.concat.js')
 
     require('core-js/modules/es.array.includes.js')
 
     require('core-js/modules/es.string.includes.js')
-
-    require('core-js/modules/es.array.map.js')
-
-    require('core-js/modules/es.array.find.js')
-
-    require('core-js/modules/es.array.reduce.js')
-
-    require('core-js/modules/web.dom-collections.for-each.js')
-
-    require('core-js/modules/es.array.find-index.js')
 
     require('core-js/modules/es.object.to-string.js')
 
@@ -17584,7 +17559,7 @@
 
     require('core-js/modules/es.array.splice.js')
 
-    require('core-js/modules/es.array.concat.js')
+    require('core-js/modules/es.array.filter.js')
 
     var _arrays = require('../arrays')
 
@@ -17607,300 +17582,47 @@
     function _arrayLikeToArray (arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i] } return arr2 }
 
     /**
- * Check if there are still references having a merged status of false.
- * @param {*} referenceMap
- * @returns {boolean}
- */
-    var hasUnmergedReferences = function hasUnmergedReferences (referenceMap) {
-      return referenceMap.some(function (newRef) {
-        return newRef.merged === false
-      })
-    }
-
-    var getSimilarObject = function getSimilarObject (referenceMap, origin) {
-      if (origin.index === 0) {
-        return referenceMap[0]
-      }
-
-      var useArray = Array.isArray(origin.original)
-      var originKeys = (0, _objects.objectKeys)(origin.object).filter(function (key) {
-        return !origin.references.includes(key) && !(0, _objects.isObject)(origin.object[key])
-      })
-      var originValues = originKeys.map(function (key) {
-        return origin.object[key]
-      })
-      return referenceMap.find(function (existing) {
-        if (Array.isArray(existing.original) !== useArray) {
-          return false
-        }
-
-        if (existing.original === origin.original) {
-          return true
-        }
-
-        if (!originKeys.length) {
-          return existing.index === origin.index
-        }
-
-        var existingKeys = (0, _objects.objectKeys)(existing.object).filter(function (key) {
-          return !existing.references.includes(key) && !(0, _objects.isObject)(existing.object[key])
-        })
-        var existingValues = existingKeys.map(function (key) {
-          return existing.object[key]
-        })
-        var compareResults = (0, _arrays.compareArrays)(existingValues, originValues)
-        return compareResults.every(function (compare) {
-          return compare.result.every(function (result) {
-            return result === 0
-          })
-        })
-      })
-    }
-
-    exports.getSimilarObject = getSimilarObject
-
-    var createReferenceReplica = function createReferenceReplica (firstMap, secondMap) {
-      return function (newIndex, origin) {
-        var referers = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : []
-        var defaultObject = Array.isArray(origin.original) ? [] : {}
-        var nextFirstRef = (0, _cloneHelpers.createReferenceIdentifier)(defaultObject, newIndex, referers)
-        nextFirstRef.complete = origin.complete
-        nextFirstRef.merged = origin.merged
-        nextFirstRef.object = defaultObject
-        nextFirstRef.circular = origin.circular.map(function (key) {
-          return key
-        })
-        nextFirstRef.original = origin.original
-        var refLocation = firstMap.length
-        firstMap.push(nextFirstRef)
-        nextFirstRef.object = (0, _objects.objectKeys)(origin.object).reduce(function (newObj, key) {
-          if (origin.references.includes(key) && !nextFirstRef.references.includes(key)) {
-            nextFirstRef.references.push(key)
-          }
-
-          if (!origin.circular.includes(key)) {
-            return (0, _objects.setValue)(key, origin.object[key], newObj)
-          }
-
-          var nextOrigin = (0, _cloneHelpers.findReference)(secondMap, origin.object[key])
-          var matchedReference = getSimilarObject(firstMap, nextOrigin)
-          var exists = typeof matchedReference !== 'undefined'
-          var nextNewIndex = exists ? matchedReference.index : firstMap[firstMap.length - 1].index + 1
-
-          if (!exists) {
-            matchedReference = createReferenceReplica(firstMap, secondMap)(nextNewIndex, nextOrigin)
-          }
-
-          if (!matchedReference.referers.includes(newIndex)) {
-            matchedReference.referers.push(newIndex)
-          }
-
-          return (0, _objects.setValue)(key, nextNewIndex, newObj)
-        }, nextFirstRef.object)
-        nextFirstRef.object = nextFirstRef.references.reduce(function (newObj, key) {
-          if (origin.circular.includes(key)) {
-            return newObj
-          }
-
-          var nextOrigin = (0, _cloneHelpers.findReference)(secondMap, origin.object[key])
-          var matchedReference = getSimilarObject(firstMap, nextOrigin)
-          var exists = typeof matchedReference !== 'undefined'
-          var nextNewIndex = exists ? matchedReference.index : firstMap[firstMap.length - 1].index + 1
-
-          if (!exists) {
-            matchedReference = createReferenceReplica(firstMap, secondMap)(nextNewIndex, nextOrigin)
-          }
-
-          if (!matchedReference.referers.includes(newIndex)) {
-            matchedReference.referers.push(newIndex)
-          }
-
-          newObj[key] = nextNewIndex
-
-          if (nextNewIndex <= nextFirstRef.index) {
-            nextFirstRef.circular.push(key)
-          }
-
-          return newObj
-        }, nextFirstRef.object)
-
-        if (origin.referers.length !== nextFirstRef.referers.length) {
-          var newReferers = origin.referers.map(function (index) {
-            var nextOrigin = (0, _cloneHelpers.findReference)(secondMap, index)
-            var testMap = nextFirstRef.referers.map(function (refererIndex) {
-              return (0, _cloneHelpers.findReference)(firstMap, refererIndex)
-            })
-            var matchedReference = getSimilarObject(testMap, nextOrigin)
-
-            if (typeof matchedReference !== 'undefined') {
-              return matchedReference.index
-            }
-
-            matchedReference = getSimilarObject(firstMap, nextOrigin)
-            var exists = typeof matchedReference !== 'undefined'
-            var nextNewIndex = exists ? matchedReference.index : firstMap[firstMap.length - 1].index + 1
-
-            if (!exists) {
-              matchedReference = createReferenceReplica(firstMap, secondMap)(nextNewIndex, nextOrigin)
-            }
-
-            return matchedReference.index
-          })
-          var removeFunc = (0, _cloneHelpers.removeFromReferenceMap)(firstMap)
-          nextFirstRef.referers.forEach(function (refererIndex) {
-            return removeFunc((0, _cloneHelpers.findReference)(firstMap, refererIndex))
-          })
-          nextFirstRef.referers = newReferers
-        }
-
-        nextFirstRef.referers = (0, _arrays.uniqueArray)(nextFirstRef.referers)
-        return firstMap[refLocation]
-      }
-    }
-    /**
- * Take two reference identifiers and merge the non references together, identify overwritten references.
- * @param {module:cloneHelpers~referenceMap} firstMap
- * @param {number} firstIndex
- * @param {module:cloneHelpers~referenceMap} secondMap
- * @param {number} secondIndex
- * @param {Array.<module:cloneHelpers~referenceIdentifier>} remove
- * @returns {module:cloneHelpers~referenceMap}
+ * Store information about a reference, including pointing to linked references and storing original reference.
+ * @typedef {Object.<string, number|Object|Array>} mergeReferenceIdentifier
+ * @property {Array.<string|number>} circular
+ * @property {boolean} complete
+ * @property {number} index
+ * @property {Array|Object} clone
+ * @property {Array|Object} object
+ * @property {Array|Object} original
+ * @property {Array.<string|number>} references
+ * @property {Array.<number>} referers
+ * @property {Array.<module:cloneHelpers~referenceIdentifier>} identifiers
  */
 
-    exports.createReferenceReplica = createReferenceReplica
-
-    var mergeNonReferences = function mergeNonReferences (firstMap, firstIndex, secondMap, secondIndex) {
-      var remove = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : []
-      var firstRefIndex = (0, _cloneHelpers.findReferenceIndex)(firstMap, firstIndex)
-      var secondRefIndex = (0, _cloneHelpers.findReferenceIndex)(secondMap, secondIndex)
-
-      if (firstRefIndex < 0) {
-        secondMap[secondRefIndex].complete = true
-        secondMap[secondRefIndex].merged = true
-        return (0, _objects.mapObject)(secondMap[secondRefIndex].object, function (value) {
-          return value
-        })
-      }
-
-      if (secondRefIndex < 0) {
-        firstMap[firstRefIndex].complete = true
-        firstMap[firstRefIndex].merged = true
-        return firstMap[firstRefIndex].object
-      }
-
-      if (firstMap[firstRefIndex].merged && secondMap[secondRefIndex].merged) {
-        return firstMap[firstRefIndex].object
-      }
-
-      firstMap[firstRefIndex].complete = true
-      firstMap[firstRefIndex].merged = true
-      secondMap[secondRefIndex].complete = true
-      secondMap[secondRefIndex].merged = true
-      var useArray = Array.isArray(firstMap[firstRefIndex].object)
-      var keys = useArray ? (0, _arrays.compareArrays)(firstMap[firstRefIndex].object, secondMap[secondRefIndex].object) : (0, _arrays.compareArrays)((0, _objects.objectKeys)(firstMap[firstRefIndex].object), (0, _objects.objectKeys)(secondMap[secondRefIndex].object))
-      firstMap[firstRefIndex].object = keys.reduce(function (newObject, compareResult, i) {
-        var refIndexFirst = useArray ? firstMap[firstRefIndex].references.findIndex(function (refKey) {
-          return compareResult.keys[0].includes(refKey)
-        }) : firstMap[firstRefIndex].references.findIndex(function (refKey) {
-          return refKey === compareResult.value
-        })
-        var nextKey = useArray ? i : compareResult.value
-        var nextFirstValue = useArray ? firstMap[firstRefIndex].object[compareResult.keys[0][0]] : firstMap[firstRefIndex].object[compareResult.value]
-        var nextSecondValue = useArray ? secondMap[secondRefIndex].object[compareResult.keys[1][0]] : secondMap[secondRefIndex].object[compareResult.value]
-
-        if (compareResult.result[0] === 1) {
-          if (refIndexFirst >= 0) {
-            var refUnchanged = (0, _cloneHelpers.findReferenceIndex)(firstMap, nextFirstValue)
-
-            if (firstMap[refUnchanged].merged === false) {
-              firstMap[refUnchanged].complete = true
-              firstMap[refUnchanged].merged = true
-            }
-          }
-
-          return (0, _objects.setValue)(nextKey, nextFirstValue, newObject)
-        }
-
-        var refIndexSecond = useArray ? secondMap[secondRefIndex].references.findIndex(function (refKey) {
-          return compareResult.keys[1].includes(refKey)
-        }) : secondMap[secondRefIndex].references.findIndex(function (refKey) {
-          return refKey === compareResult.value
-        })
-        var newValue = nextSecondValue
-
-        if (refIndexSecond >= 0 && refIndexFirst < 0) {
-          var nextSecondRef = (0, _cloneHelpers.findReference)(secondMap, nextSecondValue)
-          var matchedReference = getSimilarObject(firstMap, nextSecondRef)
-          var exists = typeof matchedReference !== 'undefined'
-          newValue = exists ? matchedReference.index : firstMap[firstMap.length - 1].index + 1
-
-          if (!exists) {
-            matchedReference = createReferenceReplica(firstMap, secondMap)(newValue, nextSecondRef, [firstIndex])
-          }
-
-          if (!useArray && !firstMap[firstRefIndex].references.includes(nextKey)) {
-            firstMap[firstRefIndex].references.push(nextKey)
-            firstMap[firstRefIndex].object[nextKey] = newValue
-          }
-
-          if (useArray && !firstMap[firstRefIndex].object.includes(newValue)) {
-            firstMap[firstRefIndex].references.push(firstMap[firstRefIndex].object.length)
-            firstMap[firstRefIndex].object.push(newValue)
-          }
-
-          if (exists) {
-            return newObject
-          }
-
-          nextFirstValue = newValue
-          nextSecondRef.complete = true
-          nextSecondRef.merged = true
-        }
-
-        if (compareResult.result[0] === -1) {
-          if (useArray) {
-            newObject.push(newValue)
-            return newObject
-          }
-
-          return (0, _objects.setValue)(nextKey, newValue, newObject)
-        }
-
-        if (refIndexFirst < 0) {
-          return refIndexSecond < 0 ? (0, _objects.setValue)(nextKey, nextSecondValue, newObject) : (0, _objects.setValue)(nextKey, nextFirstValue, newObject)
-        }
-
-        if (refIndexSecond >= 0) {
-          return (0, _objects.setValue)(nextKey, nextFirstValue, newObject)
-        }
-
-        if (compareResult.result[0] === 0 && refIndexSecond < 0 && (0, _objects.emptyObject)(nextSecondValue)) {
-          return (0, _objects.setValue)(nextKey, nextFirstValue, newObject)
-        }
-
-        var removedRef = (0, _cloneHelpers.findReference)(firstMap, nextFirstValue)
-        var refererIndex = removedRef.referers.findIndex(function (referer) {
-          return referer === firstIndex
-        })
-
-        if (refererIndex >= 0) {
-          removedRef.referers.splice(refererIndex, 1)
-        }
-
-        remove.push(removedRef)
-        firstMap[firstRefIndex].references.splice(refIndexFirst, 1)
-        return (0, _objects.setValue)(nextKey, nextSecondValue, newObject)
-      }, useArray ? [] : {})
-      return firstMap[firstRefIndex].object
+    /**
+ * Create a mergeReferenceIdentifier for building the object clone.
+ * @function
+ * @param {Array.<Array|Object>} [objects=[]]
+ * @param {number} [index=0]
+ * @param {Array.<number>} [referers=[]]
+ * @returns {module:mergeHelpers~mergeReferenceIdentifier}
+ */
+    var createMergeReferenceIdentifier = function createMergeReferenceIdentifier () {
+      var objects = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : []
+      var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0
+      var referers = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : []
+      var identifiers = objects.map(function (identifier) {
+        return (0, _cloneHelpers.createReferenceIdentifier)(identifier, index, referers)
+      })
+      var newIdentifier = (0, _cloneHelpers.createReferenceIdentifier)(objects[0], index, referers)
+      newIdentifier.object = Array.isArray(newIdentifier.original) ? [] : {}
+      newIdentifier.identifiers = identifiers
+      return newIdentifier
     }
     /**
- * Remove duplicate references from and array of references
+ * Remove duplicate references from an array of references
  * @param {Array.<string|number|Array>} newRefs
  * @param {string|number|Array} ref
  * @returns {Array.<string|number|Array>}
  */
 
-    exports.mergeNonReferences = mergeNonReferences
+    exports.createMergeReferenceIdentifier = createMergeReferenceIdentifier
 
     var mergeReferenceArrays = function mergeReferenceArrays (newRefs, ref) {
       if (!Array.isArray(ref)) {
@@ -17952,281 +17674,193 @@
       return (0, _objects.setValue)(existingRefKey, [ref[0], newPart.reduce(mergeReferenceArrays, [])], newRefs)
     }
     /**
- * Used as callback for reduce-like for-loop, this function will find each reference identifier
- * in object1 and merge object2 similar reference onto object1. object1 will then be returned.
- * @typedef {Function} mergeReferencesReduce
- * @param {module:cloneHelpers~objectReferencesRemove} object1
- * @param {number|string} key
- * @param {number} i
- * @returns {module:cloneHelpers~objectReferencesRemove}
+ * An array of reference identifiers linked together.
+ * @typedef {Array.<module:mergeHelpers~mergeReferenceIdentifier>} mergeReferenceMap
  */
 
     /**
- * Return the mergeReferencesReduce callback.
+ * For all of the identified references, find the index of the corresponding referenceIdentifier
+ * or create a new one and set the index instead of null.
  * @function
- * @param {module:cloneHelpers~referenceMap} firstMap
- * @param {module:cloneHelpers~referenceMap} secondMap
- * @param {module:cloneHelpers~objectReferencesRemove} object2
- * @returns {module:mergeHelpers~mergeReferencesReduce}
+ * @param {module:mergeHelpers~mergeReferenceMap} [referenceMap=[]]
+ * @param {number} [index=0]
+ * @param {boolean} [maxDepth=false]
+ * @returns {module:mergeHelpers~mergeReferenceIdentifier}
  */
 
     exports.mergeReferenceArrays = mergeReferenceArrays
 
-    var mergeReferenceObject = function mergeReferenceObject (firstMap, secondMap, object2) {
-      return function (object1, key, i) {
-        var isCircular = false
-        var keyArray = key
+    var findMergeReferenceKeys = function findMergeReferenceKeys () {
+      var referenceMap = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : []
+      var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0
+      var maxDepth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false
+      return referenceMap[index].references.reduce(function (newRef, key, i) {
+        var objectsToRef = newRef.identifiers.reduce(function (objects, identifier) {
+          var obj = identifier.original[key]
 
-        if (Array.isArray(key)) {
-          keyArray = Array.isArray(key[0]) ? key[0] : key
-
-          if (keyArray[1] === null) {
-            key = keyArray[0]
-            isCircular = true
-          }
-        }
-
-        if (Array.isArray(key)) {
-          var nextFirstObject = object1.object[keyArray[0]]
-          var nextSecondObject = object2.object[keyArray[0]]
-
-          if (typeof nextFirstObject === 'number') {
-            object1.index = nextFirstObject
-            nextFirstObject = (0, _cloneHelpers.findReference)(firstMap, nextFirstObject).object
+          if (typeof obj === 'undefined' || (0, _cloneHelpers.nonReference)(obj)) {
+            return objects
           }
 
-          if (typeof nextSecondObject === 'number') {
-            object2.index = nextSecondObject
-            nextSecondObject = (0, _cloneHelpers.findReference)(secondMap, nextSecondObject).object
-          }
-
-          var references = keyArray[1].map(function (ref) {
-            return ref
+          return [].concat(_toConsumableArray(objects), [obj])
+        }, [])
+        var existingIndex = referenceMap.findIndex(function (existing) {
+          return existing && existing.identifiers.some(function (identifier) {
+            return objectsToRef.includes(identifier.original)
           })
-          var firstRefs = keyArray[1]
-          var secondRefs = keyArray[1].map(function (ref) {
-            return ref
-          })
-          var newObj1 = (0, _cloneHelpers.objectAndReferences)(nextFirstObject, firstRefs, object1.index)
-          var newObj2 = (0, _cloneHelpers.objectAndReferences)(nextSecondObject, secondRefs, object2.index)
-
-          var _loop = function _loop (j) {
-            var nextKey = references[j]
-            var position = keyArray[1].findIndex(function (ref) {
-              return ref === nextKey
-            })
-            mergeReferenceObject(firstMap, secondMap, newObj2)(newObj1, nextKey, position)
-            key[1] = newObj1.references
-          }
-
-          for (var j in references) {
-            _loop(j)
-          }
-
-          object1.remove = [].concat(_toConsumableArray(object1.remove), _toConsumableArray(newObj1.remove))
-          return object1
-        }
-
-        var nextFirstIndex = object1.object[key]
-        var nextSecondIndex = object2.object[key]
-
-        if (typeof nextSecondIndex !== 'number') {
-          if (typeof nextFirstIndex === 'number') {
-            var nextFirstRefIndex = (0, _cloneHelpers.findReferenceIndex)(firstMap, nextFirstIndex)
-            firstMap[nextFirstRefIndex].complete = true
-            firstMap[nextFirstRefIndex].merged = true
-          }
-
-          return object1
-        }
-
-        var nextSecondRef = (0, _cloneHelpers.findReference)(secondMap, nextSecondIndex)
-
-        if (typeof nextSecondRef === 'undefined') {
-          return object1
-        }
-
-        if (typeof nextSecondRef.merged === 'undefined') {
-          return object1
-        }
-
-        var nextFirstRef = typeof nextFirstIndex === 'number' ? (0, _cloneHelpers.findReference)(firstMap, nextFirstIndex) : null
-
-        if (typeof nextFirstIndex !== 'number') {
-          nextFirstRef = getSimilarObject(firstMap, nextSecondRef)
-          var exists = typeof nextFirstRef !== 'undefined'
-          nextFirstIndex = exists ? nextFirstRef.index : firstMap[firstMap.length - 1].index + 1
-
-          if (!exists) {
-            nextFirstRef = createReferenceReplica(firstMap, secondMap)(nextFirstIndex, nextSecondRef, [object1.index])
-          }
-
-          if (!object1.references.includes(key)) {
-            object1.references.push(key)
-            object1.object[key] = nextFirstIndex
-          }
-        }
-
-        nextSecondRef.complete = true
-        nextSecondRef.merged = true
-
-        if (typeof nextFirstRef.merged === 'undefined') {
-          return object1
-        }
-
-        object1.object[key] = mergeNonReferences(firstMap, nextFirstRef.index, secondMap, nextSecondRef.index, object1.remove)
-        var removeFirstReferer = nextFirstRef.referers.findIndex(function (i) {
-          return i === object1.index
         })
-        nextFirstRef.referers.splice(removeFirstReferer, 1)
-        var nextFirstReferences = nextFirstRef.references.map(function (ref) {
-          return nextFirstRef.circular.includes(ref) ? [ref, null] : ref
-        })
-        object1.remove.push(nextFirstRef)
-        var firstTrueIndex = (0, _cloneHelpers.findReferenceIndex)(firstMap, nextFirstIndex)
-        firstMap[firstTrueIndex] = nextFirstRef
 
-        if (nextFirstReferences.length && !isCircular) {
-          object1.references[i] = [key, nextFirstReferences]
-          object1.references = object1.references.reduce(mergeReferenceArrays, [])
-          return object1
+        if (existingIndex >= 0) {
+          newRef.object[key] = existingIndex
+          newRef.circular.push(key)
+          referenceMap[existingIndex].referers.push(index)
+          return newRef
         }
 
-        object1.references.splice(i, 1)
-        return object1
-      }
+        if (maxDepth) {
+          newRef.object[key] = Array.isArray(objectsToRef[0]) ? [] : {}
+          return newRef
+        }
+
+        var newRefIndex = referenceMap[referenceMap.length - 1].index + 1
+        newRef.object[key] = newRefIndex
+        referenceMap[newRefIndex] = createMergeReferenceIdentifier(objectsToRef, newRefIndex, [index])
+        return newRef
+      }, referenceMap[index])
     }
     /**
- * Find each of the unlinked references and assign the newly cloned reference for each.
+ * Use the mergeReferenceIdentifiers identifiers list to zip objects together
  * @function
- * @param {module:cloneHelpers~referenceMap} firstMap
- * @param {module:cloneHelpers~referenceMap} secondMap
- * @returns {module:cloneHelpers~referenceMap}
+ * @param {module:mergeHelpers~mergeReferenceIdentifier} referenceIdentifier
+ * @returns {module:mergeHelpers~mergeReferenceIdentifier}
  */
 
-    exports.mergeReferenceObject = mergeReferenceObject
+    exports.findMergeReferenceKeys = findMergeReferenceKeys
 
-    var mergeReferences = function mergeReferences (firstMap, secondMap) {
-      if (typeof firstMap[0].merged === 'undefined' || typeof secondMap[0].merged === 'undefined') {
-        return firstMap
-      }
-
-      var remove = []
-      firstMap[0].object = mergeNonReferences(firstMap, 0, secondMap, 0, remove)
-      var objRefs = (0, _arrays.mergeArrays)(firstMap[0].references, secondMap[0].references)
-      objRefs = objRefs.reduce(mergeReferenceArrays, [])
-      var object1 = (0, _cloneHelpers.objectAndReferences)(firstMap[0].object, objRefs, 0)
-      var object2 = (0, _cloneHelpers.objectAndReferences)(secondMap[0].object, secondMap[0].references, 0)
-      var references = objRefs.map(function (ref) {
-        return ref
+    var zipper = function zipper (referenceIdentifier) {
+      referenceIdentifier.identifiers = referenceIdentifier.identifiers.map(function (identifier) {
+        return (0, _cloneHelpers.findObjectReferences)(identifier)
       })
 
-      var _loop2 = function _loop2 (i) {
-        var key = references[i]
-        var position = firstMap[0].references.findIndex(function (ref) {
-          return ref === key
-        })
-        mergeReferenceObject(firstMap, secondMap, object2)(object1, key, position)
-        firstMap[0].references = object1.references
-      }
+      var objRefs = _arrays.mergeArrays.apply(void 0, _toConsumableArray(referenceIdentifier.identifiers.map(function (identifier) {
+        return identifier.references
+      })))
 
-      for (var i in references) {
-        _loop2(i)
-      }
+      objRefs = objRefs.reduce(mergeReferenceArrays, [])
+      var useArray = Array.isArray(referenceIdentifier.object)
+      var keys = useArray ? _arrays.compareArrays.apply(void 0, _toConsumableArray(referenceIdentifier.identifiers.map(function (identifier) {
+        return identifier.object
+      }))) : _arrays.compareArrays.apply(void 0, _toConsumableArray(referenceIdentifier.identifiers.map(function (identifier) {
+        return (0, _objects.objectKeys)(identifier.object)
+      })))
+      return keys.reduce(function (newIdentifier, compare) {
+        var newKey = compare.value
+        var newValue = null
+        var storedValue = null
 
-      remove = [].concat(_toConsumableArray(remove), _toConsumableArray(object1.remove))
-      var removeFunc = (0, _cloneHelpers.removeFromReferenceMap)(firstMap)
-      var removeStatus = remove.reduce(function (status, ref) {
-        var result = removeFunc(ref)
-        return status ? result : status
-      }, true)
+        for (var i = compare.result.length - 1; i >= 0; --i) {
+          if (compare.result[i] < 0) {
+            continue
+          }
 
-      if (removeStatus) {
-        firstMap = (0, _cloneHelpers.linkReferences)(firstMap)
-      }
+          if (useArray) {
+            newKey = compare.keys[i][0]
+          }
 
-      if (removeStatus) {
-        if (firstMap.length === 1) {
-          secondMap.map(function (ref) {
-            ref.complete = true
-            ref.merged = true
-            return ref
-          })
+          newValue = referenceIdentifier.identifiers[i].object[newKey]
+
+          if (storedValue === null && (0, _objects.emptyObject)(newValue)) {
+            storedValue = newValue
+            continue
+          }
+
+          break
         }
-      }
 
-      if (secondMap.every(function (ref) {
-        return ref.merged
-      })) {
-        secondMap = (0, _cloneHelpers.linkReferences)(secondMap)
-      }
+        if (storedValue !== null && newValue !== null) {
+          newValue = storedValue
+        }
 
-      if (firstMap.every(function (ref) {
-        return ref.merged
-      }) && firstMap[0].references.length) {
-        return mergeReferences(firstMap, secondMap)
-      }
+        if (newValue !== null) {
+          var refIndex = objRefs.findIndex(function (ref) {
+            if (Array.isArray(ref)) {
+              if (Array.isArray(ref[0])) {
+                return ref[0][0] === newKey
+              }
 
-      return hasUnmergedReferences(firstMap) || hasUnmergedReferences(secondMap) ? mergeReferences(firstMap, secondMap) : firstMap
+              return ref[0] === newKey
+            }
+
+            return ref === newKey
+          })
+
+          if (refIndex >= 0) {
+            objRefs.splice(refIndex, 1)
+          }
+        }
+
+        newIdentifier.references = objRefs
+
+        if (useArray) {
+          newIdentifier.object.push(newValue)
+          return newIdentifier
+        }
+
+        newIdentifier.object[newKey] = newValue
+        return newIdentifier
+      }, referenceIdentifier)
     }
     /**
  * Bundle all of the functions needed for processing an identifier in the reference map
  * @function
- * @param {module:cloneHelpers~referenceMap} firstMap
- * @param {module:cloneHelpers~referenceMap} secondMap
- * @param {Array.<module:cloneHelpers~referenceIdentifier>} moreReferences
+ * @param {module:mergeHelpers~mergeReferenceMap} referenceMap
+ * @param {Array.<module:mergeHelpers~mergeReferenceIdentifier>} moreReferences
  * @param {Object} [options={}]
  * @param {number} [options.mapLimit=100]
  * @param {depthLimit} [options.depthLimit=-1]
- * @returns {Array.<module:cloneHelpers~referenceIdentifier>}
+ * @returns {Array.<{module:mergeHelpers~mergeReferenceIdentifier}>}
  */
 
-    exports.mergeReferences = mergeReferences
+    exports.zipper = zipper
 
-    var processMergeIdentifer = function processMergeIdentifer (mapDetails) {
-      return function (focusId) {
-        var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
-        var _ref$mapLimit = _ref.mapLimit
-        var mapLimit = _ref$mapLimit === void 0 ? 100 : _ref$mapLimit
-        var _ref$depthLimit = _ref.depthLimit
-        var depthLimit = _ref$depthLimit === void 0 ? -1 : _ref$depthLimit
+    var processMergeIdentifier = function processMergeIdentifier (referenceMap, moreReferences) {
+      var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {}
+      var _ref$mapLimit = _ref.mapLimit
+      var mapLimit = _ref$mapLimit === void 0 ? 100 : _ref$mapLimit
+      var _ref$depthLimit = _ref.depthLimit
+      var depthLimit = _ref$depthLimit === void 0 ? -1 : _ref$depthLimit
 
-        if (!mapDetails[focusId].moreReferences.length) {
-          return mapDetails[focusId].moreReferences
+      var currentIndex = 0
+      var isMaxDepth = false
+      referenceMap = (0, _functions.pipe)(function (identifier) {
+        return (0, _cloneHelpers.findReferenceIndex)(referenceMap, identifier.index)
+      }, function (index) {
+        currentIndex = index
+        return zipper(referenceMap[currentIndex])
+      }, function (identifier) {
+        return (0, _cloneHelpers.getIdentifierDepth)(referenceMap, identifier)
+      }, function (currentDepth) {
+        return currentDepth === depthLimit
+      }, function (maxDepth) {
+        isMaxDepth = maxDepth
+        return findMergeReferenceKeys(referenceMap, currentIndex, isMaxDepth)
+      }, function (identifier) {
+        if (isMaxDepth) {
+          referenceMap[currentIndex].references = identifier.circular
         }
 
-        var currentIndex = 0
-        var isMaxDepth = false
-        mapDetails[focusId].referenceMap = (0, _functions.pipe)(function (identifier) {
-          return (0, _cloneHelpers.findReferenceIndex)(mapDetails[focusId].referenceMap, identifier.index)
-        }, function (index) {
-          currentIndex = index
-          return (0, _cloneHelpers.findObjectReferences)(mapDetails[focusId].referenceMap[currentIndex])
-        }, function (identifier) {
-          return (0, _cloneHelpers.getIdentifierDepth)(mapDetails[focusId].referenceMap, identifier)
-        }, function (currentDepth) {
-          return currentDepth === depthLimit
-        }, function (maxDepth) {
-          isMaxDepth = maxDepth
-          return (0, _cloneHelpers.findReferenceKeys)(mapDetails[focusId].referenceMap, currentIndex, isMaxDepth)
-        }, function (identifier) {
-          if (isMaxDepth) {
-            mapDetails[focusId].referenceMap[currentIndex].references = identifier.circular
-          }
-
-          mapDetails[focusId].referenceMap[currentIndex].merged = false
-          var references = mapDetails[focusId].referenceMap[currentIndex].references.filter(function (refKey) {
-            return !identifier.circular.includes(refKey)
-          })
-          mapDetails[focusId].moreReferences = [].concat(_toConsumableArray(mapDetails[focusId].moreReferences), _toConsumableArray(references.map(function (key) {
-            return mapDetails[focusId].referenceMap[identifier.object[key]]
-          })))
-          return mapDetails[focusId].referenceMap.length >= mapLimit
-        }, function (maxLimit) {
-          return maxLimit ? mergeReferences(mapDetails[0].referenceMap, mapDetails[1].referenceMap) : mapDetails[focusId].referenceMap
-        })(mapDetails[focusId].moreReferences.shift())
-        return mapDetails[focusId].moreReferences
-      }
+        referenceMap[currentIndex].complete = true
+        var references = referenceMap[currentIndex].references.filter(function (refKey) {
+          return !identifier.circular.includes(refKey)
+        })
+        moreReferences = [].concat(_toConsumableArray(moreReferences), _toConsumableArray(references.map(function (key) {
+          return referenceMap[identifier.object[key]]
+        })))
+        return referenceMap.length >= mapLimit
+      }, function (maxLimit) {
+        return maxLimit ? (0, _cloneHelpers.linkReferences)(referenceMap) : referenceMap
+      })(moreReferences.shift())
+      return moreReferences
     }
     /**
  * Loop over every identifier and process, then return the reference map.
@@ -18234,44 +17868,33 @@
  * @param {Object} [options={}]
  * @param {number} [options.mapLimit=100]
  * @param {depthLimit} [options.depthLimit=-1]
- * @returns {module:cloneHelpers~referenceMap}
+ * @returns {module:mergeHelpers~mergeReferenceMap}
  */
 
-    exports.processMergeIdentifer = processMergeIdentifer
+    exports.processMergeIdentifier = processMergeIdentifier
 
-    var processMergeIdentifiers = function processMergeIdentifiers (firstObject, secondObject) {
-      var _ref2 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {}
+    var processMergeIdentifiers = function processMergeIdentifiers (objects) {
+      var _ref2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
       var _ref2$mapLimit = _ref2.mapLimit
       var mapLimit = _ref2$mapLimit === void 0 ? 100 : _ref2$mapLimit
       var _ref2$depthLimit = _ref2.depthLimit
       var depthLimit = _ref2$depthLimit === void 0 ? -1 : _ref2$depthLimit
 
-      var firstMap = [(0, _cloneHelpers.createReferenceIdentifier)(firstObject, 0)]
-      var secondMap = [(0, _cloneHelpers.createReferenceIdentifier)(secondObject, 0)]
-      var mapDetails = [{
-        referenceMap: firstMap,
-        moreReferences: [firstMap[0]]
-      }, {
-        referenceMap: secondMap,
-        moreReferences: [secondMap[0]]
-      }]
+      var referenceMap = [createMergeReferenceIdentifier(objects, 0)]
+      var moreReferences = [referenceMap[0]]
 
       do {
-        mapDetails[0].moreReferences = processMergeIdentifer(mapDetails)(0, {
+        moreReferences = processMergeIdentifier(referenceMap, moreReferences, {
           mapLimit: mapLimit,
           depthLimit: depthLimit
         })
-        mapDetails[1].moreReferences = processMergeIdentifer(mapDetails)(1, {
-          mapLimit: mapLimit,
-          depthLimit: depthLimit
-        })
-      } while (mapDetails[0].moreReferences.length > 0 || mapDetails[1].moreReferences.length > 0)
+      } while (moreReferences.length > 0)
 
-      return [firstMap, secondMap]
+      return referenceMap
     }
 
     exports.processMergeIdentifiers = processMergeIdentifiers
-  }, { '../arrays': 405, '../functions': 406, '../objects': 408, './cloneHelpers': 409, 'core-js/modules/es.array.concat.js': 187, 'core-js/modules/es.array.filter.js': 191, 'core-js/modules/es.array.find-index.js': 192, 'core-js/modules/es.array.find.js': 193, 'core-js/modules/es.array.from.js': 197, 'core-js/modules/es.array.includes.js': 198, 'core-js/modules/es.array.iterator.js': 201, 'core-js/modules/es.array.map.js': 204, 'core-js/modules/es.array.reduce.js': 207, 'core-js/modules/es.array.slice.js': 209, 'core-js/modules/es.array.splice.js': 213, 'core-js/modules/es.function.name.js': 224, 'core-js/modules/es.object.to-string.js': 282, 'core-js/modules/es.string.includes.js': 321, 'core-js/modules/es.string.iterator.js': 323, 'core-js/modules/es.symbol.description.js': 344, 'core-js/modules/es.symbol.iterator.js': 347, 'core-js/modules/es.symbol.js': 348, 'core-js/modules/web.dom-collections.for-each.js': 395, 'core-js/modules/web.dom-collections.iterator.js': 396 }],
+  }, { '../arrays': 405, '../functions': 406, '../objects': 408, './cloneHelpers': 409, 'core-js/modules/es.array.concat.js': 187, 'core-js/modules/es.array.filter.js': 191, 'core-js/modules/es.array.find-index.js': 192, 'core-js/modules/es.array.from.js': 197, 'core-js/modules/es.array.includes.js': 198, 'core-js/modules/es.array.iterator.js': 201, 'core-js/modules/es.array.map.js': 204, 'core-js/modules/es.array.reduce.js': 207, 'core-js/modules/es.array.slice.js': 209, 'core-js/modules/es.array.splice.js': 213, 'core-js/modules/es.function.name.js': 224, 'core-js/modules/es.object.to-string.js': 282, 'core-js/modules/es.string.includes.js': 321, 'core-js/modules/es.string.iterator.js': 323, 'core-js/modules/es.symbol.description.js': 344, 'core-js/modules/es.symbol.iterator.js': 347, 'core-js/modules/es.symbol.js': 348, 'core-js/modules/web.dom-collections.iterator.js': 396 }],
   412: [function (require, module, exports) {
     (function (global) {
       (function () {
