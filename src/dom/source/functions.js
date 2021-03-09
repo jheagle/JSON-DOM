@@ -71,9 +71,9 @@ export const elementChanges = config => (config.element.tagName.toLowerCase() !=
             (attr2, key2) => (typeof attr2 === 'object' || key2 === 'className')
             // Apply custom logic for class and styles, only keep the updates
               ? functionalHelpers.filterObject(
-                elementHasAttribute(config.element, key2, attr2),
-                attr3 => attr3 === 1
-              )
+                  elementHasAttribute(config.element, key2, attr2),
+                  attr3 => attr3 === 1
+                )
             // True when the element does not already have the attribute
               : !elementHasAttribute(config.element, key2, attr2)
           ),
@@ -269,11 +269,10 @@ export const registerListener = (listener, name = listener.name, parent = docume
    * stores has eventListeners property.
    * @returns {module:dom/objects.DomItemRoot|Object}
    */
-export const registerListeners = (listeners, parent = documentItem) => functionalHelpers.mergeObjects(
-  {},
-  parent,
-  { eventListeners: parent.eventListeners },
-  { eventListeners: listeners }
+export const registerListeners = (listeners, parent = documentItem) => functionalHelpers.setValue(
+  'eventListeners',
+  functionalHelpers.mergeObjects(parent.eventListeners, listeners),
+  parent
 )
 
 /**
@@ -494,8 +493,8 @@ export const getChildrenByName = functionalHelpers.curry(getChildrenFromAttribut
 export const getParentsFromAttribute = (attr, value, item = documentItem.body) =>
   Object.keys(item.parentItem).length
     ? (item.parentItem.attributes[attr] || item[attr] || false) === value
-      ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem])
-      : getParentsFromAttribute(attr, value, item.parentItem)
+        ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem])
+        : getParentsFromAttribute(attr, value, item.parentItem)
     : []
 
 /**
@@ -549,10 +548,10 @@ export const renderHTML = (item, parent = documentItem) => functionalHelpers.pip
     'eventListeners',
     functionalHelpers.mapObject(
       domItem.eventListeners,
-      prop => functionalHelpers.mergeObjects(
-        {},
-        prop,
-        { listenerFunc: retrieveListener(prop.listenerFunc, getTopParentItem(parent)) }
+      prop => functionalHelpers.setValue(
+        'listenerFunc',
+        retrieveListener(prop.listenerFunc, getTopParentItem(parent)),
+        prop
       )
     ),
     domItem

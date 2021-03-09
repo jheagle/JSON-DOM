@@ -432,11 +432,7 @@
 
     var registerListeners = function registerListeners (listeners) {
       var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem
-      return _functionalHelpers.default.mergeObjects({}, parent, {
-        eventListeners: parent.eventListeners
-      }, {
-        eventListeners: listeners
-      })
+      return _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.mergeObjects(parent.eventListeners, listeners), parent)
     }
     /**
    * Based on the provided function / listener name, retrieve the associated function from the root jDomObjects.DomItem
@@ -734,9 +730,7 @@
         return _functionalHelpers.default.setValue('element', domItem.element && domItem.element.style ? domItem.element : bindElement(domItem).element, domItem)
       }, function (domItem) {
         return _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.mapObject(domItem.eventListeners, function (prop) {
-          return _functionalHelpers.default.mergeObjects({}, prop, {
-            listenerFunc: retrieveListener(prop.listenerFunc, getTopParentItem(parent))
-          })
+          return _functionalHelpers.default.setValue('listenerFunc', retrieveListener(prop.listenerFunc, getTopParentItem(parent)), prop)
         }), domItem)
       }, _functionalHelpers.default.curry(_functionalHelpers.default.setValue)('parentItem', parent.body || parent), function (domItem) {
         return bindListeners(appendHTML(domItem, parent))
