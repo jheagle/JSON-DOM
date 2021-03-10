@@ -538,25 +538,26 @@ export const getTopParentItem = item => Object.keys(item.parentItem).length
    * @param {module:dom/objects.DomItemRoot} parent - The Base Dom item which is the parent of all the items
    * @returns {module:dom/objects.DomItem}
    */
-export const renderHTML = (item, parent = documentItem) => functionalHelpers.pipe(
-  domItem => functionalHelpers.setValue(
-    'element',
-    (domItem.element && domItem.element.style) ? domItem.element : bindElement(domItem).element,
-    domItem
-  ),
-  domItem => functionalHelpers.setValue(
-    'eventListeners',
-    functionalHelpers.mapObject(
-      domItem.eventListeners,
-      prop => functionalHelpers.setValue(
-        'listenerFunc',
-        retrieveListener(prop.listenerFunc, getTopParentItem(parent)),
-        prop
+export const renderHTML = (item, parent = documentItem) => {
+  const curriedSetValue = functionalHelpers.curry(functionalHelpers.setValue)
+  const domItem = createDomItem(item)
+  return functionalHelpers.pipe(
+    curriedSetValue(
+      'element',
+      (domItem.element && domItem.element.style) ? domItem.element : bindElement(domItem).element
+    ),
+    curriedSetValue(
+      'eventListeners',
+      functionalHelpers.mapObject(
+        domItem.eventListeners,
+        prop => curriedSetValue(
+          'listenerFunc',
+          retrieveListener(prop.listenerFunc, getTopParentItem(parent))
+        )
       )
     ),
-    domItem
-  ),
-  functionalHelpers.curry(functionalHelpers.setValue)('parentItem', parent.body || parent),
-  domItem => bindListeners(appendHTML(domItem, parent)),
-  domItem => functionalHelpers.setValue('children', functionalHelpers.mapObject(domItem.children, child => renderHTML(child, domItem)), domItem)
-)(functionalHelpers.mapObject(createDomItem(item), prop => prop, item))
+    curriedSetValue('parentItem', parent.body || parent),
+    pipeItem => bindListeners(appendHTML(pipeItem, parent)),
+    curriedSetValue('children', functionalHelpers.mapObject(domItem.children, child => renderHTML(child, domItem)))
+  )(domItem)
+}

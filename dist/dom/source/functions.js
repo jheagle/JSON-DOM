@@ -609,21 +609,17 @@ exports.getTopParentItem = getTopParentItem
 
 var renderHTML = function renderHTML (item) {
   var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem
-  return _functionalHelpers.default.pipe(function (domItem) {
-    return _functionalHelpers.default.setValue('element', domItem.element && domItem.element.style ? domItem.element : bindElement(domItem).element, domItem)
-  }, function (domItem) {
-    return _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.mapObject(domItem.eventListeners, function (prop) {
-      return _functionalHelpers.default.setValue('listenerFunc', retrieveListener(prop.listenerFunc, getTopParentItem(parent)), prop)
-    }), domItem)
-  }, _functionalHelpers.default.curry(_functionalHelpers.default.setValue)('parentItem', parent.body || parent), function (domItem) {
-    return bindListeners(appendHTML(domItem, parent))
-  }, function (domItem) {
-    return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(domItem.children, function (child) {
-      return renderHTML(child, domItem)
-    }), domItem)
-  })(_functionalHelpers.default.mapObject((0, _objects.createDomItem)(item), function (prop) {
-    return prop
-  }, item))
+
+  var curriedSetValue = _functionalHelpers.default.curry(_functionalHelpers.default.setValue)
+
+  var domItem = (0, _objects.createDomItem)(item)
+  return _functionalHelpers.default.pipe(curriedSetValue('element', domItem.element && domItem.element.style ? domItem.element : bindElement(domItem).element), curriedSetValue('eventListeners', _functionalHelpers.default.mapObject(domItem.eventListeners, function (prop) {
+    return curriedSetValue('listenerFunc', retrieveListener(prop.listenerFunc, getTopParentItem(parent)))
+  })), curriedSetValue('parentItem', parent.body || parent), function (pipeItem) {
+    return bindListeners(appendHTML(pipeItem, parent))
+  }, curriedSetValue('children', _functionalHelpers.default.mapObject(domItem.children, function (child) {
+    return renderHTML(child, domItem)
+  })))(domItem)
 }
 
 exports.renderHTML = renderHTML
