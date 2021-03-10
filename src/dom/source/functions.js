@@ -525,9 +525,9 @@ export const getParentsByTagName = functionalHelpers.curry(getParentsFromAttribu
    * @param {module:dom/objects.DomItem} item - The DomItem which we want the highest parent item of
    * @returns {module:dom/objects.DomItemRoot}
    */
-export const getTopParentItem = item => Object.keys(item.parentItem).length
-  ? getTopParentItem(item.parentItem)
-  : item
+export const getTopParentItem = item => functionalHelpers.emptyObject(item.parentItem)
+  ? item
+  : getTopParentItem(item.parentItem)
 
 /**
    * This is a shortcut for building the specified HTML elements and appending them to the Dom
@@ -540,13 +540,13 @@ export const getTopParentItem = item => Object.keys(item.parentItem).length
    */
 export const renderHTML = (item, parent = documentItem) => {
   const curriedSetValue = functionalHelpers.curry(functionalHelpers.setValue)
-  const domItem = createDomItem(item)
-  return functionalHelpers.pipe(
-    curriedSetValue(
+  const renderedItem = functionalHelpers.pipe(
+    domItem => functionalHelpers.setValue(
       'element',
-      (domItem.element && domItem.element.style) ? domItem.element : bindElement(domItem).element
+      (domItem.element && domItem.element.style) ? domItem.element : bindElement(domItem).element,
+      domItem
     ),
-    curriedSetValue(
+    domItem => functionalHelpers.setValue(
       'eventListeners',
       functionalHelpers.mapObject(
         domItem.eventListeners,
@@ -554,10 +554,16 @@ export const renderHTML = (item, parent = documentItem) => {
           'listenerFunc',
           retrieveListener(prop.listenerFunc, getTopParentItem(parent))
         )
-      )
+      ),
+      domItem
     ),
     curriedSetValue('parentItem', parent.body || parent),
-    pipeItem => bindListeners(appendHTML(pipeItem, parent)),
-    curriedSetValue('children', functionalHelpers.mapObject(domItem.children, child => renderHTML(child, domItem)))
-  )(domItem)
+    domItem => bindListeners(appendHTML(domItem, parent)),
+    domItem => functionalHelpers.setValue('children', functionalHelpers.mapObject(domItem.children, child => renderHTML(child, domItem)), domItem),
+    createDomItem
+  )(item)
+  if (parent.body) {
+    parent.children[1] = parent.body
+  }
+  return renderedItem
 }

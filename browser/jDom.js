@@ -710,7 +710,7 @@
     exports.getParentsByTagName = getParentsByTagName
 
     var getTopParentItem = function getTopParentItem (item) {
-      return Object.keys(item.parentItem).length ? getTopParentItem(item.parentItem) : item
+      return _functionalHelpers.default.emptyObject(item.parentItem) ? item : getTopParentItem(item.parentItem)
     }
     /**
    * This is a shortcut for building the specified HTML elements and appending them to the Dom
@@ -729,14 +729,25 @@
 
       var curriedSetValue = _functionalHelpers.default.curry(_functionalHelpers.default.setValue)
 
-      var domItem = (0, _objects.createDomItem)(item)
-      return _functionalHelpers.default.pipe(curriedSetValue('element', domItem.element && domItem.element.style ? domItem.element : bindElement(domItem).element), curriedSetValue('eventListeners', _functionalHelpers.default.mapObject(domItem.eventListeners, function (prop) {
-        return curriedSetValue('listenerFunc', retrieveListener(prop.listenerFunc, getTopParentItem(parent)))
-      })), curriedSetValue('parentItem', parent.body || parent), function (pipeItem) {
-        return bindListeners(appendHTML(pipeItem, parent))
-      }, curriedSetValue('children', _functionalHelpers.default.mapObject(domItem.children, function (child) {
-        return renderHTML(child, domItem)
-      })))(domItem)
+      var renderedItem = _functionalHelpers.default.pipe(function (domItem) {
+        return _functionalHelpers.default.setValue('element', domItem.element && domItem.element.style ? domItem.element : bindElement(domItem).element, domItem)
+      }, function (domItem) {
+        return _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.mapObject(domItem.eventListeners, function (prop) {
+          return curriedSetValue('listenerFunc', retrieveListener(prop.listenerFunc, getTopParentItem(parent)))
+        }), domItem)
+      }, curriedSetValue('parentItem', parent.body || parent), function (domItem) {
+        return bindListeners(appendHTML(domItem, parent))
+      }, function (domItem) {
+        return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(domItem.children, function (child) {
+          return renderHTML(child, domItem)
+        }), domItem)
+      }, _objects.createDomItem)(item)
+
+      if (parent.body) {
+        parent.children[1] = parent.body
+      }
+
+      return renderedItem
     }
 
     exports.renderHTML = renderHTML
