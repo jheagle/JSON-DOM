@@ -130,7 +130,7 @@ export const updateElement = config => {
     // Retrieve only the changes to be applied from the attributes
     domItem.attributes,
     (attr, key) => {
-      if (functionalHelpers.emptyObject(attr)) {
+      if (!functionalHelpers.isObject(attr) || functionalHelpers.emptyObject(attr)) {
         return (key in config.element)
           ? functionalHelpers.setAndReturnValue(config.element, key, attr)
           : setAndReturnAttribute(config, key, attr)

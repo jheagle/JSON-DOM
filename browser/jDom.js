@@ -282,7 +282,7 @@
 
       domItem.attributes = _functionalHelpers.default.mapObject( // Retrieve only the changes to be applied from the attributes
         domItem.attributes, function (attr, key) {
-          if (_functionalHelpers.default.emptyObject(attr)) {
+          if (!_functionalHelpers.default.isObject(attr) || _functionalHelpers.default.emptyObject(attr)) {
             return key in config.element ? _functionalHelpers.default.setAndReturnValue(config.element, key, attr) : setAndReturnAttribute(config, key, attr)
           }
 
