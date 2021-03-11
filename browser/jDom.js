@@ -726,28 +726,21 @@
 
     var renderHTML = function renderHTML (item) {
       var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem
-
-      var curriedSetValue = _functionalHelpers.default.curry(_functionalHelpers.default.setValue)
-
-      var renderedItem = _functionalHelpers.default.pipe(function (domItem) {
+      return _functionalHelpers.default.pipe(function (domItem) {
         return _functionalHelpers.default.setValue('element', domItem.element && domItem.element.style ? domItem.element : bindElement(domItem).element, domItem)
       }, function (domItem) {
         return _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.mapObject(domItem.eventListeners, function (prop) {
-          return curriedSetValue('listenerFunc', retrieveListener(prop.listenerFunc, getTopParentItem(parent)))
+          return _functionalHelpers.default.setValue('listenerFunc', retrieveListener(prop.listenerFunc, getTopParentItem(parent)), prop)
         }), domItem)
-      }, curriedSetValue('parentItem', parent.body || parent), function (domItem) {
+      }, _functionalHelpers.default.curry(_functionalHelpers.default.setValue)('parentItem', parent.body || parent), function (domItem) {
         return bindListeners(appendHTML(domItem, parent))
       }, function (domItem) {
         return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(domItem.children, function (child) {
           return renderHTML(child, domItem)
         }), domItem)
-      }, _objects.createDomItem)(item)
-
-      if (parent.body) {
-        parent.children[1] = parent.body
-      }
-
-      return renderedItem
+      })(_functionalHelpers.default.mapObject((0, _objects.createDomItem)(item), function (prop) {
+        return prop
+      }, item))
     }
 
     exports.renderHTML = renderHTML
@@ -842,11 +835,7 @@
    * @returns {module:dom/objects.DomItem}
    */
     var createDomItem = function createDomItem () {
-      for (var _len = arguments.length, attributes = new Array(_len), _key = 0; _key < _len; _key++) {
-        attributes[_key] = arguments[_key]
-      }
-
-      return _functionalHelpers.default.mergeObjects.apply(_functionalHelpers.default, [{
+      var base = {
         tagName: 'div',
         attributes: {
           style: {}
@@ -855,7 +844,28 @@
         eventListeners: {},
         parentItem: {},
         children: []
-      }].concat(attributes))
+      }
+
+      for (var _len = arguments.length, attributes = new Array(_len), _key = 0; _key < _len; _key++) {
+        attributes[_key] = arguments[_key]
+      }
+
+      if (attributes.length > 1) {
+        return _functionalHelpers.default.mergeObjects.apply(_functionalHelpers.default, [base].concat(attributes))
+      }
+
+      return _functionalHelpers.default.reduceObject(base, function (domItem, prop, key) {
+        if (key === 'attributes') {
+          domItem[key] = domItem[key] || prop
+          domItem[key].style = domItem[key].style || prop.style
+        }
+
+        if (key in domItem) {
+          return domItem
+        }
+
+        return _functionalHelpers.default.setValue(key, prop, domItem)
+      }, attributes[0])
     }
     /**
    * DomItemHead defines the structure for a single element in the Dom

@@ -87,11 +87,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
    * @returns {module:dom/objects.DomItem}
    */
 var createDomItem = function createDomItem () {
-  for (var _len = arguments.length, attributes = new Array(_len), _key = 0; _key < _len; _key++) {
-    attributes[_key] = arguments[_key]
-  }
-
-  return _functionalHelpers.default.mergeObjects.apply(_functionalHelpers.default, [{
+  var base = {
     tagName: 'div',
     attributes: {
       style: {}
@@ -100,7 +96,28 @@ var createDomItem = function createDomItem () {
     eventListeners: {},
     parentItem: {},
     children: []
-  }].concat(attributes))
+  }
+
+  for (var _len = arguments.length, attributes = new Array(_len), _key = 0; _key < _len; _key++) {
+    attributes[_key] = arguments[_key]
+  }
+
+  if (attributes.length > 1) {
+    return _functionalHelpers.default.mergeObjects.apply(_functionalHelpers.default, [base].concat(attributes))
+  }
+
+  return _functionalHelpers.default.reduceObject(base, function (domItem, prop, key) {
+    if (key === 'attributes') {
+      domItem[key] = domItem[key] || prop
+      domItem[key].style = domItem[key].style || prop.style
+    }
+
+    if (key in domItem) {
+      return domItem
+    }
+
+    return _functionalHelpers.default.setValue(key, prop, domItem)
+  }, attributes[0])
 }
 /**
    * DomItemHead defines the structure for a single element in the Dom

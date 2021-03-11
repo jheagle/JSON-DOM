@@ -609,28 +609,21 @@ exports.getTopParentItem = getTopParentItem
 
 var renderHTML = function renderHTML (item) {
   var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem
-
-  var curriedSetValue = _functionalHelpers.default.curry(_functionalHelpers.default.setValue)
-
-  var renderedItem = _functionalHelpers.default.pipe(function (domItem) {
+  return _functionalHelpers.default.pipe(function (domItem) {
     return _functionalHelpers.default.setValue('element', domItem.element && domItem.element.style ? domItem.element : bindElement(domItem).element, domItem)
   }, function (domItem) {
     return _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.mapObject(domItem.eventListeners, function (prop) {
-      return curriedSetValue('listenerFunc', retrieveListener(prop.listenerFunc, getTopParentItem(parent)))
+      return _functionalHelpers.default.setValue('listenerFunc', retrieveListener(prop.listenerFunc, getTopParentItem(parent)), prop)
     }), domItem)
-  }, curriedSetValue('parentItem', parent.body || parent), function (domItem) {
+  }, _functionalHelpers.default.curry(_functionalHelpers.default.setValue)('parentItem', parent.body || parent), function (domItem) {
     return bindListeners(appendHTML(domItem, parent))
   }, function (domItem) {
     return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(domItem.children, function (child) {
       return renderHTML(child, domItem)
     }), domItem)
-  }, _objects.createDomItem)(item)
-
-  if (parent.body) {
-    parent.children[1] = parent.body
-  }
-
-  return renderedItem
+  })(_functionalHelpers.default.mapObject((0, _objects.createDomItem)(item), function (prop) {
+    return prop
+  }, item))
 }
 
 exports.renderHTML = renderHTML
