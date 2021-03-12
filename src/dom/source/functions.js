@@ -271,7 +271,7 @@ export const registerListener = (listener, name = listener.name, parent = docume
    */
 export const registerListeners = (listeners, parent = documentItem) => functionalHelpers.setValue(
   'eventListeners',
-  functionalHelpers.mergeObjects(parent.eventListeners, listeners),
+  functionalHelpers.mergeObjectsMutable(parent.eventListeners, listeners),
   parent
 )
 
@@ -548,10 +548,9 @@ export const renderHTML = (item, parent = documentItem) => functionalHelpers.pip
     'eventListeners',
     functionalHelpers.mapObject(
       domItem.eventListeners,
-      prop => functionalHelpers.setValue(
-        'listenerFunc',
-        retrieveListener(prop.listenerFunc, getTopParentItem(parent)),
-        prop
+      prop => functionalHelpers.mergeObjects(
+        prop,
+        { listenerFunc: retrieveListener(prop.listenerFunc, getTopParentItem(parent)) }
       )
     ),
     domItem
