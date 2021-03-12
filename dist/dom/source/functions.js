@@ -593,7 +593,7 @@ var getParentsByTagName = _functionalHelpers.default.curry(getParentsFromAttribu
 exports.getParentsByTagName = getParentsByTagName
 
 var getTopParentItem = function getTopParentItem (item) {
-  return _functionalHelpers.default.emptyObject(item.parentItem) ? item : getTopParentItem(item.parentItem)
+  return Object.keys(item.parentItem).length ? getTopParentItem(item.parentItem) : item
 }
 /**
    * This is a shortcut for building the specified HTML elements and appending them to the Dom

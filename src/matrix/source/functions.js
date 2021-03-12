@@ -16,13 +16,12 @@ import { point } from './objects'
    * @param {module:matrix/objects.Point} pnt - A point to be added to a specific Matrix Column
    * @returns {module:matrix/objects.MatrixColumn|module:matrix/objects.MatrixRow}
    */
-export const bindPointData = (item, pnt = point(0, 0, 0)) => item.point
-  ? functionalHelpers.setValue('point', pnt, item)
-  : functionalHelpers.setValue(
-    'children',
-    item.children.map((el, i) => bindPointData(el, Object.assign(pnt, { [el.axis]: i }))),
-    item
-  )
+export const bindPointData = (item, pnt = point(0, 0, 0)) => functionalHelpers.mergeObjects(
+  item,
+  item.point
+    ? { point: pnt }
+    : { children: item.children.map((el, i) => bindPointData(el, Object.assign(pnt, { [el.axis]: i }))) }
+)
 
 /**
    * Based on provided point and point direction generate next point.
@@ -83,7 +82,7 @@ export const getFirstAxisOfCoordinate = (pnt, coordinate) => Object.keys(pnt).fi
    */
 const pointAndCoordinateToDirection = (pnt, highestCoordinate) => (
   axis => axis !== false
-    ? functionalHelpers.setValue(axis, highestCoordinate > 0 ? 1 : -1, point(0, 0, 0))
+    ? functionalHelpers.mergeObjects(point(0, 0, 0), { [`${axis}`]: highestCoordinate > 0 ? 1 : -1 })
     : point(0, 0, 0)
 )(getFirstAxisOfCoordinate(pnt, highestCoordinate))
 
@@ -188,10 +187,10 @@ export const testPointsBetween = (start, end, matrix, func, inclusive = true) =>
   getPointsLine(start, end).filter(
     (prop, i, line) => ((i !== 0 && i !== line.length - 1) || inclusive)
   ).reduce(
-    (newPoints, next) => {
-      newPoints[func(next, matrix)].push(next)
-      return newPoints
-    },
+    (newPoints, next) => functionalHelpers.mergeObjects(
+      newPoints,
+      { [`${func(next, matrix)}`]: [next] }
+    ),
     { true: [], false: [] }
   )
 

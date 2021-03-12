@@ -525,9 +525,9 @@ export const getParentsByTagName = functionalHelpers.curry(getParentsFromAttribu
    * @param {module:dom/objects.DomItem} item - The DomItem which we want the highest parent item of
    * @returns {module:dom/objects.DomItemRoot}
    */
-export const getTopParentItem = item => functionalHelpers.emptyObject(item.parentItem)
-  ? item
-  : getTopParentItem(item.parentItem)
+export const getTopParentItem = item => Object.keys(item.parentItem).length
+  ? getTopParentItem(item.parentItem)
+  : item
 
 /**
    * This is a shortcut for building the specified HTML elements and appending them to the Dom

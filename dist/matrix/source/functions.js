@@ -66,9 +66,13 @@ function _defineProperty (obj, key, value) { if (key in obj) { Object.defineProp
    */
 var bindPointData = function bindPointData (item) {
   var pnt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _objects.point)(0, 0, 0)
-  return item.point ? _functionalHelpers.default.setValue('point', pnt, item) : _functionalHelpers.default.setValue('children', item.children.map(function (el, i) {
-    return bindPointData(el, Object.assign(pnt, _defineProperty({}, el.axis, i)))
-  }), item)
+  return _functionalHelpers.default.mergeObjects(item, item.point ? {
+    point: pnt
+  } : {
+    children: item.children.map(function (el, i) {
+      return bindPointData(el, Object.assign(pnt, _defineProperty({}, el.axis, i)))
+    })
+  })
 }
 /**
    * Based on provided point and point direction generate next point.
@@ -148,7 +152,7 @@ exports.getFirstAxisOfCoordinate = getFirstAxisOfCoordinate
 
 var pointAndCoordinateToDirection = function pointAndCoordinateToDirection (pnt, highestCoordinate) {
   return (function (axis) {
-    return axis !== false ? _functionalHelpers.default.setValue(axis, highestCoordinate > 0 ? 1 : -1, (0, _objects.point)(0, 0, 0)) : (0, _objects.point)(0, 0, 0)
+    return axis !== false ? _functionalHelpers.default.mergeObjects((0, _objects.point)(0, 0, 0), _defineProperty({}, ''.concat(axis), highestCoordinate > 0 ? 1 : -1)) : (0, _objects.point)(0, 0, 0)
   }(getFirstAxisOfCoordinate(pnt, highestCoordinate)))
 }
 /**
@@ -259,8 +263,7 @@ var testPointsBetween = function testPointsBetween (start, end, matrix, func) {
   return getPointsLine(start, end).filter(function (prop, i, line) {
     return i !== 0 && i !== line.length - 1 || inclusive
   }).reduce(function (newPoints, next) {
-    newPoints[func(next, matrix)].push(next)
-    return newPoints
+    return _functionalHelpers.default.mergeObjects(newPoints, _defineProperty({}, ''.concat(func(next, matrix)), [next]))
   }, {
     true: [],
     false: []
