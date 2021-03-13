@@ -67,7 +67,7 @@ function _defineProperty (obj, key, value) { if (key in obj) { Object.defineProp
 var bindPointData = function bindPointData (item) {
   var pnt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _objects.point)(0, 0, 0)
   return _functionalHelpers.default.mergeObjects(item, item.point ? {
-    point: pnt
+    point: _functionalHelpers.default.cloneObject(pnt)
   } : {
     children: item.children.map(function (el, i) {
       return bindPointData(el, Object.assign(pnt, _defineProperty({}, el.axis, i)))

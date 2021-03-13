@@ -25,8 +25,6 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.cube = exports.square = exports.matrix = exports.tile = exports.point = void 0
 
-require('core-js/modules/es.object.assign.js')
-
 require('core-js/modules/es.array.concat.js')
 
 var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
@@ -87,11 +85,11 @@ function _arrayLikeToArray (arr, len) { if (len == null || len > arr.length) len
    */
 var point = function point (x, y) {
   var z = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0
-  return Object.assign({}, {
+  return {
     x: x,
     y: y,
     z: z
-  })
+  }
 }
 /**
    * MatrixTile is an Object which stores a reference a {@link Point} and can be populated with additionally associated

@@ -45,7 +45,7 @@ import { createDomItem } from '../../dom/source/objects'
    * {@link module:matrix/objects.Matrix})
    * @returns {module:matrix/objects.Point}
    */
-export const point = (x, y, z = 0) => Object.assign({}, { x: x, y: y, z: z })
+export const point = (x, y, z = 0) => ({ x: x, y: y, z: z })
 
 /**
    * MatrixTile is an Object which stores a reference a {@link Point} and can be populated with additionally associated

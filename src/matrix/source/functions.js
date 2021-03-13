@@ -19,7 +19,7 @@ import { point } from './objects'
 export const bindPointData = (item, pnt = point(0, 0, 0)) => functionalHelpers.mergeObjects(
   item,
   item.point
-    ? { point: pnt }
+    ? { point: functionalHelpers.cloneObject(pnt) }
     : { children: item.children.map((el, i) => bindPointData(el, Object.assign(pnt, { [el.axis]: i }))) }
 )
 

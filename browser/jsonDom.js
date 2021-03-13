@@ -1776,7 +1776,7 @@
     var bindPointData = function bindPointData (item) {
       var pnt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _objects.point)(0, 0, 0)
       return _functionalHelpers.default.mergeObjects(item, item.point ? {
-        point: pnt
+        point: _functionalHelpers.default.cloneObject(pnt)
       } : {
         children: item.children.map(function (el, i) {
           return bindPointData(el, Object.assign(pnt, _defineProperty({}, el.axis, i)))
@@ -2151,8 +2151,6 @@
     })
     exports.cube = exports.square = exports.matrix = exports.tile = exports.point = void 0
 
-    require('core-js/modules/es.object.assign.js')
-
     require('core-js/modules/es.array.concat.js')
 
     var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
@@ -2213,11 +2211,11 @@
    */
     var point = function point (x, y) {
       var z = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0
-      return Object.assign({}, {
+      return {
         x: x,
         y: y,
         z: z
-      })
+      }
     }
     /**
    * MatrixTile is an Object which stores a reference a {@link Point} and can be populated with additionally associated
@@ -2414,7 +2412,7 @@
     }
 
     exports.cube = cube
-  }, { '../../dom/source/objects': 8, 'core-js/modules/es.array.concat.js': 187, 'core-js/modules/es.array.from.js': 197, 'core-js/modules/es.array.iterator.js': 201, 'core-js/modules/es.array.slice.js': 209, 'core-js/modules/es.function.name.js': 224, 'core-js/modules/es.object.assign.js': 259, 'core-js/modules/es.object.to-string.js': 282, 'core-js/modules/es.string.iterator.js': 323, 'core-js/modules/es.symbol.description.js': 344, 'core-js/modules/es.symbol.iterator.js': 347, 'core-js/modules/es.symbol.js': 348, 'core-js/modules/web.dom-collections.iterator.js': 396, 'functional-helpers': 410 }],
+  }, { '../../dom/source/objects': 8, 'core-js/modules/es.array.concat.js': 187, 'core-js/modules/es.array.from.js': 197, 'core-js/modules/es.array.iterator.js': 201, 'core-js/modules/es.array.slice.js': 209, 'core-js/modules/es.function.name.js': 224, 'core-js/modules/es.object.to-string.js': 282, 'core-js/modules/es.string.iterator.js': 323, 'core-js/modules/es.symbol.description.js': 344, 'core-js/modules/es.symbol.iterator.js': 347, 'core-js/modules/es.symbol.js': 348, 'core-js/modules/web.dom-collections.iterator.js': 396, 'functional-helpers': 410 }],
   13: [function (require, module, exports) {
     'use strict'
 
