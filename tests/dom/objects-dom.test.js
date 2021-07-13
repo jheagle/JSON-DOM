@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import * as jDomObjects from '../../src/dom/source/objects'
 
 // documentItem

@@ -23,13 +23,15 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.PseudoHTMLDocument = void 0
 
+require('core-js/modules/es.object.set-prototype-of.js')
+
 require('core-js/modules/es.object.get-prototype-of.js')
 
-var _PseudoHTMLElement2 = require('./PseudoHTMLElement')
+const _PseudoHTMLElement2 = require('./PseudoHTMLElement')
 
 function _classCallCheck (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function') } }
 
-function _defineProperties (target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } }
+function _defineProperties (target, props) { for (let i = 0; i < props.length; i++) { const descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } }
 
 function _createClass (Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor }
 
@@ -37,7 +39,7 @@ function _inherits (subClass, superClass) { if (typeof superClass !== 'function'
 
 function _setPrototypeOf (o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf (o, p) { o.__proto__ = p; return o }; return _setPrototypeOf(o, p) }
 
-function _createSuper (Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal () { var Super = _getPrototypeOf(Derived); var result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget) } else { result = Super.apply(this, arguments) } return _possibleConstructorReturn(this, result) } }
+function _createSuper (Derived) { const hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal () { const Super = _getPrototypeOf(Derived); let result; if (hasNativeReflectConstruct) { const NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget) } else { result = Super.apply(this, arguments) } return _possibleConstructorReturn(this, result) } }
 
 function _possibleConstructorReturn (self, call) { if (call && (_typeof(call) === 'object' || typeof call === 'function')) { return call } return _assertThisInitialized(self) }
 
@@ -56,10 +58,10 @@ function _getPrototypeOf (o) { _getPrototypeOf = Object.setPrototypeOf ? Object.
  * @property {PseudoHTMLElement} body - A reference to the Body child element
  * @property {function} createElement - Generate a new PseudoHTMLElement with parent of document
  */
-var PseudoHTMLDocument = /* #__PURE__ */(function (_PseudoHTMLElement) {
+const PseudoHTMLDocument = /* #__PURE__ */(function (_PseudoHTMLElement) {
   _inherits(PseudoHTMLDocument, _PseudoHTMLElement)
 
-  var _super = _createSuper(PseudoHTMLDocument)
+  const _super = _createSuper(PseudoHTMLDocument)
 
   /**
    * The root HTML element is acts as the parent to all HTML elements in the document.
@@ -67,12 +69,12 @@ var PseudoHTMLDocument = /* #__PURE__ */(function (_PseudoHTMLElement) {
    * @constructor
    */
   function PseudoHTMLDocument () {
-    var _this
+    let _this
 
     _classCallCheck(this, PseudoHTMLDocument)
 
     _this = _super.call(this)
-    var html = new _PseudoHTMLElement2.PseudoHTMLElement({
+    const html = new _PseudoHTMLElement2.PseudoHTMLElement({
       tagName: 'html',
       parent: _assertThisInitialized(_this)
     })
@@ -112,8 +114,8 @@ var PseudoHTMLDocument = /* #__PURE__ */(function (_PseudoHTMLElement) {
   _createClass(PseudoHTMLDocument, [{
     key: 'createElement',
     value: function createElement () {
-      var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div'
-      var returnElement = new _PseudoHTMLElement2.PseudoHTMLElement({
+      const tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div'
+      const returnElement = new _PseudoHTMLElement2.PseudoHTMLElement({
         tagName: tagName
       })
       returnElement.parent = this

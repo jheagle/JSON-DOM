@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import * as jDomObjectsMatrix from '../../dist/matrix/source/objects.js'
 import * as jDomCoreMatrix from '../../dist/matrix/source/functions.js'
 

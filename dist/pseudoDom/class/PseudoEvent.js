@@ -15,11 +15,13 @@ require('core-js/modules/es.array.slice.js')
 
 require('core-js/modules/es.array.concat.js')
 
+require('core-js/modules/es.array.reduce.js')
+
 function _defineProperty (obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }) } else { obj[key] = value } return obj }
 
 function _classCallCheck (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function') } }
 
-function _defineProperties (target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } }
+function _defineProperties (target, props) { for (let i = 0; i < props.length; i++) { const descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } }
 
 function _createClass (Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor }
 
@@ -58,7 +60,7 @@ function _createClass (Constructor, protoProps, staticProps) { if (protoProps) _
  * @property {boolean} isTrusted - Indicates whether or not the event was initiated by the browser (after a user
  * click for instance) or by a script (using an event creation method, like event.initEvent)
  */
-var PseudoEvent = /* #__PURE__ */(function () {
+const PseudoEvent = /* #__PURE__ */(function () {
   /**
    *
    * @param typeArg
@@ -69,21 +71,21 @@ var PseudoEvent = /* #__PURE__ */(function () {
    * @constructor
    */
   function PseudoEvent () {
-    var _this = this
+    const _this = this
 
-    var typeArg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ''
+    const typeArg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ''
 
-    var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
-    var _ref$bubbles = _ref.bubbles
-    var bubbles = _ref$bubbles === void 0 ? true : _ref$bubbles
-    var _ref$cancelable = _ref.cancelable
-    var cancelable = _ref$cancelable === void 0 ? true : _ref$cancelable
-    var _ref$composed = _ref.composed
-    var composed = _ref$composed === void 0 ? true : _ref$composed
+    const _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
+    const _ref$bubbles = _ref.bubbles
+    const bubbles = _ref$bubbles === void 0 ? true : _ref$bubbles
+    const _ref$cancelable = _ref.cancelable
+    const cancelable = _ref$cancelable === void 0 ? true : _ref$cancelable
+    const _ref$composed = _ref.composed
+    const composed = _ref$composed === void 0 ? true : _ref$composed
 
     _classCallCheck(this, PseudoEvent)
 
-    var properties = {
+    let properties = {
       bubbles: bubbles,
       cancelable: cancelable,
       composed: composed,
@@ -103,12 +105,12 @@ var PseudoEvent = /* #__PURE__ */(function () {
     }
 
     this.setReadOnlyProperties = function () {
-      var updateProps = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
+      const updateProps = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
       properties = Object.assign({}, properties, updateProps)
 
       _this.getReadOnlyProperties = (function (properties) {
         return function () {
-          var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ''
+          const name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ''
           return properties[name]
         }
       }(properties))

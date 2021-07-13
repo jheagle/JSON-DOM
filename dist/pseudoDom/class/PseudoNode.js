@@ -21,23 +21,29 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.generateNode = exports.NodeFactory = exports.PseudoNode = void 0
 
+require('core-js/modules/es.array.index-of.js')
+
 require('core-js/modules/es.function.name.js')
 
 require('core-js/modules/es.array.splice.js')
 
+require('core-js/modules/es.array.reduce.js')
+
 require('core-js/modules/es.object.assign.js')
+
+require('core-js/modules/es.object.set-prototype-of.js')
 
 require('core-js/modules/es.object.get-prototype-of.js')
 
-var _TreeLinker2 = require('../../collections/classes/TreeLinker')
+const _TreeLinker2 = require('../../collections/classes/TreeLinker')
 
-var _PseudoEventTarget2 = require('./PseudoEventTarget')
+const _PseudoEventTarget2 = require('./PseudoEventTarget')
 
 function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof (obj) { return typeof obj } } else { _typeof = function _typeof (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj } } return _typeof(obj) }
 
 function _classCallCheck (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function') } }
 
-function _defineProperties (target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } }
+function _defineProperties (target, props) { for (let i = 0; i < props.length; i++) { const descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } }
 
 function _createClass (Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor }
 
@@ -45,7 +51,7 @@ function _inherits (subClass, superClass) { if (typeof superClass !== 'function'
 
 function _setPrototypeOf (o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf (o, p) { o.__proto__ = p; return o }; return _setPrototypeOf(o, p) }
 
-function _createSuper (Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal () { var Super = _getPrototypeOf(Derived); var result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget) } else { result = Super.apply(this, arguments) } return _possibleConstructorReturn(this, result) } }
+function _createSuper (Derived) { const hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal () { const Super = _getPrototypeOf(Derived); let result; if (hasNativeReflectConstruct) { const NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget) } else { result = Super.apply(this, arguments) } return _possibleConstructorReturn(this, result) } }
 
 function _possibleConstructorReturn (self, call) { if (call && (_typeof(call) === 'object' || typeof call === 'function')) { return call } return _assertThisInitialized(self) }
 
@@ -64,17 +70,17 @@ function _getPrototypeOf (o) { _getPrototypeOf = Object.setPrototypeOf ? Object.
  * @property {function} appendChild
  * @property {function} removeChild
  */
-var PseudoNode = /* #__PURE__ */(function (_PseudoEventTarget) {
+const PseudoNode = /* #__PURE__ */(function (_PseudoEventTarget) {
   _inherits(PseudoNode, _PseudoEventTarget)
 
-  var _super = _createSuper(PseudoNode)
+  const _super = _createSuper(PseudoNode)
 
   /**
    *
    * @constructor
    */
   function PseudoNode () {
-    var _this
+    let _this
 
     _classCallCheck(this, PseudoNode)
 
@@ -124,8 +130,8 @@ var PseudoNode = /* #__PURE__ */(function (_PseudoEventTarget) {
   }, {
     key: 'nodeType',
     get: function get () {
-      var typeName = 'DEFAULT_NODE'
-      var nodeTypes = ['DEFAULT_NODE', 'ELEMENT_NODE', 'ATTRIBUTE_NODE', 'TEXT_NODE', 'CDATA_SECTION_NODE', 'ENTITY_REFERENCE_NODE', 'ENTITY_NODE', 'PROCESSING_INSTRUCTION_NODE', 'COMMENT_NODE', 'DOCUMENT_NODE', 'DOCUMENT_TYPE_NODE', 'DOCUMENT_FRAGMENT_NODE', 'NOTATION_NODE']
+      const typeName = 'DEFAULT_NODE'
+      const nodeTypes = ['DEFAULT_NODE', 'ELEMENT_NODE', 'ATTRIBUTE_NODE', 'TEXT_NODE', 'CDATA_SECTION_NODE', 'ENTITY_REFERENCE_NODE', 'ENTITY_NODE', 'PROCESSING_INSTRUCTION_NODE', 'COMMENT_NODE', 'DOCUMENT_NODE', 'DOCUMENT_TYPE_NODE', 'DOCUMENT_FRAGMENT_NODE', 'NOTATION_NODE']
       return nodeTypes.indexOf(typeName)
     }
   }, {
@@ -221,10 +227,10 @@ var PseudoNode = /* #__PURE__ */(function (_PseudoEventTarget) {
 
 exports.PseudoNode = PseudoNode
 
-var NodeFactory = /* #__PURE__ */(function (_TreeLinker) {
+const NodeFactory = /* #__PURE__ */(function (_TreeLinker) {
   _inherits(NodeFactory, _TreeLinker)
 
-  var _super2 = _createSuper(NodeFactory)
+  const _super2 = _createSuper(NodeFactory)
 
   function NodeFactory () {
     _classCallCheck(this, NodeFactory)
@@ -237,10 +243,10 @@ var NodeFactory = /* #__PURE__ */(function (_TreeLinker) {
 
 exports.NodeFactory = NodeFactory
 
-var generateNode = function generateNode () {
+const generateNode = function generateNode () {
   NodeFactory.fromArray = function () {
-    var values = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : []
-    var LinkerClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : NodeFactory
+    const values = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : []
+    const LinkerClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : NodeFactory
     return values.reduce(function (list, element) {
       if (_typeof(element) !== 'object') {
         element = {
@@ -248,7 +254,7 @@ var generateNode = function generateNode () {
         }
       }
 
-      var newList = false
+      let newList = false
 
       if (list === null) {
         newList = true
@@ -266,17 +272,17 @@ var generateNode = function generateNode () {
        * @property {function} removeChild
        */
 
-      var PseudoNodeAttached = /* #__PURE__ */(function (_PseudoNode) {
+      const PseudoNodeAttached = /* #__PURE__ */(function (_PseudoNode) {
         _inherits(PseudoNodeAttached, _PseudoNode)
 
-        var _super3 = _createSuper(PseudoNodeAttached)
+        const _super3 = _createSuper(PseudoNodeAttached)
 
         /**
          *
          * @constructor
          */
         function PseudoNodeAttached () {
-          var _this2
+          let _this2
 
           _classCallCheck(this, PseudoNodeAttached)
 
@@ -324,8 +330,8 @@ var generateNode = function generateNode () {
         }, {
           key: 'nodeType',
           get: function get () {
-            var typeName = 'DEFAULT_NODE'
-            var nodeTypes = ['DEFAULT_NODE', 'ELEMENT_NODE', 'ATTRIBUTE_NODE', 'TEXT_NODE', 'CDATA_SECTION_NODE', 'ENTITY_REFERENCE_NODE', 'ENTITY_NODE', 'PROCESSING_INSTRUCTION_NODE', 'COMMENT_NODE', 'DOCUMENT_NODE', 'DOCUMENT_TYPE_NODE', 'DOCUMENT_FRAGMENT_NODE', 'NOTATION_NODE']
+            const typeName = 'DEFAULT_NODE'
+            const nodeTypes = ['DEFAULT_NODE', 'ELEMENT_NODE', 'ATTRIBUTE_NODE', 'TEXT_NODE', 'CDATA_SECTION_NODE', 'ENTITY_REFERENCE_NODE', 'ENTITY_NODE', 'PROCESSING_INSTRUCTION_NODE', 'COMMENT_NODE', 'DOCUMENT_NODE', 'DOCUMENT_TYPE_NODE', 'DOCUMENT_FRAGMENT_NODE', 'NOTATION_NODE']
             return nodeTypes.indexOf(typeName)
           }
         }, {

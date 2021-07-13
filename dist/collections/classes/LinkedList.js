@@ -19,26 +19,26 @@ require('core-js/modules/es.symbol.js')
 
 require('core-js/modules/es.symbol.description.js')
 
-var _Linker = require('./Linker')
+const _Linker = require('./Linker')
 
 function _classCallCheck (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function') } }
 
-function _defineProperties (target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } }
+function _defineProperties (target, props) { for (let i = 0; i < props.length; i++) { const descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } }
 
 function _createClass (Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor }
 
 /**
  *
  */
-var LinkedList = /* #__PURE__ */(function () {
+const LinkedList = /* #__PURE__ */(function () {
   /**
    *
    * @param LinkerClass
    * @param ListClass
    */
   function LinkedList () {
-    var LinkerClass = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _Linker.Linker
-    var ListClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : LinkedList
+    const LinkerClass = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _Linker.Linker
+    const ListClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : LinkedList
 
     _classCallCheck(this, LinkedList)
 
@@ -54,8 +54,8 @@ var LinkedList = /* #__PURE__ */(function () {
   _createClass(LinkedList, [{
     key: 'first',
     get: function get () {
-      var head = this.innerList
-      var prev = head.prev
+      let head = this.innerList
+      let prev = head.prev
 
       while (prev !== null) {
         head = prev
@@ -72,8 +72,8 @@ var LinkedList = /* #__PURE__ */(function () {
   }, {
     key: 'last',
     get: function get () {
-      var tail = this.innerList
-      var next = tail.next
+      let tail = this.innerList
+      let next = tail.next
 
       while (next !== null) {
         tail = next
@@ -90,8 +90,8 @@ var LinkedList = /* #__PURE__ */(function () {
   }, {
     key: 'length',
     get: function get () {
-      var current = this.first
-      var length = 0
+      let current = this.first
+      let length = 0
 
       while (current !== null) {
         ++length
@@ -131,9 +131,9 @@ var LinkedList = /* #__PURE__ */(function () {
     key: 'item',
     value: function item (index) {
       if (index >= 0) {
-        var _current = this.first
+        let _current = this.first
 
-        var _currentIndex = -1
+        let _currentIndex = -1
 
         while (++_currentIndex < index && _current !== null) {
           _current = _current.next
@@ -142,9 +142,9 @@ var LinkedList = /* #__PURE__ */(function () {
         return _currentIndex === index ? _current : null
       }
 
-      var current = this.last
-      var currentIndex = this.length
-      var calculatedIndex = this.length + index
+      let current = this.last
+      let currentIndex = this.length
+      const calculatedIndex = this.length + index
 
       if (calculatedIndex < 0) {
         return null
@@ -164,7 +164,7 @@ var LinkedList = /* #__PURE__ */(function () {
   }, {
     key: 'forEach',
     value: function forEach (callback) {
-      var current = this.first
+      let current = this.first
 
       while (current !== null) {
         callback(current)
@@ -179,10 +179,10 @@ var LinkedList = /* #__PURE__ */(function () {
   }, {
     key: Symbol.iterator,
     value: function value () {
-      var current = this.first
+      let current = this.first
       return {
         next: function next () {
-          var result = {
+          const result = {
             value: current,
             done: !current
           }
@@ -206,10 +206,10 @@ var LinkedList = /* #__PURE__ */(function () {
 exports.LinkedList = LinkedList
 
 LinkedList.fromArray = function () {
-  var values = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : []
-  var LinkerClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _Linker.Linker
-  var ListClass = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : LinkedList
-  var list = new ListClass(LinkerClass)
+  const values = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : []
+  const LinkerClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _Linker.Linker
+  const ListClass = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : LinkedList
+  const list = new ListClass(LinkerClass)
   list.innerList = list.LinkerClass.fromArray(values, LinkerClass)
   return list
 }

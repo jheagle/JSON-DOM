@@ -33,13 +33,17 @@ require('core-js/modules/es.array.concat.js')
 
 require('core-js/modules/es.array.splice.js')
 
+require('core-js/modules/es.array.index-of.js')
+
 require('core-js/modules/es.function.name.js')
 
 require('core-js/modules/es.object.assign.js')
 
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+require('core-js/modules/es.array.reduce.js')
 
-var _objects = require('./objects')
+const _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+
+const _objects = require('./objects')
 
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
@@ -56,7 +60,7 @@ function _typeof (obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'funct
    * @param {string|Object} attr - The expected value of the attribute to compare against
    * @returns {boolean|Object.<string, number>}
    */
-var elementHasAttribute = function elementHasAttribute (element, key, attr) {
+const elementHasAttribute = function elementHasAttribute (element, key, attr) {
   if (!element.style) {
     // if element is not a valid element then return false
     return false
@@ -81,7 +85,7 @@ var elementHasAttribute = function elementHasAttribute (element, key, attr) {
 
 exports.elementHasAttribute = elementHasAttribute
 
-var elementCompareClassList = function elementCompareClassList (element, classes) {
+const elementCompareClassList = function elementCompareClassList (element, classes) {
   return _functionalHelpers.default.compareArrays(classes.split(' '), [].from(element.classList))
 }
 /**
@@ -95,7 +99,7 @@ var elementCompareClassList = function elementCompareClassList (element, classes
 
 exports.elementCompareClassList = elementCompareClassList
 
-var elementChanges = function elementChanges (config) {
+const elementChanges = function elementChanges (config) {
   return config.element.tagName.toLowerCase() !== config.tagName.toLowerCase() // Generate a new element since the tag has changed
     ? generateElement(config) // Remove all the similarities
     : _functionalHelpers.default.setValue('attributes', _functionalHelpers.default.filterObject(config.attributes, // For each attribute, check if it becomes true / false based on the comparison results
@@ -125,7 +129,7 @@ var elementChanges = function elementChanges (config) {
 
 exports.elementChanges = elementChanges
 
-var setAttribute = function setAttribute (config, name, value) {
+const setAttribute = function setAttribute (config, name, value) {
   config.element.setAttribute(name, value)
   return config
 }
@@ -141,7 +145,7 @@ var setAttribute = function setAttribute (config, name, value) {
 
 exports.setAttribute = setAttribute
 
-var setAndReturnAttribute = function setAndReturnAttribute (config, name, value) {
+const setAndReturnAttribute = function setAndReturnAttribute (config, name, value) {
   config.element.setAttribute(name, value)
   return value
 }
@@ -155,13 +159,13 @@ var setAndReturnAttribute = function setAndReturnAttribute (config, name, value)
 
 exports.setAndReturnAttribute = setAndReturnAttribute
 
-var updateElement = function updateElement (config) {
+const updateElement = function updateElement (config) {
   if (!config.element.style) {
     // if element is not a valid element then return the config without changes
     return config
   }
 
-  var domItem = elementChanges(config) // Set the the current attributes to contain all the changes
+  const domItem = elementChanges(config) // Set the the current attributes to contain all the changes
 
   domItem.attributes = _functionalHelpers.default.mapObject( // Retrieve only the changes to be applied from the attributes
     domItem.attributes, function (attr, key) {
@@ -169,7 +173,7 @@ var updateElement = function updateElement (config) {
         return key in config.element ? _functionalHelpers.default.setAndReturnValue(config.element, key, attr) : setAndReturnAttribute(config, key, attr)
       }
 
-      var cleanedStyles = _functionalHelpers.default.filterObject( // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
+      const cleanedStyles = _functionalHelpers.default.filterObject( // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
         attr, function (param, k) {
           return /^\D+$/.test(k)
         })
@@ -191,8 +195,8 @@ var updateElement = function updateElement (config) {
 
 exports.updateElement = updateElement
 
-var updateElements = function updateElements (config) {
-  var domItem = updateElement(config)
+const updateElements = function updateElements (config) {
+  const domItem = updateElement(config)
   return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(domItem.children, function (child) {
     return updateElements(child)
   }), domItem)
@@ -218,7 +222,7 @@ var generateElement = function generateElement (config) {
 
 exports.generateElement = generateElement
 
-var bindElement = function bindElement (item) {
+const bindElement = function bindElement (item) {
   return _functionalHelpers.default.setValue('element', !item.element || !item.element.style ? generateElement(item).element : item.element, item)
 }
 /**
@@ -231,7 +235,7 @@ var bindElement = function bindElement (item) {
 
 exports.bindElement = bindElement
 
-var retrieveParentItem = function retrieveParentItem (parent) {
+const retrieveParentItem = function retrieveParentItem (parent) {
   return parent.body ? parent.body : parent
 }
 /**
@@ -241,7 +245,7 @@ var retrieveParentItem = function retrieveParentItem (parent) {
    * @returns {Array|Buffer|*|T[]|string}
    */
 
-var addUniqueToArray = function addUniqueToArray (item, array) {
+const addUniqueToArray = function addUniqueToArray (item, array) {
   return !array.includes(item) ? array.concat([item]) : array
 }
 /**
@@ -251,8 +255,8 @@ var addUniqueToArray = function addUniqueToArray (item, array) {
    * @returns {module:dom/objects.DomItem}
    */
 
-var appendAndReturnChild = function appendAndReturnChild (child) {
-  var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem.body
+const appendAndReturnChild = function appendAndReturnChild (child) {
+  const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem.body
   retrieveParentItem(parent).element.appendChild(child.element)
   return child
 }
@@ -264,8 +268,8 @@ var appendAndReturnChild = function appendAndReturnChild (child) {
    * @returns {module:dom/objects.DomItem}
    */
 
-var appendHTML = function appendHTML (item) {
-  var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem.body
+const appendHTML = function appendHTML (item) {
+  const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem.body
   return appendAndReturnChild(bindElement(item), _functionalHelpers.default.setValue('children', addUniqueToArray(item, retrieveParentItem(parent).children), retrieveParentItem(parent)))
 }
 /**
@@ -278,8 +282,8 @@ var appendHTML = function appendHTML (item) {
 
 exports.appendHTML = appendHTML
 
-var removeChild = function removeChild (item) {
-  var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem.body
+const removeChild = function removeChild (item) {
+  const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem.body
   parent.element.removeChild(item.element)
   return parent.children.splice(parent.children.indexOf(item), 1)
 }
@@ -296,9 +300,9 @@ var removeChild = function removeChild (item) {
 
 exports.removeChild = removeChild
 
-var registerListener = function registerListener (listener) {
-  var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : listener.name
-  var parent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _objects.documentItem
+const registerListener = function registerListener (listener) {
+  const name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : listener.name
+  const parent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _objects.documentItem
   return Object.assign(parent.eventListeners, _defineProperty({}, name, listener))
 }
 /**
@@ -313,8 +317,8 @@ var registerListener = function registerListener (listener) {
 
 exports.registerListener = registerListener
 
-var registerListeners = function registerListeners (listeners) {
-  var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem
+const registerListeners = function registerListeners (listeners) {
+  const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem
   return _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.mergeObjectsMutable(parent.eventListeners, listeners), parent)
 }
 /**
@@ -328,8 +332,8 @@ var registerListeners = function registerListeners (listeners) {
 
 exports.registerListeners = registerListeners
 
-var retrieveListener = function retrieveListener (listenerName) {
-  var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem
+const retrieveListener = function retrieveListener (listenerName) {
+  const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem
   return Object.keys(parent.eventListeners).includes(listenerName) ? parent.eventListeners[listenerName] : {}
 }
 /**
@@ -340,7 +344,7 @@ var retrieveListener = function retrieveListener (listenerName) {
 
 exports.retrieveListener = retrieveListener
 
-var listenerOptions = function listenerOptions (options) {
+const listenerOptions = function listenerOptions (options) {
   if (typeof listenerOptions.supportsOptions === 'undefined') {
     // Check if supportsOptions has been defined. This is a compatibility checking flag.
     listenerOptions.supportsOptions = true
@@ -372,7 +376,7 @@ var listenerOptions = function listenerOptions (options) {
    * @returns {module:dom/objects~listenerFunction|function}
    */
 
-var assignListener = function assignListener (trigger, elem, fn, options) {
+const assignListener = function assignListener (trigger, elem, fn, options) {
   // Attaching a listener may be done differently based on the browser support
   if (elem.addEventListener) {
     // Latest support is provided fro addEventListener with the options parameter varying slightly
@@ -403,9 +407,9 @@ var assignListener = function assignListener (trigger, elem, fn, options) {
 
 exports.assignListener = assignListener
 
-var appendListeners = function appendListeners (item, event, listener) {
-  var args = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {}
-  var options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false
+const appendListeners = function appendListeners (item, event, listener) {
+  const args = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {}
+  const options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false
   return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(item.children, function (i) {
     return appendListeners(i, event, listener, args, options)
   }), _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.setValue(event, {
@@ -422,7 +426,7 @@ var appendListeners = function appendListeners (item, event, listener) {
 
 exports.appendListeners = appendListeners
 
-var bindElementListeners = function bindElementListeners (item) {
+const bindElementListeners = function bindElementListeners (item) {
   return _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.mapObject(item.eventListeners, function (attr, event) {
     return assignListener(event, item.element, function (e) {
       return attr.listenerFunc(e, item, attr.listenerArgs)
@@ -438,7 +442,7 @@ var bindElementListeners = function bindElementListeners (item) {
    * @returns {module:dom/objects.DomItem}
    */
 
-var bindListeners = function bindListeners (item) {
+const bindListeners = function bindListeners (item) {
   return item.eventListeners && Object.keys(item.eventListeners).length && item.element.style ? bindElementListeners(item) : item
 }
 /**
@@ -453,7 +457,7 @@ var bindListeners = function bindListeners (item) {
 
 exports.bindListeners = bindListeners
 
-var bindAllListeners = function bindAllListeners (item) {
+const bindAllListeners = function bindAllListeners (item) {
   return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(item.children, function (i) {
     return bindAllListeners(i)
   }), bindListeners(item))
@@ -482,7 +486,7 @@ var bindAllListeners = function bindAllListeners (item) {
 
 exports.bindAllListeners = bindAllListeners
 
-var gatherChildItems = function gatherChildItems (item, test) {
+const gatherChildItems = function gatherChildItems (item, test) {
   return test(item, item.children.reduce(function (a, b) {
     return a.concat(gatherChildItems(b, test))
   }, []))
@@ -496,7 +500,7 @@ var gatherChildItems = function gatherChildItems (item, test) {
 
 exports.gatherChildItems = gatherChildItems
 
-var getChildTest = function getChildTest (attr, value) {
+const getChildTest = function getChildTest (attr, value) {
   return function (item, gatheredResults) {
     return item.attributes[attr] && item.attributes[attr] === value ? gatheredResults.concat([item]) : gatheredResults
   }
@@ -514,8 +518,8 @@ var getChildTest = function getChildTest (attr, value) {
    * @returns {Array.<module:dom/objects.DomItem>}
    */
 
-var getChildrenFromAttribute = function getChildrenFromAttribute (attr, value) {
-  var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _objects.documentItem.body
+const getChildrenFromAttribute = function getChildrenFromAttribute (attr, value) {
+  const item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _objects.documentItem.body
   return gatherChildItems(item, getChildTest(attr, value))
 }
 /**
@@ -526,7 +530,7 @@ var getChildrenFromAttribute = function getChildrenFromAttribute (attr, value) {
 
 exports.getChildrenFromAttribute = getChildrenFromAttribute
 
-var getChildrenByClass = _functionalHelpers.default.curry(getChildrenFromAttribute)('className')
+const getChildrenByClass = _functionalHelpers.default.curry(getChildrenFromAttribute)('className')
 /**
    * Helper for getting all jDomObjects.DomItems starting at parent and having specified name attribute
    * @function getChildrenByName
@@ -535,7 +539,7 @@ var getChildrenByClass = _functionalHelpers.default.curry(getChildrenFromAttribu
 
 exports.getChildrenByClass = getChildrenByClass
 
-var getChildrenByName = _functionalHelpers.default.curry(getChildrenFromAttribute)('name')
+const getChildrenByName = _functionalHelpers.default.curry(getChildrenFromAttribute)('name')
 /**
    * A selector function for retrieving existing child jDomObjects.DomItems from the given parent item.
    * This function will check all the children starting from item, and scan the attributes
@@ -551,8 +555,8 @@ var getChildrenByName = _functionalHelpers.default.curry(getChildrenFromAttribut
 
 exports.getChildrenByName = getChildrenByName
 
-var getParentsFromAttribute = function getParentsFromAttribute (attr, value) {
-  var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _objects.documentItem.body
+const getParentsFromAttribute = function getParentsFromAttribute (attr, value) {
+  const item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _objects.documentItem.body
   return Object.keys(item.parentItem).length ? (item.parentItem.attributes[attr] || item[attr] || false) === value ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem]) : getParentsFromAttribute(attr, value, item.parentItem) : []
 }
 /**
@@ -563,7 +567,7 @@ var getParentsFromAttribute = function getParentsFromAttribute (attr, value) {
 
 exports.getParentsFromAttribute = getParentsFromAttribute
 
-var getParentsByClass = _functionalHelpers.default.curry(getParentsFromAttribute)('className')
+const getParentsByClass = _functionalHelpers.default.curry(getParentsFromAttribute)('className')
 /**
    * Helper for getting all jDomObjects.DomItems starting at child and having specified name attribute
    * @function getParentsByName
@@ -572,7 +576,7 @@ var getParentsByClass = _functionalHelpers.default.curry(getParentsFromAttribute
 
 exports.getParentsByClass = getParentsByClass
 
-var getParentsByName = _functionalHelpers.default.curry(getParentsFromAttribute)('name')
+const getParentsByName = _functionalHelpers.default.curry(getParentsFromAttribute)('name')
 /**
    * Helper for getting all jDomObjects.DomItems starting at child and having specified tagName
    * @function getParentsByTagName
@@ -581,7 +585,7 @@ var getParentsByName = _functionalHelpers.default.curry(getParentsFromAttribute)
 
 exports.getParentsByName = getParentsByName
 
-var getParentsByTagName = _functionalHelpers.default.curry(getParentsFromAttribute)('tagName')
+const getParentsByTagName = _functionalHelpers.default.curry(getParentsFromAttribute)('tagName')
 /**
    * Get the upper parentItem for the provided child. (usually this is a documentItem reference)
    * WARNING: This is a recursive function.
@@ -592,7 +596,7 @@ var getParentsByTagName = _functionalHelpers.default.curry(getParentsFromAttribu
 
 exports.getParentsByTagName = getParentsByTagName
 
-var getTopParentItem = function getTopParentItem (item) {
+const getTopParentItem = function getTopParentItem (item) {
   return Object.keys(item.parentItem).length ? getTopParentItem(item.parentItem) : item
 }
 /**
@@ -607,8 +611,8 @@ var getTopParentItem = function getTopParentItem (item) {
 
 exports.getTopParentItem = getTopParentItem
 
-var renderHTML = function renderHTML (item) {
-  var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem
+const renderHTML = function renderHTML (item) {
+  const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _objects.documentItem
   return _functionalHelpers.default.pipe(function (domItem) {
     return _functionalHelpers.default.setValue('element', domItem.element && domItem.element.style ? domItem.element : bindElement(domItem).element, domItem)
   }, function (domItem) {

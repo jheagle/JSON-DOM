@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import * as jDomObjectsMatrix from '../../src/matrix/source/objects.js'
 
 // cube

@@ -35,17 +35,19 @@ require('core-js/modules/es.function.name.js')
 
 require('core-js/modules/es.array.find.js')
 
+require('core-js/modules/es.object.set-prototype-of.js')
+
 require('core-js/modules/es.object.get-prototype-of.js')
 
-var _PseudoNode2 = require('./PseudoNode')
+const _PseudoNode2 = require('./PseudoNode')
 
 function _classCallCheck (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function') } }
 
-function _defineProperties (target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } }
+function _defineProperties (target, props) { for (let i = 0; i < props.length; i++) { const descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } }
 
 function _createClass (Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor }
 
-function _get (target, property, receiver) { if (typeof Reflect !== 'undefined' && Reflect.get) { _get = Reflect.get } else { _get = function _get (target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver) } return desc.value } } return _get(target, property, receiver || target) }
+function _get (target, property, receiver) { if (typeof Reflect !== 'undefined' && Reflect.get) { _get = Reflect.get } else { _get = function _get (target, property, receiver) { const base = _superPropBase(target, property); if (!base) return; const desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver) } return desc.value } } return _get(target, property, receiver || target) }
 
 function _superPropBase (object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break } return object }
 
@@ -53,7 +55,7 @@ function _inherits (subClass, superClass) { if (typeof superClass !== 'function'
 
 function _setPrototypeOf (o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf (o, p) { o.__proto__ = p; return o }; return _setPrototypeOf(o, p) }
 
-function _createSuper (Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal () { var Super = _getPrototypeOf(Derived); var result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget) } else { result = Super.apply(this, arguments) } return _possibleConstructorReturn(this, result) } }
+function _createSuper (Derived) { const hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal () { const Super = _getPrototypeOf(Derived); let result; if (hasNativeReflectConstruct) { const NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget) } else { result = Super.apply(this, arguments) } return _possibleConstructorReturn(this, result) } }
 
 function _possibleConstructorReturn (self, call) { if (call && (_typeof(call) === 'object' || typeof call === 'function')) { return call } return _assertThisInitialized(self) }
 
@@ -78,10 +80,10 @@ function _getPrototypeOf (o) { _getPrototypeOf = Object.setPrototypeOf ? Object.
  * @property {function} getAttribute
  * @property {function} removeAttribute
  */
-var PseudoElement = /* #__PURE__ */(function (_PseudoNode) {
+const PseudoElement = /* #__PURE__ */(function (_PseudoNode) {
   _inherits(PseudoElement, _PseudoNode)
 
-  var _super = _createSuper(PseudoElement)
+  const _super = _createSuper(PseudoElement)
 
   /**
    * Simulate the Element object when the Dom is not available
@@ -92,17 +94,17 @@ var PseudoElement = /* #__PURE__ */(function (_PseudoNode) {
    * @constructor
    */
   function PseudoElement () {
-    var _this
+    let _this
 
-    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
-    var _ref$tagName = _ref.tagName
-    var tagName = _ref$tagName === void 0 ? '' : _ref$tagName
-    var _ref$attributes = _ref.attributes
-    var attributes = _ref$attributes === void 0 ? [] : _ref$attributes
-    var _ref$parent = _ref.parent
-    var parent = _ref$parent === void 0 ? {} : _ref$parent
-    var _ref$children = _ref.children
-    var children = _ref$children === void 0 ? [] : _ref$children
+    const _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
+    const _ref$tagName = _ref.tagName
+    const tagName = _ref$tagName === void 0 ? '' : _ref$tagName
+    const _ref$attributes = _ref.attributes
+    const attributes = _ref$attributes === void 0 ? [] : _ref$attributes
+    const _ref$parent = _ref.parent
+    const parent = _ref$parent === void 0 ? {} : _ref$parent
+    const _ref$children = _ref.children
+    const children = _ref$children === void 0 ? [] : _ref$children
 
     _classCallCheck(this, PseudoElement)
 
@@ -126,8 +128,8 @@ var PseudoElement = /* #__PURE__ */(function (_PseudoNode) {
      */
 
     _this.attributes.map(function (_ref2) {
-      var name = _ref2.name
-      var value = _ref2.value
+      const name = _ref2.name
+      const value = _ref2.value
       _this[name] = value
       return {
         name: name,
@@ -146,9 +148,9 @@ var PseudoElement = /* #__PURE__ */(function (_PseudoNode) {
   _createClass(PseudoElement, [{
     key: 'applyDefaultEvent',
     value: function applyDefaultEvent () {
-      var _this2 = this
+      const _this2 = this
 
-      var callback = function callback (event) {
+      let callback = function callback (event) {
         return undefined
       }
 
@@ -161,7 +163,7 @@ var PseudoElement = /* #__PURE__ */(function (_PseudoNode) {
         case 'input':
           if (/^(submit|image)$/i.test(this.type || '')) {
             callback = function callback (event) {
-              var forms = require('./PseudoEvent').getParentNodesFromAttribute('tagName', 'form', _this2)
+              const forms = require('./PseudoEvent').getParentNodesFromAttribute('tagName', 'form', _this2)
 
               if (forms) {
                 forms[0].submit()

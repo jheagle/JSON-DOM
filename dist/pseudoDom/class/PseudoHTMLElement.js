@@ -23,9 +23,11 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.PseudoHTMLElement = void 0
 
+require('core-js/modules/es.object.set-prototype-of.js')
+
 require('core-js/modules/es.object.get-prototype-of.js')
 
-var _PseudoElement2 = require('./PseudoElement')
+const _PseudoElement2 = require('./PseudoElement')
 
 function _classCallCheck (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function') } }
 
@@ -33,7 +35,7 @@ function _inherits (subClass, superClass) { if (typeof superClass !== 'function'
 
 function _setPrototypeOf (o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf (o, p) { o.__proto__ = p; return o }; return _setPrototypeOf(o, p) }
 
-function _createSuper (Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal () { var Super = _getPrototypeOf(Derived); var result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget) } else { result = Super.apply(this, arguments) } return _possibleConstructorReturn(this, result) } }
+function _createSuper (Derived) { const hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal () { const Super = _getPrototypeOf(Derived); let result; if (hasNativeReflectConstruct) { const NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget) } else { result = Super.apply(this, arguments) } return _possibleConstructorReturn(this, result) } }
 
 function _possibleConstructorReturn (self, call) { if (call && (_typeof(call) === 'object' || typeof call === 'function')) { return call } return _assertThisInitialized(self) }
 
@@ -57,10 +59,10 @@ function _getPrototypeOf (o) { _getPrototypeOf = Object.setPrototypeOf ? Object.
  * @property {Object} style - A container to define all applied inline-styles
  * @property {string} title - The title attribute which affects the text visible on hover
  */
-var PseudoHTMLElement = /* #__PURE__ */(function (_PseudoElement) {
+const PseudoHTMLElement = /* #__PURE__ */(function (_PseudoElement) {
   _inherits(PseudoHTMLElement, _PseudoElement)
 
-  var _super = _createSuper(PseudoHTMLElement)
+  const _super = _createSuper(PseudoHTMLElement)
 
   /**
    * Simulate the HTMLELement object when the Dom is not available
@@ -71,13 +73,13 @@ var PseudoHTMLElement = /* #__PURE__ */(function (_PseudoElement) {
    * @constructor
    */
   function PseudoHTMLElement () {
-    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
-    var _ref$tagName = _ref.tagName
-    var tagName = _ref$tagName === void 0 ? '' : _ref$tagName
-    var _ref$parent = _ref.parent
-    var parent = _ref$parent === void 0 ? {} : _ref$parent
-    var _ref$children = _ref.children
-    var children = _ref$children === void 0 ? [] : _ref$children
+    const _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
+    const _ref$tagName = _ref.tagName
+    const tagName = _ref$tagName === void 0 ? '' : _ref$tagName
+    const _ref$parent = _ref.parent
+    const parent = _ref$parent === void 0 ? {} : _ref$parent
+    const _ref$children = _ref.children
+    const children = _ref$children === void 0 ? [] : _ref$children
 
     _classCallCheck(this, PseudoHTMLElement)
 

@@ -27,9 +27,9 @@ exports.cube = exports.square = exports.matrix = exports.tile = exports.point = 
 
 require('core-js/modules/es.array.concat.js')
 
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+const _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
-var _objects = require('../../dom/source/objects')
+const _objects = require('../../dom/source/objects')
 
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
@@ -37,7 +37,7 @@ function _toConsumableArray (arr) { return _arrayWithoutHoles(arr) || _iterableT
 
 function _nonIterableSpread () { throw new TypeError('Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.') }
 
-function _unsupportedIterableToArray (o, minLen) { if (!o) return; if (typeof o === 'string') return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === 'Object' && o.constructor) n = o.constructor.name; if (n === 'Map' || n === 'Set') return Array.from(o); if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen) }
+function _unsupportedIterableToArray (o, minLen) { if (!o) return; if (typeof o === 'string') return _arrayLikeToArray(o, minLen); let n = Object.prototype.toString.call(o).slice(8, -1); if (n === 'Object' && o.constructor) n = o.constructor.name; if (n === 'Map' || n === 'Set') return Array.from(o); if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen) }
 
 function _iterableToArray (iter) { if (typeof Symbol !== 'undefined' && iter[Symbol.iterator] != null || iter['@@iterator'] != null) return Array.from(iter) }
 
@@ -83,8 +83,8 @@ function _arrayLikeToArray (arr, len) { if (len == null || len > arr.length) len
    * {@link module:matrix/objects.Matrix})
    * @returns {module:matrix/objects.Point}
    */
-var point = function point (x, y) {
-  var z = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0
+const point = function point (x, y) {
+  const z = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0
   return {
     x: x,
     y: y,
@@ -108,7 +108,7 @@ var point = function point (x, y) {
 
 exports.point = point
 
-var tile = function tile () {
+const tile = function tile () {
   return {
     point: {}
   }
@@ -168,20 +168,26 @@ var tile = function tile () {
 
 exports.tile = tile
 
-var matrix = function matrix () {
-  var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    coordinate: 0,
-    props: []
-  }
-  var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
-    coordinate: 0,
-    props: []
-  }
-  var z = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
-    coordinate: 1,
-    props: []
-  }
-  var matrixProps = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : []
+const matrix = function matrix () {
+  const x = arguments.length > 0 && arguments[0] !== undefined
+    ? arguments[0]
+    : {
+        coordinate: 0,
+        props: []
+      }
+  const y = arguments.length > 1 && arguments[1] !== undefined
+    ? arguments[1]
+    : {
+        coordinate: 0,
+        props: []
+      }
+  const z = arguments.length > 2 && arguments[2] !== undefined
+    ? arguments[2]
+    : {
+        coordinate: 1,
+        props: []
+      }
+  const matrixProps = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : []
   return _objects.createDomItem.apply(void 0, [{
     tagName: 'div',
     attributes: {
@@ -224,18 +230,18 @@ var matrix = function matrix () {
 
 exports.matrix = matrix
 
-var square = function square () {
-  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
-  var _ref$x = _ref.x
-  var x = _ref$x === void 0 ? [] : _ref$x
-  var _ref$y = _ref.y
-  var y = _ref$y === void 0 ? [] : _ref$y
-  var _ref$z = _ref.z
-  var z = _ref$z === void 0 ? [] : _ref$z
-  var _ref$matrixProps = _ref.matrixProps
-  var matrixProps = _ref$matrixProps === void 0 ? [] : _ref$matrixProps
+const square = function square () {
+  const _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
+  const _ref$x = _ref.x
+  const x = _ref$x === void 0 ? [] : _ref$x
+  const _ref$y = _ref.y
+  const y = _ref$y === void 0 ? [] : _ref$y
+  const _ref$z = _ref.z
+  const z = _ref$z === void 0 ? [] : _ref$z
+  const _ref$matrixProps = _ref.matrixProps
+  const matrixProps = _ref$matrixProps === void 0 ? [] : _ref$matrixProps
 
-  var size = arguments.length > 1 ? arguments[1] : undefined
+  const size = arguments.length > 1 ? arguments[1] : undefined
   return matrix({
     coordinate: size,
     props: x
@@ -261,18 +267,18 @@ var square = function square () {
 
 exports.square = square
 
-var cube = function cube () {
-  var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
-  var _ref2$x = _ref2.x
-  var x = _ref2$x === void 0 ? [] : _ref2$x
-  var _ref2$y = _ref2.y
-  var y = _ref2$y === void 0 ? [] : _ref2$y
-  var _ref2$z = _ref2.z
-  var z = _ref2$z === void 0 ? [] : _ref2$z
-  var _ref2$matrixProps = _ref2.matrixProps
-  var matrixProps = _ref2$matrixProps === void 0 ? [] : _ref2$matrixProps
+const cube = function cube () {
+  const _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
+  const _ref2$x = _ref2.x
+  const x = _ref2$x === void 0 ? [] : _ref2$x
+  const _ref2$y = _ref2.y
+  const y = _ref2$y === void 0 ? [] : _ref2$y
+  const _ref2$z = _ref2.z
+  const z = _ref2$z === void 0 ? [] : _ref2$z
+  const _ref2$matrixProps = _ref2.matrixProps
+  const matrixProps = _ref2$matrixProps === void 0 ? [] : _ref2$matrixProps
 
-  var size = arguments.length > 1 ? arguments[1] : undefined
+  const size = arguments.length > 1 ? arguments[1] : undefined
   return matrix({
     coordinate: size,
     props: x

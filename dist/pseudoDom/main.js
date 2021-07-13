@@ -7,7 +7,7 @@ exports.default = void 0
 
 require('core-js/modules/es.object.assign.js')
 
-var _all = _interopRequireDefault(require('./all'))
+const _all = _interopRequireDefault(require('./all'))
 
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
@@ -20,13 +20,13 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
 /**
    * Store a reference to this scope which will be Window if rendered via browser
    */
-var root = void 0 || window || global || {}
+const root = void 0 || window || global || {}
 /**
    * Store reference to any pre-existing module of the same name
    * @type {module|*}
    */
 
-var previousPseudoDom = root.pseudoDom || {}
+const previousPseudoDom = root.pseudoDom || {}
 /**
    * All methods exported from this module are encapsulated within pseudoDom.
    * @author Joshua Heagle <joshuaheagle@gmail.com>
@@ -34,7 +34,7 @@ var previousPseudoDom = root.pseudoDom || {}
    * @module pseudoDom/objects
    */
 
-var pseudoDom = {}
+const pseudoDom = {}
 root.pseudoDom = pseudoDom
 /**
    * Return a reference to this library while preserving the original same-named library
@@ -47,6 +47,6 @@ pseudoDom.noConflict = function () {
   return pseudoDom
 }
 
-var _default = Object.assign(pseudoDom, _all.default)
+const _default = Object.assign(pseudoDom, _all.default)
 
 exports.default = _default

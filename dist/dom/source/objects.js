@@ -11,7 +11,7 @@ require('core-js/modules/es.array.map.js')
 
 require('core-js/modules/es.object.assign.js')
 
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+const _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
@@ -86,7 +86,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
    * @param {...Object} attributes - DomItem-like object(s) to be merged as a DomItem
    * @returns {module:dom/objects.DomItem}
    */
-var createDomItem = function createDomItem () {
+const createDomItem = function createDomItem () {
   for (var _len = arguments.length, attributes = new Array(_len), _key = 0; _key < _len; _key++) {
     attributes[_key] = arguments[_key]
   }
@@ -129,7 +129,7 @@ var createDomItem = function createDomItem () {
 
 exports.createDomItem = createDomItem
 
-var initChildren = function initChildren () {
+const initChildren = function initChildren () {
   return [createDomItem({
     tagName: 'head',
     attributes: {},
@@ -167,8 +167,8 @@ var initChildren = function initChildren () {
    * @returns {module:dom/objects.DomItemRoot|module:dom/objects.DomItem}
    */
 
-var initRoot = function initRoot (children) {
-  var listeners = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
+const initRoot = function initRoot (children) {
+  const listeners = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
   return createDomItem({
     tagName: 'html',
     attributes: {},
@@ -190,9 +190,9 @@ var initRoot = function initRoot (children) {
    * @returns {module:dom/objects.DomItemRoot|module:dom/objects.DomItem}
    */
 
-var documentDomItem = function documentDomItem () {
-  var listeners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : []
-  var rootItem = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : initRoot(initChildren(), listeners)
+const documentDomItem = function documentDomItem () {
+  const listeners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : []
+  const rootItem = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : initRoot(initChildren(), listeners)
   rootItem.children = rootItem.children.map(function (child) {
     return createDomItem(child, {
       parentItem: rootItem
@@ -209,5 +209,5 @@ var documentDomItem = function documentDomItem () {
    */
 
 exports.documentDomItem = documentDomItem
-var documentItem = documentDomItem()
+const documentItem = documentDomItem()
 exports.documentItem = documentItem

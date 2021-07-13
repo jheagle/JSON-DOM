@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.PseudoEventListener = void 0
 
-var _PseudoEvent = require('./PseudoEvent')
+const _PseudoEvent = require('./PseudoEvent')
 
 /**
  * @file Substitute for the DOM EventEventListener Class.
@@ -21,7 +21,7 @@ var _PseudoEvent = require('./PseudoEvent')
  * @property {Object} eventOptions
  * @property {boolean} isDefault
  */
-var PseudoEventListener = {
+const PseudoEventListener = {
   eventType: '',
   eventOptions: {
     capture: false,

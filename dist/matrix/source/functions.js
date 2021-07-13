@@ -31,13 +31,17 @@ require('core-js/modules/es.object.keys.js')
 
 require('core-js/modules/es.array.concat.js')
 
+require('core-js/modules/es.array.reduce.js')
+
+require('core-js/modules/es.array.index-of.js')
+
 require('core-js/modules/es.array.from.js')
 
 require('core-js/modules/es.string.iterator.js')
 
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+const _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
-var _objects = require('./objects')
+const _objects = require('./objects')
 
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
@@ -45,7 +49,7 @@ function _toConsumableArray (arr) { return _arrayWithoutHoles(arr) || _iterableT
 
 function _nonIterableSpread () { throw new TypeError('Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.') }
 
-function _unsupportedIterableToArray (o, minLen) { if (!o) return; if (typeof o === 'string') return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === 'Object' && o.constructor) n = o.constructor.name; if (n === 'Map' || n === 'Set') return Array.from(o); if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen) }
+function _unsupportedIterableToArray (o, minLen) { if (!o) return; if (typeof o === 'string') return _arrayLikeToArray(o, minLen); let n = Object.prototype.toString.call(o).slice(8, -1); if (n === 'Object' && o.constructor) n = o.constructor.name; if (n === 'Map' || n === 'Set') return Array.from(o); if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen) }
 
 function _iterableToArray (iter) { if (typeof Symbol !== 'undefined' && iter[Symbol.iterator] != null || iter['@@iterator'] != null) return Array.from(iter) }
 
@@ -64,15 +68,17 @@ function _defineProperty (obj, key, value) { if (key in obj) { Object.defineProp
    * @param {module:matrix/objects.Point} pnt - A point to be added to a specific Matrix Column
    * @returns {module:matrix/objects.MatrixColumn|module:matrix/objects.MatrixRow}
    */
-var bindPointData = function bindPointData (item) {
-  var pnt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _objects.point)(0, 0, 0)
-  return _functionalHelpers.default.mergeObjects(item, item.point ? {
-    point: _functionalHelpers.default.cloneObject(pnt)
-  } : {
-    children: item.children.map(function (el, i) {
-      return bindPointData(el, Object.assign(pnt, _defineProperty({}, el.axis, i)))
-    })
-  })
+const bindPointData = function bindPointData (item) {
+  const pnt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _objects.point)(0, 0, 0)
+  return _functionalHelpers.default.mergeObjects(item, item.point
+    ? {
+        point: _functionalHelpers.default.cloneObject(pnt)
+      }
+    : {
+        children: item.children.map(function (el, i) {
+          return bindPointData(el, Object.assign(pnt, _defineProperty({}, el.axis, i)))
+        })
+      })
 }
 /**
    * Based on provided point and point direction generate next point.
@@ -84,7 +90,7 @@ var bindPointData = function bindPointData (item) {
 
 exports.bindPointData = bindPointData
 
-var nextCell = function nextCell (pnt, dir) {
+const nextCell = function nextCell (pnt, dir) {
   return (0, _objects.point)(pnt.x + dir.x, pnt.y + dir.y, pnt.z + dir.z)
 }
 /**
@@ -97,7 +103,7 @@ var nextCell = function nextCell (pnt, dir) {
 
 exports.nextCell = nextCell
 
-var pointDifference = function pointDifference (start, end) {
+const pointDifference = function pointDifference (start, end) {
   return (0, _objects.point)(end.x - start.x, end.y - start.y, end.z - start.z)
 }
 /**
@@ -110,7 +116,7 @@ var pointDifference = function pointDifference (start, end) {
 
 exports.pointDifference = pointDifference
 
-var areEqualPoints = function areEqualPoints (p1, p2) {
+const areEqualPoints = function areEqualPoints (p1, p2) {
   return p1.x === p2.x && p1.y === p2.y && p1.z === p2.z
 }
 /**
@@ -122,7 +128,7 @@ var areEqualPoints = function areEqualPoints (p1, p2) {
 
 exports.areEqualPoints = areEqualPoints
 
-var getHighestAbsoluteCoordinate = function getHighestAbsoluteCoordinate (pnt) {
+const getHighestAbsoluteCoordinate = function getHighestAbsoluteCoordinate (pnt) {
   return _functionalHelpers.default.reduceObject(pnt, _functionalHelpers.default.getAbsoluteMax, 0)
 }
 /**
@@ -135,7 +141,7 @@ var getHighestAbsoluteCoordinate = function getHighestAbsoluteCoordinate (pnt) {
 
 exports.getHighestAbsoluteCoordinate = getHighestAbsoluteCoordinate
 
-var getFirstAxisOfCoordinate = function getFirstAxisOfCoordinate (pnt, coordinate) {
+const getFirstAxisOfCoordinate = function getFirstAxisOfCoordinate (pnt, coordinate) {
   return Object.keys(pnt).filter(function (key) {
     return pnt[key] === coordinate
   })[0] || false
@@ -150,7 +156,7 @@ var getFirstAxisOfCoordinate = function getFirstAxisOfCoordinate (pnt, coordinat
 
 exports.getFirstAxisOfCoordinate = getFirstAxisOfCoordinate
 
-var pointAndCoordinateToDirection = function pointAndCoordinateToDirection (pnt, highestCoordinate) {
+const pointAndCoordinateToDirection = function pointAndCoordinateToDirection (pnt, highestCoordinate) {
   return (function (axis) {
     return axis !== false ? _functionalHelpers.default.mergeObjects((0, _objects.point)(0, 0, 0), _defineProperty({}, ''.concat(axis), highestCoordinate > 0 ? 1 : -1)) : (0, _objects.point)(0, 0, 0)
   }(getFirstAxisOfCoordinate(pnt, highestCoordinate)))
@@ -161,7 +167,7 @@ var pointAndCoordinateToDirection = function pointAndCoordinateToDirection (pnt,
    * @returns {module:matrix/objects.Direction}
    */
 
-var pointToDirection = function pointToDirection (pnt) {
+const pointToDirection = function pointToDirection (pnt) {
   return pointAndCoordinateToDirection(pnt, getHighestAbsoluteCoordinate(pnt))
 }
 /**
@@ -173,7 +179,7 @@ var pointToDirection = function pointToDirection (pnt) {
    * @returns {module:matrix/objects.Direction}
    */
 
-var pointsToDirection = function pointsToDirection (start, end) {
+const pointsToDirection = function pointsToDirection (start, end) {
   return pointToDirection(pointDifference(start, end))
 }
 /**
@@ -187,8 +193,8 @@ var pointsToDirection = function pointsToDirection (start, end) {
 
 exports.pointsToDirection = pointsToDirection
 
-var randomStart = function randomStart (length, dir) {
-  var lengthLimits = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : (0, _objects.point)(10, 10, 10)
+const randomStart = function randomStart (length, dir) {
+  const lengthLimits = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : (0, _objects.point)(10, 10, 10)
   return (0, _objects.point)(_functionalHelpers.default.randomInteger(lengthLimits.x - (length - 1) * dir.x), _functionalHelpers.default.randomInteger(lengthLimits.y - (length - 1) * dir.y), _functionalHelpers.default.randomInteger(lengthLimits.z - (length - 1) * dir.z))
 }
 /**
@@ -202,7 +208,7 @@ var randomStart = function randomStart (length, dir) {
 
 exports.randomStart = randomStart
 
-var lineEndPoint = function lineEndPoint (start, length, dir) {
+const lineEndPoint = function lineEndPoint (start, length, dir) {
   return (0, _objects.point)(start.x + dir.x * (length - 1), start.y + dir.y * (length - 1), start.z + dir.z * (length - 1))
 }
 /**
@@ -217,8 +223,8 @@ var lineEndPoint = function lineEndPoint (start, length, dir) {
 
 exports.lineEndPoint = lineEndPoint
 
-var getPointsLine = function getPointsLine (start, end) {
-  var line = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : []
+const getPointsLine = function getPointsLine (start, end) {
+  const line = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : []
   return areEqualPoints(start, end) ? line.concat([start]) : getPointsLine(nextCell(start, pointsToDirection(start, end)), end, line.concat([start]))
 }
 /**
@@ -231,7 +237,7 @@ var getPointsLine = function getPointsLine (start, end) {
 
 exports.getPointsLine = getPointsLine
 
-var getPointsLines = function getPointsLines (lines) {
+const getPointsLines = function getPointsLines (lines) {
   return lines.reduce(function (pointsArray, line) {
     return pointsArray.concat(getPointsLine.apply(void 0, _toConsumableArray(line)))
   }, [])
@@ -258,8 +264,8 @@ var getPointsLines = function getPointsLines (lines) {
 
 exports.getPointsLines = getPointsLines
 
-var testPointsBetween = function testPointsBetween (start, end, matrix, func) {
-  var inclusive = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true
+const testPointsBetween = function testPointsBetween (start, end, matrix, func) {
+  const inclusive = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true
   return getPointsLine(start, end).filter(function (prop, i, line) {
     return i !== 0 && i !== line.length - 1 || inclusive
   }).reduce(function (newPoints, next) {
@@ -279,7 +285,7 @@ var testPointsBetween = function testPointsBetween (start, end, matrix, func) {
 
 exports.testPointsBetween = testPointsBetween
 
-var checkInBetween = function checkInBetween () {
+const checkInBetween = function checkInBetween () {
   return !!testPointsBetween.apply(void 0, arguments).true.length
 }
 /**
@@ -291,7 +297,7 @@ var checkInBetween = function checkInBetween () {
 
 exports.checkInBetween = checkInBetween
 
-var getAxisLengths = function getAxisLengths (matrix) {
+const getAxisLengths = function getAxisLengths (matrix) {
   return (0, _objects.point)(matrix.children[0].children[0].children.length, matrix.children[0].children.length, matrix.children.length)
 }
 /**
@@ -303,8 +309,8 @@ var getAxisLengths = function getAxisLengths (matrix) {
 
 exports.getAxisLengths = getAxisLengths
 
-var randDirection = function randDirection () {
-  var useCoordinates = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : []
+const randDirection = function randDirection () {
+  const useCoordinates = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : []
   return useCoordinates.length ? useCoordinates[_functionalHelpers.default.randomInteger(useCoordinates.length)] : (0, _objects.point)(0, 0, 0)
 }
 /**
@@ -317,7 +323,7 @@ var randDirection = function randDirection () {
 
 exports.randDirection = randDirection
 
-var checkValidPoint = function checkValidPoint (pnt, matrix) {
+const checkValidPoint = function checkValidPoint (pnt, matrix) {
   return !!matrix.children[pnt.z] && !!matrix.children[pnt.z].children[pnt.y] && !!matrix.children[pnt.z].children[pnt.y].children[pnt.x] && !!matrix.children[pnt.z].children[pnt.y].children[pnt.x].point
 }
 /**
@@ -330,7 +336,7 @@ var checkValidPoint = function checkValidPoint (pnt, matrix) {
 
 exports.checkValidPoint = checkValidPoint
 
-var getDomItemFromPoint = function getDomItemFromPoint (pnt, matrix) {
+const getDomItemFromPoint = function getDomItemFromPoint (pnt, matrix) {
   return checkValidPoint(pnt, matrix) ? matrix.children[pnt.z].children[pnt.y].children[pnt.x] : false
 }
 /**
@@ -344,11 +350,13 @@ var getDomItemFromPoint = function getDomItemFromPoint (pnt, matrix) {
 
 exports.getDomItemFromPoint = getDomItemFromPoint
 
-var getAllPoints = function getAllPoints (matrix) {
-  var allPoints = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : []
-  return matrix.point ? allPoints.concat([matrix.point]) : matrix.children.reduce(function (allPoints, child) {
-    return allPoints.concat(getAllPoints(child, []))
-  }, [])
+const getAllPoints = function getAllPoints (matrix) {
+  const allPoints = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : []
+  return matrix.point
+    ? allPoints.concat([matrix.point])
+    : matrix.children.reduce(function (allPoints, child) {
+      return allPoints.concat(getAllPoints(child, []))
+    }, [])
 }
 /**
    * Return all valid points surrounding a provided point
@@ -360,7 +368,7 @@ var getAllPoints = function getAllPoints (matrix) {
 
 exports.getAllPoints = getAllPoints
 
-var adjacentPoints = function adjacentPoints (pnt, matrix) {
+const adjacentPoints = function adjacentPoints (pnt, matrix) {
   return getPointsLines([[(0, _objects.point)(-1, 1, 1), (0, _objects.point)(1, -1, -1)], [(0, _objects.point)(1, 1, 1), (0, _objects.point)(-1, 1, -1)], [(0, _objects.point)(-1, -1, 1), (0, _objects.point)(1, -1, 1)], [(0, _objects.point)(1, 0, 0), (0, _objects.point)(1, 1, -1)], [(0, _objects.point)(-1, 1, 0), (0, _objects.point)(1, 1, 0)]]).concat([(0, _objects.point)(0, 0, 1), (0, _objects.point)(1, 0, 0), (0, _objects.point)(-1, 0, -1), (0, _objects.point)(0, 0, -1)]).map(function (p) {
     return nextCell(pnt, p)
   }).filter(function (p) {
@@ -377,7 +385,7 @@ var adjacentPoints = function adjacentPoints (pnt, matrix) {
 
 exports.adjacentPoints = adjacentPoints
 
-var adjacentEdgePoints = function adjacentEdgePoints (pnt, matrix) {
+const adjacentEdgePoints = function adjacentEdgePoints (pnt, matrix) {
   return [(0, _objects.point)(-1, 0, 0), (0, _objects.point)(1, 0, 0), (0, _objects.point)(0, -1, 0), (0, _objects.point)(0, 1, 0), (0, _objects.point)(0, 0, -1), (0, _objects.point)(0, 0, 1)].map(function (p) {
     return nextCell(pnt, p)
   }).filter(function (p) {
@@ -394,7 +402,7 @@ var adjacentEdgePoints = function adjacentEdgePoints (pnt, matrix) {
 
 exports.adjacentEdgePoints = adjacentEdgePoints
 
-var getPointFromElement = function getPointFromElement (elem) {
+const getPointFromElement = function getPointFromElement (elem) {
   return (0, _objects.point)(Array.from(elem.parentNode.childNodes).indexOf(elem), Array.from(elem.parentNode.parentNode.childNodes).indexOf(elem.parentNode), Array.from(elem.parentNode.parentNode.parentNode.childNodes).indexOf(elem.parentNode.parentNode))
 }
 /**
@@ -408,7 +416,7 @@ var getPointFromElement = function getPointFromElement (elem) {
 
 exports.getPointFromElement = getPointFromElement
 
-var getDomItemFromElement = function getDomItemFromElement (elem, matrix) {
+const getDomItemFromElement = function getDomItemFromElement (elem, matrix) {
   return getDomItemFromPoint(getPointFromElement(elem), matrix)
 }
 

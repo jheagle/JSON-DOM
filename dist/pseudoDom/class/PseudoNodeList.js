@@ -27,7 +27,7 @@ require('core-js/modules/es.symbol.description.js')
 
 function _classCallCheck (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function') } }
 
-function _defineProperties (target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } }
+function _defineProperties (target, props) { for (let i = 0; i < props.length; i++) { const descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } }
 
 function _createClass (Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor }
 
@@ -36,8 +36,8 @@ function _createClass (Constructor, protoProps, staticProps) { if (protoProps) _
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  */
-var nodeListFactory = function nodeListFactory (innerList) {
-  var PseudoNodeList = /* #__PURE__ */(function () {
+const nodeListFactory = function nodeListFactory (innerList) {
+  const PseudoNodeList = /* #__PURE__ */(function () {
     function PseudoNodeList () {
       _classCallCheck(this, PseudoNodeList)
     }
@@ -79,10 +79,10 @@ var nodeListFactory = function nodeListFactory (innerList) {
     }, {
       key: Symbol.iterator,
       value: function value () {
-        var current = innerList.first
+        let current = innerList.first
         return {
           next: function next () {
-            var result = {
+            const result = {
               value: current ? current.data : null,
               done: !current
             }
