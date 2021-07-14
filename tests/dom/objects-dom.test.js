@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import * as jDomObjects from '../../src/dom/source/objects'
+import * as jDomObjects from '../../dist/dom/source/objects'
 
 // documentItem
 test('documentItem has valid head', () => {
