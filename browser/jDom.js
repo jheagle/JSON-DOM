@@ -765,6 +765,10 @@
 
     require('core-js/modules/es.object.assign.js')
 
+    const _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+
+    function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+
     /**
  * @file Core objects for representing the DOM in JSON.
  * @author Joshua Heagle <joshuaheagle@gmail.com>
@@ -854,9 +858,12 @@
 
       attributes.forEach(function (attributeGroup) {
         for (const attribute in attributeGroup) {
-          if (attributeGroup.hasOwnProperty(attribute)) {
+          if (!(attribute in item) || !_functionalHelpers.default.isCloneable(attributeGroup[attribute])) {
             item[attribute] = attributeGroup[attribute]
+            continue
           }
+
+          item[attribute] = _functionalHelpers.default.mergeObjectsMutable(item[attribute], attributeGroup[attribute])
         }
       })
 
@@ -975,7 +982,7 @@
     exports.documentDomItem = documentDomItem
     const documentItem = documentDomItem()
     exports.documentItem = documentItem
-  }, { 'core-js/modules/es.array.map.js': 194, 'core-js/modules/es.object.assign.js': 253, 'core-js/modules/web.dom-collections.for-each.js': 392 }],
+  }, { 'core-js/modules/es.array.map.js': 194, 'core-js/modules/es.object.assign.js': 253, 'core-js/modules/web.dom-collections.for-each.js': 392, 'functional-helpers': 406 }],
   5: [function (require, module, exports) {
     module.exports = function (it) {
       if (typeof it !== 'function') {

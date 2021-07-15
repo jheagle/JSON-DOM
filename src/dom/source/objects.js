@@ -4,6 +4,8 @@
  * @version 1.0.0
  */
 
+import functionalHelpers from 'functional-helpers'
+
 /**
  * This is the standard definition of a listenerFunction to be used
  * @callback listenerFunction
@@ -82,12 +84,14 @@ export const createDomItem = (...attributes) => {
   }
   attributes.forEach(attributeGroup => {
     for (const attribute in attributeGroup) {
-      if (attributeGroup.hasOwnProperty(attribute)) {
+      if (!(attribute in item) || !functionalHelpers.isCloneable(attributeGroup[attribute])) {
         item[attribute] = attributeGroup[attribute]
+        continue
       }
+      item[attribute] = functionalHelpers.mergeObjectsMutable(item[attribute], attributeGroup[attribute])
     }
   })
-  if (!('style' in item.attributes)){
+  if (!('style' in item.attributes)) {
     item.attributes.style = {}
   }
   return item
