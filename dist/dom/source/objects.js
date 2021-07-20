@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.documentItem = exports.documentDomItem = exports.createDomItem = void 0
 
-require('core-js/modules/web.dom-collections.for-each.js')
+require('core-js/modules/es.array.concat.js')
 
 require('core-js/modules/es.array.map.js')
 
@@ -87,7 +87,11 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {module:dom/objects.DomItem}
  */
 const createDomItem = function createDomItem () {
-  const item = {
+  for (var _len = arguments.length, attributes = new Array(_len), _key = 0; _key < _len; _key++) {
+    attributes[_key] = arguments[_key]
+  }
+
+  return _functionalHelpers.default.mergeObjectsMutable.apply(_functionalHelpers.default, [{
     tagName: 'div',
     attributes: {
       style: {}
@@ -96,28 +100,7 @@ const createDomItem = function createDomItem () {
     eventListeners: {},
     parentItem: {},
     children: []
-  }
-
-  for (var _len = arguments.length, attributes = new Array(_len), _key = 0; _key < _len; _key++) {
-    attributes[_key] = arguments[_key]
-  }
-
-  attributes.forEach(function (attributeGroup) {
-    for (const attribute in attributeGroup) {
-      if (!(attribute in item) || !_functionalHelpers.default.isCloneable(attributeGroup[attribute])) {
-        item[attribute] = attributeGroup[attribute]
-        continue
-      }
-
-      item[attribute] = _functionalHelpers.default.mergeObjectsMutable(item[attribute], attributeGroup[attribute])
-    }
-  })
-
-  if (!('style' in item.attributes)) {
-    item.attributes.style = {}
-  }
-
-  return item
+  }].concat(attributes))
 }
 /**
  * DomItemHead defines the structure for a single element in the Dom

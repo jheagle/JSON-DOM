@@ -71,31 +71,16 @@ import functionalHelpers from 'functional-helpers'
  * @param {...Object} attributes - DomItem-like object(s) to be merged as a DomItem
  * @returns {module:dom/objects.DomItem}
  */
-export const createDomItem = (...attributes) => {
-  const item = {
-    tagName: 'div',
-    attributes: {
-      style: {}
-    },
-    element: {},
-    eventListeners: {},
-    parentItem: {},
-    children: []
-  }
-  attributes.forEach(attributeGroup => {
-    for (const attribute in attributeGroup) {
-      if (!(attribute in item) || !functionalHelpers.isCloneable(attributeGroup[attribute])) {
-        item[attribute] = attributeGroup[attribute]
-        continue
-      }
-      item[attribute] = functionalHelpers.mergeObjectsMutable(item[attribute], attributeGroup[attribute])
-    }
-  })
-  if (!('style' in item.attributes)) {
-    item.attributes.style = {}
-  }
-  return item
-}
+export const createDomItem = (...attributes) => functionalHelpers.mergeObjectsMutable({
+  tagName: 'div',
+  attributes: {
+    style: {}
+  },
+  element: {},
+  eventListeners: {},
+  parentItem: {},
+  children: []
+}, ...attributes)
 
 /**
  * DomItemHead defines the structure for a single element in the Dom

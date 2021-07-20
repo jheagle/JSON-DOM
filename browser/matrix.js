@@ -7,7 +7,7 @@
     })
     exports.documentItem = exports.documentDomItem = exports.createDomItem = void 0
 
-    require('core-js/modules/web.dom-collections.for-each.js')
+    require('core-js/modules/es.array.concat.js')
 
     require('core-js/modules/es.array.map.js')
 
@@ -89,7 +89,11 @@
  * @returns {module:dom/objects.DomItem}
  */
     const createDomItem = function createDomItem () {
-      const item = {
+      for (var _len = arguments.length, attributes = new Array(_len), _key = 0; _key < _len; _key++) {
+        attributes[_key] = arguments[_key]
+      }
+
+      return _functionalHelpers.default.mergeObjectsMutable.apply(_functionalHelpers.default, [{
         tagName: 'div',
         attributes: {
           style: {}
@@ -98,28 +102,7 @@
         eventListeners: {},
         parentItem: {},
         children: []
-      }
-
-      for (var _len = arguments.length, attributes = new Array(_len), _key = 0; _key < _len; _key++) {
-        attributes[_key] = arguments[_key]
-      }
-
-      attributes.forEach(function (attributeGroup) {
-        for (const attribute in attributeGroup) {
-          if (!(attribute in item) || !_functionalHelpers.default.isCloneable(attributeGroup[attribute])) {
-            item[attribute] = attributeGroup[attribute]
-            continue
-          }
-
-          item[attribute] = _functionalHelpers.default.mergeObjectsMutable(item[attribute], attributeGroup[attribute])
-        }
-      })
-
-      if (!('style' in item.attributes)) {
-        item.attributes.style = {}
-      }
-
-      return item
+      }].concat(attributes))
     }
     /**
  * DomItemHead defines the structure for a single element in the Dom
@@ -230,7 +213,7 @@
     exports.documentDomItem = documentDomItem
     const documentItem = documentDomItem()
     exports.documentItem = documentItem
-  }, { 'core-js/modules/es.array.map.js': 195, 'core-js/modules/es.object.assign.js': 254, 'core-js/modules/web.dom-collections.for-each.js': 393, 'functional-helpers': 407 }],
+  }, { 'core-js/modules/es.array.concat.js': 178, 'core-js/modules/es.array.map.js': 195, 'core-js/modules/es.object.assign.js': 254, 'functional-helpers': 407 }],
   2: [function (require, module, exports) {
     'use strict'
 
@@ -13459,7 +13442,7 @@
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.queueTimeout = exports.queueManager = exports.delay = exports.preloadParams = exports.callWithParams = exports.pipe = exports.curry = void 0
+    exports.trace = exports.queueTimeout = exports.queueManager = exports.delay = exports.preloadParams = exports.callWithParams = exports.pipe = exports.curry = void 0
 
     require('regenerator-runtime/runtime.js')
 
@@ -13478,6 +13461,8 @@
     require('core-js/stable')
 
     require('regenerator-runtime/runtime')
+
+    const _objects = require('./objects')
 
     function _toConsumableArray (arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread() }
 
@@ -13726,9 +13711,27 @@
         })
       }
     }
+    /**
+ * Output the a value with label to the console and return the value to not interrupt the code.
+ * @function
+ * @param {string} label - Pass an identifying label of the value being output.
+ * @param useClone - Determines if the logged data should be a clone of the original to preserve state.
+ * @returns {function(*=)}
+ */
 
     exports.queueTimeout = queueTimeout
-  }, { 'core-js/modules/es.array.concat.js': 178, 'core-js/modules/es.array.from.js': 188, 'core-js/modules/es.array.iterator.js': 192, 'core-js/modules/es.array.reduce.js': 198, 'core-js/modules/es.array.slice.js': 200, 'core-js/modules/es.array.splice.js': 204, 'core-js/modules/es.function.name.js': 219, 'core-js/modules/es.object.to-string.js': 277, 'core-js/modules/es.promise.js': 284, 'core-js/modules/es.string.iterator.js': 319, 'core-js/modules/es.symbol.description.js': 341, 'core-js/modules/es.symbol.iterator.js': 344, 'core-js/modules/es.symbol.js': 345, 'core-js/modules/web.dom-collections.iterator.js': 394, 'core-js/stable': 401, 'regenerator-runtime/runtime': 408, 'regenerator-runtime/runtime.js': 408 }],
+
+    const trace = function trace (label) {
+      const useClone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true
+      return function (value) {
+        // noinspection JSForgottenDebugStatementInspection
+        console.info(''.concat(label, ': '), useClone ? (0, _objects.cloneObject)(value) : value)
+        return value
+      }
+    }
+
+    exports.trace = trace
+  }, { './objects': 405, 'core-js/modules/es.array.concat.js': 178, 'core-js/modules/es.array.from.js': 188, 'core-js/modules/es.array.iterator.js': 192, 'core-js/modules/es.array.reduce.js': 198, 'core-js/modules/es.array.slice.js': 200, 'core-js/modules/es.array.splice.js': 204, 'core-js/modules/es.function.name.js': 219, 'core-js/modules/es.object.to-string.js': 277, 'core-js/modules/es.promise.js': 284, 'core-js/modules/es.string.iterator.js': 319, 'core-js/modules/es.symbol.description.js': 341, 'core-js/modules/es.symbol.iterator.js': 344, 'core-js/modules/es.symbol.js': 345, 'core-js/modules/web.dom-collections.iterator.js': 394, 'core-js/stable': 401, 'regenerator-runtime/runtime': 408, 'regenerator-runtime/runtime.js': 408 }],
   404: [function (require, module, exports) {
     'use strict'
 
@@ -14138,7 +14141,7 @@
           objects[_key] = arguments[_key]
         }
 
-        const firstObject = objects.shift()
+        const firstObject = useClone ? Array.isArray(objects[0]) ? [] : {} : objects.shift()
 
         if (objects.length < 1) {
           return firstObject
@@ -14241,7 +14244,7 @@
         mapLimit: mapLimit,
         map: map,
         useClone: true
-      })(Array.isArray(object) ? [] : {}, object)
+      })(object)
     }
 
     exports.cloneObject = cloneObject
