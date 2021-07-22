@@ -14121,7 +14121,7 @@
  * @param {Object} [options={}]
  * @param {number} [options.mapLimit=100]
  * @param {Iterable} [options.map=[]]
- * @param {bool} [options.useClone=false]
+ * @param {boolean} [options.useClone=false]
  * @returns {module:objects~mergeObjectsCallback}
  */
 
@@ -14130,11 +14130,22 @@
     const mergeObjectsBase = function mergeObjectsBase () {
       const _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
       const _ref$mapLimit = _ref.mapLimit
-      const mapLimit = _ref$mapLimit === void 0 ? 50000 : _ref$mapLimit
+      const mapLimit = _ref$mapLimit === void 0 ? 1000 : _ref$mapLimit
+      const _ref$relevancyRange = _ref.relevancyRange
+      const relevancyRange = _ref$relevancyRange === void 0 ? 100 : _ref$relevancyRange
       const _ref$map = _ref.map
-      const map = _ref$map === void 0 ? [] : _ref$map
+      let map = _ref$map === void 0 ? [] : _ref$map
       const _ref$useClone = _ref.useClone
       const useClone = _ref$useClone === void 0 ? false : _ref$useClone
+
+      const updateMap = function updateMap (map) {
+        const minRelevance = map.length - relevancyRange
+        return map.filter(function (reference) {
+          return reference.relevance > minRelevance
+        }).map(function (reference) {
+          return setValue('relevance', reference.relevance > map.length ? map.length : reference.relevance, reference)
+        })
+      }
 
       return function () {
         for (var _len = arguments.length, objects = new Array(_len), _key = 0; _key < _len; _key++) {
@@ -14154,11 +14165,12 @@
 
           map.push({
             source: arg,
-            object: newObj
+            object: newObj,
+            relevance: map.length
           })
 
           if (map.length > mapLimit) {
-            map.shift()
+            map = updateMap(map)
           }
 
           return reduceObject(arg, function (returnObj, value, key) {
@@ -14169,6 +14181,7 @@
               })
 
               if (exists) {
+                exists.relevance = map.length + 1
                 return setValue(key, exists.object, returnObj)
               }
 
@@ -14186,11 +14199,12 @@
 
               map.push({
                 source: value,
-                object: objectValue
+                object: objectValue,
+                relevance: map.length
               })
 
               if (map.length > mapLimit) {
-                map.shift()
+                map = updateMap(map)
               }
             }
 
