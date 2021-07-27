@@ -13583,15 +13583,15 @@
     /**
  * Manage functions to run sequentially with delays.
  * @function
- * @param {Iterable} [queue=[]] - The iterable that can be used to store queued functions
+ * @param {module:functionHelpers~queueManagerHandle} [queueManager=null]
  * @returns {module:functionHelpers~queueTimeoutHandle}
  */
 
     exports.queueManager = queueManager
 
     const queueTimeout = function queueTimeout () {
-      const queue = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : []
-      const manager = queueManager(queue)
+      const queueManager = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null
+      const manager = queueManager || queueManager()
       return function (fn) {
         const time = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0
 
@@ -14014,7 +14014,9 @@
  * Objects having the same attributes will overwrite from last object to first.
  * @function
  * @param {Object} [options={}]
- * @param {number} [options.mapLimit=100]
+ * @param {number} [options.mapLimit=1000]
+ * @param {number} [options.depthLimit=-1]
+ * @param {number} [options.relevancyRange=100]
  * @param {Iterable} [options.map=[]]
  * @param {boolean} [options.useClone=false]
  * @returns {module:objects~mergeObjectsCallback}
@@ -14026,6 +14028,8 @@
       const _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
       const _ref$mapLimit = _ref.mapLimit
       const mapLimit = _ref$mapLimit === void 0 ? 1000 : _ref$mapLimit
+      const _ref$depthLimit = _ref.depthLimit
+      const depthLimit = _ref$depthLimit === void 0 ? -1 : _ref$depthLimit
       const _ref$relevancyRange = _ref.relevancyRange
       const relevancyRange = _ref$relevancyRange === void 0 ? 100 : _ref$relevancyRange
       const _ref$map = _ref.map
@@ -14050,6 +14054,10 @@
         const firstObject = useClone ? Array.isArray(objects[0]) ? [] : {} : objects.shift()
 
         if (objects.length < 1) {
+          return firstObject
+        }
+
+        if (depthLimit === 0) {
           return firstObject
         }
 
@@ -14087,6 +14095,8 @@
               if (isCloneable(objectValue)) {
                 return setValue(key, mergeObjectsBase({
                   mapLimit: mapLimit,
+                  depthLimit: depthLimit - 1,
+                  relevancyRange: relevancyRange,
                   map: map,
                   useClone: useClone
                 })(objectValue, value), returnObj)
@@ -14135,7 +14145,9 @@
  * @function
  * @param {Object} object - The original object that is being cloned
  * @param {Object} [options={}]
- * @param {number} [options.mapLimit=100]
+ * @param {number} [options.mapLimit=1000]
+ * @param {number} [options.depthLimit=-1]
+ * @param {number} [options.relevancyRange=100]
  * @param {Iterable} [options.map=[]]
  * @returns {Object}
  */
@@ -14146,11 +14158,17 @@
       const _ref2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
       const _ref2$mapLimit = _ref2.mapLimit
       const mapLimit = _ref2$mapLimit === void 0 ? 100 : _ref2$mapLimit
+      const _ref2$depthLimit = _ref2.depthLimit
+      const depthLimit = _ref2$depthLimit === void 0 ? -1 : _ref2$depthLimit
+      const _ref2$relevancyRange = _ref2.relevancyRange
+      const relevancyRange = _ref2$relevancyRange === void 0 ? 100 : _ref2$relevancyRange
       const _ref2$map = _ref2.map
       const map = _ref2$map === void 0 ? [] : _ref2$map
 
       return mergeObjectsBase({
         mapLimit: mapLimit,
+        depthLimit: depthLimit,
+        relevancyRange: relevancyRange,
         map: map,
         useClone: true
       })(object)
@@ -14825,9 +14843,9 @@
       // This is a polyfill for %IteratorPrototype% for environments that
       // don't natively support it.
       let IteratorPrototype = {}
-      IteratorPrototype[iteratorSymbol] = function () {
+      define(IteratorPrototype, iteratorSymbol, function () {
         return this
-      }
+      })
 
       const getProto = Object.getPrototypeOf
       const NativeIteratorPrototype = getProto && getProto(getProto(values([])))
@@ -14841,8 +14859,9 @@
 
       const Gp = GeneratorFunctionPrototype.prototype =
     Generator.prototype = Object.create(IteratorPrototype)
-      GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype
-      GeneratorFunctionPrototype.constructor = GeneratorFunction
+      GeneratorFunction.prototype = GeneratorFunctionPrototype
+      define(Gp, 'constructor', GeneratorFunctionPrototype)
+      define(GeneratorFunctionPrototype, 'constructor', GeneratorFunction)
       GeneratorFunction.displayName = define(
         GeneratorFunctionPrototype,
         toStringTagSymbol,
@@ -14956,9 +14975,9 @@
       }
 
       defineIteratorMethods(AsyncIterator.prototype)
-      AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+      define(AsyncIterator.prototype, asyncIteratorSymbol, function () {
         return this
-      }
+      })
       exports.AsyncIterator = AsyncIterator
 
       // Note that simple async functions are implemented on top of
@@ -15147,13 +15166,13 @@
       // iterator prototype chain incorrectly implement this, causing the Generator
       // object to not be returned from this call. This ensures that doesn't happen.
       // See https://github.com/facebook/regenerator/issues/274 for more details.
-      Gp[iteratorSymbol] = function () {
+      define(Gp, iteratorSymbol, function () {
         return this
-      }
+      })
 
-      Gp.toString = function () {
+      define(Gp, 'toString', function () {
         return '[object Generator]'
-      }
+      })
 
       function pushTryEntry (locs) {
         const entry = { tryLoc: locs[0] }
@@ -15468,14 +15487,19 @@
     } catch (accidentalStrictMode) {
       // This module should not be running in strict mode, so the above
       // assignment should always work unless something is misconfigured. Just
-      // in case runtime.js accidentally runs in strict mode, we can escape
+      // in case runtime.js accidentally runs in strict mode, in modern engines
+      // we can explicitly access globalThis. In older engines we can escape
       // strict mode using a global Function call. This could conceivably fail
       // if a Content Security Policy forbids using Function, but in that case
       // the proper solution is to fix the accidental strict mode problem. If
       // you've misconfigured your bundler to force strict mode and applied a
       // CSP to forbid Function, and you're not willing to fix either of those
       // problems, please detail your unique predicament in a GitHub issue.
-      Function('r', 'regeneratorRuntime = r')(runtime)
+      if (typeof globalThis === 'object') {
+        globalThis.regeneratorRuntime = runtime
+      } else {
+        Function('r', 'regeneratorRuntime = r')(runtime)
+      }
     }
   }, {}]
 }, {}, [2])

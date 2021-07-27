@@ -102,16 +102,14 @@ const elementCompareClassList = function elementCompareClassList (element, class
 exports.elementCompareClassList = elementCompareClassList
 
 const elementChanges = function elementChanges (config) {
-  return config.element.tagName.toLowerCase() !== config.tagName.toLowerCase() // Generate a new element since the tag has changed
-    ? generateElement(config) // Remove all the similarities
+  return config.element.tagName.toLowerCase() !== config.tagName.toLowerCase() ? generateElement(config) // Remove all the similarities
     : _functionalHelpers.default.setValue('attributes', _functionalHelpers.default.filterObject(config.attributes, // For each attribute, check if it becomes true / false based on the comparison results
       function (attr1, key1) {
         return _functionalHelpers.default.filterObject( // Get attributes as object of truthy and falsy values
           _functionalHelpers.default.mapObject(config.attributes, function (attr2, key2) {
-            return _typeof(attr2) === 'object' || key2 === 'className' // Apply custom logic for class and styles, only keep the updates
-              ? _functionalHelpers.default.filterObject(elementHasAttribute(config.element, key2, attr2), function (attr3) {
-                return attr3 === 1
-              }) // True when the element does not already have the attribute
+            return _typeof(attr2) === 'object' || key2 === 'className' ? _functionalHelpers.default.filterObject(elementHasAttribute(config.element, key2, attr2), function (attr3) {
+              return attr3 === 1
+            }) // True when the element does not already have the attribute
               : !elementHasAttribute(config.element, key2, attr2)
           }), // Remove when the attr4 value is 0 or false, or not empty object
           function (attr4) {
