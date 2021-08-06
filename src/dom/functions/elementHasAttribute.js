@@ -1,0 +1,29 @@
+import 'core-js/stable'
+import functionalHelpers from 'functional-helpers'
+
+/**
+ * Check if the provided Element has the provided attributes.
+ * Returns a boolean, or an array of 1 / 0 / -1 based on the comparison status.
+ * @function
+ * @memberOf module:domFunctions
+ * @param {HTMLElement} element - Receive the element to be assessed
+ * @param {string} key - The attribute name to search for
+ * @param {string|Object} attr - The expected value of the attribute to compare against
+ * @returns {boolean|Object.<string, number>}
+ */
+const elementHasAttribute = (element, key, attr) => {
+  if (!element.style) {
+    return false
+  }
+  if (/^(style|className)$/.test(key)) {
+    // For attributes which are objects or multi-part strings
+    // -1 = remove attribute, 0 = no change, 1 = add attribute
+    return functionalHelpers.compareArrays(
+      typeof attr === 'string' ? attr.split(' ') : Object.keys(attr),
+      typeof attr === 'string' ? element[key].split(' ') : Object.keys(element[key])
+    )
+  }
+  return (element.hasAttribute(key) && element.getAttribute(key) === attr)
+}
+
+export default elementHasAttribute

@@ -22,7 +22,7 @@ const previousJDomMatrix = root.jDomMatrix || {}
 
 /**
  * All methods exported from this module are encapsulated within jDomMatrix.
- * @typedef {module:jDomMatrix|module:jDomMatrixCore|module:jDomMatrixObjects} jDomMatrix
+ * @typedef {module:jDomMatrix|module:matrixFunctions|module:matrixObjects} jDomMatrix
  */
 const jDomMatrix = {}
 root.jDomMatrix = jDomMatrix

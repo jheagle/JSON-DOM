@@ -14,7 +14,7 @@ const _all = _interopRequireDefault(require('./all'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
 /**
- * All of the JSON DOM system functions for creating JSON components.
+ * Main module for JSON DOM.
  * @file
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
@@ -33,7 +33,7 @@ const root = void 0 || window || global || {}
 const previousJDom = root.jDom || {}
 /**
  * All methods exported from this module are encapsulated within jDom.
- * @typedef {module:jDom|module:jDomCore|module:jDomObjects} jDom
+ * @typedef {module:jDom|module:domFunctions|module:domObjects} jDom
  */
 
 const jDom = {}

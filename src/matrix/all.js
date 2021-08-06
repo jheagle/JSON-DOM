@@ -7,10 +7,10 @@
  */
 
 import 'core-js/stable'
-import * as jDomMatrixCore from './source/functions'
-import * as jDomMatrixObjects from './source/objects'
+import matrixFunctions from './functions'
+import matrixObjects from './objects'
 
-export default Object.assign(
-  jDomMatrixCore,
-  jDomMatrixObjects
-)
+export default {
+  matrixFunctions,
+  matrixObjects
+}

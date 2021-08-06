@@ -7,10 +7,10 @@
  */
 
 import 'core-js/stable'
-import * as jDomCore from './source/functions'
-import * as jDomObjects from './source/objects'
+import domFunctions from './functions'
+import domObjects from './objects'
 
-export default Object.assign(
-  jDomCore,
-  jDomObjects
-)
+export default {
+  domFunctions,
+  domObjects
+}
