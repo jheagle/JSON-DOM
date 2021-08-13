@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import documentItem from '../../../src/dom/objects/documentItem'
+import documentItem from '../../src/source/objects/documentItem'
 
 test('documentItem has valid head', () => {
   expect(documentItem.children[0].tagName).toBe('head')

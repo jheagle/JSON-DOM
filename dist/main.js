@@ -9,9 +9,9 @@ require('core-js/modules/es.object.assign.js')
 
 require('core-js/stable')
 
-const _all = _interopRequireDefault(require('./dom/all'))
+const _functions = _interopRequireDefault(require('./source/functions'))
 
-const _all2 = _interopRequireDefault(require('./matrix/all'))
+const _objects = _interopRequireDefault(require('./source/objects'))
 
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
@@ -35,7 +35,7 @@ const root = void 0 || window || global || {}
 const previousJsonDom = root.jsonDom || {}
 /**
  * All methods exported from this module are encapsulated within jsonDom.
- * @typedef {module:jsonDom|module:jDom|module:matrix} jsonDom
+ * @typedef {module:jsonDom|module:domFunctions|module:domObjects} jsonDom
  */
 
 const jsonDom = {}
@@ -43,7 +43,7 @@ root.jsonDom = jsonDom
 /**
  * Return a reference to this library while preserving the original same-named library
  * @function
- * @returns {module:jsonDom~jsonDom}
+ * @returns {module:jsonDom~jsonDom|module:domFunctions|module:domObjects}
  */
 
 const noConflict = function noConflict () {
@@ -53,6 +53,6 @@ const noConflict = function noConflict () {
 
 jsonDom.noConflict = noConflict
 
-const _default = root.jsonDom = Object.assign(jsonDom, _all.default, _all2.default)
+const _default = root.jsonDom = Object.assign(jsonDom, _functions.default, _objects.default)
 
 exports.default = _default
