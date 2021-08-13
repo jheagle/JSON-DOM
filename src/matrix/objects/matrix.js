@@ -67,7 +67,7 @@ const matrix = (
         className: 'matrix'
       },
       children: functionalHelpers.buildArray(
-        functionalHelpers.mergeObjects(
+        functionalHelpers.mergeObjectsMutable(
           createDomItem(
             {
               axis: 'z',
@@ -76,7 +76,7 @@ const matrix = (
                 className: 'layer'
               },
               children: functionalHelpers.buildArray(
-                functionalHelpers.mergeObjects(
+                functionalHelpers.mergeObjectsMutable(
                   createDomItem(
                     {
                       axis: 'y',
@@ -85,7 +85,7 @@ const matrix = (
                         className: 'row'
                       },
                       children: functionalHelpers.buildArray(
-                        functionalHelpers.mergeObjects(
+                        functionalHelpers.mergeObjectsMutable(
                           createDomItem(
                             {
                               axis: 'x',
@@ -97,17 +97,20 @@ const matrix = (
                             }
                           ),
                           ...x.props
-                        )
+                        ),
+                        x.coordinate
                       )
                     }
                   ),
                   ...y.props
-                )
+                ),
+                y.coordinate
               )
             }
           ),
           ...z.props
-        )
+        ),
+        z.coordinate
       )
     }
   ),

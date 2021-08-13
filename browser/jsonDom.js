@@ -1771,9 +1771,9 @@
 
     require('core-js/stable')
 
-    const _functions = _interopRequireDefault(require('./source/functions'))
+    const _functions = _interopRequireDefault(require('./functions'))
 
-    const _objects = _interopRequireDefault(require('./source/objects'))
+    const _objects = _interopRequireDefault(require('./objects'))
 
     function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
@@ -1789,8 +1789,102 @@
       matrixObjects: _objects.default
     }
     exports.default = _default
-  }, { './source/functions': 73, './source/objects': 74, 'core-js/stable': 468 }],
+  }, { './functions': 44, './objects': 69, 'core-js/stable': 468 }],
   44: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+
+    require('core-js/stable')
+
+    const _adjacentEdgePoints = _interopRequireDefault(require('./functions/adjacentEdgePoints'))
+
+    const _adjacentPoints = _interopRequireDefault(require('./functions/adjacentPoints'))
+
+    const _areEqualPoints = _interopRequireDefault(require('./functions/areEqualPoints'))
+
+    const _bindPointData = _interopRequireDefault(require('./functions/bindPointData'))
+
+    const _checkInBetween = _interopRequireDefault(require('./functions/checkInBetween'))
+
+    const _checkValidPoint = _interopRequireDefault(require('./functions/checkValidPoint'))
+
+    const _getAllPoints = _interopRequireDefault(require('./functions/getAllPoints'))
+
+    const _getAxisLengths = _interopRequireDefault(require('./functions/getAxisLengths'))
+
+    const _getDomItemFromElement = _interopRequireDefault(require('./functions/getDomItemFromElement'))
+
+    const _getDomItemFromPoint = _interopRequireDefault(require('./functions/getDomItemFromPoint'))
+
+    const _getFirstAxisOfCoordinate = _interopRequireDefault(require('./functions/getFirstAxisOfCoordinate'))
+
+    const _getHighestAbsoluteCoordinate = _interopRequireDefault(require('./functions/getHighestAbsoluteCoordinate'))
+
+    const _getPointFromElement = _interopRequireDefault(require('./functions/getPointFromElement'))
+
+    const _getPointsLine = _interopRequireDefault(require('./functions/getPointsLine'))
+
+    const _getPointsLines = _interopRequireDefault(require('./functions/getPointsLines'))
+
+    const _lineEndPoint = _interopRequireDefault(require('./functions/lineEndPoint'))
+
+    const _nextCell = _interopRequireDefault(require('./functions/nextCell'))
+
+    const _pointAndCoordinateToDirection = _interopRequireDefault(require('./functions/pointAndCoordinateToDirection'))
+
+    const _pointDifference = _interopRequireDefault(require('./functions/pointDifference'))
+
+    const _pointToDirection = _interopRequireDefault(require('./functions/pointToDirection'))
+
+    const _pointsToDirection = _interopRequireDefault(require('./functions/pointsToDirection'))
+
+    const _randDirection = _interopRequireDefault(require('./functions/randDirection'))
+
+    const _randomStart = _interopRequireDefault(require('./functions/randomStart'))
+
+    const _testPointsBetween = _interopRequireDefault(require('./functions/testPointsBetween'))
+
+    function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+
+    /**
+ * @file All of the functionalHelpers matrix functions for working with a grid of points.
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @version 1.0.0
+ * @module matrixFunctions
+ */
+    const _default = {
+      adjacentEdgePoints: _adjacentEdgePoints.default,
+      adjacentPoints: _adjacentPoints.default,
+      areEqualPoints: _areEqualPoints.default,
+      bindPointData: _bindPointData.default,
+      checkInBetween: _checkInBetween.default,
+      checkValidPoint: _checkValidPoint.default,
+      getAllPoints: _getAllPoints.default,
+      getAxisLengths: _getAxisLengths.default,
+      getDomItemFromElement: _getDomItemFromElement.default,
+      getDomItemFromPoint: _getDomItemFromPoint.default,
+      getFirstAxisOfCoordinate: _getFirstAxisOfCoordinate.default,
+      getHighestAbsoluteCoordinate: _getHighestAbsoluteCoordinate.default,
+      getPointFromElement: _getPointFromElement.default,
+      getPointsLine: _getPointsLine.default,
+      getPointsLines: _getPointsLines.default,
+      lineEndPoint: _lineEndPoint.default,
+      nextCell: _nextCell.default,
+      pointAndCoordinateToDirection: _pointAndCoordinateToDirection.default,
+      pointDifference: _pointDifference.default,
+      pointToDirection: _pointToDirection.default,
+      pointsToDirection: _pointsToDirection.default,
+      randDirection: _randDirection.default,
+      randomStart: _randomStart.default,
+      testPointsBetween: _testPointsBetween.default
+    }
+    exports.default = _default
+  }, { './functions/adjacentEdgePoints': 45, './functions/adjacentPoints': 46, './functions/areEqualPoints': 47, './functions/bindPointData': 48, './functions/checkInBetween': 49, './functions/checkValidPoint': 50, './functions/getAllPoints': 51, './functions/getAxisLengths': 52, './functions/getDomItemFromElement': 53, './functions/getDomItemFromPoint': 54, './functions/getFirstAxisOfCoordinate': 55, './functions/getHighestAbsoluteCoordinate': 56, './functions/getPointFromElement': 57, './functions/getPointsLine': 58, './functions/getPointsLines': 59, './functions/lineEndPoint': 60, './functions/nextCell': 61, './functions/pointAndCoordinateToDirection': 62, './functions/pointDifference': 63, './functions/pointToDirection': 64, './functions/pointsToDirection': 65, './functions/randDirection': 66, './functions/randomStart': 67, './functions/testPointsBetween': 68, 'core-js/stable': 468 }],
+  45: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1829,8 +1923,8 @@
 
     const _default = adjacentEdgePoints
     exports.default = _default
-  }, { '../objects/point': 70, './checkValidPoint': 49, './nextCell': 60, 'core-js/modules/es.array.filter.js': 250, 'core-js/modules/es.array.map.js': 263, 'core-js/stable': 468 }],
-  45: [function (require, module, exports) {
+  }, { '../objects/point': 72, './checkValidPoint': 50, './nextCell': 61, 'core-js/modules/es.array.filter.js': 250, 'core-js/modules/es.array.map.js': 263, 'core-js/stable': 468 }],
+  46: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1873,8 +1967,8 @@
 
     const _default = adjacentPoints
     exports.default = _default
-  }, { '../objects/point': 70, './checkValidPoint': 49, './getPointsLines': 58, './nextCell': 60, 'core-js/modules/es.array.concat.js': 246, 'core-js/modules/es.array.filter.js': 250, 'core-js/modules/es.array.map.js': 263, 'core-js/stable': 468 }],
-  46: [function (require, module, exports) {
+  }, { '../objects/point': 72, './checkValidPoint': 50, './getPointsLines': 59, './nextCell': 61, 'core-js/modules/es.array.concat.js': 246, 'core-js/modules/es.array.filter.js': 250, 'core-js/modules/es.array.map.js': 263, 'core-js/stable': 468 }],
+  47: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1898,7 +1992,7 @@
     const _default = areEqualPoints
     exports.default = _default
   }, { 'core-js/stable': 468 }],
-  47: [function (require, module, exports) {
+  48: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1944,8 +2038,8 @@
 
     const _default = bindPointData
     exports.default = _default
-  }, { '../objects/point': 70, 'core-js/modules/es.array.map.js': 263, 'core-js/modules/es.object.assign.js': 322, 'core-js/stable': 468, 'functional-helpers': 520 }],
-  48: [function (require, module, exports) {
+  }, { '../objects/point': 72, 'core-js/modules/es.array.map.js': 263, 'core-js/modules/es.object.assign.js': 322, 'core-js/stable': 468, 'functional-helpers': 520 }],
+  49: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1972,8 +2066,8 @@
 
     const _default = checkInBetween
     exports.default = _default
-  }, { './testPointsBetween': 67, 'core-js/stable': 468 }],
-  49: [function (require, module, exports) {
+  }, { './testPointsBetween': 68, 'core-js/stable': 468 }],
+  50: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1997,7 +2091,7 @@
     const _default = checkValidPoint
     exports.default = _default
   }, { 'core-js/stable': 468 }],
-  50: [function (require, module, exports) {
+  51: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2031,7 +2125,7 @@
     const _default = getAllPoints
     exports.default = _default
   }, { 'core-js/modules/es.array.concat.js': 246, 'core-js/modules/es.array.reduce.js': 266, 'core-js/stable': 468 }],
-  51: [function (require, module, exports) {
+  52: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2057,8 +2151,8 @@
 
     const _default = getAxisLengths
     exports.default = _default
-  }, { '../objects/point': 70, 'core-js/stable': 468 }],
-  52: [function (require, module, exports) {
+  }, { '../objects/point': 72, 'core-js/stable': 468 }],
+  53: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2088,8 +2182,8 @@
 
     const _default = getDomItemFromElement
     exports.default = _default
-  }, { './getDomItemFromPoint': 53, './getPointFromElement': 56, 'core-js/stable': 468 }],
-  53: [function (require, module, exports) {
+  }, { './getDomItemFromPoint': 54, './getPointFromElement': 57, 'core-js/stable': 468 }],
+  54: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2116,8 +2210,8 @@
 
     const _default = getDomItemFromPoint
     exports.default = _default
-  }, { './checkValidPoint': 49, 'core-js/stable': 468 }],
-  54: [function (require, module, exports) {
+  }, { './checkValidPoint': 50, 'core-js/stable': 468 }],
+  55: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2147,7 +2241,7 @@
     const _default = getFirstAxisOfCoordinate
     exports.default = _default
   }, { 'core-js/modules/es.array.filter.js': 250, 'core-js/modules/es.object.keys.js': 339, 'core-js/stable': 468 }],
-  55: [function (require, module, exports) {
+  56: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2168,13 +2262,13 @@
  * @returns {module:matrixObjects~coordinate}
  */
     const getHighestAbsoluteCoordinate = function getHighestAbsoluteCoordinate (pnt) {
-      return _functionalHelpers.default.reduceObject(pnt, _functionalHelpers.default.getAbsoluteMax, 0)
+      return _functionalHelpers.default.reduceObject(pnt, _functionalHelpers.default.absoluteMax, 0)
     }
 
     const _default = getHighestAbsoluteCoordinate
     exports.default = _default
   }, { 'core-js/stable': 468, 'functional-helpers': 520 }],
-  56: [function (require, module, exports) {
+  57: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2207,8 +2301,8 @@
 
     const _default = getPointFromElement
     exports.default = _default
-  }, { '../objects/point': 70, 'core-js/modules/es.array.from.js': 256, 'core-js/modules/es.array.index-of.js': 258, 'core-js/modules/es.string.iterator.js': 387, 'core-js/stable': 468 }],
-  57: [function (require, module, exports) {
+  }, { '../objects/point': 72, 'core-js/modules/es.array.from.js': 256, 'core-js/modules/es.array.index-of.js': 258, 'core-js/modules/es.string.iterator.js': 387, 'core-js/stable': 468 }],
+  58: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2244,8 +2338,8 @@
 
     const _default = getPointsLine
     exports.default = _default
-  }, { './areEqualPoints': 46, './nextCell': 60, './pointsToDirection': 64, 'core-js/modules/es.array.concat.js': 246, 'core-js/stable': 468 }],
-  58: [function (require, module, exports) {
+  }, { './areEqualPoints': 47, './nextCell': 61, './pointsToDirection': 65, 'core-js/modules/es.array.concat.js': 246, 'core-js/stable': 468 }],
+  59: [function (require, module, exports) {
     'use strict'
 
     require('core-js/modules/es.symbol.js')
@@ -2310,8 +2404,8 @@
 
     const _default = getPointsLines
     exports.default = _default
-  }, { './getPointsLine': 57, 'core-js/modules/es.array.concat.js': 246, 'core-js/modules/es.array.from.js': 256, 'core-js/modules/es.array.iterator.js': 260, 'core-js/modules/es.array.reduce.js': 266, 'core-js/modules/es.array.slice.js': 268, 'core-js/modules/es.function.name.js': 287, 'core-js/modules/es.object.to-string.js': 345, 'core-js/modules/es.string.iterator.js': 387, 'core-js/modules/es.symbol.description.js': 409, 'core-js/modules/es.symbol.iterator.js': 412, 'core-js/modules/es.symbol.js': 413, 'core-js/modules/web.dom-collections.iterator.js': 461, 'core-js/stable': 468 }],
-  59: [function (require, module, exports) {
+  }, { './getPointsLine': 58, 'core-js/modules/es.array.concat.js': 246, 'core-js/modules/es.array.from.js': 256, 'core-js/modules/es.array.iterator.js': 260, 'core-js/modules/es.array.reduce.js': 266, 'core-js/modules/es.array.slice.js': 268, 'core-js/modules/es.function.name.js': 287, 'core-js/modules/es.object.to-string.js': 345, 'core-js/modules/es.string.iterator.js': 387, 'core-js/modules/es.symbol.description.js': 409, 'core-js/modules/es.symbol.iterator.js': 412, 'core-js/modules/es.symbol.js': 413, 'core-js/modules/web.dom-collections.iterator.js': 461, 'core-js/stable': 468 }],
+  60: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2339,8 +2433,8 @@
 
     const _default = lineEndPoint
     exports.default = _default
-  }, { '../objects/point': 70, 'core-js/stable': 468 }],
-  60: [function (require, module, exports) {
+  }, { '../objects/point': 72, 'core-js/stable': 468 }],
+  61: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2367,8 +2461,8 @@
 
     const _default = nextCell
     exports.default = _default
-  }, { '../objects/point': 70, 'core-js/stable': 468 }],
-  61: [function (require, module, exports) {
+  }, { '../objects/point': 72, 'core-js/stable': 468 }],
+  62: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2401,8 +2495,8 @@
 
     const _default = pointAndCoordinateToDirection
     exports.default = _default
-  }, { '../objects/point': 70, './getFirstAxisOfCoordinate': 54, 'core-js/stable': 468 }],
-  62: [function (require, module, exports) {
+  }, { '../objects/point': 72, './getFirstAxisOfCoordinate': 55, 'core-js/stable': 468 }],
+  63: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2429,8 +2523,8 @@
 
     const _default = pointDifference
     exports.default = _default
-  }, { '../objects/point': 70, 'core-js/stable': 468 }],
-  63: [function (require, module, exports) {
+  }, { '../objects/point': 72, 'core-js/stable': 468 }],
+  64: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2457,8 +2551,8 @@
 
     const _default = pointToDirection
     exports.default = _default
-  }, { './getHighestAbsoluteCoordinate': 55, './pointAndCoordinateToDirection': 61, 'core-js/stable': 468 }],
-  64: [function (require, module, exports) {
+  }, { './getHighestAbsoluteCoordinate': 56, './pointAndCoordinateToDirection': 62, 'core-js/stable': 468 }],
+  65: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2486,10 +2580,10 @@
       return (0, _pointToDirection.default)((0, _pointDifference.default)(start, end))
     }
 
-    const _default = _pointToDirection.default
+    const _default = pointsToDirection
     exports.default = _default
-  }, { './pointDifference': 62, './pointToDirection': 63, 'core-js/stable': 468 }],
-  65: [function (require, module, exports) {
+  }, { './pointDifference': 63, './pointToDirection': 64, 'core-js/stable': 468 }],
+  66: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2518,8 +2612,8 @@
 
     const _default = randDirection
     exports.default = _default
-  }, { '../objects/point': 70, 'core-js/stable': 468, 'functional-helpers': 520 }],
-  66: [function (require, module, exports) {
+  }, { '../objects/point': 72, 'core-js/stable': 468, 'functional-helpers': 520 }],
+  67: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2550,8 +2644,8 @@
 
     const _default = randomStart
     exports.default = _default
-  }, { '../objects/point': 70, 'core-js/stable': 468, 'functional-helpers': 520 }],
-  67: [function (require, module, exports) {
+  }, { '../objects/point': 72, 'core-js/stable': 468, 'functional-helpers': 520 }],
+  68: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2606,8 +2700,45 @@
 
     const _default = testPointsBetween
     exports.default = _default
-  }, { './getPointsLine': 57, 'core-js/modules/es.array.filter.js': 250, 'core-js/modules/es.array.reduce.js': 266, 'core-js/stable': 468, 'functional-helpers': 520 }],
-  68: [function (require, module, exports) {
+  }, { './getPointsLine': 58, 'core-js/modules/es.array.filter.js': 250, 'core-js/modules/es.array.reduce.js': 266, 'core-js/stable': 468, 'functional-helpers': 520 }],
+  69: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+
+    require('core-js/stable')
+
+    const _cube = _interopRequireDefault(require('./objects/cube'))
+
+    const _matrix = _interopRequireDefault(require('./objects/matrix'))
+
+    const _point = _interopRequireDefault(require('./objects/point'))
+
+    const _square = _interopRequireDefault(require('./objects/square'))
+
+    const _tile = _interopRequireDefault(require('./objects/tile'))
+
+    function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+
+    /**
+ * @file Core Matrix objects for representing DOM grid in JSON.
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @version 1.0.0
+ * @module matrixObjects
+ */
+    const _default = {
+      cube: _cube.default,
+      matrix: _matrix.default,
+      point: _point.default,
+      square: _square.default,
+      tile: _tile.default
+    }
+    exports.default = _default
+  }, { './objects/cube': 70, './objects/matrix': 71, './objects/point': 72, './objects/square': 73, './objects/tile': 74, 'core-js/stable': 468 }],
+  70: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2658,8 +2789,8 @@
 
     const _default = cube
     exports.default = _default
-  }, { './matrix': 69, 'core-js/stable': 468 }],
-  69: [function (require, module, exports) {
+  }, { './matrix': 71, 'core-js/stable': 468 }],
+  71: [function (require, module, exports) {
     'use strict'
 
     require('core-js/modules/es.symbol.js')
@@ -2786,35 +2917,35 @@
         attributes: {
           className: 'matrix'
         },
-        children: _functionalHelpers.default.buildArray(_functionalHelpers.default.mergeObjects.apply(_functionalHelpers.default, [(0, _createDomItem.default)({
+        children: _functionalHelpers.default.buildArray(_functionalHelpers.default.mergeObjectsMutable.apply(_functionalHelpers.default, [(0, _createDomItem.default)({
           axis: 'z',
           tagName: 'div',
           attributes: {
             className: 'layer'
           },
-          children: _functionalHelpers.default.buildArray(_functionalHelpers.default.mergeObjects.apply(_functionalHelpers.default, [(0, _createDomItem.default)({
+          children: _functionalHelpers.default.buildArray(_functionalHelpers.default.mergeObjectsMutable.apply(_functionalHelpers.default, [(0, _createDomItem.default)({
             axis: 'y',
             tagName: 'div',
             attributes: {
               className: 'row'
             },
-            children: _functionalHelpers.default.buildArray(_functionalHelpers.default.mergeObjects.apply(_functionalHelpers.default, [(0, _createDomItem.default)({
+            children: _functionalHelpers.default.buildArray(_functionalHelpers.default.mergeObjectsMutable.apply(_functionalHelpers.default, [(0, _createDomItem.default)({
               axis: 'x',
               tagName: 'div',
               attributes: {
                 className: 'column'
               },
               children: []
-            })].concat(_toConsumableArray(x.props))))
-          })].concat(_toConsumableArray(y.props))))
-        })].concat(_toConsumableArray(z.props))))
+            })].concat(_toConsumableArray(x.props))), x.coordinate)
+          })].concat(_toConsumableArray(y.props))), y.coordinate)
+        })].concat(_toConsumableArray(z.props))), z.coordinate)
       })].concat(_toConsumableArray(matrixProps)))
     }
 
     const _default = matrix
     exports.default = _default
   }, { '../../dom/objects/createDomItem': 37, 'core-js/modules/es.array.concat.js': 246, 'core-js/modules/es.array.from.js': 256, 'core-js/modules/es.array.iterator.js': 260, 'core-js/modules/es.array.slice.js': 268, 'core-js/modules/es.function.name.js': 287, 'core-js/modules/es.object.to-string.js': 345, 'core-js/modules/es.string.iterator.js': 387, 'core-js/modules/es.symbol.description.js': 409, 'core-js/modules/es.symbol.iterator.js': 412, 'core-js/modules/es.symbol.js': 413, 'core-js/modules/web.dom-collections.iterator.js': 461, 'core-js/stable': 468, 'functional-helpers': 520 }],
-  70: [function (require, module, exports) {
+  72: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2874,7 +3005,7 @@
     const _default = point
     exports.default = _default
   }, { 'core-js/stable': 468 }],
-  71: [function (require, module, exports) {
+  73: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2925,8 +3056,8 @@
 
     const _default = square
     exports.default = _default
-  }, { './matrix': 69, 'core-js/stable': 468 }],
-  72: [function (require, module, exports) {
+  }, { './matrix': 71, 'core-js/stable': 468 }],
+  74: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2959,137 +3090,6 @@
     const _default = tile
     exports.default = _default
   }, { 'core-js/stable': 468 }],
-  73: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-
-    require('core-js/stable')
-
-    const _adjacentEdgePoints = _interopRequireDefault(require('../functions/adjacentEdgePoints'))
-
-    const _adjacentPoints = _interopRequireDefault(require('../functions/adjacentPoints'))
-
-    const _areEqualPoints = _interopRequireDefault(require('../functions/areEqualPoints'))
-
-    const _bindPointData = _interopRequireDefault(require('../functions/bindPointData'))
-
-    const _checkInBetween = _interopRequireDefault(require('../functions/checkInBetween'))
-
-    const _checkValidPoint = _interopRequireDefault(require('../functions/checkValidPoint'))
-
-    const _getAllPoints = _interopRequireDefault(require('../functions/getAllPoints'))
-
-    const _getAxisLengths = _interopRequireDefault(require('../functions/getAxisLengths'))
-
-    const _getDomItemFromElement = _interopRequireDefault(require('../functions/getDomItemFromElement'))
-
-    const _getDomItemFromPoint = _interopRequireDefault(require('../functions/getDomItemFromPoint'))
-
-    const _getFirstAxisOfCoordinate = _interopRequireDefault(require('../functions/getFirstAxisOfCoordinate'))
-
-    const _getHighestAbsoluteCoordinate = _interopRequireDefault(require('../functions/getHighestAbsoluteCoordinate'))
-
-    const _getPointFromElement = _interopRequireDefault(require('../functions/getPointFromElement'))
-
-    const _getPointsLine = _interopRequireDefault(require('../functions/getPointsLine'))
-
-    const _getPointsLines = _interopRequireDefault(require('../functions/getPointsLines'))
-
-    const _lineEndPoint = _interopRequireDefault(require('../functions/lineEndPoint'))
-
-    const _nextCell = _interopRequireDefault(require('../functions/nextCell'))
-
-    const _pointAndCoordinateToDirection = _interopRequireDefault(require('../functions/pointAndCoordinateToDirection'))
-
-    const _pointDifference = _interopRequireDefault(require('../functions/pointDifference'))
-
-    const _pointToDirection = _interopRequireDefault(require('../functions/pointToDirection'))
-
-    const _pointsToDirection = _interopRequireDefault(require('../functions/pointsToDirection'))
-
-    const _randDirection = _interopRequireDefault(require('../functions/randDirection'))
-
-    const _randomStart = _interopRequireDefault(require('../functions/randomStart'))
-
-    const _testPointsBetween = _interopRequireDefault(require('../functions/testPointsBetween'))
-
-    function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
-
-    /**
- * @file All of the functionalHelpers matrix functions for working with a grid of points.
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module matrixFunctions
- */
-    const _default = {
-      adjacentEdgePoints: _adjacentEdgePoints.default,
-      adjacentPoints: _adjacentPoints.default,
-      areEqualPoints: _areEqualPoints.default,
-      bindPointData: _bindPointData.default,
-      checkInBetween: _checkInBetween.default,
-      checkValidPoint: _checkValidPoint.default,
-      getAllPoints: _getAllPoints.default,
-      getAxisLengths: _getAxisLengths.default,
-      getDomItemFromElement: _getDomItemFromElement.default,
-      getDomItemFromPoint: _getDomItemFromPoint.default,
-      getFirstAxisOfCoordinate: _getFirstAxisOfCoordinate.default,
-      getHighestAbsoluteCoordinate: _getHighestAbsoluteCoordinate.default,
-      getPointFromElement: _getPointFromElement.default,
-      getPointsLine: _getPointsLine.default,
-      getPointsLines: _getPointsLines.default,
-      lineEndPoint: _lineEndPoint.default,
-      nextCell: _nextCell.default,
-      pointAndCoordinateToDirection: _pointAndCoordinateToDirection.default,
-      pointDifference: _pointDifference.default,
-      pointToDirection: _pointToDirection.default,
-      pointsToDirection: _pointsToDirection.default,
-      randDirection: _randDirection.default,
-      randomStart: _randomStart.default,
-      testPointsBetween: _testPointsBetween.default
-    }
-    exports.default = _default
-  }, { '../functions/adjacentEdgePoints': 44, '../functions/adjacentPoints': 45, '../functions/areEqualPoints': 46, '../functions/bindPointData': 47, '../functions/checkInBetween': 48, '../functions/checkValidPoint': 49, '../functions/getAllPoints': 50, '../functions/getAxisLengths': 51, '../functions/getDomItemFromElement': 52, '../functions/getDomItemFromPoint': 53, '../functions/getFirstAxisOfCoordinate': 54, '../functions/getHighestAbsoluteCoordinate': 55, '../functions/getPointFromElement': 56, '../functions/getPointsLine': 57, '../functions/getPointsLines': 58, '../functions/lineEndPoint': 59, '../functions/nextCell': 60, '../functions/pointAndCoordinateToDirection': 61, '../functions/pointDifference': 62, '../functions/pointToDirection': 63, '../functions/pointsToDirection': 64, '../functions/randDirection': 65, '../functions/randomStart': 66, '../functions/testPointsBetween': 67, 'core-js/stable': 468 }],
-  74: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-
-    require('core-js/stable')
-
-    const _cube = _interopRequireDefault(require('../objects/cube'))
-
-    const _matrix = _interopRequireDefault(require('../objects/matrix'))
-
-    const _point = _interopRequireDefault(require('../objects/point'))
-
-    const _square = _interopRequireDefault(require('../objects/square'))
-
-    const _tile = _interopRequireDefault(require('../objects/tile'))
-
-    function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
-
-    /**
- * @file Core Matrix objects for representing DOM grid in JSON.
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module matrixObjects
- */
-    const _default = {
-      cube: _cube.default,
-      matrix: _matrix.default,
-      point: _point.default,
-      square: _square.default,
-      tile: _tile.default
-    }
-    exports.default = _default
-  }, { '../objects/cube': 68, '../objects/matrix': 69, '../objects/point': 70, '../objects/square': 71, '../objects/tile': 72, 'core-js/stable': 468 }],
   75: [function (require, module, exports) {
     module.exports = function (it) {
       if (typeof it !== 'function') {

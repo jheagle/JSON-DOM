@@ -1,0 +1,30 @@
+'use strict'
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+})
+exports.default = void 0
+
+require('core-js/modules/es.object.keys.js')
+
+require('core-js/stable')
+
+const _bindElementListeners = _interopRequireDefault(require('./bindElementListeners'))
+
+function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+
+/**
+ * Based on the eventListeners property of the provided item, bind the
+ * listeners to the associated element property for the provided domObjects.DomItem.
+ * @function
+ * @memberOf module:domFunctions
+ * @param {module:domObjects~DomItem} item - The DomItem which may have eventListeners to apply to its
+ * element
+ * @returns {module:domObjects~DomItem}
+ */
+const bindListeners = function bindListeners (item) {
+  return item.eventListeners && Object.keys(item.eventListeners).length && item.element.style ? (0, _bindElementListeners.default)(item) : item
+}
+
+const _default = bindListeners
+exports.default = _default

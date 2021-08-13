@@ -1,4 +1,7 @@
-const registerListener = require('../../../src/dom/functions/registerListener')
+/**
+ * @jest-environment jsdom
+ */
+import registerListener from '../../../src/dom/functions/registerListener'
 
 const coolFunc = () => 'hello'
 test('can register a listener', () => {

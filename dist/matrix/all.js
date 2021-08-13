@@ -7,9 +7,9 @@ exports.default = void 0
 
 require('core-js/stable')
 
-const _functions = _interopRequireDefault(require('./source/functions'))
+const _functions = _interopRequireDefault(require('./functions'))
 
-const _objects = _interopRequireDefault(require('./source/objects'))
+const _objects = _interopRequireDefault(require('./objects'))
 
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 

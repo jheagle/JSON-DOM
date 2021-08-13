@@ -1,0 +1,37 @@
+'use strict'
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+})
+exports.default = void 0
+
+require('core-js/stable')
+
+const _documentItem = _interopRequireDefault(require('../objects/documentItem'))
+
+const _gatherChildItems = _interopRequireDefault(require('./gatherChildItems'))
+
+const _getChildTest = _interopRequireDefault(require('./getChildTest'))
+
+function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+
+/**
+ * A selector function for retrieving existing child domObjects.DomItems from the given parent item.
+ * This function will check all the children starting from item, and scan the attributes
+ * property for matches. The returned array contains children matching from all levels.
+ * WARNING: This calls a recursive function.
+ * @function
+ * @memberOf module:domFunctions
+ * @param {string} attr - Provide the attribute name to be searched
+ * @param {*} value - The attribute value to be compared
+ * @param {module:domObjects~DomItem} item - The DomItem which may have child items matching the attribute
+ * criteria
+ * @returns {Array.<module:domObjects~DomItem>}
+ */
+const getChildrenFromAttribute = function getChildrenFromAttribute (attr, value) {
+  const item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default.body
+  return (0, _gatherChildItems.default)(item, (0, _getChildTest.default)(attr, value))
+}
+
+const _default = getChildrenFromAttribute
+exports.default = _default

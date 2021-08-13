@@ -7,6 +7,6 @@ import functionalHelpers from 'functional-helpers'
  * @param {module:matrixObjects~Point} pnt - A Point to be assessed.
  * @returns {module:matrixObjects~coordinate}
  */
-const getHighestAbsoluteCoordinate = pnt => functionalHelpers.reduceObject(pnt, functionalHelpers.getAbsoluteMax, 0)
+const getHighestAbsoluteCoordinate = pnt => functionalHelpers.reduceObject(pnt, functionalHelpers.absoluteMax, 0)
 
 export default getHighestAbsoluteCoordinate

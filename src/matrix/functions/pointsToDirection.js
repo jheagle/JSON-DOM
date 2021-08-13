@@ -12,4 +12,4 @@ import pointDifference from './pointDifference'
  */
 const pointsToDirection = (start, end) => pointToDirection(pointDifference(start, end))
 
-export default pointToDirection
+export default pointsToDirection
