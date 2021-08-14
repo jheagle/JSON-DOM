@@ -6,13 +6,13 @@ import initRoot from './initRoot'
 /**
  * Return a DomItem reference to the document. The rootItem argument is a system variable and not necessary to
  * implement.
- * @function documentDomItem
+ * @function
  * @memberOf module:domObjects
- * @param {Object.<string, module:domObjects~listenerFunction>} listeners - An object of all event
+ * @param {Object.<string, listenerFunction>} listeners - An object of all event
  * listeners to be registered in the Dom
- * @param {module:domObjects~DomItemRoot|module:domObjects~DomItem} [rootItem] - This is a
+ * @param {DomItemRoot|DomItem} [rootItem] - This is a
  * reference to DomItemRoot which will be defaulted with {@link initRoot}
- * @returns {module:domObjects~DomItemRoot|module:domObjects~DomItem}
+ * @returns {DomItemRoot|DomItem}
  */
 const documentDomItem = (listeners = [], rootItem = initRoot(initChildren(), listeners)) => {
   rootItem.children = rootItem.children.map(child => createDomItem(child, { parentItem: rootItem }))

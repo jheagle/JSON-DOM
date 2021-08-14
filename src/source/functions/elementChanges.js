@@ -8,9 +8,9 @@ import generateElement from './generateElement'
  * to the stored element property.
  * @function
  * @memberOf module:domFunctions
- * @param {module:domObjects~DomItem} config - The DomItem having config changes to be applied to its
+ * @param {DomItem} config - The DomItem having config changes to be applied to its
  * element
- * @returns {module:domObjects~DomItem}
+ * @returns {DomItem}
  */
 const elementChanges = config => (config.element.tagName.toLowerCase() !== config.tagName.toLowerCase())
   // Generate a new element since the tag has changed

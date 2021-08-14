@@ -9,9 +9,9 @@ import retrieveParentItem from './retrieveParentItem'
  * Append a new DomItem which has the element generated.
  * @function
  * @memberOf module:domFunctions
- * @param {module:domObjects~DomItem} item - A new DomItem to append
- * @param {module:domObjects~DomItem} parent - The parent to have DomItems appended
- * @returns {module:domObjects~DomItem}
+ * @param {DomItem} item - A new DomItem to append
+ * @param {DomItem} parent - The parent to have DomItems appended
+ * @returns {DomItem}
  */
 const appendHtml = (item, parent = documentItem.body) => appendAndReturnChild(
   bindElement(item),

@@ -6,9 +6,9 @@ import documentItem from '../objects/documentItem'
  * @function
  * @memberOf module:domFunctions
  * @param {string} listenerName - The name of one of the registered listener functions.
- * @param {module:domObjects~DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which
+ * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which
  * stores has eventListeners property.
- * @returns {module:domObjects~listenerFunction|function|Object}
+ * @returns {listenerFunction|function|Object}
  */
 const retrieveListener = (listenerName, parent = documentItem) => Object.keys(parent.eventListeners).includes(listenerName)
   ? parent.eventListeners[listenerName]

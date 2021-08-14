@@ -5,9 +5,9 @@ import 'core-js/stable'
  * @function
  * @memberOf module:domFunctions
  * @param {
- * module:domObjects~DomItemRoot|module:domObjects~DomItem
+ * DomItemRoot|DomItem
  * } parent - A parent DomItem which may or may not have a body
- * @returns {module:domObjects~DomItemBody|module:domObjects~DomItem}
+ * @returns {DomItemBody|DomItem}
  */
 const retrieveParentItem = parent => parent.body ? parent.body : parent
 

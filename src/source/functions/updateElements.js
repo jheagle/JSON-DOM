@@ -7,9 +7,9 @@ import updateElement from './updateElement'
  * WARNING: This is a recursive function.
  * @function
  * @memberOf module:domFunctions
- * @param {module:domObjects~DomItem} config - The DomItem having child DomItems with config changes to be
+ * @param {DomItem} config - The DomItem having child DomItems with config changes to be
  * applied
- * @returns {module:domObjects~DomItem}
+ * @returns {DomItem}
  */
 const updateElements = config => {
   const domItem = updateElement(config)

@@ -5,7 +5,7 @@ import documentDomItem from './documentDomItem'
  * Create reference for storing document changes
  * @member documentItem
  * @memberOf module:domObjects
- * @type {module:domObjects~DomItemRoot}
+ * @type {DomItemRoot}
  */
 const documentItem = documentDomItem()
 

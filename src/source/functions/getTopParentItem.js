@@ -5,8 +5,8 @@ import 'core-js/stable'
  * WARNING: This is a recursive function.
  * @function
  * @memberOf module:domFunctions
- * @param {module:domObjects~DomItem} item - The DomItem which we want the highest parent item of
- * @returns {module:domObjects~DomItemRoot}
+ * @param {DomItem} item - The DomItem which we want the highest parent item of
+ * @returns {DomItemRoot}
  */
 const getTopParentItem = item => Object.keys(item.parentItem).length
   ? getTopParentItem(item.parentItem)

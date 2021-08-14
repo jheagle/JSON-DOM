@@ -3,27 +3,27 @@ import createDomItem from './createDomItem'
 
 /**
  * DomItemHead defines the structure for a single element in the Dom
- * @typedef {module:domObjects~DomItem} module:domObjects~DomItemHead
+ * @typedef {DomItem} DomItemHead
  * @property {string} [tagName=head] - This is set to the string head referring to the HTML element of the same name
  * @property {Object.<string, string|Object>} attributes - All potential HTML element attributes can be defined here
  * @property {HTMLHeadElement} element - A reference to the HTML head element
- * @property {Array.<module:domObjects~DomItem>} children - A reference to an array of child objects
+ * @property {Array.<DomItem>} children - A reference to an array of child objects
  */
 
 /**
  * DomItemBody defines the structure for a single element in the Dom
- * @typedef {module:domObjects~DomItem} module:domObjects~DomItemBody
+ * @typedef {DomItem} DomItemBody
  * @property {string} [tagName=body] - This is set to the string body referring to the HTML element of the same name
  * @property {Object.<string, string|Object>} attributes - All potential HTML element attributes can be defined here
  * @property {HTMLBodyElement} element - A reference to the HTML body element
- * @property {Array.<module:domObjects~DomItem>} children - A reference to an array of child objects
+ * @property {Array.<DomItem>} children - A reference to an array of child objects
  */
 
 /**
- * Initiate the children of Root / DocumentItem. This is a helper for {@link module:domObjects~documentDomItem}.
+ * Initiate the children of Root / DocumentItem. This is a helper for {@link documentDomItem}.
  * @function
  * @memberOf module:domObjects
- * @returns {Array.<module:domObjects~DomItemHead|module:domObjects~DomItemBody>}
+ * @returns {Array.<DomItemHead|DomItemBody>}
  */
 const initChildren = () => [
   createDomItem({

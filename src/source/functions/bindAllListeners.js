@@ -8,9 +8,9 @@ import bindListeners from './bindListeners'
  * WARNING: This is a recursive function.
  * @function
  * @memberOf module:domFunctions
- * @param {module:domObjects~DomItem} item - The DomItem with an associated HTMLElement to have a listener
+ * @param {DomItem} item - The DomItem with an associated HTMLElement to have a listener
  * assigned
- * @returns {module:domObjects~DomItem}
+ * @returns {DomItem}
  */
 const bindAllListeners = item => functionalHelpers.setValue(
   'children',

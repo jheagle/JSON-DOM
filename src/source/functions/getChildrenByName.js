@@ -6,7 +6,7 @@ import getChildrenFromAttribute from './getChildrenFromAttribute'
  * Helper for getting all domObjects.DomItems starting at parent and having specified name attribute
  * @function
  * @memberOf module:domFunctions
- * @returns {module:domObjects~DomItem[]}
+ * @returns {DomItem[]}
  */
 const getChildrenByName = functionalHelpers.curry(getChildrenFromAttribute)('name')
 

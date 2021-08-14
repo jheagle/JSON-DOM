@@ -6,8 +6,8 @@ import generateElement from './generateElement'
  * Generate HTML element data for a provided DomItem
  * @function
  * @memberOf module:domFunctions
- * @param {module:domObjects~DomItem} item - The DomItem needing element to be generated
- * @return {module:domObjects~DomItem}
+ * @param {DomItem} item - The DomItem needing element to be generated
+ * @return {DomItem}
  */
 const bindElement = item => functionalHelpers.setValue(
   'element',

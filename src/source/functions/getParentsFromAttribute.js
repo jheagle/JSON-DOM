@@ -10,7 +10,7 @@ import documentItem from '../objects/documentItem'
  * @memberOf module:domFunctions
  * @param {string} attr - Provide the attribute name to be searched
  * @param {*} value - The attribute value to be compared
- * @param {module:domObjects~DomItem} item - The DomItem which may have parent items matching the
+ * @param {DomItem} item - The DomItem which may have parent items matching the
  * attribute criteria
  * @returns {Array}
  */

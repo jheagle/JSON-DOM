@@ -4,7 +4,7 @@ import 'core-js/stable'
  * Provide compatibility for using the options parameter of addEventListener
  * @function
  * @memberOf module:domFunctions
- * @param {module:domObjects~EventListenerOptions} options - An object or boolean with the listener options
+ * @param {EventListenerOptions} options - An object or boolean with the listener options
  * @returns {boolean}
  */
 const listenerOptions = options => {

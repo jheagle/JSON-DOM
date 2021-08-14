@@ -8,12 +8,12 @@ import functionalHelpers from 'functional-helpers'
  * WARNING: This is a recursive function.
  * @function
  * @memberOf module:domFunctions
- * @param {module:domObjects~DomItem} item - The DomItem which will have its eventListeners updated.
+ * @param {DomItem} item - The DomItem which will have its eventListeners updated.
  * @param {string} event - The string name of the event trigger type to be added.
  * @param {string} listener - The name of the function to be called once the event is triggered.
  * @param {Object} args - Additional arguments to be used in the listener function.
- * @param {module:domObjects~EventListenerOptions} options - The strategy used when the event is triggered.
- * @returns {module:domObjects~DomItem}
+ * @param {EventListenerOptions} options - The strategy used when the event is triggered.
+ * @returns {DomItem}
  */
 const appendListeners = (item, event, listener, args = {}, options = false) => functionalHelpers.setValue(
   'children',

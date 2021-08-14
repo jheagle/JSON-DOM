@@ -12,9 +12,9 @@ import getChildTest from './getChildTest'
  * @memberOf module:domFunctions
  * @param {string} attr - Provide the attribute name to be searched
  * @param {*} value - The attribute value to be compared
- * @param {module:domObjects~DomItem} item - The DomItem which may have child items matching the attribute
+ * @param {DomItem} item - The DomItem which may have child items matching the attribute
  * criteria
- * @returns {Array.<module:domObjects~DomItem>}
+ * @returns {Array.<DomItem>}
  */
 const getChildrenFromAttribute = (attr, value, item = documentItem.body) =>
   gatherChildItems(

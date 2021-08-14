@@ -7,11 +7,11 @@ import listenerOptions from './listenerOptions'
  * @memberOf module:domFunctions
  * @param {HTMLElementEventMap} trigger - The name of the event which will trigger the listenerFunction on the element.
  * @param {HTMLElement} elem - An element to append the listener onto
- * @param {module:domObjects~listenerFunction|function} fn - The function which will be invoked when the
+ * @param {listenerFunction|function} fn - The function which will be invoked when the
  * event is triggered
- * @param {module:domObjects~EventListenerOptions} options - Additional options to how the event will be
+ * @param {EventListenerOptions} options - Additional options to how the event will be
  * fired
- * @returns {module:domObjects~listenerFunction|function}
+ * @returns {listenerFunction|function}
  */
 const assignListener = (trigger, elem, fn, options) => {
   // Attaching a listener may be done differently based on the browser support

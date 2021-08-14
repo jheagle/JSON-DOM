@@ -5,10 +5,10 @@ import 'core-js/stable'
  * will then choose which child items will be returned as the result of the test.
  * @callback module:domFunctions~testChildItem
  * @memberOf module:domFunctions
- * @param {module:domObjects~DomItem|Object} item - The DomItem is the child being tested
- * @param {Array.<module:domObjects~DomItem>} gatheredResults - All of the child items gathered based on
+ * @param {DomItem|Object} item - The DomItem is the child being tested
+ * @param {Array.<DomItem>} gatheredResults - All of the child items gathered based on
  * the test
- * @returns {Array.<module:domObjects~DomItem>}
+ * @returns {Array.<DomItem>}
  */
 
 /**
@@ -18,10 +18,10 @@ import 'core-js/stable'
  * WARNING: This is a recursive function.
  * @function
  * @memberOf module:domFunctions
- * @param {module:domObjects~DomItem} item - The DomItem which may have child items matching the attribute
+ * @param {DomItem} item - The DomItem which may have child items matching the attribute
  * criteria
  * @param {module:domFunctions~testChildItem} test - Assess each child, and return the ones which qualify
- * @returns {Array.<module:domObjects~DomItem>}
+ * @returns {Array.<DomItem>}
  */
 const gatherChildItems = (item, test) => test(
   item,

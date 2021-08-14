@@ -14,9 +14,9 @@ import createDomItem from '../objects/createDomItem'
  * The final argument is specific for adding event listeners with options.
  * @function
  * @memberOf module:domFunctions
- * @param {module:domObjects~DomItem} item - The DomItem that we want to render the element for
- * @param {module:domObjects~DomItemRoot} parent - The Base Dom item which is the parent of all the items
- * @returns {module:domObjects~DomItem}
+ * @param {DomItem} item - The DomItem that we want to render the element for
+ * @param {DomItemRoot} parent - The Base Dom item which is the parent of all the items
+ * @returns {DomItem}
  */
 const renderHtml = (item, parent = documentItem) => functionalHelpers.pipe(
   domItem => functionalHelpers.setValue(

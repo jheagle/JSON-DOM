@@ -7,9 +7,9 @@ import setAndReturnAttribute from './setAndReturnAttribute'
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
  * @function
  * @memberOf module:domFunctions
- * @param {module:domObjects~DomItem} config - The DomItem having config changes to be applied to its
+ * @param {DomItem} config - The DomItem having config changes to be applied to its
  * element
- * @returns {module:domObjects~DomItem}
+ * @returns {DomItem}
  */
 const updateElement = config => {
   if (!config.element.style) {
