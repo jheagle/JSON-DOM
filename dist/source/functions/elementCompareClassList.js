@@ -1,19 +1,19 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/modules/es.regexp.exec.js')
+require("core-js/modules/es.regexp.exec.js");
 
-require('core-js/modules/es.string.split.js')
+require("core-js/modules/es.string.split.js");
 
-require('core-js/stable')
+require("core-js/stable");
 
-const _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _functionalHelpers = _interopRequireDefault(require("functional-helpers"));
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Check if a class exists on the element, return object with keys for each class and a -1, 0, 1 difference indicator.
@@ -24,9 +24,9 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {string} classes - A string of classes (like the content of the 'class' attribute) to be compared
  * @returns {Object<string, number>|*}
  */
-const elementCompareClassList = function elementCompareClassList (element, classes) {
-  return _functionalHelpers.default.compareArrays(classes.split(' '), [].from(element.classList))
-}
+var elementCompareClassList = function elementCompareClassList(element, classes) {
+  return _functionalHelpers.default.compareArrays(classes.split(' '), [].from(element.classList));
+};
 
-const _default = elementCompareClassList
-exports.default = _default
+var _default = elementCompareClassList;
+exports.default = _default;

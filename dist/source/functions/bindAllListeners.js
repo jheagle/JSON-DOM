@@ -1,17 +1,17 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/stable')
+require("core-js/stable");
 
-const _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _functionalHelpers = _interopRequireDefault(require("functional-helpers"));
 
-const _bindListeners = _interopRequireDefault(require('./bindListeners'))
+var _bindListeners = _interopRequireDefault(require("./bindListeners"));
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Based on the eventListeners property of the provided item, bind the listeners to the associated element property
@@ -19,15 +19,15 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * WARNING: This is a recursive function.
  * @function
  * @memberOf module:domFunctions
- * @param {module:domObjects~DomItem} item - The DomItem with an associated HTMLElement to have a listener
+ * @param {DomItem} item - The DomItem with an associated HTMLElement to have a listener
  * assigned
- * @returns {module:domObjects~DomItem}
+ * @returns {DomItem}
  */
-const bindAllListeners = function bindAllListeners (item) {
+var bindAllListeners = function bindAllListeners(item) {
   return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(item.children, function (i) {
-    return bindAllListeners(i)
-  }), (0, _bindListeners.default)(item))
-}
+    return bindAllListeners(i);
+  }), (0, _bindListeners.default)(item));
+};
 
-const _default = bindAllListeners
-exports.default = _default
+var _default = bindAllListeners;
+exports.default = _default;

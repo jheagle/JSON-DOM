@@ -1,25 +1,25 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/modules/es.array.reduce.js')
+require("core-js/modules/es.array.reduce.js");
 
-require('core-js/modules/es.array.concat.js')
+require("core-js/modules/es.array.concat.js");
 
-require('core-js/stable')
+require("core-js/stable");
 
 /**
  * To be used with gatherChildItems which will start at item and recurse over all child items, this test
  * will then choose which child items will be returned as the result of the test.
  * @callback module:domFunctions~testChildItem
  * @memberOf module:domFunctions
- * @param {module:domObjects~DomItem|Object} item - The DomItem is the child being tested
- * @param {Array.<module:domObjects~DomItem>} gatheredResults - All of the child items gathered based on
+ * @param {DomItem|Object} item - The DomItem is the child being tested
+ * @param {Array.<DomItem>} gatheredResults - All of the child items gathered based on
  * the test
- * @returns {Array.<module:domObjects~DomItem>}
+ * @returns {Array.<DomItem>}
  */
 
 /**
@@ -29,16 +29,16 @@ require('core-js/stable')
  * WARNING: This is a recursive function.
  * @function
  * @memberOf module:domFunctions
- * @param {module:domObjects~DomItem} item - The DomItem which may have child items matching the attribute
+ * @param {DomItem} item - The DomItem which may have child items matching the attribute
  * criteria
  * @param {module:domFunctions~testChildItem} test - Assess each child, and return the ones which qualify
- * @returns {Array.<module:domObjects~DomItem>}
+ * @returns {Array.<DomItem>}
  */
-const gatherChildItems = function gatherChildItems (item, test) {
+var gatherChildItems = function gatherChildItems(item, test) {
   return test(item, item.children.reduce(function (a, b) {
-    return a.concat(gatherChildItems(b, test))
-  }, []))
-}
+    return a.concat(gatherChildItems(b, test));
+  }, []));
+};
 
-const _default = gatherChildItems
-exports.default = _default
+var _default = gatherChildItems;
+exports.default = _default;

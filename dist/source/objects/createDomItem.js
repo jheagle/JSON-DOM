@@ -1,35 +1,35 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/stable')
+require("core-js/stable");
 
-const _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _functionalHelpers = _interopRequireDefault(require("functional-helpers"));
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * This is the standard definition of a listenerFunction to be used
  * @callback listenerFunction
  * @memberOf module:domObjects
  * @param {Event} e - The event object passed to the listener
- * @param {module:domObjects~DomItem} target - The element which triggered the event
+ * @param {DomItem} target - The element which triggered the event
  * @param {...*} [args] - Optional args as required by the listener
  */
 
 /**
  * A Boolean indicating whether events of this type will be dispatched to the registered listerFunction before being
  * dispatched to any EventTarget beneath it in the Dom tree.
- * @typedef {boolean} module:domObjects~UseCapture
+ * @typedef {boolean} UseCapture
  * @memberOf module:domObjects
  */
 
 /**
  * OptionsObject defines the structure for the options to be passed to addEventListener
- * @typedef {Object} module:domObjects~OptionsObject
+ * @typedef {Object} OptionsObject
  * @memberOf module:domObjects
  * @property {boolean} capture - Indicate that events of this type will be dispatched to the registered
  * listenerFunction before being dispatched to any EventTarget beneath it in the Dom tree.
@@ -41,46 +41,46 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
 
 /**
  * EventListenerOptions is either a boolean as UseCapture or an Object as OptionsObject
- * @typedef {module:domObjects~OptionsObject|module:domObjects~UseCapture} module:domObjects~EventListenerOptions
+ * @typedef {OptionsObject|UseCapture} EventListenerOptions
  * @memberOf module:domObjects
  */
 
 /**
  * An EventListener Object to be appended to the element within the DomItem
- * @typedef {Object} module:domObjects~EventListener
+ * @typedef {Object} EventListener
  * @memberOf module:domObjects
  * @property {string} listenerFunc - A string function name matching an existing
- * {@link module:domObjects~listenerFunction}.
+ * {@link listenerFunction}.
  * @property {Object} listenerArgs - Additional args required for the listener function
- * @property {module:domObjects~EventListenerOptions} listenerOptions - Provides support for options
+ * @property {EventListenerOptions} listenerOptions - Provides support for options
  * parameter of addEventListener, or false for default
  */
 
 /**
  * DomItem defines the structure for a single element in the Dom
- * @typedef {Object} module:domObjects~DomItem
+ * @typedef {Object} DomItem
  * @memberOf module:domObjects
  * @property {string} tagName - This is any valid HTMLElement tagName
  * @property {Object.<string, string|Object>} attributes - All potential HTML element attributes can be defined here
  * (including the defaulted style object)
  * @property {(Object|HTMLElement)} element - A reference to an existing HTML element will be stored here (default
  * empty object)
- * @property {Object.<Event, module:domObjects~EventListener>} eventListeners - An object holding all
+ * @property {Object.<Event, EventListener>} eventListeners - An object holding all
  * events to be registered for the associated element
- * @property {module:domObjects~DomItem} parentItem - A reference to the parent of this object
- * @property {Array.<module:domObjects~DomItem>} children - A reference to an array of child objects
+ * @property {DomItem} parentItem - A reference to the parent of this object
+ * @property {Array.<DomItem>} children - A reference to an array of child objects
  */
 
 /**
  * This is the basic Object for representing the Dom in a virtual perspective. All incoming attributes will be merged
  * to the specified format.
- * @function createDomItem
+ * @function
  * @memberOf module:domObjects
  * @param {Object} [item={}] - DomItem-like object to be formatted as DomItem
- * @returns {module:domObjects~DomItem}
+ * @returns {DomItem}
  */
-const createDomItem = function createDomItem () {
-  const item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
+var createDomItem = function createDomItem() {
+  var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   return _functionalHelpers.default.reduceObject({
     tagName: 'div',
     attributes: {
@@ -92,17 +92,17 @@ const createDomItem = function createDomItem () {
     children: []
   }, function (domItem, defaultValue, prop) {
     if (!(prop in domItem)) {
-      domItem[prop] = defaultValue
-      return domItem
+      domItem[prop] = defaultValue;
+      return domItem;
     }
 
     if (prop === 'attributes' && !('style' in domItem[prop])) {
-      domItem[prop].style = defaultValue.style
+      domItem[prop]['style'] = defaultValue['style'];
     }
 
-    return domItem
-  }, item)
-}
+    return domItem;
+  }, item);
+};
 
-const _default = createDomItem
-exports.default = _default
+var _default = createDomItem;
+exports.default = _default;

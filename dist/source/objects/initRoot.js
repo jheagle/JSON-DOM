@@ -1,30 +1,30 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/stable')
+require("core-js/stable");
 
-const _createDomItem = _interopRequireDefault(require('./createDomItem'))
+var _createDomItem = _interopRequireDefault(require("./createDomItem"));
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * DomItemRoot defines the structure for a single element in the Dom
- * @typedef {module:domObjects~DomItem} module:dom/objects~DomItemRoot
+ * @typedef {DomItem} DomItemRoot
  * @memberOf module:domObjects
  * @property {string} [tagName=html] - This is set to the string html referring to the HTML element of the same name
  * @property {Object} attributes - Empty object as attributes placeholder
  * @property {HTMLDocument} element - A reference to the entire Document
- * @property {Object.<string, module:domObjects~listenerFunction>} eventListeners - all registered
+ * @property {Object.<string, listenerFunction>} eventListeners - all registered
  * listeners stored as listener name and function pairs
  * @property {
- * Array.<module:domObjects~DomItemHead|module:domObjects~DomItemBody>
+ * Array.<DomItemHead|DomItemBody>
  *   } children - Two references: for head and body
- * @property {module:domObjects~DomItemHead} head - A specific reference to head item
- * @property {module:domObjects~DomItemBody} body - A specific reference to body item
+ * @property {DomItemHead} head - A specific reference to head item
+ * @property {DomItemBody} body - A specific reference to body item
  */
 
 /**
@@ -32,14 +32,14 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @function
  * @memberOf module:domObjects
  * @param {
- * Array.<module:domObjects~DomItemHead|module:domObjects~DomItemBody>
+ * Array.<DomItemHead|DomItemBody>
  *   } children - Provide an array of Head and Body (usually via {@link initChildren})
- * @param {Object.<string, module:domObjects~listenerFunction>} listeners - An object of all event
+ * @param {Object.<string, listenerFunction>} listeners - An object of all event
  * listeners to be registered in the Dom
- * @returns {module:domObjects~DomItemRoot|module:domObjects~DomItem}
+ * @returns {DomItemRoot|DomItem}
  */
-const initRoot = function initRoot (children) {
-  const listeners = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
+var initRoot = function initRoot(children) {
+  var listeners = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   return (0, _createDomItem.default)({
     tagName: 'html',
     attributes: {},
@@ -48,8 +48,8 @@ const initRoot = function initRoot (children) {
     children: children,
     head: children[0],
     body: children[1]
-  })
-}
+  });
+};
 
-const _default = initRoot
-exports.default = _default
+var _default = initRoot;
+exports.default = _default;
