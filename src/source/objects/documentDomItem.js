@@ -14,8 +14,9 @@ import initRoot from './initRoot'
  * reference to DomItemRoot which will be defaulted with {@link initRoot}
  * @returns {DomItemRoot|DomItem}
  */
-const documentDomItem = (listeners = [], rootItem = initRoot(initChildren(), listeners)) => {
-  rootItem.children = rootItem.children.map(child => createDomItem(child, { parentItem: rootItem }))
+const documentDomItem = (listeners = {}, rootItem = initRoot(initChildren(), listeners)) => {
+  rootItem.children = rootItem.children.map(child => createDomItem(child))
+  rootItem.children.forEach(child => child.parentItem = rootItem)
   Object.assign(rootItem.head, rootItem.children[0])
   Object.assign(rootItem.body, rootItem.children[1])
   return createDomItem(rootItem)

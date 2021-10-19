@@ -25,19 +25,38 @@ import createDomItem from './createDomItem'
  * @memberOf module:domObjects
  * @returns {Array.<DomItemHead|DomItemBody>}
  */
-const initChildren = () => [
-  createDomItem({
-    tagName: 'head',
-    attributes: {},
-    element: document.head,
-    children: []
-  }),
-  createDomItem({
-    tagName: 'body',
-    attributes: {},
-    element: document.body,
-    children: []
-  })
-]
+const initChildren = () => {
+  const head = document.head
+  const body = document.body
+  const children = [
+    createDomItem({
+      tagName: 'head',
+      attributes: {},
+      element: head,
+      children: []
+    }),
+    createDomItem({
+      tagName: 'body',
+      attributes: {},
+      element: body,
+      children: []
+    })
+  ]
+  if (!head || !body) {
+    const observer = new MutationObserver(() => {
+      if (children[1].element !== null) {
+        observer.disconnect()
+        return
+      }
+      if (document.body) {
+        children[0].element = document.head
+        children[1].element = document.body
+        observer.disconnect()
+      }
+    });
+    observer.observe(document.documentElement, {childList: true});
+  }
+  return children
+}
 
 export default initChildren

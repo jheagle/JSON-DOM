@@ -1555,6 +1555,8 @@
 
     require('core-js/modules/es.array.map.js')
 
+    require('core-js/modules/web.dom-collections.for-each.js')
+
     require('core-js/modules/es.object.assign.js')
 
     require('core-js/stable')
@@ -1579,12 +1581,13 @@
  * @returns {DomItemRoot|DomItem}
  */
     const documentDomItem = function documentDomItem () {
-      const listeners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : []
+      const listeners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
       const rootItem = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _initRoot.default)((0, _initChildren.default)(), listeners)
       rootItem.children = rootItem.children.map(function (child) {
-        return (0, _createDomItem.default)(child, {
-          parentItem: rootItem
-        })
+        return (0, _createDomItem.default)(child)
+      })
+      rootItem.children.forEach(function (child) {
+        return child.parentItem = rootItem
       })
       Object.assign(rootItem.head, rootItem.children[0])
       Object.assign(rootItem.body, rootItem.children[1])
@@ -1593,7 +1596,7 @@
 
     const _default = documentDomItem
     exports.default = _default
-  }, { './createDomItem': 37, './initChildren': 40, './initRoot': 41, 'core-js/modules/es.array.map.js': 249, 'core-js/modules/es.object.assign.js': 308, 'core-js/stable': 457 }],
+  }, { './createDomItem': 37, './initChildren': 40, './initRoot': 41, 'core-js/modules/es.array.map.js': 249, 'core-js/modules/es.object.assign.js': 308, 'core-js/modules/web.dom-collections.for-each.js': 449, 'core-js/stable': 457 }],
   39: [function (require, module, exports) {
     'use strict'
 
@@ -1657,17 +1660,39 @@
  * @returns {Array.<DomItemHead|DomItemBody>}
  */
     const initChildren = function initChildren () {
-      return [(0, _createDomItem.default)({
+      const head = document.head
+      const body = document.body
+      const children = [(0, _createDomItem.default)({
         tagName: 'head',
         attributes: {},
-        element: document.head,
+        element: head,
         children: []
       }), (0, _createDomItem.default)({
         tagName: 'body',
         attributes: {},
-        element: document.body,
+        element: body,
         children: []
       })]
+
+      if (!head || !body) {
+        var observer = new MutationObserver(function () {
+          if (children[1].element !== null) {
+            observer.disconnect()
+            return
+          }
+
+          if (document.body) {
+            children[0].element = document.head
+            children[1].element = document.body
+            observer.disconnect()
+          }
+        })
+        observer.observe(document.documentElement, {
+          childList: true
+        })
+      }
+
+      return children
     }
 
     const _default = initChildren

@@ -36,17 +36,39 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {Array.<DomItemHead|DomItemBody>}
  */
 const initChildren = function initChildren () {
-  return [(0, _createDomItem.default)({
+  const head = document.head
+  const body = document.body
+  const children = [(0, _createDomItem.default)({
     tagName: 'head',
     attributes: {},
-    element: document.head,
+    element: head,
     children: []
   }), (0, _createDomItem.default)({
     tagName: 'body',
     attributes: {},
-    element: document.body,
+    element: body,
     children: []
   })]
+
+  if (!head || !body) {
+    var observer = new MutationObserver(function () {
+      if (children[1].element !== null) {
+        observer.disconnect()
+        return
+      }
+
+      if (document.body) {
+        children[0].element = document.head
+        children[1].element = document.body
+        observer.disconnect()
+      }
+    })
+    observer.observe(document.documentElement, {
+      childList: true
+    })
+  }
+
+  return children
 }
 
 const _default = initChildren

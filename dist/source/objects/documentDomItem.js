@@ -7,6 +7,8 @@ exports.default = void 0
 
 require('core-js/modules/es.array.map.js')
 
+require('core-js/modules/web.dom-collections.for-each.js')
+
 require('core-js/modules/es.object.assign.js')
 
 require('core-js/stable')
@@ -31,12 +33,13 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {DomItemRoot|DomItem}
  */
 const documentDomItem = function documentDomItem () {
-  const listeners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : []
+  const listeners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
   const rootItem = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _initRoot.default)((0, _initChildren.default)(), listeners)
   rootItem.children = rootItem.children.map(function (child) {
-    return (0, _createDomItem.default)(child, {
-      parentItem: rootItem
-    })
+    return (0, _createDomItem.default)(child)
+  })
+  rootItem.children.forEach(function (child) {
+    return child.parentItem = rootItem
   })
   Object.assign(rootItem.head, rootItem.children[0])
   Object.assign(rootItem.body, rootItem.children[1])
