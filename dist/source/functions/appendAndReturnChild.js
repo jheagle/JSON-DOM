@@ -1,17 +1,17 @@
-"use strict";
+'use strict'
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
-});
-exports.default = void 0;
+})
+exports.default = void 0
 
-require("core-js/stable");
+require('core-js/stable')
 
-var _documentItem = _interopRequireDefault(require("../objects/documentItem"));
+const _documentItem = _interopRequireDefault(require('../objects/documentItem'))
 
-var _retrieveParentItem = _interopRequireDefault(require("./retrieveParentItem"));
+const _retrieveParentItem = _interopRequireDefault(require('./retrieveParentItem'))
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
 /**
  * Provide a DomItem to be appended to a parent item, return the DomItem.
@@ -21,11 +21,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {DomItem} parent - A parent item to have a new child appended
  * @returns {DomItem}
  */
-var appendAndReturnChild = function appendAndReturnChild(child) {
-  var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default.body;
-  (0, _retrieveParentItem.default)(parent).element.appendChild(child.element);
-  return child;
-};
+const appendAndReturnChild = function appendAndReturnChild (child) {
+  const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default.body;
+  (0, _retrieveParentItem.default)(parent).element.appendChild(child.element)
+  return child
+}
 
-var _default = appendAndReturnChild;
-exports.default = _default;
+const _default = appendAndReturnChild
+exports.default = _default

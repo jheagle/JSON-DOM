@@ -1,15 +1,15 @@
-"use strict";
+'use strict'
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
-});
-exports.default = void 0;
+})
+exports.default = void 0
 
-require("core-js/stable");
+require('core-js/stable')
 
-var _documentDomItem = _interopRequireDefault(require("./documentDomItem"));
+const _documentDomItem = _interopRequireDefault(require('./documentDomItem'))
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
 /**
  * Create reference for storing document changes
@@ -17,6 +17,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @memberOf module:domObjects
  * @type {DomItemRoot}
  */
-var documentItem = (0, _documentDomItem.default)();
-var _default = documentItem;
-exports.default = _default;
+const documentItem = (0, _documentDomItem.default)()
+const _default = documentItem
+exports.default = _default

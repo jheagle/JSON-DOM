@@ -1,17 +1,17 @@
-"use strict";
+'use strict'
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
-});
-exports.default = void 0;
+})
+exports.default = void 0
 
-require("core-js/stable");
+require('core-js/stable')
 
-var _functionalHelpers = _interopRequireDefault(require("functional-helpers"));
+const _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
-var _getChildrenFromAttribute = _interopRequireDefault(require("./getChildrenFromAttribute"));
+const _getChildrenFromAttribute = _interopRequireDefault(require('./getChildrenFromAttribute'))
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
 /**
  * Helper for getting all domObjects.DomItems starting at parent and having specified name attribute
@@ -19,7 +19,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @memberOf module:domFunctions
  * @returns {DomItem[]}
  */
-var getChildrenByName = _functionalHelpers.default.curry(_getChildrenFromAttribute.default)('name');
+const getChildrenByName = _functionalHelpers.default.curry(_getChildrenFromAttribute.default)('name')
 
-var _default = getChildrenByName;
-exports.default = _default;
+const _default = getChildrenByName
+exports.default = _default

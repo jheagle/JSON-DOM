@@ -1,15 +1,15 @@
-"use strict";
+'use strict'
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
-});
-exports.default = void 0;
+})
+exports.default = void 0
 
-require("core-js/stable");
+require('core-js/stable')
 
-var _createDomItem = _interopRequireDefault(require("./createDomItem"));
+const _createDomItem = _interopRequireDefault(require('./createDomItem'))
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
 /**
  * DomItemHead defines the structure for a single element in the Dom
@@ -35,7 +35,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @memberOf module:domObjects
  * @returns {Array.<DomItemHead|DomItemBody>}
  */
-var initChildren = function initChildren() {
+const initChildren = function initChildren () {
   return [(0, _createDomItem.default)({
     tagName: 'head',
     attributes: {},
@@ -46,8 +46,8 @@ var initChildren = function initChildren() {
     attributes: {},
     element: document.body,
     children: []
-  })];
-};
+  })]
+}
 
-var _default = initChildren;
-exports.default = _default;
+const _default = initChildren
+exports.default = _default

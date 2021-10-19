@@ -1,23 +1,23 @@
-"use strict";
+'use strict'
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
-});
-exports.default = void 0;
+})
+exports.default = void 0
 
-require("core-js/modules/es.array.map.js");
+require('core-js/modules/es.array.map.js')
 
-require("core-js/modules/es.object.assign.js");
+require('core-js/modules/es.object.assign.js')
 
-require("core-js/stable");
+require('core-js/stable')
 
-var _createDomItem = _interopRequireDefault(require("./createDomItem"));
+const _createDomItem = _interopRequireDefault(require('./createDomItem'))
 
-var _initChildren = _interopRequireDefault(require("./initChildren"));
+const _initChildren = _interopRequireDefault(require('./initChildren'))
 
-var _initRoot = _interopRequireDefault(require("./initRoot"));
+const _initRoot = _interopRequireDefault(require('./initRoot'))
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
 /**
  * Return a DomItem reference to the document. The rootItem argument is a system variable and not necessary to
@@ -30,18 +30,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * reference to DomItemRoot which will be defaulted with {@link initRoot}
  * @returns {DomItemRoot|DomItem}
  */
-var documentDomItem = function documentDomItem() {
-  var listeners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var rootItem = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _initRoot.default)((0, _initChildren.default)(), listeners);
+const documentDomItem = function documentDomItem () {
+  const listeners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : []
+  const rootItem = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _initRoot.default)((0, _initChildren.default)(), listeners)
   rootItem.children = rootItem.children.map(function (child) {
     return (0, _createDomItem.default)(child, {
       parentItem: rootItem
-    });
-  });
-  Object.assign(rootItem.head, rootItem.children[0]);
-  Object.assign(rootItem.body, rootItem.children[1]);
-  return (0, _createDomItem.default)(rootItem);
-};
+    })
+  })
+  Object.assign(rootItem.head, rootItem.children[0])
+  Object.assign(rootItem.body, rootItem.children[1])
+  return (0, _createDomItem.default)(rootItem)
+}
 
-var _default = documentDomItem;
-exports.default = _default;
+const _default = documentDomItem
+exports.default = _default
