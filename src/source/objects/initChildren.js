@@ -1,5 +1,6 @@
 import 'core-js/stable'
 import createDomItem from './createDomItem'
+import onBodyLoad from 'functional-helpers/dist/helpers/functions/onBodyLoad'
 
 /**
  * DomItemHead defines the structure for a single element in the Dom
@@ -43,18 +44,13 @@ const initChildren = () => {
     })
   ]
   if (!head || !body) {
-    const observer = new MutationObserver(() => {
-      if (children[1].element !== null) {
-        observer.disconnect()
-        return
-      }
-      if (document.body) {
+    onBodyLoad(() => {
+      if (children[1].element === null) {
         children[0].element = document.head
         children[1].element = document.body
-        observer.disconnect()
       }
-    });
-    observer.observe(document.documentElement, {childList: true});
+      return children
+    })
   }
   return children
 }

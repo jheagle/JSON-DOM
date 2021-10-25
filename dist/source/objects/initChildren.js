@@ -9,6 +9,8 @@ require('core-js/stable')
 
 const _createDomItem = _interopRequireDefault(require('./createDomItem'))
 
+const _onBodyLoad = _interopRequireDefault(require('functional-helpers/dist/helpers/functions/onBodyLoad'))
+
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
 /**
@@ -51,20 +53,13 @@ const initChildren = function initChildren () {
   })]
 
   if (!head || !body) {
-    var observer = new MutationObserver(function () {
-      if (children[1].element !== null) {
-        observer.disconnect()
-        return
-      }
-
-      if (document.body) {
+    (0, _onBodyLoad.default)(function () {
+      if (children[1].element === null) {
         children[0].element = document.head
         children[1].element = document.body
-        observer.disconnect()
       }
-    })
-    observer.observe(document.documentElement, {
-      childList: true
+
+      return children
     })
   }
 
