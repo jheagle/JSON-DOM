@@ -1,79 +1,87 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/es.object.define-property.js");
+
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/stable')
+require("core-js/stable");
 
-const _appendAndReturnChild = _interopRequireDefault(require('./functions/appendAndReturnChild'))
+var _appendAndReturnChild = _interopRequireDefault(require("./functions/appendAndReturnChild.js"));
 
-const _appendHtml = _interopRequireDefault(require('./functions/appendHtml'))
+var _appendHtml = _interopRequireDefault(require("./functions/appendHtml.js"));
 
-const _appendListeners = _interopRequireDefault(require('./functions/appendListeners'))
+var _appendListeners = _interopRequireDefault(require("./functions/appendListeners.js"));
 
-const _assignListener = _interopRequireDefault(require('./functions/assignListener'))
+var _assignListener = _interopRequireDefault(require("./functions/assignListener.js"));
 
-const _bindAllListeners = _interopRequireDefault(require('./functions/bindAllListeners'))
+var _bindAllListeners = _interopRequireDefault(require("./functions/bindAllListeners.js"));
 
-const _bindElement = _interopRequireDefault(require('./functions/bindElement'))
+var _bindElement = _interopRequireDefault(require("./functions/bindElement.js"));
 
-const _bindElementListeners = _interopRequireDefault(require('./functions/bindElementListeners'))
+var _bindElementListeners = _interopRequireDefault(require("./functions/bindElementListeners.js"));
 
-const _bindListeners = _interopRequireDefault(require('./functions/bindListeners'))
+var _bindListeners = _interopRequireDefault(require("./functions/bindListeners.js"));
 
-const _elementChanges = _interopRequireDefault(require('./functions/elementChanges'))
+var _domItemChanges = _interopRequireDefault(require("./functions/domItemChanges.js"));
 
-const _elementCompareClassList = _interopRequireDefault(require('./functions/elementCompareClassList'))
+var _domItemHasAttribute = _interopRequireDefault(require("./functions/domItemHasAttribute.js"));
 
-const _elementHasAttribute = _interopRequireDefault(require('./functions/elementHasAttribute'))
+var _elementChanges = _interopRequireDefault(require("./functions/elementChanges.js"));
 
-const _gatherChildItems = _interopRequireDefault(require('./functions/gatherChildItems'))
+var _elementCompareClassList = _interopRequireDefault(require("./functions/elementCompareClassList.js"));
 
-const _generateElement = _interopRequireDefault(require('./functions/generateElement'))
+var _gatherChildItems = _interopRequireDefault(require("./functions/gatherChildItems.js"));
 
-const _getChildTest = _interopRequireDefault(require('./functions/getChildTest'))
+var _generateElement = _interopRequireDefault(require("./functions/generateElement.js"));
 
-const _getChildrenByClass = _interopRequireDefault(require('./functions/getChildrenByClass'))
+var _getChildTest = _interopRequireDefault(require("./functions/getChildTest.js"));
 
-const _getChildrenByName = _interopRequireDefault(require('./functions/getChildrenByName'))
+var _getChildrenByClass = _interopRequireDefault(require("./functions/getChildrenByClass.js"));
 
-const _getChildrenFromAttribute = _interopRequireDefault(require('./functions/getChildrenFromAttribute'))
+var _getChildrenByName = _interopRequireDefault(require("./functions/getChildrenByName.js"));
 
-const _getParentsByClass = _interopRequireDefault(require('./functions/getParentsByClass'))
+var _getChildrenFromAttribute = _interopRequireDefault(require("./functions/getChildrenFromAttribute.js"));
 
-const _getParentsByName = _interopRequireDefault(require('./functions/getParentsByName'))
+var _getParentsByClass = _interopRequireDefault(require("./functions/getParentsByClass.js"));
 
-const _getParentsByTagName = _interopRequireDefault(require('./functions/getParentsByTagName'))
+var _getParentsByName = _interopRequireDefault(require("./functions/getParentsByName.js"));
 
-const _getParentsFromAttribute = _interopRequireDefault(require('./functions/getParentsFromAttribute'))
+var _getParentsByTagName = _interopRequireDefault(require("./functions/getParentsByTagName.js"));
 
-const _getTopParentItem = _interopRequireDefault(require('./functions/getTopParentItem'))
+var _getParentsFromAttribute = _interopRequireDefault(require("./functions/getParentsFromAttribute.js"));
 
-const _listenerOptions = _interopRequireDefault(require('./functions/listenerOptions'))
+var _getTopParentItem = _interopRequireDefault(require("./functions/getTopParentItem.js"));
 
-const _registerListener = _interopRequireDefault(require('./functions/registerListener'))
+var _listenerOptions = _interopRequireDefault(require("./functions/listenerOptions.js"));
 
-const _registerListeners = _interopRequireDefault(require('./functions/registerListeners'))
+var _registerListener = _interopRequireDefault(require("./functions/registerListener.js"));
 
-const _removeChild = _interopRequireDefault(require('./functions/removeChild'))
+var _registerListeners = _interopRequireDefault(require("./functions/registerListeners.js"));
 
-const _renderHtml = _interopRequireDefault(require('./functions/renderHtml'))
+var _removeChild = _interopRequireDefault(require("./functions/removeChild.js"));
 
-const _retrieveListener = _interopRequireDefault(require('./functions/retrieveListener'))
+var _renderHtml = _interopRequireDefault(require("./functions/renderHtml.js"));
 
-const _retrieveParentItem = _interopRequireDefault(require('./functions/retrieveParentItem'))
+var _retrieveListener = _interopRequireDefault(require("./functions/retrieveListener.js"));
 
-const _setAndReturnAttribute = _interopRequireDefault(require('./functions/setAndReturnAttribute'))
+var _retrieveParentItem = _interopRequireDefault(require("./functions/retrieveParentItem.js"));
 
-const _setAttribute = _interopRequireDefault(require('./functions/setAttribute'))
+var _setAndReturnAttribute = _interopRequireDefault(require("./functions/setAndReturnAttribute.js"));
 
-const _updateElement = _interopRequireDefault(require('./functions/updateElement'))
+var _setAttribute = _interopRequireDefault(require("./functions/setAttribute.js"));
 
-const _updateElements = _interopRequireDefault(require('./functions/updateElements'))
+var _updateDomItem = _interopRequireDefault(require("./functions/updateDomItem.js"));
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+var _updateDomItems = _interopRequireDefault(require("./functions/updateDomItems.js"));
+
+var _updateElement = _interopRequireDefault(require("./functions/updateElement.js"));
+
+var _updateElements = _interopRequireDefault(require("./functions/updateElements.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * @file Core Dom management functions
@@ -81,7 +89,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @version 1.0.0
  * @module domFunctions
  */
-const _default = {
+var _default = {
   appendAndReturnChild: _appendAndReturnChild.default,
   appendHtml: _appendHtml.default,
   appendListeners: _appendListeners.default,
@@ -90,9 +98,11 @@ const _default = {
   bindElement: _bindElement.default,
   bindElementListeners: _bindElementListeners.default,
   bindListeners: _bindListeners.default,
+  domItemChanges: _domItemChanges.default,
+  domItemHasAttribute: _domItemHasAttribute.default,
   elementChanges: _elementChanges.default,
   elementCompareClassList: _elementCompareClassList.default,
-  elementHasAttribute: _elementHasAttribute.default,
+  elementHasAttribute: _domItemHasAttribute.default,
   gatherChildItems: _gatherChildItems.default,
   generateElement: _generateElement.default,
   getChildTest: _getChildTest.default,
@@ -113,7 +123,9 @@ const _default = {
   retrieveParentItem: _retrieveParentItem.default,
   setAndReturnAttribute: _setAndReturnAttribute.default,
   setAttribute: _setAttribute.default,
+  updateDomItem: _updateDomItem.default,
+  updateDomItems: _updateDomItems.default,
   updateElement: _updateElement.default,
   updateElements: _updateElements.default
-}
-exports.default = _default
+};
+exports.default = _default;

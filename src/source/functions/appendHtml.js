@@ -1,9 +1,9 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
-import documentItem from '../objects/documentItem'
-import appendAndReturnChild from './appendAndReturnChild'
-import bindElement from './bindElement'
-import retrieveParentItem from './retrieveParentItem'
+import documentItem from '../objects/documentItem.js'
+import appendAndReturnChild from './appendAndReturnChild.js'
+import bindElement from './bindElement.js'
+import retrieveParentItem from './retrieveParentItem.js'
 
 /**
  * Append a new DomItem which has the element generated.

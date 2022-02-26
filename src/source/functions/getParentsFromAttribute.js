@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import documentItem from '../objects/documentItem'
+import documentItem from '../objects/documentItem.js'
 
 /**
  * A selector function for retrieving existing child domObjects.DomItems from the given parent item.

@@ -8,7 +8,6 @@
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width">
     <script src="browser/jsonDom.js"></script>
-    <script src="tests/testHelpers.js" type="module"></script>
 </head>
 <body>
 <p>
@@ -18,10 +17,14 @@
     See <code>testHelpers</code> for some example objects you can test the functions on.
 </p>
 <a href='docs'>See the documentation on function usage</a>
-<script>
+<script type="module">
+  import * as testHelpers from './tests/testHelpers.js'
+
+  window.testHelpers = testHelpers
+
   window.addEventListener('DOMContentLoaded', () => {
     testHelpers.logObject(jsonDom, 'JSON DOM')
-  });
+  })
 </script>
 </body>
 

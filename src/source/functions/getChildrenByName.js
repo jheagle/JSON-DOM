@@ -1,6 +1,6 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
-import getChildrenFromAttribute from './getChildrenFromAttribute'
+import getChildrenFromAttribute from './getChildrenFromAttribute.js'
 
 /**
  * Helper for getting all domObjects.DomItems starting at parent and having specified name attribute

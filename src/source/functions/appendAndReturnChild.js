@@ -1,6 +1,6 @@
 import 'core-js/stable'
-import documentItem from '../objects/documentItem'
-import retrieveParentItem from './retrieveParentItem'
+import documentItem from '../objects/documentItem.js'
+import retrieveParentItem from './retrieveParentItem.js'
 
 /**
  * Provide a DomItem to be appended to a parent item, return the DomItem.

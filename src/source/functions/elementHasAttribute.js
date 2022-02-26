@@ -15,12 +15,31 @@ const elementHasAttribute = (element, key, attr) => {
   if (!element.style) {
     return false
   }
-  if (/^(style|className)$/.test(key)) {
+  if (key === 'style') {
+    const elementStyles = functionalHelpers.reduceObject(
+      element.style,
+      (styles, attr, key) => {
+        if (isNaN(key)) {
+          return styles
+        }
+        styles[functionalHelpers.camelCase(attr)] = element.style[attr]
+        return styles
+      },
+      {}
+    )
     // For attributes which are objects or multi-part strings
     // -1 = remove attribute, 0 = no change, 1 = add attribute
     return functionalHelpers.compareArrays(
-      typeof attr === 'string' ? attr.split(' ') : Object.keys(attr),
-      typeof attr === 'string' ? element[key].split(' ') : Object.keys(element[key])
+      Object.keys(attr),
+      Object.keys(elementStyles)
+    )
+  }
+  if (key === 'className') {
+    // For attributes which are objects or multi-part strings
+    // -1 = remove attribute, 0 = no change, 1 = add attribute
+    return functionalHelpers.compareArrays(
+      attr.split(' '),
+      element.className.split(' ')
     )
   }
   return (element.hasAttribute(key) && element.getAttribute(key) === attr)

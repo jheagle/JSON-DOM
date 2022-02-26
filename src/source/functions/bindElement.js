@@ -1,6 +1,6 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
-import generateElement from './generateElement'
+import generateElement from './generateElement.js'
 
 /**
  * Generate HTML element data for a provided DomItem

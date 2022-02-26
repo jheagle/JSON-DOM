@@ -1,15 +1,17 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/es.object.define-property.js");
+
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/stable')
+require("core-js/stable");
 
-const _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _functionalHelpers = _interopRequireDefault(require("functional-helpers"));
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * This is the standard definition of a listenerFunction to be used
@@ -79,8 +81,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {Object} [item={}] - DomItem-like object to be formatted as DomItem
  * @returns {DomItem}
  */
-const createDomItem = function createDomItem () {
-  const item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
+var createDomItem = function createDomItem() {
+  var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   return _functionalHelpers.default.reduceObject({
     tagName: 'div',
     attributes: {
@@ -92,17 +94,17 @@ const createDomItem = function createDomItem () {
     children: []
   }, function (domItem, defaultValue, prop) {
     if (!(prop in domItem)) {
-      domItem[prop] = defaultValue
-      return domItem
+      domItem[prop] = defaultValue;
+      return domItem;
     }
 
     if (prop === 'attributes' && !('style' in domItem[prop])) {
-      domItem[prop].style = defaultValue.style
+      domItem[prop]['style'] = defaultValue['style'];
     }
 
-    return domItem
-  }, item)
-}
+    return domItem;
+  }, item);
+};
 
-const _default = createDomItem
-exports.default = _default
+var _default = createDomItem;
+exports.default = _default;

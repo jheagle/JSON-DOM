@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import documentItem from '../objects/documentItem'
+import documentItem from '../objects/documentItem.js'
 
 /**
  * Register a single listener function as part of the root domObjects.DomItem.

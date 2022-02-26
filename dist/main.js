@@ -1,19 +1,21 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/es.object.define-property.js");
+
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/modules/es.object.assign.js')
+require("core-js/modules/es.object.assign.js");
 
-require('core-js/stable')
+require("core-js/stable");
 
-const _functions = _interopRequireDefault(require('./source/functions'))
+var _functions = _interopRequireDefault(require("./source/functions.js"));
 
-const _objects = _interopRequireDefault(require('./source/objects'))
+var _objects = _interopRequireDefault(require("./source/objects.js"));
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * All of the JSON DOM system functions for creating JSON components.
@@ -22,37 +24,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @version 1.0.0
  * @module jsonDom
  */
-
-/**
- * Store a reference to this scope which will be Window if rendered via browser
- */
-const root = void 0 || window || global || {}
-/**
- * Store reference to any pre-existing module of the same name
- * @type {module|*}
- */
-
-const previousJsonDom = root.jsonDom || {}
-/**
- * All methods exported from this module are encapsulated within jsonDom.
- * @typedef {module:jsonDom|module:domFunctions|module:domObjects} jsonDom
- */
-
-const jsonDom = {}
-root.jsonDom = jsonDom
-/**
- * Return a reference to this library while preserving the original same-named library
- * @function
- * @returns {module:jsonDom~jsonDom|module:domFunctions|module:domObjects}
- */
-
-const noConflict = function noConflict () {
-  root.jsonDom = previousJsonDom
-  return jsonDom
-}
-
-jsonDom.noConflict = noConflict
-
-const _default = root.jsonDom = Object.assign(jsonDom, _functions.default, _objects.default)
-
-exports.default = _default
+var jsonDom = Object.assign({}, _functions.default, _objects.default);
+var _default = jsonDom;
+exports.default = _default;
+var root = void 0 || typeof window !== 'undefined' ? window : {};
+root['jsonDom'] = jsonDom;

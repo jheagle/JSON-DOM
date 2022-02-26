@@ -1,23 +1,25 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/es.object.define-property.js");
+
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/stable')
+require("core-js/stable");
 
-const _createDomItem = _interopRequireDefault(require('./objects/createDomItem'))
+var _createDomItem = _interopRequireDefault(require("./objects/createDomItem.js"));
 
-const _documentDomItem = _interopRequireDefault(require('./objects/documentDomItem'))
+var _documentDomItem = _interopRequireDefault(require("./objects/documentDomItem.js"));
 
-const _documentItem = _interopRequireDefault(require('./objects/documentItem'))
+var _documentItem = _interopRequireDefault(require("./objects/documentItem.js"));
 
-const _initChildren = _interopRequireDefault(require('./objects/initChildren'))
+var _initChildren = _interopRequireDefault(require("./objects/initChildren.js"));
 
-const _initRoot = _interopRequireDefault(require('./objects/initRoot'))
+var _initRoot = _interopRequireDefault(require("./objects/initRoot.js"));
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * @file Core objects for representing the DOM in JSON.
@@ -25,11 +27,11 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @version 1.0.0
  * @module domObjects
  */
-const _default = {
+var _default = {
   createDomItem: _createDomItem.default,
   documentDomItem: _documentDomItem.default,
   documentItem: _documentItem.default,
   initChildren: _initChildren.default,
   initRoot: _initRoot.default
-}
-exports.default = _default
+};
+exports.default = _default;

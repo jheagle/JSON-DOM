@@ -1,15 +1,17 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/es.object.define-property.js");
+
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/stable')
+require("core-js/stable");
 
-const _listenerOptions = _interopRequireDefault(require('./listenerOptions'))
+var _listenerOptions = _interopRequireDefault(require("./listenerOptions.js"));
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Provide compatibility for assigning listeners.
@@ -23,21 +25,21 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * fired
  * @returns {listenerFunction|function}
  */
-const assignListener = function assignListener (trigger, elem, fn, options) {
+var assignListener = function assignListener(trigger, elem, fn, options) {
   // Attaching a listener may be done differently based on the browser support
   if (elem.addEventListener) {
     // Latest support is provided fro addEventListener with the options parameter varying slightly
-    elem.addEventListener(trigger, fn, (0, _listenerOptions.default)(options))
+    elem.addEventListener(trigger, fn, (0, _listenerOptions.default)(options));
   } else if (elem.attachEvent) {
     // Older browsers, especially Internet Explorer
-    elem.attachEvent('on'.concat(trigger), fn)
+    elem.attachEvent("on".concat(trigger), fn);
   } else {
     // General support for adding a new function onto the element which can be called to trigger the function
-    elem['on'.concat(trigger)] = fn
+    elem["on".concat(trigger)] = fn;
   }
 
-  return fn
-}
+  return fn;
+};
 
-const _default = assignListener
-exports.default = _default
+var _default = assignListener;
+exports.default = _default;

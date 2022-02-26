@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import documentDomItem from './documentDomItem'
+import documentDomItem from './documentDomItem.js'
 
 /**
  * Create reference for storing document changes

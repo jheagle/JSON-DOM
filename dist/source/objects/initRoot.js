@@ -1,15 +1,17 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/es.object.define-property.js");
+
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/stable')
+require("core-js/stable");
 
-const _createDomItem = _interopRequireDefault(require('./createDomItem'))
+var _createDomItem = _interopRequireDefault(require("./createDomItem.js"));
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * DomItemRoot defines the structure for a single element in the Dom
@@ -38,8 +40,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * listeners to be registered in the Dom
  * @returns {DomItemRoot|DomItem}
  */
-const initRoot = function initRoot (children) {
-  const listeners = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
+var initRoot = function initRoot(children) {
+  var listeners = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   return (0, _createDomItem.default)({
     tagName: 'html',
     attributes: {},
@@ -48,8 +50,8 @@ const initRoot = function initRoot (children) {
     children: children,
     head: children[0],
     body: children[1]
-  })
-}
+  });
+};
 
-const _default = initRoot
-exports.default = _default
+var _default = initRoot;
+exports.default = _default;

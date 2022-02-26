@@ -1,28 +1,30 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/es.object.define-property.js");
+
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/stable')
+require("core-js/stable");
 
-const _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _functionalHelpers = _interopRequireDefault(require("functional-helpers"));
 
-const _updateElement = _interopRequireDefault(require('./updateElement'))
+var _updateElement = _interopRequireDefault(require("./updateElement.js"));
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Create an HTML element based on the provided attributes and return the element as an Object.
  * @function
  * @memberOf module:domFunctions
- * @param {DomItem} config - The DomItem requiring matching HTML element property
+ * @param {DomItem} domItem - The DomItem requiring matching HTML element property
  * @return {DomItem}
  */
-const generateElement = function generateElement (config) {
-  return (0, _updateElement.default)(_functionalHelpers.default.setValue('element', document.createElement(config.tagName), config))
-}
+var generateElement = function generateElement(domItem) {
+  return (0, _updateElement.default)(_functionalHelpers.default.setValue('element', document.createElement(domItem.tagName), domItem));
+};
 
-const _default = generateElement
-exports.default = _default
+var _default = generateElement;
+exports.default = _default;

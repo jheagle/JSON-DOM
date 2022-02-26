@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import listenerOptions from './listenerOptions'
+import listenerOptions from './listenerOptions.js'
 
 /**
  * Provide compatibility for assigning listeners.

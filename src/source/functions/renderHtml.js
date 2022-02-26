@@ -1,12 +1,12 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
-import documentItem from '../objects/documentItem'
-import bindElement from './bindElement'
-import retrieveListener from './retrieveListener'
-import getTopParentItem from './getTopParentItem'
-import bindListeners from './bindListeners'
-import appendHtml from './appendHtml'
-import createDomItem from '../objects/createDomItem'
+import documentItem from '../objects/documentItem.js'
+import bindElement from './bindElement.js'
+import retrieveListener from './retrieveListener.js'
+import getTopParentItem from './getTopParentItem.js'
+import bindListeners from './bindListeners.js'
+import appendHtml from './appendHtml.js'
+import createDomItem from '../objects/createDomItem.js'
 
 /**
  * This is a shortcut for building the specified HTML elements and appending them to the Dom

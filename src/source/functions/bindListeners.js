@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import bindElementListeners from './bindElementListeners'
+import bindElementListeners from './bindElementListeners.js'
 
 /**
  * Based on the eventListeners property of the provided item, bind the

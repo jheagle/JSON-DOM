@@ -1,16 +1,16 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
-import updateElement from './updateElement'
+import updateElement from './updateElement.js'
 
 /**
  * Create an HTML element based on the provided attributes and return the element as an Object.
  * @function
  * @memberOf module:domFunctions
- * @param {DomItem} config - The DomItem requiring matching HTML element property
+ * @param {DomItem} domItem - The DomItem requiring matching HTML element property
  * @return {DomItem}
  */
-const generateElement = config => updateElement(
-  functionalHelpers.setValue('element', document.createElement(config.tagName), config)
+const generateElement = domItem => updateElement(
+  functionalHelpers.setValue('element', document.createElement(domItem.tagName), domItem)
 )
 
 export default generateElement

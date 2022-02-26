@@ -5,39 +5,43 @@
  * @module domFunctions
  */
 import 'core-js/stable'
-import appendAndReturnChild from './functions/appendAndReturnChild'
-import appendHtml from './functions/appendHtml'
-import appendListeners from './functions/appendListeners'
-import assignListener from './functions/assignListener'
-import bindAllListeners from './functions/bindAllListeners'
-import bindElement from './functions/bindElement'
-import bindElementListeners from './functions/bindElementListeners'
-import bindListeners from './functions/bindListeners'
-import elementChanges from './functions/elementChanges'
-import elementCompareClassList from './functions/elementCompareClassList'
-import elementHasAttribute from './functions/elementHasAttribute'
-import gatherChildItems from './functions/gatherChildItems'
-import generateElement from './functions/generateElement'
-import getChildTest from './functions/getChildTest'
-import getChildrenByClass from './functions/getChildrenByClass'
-import getChildrenByName from './functions/getChildrenByName'
-import getChildrenFromAttribute from './functions/getChildrenFromAttribute'
-import getParentsByClass from './functions/getParentsByClass'
-import getParentsByName from './functions/getParentsByName'
-import getParentsByTagName from './functions/getParentsByTagName'
-import getParentsFromAttribute from './functions/getParentsFromAttribute'
-import getTopParentItem from './functions/getTopParentItem'
-import listenerOptions from './functions/listenerOptions'
-import registerListener from './functions/registerListener'
-import registerListeners from './functions/registerListeners'
-import removeChild from './functions/removeChild'
-import renderHtml from './functions/renderHtml'
-import retrieveListener from './functions/retrieveListener'
-import retrieveParentItem from './functions/retrieveParentItem'
-import setAndReturnAttribute from './functions/setAndReturnAttribute'
-import setAttribute from './functions/setAttribute'
-import updateElement from './functions/updateElement'
-import updateElements from './functions/updateElements'
+import appendAndReturnChild from './functions/appendAndReturnChild.js'
+import appendHtml from './functions/appendHtml.js'
+import appendListeners from './functions/appendListeners.js'
+import assignListener from './functions/assignListener.js'
+import bindAllListeners from './functions/bindAllListeners.js'
+import bindElement from './functions/bindElement.js'
+import bindElementListeners from './functions/bindElementListeners.js'
+import bindListeners from './functions/bindListeners.js'
+import domItemChanges from './functions/domItemChanges.js'
+import domItemHasAttribute from './functions/domItemHasAttribute.js'
+import elementChanges from './functions/elementChanges.js'
+import elementCompareClassList from './functions/elementCompareClassList.js'
+import elementHasAttribute from './functions/domItemHasAttribute.js'
+import gatherChildItems from './functions/gatherChildItems.js'
+import generateElement from './functions/generateElement.js'
+import getChildTest from './functions/getChildTest.js'
+import getChildrenByClass from './functions/getChildrenByClass.js'
+import getChildrenByName from './functions/getChildrenByName.js'
+import getChildrenFromAttribute from './functions/getChildrenFromAttribute.js'
+import getParentsByClass from './functions/getParentsByClass.js'
+import getParentsByName from './functions/getParentsByName.js'
+import getParentsByTagName from './functions/getParentsByTagName.js'
+import getParentsFromAttribute from './functions/getParentsFromAttribute.js'
+import getTopParentItem from './functions/getTopParentItem.js'
+import listenerOptions from './functions/listenerOptions.js'
+import registerListener from './functions/registerListener.js'
+import registerListeners from './functions/registerListeners.js'
+import removeChild from './functions/removeChild.js'
+import renderHtml from './functions/renderHtml.js'
+import retrieveListener from './functions/retrieveListener.js'
+import retrieveParentItem from './functions/retrieveParentItem.js'
+import setAndReturnAttribute from './functions/setAndReturnAttribute.js'
+import setAttribute from './functions/setAttribute.js'
+import updateDomItem from './functions/updateDomItem.js'
+import updateDomItems from './functions/updateDomItems.js'
+import updateElement from './functions/updateElement.js'
+import updateElements from './functions/updateElements.js'
 
 export default {
   appendAndReturnChild,
@@ -48,6 +52,8 @@ export default {
   bindElement,
   bindElementListeners,
   bindListeners,
+  domItemChanges,
+  domItemHasAttribute,
   elementChanges,
   elementCompareClassList,
   elementHasAttribute,
@@ -71,6 +77,8 @@ export default {
   retrieveParentItem,
   setAndReturnAttribute,
   setAttribute,
+  updateDomItem,
+  updateDomItems,
   updateElement,
   updateElements
 }

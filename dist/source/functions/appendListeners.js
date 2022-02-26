@@ -1,15 +1,17 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/es.object.define-property.js");
+
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/stable')
+require("core-js/stable");
 
-const _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _functionalHelpers = _interopRequireDefault(require("functional-helpers"));
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * When there may be extra data needed for the event listener function call, this function may be used as a helper
@@ -25,17 +27,17 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {EventListenerOptions} options - The strategy used when the event is triggered.
  * @returns {DomItem}
  */
-const appendListeners = function appendListeners (item, event, listener) {
-  const args = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {}
-  const options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false
+var appendListeners = function appendListeners(item, event, listener) {
+  var args = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  var options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
   return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(item.children, function (i) {
-    return appendListeners(i, event, listener, args, options)
+    return appendListeners(i, event, listener, args, options);
   }), _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.setValue(event, {
     listenerFunc: listener,
     listenerArgs: args,
     listenerOptions: options
-  }, item.eventListeners), item))
-}
+  }, item.eventListeners), item));
+};
 
-const _default = appendListeners
-exports.default = _default
+var _default = appendListeners;
+exports.default = _default;

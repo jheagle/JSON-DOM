@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import documentItem from '../objects/documentItem'
+import documentItem from '../objects/documentItem.js'
 
 /**
  * Based on the provided function / listener name, retrieve the associated function from the root domObjects.DomItem

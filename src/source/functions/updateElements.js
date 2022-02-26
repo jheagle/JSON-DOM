@@ -1,6 +1,6 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
-import updateElement from './updateElement'
+import updateElement from './updateElement.js'
 
 /**
  * Generate HTML element data for each object in the matrix

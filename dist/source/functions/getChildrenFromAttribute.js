@@ -1,19 +1,21 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/es.object.define-property.js");
+
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/stable')
+require("core-js/stable");
 
-const _documentItem = _interopRequireDefault(require('../objects/documentItem'))
+var _documentItem = _interopRequireDefault(require("../objects/documentItem.js"));
 
-const _gatherChildItems = _interopRequireDefault(require('./gatherChildItems'))
+var _gatherChildItems = _interopRequireDefault(require("./gatherChildItems.js"));
 
-const _getChildTest = _interopRequireDefault(require('./getChildTest'))
+var _getChildTest = _interopRequireDefault(require("./getChildTest.js"));
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * A selector function for retrieving existing child domObjects.DomItems from the given parent item.
@@ -28,10 +30,10 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * criteria
  * @returns {Array.<DomItem>}
  */
-const getChildrenFromAttribute = function getChildrenFromAttribute (attr, value) {
-  const item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default.body
-  return (0, _gatherChildItems.default)(item, (0, _getChildTest.default)(attr, value))
-}
+var getChildrenFromAttribute = function getChildrenFromAttribute(attr, value) {
+  var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default.body;
+  return (0, _gatherChildItems.default)(item, (0, _getChildTest.default)(attr, value));
+};
 
-const _default = getChildrenFromAttribute
-exports.default = _default
+var _default = getChildrenFromAttribute;
+exports.default = _default;

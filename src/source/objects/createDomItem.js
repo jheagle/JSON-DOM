@@ -86,7 +86,7 @@ const createDomItem = (item = {}) => functionalHelpers.reduceObject(
       return domItem
     }
     if (prop === 'attributes' && !('style' in domItem[prop])) {
-      domItem[prop]['style'] = defaultValue['style']
+      domItem[prop].style = defaultValue.style
     }
     return domItem
   },

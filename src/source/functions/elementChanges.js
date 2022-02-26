@@ -1,7 +1,7 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
-import elementHasAttribute from './elementHasAttribute'
-import generateElement from './generateElement'
+import domItemHasAttribute from './domItemHasAttribute.js'
+import generateElement from './generateElement.js'
 
 /**
  * Given a domObjects.DomItem as config, this function will return the changes to be applied
@@ -12,11 +12,9 @@ import generateElement from './generateElement'
  * element
  * @returns {DomItem}
  */
-const elementChanges = config => (config.element.tagName.toLowerCase() !== config.tagName.toLowerCase())
-  // Generate a new element since the tag has changed
-  ? generateElement(config)
-  // Remove all the similarities
-  : functionalHelpers.setValue(
+const elementChanges = config => {
+
+  return functionalHelpers.setValue(
     'attributes',
     functionalHelpers.filterObject(
       config.attributes,
@@ -29,11 +27,11 @@ const elementChanges = config => (config.element.tagName.toLowerCase() !== confi
             (attr2, key2) => (typeof attr2 === 'object' || key2 === 'className')
               // Apply custom logic for class and styles, only keep the updates
               ? functionalHelpers.filterObject(
-                elementHasAttribute(config.element, key2, attr2),
+                domItemHasAttribute(config.element, key2, attr2),
                 attr3 => attr3 === 1
               )
               // True when the element does not already have the attribute
-              : !elementHasAttribute(config.element, key2, attr2)
+              : !domItemHasAttribute(config.element, key2, attr2)
           ),
           // Remove when the attr4 value is 0 or false, or not empty object
           attr4 => !!attr4
@@ -41,5 +39,6 @@ const elementChanges = config => (config.element.tagName.toLowerCase() !== confi
     ),
     config
   )
+}
 
 export default elementChanges

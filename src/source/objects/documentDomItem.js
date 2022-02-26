@@ -1,7 +1,7 @@
 import 'core-js/stable'
-import createDomItem from './createDomItem'
-import initChildren from './initChildren'
-import initRoot from './initRoot'
+import createDomItem from './createDomItem.js'
+import initChildren from './initChildren.js'
+import initRoot from './initRoot.js'
 
 /**
  * Return a DomItem reference to the document. The rootItem argument is a system variable and not necessary to

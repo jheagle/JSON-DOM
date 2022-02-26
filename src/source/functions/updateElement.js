@@ -1,31 +1,31 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
-import elementChanges from './elementChanges'
-import setAndReturnAttribute from './setAndReturnAttribute'
+import domItemChanges from './domItemChanges.js'
+import setAndReturnAttribute from './setAndReturnAttribute.js'
 
 /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
  * @function
  * @memberOf module:domFunctions
- * @param {DomItem} config - The DomItem having config changes to be applied to its
+ * @param {DomItem} domItem - The DomItem having domItem changes to be applied to its
  * element
  * @returns {DomItem}
  */
-const updateElement = config => {
-  if (!config.element.style) {
-    // if element is not a valid element then return the config without changes
-    return config
+const updateElement = domItem => {
+  if (!domItem.element.style) {
+    // if element is not a valid element then return the domItem without changes
+    return domItem
   }
-  const domItem = elementChanges(config)
+  domItem = domItemChanges(domItem)
   // Set the the current attributes to contain all the changes
   domItem.attributes = functionalHelpers.mapObject(
     // Retrieve only the changes to be applied from the attributes
     domItem.attributes,
     (attr, key) => {
       if (!functionalHelpers.isObject(attr) || functionalHelpers.emptyObject(attr)) {
-        return (key in config.element)
-          ? functionalHelpers.setAndReturnValue(config.element, key, attr)
-          : setAndReturnAttribute(config, key, attr)
+        return (key in domItem.element)
+          ? functionalHelpers.setAndReturnValue(domItem.element, key, attr)
+          : setAndReturnAttribute(domItem, key, attr)
       }
       const cleanedStyles = functionalHelpers.filterObject(
         // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
@@ -35,7 +35,7 @@ const updateElement = config => {
       return functionalHelpers.reduceObject(
         cleanedStyles,
         (newStyle, p, i) => functionalHelpers.setValue(i, p, newStyle),
-        config.element.style
+        domItem.element.style
       )
     }
   )

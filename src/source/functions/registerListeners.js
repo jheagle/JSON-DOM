@@ -1,6 +1,6 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
-import documentItem from '../objects/documentItem'
+import documentItem from '../objects/documentItem.js'
 
 /**
  * Register multiple listeners from an array of functions.

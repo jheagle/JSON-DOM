@@ -5,11 +5,11 @@
  * @module domObjects
  */
 import 'core-js/stable'
-import createDomItem from './objects/createDomItem'
-import documentDomItem from './objects/documentDomItem'
-import documentItem from './objects/documentItem'
-import initChildren from './objects/initChildren'
-import initRoot from './objects/initRoot'
+import createDomItem from './objects/createDomItem.js'
+import documentDomItem from './objects/documentDomItem.js'
+import documentItem from './objects/documentItem.js'
+import initChildren from './objects/initChildren.js'
+import initRoot from './objects/initRoot.js'
 
 export default {
   createDomItem,

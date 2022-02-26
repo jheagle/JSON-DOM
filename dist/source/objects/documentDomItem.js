@@ -1,25 +1,39 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/es.object.define-property.js");
+
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/modules/es.array.map.js')
+require("core-js/modules/es.array.map.js");
 
-require('core-js/modules/web.dom-collections.for-each.js')
+require("core-js/modules/esnext.async-iterator.map.js");
 
-require('core-js/modules/es.object.assign.js')
+require("core-js/modules/esnext.iterator.map.js");
 
-require('core-js/stable')
+require("core-js/modules/es.object.to-string.js");
 
-const _createDomItem = _interopRequireDefault(require('./createDomItem'))
+require("core-js/modules/esnext.async-iterator.for-each.js");
 
-const _initChildren = _interopRequireDefault(require('./initChildren'))
+require("core-js/modules/esnext.iterator.constructor.js");
 
-const _initRoot = _interopRequireDefault(require('./initRoot'))
+require("core-js/modules/esnext.iterator.for-each.js");
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+require("core-js/modules/web.dom-collections.for-each.js");
+
+require("core-js/modules/es.object.assign.js");
+
+require("core-js/stable");
+
+var _createDomItem = _interopRequireDefault(require("./createDomItem.js"));
+
+var _initChildren = _interopRequireDefault(require("./initChildren.js"));
+
+var _initRoot = _interopRequireDefault(require("./initRoot.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Return a DomItem reference to the document. The rootItem argument is a system variable and not necessary to
@@ -32,19 +46,19 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * reference to DomItemRoot which will be defaulted with {@link initRoot}
  * @returns {DomItemRoot|DomItem}
  */
-const documentDomItem = function documentDomItem () {
-  const listeners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
-  const rootItem = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _initRoot.default)((0, _initChildren.default)(), listeners)
+var documentDomItem = function documentDomItem() {
+  var listeners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var rootItem = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _initRoot.default)((0, _initChildren.default)(), listeners);
   rootItem.children = rootItem.children.map(function (child) {
-    return (0, _createDomItem.default)(child)
-  })
+    return (0, _createDomItem.default)(child);
+  });
   rootItem.children.forEach(function (child) {
-    return child.parentItem = rootItem
-  })
-  Object.assign(rootItem.head, rootItem.children[0])
-  Object.assign(rootItem.body, rootItem.children[1])
-  return (0, _createDomItem.default)(rootItem)
-}
+    return child.parentItem = rootItem;
+  });
+  Object.assign(rootItem.head, rootItem.children[0]);
+  Object.assign(rootItem.body, rootItem.children[1]);
+  return (0, _createDomItem.default)(rootItem);
+};
 
-const _default = documentDomItem
-exports.default = _default
+var _default = documentDomItem;
+exports.default = _default;

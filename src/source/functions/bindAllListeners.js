@@ -1,6 +1,6 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
-import bindListeners from './bindListeners'
+import bindListeners from './bindListeners.js'
 
 /**
  * Based on the eventListeners property of the provided item, bind the listeners to the associated element property

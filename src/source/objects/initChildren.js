@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import createDomItem from './createDomItem'
+import createDomItem from './createDomItem.js'
 import onBodyLoad from 'functional-helpers/dist/helpers/functions/onBodyLoad'
 
 /**

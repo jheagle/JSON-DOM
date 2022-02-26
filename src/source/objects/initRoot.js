@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import createDomItem from './createDomItem'
+import createDomItem from './createDomItem.js'
 
 /**
  * DomItemRoot defines the structure for a single element in the Dom

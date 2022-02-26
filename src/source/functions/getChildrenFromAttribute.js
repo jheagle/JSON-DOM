@@ -1,7 +1,7 @@
 import 'core-js/stable'
-import documentItem from '../objects/documentItem'
-import gatherChildItems from './gatherChildItems'
-import getChildTest from './getChildTest'
+import documentItem from '../objects/documentItem.js'
+import gatherChildItems from './gatherChildItems.js'
+import getChildTest from './getChildTest.js'
 
 /**
  * A selector function for retrieving existing child domObjects.DomItems from the given parent item.

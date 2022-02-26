@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import documentItem from '../objects/documentItem'
+import documentItem from '../objects/documentItem.js'
 
 /**
  * Reverse of appendHtml, remove a DomItem and have the associated element removed.

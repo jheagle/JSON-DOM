@@ -1,17 +1,19 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/es.object.define-property.js");
+
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/stable')
+require("core-js/stable");
 
-const _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _functionalHelpers = _interopRequireDefault(require("functional-helpers"));
 
-const _getChildrenFromAttribute = _interopRequireDefault(require('./getChildrenFromAttribute'))
+var _getChildrenFromAttribute = _interopRequireDefault(require("./getChildrenFromAttribute.js"));
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Helper for getting all domObjects.DomItems starting at parent and having specified className attribute
@@ -19,7 +21,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @memberOf module:domFunctions
  * @returns {DomItem[]}
  */
-const getChildrenByClass = _functionalHelpers.default.curry(_getChildrenFromAttribute.default)('className')
+var getChildrenByClass = _functionalHelpers.default.curry(_getChildrenFromAttribute.default)('className');
 
-const _default = getChildrenByClass
-exports.default = _default
+var _default = getChildrenByClass;
+exports.default = _default;

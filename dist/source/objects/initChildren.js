@@ -1,17 +1,19 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/es.object.define-property.js");
+
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 
-require('core-js/stable')
+require("core-js/stable");
 
-const _createDomItem = _interopRequireDefault(require('./createDomItem'))
+var _createDomItem = _interopRequireDefault(require("./createDomItem.js"));
 
-const _onBodyLoad = _interopRequireDefault(require('functional-helpers/dist/helpers/functions/onBodyLoad'))
+var _onBodyLoad = _interopRequireDefault(require("functional-helpers/dist/helpers/functions/onBodyLoad"));
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * DomItemHead defines the structure for a single element in the Dom
@@ -37,10 +39,10 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @memberOf module:domObjects
  * @returns {Array.<DomItemHead|DomItemBody>}
  */
-const initChildren = function initChildren () {
-  const head = document.head
-  const body = document.body
-  const children = [(0, _createDomItem.default)({
+var initChildren = function initChildren() {
+  var head = document.head;
+  var body = document.body;
+  var children = [(0, _createDomItem.default)({
     tagName: 'head',
     attributes: {},
     element: head,
@@ -50,21 +52,21 @@ const initChildren = function initChildren () {
     attributes: {},
     element: body,
     children: []
-  })]
+  })];
 
   if (!head || !body) {
     (0, _onBodyLoad.default)(function () {
       if (children[1].element === null) {
-        children[0].element = document.head
-        children[1].element = document.body
+        children[0].element = document.head;
+        children[1].element = document.body;
       }
 
-      return children
-    })
+      return children;
+    });
   }
 
-  return children
-}
+  return children;
+};
 
-const _default = initChildren
-exports.default = _default
+var _default = initChildren;
+exports.default = _default;
