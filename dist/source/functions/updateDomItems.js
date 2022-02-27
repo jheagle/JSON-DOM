@@ -1,19 +1,19 @@
-"use strict";
+'use strict'
 
-require("core-js/modules/es.object.define-property.js");
+require('core-js/modules/es.object.define-property.js')
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
-});
-exports.default = void 0;
+})
+exports.default = void 0
 
-require("core-js/stable");
+require('core-js/stable')
 
-var _functionalHelpers = _interopRequireDefault(require("functional-helpers"));
+var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
-var _updateDomItem = _interopRequireDefault(require("./updateDomItem.js"));
+var _updateDomItem = _interopRequireDefault(require('./updateDomItem.js'))
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
 /**
  * Generate HTML element data for each object in the matrix
@@ -24,12 +24,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * applied
  * @returns {DomItem}
  */
-var updateDomItems = function updateDomItems(config) {
-  var domItem = (0, _updateDomItem.default)(config);
+var updateDomItems = function updateDomItems (config) {
+  var domItem = (0, _updateDomItem.default)(config)
   return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(domItem.children, function (child) {
-    return updateDomItems(child);
-  }), domItem);
-};
+    return updateDomItems(child)
+  }), domItem)
+}
 
-var _default = updateDomItems;
-exports.default = _default;
+var _default = updateDomItems
+exports.default = _default

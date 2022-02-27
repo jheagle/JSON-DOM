@@ -1,13 +1,13 @@
-"use strict";
+'use strict'
 
-require("core-js/modules/es.object.define-property.js");
+require('core-js/modules/es.object.define-property.js')
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
-});
-exports.default = void 0;
+})
+exports.default = void 0
 
-require("core-js/stable");
+require('core-js/stable')
 
 /**
  * Simplify detecting the parent item which can be appended to, whether root, or just a parent at any part of the tree
@@ -18,9 +18,9 @@ require("core-js/stable");
  * } parent - A parent DomItem which may or may not have a body
  * @returns {DomItemBody|DomItem}
  */
-var retrieveParentItem = function retrieveParentItem(parent) {
-  return parent.body ? parent.body : parent;
-};
+var retrieveParentItem = function retrieveParentItem (parent) {
+  return parent.body ? parent.body : parent
+}
 
-var _default = retrieveParentItem;
-exports.default = _default;
+var _default = retrieveParentItem
+exports.default = _default

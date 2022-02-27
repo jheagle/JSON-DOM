@@ -1,19 +1,19 @@
-"use strict";
+'use strict'
 
-require("core-js/modules/es.object.define-property.js");
+require('core-js/modules/es.object.define-property.js')
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
-});
-exports.default = void 0;
+})
+exports.default = void 0
 
-require("core-js/stable");
+require('core-js/stable')
 
-var _functionalHelpers = _interopRequireDefault(require("functional-helpers"));
+var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
-var _documentItem = _interopRequireDefault(require("../objects/documentItem.js"));
+var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
 /**
  * Register multiple listeners from an array of functions.
@@ -25,10 +25,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * stores has eventListeners property.
  * @returns {DomItemRoot|Object}
  */
-var registerListeners = function registerListeners(listeners) {
-  var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default;
-  return _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.mergeObjectsMutable(parent.eventListeners, listeners), parent);
-};
+var registerListeners = function registerListeners (listeners) {
+  var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default
+  return _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.mergeObjectsMutable(parent.eventListeners, listeners), parent)
+}
 
-var _default = registerListeners;
-exports.default = _default;
+var _default = registerListeners
+exports.default = _default

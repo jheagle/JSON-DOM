@@ -1,15 +1,15 @@
-"use strict";
+'use strict'
 
-require("core-js/modules/es.object.define-property.js");
+require('core-js/modules/es.object.define-property.js')
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
-});
-exports.default = void 0;
+})
+exports.default = void 0
 
-require("core-js/modules/es.object.keys.js");
+require('core-js/modules/es.object.keys.js')
 
-require("core-js/stable");
+require('core-js/stable')
 
 /**
  * Get the upper parentItem for the provided child. (usually this is a documentItem reference)
@@ -19,9 +19,9 @@ require("core-js/stable");
  * @param {DomItem} item - The DomItem which we want the highest parent item of
  * @returns {DomItemRoot}
  */
-var getTopParentItem = function getTopParentItem(item) {
-  return Object.keys(item.parentItem).length ? getTopParentItem(item.parentItem) : item;
-};
+var getTopParentItem = function getTopParentItem (item) {
+  return Object.keys(item.parentItem).length ? getTopParentItem(item.parentItem) : item
+}
 
-var _default = getTopParentItem;
-exports.default = _default;
+var _default = getTopParentItem
+exports.default = _default

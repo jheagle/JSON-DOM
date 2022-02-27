@@ -2,7 +2,6 @@ import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
 import elementHasAttribute from './elementHasAttribute.js'
 import generateElement from './generateElement.js'
-import { logObject } from '../../../tests/testHelpers'
 
 const checkAttribute = element =>
   (attr, key) => {

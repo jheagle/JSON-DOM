@@ -1,21 +1,21 @@
-"use strict";
+'use strict'
 
-require("core-js/modules/es.object.define-property.js");
+require('core-js/modules/es.object.define-property.js')
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
-});
-exports.default = void 0;
+})
+exports.default = void 0
 
-require("core-js/modules/es.object.keys.js");
+require('core-js/modules/es.object.keys.js')
 
-require("core-js/modules/es.array.concat.js");
+require('core-js/modules/es.array.concat.js')
 
-require("core-js/stable");
+require('core-js/stable')
 
-var _documentItem = _interopRequireDefault(require("../objects/documentItem.js"));
+var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
 /**
  * A selector function for retrieving existing child domObjects.DomItems from the given parent item.
@@ -30,10 +30,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * attribute criteria
  * @returns {Array}
  */
-var getParentsFromAttribute = function getParentsFromAttribute(attr, value) {
-  var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default.body;
-  return Object.keys(item.parentItem).length ? (item.parentItem.attributes[attr] || item[attr] || false) === value ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem]) : getParentsFromAttribute(attr, value, item.parentItem) : [];
-};
+var getParentsFromAttribute = function getParentsFromAttribute (attr, value) {
+  var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default.body
+  return Object.keys(item.parentItem).length ? (item.parentItem.attributes[attr] || item[attr] || false) === value ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem]) : getParentsFromAttribute(attr, value, item.parentItem) : []
+}
 
-var _default = getParentsFromAttribute;
-exports.default = _default;
+var _default = getParentsFromAttribute
+exports.default = _default
