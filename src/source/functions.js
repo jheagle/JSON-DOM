@@ -2,7 +2,7 @@
  * @file Core Dom management functions
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
- * @module domFunctions
+ * @module jsonDom~functions
  */
 import 'core-js/stable'
 import appendAndReturnChild from './functions/appendAndReturnChild.js'
@@ -17,9 +17,10 @@ import domItemChanges from './functions/domItemChanges.js'
 import domItemHasAttribute from './functions/domItemHasAttribute.js'
 import elementChanges from './functions/elementChanges.js'
 import elementCompareClassList from './functions/elementCompareClassList.js'
-import elementHasAttribute from './functions/domItemHasAttribute.js'
+import elementHasAttribute from './functions/elementHasAttribute.js'
 import gatherChildItems from './functions/gatherChildItems.js'
 import generateElement from './functions/generateElement.js'
+import getAssignedStyles from './functions/getAssignedStyles.js'
 import getChildTest from './functions/getChildTest.js'
 import getChildrenByClass from './functions/getChildrenByClass.js'
 import getChildrenByName from './functions/getChildrenByName.js'
@@ -59,6 +60,7 @@ export default {
   elementHasAttribute,
   gatherChildItems,
   generateElement,
+  getAssignedStyles,
   getChildTest,
   getChildrenByClass,
   getChildrenByName,

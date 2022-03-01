@@ -8,7 +8,7 @@ const checkAttribute = element =>
     if (typeof attr === 'object') {
       const styleDiff = elementHasAttribute(element, key, attr)
       // Check new, removed, or changed styles
-      const result = functionalHelpers.filterObject(
+      return functionalHelpers.filterObject(
         styleDiff,
         arrayDiff => {
           if (arrayDiff.result[0] === 0) {
@@ -17,7 +17,6 @@ const checkAttribute = element =>
           return arrayDiff.result[0] === 1
         }
       )
-      return result
     }
     if (key === 'className') {
       const classDiff = elementHasAttribute(element, key, attr)

@@ -2,7 +2,6 @@
  * @jest-environment jsdom
  */
 import elementHasAttribute from '../../src/source/functions/elementHasAttribute.js'
-import { logObject } from '../testHelpers'
 
 test('returns false when invalid HTML element', () => {
   const element = {}
@@ -47,4 +46,10 @@ test('will compare same keys with different casing as same', () => {
   const results = elementHasAttribute(element, 'style', { backgroundColor: 'black' })
   const sameArray = [0, 0]
   expect(results[0].result).toEqual(sameArray)
+})
+
+test('finds same-named custom attribute', () => {
+  document.body.innerHTML = '<div custom-app="start"></div>'
+  const element = document.getElementsByTagName('div')[0]
+  expect(elementHasAttribute(element, 'customApp', 'start')).toBe(true)
 })

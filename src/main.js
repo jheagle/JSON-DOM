@@ -19,4 +19,4 @@ const jsonDom = Object.assign(
 export default jsonDom
 
 const root = this || (typeof window !== 'undefined') ? window : {}
-root['jsonDom'] = jsonDom
+root.jsonDom = jsonDom

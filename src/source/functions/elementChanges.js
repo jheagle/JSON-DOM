@@ -1,7 +1,6 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
 import domItemHasAttribute from './domItemHasAttribute.js'
-import generateElement from './generateElement.js'
 
 /**
  * Given a domObjects.DomItem as config, this function will return the changes to be applied
@@ -13,7 +12,6 @@ import generateElement from './generateElement.js'
  * @returns {DomItem}
  */
 const elementChanges = config => {
-
   return functionalHelpers.setValue(
     'attributes',
     functionalHelpers.filterObject(
@@ -27,9 +25,9 @@ const elementChanges = config => {
             (attr2, key2) => (typeof attr2 === 'object' || key2 === 'className')
               // Apply custom logic for class and styles, only keep the updates
               ? functionalHelpers.filterObject(
-                domItemHasAttribute(config.element, key2, attr2),
-                attr3 => attr3 === 1
-              )
+                  domItemHasAttribute(config.element, key2, attr2),
+                  attr3 => attr3 === 1
+                )
               // True when the element does not already have the attribute
               : !domItemHasAttribute(config.element, key2, attr2)
           ),

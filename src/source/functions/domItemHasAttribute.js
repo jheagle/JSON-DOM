@@ -1,5 +1,28 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
+import getAssignedStyles from './getAssignedStyles'
+
+/**
+ * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+ * @param domItem
+ * @param attr
+ * @returns {Object.<string, number>}
+ */
+const checkStyles = (domItem, attr = {}) => functionalHelpers.compareArrays(
+  Object.keys(getAssignedStyles(attr)).map(functionalHelpers.camelCase),
+  Object.keys(domItem.attributes.style)
+)
+
+/**
+ * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+ * @param domItem
+ * @param attr
+ * @returns {Object.<string, number>}
+ */
+const checkClasses = (domItem, attr = '') => functionalHelpers.compareArrays(
+  attr.split(' '),
+  domItem.attributes.className.split(' ')
+)
 
 /**
  * Check if the provided DomItem has the provided attributes.
@@ -16,20 +39,10 @@ const domItemHasAttribute = (domItem, key, attr) => {
     return false
   }
   if (key === 'style') {
-    // For attributes which are objects or multi-part strings
-    // -1 = remove attribute, 0 = no change, 1 = add attribute
-    return functionalHelpers.compareArrays(
-      Object.keys(attr),
-      Object.keys(domItem.attributes.style)
-    )
+    return checkStyles(domItem, attr)
   }
   if (key === 'className') {
-    // For attributes which are objects or multi-part strings
-    // -1 = remove attribute, 0 = no change, 1 = add attribute
-    return functionalHelpers.compareArrays(
-      attr.split(' '),
-      domItem.attributes.className.split(' ')
-    )
+    return checkClasses(domItem, attr)
   }
   return (typeof domItem.attributes[key] !== 'undefined' && domItem.attributes[key] === attr)
 }

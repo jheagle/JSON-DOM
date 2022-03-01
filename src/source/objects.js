@@ -2,7 +2,7 @@
  * @file Core objects for representing the DOM in JSON.
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
- * @module domObjects
+ * @module jsonDom~objects
  */
 import 'core-js/stable'
 import createDomItem from './objects/createDomItem.js'
