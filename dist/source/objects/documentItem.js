@@ -13,12 +13,21 @@ var _documentDomItem = _interopRequireDefault(require('./documentDomItem.js'))
 
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
+var existingItem = null
 /**
  * Create reference for storing document changes
  * @member documentItem
  * @memberOf module:domObjects
  * @type {DomItemRoot}
  */
-var documentItem = (0, _documentDomItem.default)()
+
+var documentItem = (function () {
+  if (existingItem === null) {
+    existingItem = (0, _documentDomItem.default)()
+  }
+
+  return existingItem
+}())
+
 var _default = documentItem
 exports.default = _default

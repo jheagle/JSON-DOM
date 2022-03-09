@@ -33,9 +33,13 @@ var _elementChanges = _interopRequireDefault(require('./functions/elementChanges
 
 var _elementCompareClassList = _interopRequireDefault(require('./functions/elementCompareClassList.js'))
 
+var _elementHasAttribute = _interopRequireDefault(require('./functions/elementHasAttribute.js'))
+
 var _gatherChildItems = _interopRequireDefault(require('./functions/gatherChildItems.js'))
 
 var _generateElement = _interopRequireDefault(require('./functions/generateElement.js'))
+
+var _getAssignedStyles = _interopRequireDefault(require('./functions/getAssignedStyles.js'))
 
 var _getChildTest = _interopRequireDefault(require('./functions/getChildTest.js'))
 
@@ -88,6 +92,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  * @module domFunctions
+ * @memberOf module:jsonDom
  */
 var _default = {
   appendAndReturnChild: _appendAndReturnChild.default,
@@ -102,9 +107,10 @@ var _default = {
   domItemHasAttribute: _domItemHasAttribute.default,
   elementChanges: _elementChanges.default,
   elementCompareClassList: _elementCompareClassList.default,
-  elementHasAttribute: _domItemHasAttribute.default,
+  elementHasAttribute: _elementHasAttribute.default,
   gatherChildItems: _gatherChildItems.default,
   generateElement: _generateElement.default,
+  getAssignedStyles: _getAssignedStyles.default,
   getChildTest: _getChildTest.default,
   getChildrenByClass: _getChildrenByClass.default,
   getChildrenByName: _getChildrenByName.default,

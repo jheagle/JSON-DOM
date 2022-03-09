@@ -2,7 +2,8 @@
  * @file Core Dom management functions
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
- * @module jsonDom~functions
+ * @module domFunctions
+ * @memberOf module:jsonDom
  */
 import 'core-js/stable'
 import appendAndReturnChild from './functions/appendAndReturnChild.js'

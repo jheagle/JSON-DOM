@@ -27,8 +27,6 @@ var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
 var _domItemHasAttribute = _interopRequireDefault(require('./domItemHasAttribute.js'))
 
-var _generateElement = _interopRequireDefault(require('./generateElement.js'))
-
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
 function _typeof (obj) { '@babel/helpers - typeof'; return _typeof = typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol' ? function (obj) { return typeof obj } : function (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj }, _typeof(obj) }

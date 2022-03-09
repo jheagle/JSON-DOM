@@ -48,15 +48,13 @@ var checkAttribute = function checkAttribute (element) {
     if (_typeof(attr) === 'object') {
       var styleDiff = (0, _elementHasAttribute.default)(element, key, attr) // Check new, removed, or changed styles
 
-      var result = _functionalHelpers.default.filterObject(styleDiff, function (arrayDiff) {
+      return _functionalHelpers.default.filterObject(styleDiff, function (arrayDiff) {
         if (arrayDiff.result[0] === 0) {
           return element[key][arrayDiff.value] !== attr[arrayDiff.value]
         }
 
         return arrayDiff.result[0] === 1
       })
-
-      return result
     }
 
     if (key === 'className') {
@@ -89,7 +87,9 @@ var domItemChanges = function domItemChanges (domItem) {
     return (0, _generateElement.default)(domItem)
   }
 
-  var diffMap = _functionalHelpers.default.mapObject(domItem.attributes, checkAttribute(domItem.element))
+  var diffMap = _functionalHelpers.default.mapObject(domItem.attributes, function (attr, key) {
+    return checkAttribute(domItem.element)(attr, key)
+  })
 
   domItem.attributes = _functionalHelpers.default.reduceObject(diffMap, function (changed, result, key) {
     var isArray = Array.isArray(result)

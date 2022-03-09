@@ -48,7 +48,7 @@ const domItemChanges = domItem => {
   }
   const diffMap = functionalHelpers.mapObject(
     domItem.attributes,
-    checkAttribute(domItem.element)
+    (attr, key) => checkAttribute(domItem.element)(attr, key)
   )
   domItem.attributes = functionalHelpers.reduceObject(
     diffMap,

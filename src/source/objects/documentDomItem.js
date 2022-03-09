@@ -16,7 +16,10 @@ import initRoot from './initRoot.js'
  */
 const documentDomItem = (listeners = {}, rootItem = initRoot(initChildren(), listeners)) => {
   rootItem.children = rootItem.children.map(child => createDomItem(child))
-  rootItem.children.forEach(child => child.parentItem = rootItem)
+  rootItem.children.map(child => {
+    child.parentItem = rootItem
+    return child
+  })
   Object.assign(rootItem.head, rootItem.children[0])
   Object.assign(rootItem.body, rootItem.children[1])
   return createDomItem(rootItem)
