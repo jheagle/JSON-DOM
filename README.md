@@ -16,6 +16,23 @@ State management with JSON
 </dd>
 </dl>
 
+## Functions
+
+<dl>
+<dt><a href="#checkStyles">checkStyles(domItem, attr)</a> ⇒ <code>Object.&lt;string, number&gt;</code></dt>
+<dd><p>For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute</p>
+</dd>
+<dt><a href="#checkClasses">checkClasses(domItem, attr)</a> ⇒ <code>Object.&lt;string, number&gt;</code></dt>
+<dd><p>For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute</p>
+</dd>
+<dt><a href="#checkStyles">checkStyles(element, attr)</a> ⇒ <code>Object.&lt;string, number&gt;</code></dt>
+<dd><p>For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute</p>
+</dd>
+<dt><a href="#checkClasses">checkClasses(element, attr)</a> ⇒ <code>Object.&lt;string, number&gt;</code></dt>
+<dd><p>For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute</p>
+</dd>
+</dl>
+
 ## Typedefs
 
 <dl>
@@ -34,37 +51,6 @@ All of the JSON DOM system functions for creating JSON components.
 
 **Version**: 1.0.0  
 **Author**: Joshua Heagle <joshuaheagle@gmail.com>  
-
-* [jsonDom](#module_jsonDom)
-    * [~root](#module_jsonDom..root)
-    * [~previousJsonDom](#module_jsonDom..previousJsonDom) : <code>module</code> \| <code>\*</code>
-    * [~noConflict()](#module_jsonDom..noConflict) ⇒ [<code>jsonDom</code>](#module_jsonDom..jsonDom) \| [<code>domFunctions</code>](#module_domFunctions) \| [<code>domObjects</code>](#module_domObjects)
-    * [~jsonDom](#module_jsonDom..jsonDom) : [<code>jsonDom</code>](#module_jsonDom) \| [<code>domFunctions</code>](#module_domFunctions) \| [<code>domObjects</code>](#module_domObjects)
-
-<a name="module_jsonDom..root"></a>
-
-### jsonDom~root
-Store a reference to this scope which will be Window if rendered via browser
-
-**Kind**: inner constant of [<code>jsonDom</code>](#module_jsonDom)  
-<a name="module_jsonDom..previousJsonDom"></a>
-
-### jsonDom~previousJsonDom : <code>module</code> \| <code>\*</code>
-Store reference to any pre-existing module of the same name
-
-**Kind**: inner constant of [<code>jsonDom</code>](#module_jsonDom)  
-<a name="module_jsonDom..noConflict"></a>
-
-### jsonDom~noConflict() ⇒ [<code>jsonDom</code>](#module_jsonDom..jsonDom) \| [<code>domFunctions</code>](#module_domFunctions) \| [<code>domObjects</code>](#module_domObjects)
-Return a reference to this library while preserving the original same-named library
-
-**Kind**: inner method of [<code>jsonDom</code>](#module_jsonDom)  
-<a name="module_jsonDom..jsonDom"></a>
-
-### jsonDom~jsonDom : [<code>jsonDom</code>](#module_jsonDom) \| [<code>domFunctions</code>](#module_domFunctions) \| [<code>domObjects</code>](#module_domObjects)
-All methods exported from this module are encapsulated within jsonDom.
-
-**Kind**: inner typedef of [<code>jsonDom</code>](#module_jsonDom)  
 <a name="module_domFunctions"></a>
 
 ## domFunctions
@@ -83,11 +69,14 @@ Core Dom management functions
         * [.bindElement(item)](#module_domFunctions.bindElement) ⇒ <code>DomItem</code>
         * [.bindElementListeners(item)](#module_domFunctions.bindElementListeners) ⇒ <code>DomItem</code>
         * [.bindListeners(item)](#module_domFunctions.bindListeners) ⇒ <code>DomItem</code>
+        * [.domItemChanges(domItem)](#module_domFunctions.domItemChanges) ⇒ <code>DomItem</code>
+        * [.domItemHasAttribute(domItem, key, attr)](#module_domFunctions.domItemHasAttribute) ⇒ <code>boolean</code> \| <code>Object.&lt;string, number&gt;</code>
         * [.elementChanges(config)](#module_domFunctions.elementChanges) ⇒ <code>DomItem</code>
         * [.elementCompareClassList(element, classes)](#module_domFunctions.elementCompareClassList) ⇒ <code>Object.&lt;string, number&gt;</code> \| <code>\*</code>
         * [.elementHasAttribute(element, key, attr)](#module_domFunctions.elementHasAttribute) ⇒ <code>boolean</code> \| <code>Object.&lt;string, number&gt;</code>
         * [.gatherChildItems(item, test)](#module_domFunctions.gatherChildItems) ⇒ <code>Array.&lt;DomItem&gt;</code>
-        * [.generateElement(config)](#module_domFunctions.generateElement) ⇒ <code>DomItem</code>
+        * [.generateElement(domItem)](#module_domFunctions.generateElement) ⇒ <code>DomItem</code>
+        * [.getAssignedStyles(elementStyles)](#module_domFunctions.getAssignedStyles) ⇒ <code>object</code>
         * [.getChildTest(attr, value)](#module_domFunctions.getChildTest) ⇒ [<code>testChildItem</code>](#module_domFunctions..testChildItem)
         * [.getChildrenByClass()](#module_domFunctions.getChildrenByClass) ⇒ <code>Array.&lt;DomItem&gt;</code>
         * [.getChildrenByName()](#module_domFunctions.getChildrenByName) ⇒ <code>Array.&lt;DomItem&gt;</code>
@@ -106,7 +95,9 @@ Core Dom management functions
         * [.retrieveParentItem(parent)](#module_domFunctions.retrieveParentItem) ⇒ [<code>DomItemBody</code>](#DomItemBody) \| <code>DomItem</code>
         * [.setAndReturnAttribute(config, name, value)](#module_domFunctions.setAndReturnAttribute) ⇒ <code>string</code>
         * [.setAttribute(config, name, value)](#module_domFunctions.setAttribute) ⇒ <code>DomItem</code>
-        * [.updateElement(config)](#module_domFunctions.updateElement) ⇒ <code>DomItem</code>
+        * [.updateDomItem(config)](#module_domFunctions.updateDomItem) ⇒ <code>DomItem</code>
+        * [.updateDomItems(config)](#module_domFunctions.updateDomItems) ⇒ <code>DomItem</code>
+        * [.updateElement(domItem)](#module_domFunctions.updateElement) ⇒ <code>DomItem</code>
         * [.updateElements(config)](#module_domFunctions.updateElements) ⇒ <code>DomItem</code>
     * _inner_
         * [~testChildItem](#module_domFunctions..testChildItem) ⇒ <code>Array.&lt;DomItem&gt;</code>
@@ -208,6 +199,30 @@ Based on the eventListeners property of the provided item, bind thelisteners to
 | --- | --- | --- |
 | item | <code>DomItem</code> | The DomItem which may have eventListeners to apply to its element |
 
+<a name="module_domFunctions.domItemChanges"></a>
+
+### domFunctions.domItemChanges(domItem) ⇒ <code>DomItem</code>
+Given a domObjects.DomItem as domItem, this function will return the changes to be appliedto the stored element property.
+
+**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| domItem | <code>DomItem</code> | The DomItem having changes to be applied to its element |
+
+<a name="module_domFunctions.domItemHasAttribute"></a>
+
+### domFunctions.domItemHasAttribute(domItem, key, attr) ⇒ <code>boolean</code> \| <code>Object.&lt;string, number&gt;</code>
+Check if the provided DomItem has the provided attributes.Returns a boolean, or an array of 1 / 0 / -1 based on the comparison status.
+
+**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| domItem | <code>DomItem</code> | Receive the DomItem to be assessed |
+| key | <code>string</code> | The attribute name to search for |
+| attr | <code>string</code> \| <code>Object</code> | The expected value of the attribute to compare against |
+
 <a name="module_domFunctions.elementChanges"></a>
 
 ### domFunctions.elementChanges(config) ⇒ <code>DomItem</code>
@@ -242,7 +257,7 @@ Check if the provided Element has the provided attributes.Returns a boolean, or
 | --- | --- | --- |
 | element | <code>HTMLElement</code> | Receive the element to be assessed |
 | key | <code>string</code> | The attribute name to search for |
-| attr | <code>string</code> \| <code>Object</code> | The expected value of the attribute to compare against |
+| attr | <code>string</code> \| <code>Object.&lt;string, string&gt;</code> | The expected value of the attribute to compare against |
 
 <a name="module_domFunctions.gatherChildItems"></a>
 
@@ -258,14 +273,27 @@ A selector function for retrieving existing child domObjects.DomItems from the g
 
 <a name="module_domFunctions.generateElement"></a>
 
-### domFunctions.generateElement(config) ⇒ <code>DomItem</code>
+### domFunctions.generateElement(domItem) ⇒ <code>DomItem</code>
 Create an HTML element based on the provided attributes and return the element as an Object.
 
 **Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| config | <code>DomItem</code> | The DomItem requiring matching HTML element property |
+| domItem | <code>DomItem</code> | The DomItem requiring matching HTML element property |
+
+<a name="module_domFunctions.getAssignedStyles"></a>
+
+### domFunctions.getAssignedStyles(elementStyles) ⇒ <code>object</code>
+Get all the styles which have been assigned to this element. Assigned styles are indicated as numeric-key
+properties with a value indicating the string-key property which has been assigned. The string-key properties
+have the assigned values.
+
+**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
+
+| Param | Type |
+| --- | --- |
+| elementStyles | <code>Object.&lt;style, style&gt;</code> \| <code>CSSProperties</code> | 
 
 <a name="module_domFunctions.getChildTest"></a>
 
@@ -455,9 +483,9 @@ Set an attribute on the element within a DomItem, then return the config data.
 | name | <code>string</code> | The attribute name to be updated |
 | value | <code>string</code> | The new value to be applied to the attribute |
 
-<a name="module_domFunctions.updateElement"></a>
+<a name="module_domFunctions.updateDomItem"></a>
 
-### domFunctions.updateElement(config) ⇒ <code>DomItem</code>
+### domFunctions.updateDomItem(config) ⇒ <code>DomItem</code>
 Update a single objects.DomItem element with the provided attributes / style / elementProperties
 
 **Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
@@ -465,6 +493,28 @@ Update a single objects.DomItem element with the provided attributes / style / e
 | Param | Type | Description |
 | --- | --- | --- |
 | config | <code>DomItem</code> | The DomItem having config changes to be applied to its element |
+
+<a name="module_domFunctions.updateDomItems"></a>
+
+### domFunctions.updateDomItems(config) ⇒ <code>DomItem</code>
+Generate HTML element data for each object in the matrixWARNING: This is a recursive function.
+
+**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| config | <code>DomItem</code> | The DomItem having child DomItems with config changes to be applied |
+
+<a name="module_domFunctions.updateElement"></a>
+
+### domFunctions.updateElement(domItem) ⇒ <code>DomItem</code>
+Update a single objects.DomItem element with the provided attributes / style / elementProperties
+
+**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| domItem | <code>DomItem</code> | The DomItem having domItem changes to be applied to its element |
 
 <a name="module_domFunctions.updateElements"></a>
 
@@ -645,6 +695,54 @@ DomItemRoot defines the structure for a single element in the Dom
 | children | <code>Array.&lt;(DomItemHead\|DomItemBody)&gt;</code> |  | Two references: for head and body |
 | head | [<code>DomItemHead</code>](#DomItemHead) |  | A specific reference to head item |
 | body | [<code>DomItemBody</code>](#DomItemBody) |  | A specific reference to body item |
+
+<a name="checkStyles"></a>
+
+## checkStyles(domItem, attr) ⇒ <code>Object.&lt;string, number&gt;</code>
+For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+
+**Kind**: global function  
+
+| Param |
+| --- |
+| domItem | 
+| attr | 
+
+<a name="checkClasses"></a>
+
+## checkClasses(domItem, attr) ⇒ <code>Object.&lt;string, number&gt;</code>
+For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+
+**Kind**: global function  
+
+| Param |
+| --- |
+| domItem | 
+| attr | 
+
+<a name="checkStyles"></a>
+
+## checkStyles(element, attr) ⇒ <code>Object.&lt;string, number&gt;</code>
+For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| element | <code>HTMLElement</code> | 
+| attr | <code>Object.&lt;string, string&gt;</code> | 
+
+<a name="checkClasses"></a>
+
+## checkClasses(element, attr) ⇒ <code>Object.&lt;string, number&gt;</code>
+For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| element | <code>HTMLElement</code> | 
+| attr | <code>string</code> | 
 
 <a name="DomItemHead"></a>
 

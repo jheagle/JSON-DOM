@@ -1631,6 +1631,368 @@
     
 
     
+    <h4 class="name" id=".domItemChanges"><span class="type-signature">(static) </span>domItemChanges<span class="signature">(domItem)</span><span class="type-signature"> &rarr; {DomItem}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Given a domObjects.DomItem as domItem, this function will return the changes to be appliedto the stored element property.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>domItem</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DomItem</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The DomItem having changes to be applied to its element</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="source_functions_domItemChanges.js.html">source/functions/domItemChanges.js</a>, <a href="source_functions_domItemChanges.js.html#line41">line 41</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">DomItem</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".domItemHasAttribute"><span class="type-signature">(static) </span>domItemHasAttribute<span class="signature">(domItem, key, attr)</span><span class="type-signature"> &rarr; {boolean|Object.&lt;string, number>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Check if the provided DomItem has the provided attributes.Returns a boolean, or an array of 1 / 0 / -1 based on the comparison status.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>domItem</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DomItem</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Receive the DomItem to be assessed</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The attribute name to search for</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>attr</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The expected value of the attribute to compare against</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="source_functions_domItemHasAttribute.js.html">source/functions/domItemHasAttribute.js</a>, <a href="source_functions_domItemHasAttribute.js.html#line37">line 37</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+|
+
+<span class="param-type">Object.&lt;string, number></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id=".elementChanges"><span class="type-signature">(static) </span>elementChanges<span class="signature">(config)</span><span class="type-signature"> &rarr; {DomItem}</span></h4>
     
 
@@ -1732,7 +2094,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="source_functions_elementChanges.js.html">source/functions/elementChanges.js</a>, <a href="source_functions_elementChanges.js.html#line15">line 15</a>
+        <a href="source_functions_elementChanges.js.html">source/functions/elementChanges.js</a>, <a href="source_functions_elementChanges.js.html#line14">line 14</a>
     </li></ul></dd>
     
 
@@ -2066,7 +2428,7 @@
 <span class="param-type">string</span>
 |
 
-<span class="param-type">Object</span>
+<span class="param-type">Object.&lt;string, string></span>
 
 
             
@@ -2117,7 +2479,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="source_functions_elementHasAttribute.js.html">source/functions/elementHasAttribute.js</a>, <a href="source_functions_elementHasAttribute.js.html#line14">line 14</a>
+        <a href="source_functions_elementHasAttribute.js.html">source/functions/elementHasAttribute.js</a>, <a href="source_functions_elementHasAttribute.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -2352,7 +2714,7 @@
     
 
     
-    <h4 class="name" id=".generateElement"><span class="type-signature">(static) </span>generateElement<span class="signature">(config)</span><span class="type-signature"> &rarr; {DomItem}</span></h4>
+    <h4 class="name" id=".generateElement"><span class="type-signature">(static) </span>generateElement<span class="signature">(domItem)</span><span class="type-signature"> &rarr; {DomItem}</span></h4>
     
 
     
@@ -2396,7 +2758,7 @@
 
         <tr>
             
-                <td class="name"><code>config</code></td>
+                <td class="name"><code>domItem</code></td>
             
 
             <td class="type">
@@ -2490,6 +2852,166 @@
     <dd>
         
 <span class="param-type">DomItem</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".getAssignedStyles"><span class="type-signature">(static) </span>getAssignedStyles<span class="signature">(elementStyles)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Get all the styles which have been assigned to this element. Assigned styles are indicated as numeric-key
+properties with a value indicating the string-key property which has been assigned. The string-key properties
+have the assigned values.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>elementStyles</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object.&lt;style, style></span>
+|
+
+<span class="param-type">CSSProperties</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="source_functions_getAssignedStyles.js.html">source/functions/getAssignedStyles.js</a>, <a href="source_functions_getAssignedStyles.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
 
 
     </dd>
@@ -5494,7 +6016,7 @@
     
 
     
-    <h4 class="name" id=".updateElement"><span class="type-signature">(static) </span>updateElement<span class="signature">(config)</span><span class="type-signature"> &rarr; {DomItem}</span></h4>
+    <h4 class="name" id=".updateDomItem"><span class="type-signature">(static) </span>updateDomItem<span class="signature">(config)</span><span class="type-signature"> &rarr; {DomItem}</span></h4>
     
 
     
@@ -5555,6 +6077,316 @@
             
 
             <td class="description last">The DomItem having config changes to be applied to itselement</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="source_functions_updateDomItem.js.html">source/functions/updateDomItem.js</a>, <a href="source_functions_updateDomItem.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">DomItem</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".updateDomItems"><span class="type-signature">(static) </span>updateDomItems<span class="signature">(config)</span><span class="type-signature"> &rarr; {DomItem}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Generate HTML element data for each object in the matrixWARNING: This is a recursive function.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DomItem</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The DomItem having child DomItems with config changes to beapplied</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="source_functions_updateDomItems.js.html">source/functions/updateDomItems.js</a>, <a href="source_functions_updateDomItems.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">DomItem</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".updateElement"><span class="type-signature">(static) </span>updateElement<span class="signature">(domItem)</span><span class="type-signature"> &rarr; {DomItem}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Update a single objects.DomItem element with the provided attributes / style / elementProperties
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>domItem</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DomItem</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The DomItem having domItem changes to be applied to itselement</td>
         </tr>
 
     
@@ -5999,13 +6831,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-domFunctions.html">domFunctions</a></li><li><a href="module-domObjects.html">domObjects</a></li><li><a href="module-jsonDom.html">jsonDom</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-domFunctions.html">domFunctions</a></li><li><a href="module-domObjects.html">domObjects</a></li><li><a href="module-jsonDom.html">jsonDom</a></li></ul><h3>Global</h3><ul><li><a href="global.html#checkClasses">checkClasses</a></li><li><a href="global.html#checkStyles">checkStyles</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Tue Oct 26 2021 09:22:09 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Tue Mar 08 2022 23:33:29 GMT-0500 (Eastern Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

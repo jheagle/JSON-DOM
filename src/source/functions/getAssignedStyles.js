@@ -6,8 +6,8 @@ import functionalHelpers from 'functional-helpers'
  * properties with a value indicating the string-key property which has been assigned. The string-key properties
  * have the assigned values.
  * @function
- * @memberOf module:jsonDom~functions
- * @param {object.<style, style>|CSSProperties>} elementStyles
+ * @memberOf module:domFunctions
+ * @param {Object.<style, style>|CSSProperties} elementStyles
  * @returns {object}
  */
 const getAssignedStyles = elementStyles => functionalHelpers.reduceObject(

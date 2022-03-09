@@ -13,16 +13,6 @@ require('core-js/modules/esnext.async-iterator.map.js')
 
 require('core-js/modules/esnext.iterator.map.js')
 
-require('core-js/modules/es.object.to-string.js')
-
-require('core-js/modules/esnext.async-iterator.for-each.js')
-
-require('core-js/modules/esnext.iterator.constructor.js')
-
-require('core-js/modules/esnext.iterator.for-each.js')
-
-require('core-js/modules/web.dom-collections.for-each.js')
-
 require('core-js/modules/es.object.assign.js')
 
 require('core-js/stable')
@@ -52,8 +42,9 @@ var documentDomItem = function documentDomItem () {
   rootItem.children = rootItem.children.map(function (child) {
     return (0, _createDomItem.default)(child)
   })
-  rootItem.children.forEach(function (child) {
-    return child.parentItem = rootItem
+  rootItem.children.map(function (child) {
+    child.parentItem = rootItem
+    return child
   })
   Object.assign(rootItem.head, rootItem.children[0])
   Object.assign(rootItem.body, rootItem.children[1])
