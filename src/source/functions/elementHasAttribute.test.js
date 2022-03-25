@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import elementHasAttribute from '../../src/source/functions/elementHasAttribute.js'
+import elementHasAttribute from './elementHasAttribute.js'
 
 test('returns false when invalid HTML element', () => {
   const element = {}

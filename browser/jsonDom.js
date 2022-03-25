@@ -20542,7 +20542,7 @@
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  * @module stringHelpers
- * @memberOf module:stringHelpers
+ * @memberOf module:functionalHelpers
  */
     var _default = {
       camelCase: _camelCase.default,

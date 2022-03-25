@@ -1,7 +1,6 @@
 # JSON-DOM
 
 State management with JSON
-
 ## Modules
 
 <dl>

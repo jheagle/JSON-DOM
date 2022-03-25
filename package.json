@@ -1,21 +1,38 @@
 {
   "name": "json-dom",
+  "author": "Joshua Heagle <joshuaheagle@gmail.com> (https://joshuaheagle.com)",
   "description": "State management with JSON.",
+  "homepage": "https://github.com/jheagle/json-dom#readme",
+  "keywords": [
+    "dom",
+    "json",
+    "state management"
+  ],
   "version": "0.0.0",
-  "main": "dist/main.js",
-  "author": "Joshua Heagle",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jheagle/json-dom/issues"
+  },
   "scripts": {
     "build": "gulp build",
     "dev": "gulp",
-    "htmldocs": "jsdoc -R MAIN.md -r src/ -d docs",
-    "readme": "cp MAIN.md README.md && echo \"\" >> README.md && jsdoc2md src/main.js src/source/*.js src/source/objects/*.js src/source/functions/*.js >> README.md",
+    "htmldocs": "jsdoc -R MAIN.md -c ./.jsdoc.conf.js -d docs",
+    "readme": "gulp readme",
     "resolutions": "npx npm-force-resolutions",
-    "test": "jest"
+    "test": "gulp test",
+    "test:quick": "gulp test:quick",
+    "watch": "gulp watch",
+    "watch:tests": "gulp watch:tests"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.17.8",
+    "core-js": "^3.21.1",
+    "functional-helpers": "github:jheagle/functional-helpers",
+    "npm": "^8.5.5",
+    "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.5",
-    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",
     "ansi-regex": "^5.0.1",
     "babel-jest": "^27.5.1",
@@ -25,48 +42,31 @@
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-cli": "^2.3.0",
+    "gulp-filenames": "^4.0.1",
     "gulp-rename": "^2.0.0",
     "gulp-standard": "^14.0.0",
     "gulp-uglify-es": "^3.0.0",
     "jest": "^27.5.1",
     "jsdoc": "^3.6.10",
     "jsdoc-to-markdown": "^7.1.1",
+    "lodash.template": "^4.5.0",
     "standard": "^16.0.4",
-    "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
-  },
-  "dependencies": {
-    "@babel/runtime-corejs3": "^7.17.2",
-    "core-js": "^3.21.1",
-    "functional-helpers": "github:jheagle/functional-helpers",
-    "npm": "^8.5.2",
-    "regenerator-runtime": "^0.13.9"
-  },
-  "directories": {
-    "test": "tests"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jheagle/json-dom.git"
   },
   "resolutions": {
     "ansi-regex": "5.0.1",
-    "glob-parent": "6.0.2"
+    "glob-parent": "6.0.2",
+    "lodash.template": "4.5.0"
   },
-  "bugs": {
-    "url": "https://github.com/jheagle/json-dom/issues"
-  },
-  "homepage": "https://github.com/jheagle/json-dom#readme",
-  "standard": {
-    "env": [
-      "jest"
-    ]
-  },
+  "repository": "github:jheagle/json-dom",
+  "main": "dist/main.js",
   "files": [
     "dist",
     "browser"
   ],
-  "jest": {
-    "testMatch": ["<rootDir>/tests/**/*.test.js"]
+  "standard": {
+    "env": [
+      "jest"
+    ]
   }
 }

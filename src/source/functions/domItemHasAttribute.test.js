@@ -1,9 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-import domItemHasAttribute from '../../src/source/functions/domItemHasAttribute.js'
-import createDomItem from '../../src/source/objects/createDomItem'
-import elementHasAttribute from '../../src/source/functions/elementHasAttribute'
+import domItemHasAttribute from './domItemHasAttribute.js'
+import createDomItem from '../objects/createDomItem'
+import elementHasAttribute from './elementHasAttribute'
 
 test('returns false when invalid DomItem', () => {
   const item = {}

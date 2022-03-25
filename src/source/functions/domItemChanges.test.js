@@ -1,9 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-import domItemChanges from '../../src/source/functions/domItemChanges.js'
-import createDomItem from '../../src/source/objects/createDomItem.js'
-import generateElement from '../../src/source/functions/generateElement'
+import domItemChanges from './domItemChanges.js'
+import createDomItem from '../objects/createDomItem.js'
+import generateElement from './generateElement'
 
 test('returns original domItem if element is not set', () => {
   const item = {}
