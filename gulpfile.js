@@ -28,8 +28,8 @@ const testQuick = async () => await jest({ onlyChanged: true }, ['./src'])
 exports.test = testFull
 exports['test:quick'] = testQuick
 
-exports.watch = () => watch('src/**/*.js', { ignoreInitial: false, usePolling: true }, parallel(testQuick, series(dist, bundle)))
-exports['watch:tests'] = () => watch('src/**/*.js', { ignoreInitial: false, usePolling: true }, series(testQuick))
+exports.watch = () => watch('src/**/*.js', { ignoreInitial: false }, parallel(testQuick, series(dist, bundle)))
+exports['watch:tests'] = () => watch('src/**/*.js', { ignoreInitial: false }, series(testQuick))
 
 const clean = () => del(['dist', 'browser'])
 
