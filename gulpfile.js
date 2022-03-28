@@ -11,9 +11,11 @@ const source = require('vinyl-source-stream')
 const standard = require('gulp-standard')
 const uglify = require('gulp-uglify-es').default
 
-const dist = () => src('src/**/!(*.test).js')
+const distFor = (srcPath = 'src/**/!(*.test).js', destPath = 'dist') => src(srcPath)
   .pipe(babel())
-  .pipe(dest('dist'))
+  .pipe(dest(destPath))
+
+const dist = () => distFor()
 
 const bundle = () => browserify('dist/main.js')
   .bundle()
@@ -28,7 +30,11 @@ const testQuick = async () => await jest({ onlyChanged: true }, ['./src'])
 exports.test = testFull
 exports['test:quick'] = testQuick
 
-exports.watch = () => watch('src/**/*.js', { ignoreInitial: false }, parallel(testQuick, series(dist, bundle)))
+exports.watch = () => watch('src/**/*.js')
+  .on('change', path => {
+    const distForPath = () => distFor(path, path.replace(/^src(.*\/).+\.js$/i, 'dist$1'))
+    return parallel(testQuick, series(distForPath, bundle))()
+  })
 exports['watch:tests'] = () => watch('src/**/*.js', { ignoreInitial: false }, series(testQuick))
 
 const clean = () => del(['dist', 'browser'])
