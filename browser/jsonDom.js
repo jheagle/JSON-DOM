@@ -556,8 +556,10 @@
  */
 
     var domItemChanges = function domItemChanges (domItem) {
+      var changeItem = _functionalHelpers.default.cloneObject(domItem)
+
       if (!domItem.element) {
-        return domItem
+        return changeItem
       }
 
       if (!domItem.element.tagName || domItem.element.tagName.toLowerCase() !== domItem.tagName.toLowerCase()) {
@@ -569,7 +571,7 @@
         return checkAttribute(domItem.element)(attr, key)
       })
 
-      domItem.attributes = _functionalHelpers.default.reduceObject(diffMap, function (changed, result, key) {
+      changeItem.attributes = _functionalHelpers.default.reduceObject(diffMap, function (changed, result, key) {
         var isArray = Array.isArray(result)
 
         if (!isArray && !result) {
@@ -625,7 +627,7 @@
         }, {})
         return changed
       }, {})
-      return domItem
+      return changeItem
     }
 
     var _default = domItemChanges
@@ -747,8 +749,8 @@
     function _typeof (obj) { '@babel/helpers - typeof'; return _typeof = typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol' ? function (obj) { return typeof obj } : function (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj }, _typeof(obj) }
 
     /**
- * Given a domObjects.DomItem as config, this function will return the changes to be applied
- * to the stored element property.
+ * Given a domObjects.DomItem as config, this function will return the changes from the element
+ * to be applied to the config.
  * @function
  * @memberOf module:domFunctions
  * @param {DomItem} config - The DomItem having config changes to be applied to its
@@ -1692,7 +1694,7 @@
 
     var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
-    var _domItemChanges = _interopRequireDefault(require('./domItemChanges.js'))
+    var _elementChanges = _interopRequireDefault(require('./elementChanges.js'))
 
     var _setAndReturnAttribute = _interopRequireDefault(require('./setAndReturnAttribute.js'))
 
@@ -1712,7 +1714,7 @@
         return config
       }
 
-      var domItem = (0, _domItemChanges.default)(config) // Set the the current attributes to contain all the changes
+      var domItem = (0, _elementChanges.default)(config) // Set the current attributes to contain all the changes
 
       domItem.attributes = _functionalHelpers.default.mapObject( // Retrieve only the changes to be applied from the attributes
         domItem.attributes, function (attr, key) {
@@ -1734,7 +1736,7 @@
 
     var _default = updateDomItem
     exports.default = _default
-  }, { './domItemChanges.js': 11, './setAndReturnAttribute.js': 35, 'core-js/modules/es.object.define-property.js': 346, 'core-js/modules/es.regexp.exec.js': 390, 'core-js/modules/es.regexp.test.js': 393, 'core-js/stable': 512, 'functional-helpers': 572 }],
+  }, { './elementChanges.js': 13, './setAndReturnAttribute.js': 35, 'core-js/modules/es.object.define-property.js': 346, 'core-js/modules/es.regexp.exec.js': 390, 'core-js/modules/es.regexp.test.js': 393, 'core-js/stable': 512, 'functional-helpers': 572 }],
   38: [function (require, module, exports) {
     'use strict'
 

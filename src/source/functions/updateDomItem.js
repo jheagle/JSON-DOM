@@ -1,6 +1,6 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
-import domItemChanges from './domItemChanges.js'
+import elementChanges from './elementChanges.js'
 import setAndReturnAttribute from './setAndReturnAttribute.js'
 
 /**
@@ -16,8 +16,8 @@ const updateDomItem = config => {
     // if element is not a valid element then return the config without changes
     return config
   }
-  const domItem = domItemChanges(config)
-  // Set the the current attributes to contain all the changes
+  const domItem = elementChanges(config)
+  // Set the current attributes to contain all the changes
   domItem.attributes = functionalHelpers.mapObject(
     // Retrieve only the changes to be applied from the attributes
     domItem.attributes,

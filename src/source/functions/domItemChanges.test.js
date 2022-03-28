@@ -7,7 +7,7 @@ import generateElement from './generateElement'
 
 test('returns original domItem if element is not set', () => {
   const item = {}
-  expect(domItemChanges(item)).toBe(item)
+  expect(domItemChanges(item)).toEqual(item)
 })
 
 test('will create new element when it does not yet exist', () => {
@@ -88,4 +88,19 @@ test('will remove backgroundColor style which is same as background-color', () =
   expect(changes.attributes.style).toHaveProperty('color')
   expect(changes.attributes.style.color).toBe('blue')
   expect(changes.attributes.style).not.toHaveProperty('backgroundColor')
+})
+
+test('will not change attributes of original domItem', () => {
+  const item = generateElement(createDomItem({}))
+  item.attributes = {
+    style: { color: 'red' }
+  }
+  let changes = domItemChanges(item)
+  expect(changes.attributes.style).toHaveProperty('color')
+  expect(changes.attributes.style.color).toBe('red')
+  item.element.style.color = 'red'
+  changes = domItemChanges(item)
+  expect(changes.attributes.style).not.toHaveProperty('color')
+  expect(item.attributes.style).toHaveProperty('color')
+  expect(item.attributes.style.color).toBe('red')
 })

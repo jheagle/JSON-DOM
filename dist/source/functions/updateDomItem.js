@@ -15,7 +15,7 @@ require('core-js/stable')
 
 var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
-var _domItemChanges = _interopRequireDefault(require('./domItemChanges.js'))
+var _elementChanges = _interopRequireDefault(require('./elementChanges.js'))
 
 var _setAndReturnAttribute = _interopRequireDefault(require('./setAndReturnAttribute.js'))
 
@@ -35,7 +35,7 @@ var updateDomItem = function updateDomItem (config) {
     return config
   }
 
-  var domItem = (0, _domItemChanges.default)(config) // Set the the current attributes to contain all the changes
+  var domItem = (0, _elementChanges.default)(config) // Set the current attributes to contain all the changes
 
   domItem.attributes = _functionalHelpers.default.mapObject( // Retrieve only the changes to be applied from the attributes
     domItem.attributes, function (attr, key) {

@@ -3,8 +3,8 @@ import functionalHelpers from 'functional-helpers'
 import domItemHasAttribute from './domItemHasAttribute.js'
 
 /**
- * Given a domObjects.DomItem as config, this function will return the changes to be applied
- * to the stored element property.
+ * Given a domObjects.DomItem as config, this function will return the changes from the element
+ * to be applied to the config.
  * @function
  * @memberOf module:domFunctions
  * @param {DomItem} config - The DomItem having config changes to be applied to its

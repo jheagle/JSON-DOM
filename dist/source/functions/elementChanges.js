@@ -32,8 +32,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
 function _typeof (obj) { '@babel/helpers - typeof'; return _typeof = typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol' ? function (obj) { return typeof obj } : function (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj }, _typeof(obj) }
 
 /**
- * Given a domObjects.DomItem as config, this function will return the changes to be applied
- * to the stored element property.
+ * Given a domObjects.DomItem as config, this function will return the changes from the element
+ * to be applied to the config.
  * @function
  * @memberOf module:domFunctions
  * @param {DomItem} config - The DomItem having config changes to be applied to its

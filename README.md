@@ -225,7 +225,7 @@ Check if the provided DomItem has the provided attributes.Returns a boolean, or
 <a name="module_domFunctions.elementChanges"></a>
 
 ### domFunctions.elementChanges(config) ⇒ <code>DomItem</code>
-Given a domObjects.DomItem as config, this function will return the changes to be appliedto the stored element property.
+Given a domObjects.DomItem as config, this function will return the changes from the elementto be applied to the config.
 
 **Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
 

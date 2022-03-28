@@ -78,8 +78,10 @@ var checkAttribute = function checkAttribute (element) {
  */
 
 var domItemChanges = function domItemChanges (domItem) {
+  var changeItem = _functionalHelpers.default.cloneObject(domItem)
+
   if (!domItem.element) {
-    return domItem
+    return changeItem
   }
 
   if (!domItem.element.tagName || domItem.element.tagName.toLowerCase() !== domItem.tagName.toLowerCase()) {
@@ -91,7 +93,7 @@ var domItemChanges = function domItemChanges (domItem) {
     return checkAttribute(domItem.element)(attr, key)
   })
 
-  domItem.attributes = _functionalHelpers.default.reduceObject(diffMap, function (changed, result, key) {
+  changeItem.attributes = _functionalHelpers.default.reduceObject(diffMap, function (changed, result, key) {
     var isArray = Array.isArray(result)
 
     if (!isArray && !result) {
@@ -147,7 +149,7 @@ var domItemChanges = function domItemChanges (domItem) {
     }, {})
     return changed
   }, {})
-  return domItem
+  return changeItem
 }
 
 var _default = domItemChanges

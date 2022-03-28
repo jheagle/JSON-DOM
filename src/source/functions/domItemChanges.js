@@ -39,8 +39,9 @@ const checkAttribute = element =>
  * @returns {DomItem}
  */
 const domItemChanges = domItem => {
+  const changeItem = functionalHelpers.cloneObject(domItem)
   if (!domItem.element) {
-    return domItem
+    return changeItem
   }
   if (!domItem.element.tagName || domItem.element.tagName.toLowerCase() !== domItem.tagName.toLowerCase()) {
     // Generate a new element since the tag has changed
@@ -50,7 +51,7 @@ const domItemChanges = domItem => {
     domItem.attributes,
     (attr, key) => checkAttribute(domItem.element)(attr, key)
   )
-  domItem.attributes = functionalHelpers.reduceObject(
+  changeItem.attributes = functionalHelpers.reduceObject(
     diffMap,
     (changed, result, key) => {
       const isArray = Array.isArray(result)
@@ -107,7 +108,7 @@ const domItemChanges = domItem => {
     {}
   )
 
-  return domItem
+  return changeItem
 }
 
 export default domItemChanges
