@@ -31,7 +31,7 @@
   "devDependencies": {
     "glob-parent": "^6.0.2",
     "gulp": "^4.0.2",
-    "js-build-tools": "github:jheagle/js-build-tools",
+    "js-build-tools": "^1.0.0",
     "jsdoc": "^3.6.10",
     "lodash.template": "^4.5.0",
     "standard": "^16.0.4"
