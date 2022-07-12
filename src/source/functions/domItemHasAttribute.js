@@ -4,25 +4,37 @@ import getAssignedStyles from './getAssignedStyles'
 
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
- * @param domItem
- * @param attr
- * @returns {Object.<string, number>}
+ * @param {DomItem} domItem
+ * @param {Object.<string, string>} attr
+ * @returns {int|Object.<string, number>}
  */
-const checkStyles = (domItem, attr = {}) => functionalHelpers.compareArrays(
-  Object.keys(getAssignedStyles(attr)).map(functionalHelpers.camelCase),
-  Object.keys(domItem.attributes.style)
-)
+const checkStyles = (domItem, attr = {}) => {
+  const assignedStyles = domItem.attributes.style ?? {}
+  if (functionalHelpers.emptyObject(assignedStyles)) {
+    return 1
+  }
+  return functionalHelpers.compareArrays(
+    Object.keys(getAssignedStyles(attr)).map(functionalHelpers.camelCase),
+    Object.keys(assignedStyles)
+  )
+}
 
 /**
- * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
- * @param domItem
- * @param attr
- * @returns {Object.<string, number>}
+ * For attributes which are objects or multipart strings -1 = remove attribute, 0 = no change, 1 = add attribute
+ * @param {DomItem} domItem
+ * @param {string} attr
+ * @returns {int|Object.<string, number>}
  */
-const checkClasses = (domItem, attr = '') => functionalHelpers.compareArrays(
-  attr.split(' '),
-  domItem.attributes.className.split(' ')
-)
+const checkClasses = (domItem, attr = '') => {
+  const assignedClasses = domItem.attributes['className'] ?? ''
+  if (!assignedClasses.length) {
+    return 1
+  }
+  return functionalHelpers.compareArrays(
+    attr.split(' '),
+    (assignedClasses).split(' ')
+  )
+}
 
 /**
  * Check if the provided DomItem has the provided attributes.
@@ -32,19 +44,23 @@ const checkClasses = (domItem, attr = '') => functionalHelpers.compareArrays(
  * @param {DomItem} domItem - Receive the DomItem to be assessed
  * @param {string} key - The attribute name to search for
  * @param {string|Object} attr - The expected value of the attribute to compare against
- * @returns {boolean|Object.<string, number>}
+ * @returns {int|Object.<string, number>}
  */
 const domItemHasAttribute = (domItem, key, attr) => {
-  if (!domItem.attributes) {
-    return false
-  }
   if (key === 'style') {
     return checkStyles(domItem, attr)
   }
   if (key === 'className') {
     return checkClasses(domItem, attr)
   }
-  return (typeof domItem.attributes[key] !== 'undefined' && domItem.attributes[key] === attr)
+  const camelKey = functionalHelpers.camelCase(key)
+  if (typeof domItem.attributes[camelKey] === 'undefined') {
+    return 1
+  }
+  if (domItem.attributes[camelKey] === attr) {
+    return 0
+  }
+  return 1
 }
 
 export default domItemHasAttribute

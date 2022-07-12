@@ -1,41 +1,166 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
 import domItemHasAttribute from './domItemHasAttribute.js'
+import createChangeList from '../objects/createChangeList.js'
+
+/**
+ * @typedef {module:objectHelpers~mapCallback} testAttributeChange
+ * @param {*} attr - The current property being processed in the object.
+ * @param {string} key - The property name of the current property being processed in the object.
+ * @return {int} - -1: removed, 0: unchanged, 1: added.
+ */
+
+/**
+ * Given some config, provide a function to testing attribute and key existence in that config.
+ * @param {DomItem} domItem
+ * @returns {testAttributeChange}
+ */
+const checkAttribute = domItem =>
+  (attr, key) => {
+    if (key === 'className') {
+      const diff = domItemHasAttribute(domItem, key, attr)
+      if (diff.length === 1 && diff[0].result[0] === 0) {
+        return 0
+      }
+      return functionalHelpers.filterObject(
+        diff,
+        arrayDiff => arrayDiff.result[0] !== 0
+      )
+    }
+    if (key === 'style') {
+      const diff = domItemHasAttribute(domItem, key, attr)
+      const firstDiffResult = diff[0]
+      if (diff.length === 1 && firstDiffResult.result[0] === 0 && domItem.attributes.style[firstDiffResult.value] === attr[firstDiffResult.value]) {
+        return 0
+      }
+      return functionalHelpers.filterObject(
+        diff,
+        arrayDiff => (arrayDiff.result[0] !== 0 || domItem.attributes.style[arrayDiff.value] !== attr[arrayDiff.value])
+      )
+    }
+    return domItemHasAttribute(domItem, key, attr)
+  }
+
+/**
+ * Updates all the keys to be camelCase
+ * @param {DomItem} domItem
+ * @returns {Object.<string, *>}
+ */
+const camelCaseAttributes = domItem => functionalHelpers.reduceObject(
+  domItem.element.attributes,
+  (attributes, attr) => {
+    if (!attr.name) {
+      return attributes
+    }
+    const camelKey = attr.name === 'class' ? 'className' : functionalHelpers.camelCase(attr.name)
+    attributes[camelKey] = domItem.element[attr.name] ?? attr.value
+    return attributes
+  },
+  {}
+)
 
 /**
  * Given a domObjects.DomItem as config, this function will return the changes from the element
- * to be applied to the config.
+ * to be applied to the domItem.
  * @function
  * @memberOf module:domFunctions
- * @param {DomItem} config - The DomItem having config changes to be applied to its
+ * @param {DomItem} domItem - The DomItem having the element which changes to be applied to the config
  * element
- * @returns {DomItem}
+ * @returns {ChangeList}
  */
-const elementChanges = config => {
-  return functionalHelpers.setValue(
-    'attributes',
-    functionalHelpers.filterObject(
-      config.attributes,
-      // For each attribute, check if it becomes true / false based on the comparison results
-      (attr1, key1) =>
-        functionalHelpers.filterObject(
-          // Get attributes as object of truthy and falsy values
-          functionalHelpers.mapObject(
-            config.attributes,
-            (attr2, key2) => (typeof attr2 === 'object' || key2 === 'className')
-              // Apply custom logic for class and styles, only keep the updates
-              ? functionalHelpers.filterObject(
-                  domItemHasAttribute(config.element, key2, attr2),
-                  attr3 => attr3 === 1
-                )
-              // True when the element does not already have the attribute
-              : !domItemHasAttribute(config.element, key2, attr2)
-          ),
-          // Remove when the attr4 value is 0 or false, or not empty object
-          attr4 => !!attr4
-        )[key1]
-    ),
-    config
+const elementChanges = domItem => {
+  const changeList = createChangeList()
+  if (!domItem.element) {
+    return changeList
+  }
+  if (domItem.element.nodeName.toLowerCase() !== domItem.nodeName.toLowerCase()) {
+    changeList.removed.nodeName = domItem.nodeName.toLowerCase()
+    changeList.added.nodeName = domItem.element.nodeName.toLowerCase()
+  }
+  if (domItem.element.nodeValue !== null) {
+    if (domItem.element.nodeValue !== domItem.nodeValue) {
+      changeList.added.nodeValue = domItem.element.nodeValue
+    }
+    if (!functionalHelpers.emptyObject(domItem.attributes)) {
+      changeList.removed = changeList.appendChanges('removed', functionalHelpers.dotNotate({ attributes: domItem.attributes }))
+    }
+    return changeList
+  }
+  if (!domItem.element.hasAttributes() && !functionalHelpers.emptyObject(domItem.attributes)) {
+    changeList.removed = functionalHelpers.dotNotate({ attributes: domItem.attributes })
+    return changeList
+  }
+  const elementAttributes = camelCaseAttributes(domItem)
+
+  const diffMap = functionalHelpers.mapObject(
+    elementAttributes,
+    (attr, key) => checkAttribute(domItem)(attr, key)
+  )
+  return functionalHelpers.reduceObject(
+    diffMap,
+    (changed, result, key) => {
+      const isArray = Array.isArray(result)
+      if (!isArray && !result) {
+        // Skip if the attribute is not changed (false and not an array)
+        return changed
+      }
+      if (!isArray) {
+        // Not an array, simply set the attribute as added
+        changed.added[`attributes.${key}`] = domItem.element[key] ?? domItem.element.getAttribute(functionalHelpers.kabobCase(key))
+        return changed
+      }
+      if (key !== 'className' && key !== 'style') {
+        // Is an array, but not class or style; we don't know what this is, so we skip it.
+        return changed
+      }
+      if (key === 'className') {
+        changed.removed = result.reduce(
+          (removed, results) => {
+            if (results.result[0] === -1) {
+              removed[`attributes.className.${results.keys[1]}`] = results.value
+            }
+            return removed
+          },
+          changed.removed
+        )
+        changed.added = result.reduce(
+          (added, results) => {
+            if (results.result[0] === 1) {
+              added[`attributes.className.${results.keys[0]}`] = results.value
+            }
+            return added
+          },
+          changed.added
+        )
+        return changed
+      }
+      changed.removed = result.reduce(
+        (removed, results) => {
+          if (results.result[0] === -1) {
+            removed[`attributes.style.${results.value}`] = domItem.attributes.style[results.value]
+          }
+          if (results.result[0] === 0 && domItem.attributes.style[results.value] !== elementAttributes.style[results.value]) {
+            removed[`attributes.style.${results.value}`] = domItem.attributes.style[results.value]
+          }
+          return removed
+        },
+        changed.removed
+      )
+      changed.added = result.reduce(
+        (added, results) => {
+          if (results.result[0] === 1) {
+            added[`attributes.style.${results.value}`] = elementAttributes.style[results.value]
+          }
+          if (results.result[0] === 0 && domItem.attributes.style[results.value] !== elementAttributes.style[results.value]) {
+            added[`attributes.style.${results.value}`] = elementAttributes.style[results.value]
+          }
+          return added
+        },
+        changed.added
+      )
+      return changed
+    },
+    changeList
   )
 }
 

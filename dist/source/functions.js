@@ -37,6 +37,8 @@ var _elementHasAttribute = _interopRequireDefault(require('./functions/elementHa
 
 var _gatherChildItems = _interopRequireDefault(require('./functions/gatherChildItems.js'))
 
+var _generateDomItem = _interopRequireDefault(require('./functions/generateDomItem.js'))
+
 var _generateElement = _interopRequireDefault(require('./functions/generateElement.js'))
 
 var _getAssignedStyles = _interopRequireDefault(require('./functions/getAssignedStyles.js'))
@@ -109,6 +111,7 @@ var _default = {
   elementCompareClassList: _elementCompareClassList.default,
   elementHasAttribute: _elementHasAttribute.default,
   gatherChildItems: _gatherChildItems.default,
+  generateDomItem: _generateDomItem.default,
   generateElement: _generateElement.default,
   getAssignedStyles: _getAssignedStyles.default,
   getChildTest: _getChildTest.default,

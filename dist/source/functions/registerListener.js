@@ -7,8 +7,6 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 
-require('core-js/modules/es.function.name.js')
-
 require('core-js/modules/es.object.assign.js')
 
 require('core-js/stable')

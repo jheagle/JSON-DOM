@@ -7,9 +7,9 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 
-require('core-js/modules/es.regexp.exec.js')
+require('core-js/modules/es.array.includes.js')
 
-require('core-js/modules/es.regexp.test.js')
+require('core-js/modules/es.string.includes.js')
 
 require('core-js/stable')
 
@@ -17,7 +17,7 @@ var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
 var _domItemChanges = _interopRequireDefault(require('./domItemChanges.js'))
 
-var _setAndReturnAttribute = _interopRequireDefault(require('./setAndReturnAttribute.js'))
+var _generateElement = _interopRequireDefault(require('./generateElement'))
 
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
@@ -30,28 +30,87 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {DomItem}
  */
 var updateElement = function updateElement (domItem) {
-  if (!domItem.element.style) {
+  if (!domItem.element) {
     // if element is not a valid element then return the domItem without changes
     return domItem
   }
 
-  domItem = (0, _domItemChanges.default)(domItem) // Set the the current attributes to contain all the changes
+  var changes = (0, _domItemChanges.default)(domItem)
 
-  domItem.attributes = _functionalHelpers.default.mapObject( // Retrieve only the changes to be applied from the attributes
-    domItem.attributes, function (attr, key) {
-      if (!_functionalHelpers.default.isObject(attr) || _functionalHelpers.default.emptyObject(attr)) {
-        return key in domItem.element ? _functionalHelpers.default.setAndReturnValue(domItem.element, key, attr) : (0, _setAndReturnAttribute.default)(domItem, key, attr)
+  if (changes.removed.nodeName || changes.added.nodeName) {
+    // if the nodeName has changed then remove the element and create a new one
+    domItem.element.remove()
+    return (0, _generateElement.default)(domItem)
+  }
+
+  for (var dotKey in changes.removed) {
+    var value = changes.removed[dotKey]
+
+    if (!dotKey.includes('.')) {
+      if (dotKey in domItem.element) {
+        delete domItem.element[dotKey]
+        continue
       }
 
-      var cleanedStyles = _functionalHelpers.default.filterObject( // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
-        attr, function (param, k) {
-          return /^\D+$/.test(k)
-        })
+      domItem.element.removeAttribute(dotKey)
+      continue
+    }
 
-      return _functionalHelpers.default.reduceObject(cleanedStyles, function (newStyle, p, i) {
-        return _functionalHelpers.default.setValue(i, p, newStyle)
-      }, domItem.element.style)
-    })
+    var baseKey = _functionalHelpers.default.strBefore(dotKey, '.')
+
+    if (baseKey !== 'class' && baseKey !== 'style') {
+      throw new Error('Unhandled dotKey: ' + dotKey)
+    }
+
+    if (baseKey === 'class') {
+      domItem.element.classList.remove(value)
+      continue
+    }
+
+    domItem.element.style.removeProperty(_functionalHelpers.default.strAfter(dotKey, '.'))
+  }
+
+  for (var _dotKey in changes.added) {
+    var _value = changes.added[_dotKey]
+
+    if (_dotKey === 'className') {
+      domItem.element.className = _value
+      continue
+    }
+
+    if (_dotKey === 'style') {
+      // Update all styles based on incoming style object
+      for (var style in _value) {
+        domItem.element.style.setProperty(style, _value[style])
+      }
+
+      continue
+    }
+
+    if (!_dotKey.includes('.')) {
+      if (_dotKey in domItem.element) {
+        domItem.element[_dotKey] = _value
+        continue
+      }
+
+      domItem.element.setAttribute(_dotKey, _value)
+      continue
+    }
+
+    var _baseKey = _functionalHelpers.default.strBefore(_dotKey, '.')
+
+    if (_baseKey !== 'class' && _baseKey !== 'style') {
+      throw new Error('Unhandled dotKey: ' + _dotKey)
+    }
+
+    if (_baseKey === 'class') {
+      domItem.element.classList.add(_value)
+      continue
+    }
+
+    domItem.element.style.setProperty(_functionalHelpers.default.strAfter(_dotKey, '.'), _value)
+  }
+
   return domItem
 }
 

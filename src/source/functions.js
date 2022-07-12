@@ -20,6 +20,7 @@ import elementChanges from './functions/elementChanges.js'
 import elementCompareClassList from './functions/elementCompareClassList.js'
 import elementHasAttribute from './functions/elementHasAttribute.js'
 import gatherChildItems from './functions/gatherChildItems.js'
+import generateDomItem from './functions/generateDomItem.js'
 import generateElement from './functions/generateElement.js'
 import getAssignedStyles from './functions/getAssignedStyles.js'
 import getChildTest from './functions/getChildTest.js'
@@ -60,6 +61,7 @@ export default {
   elementCompareClassList,
   elementHasAttribute,
   gatherChildItems,
+  generateDomItem,
   generateElement,
   getAssignedStyles,
   getChildTest,

@@ -9,6 +9,8 @@ exports.default = void 0
 
 require('core-js/stable')
 
+var _createChangeList = _interopRequireDefault(require('./objects/createChangeList.js'))
+
 var _createDomItem = _interopRequireDefault(require('./objects/createDomItem.js'))
 
 var _documentDomItem = _interopRequireDefault(require('./objects/documentDomItem.js'))
@@ -29,6 +31,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @memberOf module:jsonDom
  */
 var _default = {
+  createChangeList: _createChangeList.default,
   createDomItem: _createDomItem.default,
   documentDomItem: _documentDomItem.default,
   documentItem: _documentItem.default,

@@ -1,7 +1,6 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
 import elementChanges from './elementChanges.js'
-import setAndReturnAttribute from './setAndReturnAttribute.js'
 
 /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
@@ -12,34 +11,32 @@ import setAndReturnAttribute from './setAndReturnAttribute.js'
  * @returns {DomItem}
  */
 const updateDomItem = config => {
-  if (!config.element.style) {
+  if (!config.element) {
     // if element is not a valid element then return the config without changes
     return config
   }
-  const domItem = elementChanges(config)
-  // Set the current attributes to contain all the changes
-  domItem.attributes = functionalHelpers.mapObject(
-    // Retrieve only the changes to be applied from the attributes
-    domItem.attributes,
-    (attr, key) => {
-      if (!functionalHelpers.isObject(attr) || functionalHelpers.emptyObject(attr)) {
-        return (key in config.element)
-          ? functionalHelpers.setAndReturnValue(config.element, key, attr)
-          : setAndReturnAttribute(config, key, attr)
-      }
-      const cleanedStyles = functionalHelpers.filterObject(
-        // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
-        attr,
-        (param, k) => /^\D+$/.test(k)
-      )
-      return functionalHelpers.reduceObject(
-        cleanedStyles,
-        (newStyle, p, i) => functionalHelpers.setValue(i, p, newStyle),
-        config.element.style
-      )
+  const changes = elementChanges(config)
+  for (const dotKey in changes.removed) {
+    const attributeKey = functionalHelpers.strAfter(dotKey, '.')
+    if (functionalHelpers.strBefore(attributeKey, '.') === 'className') {
+      const classList = config.attributes.className.split(' ')
+      classList.splice(functionalHelpers.strAfterLast(attributeKey, '.'), 1)
+      config.attributes.className = classList.join(' ')
+      continue
     }
-  )
-  return domItem
+    functionalHelpers.dotUnset(config, dotKey)
+  }
+  for (const dotKey in changes.added) {
+    const attributeKey = functionalHelpers.strAfter(dotKey, '.')
+    if (functionalHelpers.strBefore(attributeKey, '.') === 'className') {
+      const classList = config.attributes.className.split(' ')
+      classList.push(changes.added[dotKey])
+      config.attributes.className = classList.join(' ')
+      continue
+    }
+    functionalHelpers.dotSet(config, dotKey, changes.added[dotKey])
+  }
+  return config
 }
 
 export default updateDomItem

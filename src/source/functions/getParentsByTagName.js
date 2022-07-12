@@ -3,11 +3,11 @@ import functionalHelpers from 'functional-helpers'
 import getParentsFromAttribute from './getParentsFromAttribute.js'
 
 /**
- * Helper for getting all domObjects.DomItems starting at child and having specified tagName
+ * Helper for getting all domObjects.DomItems starting at child and having specified nodeName
  * @function
  * @memberOf module:domFunctions
  * @returns {Array}
  */
-const getParentsByTagName = functionalHelpers.curry(getParentsFromAttribute)('tagName')
+const getParentsByTagName = functionalHelpers.curry(getParentsFromAttribute)('nodeName')
 
 export default getParentsByTagName

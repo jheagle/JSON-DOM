@@ -5,102 +5,129 @@ import domItemChanges from './domItemChanges.js'
 import createDomItem from '../objects/createDomItem.js'
 import generateElement from './generateElement'
 
-test('returns original domItem if element is not set', () => {
-  const item = {}
-  expect(domItemChanges(item)).toEqual(item)
-})
+describe('domItemChanges', () => {
+  test('returns empty change list if element is not set', () => {
+    const changes = domItemChanges(createDomItem())
+    expect(changes.removed).toEqual({})
+    expect(changes.added).toEqual({})
+  })
 
-test('will create new element when it does not yet exist', () => {
-  const item = createDomItem()
-  expect(item.element).not.toBeInstanceOf(HTMLDivElement)
-  const changes = domItemChanges(item)
-  expect(changes.element).toBeInstanceOf(HTMLDivElement)
-})
+  test('will create new element when it does not yet exist', () => {
+    const element = document.createElement('span')
+    const item = createDomItem({
+      element: element
+    })
+    const changes = domItemChanges(item)
+    expect(changes.removed.nodeName).toEqual('div')
+    expect(changes.added.nodeName).toEqual('span')
+  })
 
-test('will return changed or added attributes', () => {
-  const item = generateElement(createDomItem({
-    attributes: {
-      title: 'test',
-      height: '600px',
-      width: '1000px'
-    }
-  }
-  ))
-  const newHeight = '400px'
-  const innerHtml = '<span>Inner div</span>'
-  item.attributes = {
-    height: newHeight,
-    title: 'test',
-    innerHtml: innerHtml
-  }
-  const changes = domItemChanges(item)
-  expect(changes.attributes).not.toHaveProperty('title')
-  expect(changes.attributes).toHaveProperty('height')
-  expect(changes.attributes.height).toBe(newHeight)
-  expect(changes.attributes).toHaveProperty('innerHtml')
-  expect(changes.attributes.innerHtml).toBe(innerHtml)
-})
+  test('will return changed or added attributes', () => {
+    const element = document.createElement('div')
+    element.setAttribute('title', 'test')
+    element.setAttribute('height', '600px')
+    element.setAttribute('width', '1000px')
+    const newHeight = '400px'
+    const item = createDomItem({
+        attributes: {
+          title: 'test',
+          height: newHeight,
+          width: '1000px'
+        },
+        element: element
+      }
+    )
+    const changes = domItemChanges(item)
+    expect(changes.added['title']).toBeUndefined()
+    expect(changes.added['height']).toBe(newHeight)
+  })
 
-test('will return changed or added class names', () => {
-  const item = generateElement(createDomItem({
-    attributes: {
-      className: 'remove one two three'
-    }
-  }
-  ))
-  item.attributes = {
-    className: 'two one four three'
-  }
-  const changes = domItemChanges(item)
-  expect(changes.attributes.className).toBe('one two three four')
-})
+  test('will return changed or added class names', () => {
+    const element = document.createElement('div')
+    element.className = 'remove one two three'
+    const item = createDomItem({
+        attributes: {
+          className: 'two one four three'
+        },
+        element: element
+      }
+    )
+    const changes = domItemChanges(item)
+    // After diff, intended classname will be: 'one two three four'
+    expect(changes.removed['class.0']).toBe('remove')
+    expect(changes.added['class.2']).toBe('four')
+  })
 
-test('will return changed or added styles', () => {
-  const item = generateElement(createDomItem({
-    attributes: {
-      style: { display: 'none', color: 'white', top: 0 }
-    }
-  }
-  ))
-  item.attributes = {
-    style: { bottom: 0, display: 'block', color: 'white' }
-  }
-  const changes = domItemChanges(item)
-  expect(changes.attributes.style).toHaveProperty('display')
-  expect(changes.attributes.style.display).toBe('block')
-  expect(changes.attributes.style).not.toHaveProperty('color')
-  expect(changes.attributes.style).not.toHaveProperty('top')
-  expect(changes.attributes.style).toHaveProperty('bottom')
-  expect(changes.attributes.style.bottom).toBe(0)
-})
+  test('will return changed or added styles', () => {
+    const element = document.createElement('div')
+    element.style.display = 'none'
+    element.style.color = 'white'
+    element.style.top = '0'
+    const item = createDomItem({
+        attributes: {
+          style: { bottom: 0, display: 'block', color: 'white' }
+        },
+        element: element
+      }
+    )
+    const changes = domItemChanges(item)
+    expect(changes.removed).toEqual({
+      'style.display': 'none',
+      'style.top': '0px'
+    })
+    expect(changes.added).toEqual({
+      'style.bottom': 0,
+      'style.display': 'block'
+    })
+  })
 
-test('will remove backgroundColor style which is same as background-color', () => {
-  const item = generateElement(createDomItem({
-    attributes: {
-      style: { color: 'white', backgroundColor: 'black' }
-    }
-  }
-  ))
-  item.attributes = {
-    style: { color: 'blue', backgroundColor: 'black' }
-  }
-  const changes = domItemChanges(item)
-  expect(changes.attributes.style).toHaveProperty('color')
-  expect(changes.attributes.style.color).toBe('blue')
-  expect(changes.attributes.style).not.toHaveProperty('backgroundColor')
-})
+  test('will ignore background-color style which is same as backgroundColor', () => {
+    const element = document.createElement('div')
+    element.style.color = 'white'
+    element.style['background-color'] = 'black'
+    const item = createDomItem({
+        attributes: {
+          style: { color: 'blue', backgroundColor: 'black' }
+        },
+        element: element
+      }
+    )
+    const changes = domItemChanges(item)
+    expect(changes.removed).toEqual({
+      'style.color': 'white'
+    })
+    expect(changes.added).toEqual({
+      'style.color': 'blue'
+    })
+  })
 
-test('will not change attributes of original domItem', () => {
-  const item = generateElement(createDomItem({}))
-  item.attributes = {
-    style: { color: 'red' }
-  }
-  let changes = domItemChanges(item)
-  expect(changes.attributes.style).toHaveProperty('color')
-  expect(changes.attributes.style.color).toBe('red')
-  item.element.style.color = 'red'
-  changes = domItemChanges(item)
-  expect(changes.attributes.style).not.toHaveProperty('color')
-  expect(item.attributes.style).toHaveProperty('color')
-  expect(item.attributes.style.color).toBe('red')
+  test('will detect changes to node value', () => {
+    const item = generateElement(createDomItem({ nodeName: '#text', nodeValue: 'inner text' }))
+    const newInner = 'new inner text'
+    item.element.nodeValue = newInner
+    let changes = domItemChanges(item)
+    expect(changes.nodeValue).toEqual(newInner)
+  })
+
+  test('uses correct case-format for element changes', () => {
+    const element = document.createElement('div')
+    element.style['background-color'] = 'black'
+    const dataTestValue = 'data set key'
+    const item = createDomItem({
+        attributes: {
+          dataTest: dataTestValue,
+          style: { backgroundColor: 'white' }
+        },
+        element: element
+      }
+    )
+    const changes = domItemChanges(item)
+    expect(changes.removed).toEqual({
+      'style.background-color': 'black'
+    })
+    expect(changes.added).toEqual({
+      'style.background-color': 'white',
+      'data-test': dataTestValue
+    })
+  })
 })

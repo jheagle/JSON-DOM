@@ -5,24 +5,36 @@ import functionalHelpers from 'functional-helpers'
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
  * @param {HTMLElement} element
- * @param {Object<string, string>} attr
- * @returns {Object.<string, number>}
+ * @param {string|Object<string, string>} attr
+ * @returns {int|Object.<string, number>}
  */
-const checkStyles = (element, attr = {}) => functionalHelpers.compareArrays(
-  Object.keys(attr),
-  Object.keys(getAssignedStyles(element.style)).map(functionalHelpers.camelCase)
-)
+const checkStyles = (element, attr = {}) => {
+  const assignedStyles = getAssignedStyles(element.style) ?? {}
+  if (functionalHelpers.emptyObject(assignedStyles)) {
+    return 1
+  }
+  return functionalHelpers.compareArrays(
+    Object.keys(attr).map(functionalHelpers.kabobCase),
+    Object.keys(assignedStyles)
+  )
+}
 
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
  * @param {HTMLElement} element
  * @param {string} attr
- * @returns {Object.<string, number>}
+ * @returns {int|Object.<string, number>}
  */
-const checkClasses = (element, attr = '') => functionalHelpers.compareArrays(
-  attr.split(' '),
-  element.className.split(' ')
-)
+const checkClasses = (element, attr = '') => {
+  const assignedClasses = Array.from(element.classList)
+  if (!assignedClasses.length) {
+    return 1
+  }
+  return functionalHelpers.compareArrays(
+    attr.split(' '),
+    assignedClasses
+  )
+}
 
 /**
  * Check if the provided Element has the provided attributes.
@@ -32,20 +44,23 @@ const checkClasses = (element, attr = '') => functionalHelpers.compareArrays(
  * @param {HTMLElement} element - Receive the element to be assessed
  * @param {string} key - The attribute name to search for
  * @param {string|Object.<string, string>} attr - The expected value of the attribute to compare against
- * @returns {boolean|Object.<string, number>}
+ * @returns {int|Object.<string, number>}
  */
 const elementHasAttribute = (element, key, attr) => {
-  if (!element.style) {
-    return false
-  }
   if (key === 'style') {
     return checkStyles(element, attr)
   }
-  if (key === 'className') {
+  if (key === 'class') {
     return checkClasses(element, attr)
   }
   const kabobKey = functionalHelpers.kabobCase(key)
-  return (element.hasAttribute(kabobKey) && element.getAttribute(kabobKey) === attr)
+  if (!element.hasAttribute(kabobKey)) {
+    return 1
+  }
+  if (element.getAttribute(kabobKey) === attr) {
+    return 0
+  }
+  return 1
 }
 
 export default elementHasAttribute

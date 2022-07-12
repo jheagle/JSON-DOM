@@ -17,7 +17,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * DomItemRoot defines the structure for a single element in the Dom
  * @typedef {DomItem} DomItemRoot
  * @memberOf module:domObjects
- * @property {string} [tagName=html] - This is set to the string html referring to the HTML element of the same name
+ * @property {string} [nodeName='#document'] - This is set to the string html referring to the HTML element of the same name
+ * @property {null} [nodeValue] - Must be null
  * @property {Object} attributes - Empty object as attributes placeholder
  * @property {HTMLDocument} element - A reference to the entire Document
  * @property {Object.<string, listenerFunction>} eventListeners - all registered
@@ -43,7 +44,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
 var initRoot = function initRoot (children) {
   var listeners = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
   return (0, _createDomItem.default)({
-    tagName: 'html',
+    nodeName: '#document',
+    nodeValue: null,
     attributes: {},
     element: document,
     eventListeners: listeners,

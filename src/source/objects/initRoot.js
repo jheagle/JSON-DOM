@@ -5,7 +5,8 @@ import createDomItem from './createDomItem.js'
  * DomItemRoot defines the structure for a single element in the Dom
  * @typedef {DomItem} DomItemRoot
  * @memberOf module:domObjects
- * @property {string} [tagName=html] - This is set to the string html referring to the HTML element of the same name
+ * @property {string} [nodeName='#document'] - This is set to the string html referring to the HTML element of the same name
+ * @property {null} [nodeValue] - Must be null
  * @property {Object} attributes - Empty object as attributes placeholder
  * @property {HTMLDocument} element - A reference to the entire Document
  * @property {Object.<string, listenerFunction>} eventListeners - all registered
@@ -29,7 +30,8 @@ import createDomItem from './createDomItem.js'
  * @returns {DomItemRoot|DomItem}
  */
 const initRoot = (children, listeners = {}) => createDomItem({
-  tagName: 'html',
+  nodeName: '#document',
+  nodeValue: null,
   attributes: {},
   element: document,
   eventListeners: listeners,

@@ -26,15 +26,17 @@
   },
   "dependencies": {
     "functional-helpers": "github:jheagle/functional-helpers",
-    "npm": "^8.5.5"
+    "npm": "^8.13.2"
   },
   "devDependencies": {
     "glob-parent": "^6.0.2",
     "gulp": "^4.0.2",
-    "js-build-tools": "^1.0.0",
+    "jest": "^28.1.2",
+    "jest-environment-jsdom": "^28.1.2",
+    "js-build-tools": "^1.0.5",
     "jsdoc": "^3.6.10",
     "lodash.template": "^4.5.0",
-    "standard": "^16.0.4"
+    "standard": "^17.0.0"
   },
   "resolutions": {
     "glob-parent": "6.0.2",

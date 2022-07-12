@@ -50,11 +50,12 @@ import functionalHelpers from 'functional-helpers'
  * DomItem defines the structure for a single element in the Dom
  * @typedef {Object} DomItem
  * @memberOf module:domObjects
- * @property {string} tagName - This is any valid HTMLElement tagName
+ * @property {string} nodeName - This is any document node name
+ * @property {?string} nodeValue - Is a string of text, null for HTML elements
  * @property {Object.<string, string|Object>} attributes - All potential HTML element attributes can be defined here
  * (including the defaulted style object)
- * @property {(Object|HTMLElement)} element - A reference to an existing HTML element will be stored here (default
- * empty object)
+ * @property {(Object|HTMLElement|null)} element - A reference to an existing HTML element will be stored here (default
+ * null)
  * @property {Object.<Event, EventListener>} eventListeners - An object holding all
  * events to be registered for the associated element
  * @property {DomItem} parentItem - A reference to the parent of this object
@@ -71,11 +72,10 @@ import functionalHelpers from 'functional-helpers'
  */
 const createDomItem = (item = {}) => functionalHelpers.reduceObject(
   {
-    tagName: 'div',
-    attributes: {
-      style: {}
-    },
-    element: {},
+    nodeName: 'div',
+    nodeValue: null,
+    attributes: {},
+    element: null,
     eventListeners: {},
     parentItem: {},
     children: []
@@ -84,9 +84,6 @@ const createDomItem = (item = {}) => functionalHelpers.reduceObject(
     if (!(prop in domItem)) {
       domItem[prop] = defaultValue
       return domItem
-    }
-    if (prop === 'attributes' && !('style' in domItem[prop])) {
-      domItem[prop].style = defaultValue.style
     }
     return domItem
   },

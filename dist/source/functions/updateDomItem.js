@@ -9,15 +9,15 @@ exports.default = void 0
 
 require('core-js/modules/es.regexp.exec.js')
 
-require('core-js/modules/es.regexp.test.js')
+require('core-js/modules/es.string.split.js')
+
+require('core-js/modules/es.array.splice.js')
 
 require('core-js/stable')
 
 var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
 var _elementChanges = _interopRequireDefault(require('./elementChanges.js'))
-
-var _setAndReturnAttribute = _interopRequireDefault(require('./setAndReturnAttribute.js'))
 
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
@@ -30,29 +30,42 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {DomItem}
  */
 var updateDomItem = function updateDomItem (config) {
-  if (!config.element.style) {
+  if (!config.element) {
     // if element is not a valid element then return the config without changes
     return config
   }
 
-  var domItem = (0, _elementChanges.default)(config) // Set the current attributes to contain all the changes
+  var changes = (0, _elementChanges.default)(config)
 
-  domItem.attributes = _functionalHelpers.default.mapObject( // Retrieve only the changes to be applied from the attributes
-    domItem.attributes, function (attr, key) {
-      if (!_functionalHelpers.default.isObject(attr) || _functionalHelpers.default.emptyObject(attr)) {
-        return key in config.element ? _functionalHelpers.default.setAndReturnValue(config.element, key, attr) : (0, _setAndReturnAttribute.default)(config, key, attr)
-      }
+  for (var dotKey in changes.removed) {
+    var attributeKey = _functionalHelpers.default.strAfter(dotKey, '.')
 
-      var cleanedStyles = _functionalHelpers.default.filterObject( // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
-        attr, function (param, k) {
-          return /^\D+$/.test(k)
-        })
+    if (_functionalHelpers.default.strBefore(attributeKey, '.') === 'className') {
+      var classList = config.attributes.className.split(' ')
+      classList.splice(_functionalHelpers.default.strAfterLast(attributeKey, '.'), 1)
+      config.attributes.className = classList.join(' ')
+      continue
+    }
 
-      return _functionalHelpers.default.reduceObject(cleanedStyles, function (newStyle, p, i) {
-        return _functionalHelpers.default.setValue(i, p, newStyle)
-      }, config.element.style)
-    })
-  return domItem
+    _functionalHelpers.default.dotUnset(config, dotKey)
+  }
+
+  for (var _dotKey in changes.added) {
+    var _attributeKey = _functionalHelpers.default.strAfter(_dotKey, '.')
+
+    if (_functionalHelpers.default.strBefore(_attributeKey, '.') === 'className') {
+      var _classList = config.attributes.className.split(' ')
+
+      _classList.push(changes.added[_dotKey])
+
+      config.attributes.className = _classList.join(' ')
+      continue
+    }
+
+    _functionalHelpers.default.dotSet(config, _dotKey, changes.added[_dotKey])
+  }
+
+  return config
 }
 
 var _default = updateDomItem

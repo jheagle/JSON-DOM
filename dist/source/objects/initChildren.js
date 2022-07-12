@@ -18,7 +18,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
 /**
  * DomItemHead defines the structure for a single element in the Dom
  * @typedef {DomItem} DomItemHead
- * @property {string} [tagName=head] - This is set to the string head referring to the HTML element of the same name
+ * @property {string} [nodeName=head] - This is set to the string head referring to the HTML element of the same name
  * @property {Object.<string, string|Object>} attributes - All potential HTML element attributes can be defined here
  * @property {HTMLHeadElement} element - A reference to the HTML head element
  * @property {Array.<DomItem>} children - A reference to an array of child objects
@@ -27,7 +27,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
 /**
  * DomItemBody defines the structure for a single element in the Dom
  * @typedef {DomItem} DomItemBody
- * @property {string} [tagName=body] - This is set to the string body referring to the HTML element of the same name
+ * @property {string} [nodeName=body] - This is set to the string body referring to the HTML element of the same name
  * @property {Object.<string, string|Object>} attributes - All potential HTML element attributes can be defined here
  * @property {HTMLBodyElement} element - A reference to the HTML body element
  * @property {Array.<DomItem>} children - A reference to an array of child objects
@@ -43,12 +43,12 @@ var initChildren = function initChildren () {
   var head = document.head
   var body = document.body
   var children = [(0, _createDomItem.default)({
-    tagName: 'head',
+    nodeName: 'head',
     attributes: {},
     element: head,
     children: []
   }), (0, _createDomItem.default)({
-    tagName: 'body',
+    nodeName: 'body',
     attributes: {},
     element: body,
     children: []

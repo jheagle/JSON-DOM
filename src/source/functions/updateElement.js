@@ -1,7 +1,7 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
 import domItemChanges from './domItemChanges.js'
-import setAndReturnAttribute from './setAndReturnAttribute.js'
+import generateElement from './generateElement'
 
 /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
@@ -12,33 +12,67 @@ import setAndReturnAttribute from './setAndReturnAttribute.js'
  * @returns {DomItem}
  */
 const updateElement = domItem => {
-  if (!domItem.element.style) {
+  if (!domItem.element) {
     // if element is not a valid element then return the domItem without changes
     return domItem
   }
-  domItem = domItemChanges(domItem)
-  // Set the the current attributes to contain all the changes
-  domItem.attributes = functionalHelpers.mapObject(
-    // Retrieve only the changes to be applied from the attributes
-    domItem.attributes,
-    (attr, key) => {
-      if (!functionalHelpers.isObject(attr) || functionalHelpers.emptyObject(attr)) {
-        return (key in domItem.element)
-          ? functionalHelpers.setAndReturnValue(domItem.element, key, attr)
-          : setAndReturnAttribute(domItem, key, attr)
+  const changes = domItemChanges(domItem)
+  if (changes.removed['nodeName'] || changes.added['nodeName']) {
+    // if the nodeName has changed then remove the element and create a new one
+    domItem.element.remove()
+    return generateElement(domItem)
+  }
+  for (const dotKey in changes.removed) {
+    const value = changes.removed[dotKey]
+    if (!dotKey.includes('.')) {
+      if (dotKey in domItem.element) {
+        delete domItem.element[dotKey]
+        continue
       }
-      const cleanedStyles = functionalHelpers.filterObject(
-        // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
-        attr,
-        (param, k) => /^\D+$/.test(k)
-      )
-      return functionalHelpers.reduceObject(
-        cleanedStyles,
-        (newStyle, p, i) => functionalHelpers.setValue(i, p, newStyle),
-        domItem.element.style
-      )
+      domItem.element.removeAttribute(dotKey)
+      continue
     }
-  )
+    const baseKey = functionalHelpers.strBefore(dotKey, '.')
+    if (baseKey !== 'class' && baseKey !== 'style') {
+      throw new Error('Unhandled dotKey: ' + dotKey)
+    }
+    if (baseKey === 'class') {
+      domItem.element.classList.remove(value)
+      continue
+    }
+    domItem.element.style.removeProperty(functionalHelpers.strAfter(dotKey, '.'))
+  }
+  for (const dotKey in changes.added) {
+    const value = changes.added[dotKey]
+    if (dotKey === 'className') {
+      domItem.element.className = value
+      continue
+    }
+    if (dotKey === 'style') {
+      // Update all styles based on incoming style object
+      for (let style in value) {
+        domItem.element.style.setProperty(style, value[style])
+      }
+      continue
+    }
+    if (!dotKey.includes('.')) {
+      if (dotKey in domItem.element) {
+        domItem.element[dotKey] = value
+        continue
+      }
+      domItem.element.setAttribute(dotKey, value)
+      continue
+    }
+    const baseKey = functionalHelpers.strBefore(dotKey, '.')
+    if (baseKey !== 'class' && baseKey !== 'style') {
+      throw new Error('Unhandled dotKey: ' + dotKey)
+    }
+    if (baseKey === 'class') {
+      domItem.element.classList.add(value)
+      continue
+    }
+    domItem.element.style.setProperty(functionalHelpers.strAfter(dotKey, '.'), value)
+  }
   return domItem
 }
 
