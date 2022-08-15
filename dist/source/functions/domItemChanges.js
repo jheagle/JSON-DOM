@@ -117,26 +117,25 @@ var domItemChanges = function domItemChanges (domItem) {
   var changeList = (0, _createChangeList.default)()
 
   if (!domItem.element) {
-    return changeList
+    changeList.added.nodeName = domItem.nodeName.toLowerCase()
   }
 
-  if (domItem.element.nodeName.toLowerCase() !== domItem.nodeName.toLowerCase()) {
+  if (domItem.element && domItem.element.nodeName.toLowerCase() !== domItem.nodeName.toLowerCase()) {
     // This should trigger new element creation
-    changeList.removed.nodeName = domItem.nodeName.toLowerCase()
-    changeList.added.nodeName = domItem.element.nodeName.toLowerCase()
+    changeList.removed.nodeName = domItem.element.nodeName.toLowerCase()
+    changeList.added.nodeName = domItem.nodeName.toLowerCase()
   }
 
   if (domItem.nodeValue !== null) {
-    changeList.nodeValue = domItem.element.nodeValue
+    if (!domItem.element) {
+      changeList.added.nodeValue = domItem.nodeValue
+      return changeList
+    }
+
+    changeList.removed.nodeValue = domItem.element.nodeValue
 
     if (domItem.element.nodeValue !== domItem.nodeValue) {
       changeList.added.nodeValue = domItem.nodeValue
-    }
-
-    if (!_functionalHelpers.default.emptyObject(domItem.attributes)) {
-      changeList.removed = changeList.appendChanges('removed', _functionalHelpers.default.dotNotate({
-        attributes: domItem.attributes
-      }))
     }
 
     return changeList
@@ -192,6 +191,10 @@ var domItemChanges = function domItemChanges (domItem) {
     }
 
     changed.removed = result.reduce(function (removed, results) {
+      if (!domItem.element) {
+        return removed
+      }
+
       if (results.result[0] === -1) {
         removed['style.'.concat(results.value)] = domItem.element.style[results.value]
       }

@@ -31,8 +31,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  */
 var updateElement = function updateElement (domItem) {
   if (!domItem.element) {
-    // if element is not a valid element then return the domItem without changes
-    return domItem
+    return (0, _generateElement.default)(domItem)
   }
 
   var changes = (0, _domItemChanges.default)(domItem)

@@ -26,7 +26,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  */
 var updateElements = function updateElements (config) {
   var domItem = (0, _updateElement.default)(config)
-  return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(domItem.children, function (child) {
+  return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(config.children, function (child) {
     return updateElements(child)
   }), domItem)
 }

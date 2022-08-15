@@ -78,6 +78,10 @@ var checkClasses = function checkClasses (element) {
  */
 
 var elementHasAttribute = function elementHasAttribute (element, key, attr) {
+  if (!element) {
+    return 1
+  }
+
   if (key === 'style') {
     return checkStyles(element, attr)
   }
