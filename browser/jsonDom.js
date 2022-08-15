@@ -598,26 +598,25 @@
       var changeList = (0, _createChangeList.default)()
 
       if (!domItem.element) {
-        return changeList
+        changeList.added.nodeName = domItem.nodeName.toLowerCase()
       }
 
-      if (domItem.element.nodeName.toLowerCase() !== domItem.nodeName.toLowerCase()) {
+      if (domItem.element && domItem.element.nodeName.toLowerCase() !== domItem.nodeName.toLowerCase()) {
         // This should trigger new element creation
-        changeList.removed.nodeName = domItem.nodeName.toLowerCase()
-        changeList.added.nodeName = domItem.element.nodeName.toLowerCase()
+        changeList.removed.nodeName = domItem.element.nodeName.toLowerCase()
+        changeList.added.nodeName = domItem.nodeName.toLowerCase()
       }
 
       if (domItem.nodeValue !== null) {
-        changeList.nodeValue = domItem.element.nodeValue
+        if (!domItem.element) {
+          changeList.added.nodeValue = domItem.nodeValue
+          return changeList
+        }
+
+        changeList.removed.nodeValue = domItem.element.nodeValue
 
         if (domItem.element.nodeValue !== domItem.nodeValue) {
           changeList.added.nodeValue = domItem.nodeValue
-        }
-
-        if (!_functionalHelpers.default.emptyObject(domItem.attributes)) {
-          changeList.removed = changeList.appendChanges('removed', _functionalHelpers.default.dotNotate({
-            attributes: domItem.attributes
-          }))
         }
 
         return changeList
@@ -673,6 +672,10 @@
         }
 
         changed.removed = result.reduce(function (removed, results) {
+          if (!domItem.element) {
+            return removed
+          }
+
           if (results.result[0] === -1) {
             removed['style.'.concat(results.value)] = domItem.element.style[results.value]
           }
@@ -1134,6 +1137,10 @@
  */
 
     var elementHasAttribute = function elementHasAttribute (element, key, attr) {
+      if (!element) {
+        return 1
+      }
+
       if (key === 'style') {
         return checkStyles(element, attr)
       }
@@ -2129,8 +2136,7 @@
  */
     var updateElement = function updateElement (domItem) {
       if (!domItem.element) {
-        // if element is not a valid element then return the domItem without changes
-        return domItem
+        return (0, _generateElement.default)(domItem)
       }
 
       var changes = (0, _domItemChanges.default)(domItem)
@@ -2244,7 +2250,7 @@
  */
     var updateElements = function updateElements (config) {
       var domItem = (0, _updateElement.default)(config)
-      return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(domItem.children, function (child) {
+      return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(config.children, function (child) {
         return updateElements(child)
       }), domItem)
     }

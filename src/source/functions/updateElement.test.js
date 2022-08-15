@@ -8,7 +8,9 @@ import updateElement from './updateElement'
 describe('updateElement', () => {
   test('returns domItem with unchanged element when no element is set', () => {
     const originalItem = createDomItem()
-    expect(updateElement(originalItem)).toBe(originalItem)
+    expect(originalItem.element).toBeNull()
+    const updatedItem = updateElement(originalItem)
+    expect(updatedItem.element).toBeInstanceOf(HTMLDivElement)
   })
 
   test('will create new element for changed nodeName', () => {

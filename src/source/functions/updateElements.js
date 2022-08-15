@@ -15,7 +15,7 @@ const updateElements = config => {
   const domItem = updateElement(config)
   return functionalHelpers.setValue(
     'children',
-    functionalHelpers.mapObject(domItem.children, child => updateElements(child)),
+    functionalHelpers.mapObject(config.children, child => updateElements(child)),
     domItem
   )
 }

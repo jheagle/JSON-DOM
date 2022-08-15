@@ -13,8 +13,7 @@ import generateElement from './generateElement'
  */
 const updateElement = domItem => {
   if (!domItem.element) {
-    // if element is not a valid element then return the domItem without changes
-    return domItem
+    return generateElement(domItem)
   }
   const changes = domItemChanges(domItem)
   if (changes.removed['nodeName'] || changes.added['nodeName']) {

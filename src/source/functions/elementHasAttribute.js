@@ -47,6 +47,9 @@ const checkClasses = (element, attr = '') => {
  * @returns {int|Object.<string, number>}
  */
 const elementHasAttribute = (element, key, attr) => {
+  if (!element) {
+    return 1
+  }
   if (key === 'style') {
     return checkStyles(element, attr)
   }

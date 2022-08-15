@@ -72,20 +72,21 @@ const kabobCaseAttributes = attributesToSet => functionalHelpers.reduceObject(
 const domItemChanges = domItem => {
   const changeList = createChangeList()
   if (!domItem.element) {
-    return changeList
+    changeList.added.nodeName = domItem.nodeName.toLowerCase()
   }
-  if (domItem.element.nodeName.toLowerCase() !== domItem.nodeName.toLowerCase()) {
+  if (domItem.element && domItem.element.nodeName.toLowerCase() !== domItem.nodeName.toLowerCase()) {
     // This should trigger new element creation
-    changeList.removed.nodeName = domItem.nodeName.toLowerCase()
-    changeList.added.nodeName = domItem.element.nodeName.toLowerCase()
+    changeList.removed.nodeName = domItem.element.nodeName.toLowerCase()
+    changeList.added.nodeName = domItem.nodeName.toLowerCase()
   }
   if (domItem.nodeValue !== null) {
-    changeList.nodeValue = domItem.element.nodeValue
+    if (!domItem.element) {
+      changeList.added.nodeValue = domItem.nodeValue
+      return changeList
+    }
+    changeList.removed.nodeValue = domItem.element.nodeValue
     if (domItem.element.nodeValue !== domItem.nodeValue) {
       changeList.added.nodeValue = domItem.nodeValue
-    }
-    if (!functionalHelpers.emptyObject(domItem.attributes)) {
-      changeList.removed = changeList.appendChanges('removed', functionalHelpers.dotNotate({ attributes: domItem.attributes }))
     }
     return changeList
   }
@@ -140,6 +141,9 @@ const domItemChanges = domItem => {
       }
       changed.removed = result.reduce(
         (removed, results) => {
+          if (!domItem.element) {
+            return removed
+          }
           if (results.result[0] === -1) {
             removed[`style.${results.value}`] = domItem.element.style[results.value]
           }

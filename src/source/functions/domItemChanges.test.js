@@ -4,22 +4,23 @@
 import domItemChanges from './domItemChanges.js'
 import createDomItem from '../objects/createDomItem.js'
 import generateElement from './generateElement'
+import { logObject } from '../../../testHelpers'
 
 describe('domItemChanges', () => {
   test('returns empty change list if element is not set', () => {
     const changes = domItemChanges(createDomItem())
     expect(changes.removed).toEqual({})
-    expect(changes.added).toEqual({})
+    expect(changes.added).toEqual({ nodeName: 'div' })
   })
 
-  test('will create new element when it does not yet exist', () => {
+  test('will get the nodeName changes when they are different', () => {
     const element = document.createElement('span')
     const item = createDomItem({
       element: element
     })
     const changes = domItemChanges(item)
-    expect(changes.removed.nodeName).toEqual('div')
-    expect(changes.added.nodeName).toEqual('span')
+    expect(changes.removed.nodeName).toEqual('span')
+    expect(changes.added.nodeName).toEqual('div')
   })
 
   test('will return changed or added attributes', () => {
@@ -40,6 +41,24 @@ describe('domItemChanges', () => {
     const changes = domItemChanges(item)
     expect(changes.added['title']).toBeUndefined()
     expect(changes.added['height']).toBe(newHeight)
+  })
+
+  test('will return all attributes when element is null', () => {
+    const attributes = {
+      title: 'test',
+      height: '400px',
+      width: '1000px',
+      className: 'one two three four',
+      style: { bottom: 0, display: 'block', color: 'white' }
+    }
+    const item = createDomItem({
+        attributes: attributes
+      }
+    )
+    const changes = domItemChanges(item)
+    attributes.nodeName = item.nodeName
+    expect(changes.removed).toEqual({})
+    expect(changes.added).toEqual(attributes)
   })
 
   test('will return changed or added class names', () => {
@@ -102,11 +121,21 @@ describe('domItemChanges', () => {
   })
 
   test('will detect changes to node value', () => {
-    const item = generateElement(createDomItem({ nodeName: '#text', nodeValue: 'inner text' }))
+    const oldInner = 'inner text'
+    const element = document.createTextNode(oldInner)
     const newInner = 'new inner text'
-    item.element.nodeValue = newInner
+    const item = createDomItem({ nodeName: '#text', nodeValue: newInner, element: element })
     let changes = domItemChanges(item)
-    expect(changes.nodeValue).toEqual(newInner)
+    expect(changes.removed.nodeValue).toEqual(oldInner)
+    expect(changes.added.nodeValue).toEqual(newInner)
+  })
+
+  test('null element still gets node value', () => {
+    const newInner = 'new inner text'
+    const item = createDomItem({ nodeName: '#text', nodeValue: newInner })
+    let changes = domItemChanges(item)
+    expect(changes.removed).toEqual({})
+    expect(changes.added.nodeValue).toEqual(newInner)
   })
 
   test('uses correct case-format for element changes', () => {
