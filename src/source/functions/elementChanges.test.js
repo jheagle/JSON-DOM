@@ -7,11 +7,11 @@ import createDomItem from '../objects/createDomItem.js'
 describe('elementChanges', () => {
   test('returns empty change list if element is not set', () => {
     const changes = elementChanges(createDomItem())
-    expect(changes.removed).toEqual({})
+    expect(changes.removed).toEqual({ nodeName: 'div' })
     expect(changes.added).toEqual({})
   })
 
-  test('changing element name updates the attribute node name', () => {
+  test('detects changed element node name', () => {
     const oldNodeName = 'span'
     const item = createDomItem({ nodeName: oldNodeName })
     const newNodeName = 'div'
@@ -38,6 +38,19 @@ describe('elementChanges', () => {
     })
   })
 
+  test('null element with prior nodeValue, removes the nodeValue', () => {
+    const oldNodeName = '#text'
+    const oldAttribute = 'not a div'
+    const oldNodeValue = 'Hello World!'
+    const item = createDomItem({ nodeName: oldNodeName, nodeValue: oldNodeValue, attributes: { name: oldAttribute } })
+    const changes = elementChanges(item)
+    expect(changes.removed).toEqual({
+      nodeName: oldNodeName,
+      nodeValue: oldNodeValue,
+      'attributes.name': oldAttribute
+    })
+  })
+
   test('will return changed or added attributes', () => {
     const item = createDomItem({
         attributes: {
@@ -55,6 +68,25 @@ describe('elementChanges', () => {
     const changes = elementChanges(item)
     expect(changes.added['attributes.title']).toBeUndefined()
     expect(changes.added['attributes.height']).toBe(newHeight)
+  })
+
+  test('will return all attributes as removed when element is null', () => {
+    const attributes = {
+      title: 'test',
+      height: '400px',
+      width: '1000px',
+      className: 'one two three four',
+      style: { bottom: 0, display: 'block', color: 'white' }
+    }
+    const item = createDomItem({
+        attributes: attributes
+      }
+    )
+    const changes = elementChanges(item)
+    const convertedAttributes = functionalHelpers.dotNotate({ attributes: attributes })
+    convertedAttributes.nodeName = item.nodeName
+    expect(changes.removed).toEqual(convertedAttributes)
+    expect(changes.added).toEqual({})
   })
 
   test('will return changed or added class names', () => {

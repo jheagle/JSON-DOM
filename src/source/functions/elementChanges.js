@@ -46,18 +46,20 @@ const checkAttribute = domItem =>
  * @param {DomItem} domItem
  * @returns {Object.<string, *>}
  */
-const camelCaseAttributes = domItem => functionalHelpers.reduceObject(
-  domItem.element.attributes,
-  (attributes, attr) => {
-    if (!attr.name) {
+const camelCaseAttributes = domItem => domItem.element
+  ? functionalHelpers.reduceObject(
+    domItem.element.attributes,
+    (attributes, attr) => {
+      if (!attr.name) {
+        return attributes
+      }
+      const camelKey = attr.name === 'class' ? 'className' : functionalHelpers.camelCase(attr.name)
+      attributes[camelKey] = domItem.element[attr.name] ?? attr.value
       return attributes
-    }
-    const camelKey = attr.name === 'class' ? 'className' : functionalHelpers.camelCase(attr.name)
-    attributes[camelKey] = domItem.element[attr.name] ?? attr.value
-    return attributes
-  },
-  {}
-)
+    },
+    {}
+  )
+  : {}
 
 /**
  * Given a domObjects.DomItem as config, this function will return the changes from the element
@@ -71,13 +73,20 @@ const camelCaseAttributes = domItem => functionalHelpers.reduceObject(
 const elementChanges = domItem => {
   const changeList = createChangeList()
   if (!domItem.element) {
-    return changeList
+    changeList.removed.nodeName = domItem.nodeName.toLowerCase()
   }
-  if (domItem.element.nodeName.toLowerCase() !== domItem.nodeName.toLowerCase()) {
+  if (domItem.element && domItem.element.nodeName.toLowerCase() !== domItem.nodeName.toLowerCase()) {
     changeList.removed.nodeName = domItem.nodeName.toLowerCase()
     changeList.added.nodeName = domItem.element.nodeName.toLowerCase()
   }
-  if (domItem.element.nodeValue !== null) {
+  if (!domItem.element && domItem.nodeValue !== null) {
+    changeList.removed.nodeValue = domItem.nodeValue
+    if (!functionalHelpers.emptyObject(domItem.attributes)) {
+      changeList.removed = changeList.appendChanges('removed', functionalHelpers.dotNotate({ attributes: domItem.attributes }))
+    }
+    return changeList
+  }
+  if (domItem.element && domItem.element.nodeValue !== null) {
     if (domItem.element.nodeValue !== domItem.nodeValue) {
       changeList.added.nodeValue = domItem.element.nodeValue
     }
@@ -86,8 +95,8 @@ const elementChanges = domItem => {
     }
     return changeList
   }
-  if (!domItem.element.hasAttributes() && !functionalHelpers.emptyObject(domItem.attributes)) {
-    changeList.removed = functionalHelpers.dotNotate({ attributes: domItem.attributes })
+  if (!(domItem.element && domItem.element.hasAttributes()) && !functionalHelpers.emptyObject(domItem.attributes)) {
+    changeList.removed = changeList.appendChanges('removed', functionalHelpers.dotNotate({ attributes: domItem.attributes }))
     return changeList
   }
   const elementAttributes = camelCaseAttributes(domItem)

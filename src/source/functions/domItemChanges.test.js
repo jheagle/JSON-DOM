@@ -3,8 +3,6 @@
  */
 import domItemChanges from './domItemChanges.js'
 import createDomItem from '../objects/createDomItem.js'
-import generateElement from './generateElement'
-import { logObject } from '../../../testHelpers'
 
 describe('domItemChanges', () => {
   test('returns empty change list if element is not set', () => {
@@ -43,7 +41,7 @@ describe('domItemChanges', () => {
     expect(changes.added['height']).toBe(newHeight)
   })
 
-  test('will return all attributes when element is null', () => {
+  test('will return all attributes as added when element is null', () => {
     const attributes = {
       title: 'test',
       height: '400px',
@@ -132,10 +130,12 @@ describe('domItemChanges', () => {
 
   test('null element still gets node value', () => {
     const newInner = 'new inner text'
-    const item = createDomItem({ nodeName: '#text', nodeValue: newInner })
+    const newAttribute = 'not a div'
+    const item = createDomItem({ nodeName: '#text', nodeValue: newInner, attributes: { name: newAttribute } })
     let changes = domItemChanges(item)
     expect(changes.removed).toEqual({})
     expect(changes.added.nodeValue).toEqual(newInner)
+    expect(changes.added.name).toEqual(newAttribute)
   })
 
   test('uses correct case-format for element changes', () => {

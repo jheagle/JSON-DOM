@@ -127,6 +127,10 @@ var domItemChanges = function domItemChanges (domItem) {
   }
 
   if (domItem.nodeValue !== null) {
+    if (!_functionalHelpers.default.emptyObject(domItem.attributes)) {
+      changeList.added = changeList.appendChanges('added', _functionalHelpers.default.dotNotate(domItem.attributes))
+    }
+
     if (!domItem.element) {
       changeList.added.nodeValue = domItem.nodeValue
       return changeList

@@ -80,6 +80,9 @@ const domItemChanges = domItem => {
     changeList.added.nodeName = domItem.nodeName.toLowerCase()
   }
   if (domItem.nodeValue !== null) {
+    if (!functionalHelpers.emptyObject(domItem.attributes)) {
+      changeList.added = changeList.appendChanges('added', functionalHelpers.dotNotate(domItem.attributes))
+    }
     if (!domItem.element) {
       changeList.added.nodeValue = domItem.nodeValue
       return changeList

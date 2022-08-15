@@ -608,6 +608,10 @@
       }
 
       if (domItem.nodeValue !== null) {
+        if (!_functionalHelpers.default.emptyObject(domItem.attributes)) {
+          changeList.added = changeList.appendChanges('added', _functionalHelpers.default.dotNotate(domItem.attributes))
+        }
+
         if (!domItem.element) {
           changeList.added.nodeValue = domItem.nodeValue
           return changeList
@@ -891,7 +895,7 @@
  */
 
     var camelCaseAttributes = function camelCaseAttributes (domItem) {
-      return _functionalHelpers.default.reduceObject(domItem.element.attributes, function (attributes, attr) {
+      return domItem.element ? _functionalHelpers.default.reduceObject(domItem.element.attributes, function (attributes, attr) {
         var _domItem$element$attr
 
         if (!attr.name) {
@@ -901,7 +905,7 @@
         var camelKey = attr.name === 'class' ? 'className' : _functionalHelpers.default.camelCase(attr.name)
         attributes[camelKey] = (_domItem$element$attr = domItem.element[attr.name]) !== null && _domItem$element$attr !== void 0 ? _domItem$element$attr : attr.value
         return attributes
-      }, {})
+      }, {}) : {}
     }
     /**
  * Given a domObjects.DomItem as config, this function will return the changes from the element
@@ -917,15 +921,27 @@
       var changeList = (0, _createChangeList.default)()
 
       if (!domItem.element) {
-        return changeList
+        changeList.removed.nodeName = domItem.nodeName.toLowerCase()
       }
 
-      if (domItem.element.nodeName.toLowerCase() !== domItem.nodeName.toLowerCase()) {
+      if (domItem.element && domItem.element.nodeName.toLowerCase() !== domItem.nodeName.toLowerCase()) {
         changeList.removed.nodeName = domItem.nodeName.toLowerCase()
         changeList.added.nodeName = domItem.element.nodeName.toLowerCase()
       }
 
-      if (domItem.element.nodeValue !== null) {
+      if (!domItem.element && domItem.nodeValue !== null) {
+        changeList.removed.nodeValue = domItem.nodeValue
+
+        if (!_functionalHelpers.default.emptyObject(domItem.attributes)) {
+          changeList.removed = changeList.appendChanges('removed', _functionalHelpers.default.dotNotate({
+            attributes: domItem.attributes
+          }))
+        }
+
+        return changeList
+      }
+
+      if (domItem.element && domItem.element.nodeValue !== null) {
         if (domItem.element.nodeValue !== domItem.nodeValue) {
           changeList.added.nodeValue = domItem.element.nodeValue
         }
@@ -939,10 +955,10 @@
         return changeList
       }
 
-      if (!domItem.element.hasAttributes() && !_functionalHelpers.default.emptyObject(domItem.attributes)) {
-        changeList.removed = _functionalHelpers.default.dotNotate({
+      if (!(domItem.element && domItem.element.hasAttributes()) && !_functionalHelpers.default.emptyObject(domItem.attributes)) {
+        changeList.removed = changeList.appendChanges('removed', _functionalHelpers.default.dotNotate({
           attributes: domItem.attributes
-        })
+        }))
         return changeList
       }
 
