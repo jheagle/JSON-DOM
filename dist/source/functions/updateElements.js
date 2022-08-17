@@ -7,9 +7,17 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 
-require('core-js/stable')
+require('core-js/modules/es.object.to-string.js')
 
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+require('core-js/modules/esnext.async-iterator.for-each.js')
+
+require('core-js/modules/esnext.iterator.constructor.js')
+
+require('core-js/modules/esnext.iterator.for-each.js')
+
+require('core-js/modules/web.dom-collections.for-each.js')
+
+require('core-js/stable')
 
 var _updateElement = _interopRequireDefault(require('./updateElement.js'))
 
@@ -25,10 +33,24 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {DomItem}
  */
 var updateElements = function updateElements (config) {
+  var _domItem$element
+
   var domItem = (0, _updateElement.default)(config)
-  return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(config.children, function (child) {
-    return updateElements(child)
-  }), domItem)
+  var newChildren = []
+  var newChildNodes = []
+  domItem.children.forEach(function (child, index) {
+    newChildren[index] = updateElements(child)
+    newChildNodes[index] = newChildren[index].element
+  })
+  domItem.children = newChildren
+
+  while (domItem.element.firstChild) {
+    domItem.element.removeChild(domItem.element.firstChild)
+  }
+
+  (_domItem$element = domItem.element).append.apply(_domItem$element, newChildNodes)
+
+  return domItem
 }
 
 var _default = updateElements

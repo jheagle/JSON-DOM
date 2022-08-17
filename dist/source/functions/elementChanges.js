@@ -89,7 +89,13 @@ var camelCaseAttributes = function camelCaseAttributes (domItem) {
     }
 
     var camelKey = attr.name === 'class' ? 'className' : _functionalHelpers.default.camelCase(attr.name)
-    attributes[camelKey] = (_domItem$element$attr = domItem.element[attr.name]) !== null && _domItem$element$attr !== void 0 ? _domItem$element$attr : attr.value
+    var attributeValue = (_domItem$element$attr = domItem.element[attr.name]) !== null && _domItem$element$attr !== void 0 ? _domItem$element$attr : attr.value
+
+    if (typeof attributeValue === 'undefined') {
+      return attributes
+    }
+
+    attributes[camelKey] = attributeValue
     return attributes
   }, {}) : {}
 }

@@ -903,7 +903,13 @@
         }
 
         var camelKey = attr.name === 'class' ? 'className' : _functionalHelpers.default.camelCase(attr.name)
-        attributes[camelKey] = (_domItem$element$attr = domItem.element[attr.name]) !== null && _domItem$element$attr !== void 0 ? _domItem$element$attr : attr.value
+        var attributeValue = (_domItem$element$attr = domItem.element[attr.name]) !== null && _domItem$element$attr !== void 0 ? _domItem$element$attr : attr.value
+
+        if (typeof attributeValue === 'undefined') {
+          return attributes
+        }
+
+        attributes[camelKey] = attributeValue
         return attributes
       }, {}) : {}
     }
@@ -2091,11 +2097,27 @@
     })
     exports.default = void 0
 
+    require('core-js/modules/es.object.to-string.js')
+
+    require('core-js/modules/esnext.async-iterator.for-each.js')
+
+    require('core-js/modules/esnext.iterator.constructor.js')
+
+    require('core-js/modules/esnext.iterator.for-each.js')
+
+    require('core-js/modules/web.dom-collections.for-each.js')
+
+    require('core-js/modules/es.array.find.js')
+
+    require('core-js/modules/esnext.async-iterator.find.js')
+
+    require('core-js/modules/esnext.iterator.find.js')
+
     require('core-js/stable')
 
-    var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
-
     var _updateDomItem = _interopRequireDefault(require('./updateDomItem.js'))
+
+    var _createDomItem = _interopRequireDefault(require('../objects/createDomItem'))
 
     function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
@@ -2110,14 +2132,24 @@
  */
     var updateDomItems = function updateDomItems (config) {
       var domItem = (0, _updateDomItem.default)(config)
-      return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(domItem.children, function (child) {
-        return updateDomItems(child)
-      }), domItem)
+      var newChildren = []
+      domItem.element.childNodes.forEach(function (childNode, index) {
+        var existing = domItem.children.find(function (child) {
+          return child.element === childNode
+        })
+        newChildren[index] = updateDomItems(existing !== null && existing !== void 0 ? existing : (0, _createDomItem.default)({
+          nodeName: childNode.nodeName.toLowerCase(),
+          nodeValue: childNode.nodeValue,
+          element: childNode
+        }))
+      })
+      domItem.children = newChildren
+      return domItem
     }
 
     var _default = updateDomItems
     exports.default = _default
-  }, { './updateDomItem.js': 38, 'core-js/modules/es.object.define-property.js': 374, 'core-js/stable': 563, 'functional-helpers': 631 }],
+  }, { '../objects/createDomItem': 44, './updateDomItem.js': 38, 'core-js/modules/es.array.find.js': 293, 'core-js/modules/es.object.define-property.js': 374, 'core-js/modules/es.object.to-string.js': 395, 'core-js/modules/esnext.async-iterator.find.js': 530, 'core-js/modules/esnext.async-iterator.for-each.js': 531, 'core-js/modules/esnext.iterator.constructor.js': 535, 'core-js/modules/esnext.iterator.find.js': 538, 'core-js/modules/esnext.iterator.for-each.js': 539, 'core-js/modules/web.dom-collections.for-each.js': 546, 'core-js/stable': 563 }],
   40: [function (require, module, exports) {
     'use strict'
 
@@ -2247,9 +2279,17 @@
     })
     exports.default = void 0
 
-    require('core-js/stable')
+    require('core-js/modules/es.object.to-string.js')
 
-    var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+    require('core-js/modules/esnext.async-iterator.for-each.js')
+
+    require('core-js/modules/esnext.iterator.constructor.js')
+
+    require('core-js/modules/esnext.iterator.for-each.js')
+
+    require('core-js/modules/web.dom-collections.for-each.js')
+
+    require('core-js/stable')
 
     var _updateElement = _interopRequireDefault(require('./updateElement.js'))
 
@@ -2265,15 +2305,29 @@
  * @returns {DomItem}
  */
     var updateElements = function updateElements (config) {
+      var _domItem$element
+
       var domItem = (0, _updateElement.default)(config)
-      return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(config.children, function (child) {
-        return updateElements(child)
-      }), domItem)
+      var newChildren = []
+      var newChildNodes = []
+      domItem.children.forEach(function (child, index) {
+        newChildren[index] = updateElements(child)
+        newChildNodes[index] = newChildren[index].element
+      })
+      domItem.children = newChildren
+
+      while (domItem.element.firstChild) {
+        domItem.element.removeChild(domItem.element.firstChild)
+      }
+
+      (_domItem$element = domItem.element).append.apply(_domItem$element, newChildNodes)
+
+      return domItem
     }
 
     var _default = updateElements
     exports.default = _default
-  }, { './updateElement.js': 40, 'core-js/modules/es.object.define-property.js': 374, 'core-js/stable': 563, 'functional-helpers': 631 }],
+  }, { './updateElement.js': 40, 'core-js/modules/es.object.define-property.js': 374, 'core-js/modules/es.object.to-string.js': 395, 'core-js/modules/esnext.async-iterator.for-each.js': 531, 'core-js/modules/esnext.iterator.constructor.js': 535, 'core-js/modules/esnext.iterator.for-each.js': 539, 'core-js/modules/web.dom-collections.for-each.js': 546, 'core-js/stable': 563 }],
   42: [function (require, module, exports) {
     'use strict'
 

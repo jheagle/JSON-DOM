@@ -54,7 +54,11 @@ const camelCaseAttributes = domItem => domItem.element
         return attributes
       }
       const camelKey = attr.name === 'class' ? 'className' : functionalHelpers.camelCase(attr.name)
-      attributes[camelKey] = domItem.element[attr.name] ?? attr.value
+      const attributeValue = domItem.element[attr.name] ?? attr.value
+      if (typeof attributeValue === 'undefined') {
+        return attributes
+      }
+      attributes[camelKey] = attributeValue
       return attributes
     },
     {}

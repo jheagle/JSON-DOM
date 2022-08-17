@@ -1,6 +1,6 @@
 import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
 import updateDomItem from './updateDomItem.js'
+import createDomItem from '../objects/createDomItem'
 
 /**
  * Generate HTML element data for each object in the matrix
@@ -13,11 +13,17 @@ import updateDomItem from './updateDomItem.js'
  */
 const updateDomItems = config => {
   const domItem = updateDomItem(config)
-  return functionalHelpers.setValue(
-    'children',
-    functionalHelpers.mapObject(domItem.children, child => updateDomItems(child)),
-    domItem
-  )
+  const newChildren = []
+  domItem.element.childNodes.forEach((childNode, index) => {
+    const existing = domItem.children.find(child => child.element === childNode)
+    newChildren[index] = updateDomItems(existing ?? createDomItem({
+      nodeName: childNode.nodeName.toLowerCase(),
+      nodeValue: childNode.nodeValue,
+      element: childNode
+    }))
+  })
+  domItem.children = newChildren
+  return domItem
 }
 
 export default updateDomItems

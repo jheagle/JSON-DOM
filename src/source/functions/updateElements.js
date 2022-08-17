@@ -1,5 +1,4 @@
 import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
 import updateElement from './updateElement.js'
 
 /**
@@ -13,11 +12,18 @@ import updateElement from './updateElement.js'
  */
 const updateElements = config => {
   const domItem = updateElement(config)
-  return functionalHelpers.setValue(
-    'children',
-    functionalHelpers.mapObject(config.children, child => updateElements(child)),
-    domItem
-  )
+  const newChildren = []
+  const newChildNodes = []
+  domItem.children.forEach((child, index) => {
+    newChildren[index] = updateElements(child)
+    newChildNodes[index] = newChildren[index].element
+  })
+  domItem.children = newChildren
+  while (domItem.element.firstChild) {
+    domItem.element.removeChild(domItem.element.firstChild)
+  }
+  domItem.element.append(...newChildNodes)
+  return domItem
 }
 
 export default updateElements
