@@ -6,13 +6,11 @@ import createDomItem from '../objects/createDomItem'
 import updateDomItems from './updateDomItems'
 
 describe('updateDomItems', () => {
-  test('returns unchanged domItem when no element is set', () => {
-    const elementType = 'div'
-    const element = document.createElement(elementType)
-    const originalItem = createDomItem({ element: element })
+  test('returns domItem without children when no element is set', () => {
+    const originalItem = createDomItem({ children: ['child one', 'child two'] })
+    expect(originalItem.children).toHaveLength(2)
     const updated = updateDomItems(originalItem)
-    expect(updated.nodeName).toBe(elementType)
-    expect(updated.element).toBe(element)
+    expect(updated.nodeName).toBe('div')
     expect(updated.children).toHaveLength(0)
   })
 

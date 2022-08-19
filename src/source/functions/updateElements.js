@@ -22,7 +22,9 @@ const updateElements = config => {
   while (domItem.element.firstChild) {
     domItem.element.removeChild(domItem.element.firstChild)
   }
-  domItem.element.append(...newChildNodes)
+  if (newChildNodes.length) {
+    domItem.element.append(...newChildNodes)
+  }
   return domItem
 }
 

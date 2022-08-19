@@ -33,8 +33,6 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {DomItem}
  */
 var updateElements = function updateElements (config) {
-  var _domItem$element
-
   var domItem = (0, _updateElement.default)(config)
   var newChildren = []
   var newChildNodes = []
@@ -48,7 +46,11 @@ var updateElements = function updateElements (config) {
     domItem.element.removeChild(domItem.element.firstChild)
   }
 
-  (_domItem$element = domItem.element).append.apply(_domItem$element, newChildNodes)
+  if (newChildNodes.length) {
+    var _domItem$element;
+
+    (_domItem$element = domItem.element).append.apply(_domItem$element, newChildNodes)
+  }
 
   return domItem
 }

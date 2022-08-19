@@ -2132,6 +2132,12 @@
  */
     var updateDomItems = function updateDomItems (config) {
       var domItem = (0, _updateDomItem.default)(config)
+
+      if (!domItem.element) {
+        domItem.children = []
+        return domItem
+      }
+
       var newChildren = []
       domItem.element.childNodes.forEach(function (childNode, index) {
         var existing = domItem.children.find(function (child) {
@@ -2305,8 +2311,6 @@
  * @returns {DomItem}
  */
     var updateElements = function updateElements (config) {
-      var _domItem$element
-
       var domItem = (0, _updateElement.default)(config)
       var newChildren = []
       var newChildNodes = []
@@ -2320,7 +2324,11 @@
         domItem.element.removeChild(domItem.element.firstChild)
       }
 
-      (_domItem$element = domItem.element).append.apply(_domItem$element, newChildNodes)
+      if (newChildNodes.length) {
+        var _domItem$element;
+
+        (_domItem$element = domItem.element).append.apply(_domItem$element, newChildNodes)
+      }
 
       return domItem
     }

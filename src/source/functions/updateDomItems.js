@@ -13,6 +13,10 @@ import createDomItem from '../objects/createDomItem'
  */
 const updateDomItems = config => {
   const domItem = updateDomItem(config)
+  if (!domItem.element) {
+    domItem.children = []
+    return domItem
+  }
   const newChildren = []
   domItem.element.childNodes.forEach((childNode, index) => {
     const existing = domItem.children.find(child => child.element === childNode)

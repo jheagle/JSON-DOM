@@ -42,6 +42,12 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  */
 var updateDomItems = function updateDomItems (config) {
   var domItem = (0, _updateDomItem.default)(config)
+
+  if (!domItem.element) {
+    domItem.children = []
+    return domItem
+  }
+
   var newChildren = []
   domItem.element.childNodes.forEach(function (childNode, index) {
     var existing = domItem.children.find(function (child) {
