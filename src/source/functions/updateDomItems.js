@@ -12,6 +12,12 @@ import createDomItem from '../objects/createDomItem'
  * @returns {DomItem}
  */
 const updateDomItems = config => {
+  if (config.nodeName === '#document') {
+    for(const child of config.children) {
+      updateDomItems(child)
+    }
+    return config
+  }
   const domItem = updateDomItem(config)
   if (!domItem.element) {
     domItem.children = []

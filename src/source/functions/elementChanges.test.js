@@ -165,4 +165,11 @@ describe('elementChanges', () => {
       'attributes.dataTest': dataTestValue
     })
   })
+
+  test('returns early for element not instance of Element', () => {
+    const item = createDomItem({ nodeName: '#document', element: document })
+    const changes = elementChanges(item)
+    expect(changes.removed).toEqual({})
+    expect(changes.added).toEqual({})
+  })
 })

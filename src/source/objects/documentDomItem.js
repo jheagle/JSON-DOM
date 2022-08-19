@@ -2,6 +2,7 @@ import 'core-js/stable'
 import createDomItem from './createDomItem.js'
 import initChildren from './initChildren.js'
 import initRoot from './initRoot.js'
+import updateDomItems from '../functions/updateDomItems'
 
 /**
  * Return a DomItem reference to the document. The rootItem argument is a system variable and not necessary to
@@ -20,9 +21,9 @@ const documentDomItem = (listeners = {}, rootItem = initRoot(initChildren(), lis
     child.parentItem = rootItem
     return child
   })
-  Object.assign(rootItem.head, rootItem.children[0])
-  Object.assign(rootItem.body, rootItem.children[1])
-  return createDomItem(rootItem)
+  rootItem.head = rootItem.children[0]
+  rootItem.body = rootItem.children[1]
+  return updateDomItems(createDomItem(rootItem))
 }
 
 export default documentDomItem

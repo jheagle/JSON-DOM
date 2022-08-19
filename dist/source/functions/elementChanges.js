@@ -133,7 +133,7 @@ var elementChanges = function elementChanges (domItem) {
     return changeList
   }
 
-  if (domItem.element && domItem.element.nodeValue !== null) {
+  if (domItem.element && !(domItem.element instanceof Element)) {
     if (domItem.element.nodeValue !== domItem.nodeValue) {
       changeList.added.nodeValue = domItem.element.nodeValue
     }

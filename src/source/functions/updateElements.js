@@ -11,6 +11,12 @@ import updateElement from './updateElement.js'
  * @returns {DomItem}
  */
 const updateElements = config => {
+  if (config.nodeName === '#document') {
+    for(const child of config.children) {
+      updateElements(child)
+    }
+    return config
+  }
   const domItem = updateElement(config)
   const newChildren = []
   const newChildNodes = []

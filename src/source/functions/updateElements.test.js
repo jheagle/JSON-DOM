@@ -4,6 +4,7 @@
 import 'core-js/stable'
 import createDomItem from '../objects/createDomItem'
 import updateElements from './updateElements'
+import documentDomItem from '../objects/documentDomItem'
 
 describe('updateElements', () => {
   test('returns with new element when none previously set', () => {
@@ -69,5 +70,18 @@ describe('updateElements', () => {
     expect(updated.element.childNodes[1].childNodes[0].nodeValue).toBe(h1Child.element.textContent)
     expect(updatedAgain.element.childNodes[2]).toBe(hrChild.element)
     expect(updatedAgain.element.childNodes[3]).toBe(textChild.element)
+  })
+
+  test('for document, only updates body and head', () => {
+    const documentItem = documentDomItem()
+    documentItem.nodeValue = 'This value will not be added'
+    const bodyAdded = 'This Body value will be added'
+    documentItem.body.attributes.title = bodyAdded
+    const headAdded = 'This Head value will be added'
+    documentItem.head.attributes.title = headAdded
+    const updated = updateElements(documentItem)
+    expect(updated.element.nodeValue).toBeNull()
+    expect(updated.children[0].element.title).toBe(headAdded)
+    expect(updated.children[1].element.title).toBe(bodyAdded)
   })
 })
