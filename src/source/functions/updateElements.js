@@ -12,25 +12,30 @@ import updateElement from './updateElement.js'
  */
 const updateElements = config => {
   if (config.nodeName === '#document') {
-    for(const child of config.children) {
+    for (const child of config.children) {
       updateElements(child)
     }
     return config
   }
   const domItem = updateElement(config)
-  const newChildren = []
   const newChildNodes = []
+  const previousChildNodes = Array.from(domItem.element.childNodes)
   domItem.children.forEach((child, index) => {
-    newChildren[index] = updateElements(child)
-    newChildNodes[index] = newChildren[index].element
+    const existing = previousChildNodes.find(childNode => childNode === child.element)
+    if (existing) {
+      child.element = existing
+    }
+    updateElements(child)
+    newChildNodes[index] = updateElements(child).element
   })
-  domItem.children = newChildren
-  while (domItem.element.firstChild) {
-    domItem.element.removeChild(domItem.element.firstChild)
-  }
-  if (newChildNodes.length) {
-    domItem.element.append(...newChildNodes)
-  }
+  newChildNodes.forEach((childNode, index) => {
+    if (!previousChildNodes[index]) {
+      return domItem.element.appendChild(childNode)
+    }
+    if (childNode !== previousChildNodes[index]) {
+      return domItem.element.replaceChild(childNode, previousChildNodes[index])
+    }
+  })
   return domItem
 }
 
