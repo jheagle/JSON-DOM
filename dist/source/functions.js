@@ -79,6 +79,10 @@ var _setAndReturnAttribute = _interopRequireDefault(require('./functions/setAndR
 
 var _setAttribute = _interopRequireDefault(require('./functions/setAttribute.js'))
 
+var _updateChildNodes = _interopRequireDefault(require('./functions/updateChildNodes.js'))
+
+var _updateChildren = _interopRequireDefault(require('./functions/updateChildren.js'))
+
 var _updateDomItem = _interopRequireDefault(require('./functions/updateDomItem.js'))
 
 var _updateDomItems = _interopRequireDefault(require('./functions/updateDomItems.js'))
@@ -132,6 +136,8 @@ var _default = {
   retrieveParentItem: _retrieveParentItem.default,
   setAndReturnAttribute: _setAndReturnAttribute.default,
   setAttribute: _setAttribute.default,
+  updateChildNodes: _updateChildNodes.default,
+  updateChildren: _updateChildren.default,
   updateDomItem: _updateDomItem.default,
   updateDomItems: _updateDomItems.default,
   updateElement: _updateElement.default,

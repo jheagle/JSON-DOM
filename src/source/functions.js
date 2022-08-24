@@ -41,6 +41,8 @@ import retrieveListener from './functions/retrieveListener.js'
 import retrieveParentItem from './functions/retrieveParentItem.js'
 import setAndReturnAttribute from './functions/setAndReturnAttribute.js'
 import setAttribute from './functions/setAttribute.js'
+import updateChildNodes from './functions/updateChildNodes.js'
+import updateChildren from './functions/updateChildren.js'
 import updateDomItem from './functions/updateDomItem.js'
 import updateDomItems from './functions/updateDomItems.js'
 import updateElement from './functions/updateElement.js'
@@ -82,6 +84,8 @@ export default {
   retrieveParentItem,
   setAndReturnAttribute,
   setAttribute,
+  updateChildNodes,
+  updateChildren,
   updateDomItem,
   updateDomItems,
   updateElement,

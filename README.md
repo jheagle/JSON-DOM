@@ -116,6 +116,8 @@ Core Dom management functions
         * [.retrieveParentItem(parent)](#module_domFunctions.retrieveParentItem) ⇒ [<code>DomItemBody</code>](#DomItemBody) \| <code>DomItem</code>
         * [.setAndReturnAttribute(config, name, value)](#module_domFunctions.setAndReturnAttribute) ⇒ <code>string</code>
         * [.setAttribute(config, name, value)](#module_domFunctions.setAttribute) ⇒ <code>DomItem</code>
+        * [.updateChildNodes(domItem)](#module_domFunctions.updateChildNodes) ⇒ <code>DomItem</code>
+        * [.updateChildren(domItem)](#module_domFunctions.updateChildren) ⇒ <code>DomItem</code>
         * [.updateDomItem(config)](#module_domFunctions.updateDomItem) ⇒ <code>DomItem</code>
         * [.updateDomItems(config)](#module_domFunctions.updateDomItems) ⇒ <code>DomItem</code>
         * [.updateElement(domItem)](#module_domFunctions.updateElement) ⇒ <code>DomItem</code>
@@ -503,6 +505,28 @@ Set an attribute on the element within a DomItem, then return the config data.
 | config | <code>DomItem</code> | The DomItem having config changes to be applied to its element |
 | name | <code>string</code> | The attribute name to be updated |
 | value | <code>string</code> | The new value to be applied to the attribute |
+
+<a name="module_domFunctions.updateChildNodes"></a>
+
+### domFunctions.updateChildNodes(domItem) ⇒ <code>DomItem</code>
+Update all the childNodes for this domItem element to mach domItem children.
+
+**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
+
+| Param | Type |
+| --- | --- |
+| domItem | <code>DomItem</code> | 
+
+<a name="module_domFunctions.updateChildren"></a>
+
+### domFunctions.updateChildren(domItem) ⇒ <code>DomItem</code>
+Update all the children for this domItem to match the domItem element childNodes.
+
+**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
+
+| Param | Type |
+| --- | --- |
+| domItem | <code>DomItem</code> | 
 
 <a name="module_domFunctions.updateDomItem"></a>
 

@@ -5,7 +5,6 @@ import 'core-js/stable'
 import createDomItem from '../objects/createDomItem'
 import updateDomItems from './updateDomItems'
 import documentDomItem from '../objects/documentDomItem'
-import updateElements from './updateElements'
 
 describe('updateDomItems', () => {
   test('returns domItem without children when no element is set', () => {
@@ -74,13 +73,14 @@ describe('updateDomItems', () => {
     divNode.append(textNode)
 
     const updatedAgain = updateDomItems(updated)
+    textChild.nodeValue = textNode.nodeValue
     expect(updatedAgain.children).toHaveLength(4)
     expect(updatedAgain.children[0]).toBe(commentChild)
     expect(updated.children[1].nodeName).toBe(h1Node.nodeName.toLowerCase())
     expect(updated.children[1].children).toHaveLength(1)
     expect(updated.children[1].children[0].nodeValue).toBe(h1Node.textContent)
     expect(updatedAgain.children[2]).toBe(hrChild)
-    expect(updatedAgain.children[3]).toBe(textChild)
+    expect(updatedAgain.children[3]).toStrictEqual(textChild)
   })
 
   test('for document, only updates body and head', () => {

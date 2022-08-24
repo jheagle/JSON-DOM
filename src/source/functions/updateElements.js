@@ -1,4 +1,5 @@
 import 'core-js/stable'
+import updateChildNodes from './updateChildNodes.js'
 import updateElement from './updateElement.js'
 
 /**
@@ -17,25 +18,8 @@ const updateElements = config => {
     }
     return config
   }
-  const domItem = updateElement(config)
-  const newChildNodes = []
-  const previousChildNodes = Array.from(domItem.element.childNodes)
-  domItem.children.forEach((child, index) => {
-    const existing = previousChildNodes.find(childNode => childNode === child.element)
-    if (existing) {
-      child.element = existing
-    }
-    updateElements(child)
-    newChildNodes[index] = updateElements(child).element
-  })
-  newChildNodes.forEach((childNode, index) => {
-    if (!previousChildNodes[index]) {
-      return domItem.element.appendChild(childNode)
-    }
-    if (childNode !== previousChildNodes[index]) {
-      return domItem.element.replaceChild(childNode, previousChildNodes[index])
-    }
-  })
+  const domItem = updateChildNodes(updateElement(config))
+  domItem.children.forEach(updateElements)
   return domItem
 }
 

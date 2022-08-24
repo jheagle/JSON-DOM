@@ -1,6 +1,6 @@
 import 'core-js/stable'
+import updateChildren from './updateChildren.js'
 import updateDomItem from './updateDomItem.js'
-import createDomItem from '../objects/createDomItem'
 
 /**
  * Generate HTML element data for each object in the matrix
@@ -13,26 +13,13 @@ import createDomItem from '../objects/createDomItem'
  */
 const updateDomItems = config => {
   if (config.nodeName === '#document') {
-    for(const child of config.children) {
+    for (const child of config.children) {
       updateDomItems(child)
     }
     return config
   }
-  const domItem = updateDomItem(config)
-  if (!domItem.element) {
-    domItem.children = []
-    return domItem
-  }
-  const newChildren = []
-  domItem.element.childNodes.forEach((childNode, index) => {
-    const existing = domItem.children.find(child => child.element === childNode)
-    newChildren[index] = updateDomItems(existing ?? createDomItem({
-      nodeName: childNode.nodeName.toLowerCase(),
-      nodeValue: childNode.nodeValue,
-      element: childNode
-    }))
-  })
-  domItem.children = newChildren
+  const domItem = updateChildren(updateDomItem(config))
+  domItem.children.forEach(updateDomItems)
   return domItem
 }
 

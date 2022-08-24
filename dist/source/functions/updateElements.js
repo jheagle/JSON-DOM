@@ -2,6 +2,10 @@
 
 require('core-js/modules/es.array.slice.js')
 
+require('core-js/modules/es.array.from.js')
+
+require('core-js/modules/es.string.iterator.js')
+
 require('core-js/modules/es.regexp.exec.js')
 
 require('core-js/modules/es.regexp.test.js')
@@ -23,10 +27,6 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 
-require('core-js/modules/es.array.from.js')
-
-require('core-js/modules/es.string.iterator.js')
-
 require('core-js/modules/es.object.to-string.js')
 
 require('core-js/modules/esnext.async-iterator.for-each.js')
@@ -37,13 +37,9 @@ require('core-js/modules/esnext.iterator.for-each.js')
 
 require('core-js/modules/web.dom-collections.for-each.js')
 
-require('core-js/modules/es.array.find.js')
-
-require('core-js/modules/esnext.async-iterator.find.js')
-
-require('core-js/modules/esnext.iterator.find.js')
-
 require('core-js/stable')
+
+var _updateChildNodes = _interopRequireDefault(require('./updateChildNodes.js'))
 
 var _updateElement = _interopRequireDefault(require('./updateElement.js'))
 
@@ -83,30 +79,8 @@ var updateElements = function updateElements (config) {
     return config
   }
 
-  var domItem = (0, _updateElement.default)(config)
-  var newChildNodes = []
-  var previousChildNodes = Array.from(domItem.element.childNodes)
-  domItem.children.forEach(function (child, index) {
-    var existing = previousChildNodes.find(function (childNode) {
-      return childNode === child.element
-    })
-
-    if (existing) {
-      child.element = existing
-    }
-
-    updateElements(child)
-    newChildNodes[index] = updateElements(child).element
-  })
-  newChildNodes.forEach(function (childNode, index) {
-    if (!previousChildNodes[index]) {
-      return domItem.element.appendChild(childNode)
-    }
-
-    if (childNode !== previousChildNodes[index]) {
-      return domItem.element.replaceChild(childNode, previousChildNodes[index])
-    }
-  })
+  var domItem = (0, _updateChildNodes.default)((0, _updateElement.default)(config))
+  domItem.children.forEach(updateElements)
   return domItem
 }
 
