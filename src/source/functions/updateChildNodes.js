@@ -9,6 +9,9 @@ import updateElement from './updateElement.js'
  * @returns {DomItem}
  */
 const updateChildNodes = domItem => {
+  if (!domItem.element) {
+    domItem = updateElement(domItem)
+  }
   const previousChildNodes = Array.from(domItem.element.childNodes)
   domItem.children
     .map((child, index) => {

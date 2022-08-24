@@ -2069,6 +2069,10 @@
  * @returns {DomItem}
  */
     var updateChildNodes = function updateChildNodes (domItem) {
+      if (!domItem.element) {
+        domItem = (0, _updateElement.default)(domItem)
+      }
+
       var previousChildNodes = Array.from(domItem.element.childNodes)
       domItem.children.map(function (child, index) {
         var existing = previousChildNodes.find(function (childNode) {

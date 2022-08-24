@@ -26,4 +26,39 @@ describe('updateChildNodes', () => {
     expect(updated.element.childNodes[1].nodeValue).toBe(text)
     expect(updated.element.childNodes[2].nodeName.toLowerCase()).toBe(childElement)
   })
+
+  test('updates child nodes based on domItem children', () => {
+    const originalItem = createDomItem({ nodeName: 'div' })
+    const commentChild = createDomItem({ nodeName: '#comment', nodeValue: 'This is a comment node' })
+    const originalText = 'This is a text node'
+    const textChild = createDomItem({ nodeName: '#text', nodeValue: originalText })
+    const hrChild = createDomItem({ nodeName: 'hr' })
+    originalItem.children = [commentChild, textChild, hrChild]
+
+    // Updating child nodes will add missing elements, but only applies necessary changes
+    const updated = updateChildNodes(originalItem)
+    expect(updated.element.nodeName.toLowerCase()).toBe(originalItem.nodeName)
+    expect(updated.element.childNodes).toHaveLength(3)
+    expect(updated.element.childNodes[0].nodeName).toBe(commentChild.nodeName)
+    expect(updated.element.childNodes[0].nodeValue).toBe(commentChild.nodeValue)
+    expect(updated.element.childNodes[1].nodeName).toBe(textChild.nodeName)
+    expect(updated.element.childNodes[1].nodeValue).toBe(textChild.nodeValue)
+    expect(updated.element.childNodes[2].nodeName.toLowerCase()).toBe(hrChild.nodeName)
+
+    // Add a new item, and re-arrange the child nodes
+    const brChild = createDomItem({
+      nodeName: 'br',
+    })
+    textChild.nodeValue = 'This is now below the HR node'
+    updated.children = [commentChild, brChild, hrChild, textChild]
+
+    const updatedAgain = updateChildNodes(updated)
+    expect(updatedAgain.element.childNodes).toHaveLength(4)
+    expect(updatedAgain.element.childNodes[0]).toBe(commentChild.element)
+    expect(updated.element.childNodes[1].nodeName).toBe(brChild.element.nodeName)
+    expect(updatedAgain.element.childNodes[2]).toBe(hrChild.element)
+    expect(updatedAgain.element.childNodes[3]).toBe(textChild.element)
+    // original text was not updated
+    expect(updatedAgain.element.childNodes[3].nodeValue).toBe(originalText)
+  })
 })
