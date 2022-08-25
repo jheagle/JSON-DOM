@@ -82,8 +82,6 @@ Core Dom management functions
 
 * [domFunctions](#module_domFunctions)
     * _static_
-        * [.appendAndReturnChild(child, parent)](#module_domFunctions.appendAndReturnChild) ⇒ <code>DomItem</code>
-        * [.appendHtml(item, parent)](#module_domFunctions.appendHtml) ⇒ <code>DomItem</code>
         * [.appendListeners(item, event, listener, args, options)](#module_domFunctions.appendListeners) ⇒ <code>DomItem</code>
         * [.assignListener(trigger, elem, fn, options)](#module_domFunctions.assignListener) ⇒ <code>listenerFunction</code> \| <code>function</code>
         * [.bindAllListeners(item)](#module_domFunctions.bindAllListeners) ⇒ <code>DomItem</code>
@@ -111,11 +109,7 @@ Core Dom management functions
         * [.registerListener(listener, [name], [parent])](#module_domFunctions.registerListener) ⇒ <code>Object.&lt;string, listenerFunction&gt;</code>
         * [.registerListeners(listeners, [parent])](#module_domFunctions.registerListeners) ⇒ <code>DomItemRoot</code> \| <code>Object</code>
         * [.removeChild(item, parent)](#module_domFunctions.removeChild) ⇒ <code>Array.&lt;DomItem&gt;</code>
-        * [.renderHtml(item, parent)](#module_domFunctions.renderHtml) ⇒ <code>DomItem</code>
         * [.retrieveListener(listenerName, [parent])](#module_domFunctions.retrieveListener) ⇒ <code>listenerFunction</code> \| <code>function</code> \| <code>Object</code>
-        * [.retrieveParentItem(parent)](#module_domFunctions.retrieveParentItem) ⇒ [<code>DomItemBody</code>](#DomItemBody) \| <code>DomItem</code>
-        * [.setAndReturnAttribute(config, name, value)](#module_domFunctions.setAndReturnAttribute) ⇒ <code>string</code>
-        * [.setAttribute(config, name, value)](#module_domFunctions.setAttribute) ⇒ <code>DomItem</code>
         * [.updateChildNodes(domItem)](#module_domFunctions.updateChildNodes) ⇒ <code>DomItem</code>
         * [.updateChildren(domItem)](#module_domFunctions.updateChildren) ⇒ <code>DomItem</code>
         * [.updateDomItem(config)](#module_domFunctions.updateDomItem) ⇒ <code>DomItem</code>
@@ -124,30 +118,6 @@ Core Dom management functions
         * [.updateElements(config)](#module_domFunctions.updateElements) ⇒ <code>DomItem</code>
     * _inner_
         * [~testChildItem](#module_domFunctions..testChildItem) ⇒ <code>Array.&lt;DomItem&gt;</code>
-
-<a name="module_domFunctions.appendAndReturnChild"></a>
-
-### domFunctions.appendAndReturnChild(child, parent) ⇒ <code>DomItem</code>
-Provide a DomItem to be appended to a parent item, return the DomItem.
-
-**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| child | <code>DomItem</code> | A DomItem to be appended |
-| parent | <code>DomItem</code> | A parent item to have a new child appended |
-
-<a name="module_domFunctions.appendHtml"></a>
-
-### domFunctions.appendHtml(item, parent) ⇒ <code>DomItem</code>
-Append a new DomItem which has the element generated.
-
-**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| item | <code>DomItem</code> | A new DomItem to append |
-| parent | <code>DomItem</code> | The parent to have DomItems appended |
 
 <a name="module_domFunctions.appendListeners"></a>
 
@@ -445,18 +415,6 @@ Reverse of appendHtml, remove a DomItem and have the associated element removed.
 | item | <code>DomItem</code> | The DomItem with HTMLElement to be removed |
 | parent | <code>DomItem</code> | The parent of the items |
 
-<a name="module_domFunctions.renderHtml"></a>
-
-### domFunctions.renderHtml(item, parent) ⇒ <code>DomItem</code>
-This is a shortcut for building the specified HTML elements and appending them to the Domwith associated listeners.The final argument is specific for adding event listeners with options.
-
-**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| item | <code>DomItem</code> | The DomItem that we want to render the element for |
-| parent | <code>DomItemRoot</code> | The Base Dom item which is the parent of all the items |
-
 <a name="module_domFunctions.retrieveListener"></a>
 
 ### domFunctions.retrieveListener(listenerName, [parent]) ⇒ <code>listenerFunction</code> \| <code>function</code> \| <code>Object</code>
@@ -468,43 +426,6 @@ Based on the provided function / listener name, retrieve the associated function
 | --- | --- | --- |
 | listenerName | <code>string</code> | The name of one of the registered listener functions. |
 | [parent] | <code>DomItemRoot</code> \| <code>Object</code> | The parent DomItem which is DomItemRoot which stores has eventListeners property. |
-
-<a name="module_domFunctions.retrieveParentItem"></a>
-
-### domFunctions.retrieveParentItem(parent) ⇒ [<code>DomItemBody</code>](#DomItemBody) \| <code>DomItem</code>
-Simplify detecting the parent item which can be appended to, whether root, or just a parent at any part of the tree
-
-**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| parent | <code>DomItemRoot</code> \| <code>DomItem</code> | A parent DomItem which may or may not have a body |
-
-<a name="module_domFunctions.setAndReturnAttribute"></a>
-
-### domFunctions.setAndReturnAttribute(config, name, value) ⇒ <code>string</code>
-Set an attribute on the element within a DomItem, then return the attribute.
-
-**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| config | <code>DomItem</code> | The DomItem having config changes to be applied to its element |
-| name | <code>string</code> | The attribute name to be updated |
-| value | <code>string</code> | The new value to be applied to the attribute |
-
-<a name="module_domFunctions.setAttribute"></a>
-
-### domFunctions.setAttribute(config, name, value) ⇒ <code>DomItem</code>
-Set an attribute on the element within a DomItem, then return the config data.
-
-**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| config | <code>DomItem</code> | The DomItem having config changes to be applied to its element |
-| name | <code>string</code> | The attribute name to be updated |
-| value | <code>string</code> | The new value to be applied to the attribute |
 
 <a name="module_domFunctions.updateChildNodes"></a>
 

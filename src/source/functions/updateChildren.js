@@ -14,6 +14,7 @@ const updateChildren = domItem => {
     return domItem
   }
   const previousChildren = domItem.children
+  domItem.children = []
   domItem.element.childNodes
     .forEach((childNode, index) => {
       const existing = previousChildren.find(child => child.element === childNode)
@@ -22,9 +23,7 @@ const updateChildren = domItem => {
         nodeValue: childNode.nodeValue,
         element: childNode
       })
-      if (!previousChildren[index] || child !== previousChildren[index]) {
-        domItem.children[index] = child
-      }
+      domItem.children[index] = child
     })
   return domItem
 }

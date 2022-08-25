@@ -32,19 +32,19 @@ describe('updateChildren', () => {
     const textNode = document.createTextNode('This is a text node')
     const hrNode = document.createElement('hr')
     divNode.append(commentNode, textNode, hrNode)
-    const originalItem = createDomItem({ nodeName: divNode.nodeName, element: divNode })
+    const originalItem = createDomItem({ nodeName: divNode.nodeName.toLowerCase(), element: divNode })
     const commentChild = createDomItem({
       nodeName: commentNode.nodeName,
       nodeValue: commentNode.nodeValue,
       element: commentNode
     })
     const textChild = createDomItem({ nodeName: textNode.nodeName, nodeValue: textNode.nodeValue, element: textNode })
-    const hrChild = createDomItem({ nodeName: hrNode.nodeName, element: hrNode })
+    const hrChild = createDomItem({ nodeName: hrNode.nodeName.toLowerCase(), element: hrNode })
     originalItem.children = [commentChild, textChild, hrChild]
 
     // Confirm that the update makes no changes to the original item
     const updated = updateChildren(originalItem)
-    expect(updated.nodeName).toBe(divNode.nodeName)
+    expect(updated.nodeName).toBe(divNode.nodeName.toLowerCase())
     expect(updated.attributes).toEqual({})
     expect(updated.children).toHaveLength(3)
     expect(updated.children[0].nodeName).toBe(commentNode.nodeName)
@@ -53,7 +53,7 @@ describe('updateChildren', () => {
     expect(updated.children[1].nodeName).toBe(textNode.nodeName)
     expect(updated.children[1].nodeValue).toBe(textNode.nodeValue)
     expect(updated.children[1].attributes).toEqual({})
-    expect(updated.children[2].nodeName).toBe(hrNode.nodeName)
+    expect(updated.children[2].nodeName).toBe(hrNode.nodeName.toLowerCase())
     expect(updated.children[2].attributes).toEqual({})
 
     // Add a new element, and re-arrange the children
@@ -69,5 +69,29 @@ describe('updateChildren', () => {
     expect(updated.children[1].nodeName).toBe(brNode.nodeName.toLowerCase())
     expect(updatedAgain.children[2]).toBe(hrChild)
     expect(updatedAgain.children[3]).toStrictEqual(textChild)
+  })
+
+  test('updates removed children', () => {
+    const divNode = document.createElement('div')
+    const commentNode = document.createComment('This is a comment node')
+    const textNode = document.createTextNode('This is a text node')
+    const hrNode = document.createElement('hr')
+    divNode.append(commentNode, textNode, hrNode)
+    const originalItem = createDomItem({ nodeName: divNode.nodeName.toLowerCase(), element: divNode })
+    const commentChild = createDomItem({
+      nodeName: commentNode.nodeName,
+      nodeValue: commentNode.nodeValue,
+      element: commentNode
+    })
+    const textChild = createDomItem({ nodeName: textNode.nodeName, nodeValue: textNode.nodeValue, element: textNode })
+    const hrChild = createDomItem({ nodeName: hrNode.nodeName.toLowerCase(), element: hrNode })
+    originalItem.children = [commentChild, textChild, hrChild]
+
+    divNode.removeChild(commentNode)
+    divNode.removeChild(hrNode)
+    expect(originalItem.children).toHaveLength(3)
+    const updatedItem = updateChildren(originalItem)
+    expect(updatedItem.children).toHaveLength(1)
+    expect(updatedItem.children[0]).toBe(textChild)
   })
 })

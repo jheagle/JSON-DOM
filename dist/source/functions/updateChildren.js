@@ -43,6 +43,7 @@ var updateChildren = function updateChildren (domItem) {
   }
 
   var previousChildren = domItem.children
+  domItem.children = []
   domItem.element.childNodes.forEach(function (childNode, index) {
     var existing = previousChildren.find(function (child) {
       return child.element === childNode
@@ -52,10 +53,7 @@ var updateChildren = function updateChildren (domItem) {
       nodeValue: childNode.nodeValue,
       element: childNode
     })
-
-    if (!previousChildren[index] || child !== previousChildren[index]) {
-      domItem.children[index] = child
-    }
+    domItem.children[index] = child
   })
   return domItem
 }

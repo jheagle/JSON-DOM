@@ -75,6 +75,17 @@ var updateChildNodes = function updateChildNodes (domItem) {
   }).forEach(function (childNode, index) {
     domItem.children[index].element = childNode
   })
+
+  if (domItem.element.childNodes.length > domItem.children.length) {
+    var maxLength = domItem.children.length
+    var nodeToRemove = domItem.element.childNodes[maxLength]
+
+    while (nodeToRemove) {
+      domItem.element.removeChild(nodeToRemove)
+      nodeToRemove = domItem.element.childNodes[maxLength]
+    }
+  }
+
   return domItem
 }
 

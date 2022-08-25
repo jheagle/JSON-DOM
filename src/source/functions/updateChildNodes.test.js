@@ -61,4 +61,20 @@ describe('updateChildNodes', () => {
     // original text was not updated
     expect(updatedAgain.element.childNodes[3].nodeValue).toBe(originalText)
   })
+
+  test('updates by removing child nodes', () => {
+    const divNode = document.createElement('div')
+    const commentNode = document.createComment('This is a comment node')
+    const textNode = document.createTextNode('This is a text node')
+    const hrNode = document.createElement('hr')
+    divNode.append(commentNode, textNode, hrNode)
+    const originalItem = createDomItem({ nodeName: divNode.nodeName.toLowerCase(), element: divNode })
+    const textChild = createDomItem({ nodeName: textNode.nodeName, nodeValue: textNode.nodeValue, element: textNode })
+    originalItem.children = [textChild]
+
+    expect(originalItem.element.childNodes).toHaveLength(3)
+    const updatedItem = updateChildNodes(originalItem)
+    expect(updatedItem.element.childNodes).toHaveLength(1)
+    expect(updatedItem.element.childNodes[0]).toBe(textNode)
+  })
 })

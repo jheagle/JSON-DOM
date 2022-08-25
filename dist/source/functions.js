@@ -9,10 +9,6 @@ exports.default = void 0
 
 require('core-js/stable')
 
-var _appendAndReturnChild = _interopRequireDefault(require('./functions/appendAndReturnChild.js'))
-
-var _appendHtml = _interopRequireDefault(require('./functions/appendHtml.js'))
-
 var _appendListeners = _interopRequireDefault(require('./functions/appendListeners.js'))
 
 var _assignListener = _interopRequireDefault(require('./functions/assignListener.js'))
@@ -69,15 +65,7 @@ var _registerListeners = _interopRequireDefault(require('./functions/registerLis
 
 var _removeChild = _interopRequireDefault(require('./functions/removeChild.js'))
 
-var _renderHtml = _interopRequireDefault(require('./functions/renderHtml.js'))
-
 var _retrieveListener = _interopRequireDefault(require('./functions/retrieveListener.js'))
-
-var _retrieveParentItem = _interopRequireDefault(require('./functions/retrieveParentItem.js'))
-
-var _setAndReturnAttribute = _interopRequireDefault(require('./functions/setAndReturnAttribute.js'))
-
-var _setAttribute = _interopRequireDefault(require('./functions/setAttribute.js'))
 
 var _updateChildNodes = _interopRequireDefault(require('./functions/updateChildNodes.js'))
 
@@ -101,8 +89,6 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @memberOf module:jsonDom
  */
 var _default = {
-  appendAndReturnChild: _appendAndReturnChild.default,
-  appendHtml: _appendHtml.default,
   appendListeners: _appendListeners.default,
   assignListener: _assignListener.default,
   bindAllListeners: _bindAllListeners.default,
@@ -131,11 +117,7 @@ var _default = {
   registerListener: _registerListener.default,
   registerListeners: _registerListeners.default,
   removeChild: _removeChild.default,
-  renderHtml: _renderHtml.default,
   retrieveListener: _retrieveListener.default,
-  retrieveParentItem: _retrieveParentItem.default,
-  setAndReturnAttribute: _setAndReturnAttribute.default,
-  setAttribute: _setAttribute.default,
   updateChildNodes: _updateChildNodes.default,
   updateChildren: _updateChildren.default,
   updateDomItem: _updateDomItem.default,

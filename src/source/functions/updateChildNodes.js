@@ -32,6 +32,14 @@ const updateChildNodes = domItem => {
     .forEach((childNode, index) => {
       domItem.children[index].element = childNode
     })
+  if (domItem.element.childNodes.length > domItem.children.length) {
+    const maxLength = domItem.children.length
+    let nodeToRemove = domItem.element.childNodes[maxLength]
+    while (nodeToRemove) {
+      domItem.element.removeChild(nodeToRemove)
+      nodeToRemove = domItem.element.childNodes[maxLength]
+    }
+  }
   return domItem
 }
 

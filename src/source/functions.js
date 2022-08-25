@@ -6,8 +6,6 @@
  * @memberOf module:jsonDom
  */
 import 'core-js/stable'
-import appendAndReturnChild from './functions/appendAndReturnChild.js'
-import appendHtml from './functions/appendHtml.js'
 import appendListeners from './functions/appendListeners.js'
 import assignListener from './functions/assignListener.js'
 import bindAllListeners from './functions/bindAllListeners.js'
@@ -36,11 +34,7 @@ import listenerOptions from './functions/listenerOptions.js'
 import registerListener from './functions/registerListener.js'
 import registerListeners from './functions/registerListeners.js'
 import removeChild from './functions/removeChild.js'
-import renderHtml from './functions/renderHtml.js'
 import retrieveListener from './functions/retrieveListener.js'
-import retrieveParentItem from './functions/retrieveParentItem.js'
-import setAndReturnAttribute from './functions/setAndReturnAttribute.js'
-import setAttribute from './functions/setAttribute.js'
 import updateChildNodes from './functions/updateChildNodes.js'
 import updateChildren from './functions/updateChildren.js'
 import updateDomItem from './functions/updateDomItem.js'
@@ -49,8 +43,6 @@ import updateElement from './functions/updateElement.js'
 import updateElements from './functions/updateElements.js'
 
 export default {
-  appendAndReturnChild,
-  appendHtml,
   appendListeners,
   assignListener,
   bindAllListeners,
@@ -79,11 +71,7 @@ export default {
   registerListener,
   registerListeners,
   removeChild,
-  renderHtml,
   retrieveListener,
-  retrieveParentItem,
-  setAndReturnAttribute,
-  setAttribute,
   updateChildNodes,
   updateChildren,
   updateDomItem,
