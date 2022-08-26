@@ -9,16 +9,13 @@ import 'core-js/stable'
 import appendListeners from './functions/appendListeners.js'
 import assignListener from './functions/assignListener.js'
 import bindAllListeners from './functions/bindAllListeners.js'
-import bindElement from './functions/bindElement.js'
 import bindElementListeners from './functions/bindElementListeners.js'
 import bindListeners from './functions/bindListeners.js'
 import domItemChanges from './functions/domItemChanges.js'
 import domItemHasAttribute from './functions/domItemHasAttribute.js'
 import elementChanges from './functions/elementChanges.js'
-import elementCompareClassList from './functions/elementCompareClassList.js'
 import elementHasAttribute from './functions/elementHasAttribute.js'
 import gatherChildItems from './functions/gatherChildItems.js'
-import generateDomItem from './functions/generateDomItem.js'
 import generateElement from './functions/generateElement.js'
 import getAssignedStyles from './functions/getAssignedStyles.js'
 import getChildTest from './functions/getChildTest.js'
@@ -46,16 +43,13 @@ export default {
   appendListeners,
   assignListener,
   bindAllListeners,
-  bindElement,
   bindElementListeners,
   bindListeners,
   domItemChanges,
   domItemHasAttribute,
   elementChanges,
-  elementCompareClassList,
   elementHasAttribute,
   gatherChildItems,
-  generateDomItem,
   generateElement,
   getAssignedStyles,
   getChildTest,

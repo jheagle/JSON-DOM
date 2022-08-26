@@ -15,6 +15,12 @@ var _updateElement = _interopRequireDefault(require('./updateElement.js'))
 
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
+/**
+ * Create a new DOM Node based on name and data.
+ * @param {string} nodeName
+ * @param {string|null} data
+ * @returns {Text|Comment|HTMLElement}
+ */
 var makeElementType = function makeElementType (nodeName) {
   var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null
 

@@ -15,8 +15,6 @@ var _assignListener = _interopRequireDefault(require('./functions/assignListener
 
 var _bindAllListeners = _interopRequireDefault(require('./functions/bindAllListeners.js'))
 
-var _bindElement = _interopRequireDefault(require('./functions/bindElement.js'))
-
 var _bindElementListeners = _interopRequireDefault(require('./functions/bindElementListeners.js'))
 
 var _bindListeners = _interopRequireDefault(require('./functions/bindListeners.js'))
@@ -27,13 +25,9 @@ var _domItemHasAttribute = _interopRequireDefault(require('./functions/domItemHa
 
 var _elementChanges = _interopRequireDefault(require('./functions/elementChanges.js'))
 
-var _elementCompareClassList = _interopRequireDefault(require('./functions/elementCompareClassList.js'))
-
 var _elementHasAttribute = _interopRequireDefault(require('./functions/elementHasAttribute.js'))
 
 var _gatherChildItems = _interopRequireDefault(require('./functions/gatherChildItems.js'))
-
-var _generateDomItem = _interopRequireDefault(require('./functions/generateDomItem.js'))
 
 var _generateElement = _interopRequireDefault(require('./functions/generateElement.js'))
 
@@ -92,16 +86,13 @@ var _default = {
   appendListeners: _appendListeners.default,
   assignListener: _assignListener.default,
   bindAllListeners: _bindAllListeners.default,
-  bindElement: _bindElement.default,
   bindElementListeners: _bindElementListeners.default,
   bindListeners: _bindListeners.default,
   domItemChanges: _domItemChanges.default,
   domItemHasAttribute: _domItemHasAttribute.default,
   elementChanges: _elementChanges.default,
-  elementCompareClassList: _elementCompareClassList.default,
   elementHasAttribute: _elementHasAttribute.default,
   gatherChildItems: _gatherChildItems.default,
-  generateDomItem: _generateDomItem.default,
   generateElement: _generateElement.default,
   getAssignedStyles: _getAssignedStyles.default,
   getChildTest: _getChildTest.default,

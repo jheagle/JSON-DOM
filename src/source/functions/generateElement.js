@@ -2,6 +2,12 @@ import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
 import updateElement from './updateElement.js'
 
+/**
+ * Create a new DOM Node based on name and data.
+ * @param {string} nodeName
+ * @param {string|null} data
+ * @returns {Text|Comment|HTMLElement}
+ */
 const makeElementType = (nodeName, data = null) => {
   switch(nodeName) {
     case '#text':

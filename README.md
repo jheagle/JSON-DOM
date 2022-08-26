@@ -42,8 +42,8 @@ State management with JSON
 <dt><a href="#checkClasses">checkClasses(element, attr)</a> ⇒ <code>int</code> | <code>Object.&lt;string, number&gt;</code></dt>
 <dd><p>For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute</p>
 </dd>
-<dt><a href="#generateDomItem">generateDomItem(element)</a> ⇒ <code>DomItem</code></dt>
-<dd><p>Generate a DomItem fom the provided HTML Node element.</p>
+<dt><a href="#makeElementType">makeElementType(nodeName, data)</a> ⇒ <code>Text</code> | <code>Comment</code> | <code>HTMLElement</code></dt>
+<dd><p>Create a new DOM Node based on name and data.</p>
 </dd>
 <dt><a href="#appendChangesTo">appendChangesTo(changeList)</a> ⇒ <code>appendChanges</code></dt>
 <dd><p>Initialize the appendChanges method with the changeList, return the appendChanges method.</p>
@@ -85,13 +85,11 @@ Core Dom management functions
         * [.appendListeners(item, event, listener, args, options)](#module_domFunctions.appendListeners) ⇒ <code>DomItem</code>
         * [.assignListener(trigger, elem, fn, options)](#module_domFunctions.assignListener) ⇒ <code>listenerFunction</code> \| <code>function</code>
         * [.bindAllListeners(item)](#module_domFunctions.bindAllListeners) ⇒ <code>DomItem</code>
-        * [.bindElement(item)](#module_domFunctions.bindElement) ⇒ <code>DomItem</code>
         * [.bindElementListeners(item)](#module_domFunctions.bindElementListeners) ⇒ <code>DomItem</code>
         * [.bindListeners(item)](#module_domFunctions.bindListeners) ⇒ <code>DomItem</code>
         * [.domItemChanges(domItem)](#module_domFunctions.domItemChanges) ⇒ <code>ChangeList</code>
         * [.domItemHasAttribute(domItem, key, attr)](#module_domFunctions.domItemHasAttribute) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
         * [.elementChanges(domItem)](#module_domFunctions.elementChanges) ⇒ <code>ChangeList</code>
-        * [.elementCompareClassList(element, classes)](#module_domFunctions.elementCompareClassList) ⇒ <code>Object.&lt;string, number&gt;</code> \| <code>\*</code>
         * [.elementHasAttribute(element, key, attr)](#module_domFunctions.elementHasAttribute) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
         * [.gatherChildItems(item, test)](#module_domFunctions.gatherChildItems) ⇒ <code>Array.&lt;DomItem&gt;</code>
         * [.generateElement(domItem)](#module_domFunctions.generateElement) ⇒ <code>DomItem</code>
@@ -159,17 +157,6 @@ Based on the eventListeners property of the provided item, bind the listeners to
 | --- | --- | --- |
 | item | <code>DomItem</code> | The DomItem with an associated HTMLElement to have a listener assigned |
 
-<a name="module_domFunctions.bindElement"></a>
-
-### domFunctions.bindElement(item) ⇒ <code>DomItem</code>
-Generate HTML element data for a provided DomItem
-
-**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| item | <code>DomItem</code> | The DomItem needing element to be generated |
-
 <a name="module_domFunctions.bindElementListeners"></a>
 
 ### domFunctions.bindElementListeners(item) ⇒ <code>DomItem</code>
@@ -226,18 +213,6 @@ Given a domObjects.DomItem as config, this function will return the changes from
 | Param | Type | Description |
 | --- | --- | --- |
 | domItem | <code>DomItem</code> | The DomItem having the element which changes to be applied to the config element |
-
-<a name="module_domFunctions.elementCompareClassList"></a>
-
-### domFunctions.elementCompareClassList(element, classes) ⇒ <code>Object.&lt;string, number&gt;</code> \| <code>\*</code>
-Check if a class exists on the element, return object with keys for each class and a -1, 0, 1 difference indicator.
-
-**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| element | <code>HTMLElement</code> | Provide an element to check classes on. |
-| classes | <code>string</code> | A string of classes (like the content of the 'class' attribute) to be compared |
 
 <a name="module_domFunctions.elementHasAttribute"></a>
 
@@ -796,16 +771,17 @@ For attributes which are objects or multi-part strings -1 = remove attribute, 0 
 | element | <code>HTMLElement</code> | 
 | attr | <code>string</code> | 
 
-<a name="generateDomItem"></a>
+<a name="makeElementType"></a>
 
-## generateDomItem(element) ⇒ <code>DomItem</code>
-Generate a DomItem fom the provided HTML Node element.
+## makeElementType(nodeName, data) ⇒ <code>Text</code> \| <code>Comment</code> \| <code>HTMLElement</code>
+Create a new DOM Node based on name and data.
 
 **Kind**: global function  
 
-| Param | Type |
-| --- | --- |
-| element | <code>Node</code> \| <code>HTMLElement</code> | 
+| Param | Type | Default |
+| --- | --- | --- |
+| nodeName | <code>string</code> |  | 
+| data | <code>string</code> \| <code>null</code> | <code>null</code> | 
 
 <a name="appendChangesTo"></a>
 
