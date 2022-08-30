@@ -11,7 +11,7 @@ import bindElementListeners from './bindElementListeners.js'
  * @returns {DomItem}
  */
 const bindListeners = item =>
-  (item.eventListeners && Object.keys(item.eventListeners).length && item.element.style)
+  (item.eventListeners && Object.keys(item.eventListeners).length && item.element)
     ? bindElementListeners(item)
     : item
 

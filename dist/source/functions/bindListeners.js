@@ -25,7 +25,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {DomItem}
  */
 var bindListeners = function bindListeners (item) {
-  return item.eventListeners && Object.keys(item.eventListeners).length && item.element.style ? (0, _bindElementListeners.default)(item) : item
+  return item.eventListeners && Object.keys(item.eventListeners).length && item.element ? (0, _bindElementListeners.default)(item) : item
 }
 
 var _default = bindListeners

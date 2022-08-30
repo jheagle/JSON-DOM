@@ -14,21 +14,29 @@ var _listenerOptions = _interopRequireDefault(require('./listenerOptions.js'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
 /**
+ * Document attachEvent support for older browsers.
+ * @typedef {EventTarget} MicrosoftHtmlObject
+ * @property {Function} attachEvent
+ */
+
+/**
  * Provide compatibility for assigning listeners.
  * @function
  * @memberOf module:domFunctions
- * @param {HTMLElementEventMap} trigger - The name of the event which will trigger the listenerFunction on the element.
- * @param {HTMLElement} elem - An element to append the listener onto
- * @param {listenerFunction|function} fn - The function which will be invoked when the
+ * @param {string} trigger - The name of the event which will trigger the listenerFunction on the element. (keyof HTMLElementEventMap)
+ * @param {EventTarget|MicrosoftHtmlObject} elem - An element to append the listener onto
+ * @param {EventListenerOrEventListenerObject|null} fn - The function which will be invoked when the
  * event is triggered
- * @param {EventListenerOptions} options - Additional options to how the event will be
+ * @param {EventListenerOptions|boolean} options - Additional options to how the event will be
  * fired
- * @returns {listenerFunction|function}
+ * @returns {listenerFunction|Function}
  */
-var assignListener = function assignListener (trigger, elem, fn, options) {
+var assignListener = function assignListener (trigger, elem, fn) {
+  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false
+
   // Attaching a listener may be done differently based on the browser support
   if (elem.addEventListener) {
-    // Latest support is provided fro addEventListener with the options parameter varying slightly
+    // Latest support is provided from addEventListener with the options parameter varying slightly
     elem.addEventListener(trigger, fn, (0, _listenerOptions.default)(options))
   } else if (elem.attachEvent) {
     // Older browsers, especially Internet Explorer

@@ -53,6 +53,9 @@ State management with JSON
 ## Typedefs
 
 <dl>
+<dt><a href="#MicrosoftHtmlObject">MicrosoftHtmlObject</a> : <code>EventTarget</code></dt>
+<dd><p>Document attachEvent support for older browsers.</p>
+</dd>
 <dt><a href="#testAttributeChange">testAttributeChange</a> ⇒ <code>int</code></dt>
 <dd></dd>
 <dt><a href="#testAttributeChange">testAttributeChange</a> ⇒ <code>int</code></dt>
@@ -139,12 +142,12 @@ Provide compatibility for assigning listeners.
 
 **Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| trigger | <code>HTMLElementEventMap</code> | The name of the event which will trigger the listenerFunction on the element. |
-| elem | <code>HTMLElement</code> | An element to append the listener onto |
-| fn | <code>listenerFunction</code> \| <code>function</code> | The function which will be invoked when the event is triggered |
-| options | <code>EventListenerOptions</code> | Additional options to how the event will be fired |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| trigger | <code>string</code> |  | The name of the event which will trigger the listenerFunction on the element. (keyof HTMLElementEventMap) |
+| elem | <code>EventTarget</code> \| [<code>MicrosoftHtmlObject</code>](#MicrosoftHtmlObject) |  | An element to append the listener onto |
+| fn | <code>EventListenerOrEventListenerObject</code> \| <code>null</code> |  | The function which will be invoked when the event is triggered |
+| options | <code>EventListenerOptions</code> \| <code>boolean</code> | <code>false</code> | Additional options to how the event will be fired |
 
 <a name="module_domFunctions.bindAllListeners"></a>
 
@@ -793,6 +796,18 @@ Initialize the appendChanges method with the changeList, return the appendChange
 | Param | Type |
 | --- | --- |
 | changeList | <code>ChangeList</code> | 
+
+<a name="MicrosoftHtmlObject"></a>
+
+## MicrosoftHtmlObject : <code>EventTarget</code>
+Document attachEvent support for older browsers.
+
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type |
+| --- | --- |
+| attachEvent | <code>function</code> | 
 
 <a name="testAttributeChange"></a>
 

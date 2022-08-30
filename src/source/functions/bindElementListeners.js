@@ -1,5 +1,6 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
+import assignListener from './assignListener.js'
 
 /**
  * Receive a DomItem with eventListeners and apply the event listeners onto the Dom element.

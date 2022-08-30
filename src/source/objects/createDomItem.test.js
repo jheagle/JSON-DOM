@@ -3,7 +3,9 @@
  */
 import createDomItem from './createDomItem'
 
-test('createDomItem will default all required properties ', () => {
-  const domItem = createDomItem()
-  expect(domItem).toHaveProperty('nodeName')
+describe('createDomItem', () => {
+  test('will default all required properties', () => {
+    const domItem = createDomItem()
+    expect(domItem).toHaveProperty('nodeName')
+  })
 })
