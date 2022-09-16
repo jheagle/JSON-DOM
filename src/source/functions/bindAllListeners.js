@@ -1,5 +1,4 @@
 import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
 import bindListeners from './bindListeners.js'
 
 /**
@@ -12,10 +11,11 @@ import bindListeners from './bindListeners.js'
  * assigned
  * @returns {DomItem}
  */
-const bindAllListeners = item => functionalHelpers.setValue(
-  'children',
-  functionalHelpers.mapObject(item.children, i => bindAllListeners(i)),
-  bindListeners(item)
-)
+const bindAllListeners = item => {
+  for (const child of item.children) {
+    bindAllListeners(child)
+  }
+  return bindListeners(item)
+}
 
 export default bindAllListeners

@@ -256,6 +256,28 @@
   5: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/es.array.slice.js')
+
+    require('core-js/modules/es.object.to-string.js')
+
+    require('core-js/modules/es.array.from.js')
+
+    require('core-js/modules/es.string.iterator.js')
+
+    require('core-js/modules/es.regexp.exec.js')
+
+    require('core-js/modules/es.regexp.test.js')
+
+    require('core-js/modules/es.symbol.js')
+
+    require('core-js/modules/es.symbol.description.js')
+
+    require('core-js/modules/es.symbol.iterator.js')
+
+    require('core-js/modules/es.array.iterator.js')
+
+    require('core-js/modules/web.dom-collections.iterator.js')
+
     require('core-js/modules/es.object.define-property.js')
 
     Object.defineProperty(exports, '__esModule', {
@@ -265,11 +287,15 @@
 
     require('core-js/stable')
 
-    var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
-
     var _bindListeners = _interopRequireDefault(require('./bindListeners.js'))
 
     function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+
+    function _createForOfIteratorHelper (o, allowArrayLike) { var it = typeof Symbol !== 'undefined' && o[Symbol.iterator] || o['@@iterator']; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === 'number') { if (it) o = it; var i = 0; var F = function F () {}; return { s: F, n: function n () { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] } }, e: function e (_e) { throw _e }, f: F } } throw new TypeError('Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.') } var normalCompletion = true; var didErr = false; var err; return { s: function s () { it = it.call(o) }, n: function n () { var step = it.next(); normalCompletion = step.done; return step }, e: function e (_e2) { didErr = true; err = _e2 }, f: function f () { try { if (!normalCompletion && it.return != null) it.return() } finally { if (didErr) throw err } } } }
+
+    function _unsupportedIterableToArray (o, minLen) { if (!o) return; if (typeof o === 'string') return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === 'Object' && o.constructor) n = o.constructor.name; if (n === 'Map' || n === 'Set') return Array.from(o); if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen) }
+
+    function _arrayLikeToArray (arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i] } return arr2 }
 
     /**
  * Based on the eventListeners property of the provided item, bind the listeners to the associated element property
@@ -282,14 +308,26 @@
  * @returns {DomItem}
  */
     var bindAllListeners = function bindAllListeners (item) {
-      return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(item.children, function (i) {
-        return bindAllListeners(i)
-      }), (0, _bindListeners.default)(item))
+      var _iterator = _createForOfIteratorHelper(item.children)
+      var _step
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var child = _step.value
+          bindAllListeners(child)
+        }
+      } catch (err) {
+        _iterator.e(err)
+      } finally {
+        _iterator.f()
+      }
+
+      return (0, _bindListeners.default)(item)
     }
 
     var _default = bindAllListeners
     exports.default = _default
-  }, { './bindListeners.js': 7, 'core-js/modules/es.object.define-property.js': 369, 'core-js/stable': 559, 'functional-helpers': 627 }],
+  }, { './bindListeners.js': 7, 'core-js/modules/es.array.from.js': 292, 'core-js/modules/es.array.iterator.js': 296, 'core-js/modules/es.array.slice.js': 305, 'core-js/modules/es.object.define-property.js': 369, 'core-js/modules/es.object.to-string.js': 391, 'core-js/modules/es.regexp.exec.js': 421, 'core-js/modules/es.regexp.test.js': 424, 'core-js/modules/es.string.iterator.js': 441, 'core-js/modules/es.symbol.description.js': 466, 'core-js/modules/es.symbol.iterator.js': 470, 'core-js/modules/es.symbol.js': 471, 'core-js/modules/web.dom-collections.iterator.js': 543, 'core-js/stable': 559 }],
   6: [function (require, module, exports) {
     'use strict'
 
@@ -301,8 +339,6 @@
     exports.default = void 0
 
     require('core-js/stable')
-
-    var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
     var _assignListener = _interopRequireDefault(require('./assignListener.js'))
 
@@ -316,16 +352,23 @@
  * @returns {DomItem}
  */
     var bindElementListeners = function bindElementListeners (item) {
-      return _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.mapObject(item.eventListeners, function (attr, event) {
-        return (0, _assignListener.default)(event, item.element, function (e) {
-          return attr.listenerFunc(e, item, attr.listenerArgs)
-        }, attr.listenerOptions)
-      }), item)
+      var _loop = function _loop (eventName) {
+        var eventAttributes = item.eventListeners[eventName];
+        (0, _assignListener.default)(eventName, item.element, function (e) {
+          return eventAttributes.listenerFunc(e, item, eventAttributes.listenerArgs)
+        }, eventAttributes.listenerOptions)
+      }
+
+      for (var eventName in item.eventListeners) {
+        _loop(eventName)
+      }
+
+      return item
     }
 
     var _default = bindElementListeners
     exports.default = _default
-  }, { './assignListener.js': 4, 'core-js/modules/es.object.define-property.js': 369, 'core-js/stable': 559, 'functional-helpers': 627 }],
+  }, { './assignListener.js': 4, 'core-js/modules/es.object.define-property.js': 369, 'core-js/stable': 559 }],
   7: [function (require, module, exports) {
     'use strict'
 
@@ -336,11 +379,11 @@
     })
     exports.default = void 0
 
-    require('core-js/modules/es.object.keys.js')
-
     require('core-js/stable')
 
     var _bindElementListeners = _interopRequireDefault(require('./bindElementListeners.js'))
+
+    var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
     function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
@@ -354,12 +397,12 @@
  * @returns {DomItem}
  */
     var bindListeners = function bindListeners (item) {
-      return item.eventListeners && Object.keys(item.eventListeners).length && item.element ? (0, _bindElementListeners.default)(item) : item
+      return !_functionalHelpers.default.emptyObject(item.eventListeners) && item.element ? (0, _bindElementListeners.default)(item) : item
     }
 
     var _default = bindListeners
     exports.default = _default
-  }, { './bindElementListeners.js': 6, 'core-js/modules/es.object.define-property.js': 369, 'core-js/modules/es.object.keys.js': 384, 'core-js/stable': 559 }],
+  }, { './bindElementListeners.js': 6, 'core-js/modules/es.object.define-property.js': 369, 'core-js/stable': 559, 'functional-helpers': 627 }],
   8: [function (require, module, exports) {
     'use strict'
 

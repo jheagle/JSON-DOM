@@ -7,11 +7,11 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 
-require('core-js/modules/es.object.keys.js')
-
 require('core-js/stable')
 
 var _bindElementListeners = _interopRequireDefault(require('./bindElementListeners.js'))
+
+var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
@@ -25,7 +25,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {DomItem}
  */
 var bindListeners = function bindListeners (item) {
-  return item.eventListeners && Object.keys(item.eventListeners).length && item.element ? (0, _bindElementListeners.default)(item) : item
+  return !_functionalHelpers.default.emptyObject(item.eventListeners) && item.element ? (0, _bindElementListeners.default)(item) : item
 }
 
 var _default = bindListeners

@@ -9,8 +9,6 @@ exports.default = void 0
 
 require('core-js/stable')
 
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
-
 var _assignListener = _interopRequireDefault(require('./assignListener.js'))
 
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
@@ -23,11 +21,18 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {DomItem}
  */
 var bindElementListeners = function bindElementListeners (item) {
-  return _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.mapObject(item.eventListeners, function (attr, event) {
-    return (0, _assignListener.default)(event, item.element, function (e) {
-      return attr.listenerFunc(e, item, attr.listenerArgs)
-    }, attr.listenerOptions)
-  }), item)
+  var _loop = function _loop (eventName) {
+    var eventAttributes = item.eventListeners[eventName];
+    (0, _assignListener.default)(eventName, item.element, function (e) {
+      return eventAttributes.listenerFunc(e, item, eventAttributes.listenerArgs)
+    }, eventAttributes.listenerOptions)
+  }
+
+  for (var eventName in item.eventListeners) {
+    _loop(eventName)
+  }
+
+  return item
 }
 
 var _default = bindElementListeners

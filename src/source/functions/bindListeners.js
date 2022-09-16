@@ -1,5 +1,6 @@
 import 'core-js/stable'
 import bindElementListeners from './bindElementListeners.js'
+import functionalHelpers from 'functional-helpers'
 
 /**
  * Based on the eventListeners property of the provided item, bind the
@@ -11,7 +12,7 @@ import bindElementListeners from './bindElementListeners.js'
  * @returns {DomItem}
  */
 const bindListeners = item =>
-  (item.eventListeners && Object.keys(item.eventListeners).length && item.element)
+  (!functionalHelpers.emptyObject(item.eventListeners) && item.element)
     ? bindElementListeners(item)
     : item
 
