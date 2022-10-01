@@ -1,5 +1,7 @@
 import 'core-js/stable'
 import functionalHelpers from 'functional-helpers'
+import appendChild from '../functions/appendChild.js'
+import removeChild from '../functions/removeChild'
 
 /**
  * This is the standard definition of a listenerFunction to be used
@@ -44,6 +46,7 @@ import functionalHelpers from 'functional-helpers'
  * @property {Object} listenerArgs - Additional args required for the listener function
  * @property {EventListenerOptions} listenerOptions - Provides support for options
  * parameter of addEventListener, or false for default
+ * @property {boolean} listenerActive - Indicate whether this listener has been applied to the element.
  */
 
 /**
@@ -58,8 +61,11 @@ import functionalHelpers from 'functional-helpers'
  * null)
  * @property {Object.<Event, EventListener>} eventListeners - An object holding all
  * events to be registered for the associated element
- * @property {DomItem} parentItem - A reference to the parent of this object
+ * @property {DomItem|Object|null} parentItem - A reference to the parent of this object
  * @property {Array.<DomItem>} children - A reference to an array of child objects
+ *
+ * @property {Function} appendChild - Attach a child to this DOM Item
+ * @property {Function} removeChild - Attach a child to this DOM Item
  */
 
 /**
@@ -70,24 +76,29 @@ import functionalHelpers from 'functional-helpers'
  * @param {Object} [item={}] - DomItem-like object to be formatted as DomItem
  * @returns {DomItem}
  */
-const createDomItem = (item = {}) => functionalHelpers.reduceObject(
-  {
-    nodeName: 'div',
-    nodeValue: null,
-    attributes: {},
-    element: null,
-    eventListeners: {},
-    parentItem: {},
-    children: []
-  },
-  (domItem, defaultValue, prop) => {
-    if (!(prop in domItem)) {
-      domItem[prop] = defaultValue
+const createDomItem = (item = {}) => {
+  const newDomItem = functionalHelpers.reduceObject(
+    {
+      nodeName: 'div',
+      nodeValue: null,
+      attributes: {},
+      element: null,
+      eventListeners: {},
+      parentItem: null,
+      children: []
+    },
+    (domItem, defaultValue, prop) => {
+      if (!(prop in domItem)) {
+        domItem[prop] = defaultValue
+        return domItem
+      }
       return domItem
-    }
-    return domItem
-  },
-  item
-)
+    },
+    item
+  )
+  newDomItem.appendChild = functionalHelpers.curry(appendChild)(newDomItem)
+  newDomItem.removeChild = functionalHelpers.curry(removeChild)(newDomItem)
+  return newDomItem
+}
 
 export default createDomItem

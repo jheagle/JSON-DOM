@@ -44,7 +44,8 @@ var makeElementType = function makeElementType (nodeName) {
  */
 
 var generateElement = function generateElement (domItem) {
-  return (0, _updateElement.default)(_functionalHelpers.default.setValue('element', makeElementType(domItem.nodeName, domItem.nodeValue), domItem))
+  domItem.element = makeElementType(domItem.nodeName, domItem.nodeValue)
+  return (0, _updateElement.default)(domItem)
 }
 
 var _default = generateElement

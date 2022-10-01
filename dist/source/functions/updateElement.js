@@ -13,11 +13,15 @@ require('core-js/modules/es.string.includes.js')
 
 require('core-js/stable')
 
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _bindListeners = _interopRequireDefault(require('./bindListeners.js'))
+
+var _deactivateListeners = _interopRequireDefault(require('./deactivateListeners.js'))
 
 var _domItemChanges = _interopRequireDefault(require('./domItemChanges.js'))
 
-var _generateElement = _interopRequireDefault(require('./generateElement'))
+var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+
+var _generateElement = _interopRequireDefault(require('./generateElement.js'))
 
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
@@ -31,7 +35,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  */
 var updateElement = function updateElement (domItem) {
   if (!domItem.element) {
-    return (0, _generateElement.default)(domItem)
+    return (0, _generateElement.default)((0, _deactivateListeners.default)(domItem))
   }
 
   var changes = (0, _domItemChanges.default)(domItem)
@@ -39,7 +43,7 @@ var updateElement = function updateElement (domItem) {
   if (changes.removed.nodeName || changes.added.nodeName) {
     // if the nodeName has changed then remove the element and create a new one
     domItem.element.remove()
-    return (0, _generateElement.default)(domItem)
+    return (0, _generateElement.default)((0, _deactivateListeners.default)(domItem))
   }
 
   for (var dotKey in changes.removed) {
@@ -110,7 +114,7 @@ var updateElement = function updateElement (domItem) {
     domItem.element.style.setProperty(_functionalHelpers.default.strAfter(_dotKey, '.'), _value)
   }
 
-  return domItem
+  return (0, _bindListeners.default)(domItem)
 }
 
 var _default = updateElement

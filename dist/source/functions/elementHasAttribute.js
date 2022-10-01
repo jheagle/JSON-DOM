@@ -19,10 +19,6 @@ require('core-js/modules/es.array.from.js')
 
 require('core-js/modules/es.string.iterator.js')
 
-require('core-js/modules/es.regexp.exec.js')
-
-require('core-js/modules/es.string.split.js')
-
 require('core-js/stable')
 
 var _getAssignedStyles2 = _interopRequireDefault(require('./getAssignedStyles.js'))

@@ -11,6 +11,10 @@ require('core-js/stable')
 
 var _assignListener = _interopRequireDefault(require('./assignListener.js'))
 
+var _getTopParentItem = _interopRequireDefault(require('./getTopParentItem.js'))
+
+var _retrieveListener = _interopRequireDefault(require('./retrieveListener.js'))
+
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
 /**
@@ -22,14 +26,24 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  */
 var bindElementListeners = function bindElementListeners (item) {
   var _loop = function _loop (eventName) {
-    var eventAttributes = item.eventListeners[eventName];
+    var eventAttributes = item.eventListeners[eventName]
+
+    if (eventAttributes.listenerActive) {
+      return 'continue'
+    }
+
+    var topParent = (0, _getTopParentItem.default)(item)
+    var listenerFunc = (0, _retrieveListener.default)(eventAttributes.listenerFunc, topParent);
     (0, _assignListener.default)(eventName, item.element, function (e) {
-      return eventAttributes.listenerFunc(e, item, eventAttributes.listenerArgs)
+      return listenerFunc(e, item, eventAttributes.listenerArgs)
     }, eventAttributes.listenerOptions)
+    item.eventListeners[eventName].listenerActive = true
   }
 
   for (var eventName in item.eventListeners) {
-    _loop(eventName)
+    var _ret = _loop(eventName)
+
+    if (_ret === 'continue') continue
   }
 
   return item

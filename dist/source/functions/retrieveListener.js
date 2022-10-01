@@ -24,13 +24,14 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @function
  * @memberOf module:domFunctions
  * @param {string} listenerName - The name of one of the registered listener functions.
- * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which
- * stores has eventListeners property.
+ * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
  * @returns {listenerFunction|function|Object}
  */
 var retrieveListener = function retrieveListener (listenerName) {
   var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default
-  return Object.keys(parent.eventListeners).includes(listenerName) ? parent.eventListeners[listenerName] : {}
+  return Object.keys(parent.eventListeners).includes(listenerName) ? parent.eventListeners[listenerName] : (function (e) {
+    throw e
+  }('Undefined listener function on this DomItemRoot: '.concat(listenerName)))
 }
 
 var _default = retrieveListener

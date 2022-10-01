@@ -8,8 +8,7 @@ import documentItem from '../objects/documentItem.js'
  * @param {listenerFunction|function} listener - Provide a function which will be called
  * when a Dom event is triggered.
  * @param {string} [name] - The name of the listener to be used.
- * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which
- * stores has eventListeners property.
+ * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
  * @returns {Object.<string, listenerFunction>}
  */
 const registerListener = (listener, name = listener.name, parent = documentItem) => Object.assign(

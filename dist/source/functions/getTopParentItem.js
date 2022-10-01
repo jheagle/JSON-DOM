@@ -20,6 +20,14 @@ require('core-js/stable')
  * @returns {DomItemRoot}
  */
 var getTopParentItem = function getTopParentItem (item) {
+  if (item.parentItem === null) {
+    if (item.nodeName === '#document') {
+      throw new Error('Root parent item must be an empty object, null reference found.')
+    }
+
+    throw new Error('Detached child, missing parentItem reference.')
+  }
+
   return Object.keys(item.parentItem).length ? getTopParentItem(item.parentItem) : item
 }
 

@@ -32,6 +32,15 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  */
 var getParentsFromAttribute = function getParentsFromAttribute (attr, value) {
   var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default.body
+
+  if (item.parentItem === null) {
+    if (item.nodeName === '#document') {
+      throw new Error('Root parent item must be an empty object, null reference found.')
+    }
+
+    throw new Error('Detached child, missing parentItem reference.')
+  }
+
   return Object.keys(item.parentItem).length ? (item.parentItem.attributes[attr] || item[attr] || false) === value ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem]) : getParentsFromAttribute(attr, value, item.parentItem) : []
 }
 

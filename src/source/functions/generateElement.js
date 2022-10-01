@@ -26,8 +26,9 @@ const makeElementType = (nodeName, data = null) => {
  * @param {DomItem} domItem - The DomItem requiring matching HTML element property
  * @return {DomItem}
  */
-const generateElement = domItem => updateElement(
-  functionalHelpers.setValue('element', makeElementType(domItem.nodeName, domItem.nodeValue), domItem)
-)
+const generateElement = domItem => {
+  domItem.element = makeElementType(domItem.nodeName, domItem.nodeValue)
+  return updateElement(domItem)
+}
 
 export default generateElement

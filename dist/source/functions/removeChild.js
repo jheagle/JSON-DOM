@@ -13,22 +13,17 @@ require('core-js/modules/es.array.index-of.js')
 
 require('core-js/stable')
 
-var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
-
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
-
 /**
  * Reverse of appendHtml, remove a DomItem and have the associated element removed.
  * @function
  * @memberOf module:domFunctions
- * @param {DomItem} item - The DomItem with HTMLElement to be removed
  * @param {DomItem} parent - The parent of the items
+ * @param {DomItem} child - The DomItem with HTMLElement to be removed
  * @returns {Array.<DomItem>}
  */
-var removeChild = function removeChild (item) {
-  var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default.body
-  parent.element.removeChild(item.element)
-  return parent.children.splice(parent.children.indexOf(item), 1)
+var removeChild = function removeChild (parent, child) {
+  parent.element.removeChild(child.element)
+  return parent.children.splice(parent.children.indexOf(child), 1)
 }
 
 var _default = removeChild

@@ -8,8 +8,16 @@ import 'core-js/stable'
  * @param {DomItem} item - The DomItem which we want the highest parent item of
  * @returns {DomItemRoot}
  */
-const getTopParentItem = item => Object.keys(item.parentItem).length
-  ? getTopParentItem(item.parentItem)
-  : item
+const getTopParentItem = item => {
+  if (item.parentItem === null) {
+    if (item.nodeName === '#document') {
+      throw new Error('Root parent item must be an empty object, null reference found.')
+    }
+    throw new Error('Detached child, missing parentItem reference.')
+  }
+  return Object.keys(item.parentItem).length
+    ? getTopParentItem(item.parentItem)
+    : item
+}
 
 export default getTopParentItem

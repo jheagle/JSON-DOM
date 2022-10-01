@@ -6,11 +6,13 @@
  * @memberOf module:jsonDom
  */
 import 'core-js/stable'
+import appendChild from './functions/appendChild.js'
 import appendListeners from './functions/appendListeners.js'
 import assignListener from './functions/assignListener.js'
 import bindAllListeners from './functions/bindAllListeners.js'
 import bindElementListeners from './functions/bindElementListeners.js'
 import bindListeners from './functions/bindListeners.js'
+import deactivateListeners from './functions/deactivateListeners.js'
 import domItemChanges from './functions/domItemChanges.js'
 import domItemHasAttribute from './functions/domItemHasAttribute.js'
 import elementChanges from './functions/elementChanges.js'
@@ -31,6 +33,7 @@ import listenerOptions from './functions/listenerOptions.js'
 import registerListener from './functions/registerListener.js'
 import registerListeners from './functions/registerListeners.js'
 import removeChild from './functions/removeChild.js'
+import renderHtml from './functions/renderHtml.js'
 import retrieveListener from './functions/retrieveListener.js'
 import updateChildNodes from './functions/updateChildNodes.js'
 import updateChildren from './functions/updateChildren.js'
@@ -40,11 +43,13 @@ import updateElement from './functions/updateElement.js'
 import updateElements from './functions/updateElements.js'
 
 export default {
+  appendChild,
   appendListeners,
   assignListener,
   bindAllListeners,
   bindElementListeners,
   bindListeners,
+  deactivateListeners,
   domItemChanges,
   domItemHasAttribute,
   elementChanges,
@@ -65,6 +70,7 @@ export default {
   registerListener,
   registerListeners,
   removeChild,
+  renderHtml,
   retrieveListener,
   updateChildNodes,
   updateChildren,

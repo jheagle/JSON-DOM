@@ -85,11 +85,13 @@ Core Dom management functions
 
 * [domFunctions](#module_domFunctions)
     * _static_
+        * [.appendChild(parent, child)](#module_domFunctions.appendChild) ⇒ <code>DomItem</code>
         * [.appendListeners(item, event, listener, args, options)](#module_domFunctions.appendListeners) ⇒ <code>DomItem</code>
         * [.assignListener(trigger, elem, fn, options)](#module_domFunctions.assignListener) ⇒ <code>listenerFunction</code> \| <code>function</code>
         * [.bindAllListeners(item)](#module_domFunctions.bindAllListeners) ⇒ <code>DomItem</code>
         * [.bindElementListeners(item)](#module_domFunctions.bindElementListeners) ⇒ <code>DomItem</code>
         * [.bindListeners(item)](#module_domFunctions.bindListeners) ⇒ <code>DomItem</code>
+        * [.deactivateListeners(item)](#module_domFunctions.deactivateListeners) ⇒ <code>DomItem</code>
         * [.domItemChanges(domItem)](#module_domFunctions.domItemChanges) ⇒ <code>ChangeList</code>
         * [.domItemHasAttribute(domItem, key, attr)](#module_domFunctions.domItemHasAttribute) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
         * [.elementChanges(domItem)](#module_domFunctions.elementChanges) ⇒ <code>ChangeList</code>
@@ -109,7 +111,8 @@ Core Dom management functions
         * [.listenerOptions(options)](#module_domFunctions.listenerOptions) ⇒ <code>boolean</code>
         * [.registerListener(listener, [name], [parent])](#module_domFunctions.registerListener) ⇒ <code>Object.&lt;string, listenerFunction&gt;</code>
         * [.registerListeners(listeners, [parent])](#module_domFunctions.registerListeners) ⇒ <code>DomItemRoot</code> \| <code>Object</code>
-        * [.removeChild(item, parent)](#module_domFunctions.removeChild) ⇒ <code>Array.&lt;DomItem&gt;</code>
+        * [.removeChild(parent, child)](#module_domFunctions.removeChild) ⇒ <code>Array.&lt;DomItem&gt;</code>
+        * [.renderHtml(item)](#module_domFunctions.renderHtml) ⇒ <code>DomItem</code>
         * [.retrieveListener(listenerName, [parent])](#module_domFunctions.retrieveListener) ⇒ <code>listenerFunction</code> \| <code>function</code> \| <code>Object</code>
         * [.updateChildNodes(domItem)](#module_domFunctions.updateChildNodes) ⇒ <code>DomItem</code>
         * [.updateChildren(domItem)](#module_domFunctions.updateChildren) ⇒ <code>DomItem</code>
@@ -119,6 +122,18 @@ Core Dom management functions
         * [.updateElements(config)](#module_domFunctions.updateElements) ⇒ <code>DomItem</code>
     * _inner_
         * [~testChildItem](#module_domFunctions..testChildItem) ⇒ <code>Array.&lt;DomItem&gt;</code>
+
+<a name="module_domFunctions.appendChild"></a>
+
+### domFunctions.appendChild(parent, child) ⇒ <code>DomItem</code>
+Append a child to the end of given parent's children list.
+
+**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| parent | <code>DomItem</code> | The parent that will receive the child. |
+| child | <code>DomItem</code> | The new child to attach to the parent. |
 
 <a name="module_domFunctions.appendListeners"></a>
 
@@ -181,6 +196,17 @@ Based on the eventListeners property of the provided item, bind thelisteners to
 | Param | Type | Description |
 | --- | --- | --- |
 | item | <code>DomItem</code> | The DomItem which may have eventListeners to apply to its element |
+
+<a name="module_domFunctions.deactivateListeners"></a>
+
+### domFunctions.deactivateListeners(item) ⇒ <code>DomItem</code>
+Set all the listeners for this DOMItem to be inactive.
+
+**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | <code>DomItem</code> | The DomItem which will have its eventListeners updated. |
 
 <a name="module_domFunctions.domItemChanges"></a>
 
@@ -367,7 +393,7 @@ Register a single listener function as part of the root domObjects.DomItem.
 | --- | --- | --- |
 | listener | <code>listenerFunction</code> \| <code>function</code> | Provide a function which will be called when a Dom event is triggered. |
 | [name] | <code>string</code> | The name of the listener to be used. |
-| [parent] | <code>DomItemRoot</code> \| <code>Object</code> | The parent DomItem which is DomItemRoot which stores has eventListeners property. |
+| [parent] | <code>DomItemRoot</code> \| <code>Object</code> | The parent DomItem which is DomItemRoot which stores eventListeners property. |
 
 <a name="module_domFunctions.registerListeners"></a>
 
@@ -379,19 +405,31 @@ Register multiple listeners from an array of functions.
 | Param | Type | Description |
 | --- | --- | --- |
 | listeners | <code>Array.&lt;(listenerFunction\|function())&gt;</code> | An array of functions to be used as the registered event listeners. |
-| [parent] | <code>DomItemRoot</code> \| <code>Object</code> | The parent DomItem which is DomItemRoot which stores has eventListeners property. |
+| [parent] | <code>DomItemRoot</code> \| <code>Object</code> | The parent DomItem which is DomItemRoot which has eventListeners property. |
 
 <a name="module_domFunctions.removeChild"></a>
 
-### domFunctions.removeChild(item, parent) ⇒ <code>Array.&lt;DomItem&gt;</code>
+### domFunctions.removeChild(parent, child) ⇒ <code>Array.&lt;DomItem&gt;</code>
 Reverse of appendHtml, remove a DomItem and have the associated element removed.
 
 **Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| item | <code>DomItem</code> | The DomItem with HTMLElement to be removed |
 | parent | <code>DomItem</code> | The parent of the items |
+| child | <code>DomItem</code> | The DomItem with HTMLElement to be removed |
+
+<a name="module_domFunctions.renderHtml"></a>
+
+### domFunctions.renderHtml(item) ⇒ <code>DomItem</code>
+This is a shortcut for building the specified HTML elements and appending them to the Dom
+with associated listeners.
+
+**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| item | <code>DomItem</code> \| <code>null</code> | <code></code> | The DomItem that we want to render the element for |
 
 <a name="module_domFunctions.retrieveListener"></a>
 
@@ -403,7 +441,7 @@ Based on the provided function / listener name, retrieve the associated function
 | Param | Type | Description |
 | --- | --- | --- |
 | listenerName | <code>string</code> | The name of one of the registered listener functions. |
-| [parent] | <code>DomItemRoot</code> \| <code>Object</code> | The parent DomItem which is DomItemRoot which stores has eventListeners property. |
+| [parent] | <code>DomItemRoot</code> \| <code>Object</code> | The parent DomItem which is DomItemRoot which stores eventListeners property. |
 
 <a name="module_domFunctions.updateChildNodes"></a>
 
@@ -644,6 +682,7 @@ An EventListener Object to be appended to the element within the DomItem
 | listenerFunc | <code>string</code> | A string function name matching an existing [listenerFunction](listenerFunction). |
 | listenerArgs | <code>Object</code> | Additional args required for the listener function |
 | listenerOptions | <code>EventListenerOptions</code> | Provides support for options parameter of addEventListener, or false for default |
+| listenerActive | <code>boolean</code> | Indicate whether this listener has been applied to the element. |
 
 <a name="module_domObjects.DomItem"></a>
 
@@ -660,8 +699,10 @@ DomItem defines the structure for a single element in the Dom
 | attributes | <code>Object.&lt;string, (string\|Object)&gt;</code> | All potential HTML element attributes can be defined here (including the defaulted style object) |
 | element | <code>Object</code> \| <code>HTMLElement</code> \| <code>null</code> | A reference to an existing HTML element will be stored here (default null) |
 | eventListeners | <code>Object.&lt;Event, EventListener&gt;</code> | An object holding all events to be registered for the associated element |
-| parentItem | <code>DomItem</code> | A reference to the parent of this object |
+| parentItem | <code>DomItem</code> \| <code>Object</code> \| <code>null</code> | A reference to the parent of this object |
 | children | <code>Array.&lt;DomItem&gt;</code> | A reference to an array of child objects |
+| appendChild | <code>function</code> | Attach a child to this DOM Item |
+| removeChild | <code>function</code> | Attach a child to this DOM Item |
 
 <a name="module_domObjects.DomItemRoot"></a>
 

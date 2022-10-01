@@ -4,6 +4,8 @@
 import registerListener from './registerListener'
 
 const coolFunc = () => 'hello'
-test('can register a listener', () => {
-  expect(registerListener(coolFunc).coolFunc).toBe(coolFunc)
+describe('registerListener', () => {
+  test('can register a listener', () => {
+    expect(registerListener(coolFunc).coolFunc).toBe(coolFunc)
+  })
 })

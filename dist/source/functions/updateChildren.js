@@ -54,6 +54,7 @@ var updateChildren = function updateChildren (domItem) {
       element: childNode
     })
     domItem.children[index] = child
+    child.parentItem = domItem
   })
   return domItem
 }

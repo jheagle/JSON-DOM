@@ -11,6 +11,10 @@ require('core-js/stable')
 
 var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
 
+var _appendChild = _interopRequireDefault(require('../functions/appendChild.js'))
+
+var _removeChild = _interopRequireDefault(require('../functions/removeChild'))
+
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 
 /**
@@ -56,6 +60,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @property {Object} listenerArgs - Additional args required for the listener function
  * @property {EventListenerOptions} listenerOptions - Provides support for options
  * parameter of addEventListener, or false for default
+ * @property {boolean} listenerActive - Indicate whether this listener has been applied to the element.
  */
 
 /**
@@ -70,8 +75,11 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * null)
  * @property {Object.<Event, EventListener>} eventListeners - An object holding all
  * events to be registered for the associated element
- * @property {DomItem} parentItem - A reference to the parent of this object
+ * @property {DomItem|Object|null} parentItem - A reference to the parent of this object
  * @property {Array.<DomItem>} children - A reference to an array of child objects
+ *
+ * @property {Function} appendChild - Attach a child to this DOM Item
+ * @property {Function} removeChild - Attach a child to this DOM Item
  */
 
 /**
@@ -84,13 +92,14 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  */
 var createDomItem = function createDomItem () {
   var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
-  return _functionalHelpers.default.reduceObject({
+
+  var newDomItem = _functionalHelpers.default.reduceObject({
     nodeName: 'div',
     nodeValue: null,
     attributes: {},
     element: null,
     eventListeners: {},
-    parentItem: {},
+    parentItem: null,
     children: []
   }, function (domItem, defaultValue, prop) {
     if (!(prop in domItem)) {
@@ -100,6 +109,10 @@ var createDomItem = function createDomItem () {
 
     return domItem
   }, item)
+
+  newDomItem.appendChild = _functionalHelpers.default.curry(_appendChild.default)(newDomItem)
+  newDomItem.removeChild = _functionalHelpers.default.curry(_removeChild.default)(newDomItem)
+  return newDomItem
 }
 
 var _default = createDomItem

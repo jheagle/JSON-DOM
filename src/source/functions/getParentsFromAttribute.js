@@ -14,11 +14,18 @@ import documentItem from '../objects/documentItem.js'
  * attribute criteria
  * @returns {Array}
  */
-const getParentsFromAttribute = (attr, value, item = documentItem.body) =>
-  Object.keys(item.parentItem).length
+const getParentsFromAttribute = (attr, value, item = documentItem.body) => {
+  if (item.parentItem === null) {
+    if (item.nodeName === '#document') {
+      throw new Error('Root parent item must be an empty object, null reference found.')
+    }
+    throw new Error('Detached child, missing parentItem reference.')
+  }
+  return Object.keys(item.parentItem).length
     ? (item.parentItem.attributes[attr] || item[attr] || false) === value
       ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem])
       : getParentsFromAttribute(attr, value, item.parentItem)
     : []
+}
 
 export default getParentsFromAttribute

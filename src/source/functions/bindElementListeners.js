@@ -1,5 +1,7 @@
 import 'core-js/stable'
 import assignListener from './assignListener.js'
+import getTopParentItem from './getTopParentItem.js'
+import retrieveListener from './retrieveListener.js'
 
 /**
  * Receive a DomItem with eventListeners and apply the event listeners onto the Dom element.
@@ -11,12 +13,18 @@ import assignListener from './assignListener.js'
 const bindElementListeners = item => {
   for (const eventName in item.eventListeners) {
     const eventAttributes = item.eventListeners[eventName]
+    if (eventAttributes.listenerActive) {
+      continue
+    }
+    const topParent = getTopParentItem(item)
+    const listenerFunc =  retrieveListener(eventAttributes.listenerFunc, topParent)
     assignListener(
       eventName,
       item.element,
-      e => eventAttributes.listenerFunc(e, item, eventAttributes.listenerArgs),
+      e => listenerFunc(e, item, eventAttributes.listenerArgs),
       eventAttributes.listenerOptions
     )
+    item.eventListeners[eventName].listenerActive = true
   }
   return item
 }

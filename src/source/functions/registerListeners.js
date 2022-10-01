@@ -8,14 +8,12 @@ import documentItem from '../objects/documentItem.js'
  * @memberOf module:domFunctions
  * @param {Array.<listenerFunction|function>} listeners - An array of functions to be
  * used as the registered event listeners.
- * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which
- * stores has eventListeners property.
+ * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which has eventListeners property.
  * @returns {DomItemRoot|Object}
  */
-const registerListeners = (listeners, parent = documentItem) => functionalHelpers.setValue(
-  'eventListeners',
-  functionalHelpers.mergeObjectsMutable(parent.eventListeners, listeners),
-  parent
-)
+const registerListeners = (listeners, parent = documentItem) => {
+    functionalHelpers.mergeObjectsMutable(parent.eventListeners, listeners)
+    return parent
+}
 
 export default registerListeners

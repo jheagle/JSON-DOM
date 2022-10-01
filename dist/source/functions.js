@@ -9,6 +9,8 @@ exports.default = void 0
 
 require('core-js/stable')
 
+var _appendChild = _interopRequireDefault(require('./functions/appendChild.js'))
+
 var _appendListeners = _interopRequireDefault(require('./functions/appendListeners.js'))
 
 var _assignListener = _interopRequireDefault(require('./functions/assignListener.js'))
@@ -18,6 +20,8 @@ var _bindAllListeners = _interopRequireDefault(require('./functions/bindAllListe
 var _bindElementListeners = _interopRequireDefault(require('./functions/bindElementListeners.js'))
 
 var _bindListeners = _interopRequireDefault(require('./functions/bindListeners.js'))
+
+var _deactivateListeners = _interopRequireDefault(require('./functions/deactivateListeners.js'))
 
 var _domItemChanges = _interopRequireDefault(require('./functions/domItemChanges.js'))
 
@@ -59,6 +63,8 @@ var _registerListeners = _interopRequireDefault(require('./functions/registerLis
 
 var _removeChild = _interopRequireDefault(require('./functions/removeChild.js'))
 
+var _renderHtml = _interopRequireDefault(require('./functions/renderHtml.js'))
+
 var _retrieveListener = _interopRequireDefault(require('./functions/retrieveListener.js'))
 
 var _updateChildNodes = _interopRequireDefault(require('./functions/updateChildNodes.js'))
@@ -83,11 +89,13 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @memberOf module:jsonDom
  */
 var _default = {
+  appendChild: _appendChild.default,
   appendListeners: _appendListeners.default,
   assignListener: _assignListener.default,
   bindAllListeners: _bindAllListeners.default,
   bindElementListeners: _bindElementListeners.default,
   bindListeners: _bindListeners.default,
+  deactivateListeners: _deactivateListeners.default,
   domItemChanges: _domItemChanges.default,
   domItemHasAttribute: _domItemHasAttribute.default,
   elementChanges: _elementChanges.default,
@@ -108,6 +116,7 @@ var _default = {
   registerListener: _registerListener.default,
   registerListeners: _registerListeners.default,
   removeChild: _removeChild.default,
+  renderHtml: _renderHtml.default,
   retrieveListener: _retrieveListener.default,
   updateChildNodes: _updateChildNodes.default,
   updateChildren: _updateChildren.default,

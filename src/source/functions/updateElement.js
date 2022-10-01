@@ -1,7 +1,9 @@
 import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import bindListeners from './bindListeners.js'
+import deactivateListeners from './deactivateListeners.js'
 import domItemChanges from './domItemChanges.js'
-import generateElement from './generateElement'
+import functionalHelpers from 'functional-helpers'
+import generateElement from './generateElement.js'
 
 /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
@@ -13,13 +15,13 @@ import generateElement from './generateElement'
  */
 const updateElement = domItem => {
   if (!domItem.element) {
-    return generateElement(domItem)
+    return generateElement(deactivateListeners(domItem))
   }
   const changes = domItemChanges(domItem)
   if (changes.removed['nodeName'] || changes.added['nodeName']) {
     // if the nodeName has changed then remove the element and create a new one
     domItem.element.remove()
-    return generateElement(domItem)
+    return generateElement(deactivateListeners(domItem))
   }
   for (const dotKey in changes.removed) {
     const value = changes.removed[dotKey]
@@ -72,7 +74,7 @@ const updateElement = domItem => {
     }
     domItem.element.style.setProperty(functionalHelpers.strAfter(dotKey, '.'), value)
   }
-  return domItem
+  return bindListeners(domItem)
 }
 
 export default updateElement

@@ -15,10 +15,6 @@ require('core-js/modules/esnext.iterator.map.js')
 
 require('core-js/modules/es.object.keys.js')
 
-require('core-js/modules/es.regexp.exec.js')
-
-require('core-js/modules/es.string.split.js')
-
 require('core-js/stable')
 
 var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
