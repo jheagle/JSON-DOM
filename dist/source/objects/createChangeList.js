@@ -1,22 +1,15 @@
 'use strict'
 
 require('core-js/modules/es.object.define-property.js')
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-
 require('core-js/modules/es.array.includes.js')
-
 require('core-js/modules/es.object.assign.js')
-
 require('core-js/stable')
-
 var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
-
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
-
 /**
  * @typedef {Function} appendChanges
  * @memberOf module:domObjects
@@ -34,10 +27,10 @@ var appendChangesTo = function appendChangesTo (changeList) {
     if (!['added', 'removed'].includes(changeType)) {
       throw Error("Method appendChanges change type must be 'added' or 'removed'; ".concat(changeType, ' given.'))
     }
-
     return _functionalHelpers.default.mergeObjects(changeList[changeType], changes)
   }
 }
+
 /**
  * Represent changes / a diff of an object, including removed, added, and changed properties.
  * @typedef {Object.<string, DotNotatedObject>} ChangeList
@@ -56,14 +49,12 @@ var appendChangesTo = function appendChangesTo (changeList) {
  * @param {DotNotatedObject} [changeList.added={}]
  * @returns {ChangeList}
  */
-
 var createChangeList = function createChangeList () {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
   var _ref$removed = _ref.removed
   var removed = _ref$removed === void 0 ? {} : _ref$removed
   var _ref$added = _ref.added
   var added = _ref$added === void 0 ? {} : _ref$added
-
   var changeList = {
     removed: Object.assign({}, removed),
     added: Object.assign({}, added)
@@ -71,6 +62,5 @@ var createChangeList = function createChangeList () {
   changeList.appendChanges = appendChangesTo(changeList)
   return changeList
 }
-
 var _default = createChangeList
 exports.default = _default

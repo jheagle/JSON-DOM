@@ -1,22 +1,15 @@
 'use strict'
 
 require('core-js/modules/es.object.define-property.js')
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-
 require('core-js/modules/es.object.keys.js')
-
 require('core-js/modules/es.array.concat.js')
-
 require('core-js/stable')
-
 var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
-
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
-
 /**
  * A selector function for retrieving existing child domObjects.DomItems from the given parent item.
  * This function will check all the children starting from item, and scan the attributes
@@ -32,17 +25,13 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  */
 var getParentsFromAttribute = function getParentsFromAttribute (attr, value) {
   var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default.body
-
   if (item.parentItem === null) {
     if (item.nodeName === '#document') {
       throw new Error('Root parent item must be an empty object, null reference found.')
     }
-
     throw new Error('Detached child, missing parentItem reference.')
   }
-
   return Object.keys(item.parentItem).length ? (item.parentItem.attributes[attr] || item[attr] || false) === value ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem]) : getParentsFromAttribute(attr, value, item.parentItem) : []
 }
-
 var _default = getParentsFromAttribute
 exports.default = _default

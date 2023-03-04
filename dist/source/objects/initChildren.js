@@ -1,20 +1,14 @@
 'use strict'
 
 require('core-js/modules/es.object.define-property.js')
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-
 require('core-js/stable')
-
 var _createDomItem = _interopRequireDefault(require('./createDomItem.js'))
-
 var _onBodyLoad = _interopRequireDefault(require('functional-helpers/dist/helpers/functions/onBodyLoad'))
-
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
-
 /**
  * DomItemHead defines the structure for a single element in the Dom
  * @typedef {DomItem} DomItemHead
@@ -53,20 +47,16 @@ var initChildren = function initChildren () {
     element: body,
     children: []
   })]
-
   if (!head || !body) {
     (0, _onBodyLoad.default)(function () {
       if (children[1].element === null) {
         children[0].element = document.head
         children[1].element = document.body
       }
-
       return children
     })
   }
-
   return children
 }
-
 var _default = initChildren
 exports.default = _default

@@ -1,20 +1,14 @@
 'use strict'
 
 require('core-js/modules/es.object.define-property.js')
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-
 require('core-js/stable')
-
 var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
-
 var _updateElement = _interopRequireDefault(require('./updateElement.js'))
-
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
-
 /**
  * Create a new DOM Node based on name and data.
  * @param {string} nodeName
@@ -23,18 +17,16 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  */
 var makeElementType = function makeElementType (nodeName) {
   var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null
-
   switch (nodeName) {
     case '#text':
       return document.createTextNode(data)
-
     case '#comment':
       return document.createComment(data)
-
     default:
       return document.createElement(nodeName)
   }
 }
+
 /**
  * Create an HTML element based on the provided attributes and return the element as an Object.
  * @function
@@ -42,11 +34,9 @@ var makeElementType = function makeElementType (nodeName) {
  * @param {DomItem} domItem - The DomItem requiring matching HTML element property
  * @return {DomItem}
  */
-
 var generateElement = function generateElement (domItem) {
   domItem.element = makeElementType(domItem.nodeName, domItem.nodeValue)
   return (0, _updateElement.default)(domItem)
 }
-
 var _default = generateElement
 exports.default = _default

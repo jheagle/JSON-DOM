@@ -1,24 +1,16 @@
 'use strict'
 
 require('core-js/modules/es.object.define-property.js')
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-
 require('core-js/modules/es.array.includes.js')
-
 require('core-js/modules/es.string.includes.js')
-
 require('core-js/modules/es.object.keys.js')
-
 require('core-js/stable')
-
 var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
-
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
-
 /**
  * Based on the provided function / listener name, retrieve the associated function from the root domObjects.DomItem
  * @function
@@ -33,6 +25,5 @@ var retrieveListener = function retrieveListener (listenerName) {
     throw e
   }('Undefined listener function on this DomItemRoot: '.concat(listenerName)))
 }
-
 var _default = retrieveListener
 exports.default = _default

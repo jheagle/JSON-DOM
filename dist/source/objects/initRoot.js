@@ -1,18 +1,13 @@
 'use strict'
 
 require('core-js/modules/es.object.define-property.js')
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-
 require('core-js/stable')
-
 var _createDomItem = _interopRequireDefault(require('./createDomItem.js'))
-
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
-
 /**
  * DomItemRoot defines the structure for a single element in the Dom
  * @typedef {DomItem} DomItemRoot
@@ -54,6 +49,5 @@ var initRoot = function initRoot (children) {
     body: children[1]
   })
 }
-
 var _default = initRoot
 exports.default = _default

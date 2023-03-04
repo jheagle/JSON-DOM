@@ -53,16 +53,17 @@ import removeChild from '../functions/removeChild'
  * DomItem defines the structure for a single element in the Dom
  * @typedef {Object} DomItem
  * @memberOf module:domObjects
- * @property {string} nodeName - This is any document node name
- * @property {?string} nodeValue - Is a string of text, null for HTML elements
  * @property {Object.<string, string|Object>} attributes - All potential HTML element attributes can be defined here
  * (including the defaulted style object)
+ * @property {Array.<DomItem>} children - A reference to an array of child objects
  * @property {(Object|HTMLElement|null)} element - A reference to an existing HTML element will be stored here (default
  * null)
  * @property {Object.<Event, EventListener>} eventListeners - An object holding all
  * events to be registered for the associated element
+ * @property {Array} jsonExclusions - array of properties to exclude
+ * @property {string} nodeName - This is any document node name
+ * @property {?string} nodeValue - Is a string of text, null for HTML elements
  * @property {DomItem|Object|null} parentItem - A reference to the parent of this object
- * @property {Array.<DomItem>} children - A reference to an array of child objects
  *
  * @property {Function} appendChild - Attach a child to this DOM Item
  * @property {Function} removeChild - Attach a child to this DOM Item
@@ -79,13 +80,14 @@ import removeChild from '../functions/removeChild'
 const createDomItem = (item = {}) => {
   const newDomItem = functionalHelpers.reduceObject(
     {
-      nodeName: 'div',
-      nodeValue: null,
       attributes: {},
+      children: [],
       element: null,
       eventListeners: {},
-      parentItem: null,
-      children: []
+      jsonExclusions: [],
+      nodeName: 'div',
+      nodeValue: null,
+      parentItem: null
     },
     (domItem, defaultValue, prop) => {
       if (!(prop in domItem)) {

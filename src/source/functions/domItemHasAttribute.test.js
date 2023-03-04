@@ -3,7 +3,6 @@
  */
 import domItemHasAttribute from './domItemHasAttribute.js'
 import createDomItem from '../objects/createDomItem'
-import elementHasAttribute from './elementHasAttribute'
 
 describe('domItemHasAttribute', () => {
   test('will detect when an attribute is set with value', () => {

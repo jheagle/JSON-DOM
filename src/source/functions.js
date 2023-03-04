@@ -15,6 +15,7 @@ import bindListeners from './functions/bindListeners.js'
 import deactivateListeners from './functions/deactivateListeners.js'
 import domItemChanges from './functions/domItemChanges.js'
 import domItemHasAttribute from './functions/domItemHasAttribute.js'
+import domItemToJson from './functions/domItemToJson.js'
 import elementChanges from './functions/elementChanges.js'
 import elementHasAttribute from './functions/elementHasAttribute.js'
 import gatherChildItems from './functions/gatherChildItems.js'
@@ -29,12 +30,14 @@ import getParentsByName from './functions/getParentsByName.js'
 import getParentsByTagName from './functions/getParentsByTagName.js'
 import getParentsFromAttribute from './functions/getParentsFromAttribute.js'
 import getTopParentItem from './functions/getTopParentItem.js'
+import jsonToDomItem from './functions/jsonToDomItem.js'
 import listenerOptions from './functions/listenerOptions.js'
 import registerListener from './functions/registerListener.js'
 import registerListeners from './functions/registerListeners.js'
 import removeChild from './functions/removeChild.js'
 import renderHtml from './functions/renderHtml.js'
 import retrieveListener from './functions/retrieveListener.js'
+import setParentItemReferences from './functions/setParentItemReferences.js'
 import updateChildNodes from './functions/updateChildNodes.js'
 import updateChildren from './functions/updateChildren.js'
 import updateDomItem from './functions/updateDomItem.js'
@@ -52,6 +55,7 @@ export default {
   deactivateListeners,
   domItemChanges,
   domItemHasAttribute,
+  domItemToJson,
   elementChanges,
   elementHasAttribute,
   gatherChildItems,
@@ -66,12 +70,14 @@ export default {
   getParentsByTagName,
   getParentsFromAttribute,
   getTopParentItem,
+  jsonToDomItem,
   listenerOptions,
   registerListener,
   registerListeners,
   removeChild,
   renderHtml,
   retrieveListener,
+  setParentItemReferences,
   updateChildNodes,
   updateChildren,
   updateDomItem,

@@ -1,14 +1,11 @@
 'use strict'
 
 require('core-js/modules/es.object.define-property.js')
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-
 require('core-js/stable')
-
 /**
  * Append a child to the end of given parent's children list.
  * @function
@@ -22,6 +19,5 @@ var appendChild = function appendChild (parent, child) {
   child.parentItem = parent
   return parent
 }
-
 var _default = appendChild
 exports.default = _default

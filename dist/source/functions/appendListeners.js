@@ -1,18 +1,13 @@
 'use strict'
 
 require('core-js/modules/es.object.define-property.js')
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-
 require('core-js/stable')
-
 var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
-
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
-
 /**
  * When there may be extra data needed for the event listener function call, this function may be used as a helper
  * to pass the additional data. Also, if it is desirable to add event listeners during run-time, this function can be
@@ -38,6 +33,5 @@ var appendListeners = function appendListeners (item, event, listener) {
     listenerOptions: options
   }, item.eventListeners), item))
 }
-
 var _default = appendListeners
 exports.default = _default

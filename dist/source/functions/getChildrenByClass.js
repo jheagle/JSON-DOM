@@ -1,20 +1,14 @@
 'use strict'
 
 require('core-js/modules/es.object.define-property.js')
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-
 require('core-js/stable')
-
 var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
-
 var _getChildrenFromAttribute = _interopRequireDefault(require('./getChildrenFromAttribute.js'))
-
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
-
 /**
  * Helper for getting all domObjects.DomItems starting at parent and having specified className attribute
  * @function
@@ -22,6 +16,5 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {DomItem[]}
  */
 var getChildrenByClass = _functionalHelpers.default.curry(_getChildrenFromAttribute.default)('className')
-
 var _default = getChildrenByClass
 exports.default = _default
