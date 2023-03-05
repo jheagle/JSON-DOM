@@ -16,7 +16,12 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {DomItem}
  */
 var jsonToDomItem = function jsonToDomItem (jsonString) {
-  return (0, _setParentItemReferences.default)(JSON.parse(jsonString))
+  var parsedJson = (0, _setParentItemReferences.default)(JSON.parse(jsonString))
+  if (parsedJson.nodeName === '#document') {
+    parsedJson.head = parsedJson.children[0]
+    parsedJson.body = parsedJson.children[1]
+  }
+  return parsedJson
 }
 var _default = jsonToDomItem
 exports.default = _default

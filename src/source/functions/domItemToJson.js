@@ -11,9 +11,15 @@ const useExclusions = (function makeExclusions () {
       return undefined
     }
     if (key === 'element') {
+      // Exclude html nodes
       return null
     }
     if (key === 'parentItem') {
+      // Exclude circular parentItem references
+      return null
+    }
+    if (key === 'body' || key === 'head') {
+      // Exclude body and head child references from #document
       return null
     }
     return value

@@ -9,7 +9,12 @@ import setParentItemReferences from './setParentItemReferences.js'
  * @returns {DomItem}
  */
 const jsonToDomItem = jsonString => {
-  return setParentItemReferences(JSON.parse(jsonString))
+  const parsedJson = setParentItemReferences(JSON.parse(jsonString))
+  if (parsedJson.nodeName === '#document') {
+    parsedJson.head = parsedJson.children[0]
+    parsedJson.body = parsedJson.children[1]
+  }
+  return parsedJson
 }
 
 export default jsonToDomItem

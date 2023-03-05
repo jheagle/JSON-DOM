@@ -660,9 +660,15 @@
           return undefined
         }
         if (key === 'element') {
+          // Exclude html nodes
           return null
         }
         if (key === 'parentItem') {
+          // Exclude circular parentItem references
+          return null
+        }
+        if (key === 'body' || key === 'head') {
+          // Exclude body and head child references from #document
           return null
         }
         return value
@@ -1319,7 +1325,12 @@
  * @returns {DomItem}
  */
     var jsonToDomItem = function jsonToDomItem (jsonString) {
-      return (0, _setParentItemReferences.default)(JSON.parse(jsonString))
+      var parsedJson = (0, _setParentItemReferences.default)(JSON.parse(jsonString))
+      if (parsedJson.nodeName === '#document') {
+        parsedJson.head = parsedJson.children[0]
+        parsedJson.body = parsedJson.children[1]
+      }
+      return parsedJson
     }
     var _default = jsonToDomItem
     exports.default = _default
