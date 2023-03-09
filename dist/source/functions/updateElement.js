@@ -7,6 +7,8 @@ Object.defineProperty(exports, '__esModule', {
 exports.default = void 0
 require('core-js/modules/es.array.includes.js')
 require('core-js/modules/es.string.includes.js')
+require('core-js/modules/es.regexp.exec.js')
+require('core-js/modules/es.regexp.test.js')
 require('core-js/stable')
 var _bindListeners = _interopRequireDefault(require('./bindListeners.js'))
 var _deactivateListeners = _interopRequireDefault(require('./deactivateListeners.js'))
@@ -77,7 +79,7 @@ var updateElement = function updateElement (domItem) {
     if (_baseKey !== 'class' && _baseKey !== 'style') {
       throw new Error('Unhandled dotKey: ' + _dotKey)
     }
-    if (_baseKey === 'class' && !_value) {
+    if (_baseKey === 'class' && /\s/.test(_value)) {
       // Skip this empty class name
       continue
     }

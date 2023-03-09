@@ -1813,6 +1813,8 @@
     exports.default = void 0
     require('core-js/modules/es.array.includes.js')
     require('core-js/modules/es.string.includes.js')
+    require('core-js/modules/es.regexp.exec.js')
+    require('core-js/modules/es.regexp.test.js')
     require('core-js/stable')
     var _bindListeners = _interopRequireDefault(require('./bindListeners.js'))
     var _deactivateListeners = _interopRequireDefault(require('./deactivateListeners.js'))
@@ -1883,7 +1885,7 @@
         if (_baseKey !== 'class' && _baseKey !== 'style') {
           throw new Error('Unhandled dotKey: ' + _dotKey)
         }
-        if (_baseKey === 'class' && !_value) {
+        if (_baseKey === 'class' && /\s/.test(_value)) {
           // Skip this empty class name
           continue
         }
@@ -1897,7 +1899,7 @@
     }
     var _default = updateElement
     exports.default = _default
-  }, { './bindListeners.js': 8, './deactivateListeners.js': 9, './domItemChanges.js': 10, './generateElement.js': 16, 'core-js/modules/es.array.includes.js': 315, 'core-js/modules/es.object.define-property.js': 395, 'core-js/modules/es.string.includes.js': 465, 'core-js/stable': 590, 'si-funciona': 661 }],
+  }, { './bindListeners.js': 8, './deactivateListeners.js': 9, './domItemChanges.js': 10, './generateElement.js': 16, 'core-js/modules/es.array.includes.js': 315, 'core-js/modules/es.object.define-property.js': 395, 'core-js/modules/es.regexp.exec.js': 447, 'core-js/modules/es.regexp.test.js': 450, 'core-js/modules/es.string.includes.js': 465, 'core-js/stable': 590, 'si-funciona': 661 }],
   40: [function (require, module, exports) {
     'use strict'
 
