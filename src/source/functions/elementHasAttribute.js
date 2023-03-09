@@ -26,6 +26,10 @@ const checkStyles = (element, attr = {}) => {
  * @returns {int|Object.<string, number>}
  */
 const checkClasses = (element, attr = '') => {
+  if (typeof attr !== 'string') {
+    // Somehow an empty object got in here one time
+    attr = ''
+  }
   const assignedClasses = Array.from(element.classList)
   if (!assignedClasses.length) {
     return 1

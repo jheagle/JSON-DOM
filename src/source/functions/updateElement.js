@@ -57,7 +57,8 @@ const updateElement = domItem => {
       continue
     }
     if (!dotKey.includes('.')) {
-      if (dotKey in domItem.element) {
+      if (dotKey in domItem.element && dotKey !== 'form') {
+        // Some things can be assigned directly, but 'form' attribute cannot
         domItem.element[dotKey] = value
         continue
       }

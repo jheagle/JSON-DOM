@@ -68,7 +68,8 @@ var updateElement = function updateElement (domItem) {
       continue
     }
     if (!_dotKey.includes('.')) {
-      if (_dotKey in domItem.element) {
+      if (_dotKey in domItem.element && _dotKey !== 'form') {
+        // Some things can be assigned directly, but 'form' attribute cannot
         domItem.element[_dotKey] = _value
         continue
       }

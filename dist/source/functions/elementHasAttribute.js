@@ -39,6 +39,10 @@ var checkStyles = function checkStyles (element) {
  */
 var checkClasses = function checkClasses (element) {
   var attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ''
+  if (typeof attr !== 'string') {
+    // Somehow an empty object got in here one time
+    attr = ''
+  }
   var assignedClasses = Array.from(element.classList)
   if (!assignedClasses.length) {
     return 1
