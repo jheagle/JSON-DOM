@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import appendChild from '../functions/appendChild.js'
 import removeChild from '../functions/removeChild'
 
@@ -78,7 +78,7 @@ import removeChild from '../functions/removeChild'
  * @returns {DomItem}
  */
 const createDomItem = (item = {}) => {
-  const newDomItem = functionalHelpers.reduceObject(
+  const newDomItem = siFunciona.reduceObject(
     {
       attributes: {},
       children: [],
@@ -98,8 +98,8 @@ const createDomItem = (item = {}) => {
     },
     item
   )
-  newDomItem.appendChild = functionalHelpers.curry(appendChild)(newDomItem)
-  newDomItem.removeChild = functionalHelpers.curry(removeChild)(newDomItem)
+  newDomItem.appendChild = siFunciona.curry(appendChild)(newDomItem)
+  newDomItem.removeChild = siFunciona.curry(removeChild)(newDomItem)
   return newDomItem
 }
 

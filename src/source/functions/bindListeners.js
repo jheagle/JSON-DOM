@@ -1,6 +1,6 @@
 import 'core-js/stable'
 import bindElementListeners from './bindElementListeners.js'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 
 /**
  * Based on the eventListeners property of the provided item, bind the
@@ -12,7 +12,7 @@ import functionalHelpers from 'functional-helpers'
  * @returns {DomItem}
  */
 const bindListeners = item =>
-  (!functionalHelpers.emptyObject(item.eventListeners) && item.element)
+  (!siFunciona.emptyObject(item.eventListeners) && item.element)
     ? bindElementListeners(item)
     : item
 

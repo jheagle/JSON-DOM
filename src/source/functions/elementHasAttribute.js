@@ -1,6 +1,6 @@
 import 'core-js/stable'
 import getAssignedStyles from './getAssignedStyles.js'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
@@ -10,11 +10,11 @@ import functionalHelpers from 'functional-helpers'
  */
 const checkStyles = (element, attr = {}) => {
   const assignedStyles = getAssignedStyles(element.style) ?? {}
-  if (functionalHelpers.emptyObject(assignedStyles)) {
+  if (siFunciona.emptyObject(assignedStyles)) {
     return 1
   }
-  return functionalHelpers.compareArrays(
-    Object.keys(attr).map(functionalHelpers.kabobCase),
+  return siFunciona.compareArrays(
+    Object.keys(attr).map(siFunciona.kabobCase),
     Object.keys(assignedStyles)
   )
 }
@@ -30,7 +30,7 @@ const checkClasses = (element, attr = '') => {
   if (!assignedClasses.length) {
     return 1
   }
-  return functionalHelpers.compareArrays(
+  return siFunciona.compareArrays(
     attr.split(' '),
     assignedClasses
   )
@@ -56,7 +56,7 @@ const elementHasAttribute = (element, key, attr) => {
   if (key === 'class') {
     return checkClasses(element, attr)
   }
-  const kabobKey = functionalHelpers.kabobCase(key)
+  const kabobKey = siFunciona.kabobCase(key)
   if (!element.hasAttribute(kabobKey)) {
     return 1
   }

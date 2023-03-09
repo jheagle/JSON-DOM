@@ -2,7 +2,7 @@ import 'core-js/stable'
 import bindListeners from './bindListeners.js'
 import deactivateListeners from './deactivateListeners.js'
 import domItemChanges from './domItemChanges.js'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import generateElement from './generateElement.js'
 
 /**
@@ -33,7 +33,7 @@ const updateElement = domItem => {
       domItem.element.removeAttribute(dotKey)
       continue
     }
-    const baseKey = functionalHelpers.strBefore(dotKey, '.')
+    const baseKey = siFunciona.strBefore(dotKey, '.')
     if (baseKey !== 'class' && baseKey !== 'style') {
       throw new Error('Unhandled dotKey: ' + dotKey)
     }
@@ -41,7 +41,7 @@ const updateElement = domItem => {
       domItem.element.classList.remove(value)
       continue
     }
-    domItem.element.style.removeProperty(functionalHelpers.strAfter(dotKey, '.'))
+    domItem.element.style.removeProperty(siFunciona.strAfter(dotKey, '.'))
   }
   for (const dotKey in changes.added) {
     const value = changes.added[dotKey]
@@ -64,7 +64,7 @@ const updateElement = domItem => {
       domItem.element.setAttribute(dotKey, value)
       continue
     }
-    const baseKey = functionalHelpers.strBefore(dotKey, '.')
+    const baseKey = siFunciona.strBefore(dotKey, '.')
     if (baseKey !== 'class' && baseKey !== 'style') {
       throw new Error('Unhandled dotKey: ' + dotKey)
     }
@@ -72,7 +72,7 @@ const updateElement = domItem => {
       domItem.element.classList.add(value)
       continue
     }
-    domItem.element.style.setProperty(functionalHelpers.strAfter(dotKey, '.'), value)
+    domItem.element.style.setProperty(siFunciona.strAfter(dotKey, '.'), value)
   }
   return bindListeners(domItem)
 }

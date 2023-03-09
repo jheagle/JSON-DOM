@@ -27,7 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import bindListeners from './bindListeners.js'
 
 /**
@@ -40,9 +40,9 @@ import bindListeners from './bindListeners.js'
  * assigned
  * @returns {DomItem}
  */
-const bindAllListeners = item => functionalHelpers.setValue(
+const bindAllListeners = item => siFunciona.setValue(
   'children',
-  functionalHelpers.mapObject(item.children, i => bindAllListeners(i)),
+  siFunciona.mapObject(item.children, i => bindAllListeners(i)),
   bindListeners(item)
 )
 

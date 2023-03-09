@@ -27,7 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import domItemChanges from './domItemChanges.js'
 import setAndReturnAttribute from './setAndReturnAttribute.js'
 
@@ -46,23 +46,23 @@ const updateElement = domItem => {
   }
   domItem = domItemChanges(domItem)
   // Set the the current attributes to contain all the changes
-  domItem.attributes = functionalHelpers.mapObject(
+  domItem.attributes = siFunciona.mapObject(
     // Retrieve only the changes to be applied from the attributes
     domItem.attributes,
     (attr, key) => {
-      if (!functionalHelpers.isObject(attr) || functionalHelpers.emptyObject(attr)) {
+      if (!siFunciona.isObject(attr) || siFunciona.emptyObject(attr)) {
         return (key in domItem.element)
-          ? functionalHelpers.setAndReturnValue(domItem.element, key, attr)
+          ? siFunciona.setAndReturnValue(domItem.element, key, attr)
           : setAndReturnAttribute(domItem, key, attr)
       }
-      const cleanedStyles = functionalHelpers.filterObject(
+      const cleanedStyles = siFunciona.filterObject(
         // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
         attr,
         (param, k) => /^\D+$/.test(k)
       )
-      return functionalHelpers.reduceObject(
+      return siFunciona.reduceObject(
         cleanedStyles,
-        (newStyle, p, i) => functionalHelpers.setValue(i, p, newStyle),
+        (newStyle, p, i) => siFunciona.setValue(i, p, newStyle),
         domItem.element.style
       )
     }

@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-throw-expressions": "^7.18.6",
-    "functional-helpers": "github:jheagle/functional-helpers",
+    "si-funciona": "github:jheagle/si-funciona",
     "npm": "^9.6.0"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import updateElement from './updateElement.js'
 
 /**

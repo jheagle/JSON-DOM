@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import documentItem from '../objects/documentItem.js'
 
 /**
@@ -12,7 +12,7 @@ import documentItem from '../objects/documentItem.js'
  * @returns {DomItemRoot|Object}
  */
 const registerListeners = (listeners, parent = documentItem) => {
-    functionalHelpers.mergeObjectsMutable(parent.eventListeners, listeners)
+    siFunciona.mergeObjectsMutable(parent.eventListeners, listeners)
     return parent
 }
 

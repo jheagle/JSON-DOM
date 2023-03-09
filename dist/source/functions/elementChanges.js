@@ -13,7 +13,7 @@ require('core-js/modules/esnext.iterator.reduce.js')
 require('core-js/modules/es.array.iterator.js')
 require('core-js/modules/web.dom-collections.iterator.js')
 require('core-js/stable')
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _domItemHasAttribute = _interopRequireDefault(require('./domItemHasAttribute.js'))
 var _createChangeList = _interopRequireDefault(require('../objects/createChangeList.js'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
@@ -36,7 +36,7 @@ var checkAttribute = function checkAttribute (domItem) {
       if (diff.length === 1 && diff[0].result[0] === 0) {
         return 0
       }
-      return _functionalHelpers.default.filterObject(diff, function (arrayDiff) {
+      return _siFunciona.default.filterObject(diff, function (arrayDiff) {
         return arrayDiff.result[0] !== 0
       })
     }
@@ -46,7 +46,7 @@ var checkAttribute = function checkAttribute (domItem) {
       if (_diff.length === 1 && firstDiffResult.result[0] === 0 && domItem.attributes.style[firstDiffResult.value] === attr[firstDiffResult.value]) {
         return 0
       }
-      return _functionalHelpers.default.filterObject(_diff, function (arrayDiff) {
+      return _siFunciona.default.filterObject(_diff, function (arrayDiff) {
         return arrayDiff.result[0] !== 0 || domItem.attributes.style[arrayDiff.value] !== attr[arrayDiff.value]
       })
     }
@@ -60,12 +60,12 @@ var checkAttribute = function checkAttribute (domItem) {
  * @returns {Object.<string, *>}
  */
 var camelCaseAttributes = function camelCaseAttributes (domItem) {
-  return domItem.element ? _functionalHelpers.default.reduceObject(domItem.element.attributes, function (attributes, attr) {
+  return domItem.element ? _siFunciona.default.reduceObject(domItem.element.attributes, function (attributes, attr) {
     var _domItem$element$attr
     if (!attr.name) {
       return attributes
     }
-    var camelKey = attr.name === 'class' ? 'className' : _functionalHelpers.default.camelCase(attr.name)
+    var camelKey = attr.name === 'class' ? 'className' : _siFunciona.default.camelCase(attr.name)
     var attributeValue = (_domItem$element$attr = domItem.element[attr.name]) !== null && _domItem$element$attr !== void 0 ? _domItem$element$attr : attr.value
     if (typeof attributeValue === 'undefined') {
       return attributes
@@ -95,8 +95,8 @@ var elementChanges = function elementChanges (domItem) {
   }
   if (!domItem.element && domItem.nodeValue !== null) {
     changeList.removed.nodeValue = domItem.nodeValue
-    if (!_functionalHelpers.default.emptyObject(domItem.attributes)) {
-      changeList.removed = changeList.appendChanges('removed', _functionalHelpers.default.dotNotate({
+    if (!_siFunciona.default.emptyObject(domItem.attributes)) {
+      changeList.removed = changeList.appendChanges('removed', _siFunciona.default.dotNotate({
         attributes: domItem.attributes
       }))
     }
@@ -106,24 +106,24 @@ var elementChanges = function elementChanges (domItem) {
     if (domItem.element.nodeValue !== domItem.nodeValue) {
       changeList.added.nodeValue = domItem.element.nodeValue
     }
-    if (!_functionalHelpers.default.emptyObject(domItem.attributes)) {
-      changeList.removed = changeList.appendChanges('removed', _functionalHelpers.default.dotNotate({
+    if (!_siFunciona.default.emptyObject(domItem.attributes)) {
+      changeList.removed = changeList.appendChanges('removed', _siFunciona.default.dotNotate({
         attributes: domItem.attributes
       }))
     }
     return changeList
   }
-  if (!(domItem.element && domItem.element.hasAttributes()) && !_functionalHelpers.default.emptyObject(domItem.attributes)) {
-    changeList.removed = changeList.appendChanges('removed', _functionalHelpers.default.dotNotate({
+  if (!(domItem.element && domItem.element.hasAttributes()) && !_siFunciona.default.emptyObject(domItem.attributes)) {
+    changeList.removed = changeList.appendChanges('removed', _siFunciona.default.dotNotate({
       attributes: domItem.attributes
     }))
     return changeList
   }
   var elementAttributes = camelCaseAttributes(domItem)
-  var diffMap = _functionalHelpers.default.mapObject(elementAttributes, function (attr, key) {
+  var diffMap = _siFunciona.default.mapObject(elementAttributes, function (attr, key) {
     return checkAttribute(domItem)(attr, key)
   })
-  return _functionalHelpers.default.reduceObject(diffMap, function (changed, result, key) {
+  return _siFunciona.default.reduceObject(diffMap, function (changed, result, key) {
     var isArray = Array.isArray(result)
     if (!isArray && !result) {
       // Skip if the attribute is not changed (false and not an array)
@@ -132,7 +132,7 @@ var elementChanges = function elementChanges (domItem) {
     if (!isArray) {
       var _domItem$element$key
       // Not an array, simply set the attribute as added
-      changed.added['attributes.'.concat(key)] = (_domItem$element$key = domItem.element[key]) !== null && _domItem$element$key !== void 0 ? _domItem$element$key : domItem.element.getAttribute(_functionalHelpers.default.kabobCase(key))
+      changed.added['attributes.'.concat(key)] = (_domItem$element$key = domItem.element[key]) !== null && _domItem$element$key !== void 0 ? _domItem$element$key : domItem.element.getAttribute(_siFunciona.default.kabobCase(key))
       return changed
     }
     if (key !== 'className' && key !== 'style') {

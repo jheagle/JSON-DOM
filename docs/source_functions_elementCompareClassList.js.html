@@ -27,7 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 
 /**
  * Check if a class exists on the element, return object with keys for each class and a -1, 0, 1 difference indicator.
@@ -38,7 +38,7 @@ import functionalHelpers from 'functional-helpers'
  * @param {string} classes - A string of classes (like the content of the 'class' attribute) to be compared
  * @returns {Object&lt;string, number>|*}
  */
-const elementCompareClassList = (element, classes) => functionalHelpers.compareArrays(
+const elementCompareClassList = (element, classes) => siFunciona.compareArrays(
   classes.split(' '),
   [].from(element.classList)
 )

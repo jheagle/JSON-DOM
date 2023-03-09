@@ -7,7 +7,7 @@ Object.defineProperty(exports, '__esModule', {
 exports.default = void 0
 require('core-js/stable')
 var _createDomItem = _interopRequireDefault(require('./createDomItem.js'))
-var _onBodyLoad = _interopRequireDefault(require('functional-helpers/dist/helpers/functions/onBodyLoad'))
+var _onBodyLoad = _interopRequireDefault(require('si-funciona/dist/helpers/functions/onBodyLoad'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 /**
  * DomItemHead defines the structure for a single element in the Dom

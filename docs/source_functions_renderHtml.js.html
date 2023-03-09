@@ -27,7 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import documentItem from '../objects/documentItem.js'
 import bindElement from './bindElement.js'
 import retrieveListener from './retrieveListener.js'
@@ -46,30 +46,30 @@ import createDomItem from '../objects/createDomItem.js'
  * @param {DomItemRoot} parent - The Base Dom item which is the parent of all the items
  * @returns {DomItem}
  */
-const renderHtml = (item, parent = documentItem) => functionalHelpers.pipe(
-  domItem => functionalHelpers.setValue(
+const renderHtml = (item, parent = documentItem) => siFunciona.pipe(
+  domItem => siFunciona.setValue(
     'element',
     (domItem.element &amp;&amp; domItem.element.style) ? domItem.element : bindElement(domItem).element,
     domItem
   ),
-  domItem => functionalHelpers.setValue(
+  domItem => siFunciona.setValue(
     'eventListeners',
-    functionalHelpers.mapObject(
+    siFunciona.mapObject(
       domItem.eventListeners,
-      prop => functionalHelpers.mergeObjects(
+      prop => siFunciona.mergeObjects(
         prop,
         { listenerFunc: retrieveListener(prop.listenerFunc, getTopParentItem(parent)) }
       )
     ),
     domItem
   ),
-  functionalHelpers.curry(functionalHelpers.setValue)('parentItem', parent.body || parent),
+  siFunciona.curry(siFunciona.setValue)('parentItem', parent.body || parent),
   domItem => bindListeners(appendHtml(domItem, parent)),
-  domItem => functionalHelpers.setValue('children', domItem.children.map(child => renderHtml(child, domItem)), domItem)
+  domItem => siFunciona.setValue('children', domItem.children.map(child => renderHtml(child, domItem)), domItem)
 )(
-  functionalHelpers.reduceObject(
+  siFunciona.reduceObject(
     createDomItem(item),
-    (domItem, prop, name) => functionalHelpers.setValue(name, prop, domItem),
+    (domItem, prop, name) => siFunciona.setValue(name, prop, domItem),
     item
   )
 )

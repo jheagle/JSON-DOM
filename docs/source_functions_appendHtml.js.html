@@ -27,7 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import documentItem from '../objects/documentItem.js'
 import appendAndReturnChild from './appendAndReturnChild.js'
 import bindElement from './bindElement.js'
@@ -43,9 +43,9 @@ import retrieveParentItem from './retrieveParentItem.js'
  */
 const appendHtml = (item, parent = documentItem.body) => appendAndReturnChild(
   bindElement(item),
-  functionalHelpers.setValue(
+  siFunciona.setValue(
     'children',
-    functionalHelpers.addUniqueToArray(item, retrieveParentItem(parent).children),
+    siFunciona.addUniqueToArray(item, retrieveParentItem(parent).children),
     retrieveParentItem(parent)
   )
 )

@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import domItemHasAttribute from './domItemHasAttribute.js'
 import createChangeList from '../objects/createChangeList.js'
 
@@ -22,7 +22,7 @@ const checkAttribute = domItem =>
       if (diff.length === 1 && diff[0].result[0] === 0) {
         return 0
       }
-      return functionalHelpers.filterObject(
+      return siFunciona.filterObject(
         diff,
         arrayDiff => arrayDiff.result[0] !== 0
       )
@@ -33,7 +33,7 @@ const checkAttribute = domItem =>
       if (diff.length === 1 && firstDiffResult.result[0] === 0 && domItem.attributes.style[firstDiffResult.value] === attr[firstDiffResult.value]) {
         return 0
       }
-      return functionalHelpers.filterObject(
+      return siFunciona.filterObject(
         diff,
         arrayDiff => (arrayDiff.result[0] !== 0 || domItem.attributes.style[arrayDiff.value] !== attr[arrayDiff.value])
       )
@@ -47,13 +47,13 @@ const checkAttribute = domItem =>
  * @returns {Object.<string, *>}
  */
 const camelCaseAttributes = domItem => domItem.element
-  ? functionalHelpers.reduceObject(
+  ? siFunciona.reduceObject(
     domItem.element.attributes,
     (attributes, attr) => {
       if (!attr.name) {
         return attributes
       }
-      const camelKey = attr.name === 'class' ? 'className' : functionalHelpers.camelCase(attr.name)
+      const camelKey = attr.name === 'class' ? 'className' : siFunciona.camelCase(attr.name)
       const attributeValue = domItem.element[attr.name] ?? attr.value
       if (typeof attributeValue === 'undefined') {
         return attributes
@@ -85,8 +85,8 @@ const elementChanges = domItem => {
   }
   if (!domItem.element && domItem.nodeValue !== null) {
     changeList.removed.nodeValue = domItem.nodeValue
-    if (!functionalHelpers.emptyObject(domItem.attributes)) {
-      changeList.removed = changeList.appendChanges('removed', functionalHelpers.dotNotate({ attributes: domItem.attributes }))
+    if (!siFunciona.emptyObject(domItem.attributes)) {
+      changeList.removed = changeList.appendChanges('removed', siFunciona.dotNotate({ attributes: domItem.attributes }))
     }
     return changeList
   }
@@ -94,22 +94,22 @@ const elementChanges = domItem => {
     if (domItem.element.nodeValue !== domItem.nodeValue) {
       changeList.added.nodeValue = domItem.element.nodeValue
     }
-    if (!functionalHelpers.emptyObject(domItem.attributes)) {
-      changeList.removed = changeList.appendChanges('removed', functionalHelpers.dotNotate({ attributes: domItem.attributes }))
+    if (!siFunciona.emptyObject(domItem.attributes)) {
+      changeList.removed = changeList.appendChanges('removed', siFunciona.dotNotate({ attributes: domItem.attributes }))
     }
     return changeList
   }
-  if (!(domItem.element && domItem.element.hasAttributes()) && !functionalHelpers.emptyObject(domItem.attributes)) {
-    changeList.removed = changeList.appendChanges('removed', functionalHelpers.dotNotate({ attributes: domItem.attributes }))
+  if (!(domItem.element && domItem.element.hasAttributes()) && !siFunciona.emptyObject(domItem.attributes)) {
+    changeList.removed = changeList.appendChanges('removed', siFunciona.dotNotate({ attributes: domItem.attributes }))
     return changeList
   }
   const elementAttributes = camelCaseAttributes(domItem)
 
-  const diffMap = functionalHelpers.mapObject(
+  const diffMap = siFunciona.mapObject(
     elementAttributes,
     (attr, key) => checkAttribute(domItem)(attr, key)
   )
-  return functionalHelpers.reduceObject(
+  return siFunciona.reduceObject(
     diffMap,
     (changed, result, key) => {
       const isArray = Array.isArray(result)
@@ -119,7 +119,7 @@ const elementChanges = domItem => {
       }
       if (!isArray) {
         // Not an array, simply set the attribute as added
-        changed.added[`attributes.${key}`] = domItem.element[key] ?? domItem.element.getAttribute(functionalHelpers.kabobCase(key))
+        changed.added[`attributes.${key}`] = domItem.element[key] ?? domItem.element.getAttribute(siFunciona.kabobCase(key))
         return changed
       }
       if (key !== 'className' && key !== 'style') {

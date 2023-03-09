@@ -28,7 +28,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>import 'core-js/stable'
 import getAssignedStyles from './getAssignedStyles.js'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
@@ -36,9 +36,9 @@ import functionalHelpers from 'functional-helpers'
  * @param {Object&lt;string, string>} attr
  * @returns {Object.&lt;string, number>}
  */
-const checkStyles = (element, attr = {}) => functionalHelpers.compareArrays(
+const checkStyles = (element, attr = {}) => siFunciona.compareArrays(
   Object.keys(attr),
-  Object.keys(getAssignedStyles(element.style)).map(functionalHelpers.camelCase)
+  Object.keys(getAssignedStyles(element.style)).map(siFunciona.camelCase)
 )
 
 /**
@@ -47,7 +47,7 @@ const checkStyles = (element, attr = {}) => functionalHelpers.compareArrays(
  * @param {string} attr
  * @returns {Object.&lt;string, number>}
  */
-const checkClasses = (element, attr = '') => functionalHelpers.compareArrays(
+const checkClasses = (element, attr = '') => siFunciona.compareArrays(
   attr.split(' '),
   element.className.split(' ')
 )
@@ -72,7 +72,7 @@ const elementHasAttribute = (element, key, attr) => {
   if (key === 'className') {
     return checkClasses(element, attr)
   }
-  const kabobKey = functionalHelpers.kabobCase(key)
+  const kabobKey = siFunciona.kabobCase(key)
   return (element.hasAttribute(kabobKey) &amp;&amp; element.getAttribute(kabobKey) === attr)
 }
 

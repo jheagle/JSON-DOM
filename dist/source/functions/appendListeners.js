@@ -6,7 +6,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _siFunciona = _interopRequireDefault(require('si-funciona'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 /**
  * When there may be extra data needed for the event listener function call, this function may be used as a helper
@@ -25,9 +25,9 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
 var appendListeners = function appendListeners (item, event, listener) {
   var args = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {}
   var options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false
-  return _functionalHelpers.default.setValue('children', _functionalHelpers.default.mapObject(item.children, function (i) {
+  return _siFunciona.default.setValue('children', _siFunciona.default.mapObject(item.children, function (i) {
     return appendListeners(i, event, listener, args, options)
-  }), _functionalHelpers.default.setValue('eventListeners', _functionalHelpers.default.setValue(event, {
+  }), _siFunciona.default.setValue('eventListeners', _siFunciona.default.setValue(event, {
     listenerFunc: listener,
     listenerArgs: args,
     listenerOptions: options

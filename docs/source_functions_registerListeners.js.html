@@ -27,7 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import documentItem from '../objects/documentItem.js'
 
 /**
@@ -40,9 +40,9 @@ import documentItem from '../objects/documentItem.js'
  * stores has eventListeners property.
  * @returns {DomItemRoot|Object}
  */
-const registerListeners = (listeners, parent = documentItem) => functionalHelpers.setValue(
+const registerListeners = (listeners, parent = documentItem) => siFunciona.setValue(
   'eventListeners',
-  functionalHelpers.mergeObjectsMutable(parent.eventListeners, listeners),
+  siFunciona.mergeObjectsMutable(parent.eventListeners, listeners),
   parent
 )
 

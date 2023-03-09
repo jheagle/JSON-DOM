@@ -1,6 +1,6 @@
 import 'core-js/stable'
 import createDomItem from './createDomItem.js'
-import onBodyLoad from 'functional-helpers/dist/helpers/functions/onBodyLoad'
+import onBodyLoad from 'si-funciona/dist/helpers/functions/onBodyLoad'
 
 /**
  * DomItemHead defines the structure for a single element in the Dom

@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 
 /**
  * When there may be extra data needed for the event listener function call, this function may be used as a helper
@@ -15,15 +15,15 @@ import functionalHelpers from 'functional-helpers'
  * @param {EventListenerOptions} options - The strategy used when the event is triggered.
  * @returns {DomItem}
  */
-const appendListeners = (item, event, listener, args = {}, options = false) => functionalHelpers.setValue(
+const appendListeners = (item, event, listener, args = {}, options = false) => siFunciona.setValue(
   'children',
-  functionalHelpers.mapObject(
+  siFunciona.mapObject(
     item.children,
     i => appendListeners(i, event, listener, args, options)
   ),
-  functionalHelpers.setValue(
+  siFunciona.setValue(
     'eventListeners',
-    functionalHelpers.setValue(
+    siFunciona.setValue(
       event,
       {
         listenerFunc: listener,

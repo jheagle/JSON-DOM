@@ -7,7 +7,7 @@ Object.defineProperty(exports, '__esModule', {
 exports.default = void 0
 require('core-js/modules/es.array.splice.js')
 require('core-js/stable')
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _elementChanges = _interopRequireDefault(require('./elementChanges.js'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 /**
@@ -25,24 +25,24 @@ var updateDomItem = function updateDomItem (config) {
   }
   var changes = (0, _elementChanges.default)(config)
   for (var dotKey in changes.removed) {
-    var attributeKey = _functionalHelpers.default.strAfter(dotKey, '.')
-    if (_functionalHelpers.default.strBefore(attributeKey, '.') === 'className') {
+    var attributeKey = _siFunciona.default.strAfter(dotKey, '.')
+    if (_siFunciona.default.strBefore(attributeKey, '.') === 'className') {
       var classList = config.attributes.className.split(' ')
-      classList.splice(_functionalHelpers.default.strAfterLast(attributeKey, '.'), 1)
+      classList.splice(_siFunciona.default.strAfterLast(attributeKey, '.'), 1)
       config.attributes.className = classList.join(' ')
       continue
     }
-    _functionalHelpers.default.dotUnset(config, dotKey)
+    _siFunciona.default.dotUnset(config, dotKey)
   }
   for (var _dotKey in changes.added) {
-    var _attributeKey = _functionalHelpers.default.strAfter(_dotKey, '.')
-    if (_functionalHelpers.default.strBefore(_attributeKey, '.') === 'className') {
+    var _attributeKey = _siFunciona.default.strAfter(_dotKey, '.')
+    if (_siFunciona.default.strBefore(_attributeKey, '.') === 'className') {
       var _classList = config.attributes.className.split(' ')
       _classList.push(changes.added[_dotKey])
       config.attributes.className = _classList.join(' ')
       continue
     }
-    _functionalHelpers.default.dotSet(config, _dotKey, changes.added[_dotKey])
+    _siFunciona.default.dotSet(config, _dotKey, changes.added[_dotKey])
   }
   return config
 }

@@ -8,7 +8,7 @@ exports.default = void 0
 require('core-js/modules/es.array.includes.js')
 require('core-js/modules/es.object.assign.js')
 require('core-js/stable')
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _siFunciona = _interopRequireDefault(require('si-funciona'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 /**
  * @typedef {Function} appendChanges
@@ -27,7 +27,7 @@ var appendChangesTo = function appendChangesTo (changeList) {
     if (!['added', 'removed'].includes(changeType)) {
       throw Error("Method appendChanges change type must be 'added' or 'removed'; ".concat(changeType, ' given.'))
     }
-    return _functionalHelpers.default.mergeObjects(changeList[changeType], changes)
+    return _siFunciona.default.mergeObjects(changeList[changeType], changes)
   }
 }
 

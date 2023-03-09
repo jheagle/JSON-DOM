@@ -83,7 +83,7 @@ describe('elementChanges', () => {
       }
     )
     const changes = elementChanges(item)
-    const convertedAttributes = functionalHelpers.dotNotate({ attributes: attributes })
+    const convertedAttributes = siFunciona.dotNotate({ attributes: attributes })
     convertedAttributes.nodeName = item.nodeName
     expect(changes.removed).toEqual(convertedAttributes)
     expect(changes.added).toEqual({})

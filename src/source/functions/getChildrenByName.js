@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import getChildrenFromAttribute from './getChildrenFromAttribute.js'
 
 /**
@@ -8,6 +8,6 @@ import getChildrenFromAttribute from './getChildrenFromAttribute.js'
  * @memberOf module:domFunctions
  * @returns {DomItem[]}
  */
-const getChildrenByName = functionalHelpers.curry(getChildrenFromAttribute)('name')
+const getChildrenByName = siFunciona.curry(getChildrenFromAttribute)('name')
 
 export default getChildrenByName

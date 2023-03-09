@@ -27,12 +27,12 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @file All of the functionalHelpers matrix functions for working with a grid of points.
+ * @file All of the siFunciona matrix functions for working with a grid of points.
  * @author Joshua Heagle &lt;joshuaheagle@gmail.com>
  * @version 1.0.0
  */
 
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import * as jDomMatrixObjects from './objects'
 
 /**
@@ -44,9 +44,9 @@ import * as jDomMatrixObjects from './objects'
    * @param {module:matrix/objects.Point} pnt - A point to be added to a specific Matrix Column
    * @returns {module:matrix/objects.MatrixColumn|module:matrix/objects.MatrixRow}
    */
-export const bindPointData = (item, pnt = jDomMatrixObjects.point(0, 0, 0)) => functionalHelpers.mergeObjects(
+export const bindPointData = (item, pnt = jDomMatrixObjects.point(0, 0, 0)) => siFunciona.mergeObjects(
   item,
-  item.point ? { point: functionalHelpers.cloneObject(pnt) } : {
+  item.point ? { point: siFunciona.cloneObject(pnt) } : {
     children: item.children.map(
       (el, i) => bindPointData(el, Object.assign(pnt, { [el.axis]: i }))
     )
@@ -90,7 +90,7 @@ export const areEqualPoints = (p1, p2) => p1.x === p2.x &amp;&amp; p1.y === p2.y
    * @param {module:matrix/objects.Point} pnt - A Point to be assessed.
    * @returns {module:matrix/objects.coordinate}
    */
-export const getHighestAbsoluteCoordinate = pnt => functionalHelpers.reduceObject(pnt, functionalHelpers.getAbsoluteMax, 0)
+export const getHighestAbsoluteCoordinate = pnt => siFunciona.reduceObject(pnt, siFunciona.getAbsoluteMax, 0)
 
 /**
    * Having provided a coordinate number, find all corresponding axis, return the first match.
@@ -112,7 +112,7 @@ export const getFirstAxisOfCoordinate = (pnt, coordinate) => Object.keys(pnt).fi
    */
 const pointAndCoordinateToDirection = (pnt, highestCoordinate) => (
   axis => axis !== false
-    ? functionalHelpers.mergeObjects(jDomMatrixObjects.point(0, 0, 0), { [`${axis}`]: highestCoordinate > 0 ? 1 : -1 })
+    ? siFunciona.mergeObjects(jDomMatrixObjects.point(0, 0, 0), { [`${axis}`]: highestCoordinate > 0 ? 1 : -1 })
     : jDomMatrixObjects.point(0, 0, 0)
 )(getFirstAxisOfCoordinate(pnt, highestCoordinate))
 
@@ -146,9 +146,9 @@ export const randomStart = (
   dir,
   lengthLimits = jDomMatrixObjects.point(10, 10, 10)
 ) => jDomMatrixObjects.point(
-  functionalHelpers.randomInteger(lengthLimits.x - ((length - 1) * dir.x)),
-  functionalHelpers.randomInteger(lengthLimits.y - ((length - 1) * dir.y)),
-  functionalHelpers.randomInteger(lengthLimits.z - ((length - 1) * dir.z))
+  siFunciona.randomInteger(lengthLimits.x - ((length - 1) * dir.x)),
+  siFunciona.randomInteger(lengthLimits.y - ((length - 1) * dir.y)),
+  siFunciona.randomInteger(lengthLimits.z - ((length - 1) * dir.z))
 )
 
 /**
@@ -217,7 +217,7 @@ export const testPointsBetween = (start, end, matrix, func, inclusive = true) =>
   getPointsLine(start, end).filter(
     (prop, i, line) => ((i !== 0 &amp;&amp; i !== line.length - 1) || inclusive)
   ).reduce(
-    (newPoints, next) => functionalHelpers.mergeObjects(newPoints, { [`${func(next, matrix)}`]: [next] }), {
+    (newPoints, next) => siFunciona.mergeObjects(newPoints, { [`${func(next, matrix)}`]: [next] }), {
       true: [],
       false: []
     }
@@ -251,7 +251,7 @@ export const getAxisLengths = (matrix) => jDomMatrixObjects.point(
    * @returns {module:matrix/objects.Direction}
    */
 export const randDirection = (useCoordinates = []) => useCoordinates.length
-  ? useCoordinates[functionalHelpers.randomInteger(useCoordinates.length)]
+  ? useCoordinates[siFunciona.randomInteger(useCoordinates.length)]
   : jDomMatrixObjects.point(0, 0, 0)
 
 /**

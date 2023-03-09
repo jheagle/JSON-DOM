@@ -13,7 +13,7 @@ require('core-js/modules/es.array.from.js')
 require('core-js/modules/es.string.iterator.js')
 require('core-js/stable')
 var _getAssignedStyles2 = _interopRequireDefault(require('./getAssignedStyles.js'))
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _siFunciona = _interopRequireDefault(require('si-funciona'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
@@ -25,10 +25,10 @@ var checkStyles = function checkStyles (element) {
   var _getAssignedStyles
   var attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
   var assignedStyles = (_getAssignedStyles = (0, _getAssignedStyles2.default)(element.style)) !== null && _getAssignedStyles !== void 0 ? _getAssignedStyles : {}
-  if (_functionalHelpers.default.emptyObject(assignedStyles)) {
+  if (_siFunciona.default.emptyObject(assignedStyles)) {
     return 1
   }
-  return _functionalHelpers.default.compareArrays(Object.keys(attr).map(_functionalHelpers.default.kabobCase), Object.keys(assignedStyles))
+  return _siFunciona.default.compareArrays(Object.keys(attr).map(_siFunciona.default.kabobCase), Object.keys(assignedStyles))
 }
 
 /**
@@ -43,7 +43,7 @@ var checkClasses = function checkClasses (element) {
   if (!assignedClasses.length) {
     return 1
   }
-  return _functionalHelpers.default.compareArrays(attr.split(' '), assignedClasses)
+  return _siFunciona.default.compareArrays(attr.split(' '), assignedClasses)
 }
 
 /**
@@ -66,7 +66,7 @@ var elementHasAttribute = function elementHasAttribute (element, key, attr) {
   if (key === 'class') {
     return checkClasses(element, attr)
   }
-  var kabobKey = _functionalHelpers.default.kabobCase(key)
+  var kabobKey = _siFunciona.default.kabobCase(key)
   if (!element.hasAttribute(kabobKey)) {
     return 1
   }

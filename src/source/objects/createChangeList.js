@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 
 /**
  * @typedef {Function} appendChanges
@@ -18,7 +18,7 @@ const appendChangesTo = changeList =>
     if (!['added', 'removed'].includes(changeType)) {
       throw Error(`Method appendChanges change type must be 'added' or 'removed'; ${changeType} given.`)
     }
-    return functionalHelpers.mergeObjects(changeList[changeType], changes)
+    return siFunciona.mergeObjects(changeList[changeType], changes)
   }
 
 /**

@@ -27,7 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import domItemHasAttribute from './domItemHasAttribute.js'
 
 /**
@@ -40,19 +40,19 @@ import domItemHasAttribute from './domItemHasAttribute.js'
  * @returns {DomItem}
  */
 const elementChanges = config => {
-  return functionalHelpers.setValue(
+  return siFunciona.setValue(
     'attributes',
-    functionalHelpers.filterObject(
+    siFunciona.filterObject(
       config.attributes,
       // For each attribute, check if it becomes true / false based on the comparison results
       (attr1, key1) =>
-        functionalHelpers.filterObject(
+        siFunciona.filterObject(
           // Get attributes as object of truthy and falsy values
-          functionalHelpers.mapObject(
+          siFunciona.mapObject(
             config.attributes,
             (attr2, key2) => (typeof attr2 === 'object' || key2 === 'className')
               // Apply custom logic for class and styles, only keep the updates
-              ? functionalHelpers.filterObject(
+              ? siFunciona.filterObject(
                   domItemHasAttribute(config.element, key2, attr2),
                   attr3 => attr3 === 1
                 )

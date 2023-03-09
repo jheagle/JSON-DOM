@@ -6,7 +6,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _getParentsFromAttribute = _interopRequireDefault(require('./getParentsFromAttribute.js'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 /**
@@ -15,6 +15,6 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @memberOf module:domFunctions
  * @returns {Array}
  */
-var getParentsByClass = _functionalHelpers.default.curry(_getParentsFromAttribute.default)('className')
+var getParentsByClass = _siFunciona.default.curry(_getParentsFromAttribute.default)('className')
 var _default = getParentsByClass
 exports.default = _default

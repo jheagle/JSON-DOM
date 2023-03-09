@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import getParentsFromAttribute from './getParentsFromAttribute.js'
 
 /**
@@ -8,6 +8,6 @@ import getParentsFromAttribute from './getParentsFromAttribute.js'
  * @memberOf module:domFunctions
  * @returns {Array}
  */
-const getParentsByTagName = functionalHelpers.curry(getParentsFromAttribute)('nodeName')
+const getParentsByTagName = siFunciona.curry(getParentsFromAttribute)('nodeName')
 
 export default getParentsByTagName

@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import elementChanges from './elementChanges.js'
 
 /**
@@ -17,24 +17,24 @@ const updateDomItem = config => {
   }
   const changes = elementChanges(config)
   for (const dotKey in changes.removed) {
-    const attributeKey = functionalHelpers.strAfter(dotKey, '.')
-    if (functionalHelpers.strBefore(attributeKey, '.') === 'className') {
+    const attributeKey = siFunciona.strAfter(dotKey, '.')
+    if (siFunciona.strBefore(attributeKey, '.') === 'className') {
       const classList = config.attributes.className.split(' ')
-      classList.splice(functionalHelpers.strAfterLast(attributeKey, '.'), 1)
+      classList.splice(siFunciona.strAfterLast(attributeKey, '.'), 1)
       config.attributes.className = classList.join(' ')
       continue
     }
-    functionalHelpers.dotUnset(config, dotKey)
+    siFunciona.dotUnset(config, dotKey)
   }
   for (const dotKey in changes.added) {
-    const attributeKey = functionalHelpers.strAfter(dotKey, '.')
-    if (functionalHelpers.strBefore(attributeKey, '.') === 'className') {
+    const attributeKey = siFunciona.strAfter(dotKey, '.')
+    if (siFunciona.strBefore(attributeKey, '.') === 'className') {
       const classList = config.attributes.className.split(' ')
       classList.push(changes.added[dotKey])
       config.attributes.className = classList.join(' ')
       continue
     }
-    functionalHelpers.dotSet(config, dotKey, changes.added[dotKey])
+    siFunciona.dotSet(config, dotKey, changes.added[dotKey])
   }
   return config
 }

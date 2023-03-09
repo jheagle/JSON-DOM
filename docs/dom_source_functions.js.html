@@ -32,7 +32,7 @@
  * @version 1.0.0
  */
 
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import * as jDomObjects from './objects'
 
 /**
@@ -52,7 +52,7 @@ export const elementHasAttribute = (element, key, attr) => {
   if (/^(style|className)$/.test(key)) {
     // For attributes which are objects or multi-part strings
     // -1 = remove attribute, 0 = no change, 1 = add attribute
-    return functionalHelpers.compareArrays(
+    return siFunciona.compareArrays(
       typeof attr === 'string' ? attr.split(' ') : Object.keys(attr),
       typeof attr === 'string' ? element[key].split(' ') : Object.keys(element[key])
     )
@@ -69,7 +69,7 @@ export const elementHasAttribute = (element, key, attr) => {
    * @param {string} classes - A string of classes (like the content of the 'class' attribute) to be compared
    * @returns {Object&lt;string, number>|*}
    */
-export const elementCompareClassList = (element, classes) => functionalHelpers.compareArrays(
+export const elementCompareClassList = (element, classes) => siFunciona.compareArrays(
   classes.split(' '),
   [].from(element.classList)
 )
@@ -86,19 +86,19 @@ export const elementChanges = config => (config.element.tagName.toLowerCase() !=
 // Generate a new element since the tag has changed
   ? generateElement(config)
 // Remove all the similarities
-  : functionalHelpers.setValue(
+  : siFunciona.setValue(
     'attributes',
-    functionalHelpers.filterObject(
+    siFunciona.filterObject(
       config.attributes,
       // For each attribute, check if it becomes true / false based on the comparison results
       (attr1, key1) =>
-        functionalHelpers.filterObject(
+        siFunciona.filterObject(
           // Get attributes as object of truthy and falsy values
-          functionalHelpers.mapObject(
+          siFunciona.mapObject(
             config.attributes,
             (attr2, key2) => (typeof attr2 === 'object' || key2 === 'className')
             // Apply custom logic for class and styles, only keep the updates
-              ? functionalHelpers.filterObject(
+              ? siFunciona.filterObject(
                 elementHasAttribute(config.element, key2, attr2),
                 attr3 => attr3 === 1
               )
@@ -151,23 +151,23 @@ export const updateElement = config => !config.element.style
 // if element is not a valid element then return the config without changes
   ? config
 // Set the the current attributes to contain all the changes
-  : functionalHelpers.setValue(
+  : siFunciona.setValue(
     'attributes',
-    functionalHelpers.mapObject(
+    siFunciona.mapObject(
       // Retrieve only the changes to be applied from the attributes
       elementChanges(config).attributes,
-      (attr, key) => (functionalHelpers.notEmptyObjectOrArray(attr))
-        ? functionalHelpers.mapObject(
-          functionalHelpers.filterObject(
+      (attr, key) => (siFunciona.notEmptyObjectOrArray(attr))
+        ? siFunciona.mapObject(
+          siFunciona.filterObject(
             // Remove attributes which have a numeric key (these are unwanted styles stored on elements)
             attr,
             (param, k) => /^\D+$/.test(k)
           ),
-          (p, i) => functionalHelpers.setAndReturnValue(config.element.style, i, p),
+          (p, i) => siFunciona.setAndReturnValue(config.element.style, i, p),
           config.element.style
         )
         : (key in config.element)
-          ? functionalHelpers.setAndReturnValue(config.element, key, attr)
+          ? siFunciona.setAndReturnValue(config.element, key, attr)
           : setAndReturnAttribute(config, key, attr)
     ),
     config
@@ -181,7 +181,7 @@ export const updateElement = config => !config.element.style
    * applied
    * @returns {module:dom/objects.DomItem}
    */
-export const updateElements = config => functionalHelpers.mapProperty(
+export const updateElements = config => siFunciona.mapProperty(
   'children',
   child => updateElements(child),
   updateElement(config)
@@ -194,7 +194,7 @@ export const updateElements = config => functionalHelpers.mapProperty(
    * @return {module:dom/objects.DomItem}
    */
 export const generateElement = config => updateElement(
-  functionalHelpers.setValue('element', document.createElement(config.tagName), config)
+  siFunciona.setValue('element', document.createElement(config.tagName), config)
 )
 
 /**
@@ -203,7 +203,7 @@ export const generateElement = config => updateElement(
    * @param {module:dom/objects.DomItem} item - The DomItem needing element to be generated
    * @return {module:dom/objects.DomItem}
    */
-export const bindElement = item => functionalHelpers.setValue(
+export const bindElement = item => siFunciona.setValue(
   'element',
   (!item.element || !item.element.style) ? generateElement(item).element : item.element,
   item
@@ -246,7 +246,7 @@ const appendAndReturnChild = (child, parent = jDomObjects.documentItem.body) => 
    */
 export const appendHTML = (item, parent = jDomObjects.documentItem.body) => appendAndReturnChild(
   bindElement(item),
-  functionalHelpers.setValue(
+  siFunciona.setValue(
     'children',
     addUniqueToArray(item, retrieveParentItem(parent).children),
     retrieveParentItem(parent)
@@ -289,7 +289,7 @@ export const registerListener = (listener, name = listener.name, parent = jDomOb
    * stores has eventListeners property.
    * @returns {module:dom/objects.DomItemRoot|Object}
    */
-export const registerListeners = (listeners, parent = jDomObjects.documentItem) => functionalHelpers.mergeObjects(
+export const registerListeners = (listeners, parent = jDomObjects.documentItem) => siFunciona.mergeObjects(
   parent,
   { eventListeners: parent.eventListeners },
   { eventListeners: listeners }
@@ -366,12 +366,12 @@ export const assignListener = (trigger, elem, fn, options) => {
    * @param {module:dom/objects.EventListenerOptions} options - The strategy used when the event is triggered.
    * @returns {module:dom/objects.DomItem}
    */
-export const appendListeners = (item, event, listener, args = {}, options = false) => functionalHelpers.mapProperty(
+export const appendListeners = (item, event, listener, args = {}, options = false) => siFunciona.mapProperty(
   'children',
   i => appendListeners(i, event, listener, args, options),
-  functionalHelpers.setValue(
+  siFunciona.setValue(
     'eventListeners',
-    functionalHelpers.setValue(
+    siFunciona.setValue(
       event,
       {
         listenerFunc: listener,
@@ -389,7 +389,7 @@ export const appendListeners = (item, event, listener, args = {}, options = fals
    * @param {module:dom/objects.DomItem} item - The DomItem which has eventListeners to apply to its element
    * @returns {module:dom/objects.DomItem}
    */
-const bindElementListeners = item => functionalHelpers.mapProperty(
+const bindElementListeners = item => siFunciona.mapProperty(
   'eventListeners',
   (attr, event) => assignListener(
     event,
@@ -421,7 +421,7 @@ export const bindListeners = item =>
    * assigned
    * @returns {module:dom/objects.DomItem}
    */
-export const bindAllListeners = item => functionalHelpers.mapProperty(
+export const bindAllListeners = item => siFunciona.mapProperty(
   'children',
   i => bindAllListeners(i),
   bindListeners(item)
@@ -486,14 +486,14 @@ export const getChildrenFromAttribute = (attr, value, item = jDomObjects.documen
    * @function getChildrenByClass
    * @returns {module:dom/objects.DomItem[]}
    */
-export const getChildrenByClass = functionalHelpers.curry(getChildrenFromAttribute)('className')
+export const getChildrenByClass = siFunciona.curry(getChildrenFromAttribute)('className')
 
 /**
    * Helper for getting all jDomObjects.DomItems starting at parent and having specified name attribute
    * @function getChildrenByName
    * @returns {module:dom/objects.DomItem[]}
    */
-export const getChildrenByName = functionalHelpers.curry(getChildrenFromAttribute)('name')
+export const getChildrenByName = siFunciona.curry(getChildrenFromAttribute)('name')
 
 /**
    * A selector function for retrieving existing child jDomObjects.DomItems from the given parent item.
@@ -519,21 +519,21 @@ export const getParentsFromAttribute = (attr, value, item = jDomObjects.document
    * @function getParentsByClass
    * @returns {Array}
    */
-export const getParentsByClass = functionalHelpers.curry(getParentsFromAttribute)('className')
+export const getParentsByClass = siFunciona.curry(getParentsFromAttribute)('className')
 
 /**
    * Helper for getting all jDomObjects.DomItems starting at child and having specified name attribute
    * @function getParentsByName
    * @returns {Array}
    */
-export const getParentsByName = functionalHelpers.curry(getParentsFromAttribute)('name')
+export const getParentsByName = siFunciona.curry(getParentsFromAttribute)('name')
 
 /**
    * Helper for getting all jDomObjects.DomItems starting at child and having specified tagName
    * @function getParentsByTagName
    * @returns {Array}
    */
-export const getParentsByTagName = functionalHelpers.curry(getParentsFromAttribute)('tagName')
+export const getParentsByTagName = siFunciona.curry(getParentsFromAttribute)('tagName')
 
 /**
    * Get the upper parentItem for the provided child. (usually this is a jDomObjects.documentItem reference)
@@ -555,27 +555,27 @@ export const getTopParentItem = item => Object.keys(item.parentItem).length
    * @param {module:dom/objects.DomItemRoot} parent - The Base Dom item which is the parent of all the items
    * @returns {module:dom/objects.DomItem}
    */
-export const renderHTML = (item, parent = jDomObjects.documentItem) => functionalHelpers.pipe(
-  (domItem) => functionalHelpers.setValue(
+export const renderHTML = (item, parent = jDomObjects.documentItem) => siFunciona.pipe(
+  (domItem) => siFunciona.setValue(
     'element',
     (domItem.element &amp;&amp; domItem.element.style) ? domItem.element : bindElement(domItem).element,
     domItem
   ),
-  (domItem) => functionalHelpers.setValue(
+  (domItem) => siFunciona.setValue(
     'eventListeners',
-    functionalHelpers.mapObject(
+    siFunciona.mapObject(
       domItem.eventListeners,
-      prop => functionalHelpers.mergeObjects(
+      prop => siFunciona.mergeObjects(
         prop,
         { listenerFunc: retrieveListener(prop.listenerFunc, getTopParentItem(parent)) }
       )
     ),
     domItem
   ),
-  functionalHelpers.curry(functionalHelpers.setValue)('parentItem', parent.body || parent),
+  siFunciona.curry(siFunciona.setValue)('parentItem', parent.body || parent),
   (domItem) => bindListeners(appendHTML(domItem, parent)),
-  (domItem) => functionalHelpers.mapProperty('children', child => renderHTML(child, domItem), domItem)
-)(functionalHelpers.mapObject(jDomObjects.createDomItem(item), prop => prop, item))
+  (domItem) => siFunciona.mapProperty('children', child => renderHTML(child, domItem), domItem)
+)(siFunciona.mapObject(jDomObjects.createDomItem(item), prop => prop, item))
 </code></pre>
         </article>
     </section>

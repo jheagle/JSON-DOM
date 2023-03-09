@@ -11,7 +11,7 @@ require('core-js/stable')
 var _bindListeners = _interopRequireDefault(require('./bindListeners.js'))
 var _deactivateListeners = _interopRequireDefault(require('./deactivateListeners.js'))
 var _domItemChanges = _interopRequireDefault(require('./domItemChanges.js'))
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _generateElement = _interopRequireDefault(require('./generateElement.js'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 /**
@@ -42,7 +42,7 @@ var updateElement = function updateElement (domItem) {
       domItem.element.removeAttribute(dotKey)
       continue
     }
-    var baseKey = _functionalHelpers.default.strBefore(dotKey, '.')
+    var baseKey = _siFunciona.default.strBefore(dotKey, '.')
     if (baseKey !== 'class' && baseKey !== 'style') {
       throw new Error('Unhandled dotKey: ' + dotKey)
     }
@@ -50,7 +50,7 @@ var updateElement = function updateElement (domItem) {
       domItem.element.classList.remove(value)
       continue
     }
-    domItem.element.style.removeProperty(_functionalHelpers.default.strAfter(dotKey, '.'))
+    domItem.element.style.removeProperty(_siFunciona.default.strAfter(dotKey, '.'))
   }
   for (var _dotKey in changes.added) {
     var _value = changes.added[_dotKey]
@@ -73,7 +73,7 @@ var updateElement = function updateElement (domItem) {
       domItem.element.setAttribute(_dotKey, _value)
       continue
     }
-    var _baseKey = _functionalHelpers.default.strBefore(_dotKey, '.')
+    var _baseKey = _siFunciona.default.strBefore(_dotKey, '.')
     if (_baseKey !== 'class' && _baseKey !== 'style') {
       throw new Error('Unhandled dotKey: ' + _dotKey)
     }
@@ -81,7 +81,7 @@ var updateElement = function updateElement (domItem) {
       domItem.element.classList.add(_value)
       continue
     }
-    domItem.element.style.setProperty(_functionalHelpers.default.strAfter(_dotKey, '.'), _value)
+    domItem.element.style.setProperty(_siFunciona.default.strAfter(_dotKey, '.'), _value)
   }
   return (0, _bindListeners.default)(domItem)
 }

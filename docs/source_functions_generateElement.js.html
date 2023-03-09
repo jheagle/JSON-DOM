@@ -27,7 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import updateElement from './updateElement.js'
 
 /**
@@ -38,7 +38,7 @@ import updateElement from './updateElement.js'
  * @return {DomItem}
  */
 const generateElement = domItem => updateElement(
-  functionalHelpers.setValue('element', document.createElement(domItem.tagName), domItem)
+  siFunciona.setValue('element', document.createElement(domItem.tagName), domItem)
 )
 
 export default generateElement</code></pre>

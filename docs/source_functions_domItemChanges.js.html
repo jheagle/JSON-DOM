@@ -27,7 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import elementHasAttribute from './elementHasAttribute.js'
 import generateElement from './generateElement.js'
 
@@ -36,7 +36,7 @@ const checkAttribute = element =>
     if (typeof attr === 'object') {
       const styleDiff = elementHasAttribute(element, key, attr)
       // Check new, removed, or changed styles
-      return functionalHelpers.filterObject(
+      return siFunciona.filterObject(
         styleDiff,
         arrayDiff => {
           if (arrayDiff.result[0] === 0) {
@@ -49,7 +49,7 @@ const checkAttribute = element =>
     if (key === 'className') {
       const classDiff = elementHasAttribute(element, key, attr)
       // Check new or removed class names
-      return functionalHelpers.filterObject(
+      return siFunciona.filterObject(
         classDiff,
         arrayDiff => arrayDiff.result[0] !== -1
       )
@@ -74,11 +74,11 @@ const domItemChanges = domItem => {
     // Generate a new element since the tag has changed
     return generateElement(domItem)
   }
-  const diffMap = functionalHelpers.mapObject(
+  const diffMap = siFunciona.mapObject(
     domItem.attributes,
     (attr, key) => checkAttribute(domItem.element)(attr, key)
   )
-  domItem.attributes = functionalHelpers.reduceObject(
+  domItem.attributes = siFunciona.reduceObject(
     diffMap,
     (changed, result, key) => {
       const isArray = Array.isArray(result)

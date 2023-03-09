@@ -6,7 +6,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _appendChild = _interopRequireDefault(require('../functions/appendChild.js'))
 var _removeChild = _interopRequireDefault(require('../functions/removeChild'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
@@ -86,7 +86,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  */
 var createDomItem = function createDomItem () {
   var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
-  var newDomItem = _functionalHelpers.default.reduceObject({
+  var newDomItem = _siFunciona.default.reduceObject({
     attributes: {},
     children: [],
     element: null,
@@ -102,8 +102,8 @@ var createDomItem = function createDomItem () {
     }
     return domItem
   }, item)
-  newDomItem.appendChild = _functionalHelpers.default.curry(_appendChild.default)(newDomItem)
-  newDomItem.removeChild = _functionalHelpers.default.curry(_removeChild.default)(newDomItem)
+  newDomItem.appendChild = _siFunciona.default.curry(_appendChild.default)(newDomItem)
+  newDomItem.removeChild = _siFunciona.default.curry(_removeChild.default)(newDomItem)
   return newDomItem
 }
 var _default = createDomItem

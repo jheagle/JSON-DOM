@@ -27,7 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import getAssignedStyles from './getAssignedStyles'
 
 /**
@@ -36,8 +36,8 @@ import getAssignedStyles from './getAssignedStyles'
  * @param attr
  * @returns {Object.&lt;string, number>}
  */
-const checkStyles = (domItem, attr = {}) => functionalHelpers.compareArrays(
-  Object.keys(getAssignedStyles(attr)).map(functionalHelpers.camelCase),
+const checkStyles = (domItem, attr = {}) => siFunciona.compareArrays(
+  Object.keys(getAssignedStyles(attr)).map(siFunciona.camelCase),
   Object.keys(domItem.attributes.style)
 )
 
@@ -47,7 +47,7 @@ const checkStyles = (domItem, attr = {}) => functionalHelpers.compareArrays(
  * @param attr
  * @returns {Object.&lt;string, number>}
  */
-const checkClasses = (domItem, attr = '') => functionalHelpers.compareArrays(
+const checkClasses = (domItem, attr = '') => siFunciona.compareArrays(
   attr.split(' '),
   domItem.attributes.className.split(' ')
 )

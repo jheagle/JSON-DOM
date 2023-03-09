@@ -27,7 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import generateElement from './generateElement.js'
 
 /**
@@ -37,7 +37,7 @@ import generateElement from './generateElement.js'
  * @param {DomItem} item - The DomItem needing element to be generated
  * @return {DomItem}
  */
-const bindElement = item => functionalHelpers.setValue(
+const bindElement = item => siFunciona.setValue(
   'element',
   (!item.element || !item.element.style) ? generateElement(item).element : item.element,
   item

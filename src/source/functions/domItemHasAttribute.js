@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import getAssignedStyles from './getAssignedStyles'
 
 /**
@@ -10,11 +10,11 @@ import getAssignedStyles from './getAssignedStyles'
  */
 const checkStyles = (domItem, attr = {}) => {
   const assignedStyles = domItem.attributes.style ?? {}
-  if (functionalHelpers.emptyObject(assignedStyles)) {
+  if (siFunciona.emptyObject(assignedStyles)) {
     return 1
   }
-  return functionalHelpers.compareArrays(
-    Object.keys(getAssignedStyles(attr)).map(functionalHelpers.camelCase),
+  return siFunciona.compareArrays(
+    Object.keys(getAssignedStyles(attr)).map(siFunciona.camelCase),
     Object.keys(assignedStyles)
   )
 }
@@ -30,7 +30,7 @@ const checkClasses = (domItem, attr = '') => {
   if (!assignedClasses.length) {
     return 1
   }
-  return functionalHelpers.compareArrays(
+  return siFunciona.compareArrays(
     attr.split(' '),
     (assignedClasses).split(' ')
   )
@@ -53,7 +53,7 @@ const domItemHasAttribute = (domItem, key, attr) => {
   if (key === 'className') {
     return checkClasses(domItem, attr)
   }
-  const camelKey = functionalHelpers.camelCase(key)
+  const camelKey = siFunciona.camelCase(key)
   if (typeof domItem.attributes[camelKey] === 'undefined') {
     return 1
   }

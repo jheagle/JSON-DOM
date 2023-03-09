@@ -27,7 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import updateDomItem from './updateDomItem.js'
 
 /**
@@ -41,9 +41,9 @@ import updateDomItem from './updateDomItem.js'
  */
 const updateDomItems = config => {
   const domItem = updateDomItem(config)
-  return functionalHelpers.setValue(
+  return siFunciona.setValue(
     'children',
-    functionalHelpers.mapObject(domItem.children, child => updateDomItems(child)),
+    siFunciona.mapObject(domItem.children, child => updateDomItems(child)),
     domItem
   )
 }

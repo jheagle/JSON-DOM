@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 
 /**
  * Get all the styles which have been assigned to this element. Assigned styles are indicated as numeric-key
@@ -10,11 +10,11 @@ import functionalHelpers from 'functional-helpers'
  * @param {Object.<style, style>|CSSProperties} elementStyles
  * @returns {object}
  */
-const getAssignedStyles = elementStyles => functionalHelpers.reduceObject(
+const getAssignedStyles = elementStyles => siFunciona.reduceObject(
   elementStyles,
   (styles, attr, key) => isNaN(key)
     ? styles
-    : functionalHelpers.setValue(attr, elementStyles[attr], styles),
+    : siFunciona.setValue(attr, elementStyles[attr], styles),
   {}
 )
 

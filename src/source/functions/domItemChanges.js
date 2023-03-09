@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import functionalHelpers from 'functional-helpers'
+import siFunciona from 'si-funciona'
 import elementHasAttribute from './elementHasAttribute.js'
 import createChangeList from '../objects/createChangeList'
 
@@ -24,7 +24,7 @@ const checkAttribute = element =>
         return 0
       }
       // Check new, removed, or changed styles
-      return functionalHelpers.filterObject(
+      return siFunciona.filterObject(
         styleDiff,
         arrayDiff => (arrayDiff.result[0] !== 0 || element.style[arrayDiff.value] !== attr[arrayDiff.value])
       )
@@ -34,7 +34,7 @@ const checkAttribute = element =>
       if (classDiff.length === 1 && classDiff[0].result[0] === 0) {
         return 0
       }
-      return functionalHelpers.filterObject(
+      return siFunciona.filterObject(
         classDiff,
         arrayDiff => arrayDiff.result[0] !== 0
       )
@@ -47,14 +47,14 @@ const checkAttribute = element =>
  * @param {Object.<string, *>} attributesToSet
  * @returns {Object.<string, *>}
  */
-const kabobCaseAttributes = attributesToSet => functionalHelpers.reduceObject(
+const kabobCaseAttributes = attributesToSet => siFunciona.reduceObject(
   attributesToSet,
   (attributes, value, name) => {
     let attrValue = attributesToSet[name] ?? value
-    if (functionalHelpers.isObject(attrValue)) {
+    if (siFunciona.isObject(attrValue)) {
       attrValue = kabobCaseAttributes(attrValue)
     }
-    const kabobKey = name === 'className' ? 'class' : functionalHelpers.kabobCase(name)
+    const kabobKey = name === 'className' ? 'class' : siFunciona.kabobCase(name)
     attributes[kabobKey] = attrValue
     return attributes
   },
@@ -80,8 +80,8 @@ const domItemChanges = domItem => {
     changeList.added.nodeName = domItem.nodeName.toLowerCase()
   }
   if (domItem.nodeValue !== null) {
-    if (!functionalHelpers.emptyObject(domItem.attributes)) {
-      changeList.added = changeList.appendChanges('added', functionalHelpers.dotNotate(domItem.attributes))
+    if (!siFunciona.emptyObject(domItem.attributes)) {
+      changeList.added = changeList.appendChanges('added', siFunciona.dotNotate(domItem.attributes))
     }
     if (!domItem.element) {
       changeList.added.nodeValue = domItem.nodeValue
@@ -95,11 +95,11 @@ const domItemChanges = domItem => {
   }
   const domItemAttributes = kabobCaseAttributes(domItem.attributes)
 
-  const diffMap = functionalHelpers.mapObject(
+  const diffMap = siFunciona.mapObject(
     domItemAttributes,
     (attr, key) => checkAttribute(domItem.element)(attr, key)
   )
-  return functionalHelpers.reduceObject(
+  return siFunciona.reduceObject(
     diffMap,
     (changed, result, key) => {
       const isArray = Array.isArray(result)
@@ -114,7 +114,7 @@ const domItemChanges = domItem => {
       }
       if (!isArray) {
         // Not an array, simply set the attribute as added
-        changed.added[key] = domItem.attributes[functionalHelpers.camelCase(key)]
+        changed.added[key] = domItem.attributes[siFunciona.camelCase(key)]
         return changed
       }
       if (key !== 'class' && key !== 'style') {

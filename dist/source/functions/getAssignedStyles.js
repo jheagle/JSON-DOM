@@ -6,7 +6,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _siFunciona = _interopRequireDefault(require('si-funciona'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 /**
  * Get all the styles which have been assigned to this element. Assigned styles are indicated as numeric-key
@@ -18,8 +18,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {object}
  */
 var getAssignedStyles = function getAssignedStyles (elementStyles) {
-  return _functionalHelpers.default.reduceObject(elementStyles, function (styles, attr, key) {
-    return isNaN(key) ? styles : _functionalHelpers.default.setValue(attr, elementStyles[attr], styles)
+  return _siFunciona.default.reduceObject(elementStyles, function (styles, attr, key) {
+    return isNaN(key) ? styles : _siFunciona.default.setValue(attr, elementStyles[attr], styles)
   }, {})
 }
 var _default = getAssignedStyles

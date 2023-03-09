@@ -17,7 +17,7 @@ require('core-js/modules/es.symbol.description.js')
 require('core-js/modules/es.symbol.iterator.js')
 require('core-js/modules/es.string.iterator.js')
 require('core-js/stable')
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _elementHasAttribute = _interopRequireDefault(require('./elementHasAttribute.js'))
 var _createChangeList = _interopRequireDefault(require('../objects/createChangeList'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
@@ -43,7 +43,7 @@ var checkAttribute = function checkAttribute (element) {
         return 0
       }
       // Check new, removed, or changed styles
-      return _functionalHelpers.default.filterObject(styleDiff, function (arrayDiff) {
+      return _siFunciona.default.filterObject(styleDiff, function (arrayDiff) {
         return arrayDiff.result[0] !== 0 || element.style[arrayDiff.value] !== attr[arrayDiff.value]
       })
     }
@@ -52,7 +52,7 @@ var checkAttribute = function checkAttribute (element) {
       if (classDiff.length === 1 && classDiff[0].result[0] === 0) {
         return 0
       }
-      return _functionalHelpers.default.filterObject(classDiff, function (arrayDiff) {
+      return _siFunciona.default.filterObject(classDiff, function (arrayDiff) {
         return arrayDiff.result[0] !== 0
       })
     }
@@ -66,13 +66,13 @@ var checkAttribute = function checkAttribute (element) {
  * @returns {Object.<string, *>}
  */
 var kabobCaseAttributes = function kabobCaseAttributes (attributesToSet) {
-  return _functionalHelpers.default.reduceObject(attributesToSet, function (attributes, value, name) {
+  return _siFunciona.default.reduceObject(attributesToSet, function (attributes, value, name) {
     var _attributesToSet$name
     var attrValue = (_attributesToSet$name = attributesToSet[name]) !== null && _attributesToSet$name !== void 0 ? _attributesToSet$name : value
-    if (_functionalHelpers.default.isObject(attrValue)) {
+    if (_siFunciona.default.isObject(attrValue)) {
       attrValue = kabobCaseAttributes(attrValue)
     }
-    var kabobKey = name === 'className' ? 'class' : _functionalHelpers.default.kabobCase(name)
+    var kabobKey = name === 'className' ? 'class' : _siFunciona.default.kabobCase(name)
     attributes[kabobKey] = attrValue
     return attributes
   }, {})
@@ -97,8 +97,8 @@ var domItemChanges = function domItemChanges (domItem) {
     changeList.added.nodeName = domItem.nodeName.toLowerCase()
   }
   if (domItem.nodeValue !== null) {
-    if (!_functionalHelpers.default.emptyObject(domItem.attributes)) {
-      changeList.added = changeList.appendChanges('added', _functionalHelpers.default.dotNotate(domItem.attributes))
+    if (!_siFunciona.default.emptyObject(domItem.attributes)) {
+      changeList.added = changeList.appendChanges('added', _siFunciona.default.dotNotate(domItem.attributes))
     }
     if (!domItem.element) {
       changeList.added.nodeValue = domItem.nodeValue
@@ -111,10 +111,10 @@ var domItemChanges = function domItemChanges (domItem) {
     return changeList
   }
   var domItemAttributes = kabobCaseAttributes(domItem.attributes)
-  var diffMap = _functionalHelpers.default.mapObject(domItemAttributes, function (attr, key) {
+  var diffMap = _siFunciona.default.mapObject(domItemAttributes, function (attr, key) {
     return checkAttribute(domItem.element)(attr, key)
   })
-  return _functionalHelpers.default.reduceObject(diffMap, function (changed, result, key) {
+  return _siFunciona.default.reduceObject(diffMap, function (changed, result, key) {
     var isArray = Array.isArray(result)
     if (!isArray && !result) {
       // Skip if the attribute is not changed (false and not an array)
@@ -127,7 +127,7 @@ var domItemChanges = function domItemChanges (domItem) {
     }
     if (!isArray) {
       // Not an array, simply set the attribute as added
-      changed.added[key] = domItem.attributes[_functionalHelpers.default.camelCase(key)]
+      changed.added[key] = domItem.attributes[_siFunciona.default.camelCase(key)]
       return changed
     }
     if (key !== 'class' && key !== 'style') {

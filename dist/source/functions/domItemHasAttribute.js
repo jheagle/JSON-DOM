@@ -10,7 +10,7 @@ require('core-js/modules/esnext.async-iterator.map.js')
 require('core-js/modules/esnext.iterator.map.js')
 require('core-js/modules/es.object.keys.js')
 require('core-js/stable')
-var _functionalHelpers = _interopRequireDefault(require('functional-helpers'))
+var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _getAssignedStyles = _interopRequireDefault(require('./getAssignedStyles'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 /**
@@ -23,10 +23,10 @@ var checkStyles = function checkStyles (domItem) {
   var _domItem$attributes$s
   var attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
   var assignedStyles = (_domItem$attributes$s = domItem.attributes.style) !== null && _domItem$attributes$s !== void 0 ? _domItem$attributes$s : {}
-  if (_functionalHelpers.default.emptyObject(assignedStyles)) {
+  if (_siFunciona.default.emptyObject(assignedStyles)) {
     return 1
   }
-  return _functionalHelpers.default.compareArrays(Object.keys((0, _getAssignedStyles.default)(attr)).map(_functionalHelpers.default.camelCase), Object.keys(assignedStyles))
+  return _siFunciona.default.compareArrays(Object.keys((0, _getAssignedStyles.default)(attr)).map(_siFunciona.default.camelCase), Object.keys(assignedStyles))
 }
 
 /**
@@ -42,7 +42,7 @@ var checkClasses = function checkClasses (domItem) {
   if (!assignedClasses.length) {
     return 1
   }
-  return _functionalHelpers.default.compareArrays(attr.split(' '), assignedClasses.split(' '))
+  return _siFunciona.default.compareArrays(attr.split(' '), assignedClasses.split(' '))
 }
 
 /**
@@ -62,7 +62,7 @@ var domItemHasAttribute = function domItemHasAttribute (domItem, key, attr) {
   if (key === 'className') {
     return checkClasses(domItem, attr)
   }
-  var camelKey = _functionalHelpers.default.camelCase(key)
+  var camelKey = _siFunciona.default.camelCase(key)
   if (typeof domItem.attributes[camelKey] === 'undefined') {
     return 1
   }
