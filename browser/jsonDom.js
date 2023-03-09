@@ -1885,7 +1885,7 @@
         if (_baseKey !== 'class' && _baseKey !== 'style') {
           throw new Error('Unhandled dotKey: ' + _dotKey)
         }
-        if (_baseKey === 'class' && /\s/.test(_value)) {
+        if (_baseKey === 'class' && (/\s/.test(_value) || !_value)) {
           // Skip this empty class name
           continue
         }
