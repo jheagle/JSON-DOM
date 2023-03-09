@@ -1883,6 +1883,10 @@
         if (_baseKey !== 'class' && _baseKey !== 'style') {
           throw new Error('Unhandled dotKey: ' + _dotKey)
         }
+        if (_baseKey === 'class' && !_value) {
+          // Skip this empty class name
+          continue
+        }
         if (_baseKey === 'class') {
           domItem.element.classList.add(_value)
           continue

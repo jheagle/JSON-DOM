@@ -68,6 +68,10 @@ const updateElement = domItem => {
     if (baseKey !== 'class' && baseKey !== 'style') {
       throw new Error('Unhandled dotKey: ' + dotKey)
     }
+    if (baseKey === 'class' && !value) {
+      // Skip this empty class name
+      continue
+    }
     if (baseKey === 'class') {
       domItem.element.classList.add(value)
       continue
