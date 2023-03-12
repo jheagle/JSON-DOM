@@ -6,6 +6,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
+var _addDomItemProperties = _interopRequireDefault(require('./functions/addDomItemProperties.js'))
 var _appendChild = _interopRequireDefault(require('./functions/appendChild.js'))
 var _appendListeners = _interopRequireDefault(require('./functions/appendListeners.js'))
 var _assignListener = _interopRequireDefault(require('./functions/assignListener.js'))
@@ -54,6 +55,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @memberOf module:jsonDom
  */
 var _default = {
+  addDomItemProperties: _addDomItemProperties.default,
   appendChild: _appendChild.default,
   appendListeners: _appendListeners.default,
   assignListener: _assignListener.default,

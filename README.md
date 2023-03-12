@@ -21,6 +21,9 @@ State management with JSON
 <dt><a href="#appendChangesTo">appendChangesTo(changeList)</a> ⇒ <code>appendChanges</code></dt>
 <dd><p>Initialize the appendChanges method with the changeList, return the appendChanges method.</p>
 </dd>
+<dt><a href="#isEmpty">isEmpty(propertyValue)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Check if the value is an empty object / array, or if it is null or undefined.</p>
+</dd>
 <dt><a href="#makeElementType">makeElementType(nodeName, data)</a> ⇒ <code>Text</code> | <code>Comment</code> | <code>HTMLElement</code></dt>
 <dd><p>Create a new DOM Node based on name and data.</p>
 </dd>
@@ -327,6 +330,7 @@ Core Dom management functions
         * [.assignListener(trigger, elem, fn, options)](#module_domFunctions.assignListener) ⇒ <code>listenerFunction</code> \| <code>function</code>
         * [.appendListeners(item, event, listener, args, options)](#module_domFunctions.appendListeners) ⇒ <code>DomItem</code>
         * [.appendChild(parent, child)](#module_domFunctions.appendChild) ⇒ <code>DomItem</code>
+        * [.addDomItemProperties(item)](#module_domFunctions.addDomItemProperties) ⇒ <code>DomItem</code>
     * _inner_
         * [~testChildItem](#module_domFunctions..testChildItem) ⇒ <code>Array.&lt;DomItem&gt;</code>
 
@@ -761,6 +765,17 @@ Append a child to the end of given parent's children list.
 | parent | <code>DomItem</code> | The parent that will receive the child. |
 | child | <code>DomItem</code> | The new child to attach to the parent. |
 
+<a name="module_domFunctions.addDomItemProperties"></a>
+
+### domFunctions.addDomItemProperties(item) ⇒ <code>DomItem</code>
+Ensure all basic properties of the DomItem are present.
+
+**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | <code>DomItem</code> | The object that will be formatted as a DomItem. |
+
 <a name="module_domFunctions..testChildItem"></a>
 
 ### domFunctions~testChildItem ⇒ <code>Array.&lt;DomItem&gt;</code>
@@ -783,6 +798,17 @@ Initialize the appendChanges method with the changeList, return the appendChange
 | Param | Type |
 | --- | --- |
 | changeList | <code>ChangeList</code> | 
+
+<a name="isEmpty"></a>
+
+## isEmpty(propertyValue) ⇒ <code>boolean</code>
+Check if the value is an empty object / array, or if it is null or undefined.
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| propertyValue | <code>\*</code> | 
 
 <a name="makeElementType"></a>
 

@@ -21,18 +21,6 @@ var useExclusions = (function makeExclusions () {
     if (jsonExclusions.includes(key)) {
       return undefined
     }
-    if (key === 'element') {
-      // Exclude html nodes
-      return null
-    }
-    if (key === 'parentItem') {
-      // Exclude circular parentItem references
-      return null
-    }
-    if (key === 'body' || key === 'head') {
-      // Exclude body and head child references from #document
-      return null
-    }
     return value
   }
 }())
@@ -45,7 +33,7 @@ var useExclusions = (function makeExclusions () {
  * @returns {string}
  */
 var domItemToJson = function domItemToJson (item) {
-  return JSON.stringify((0, _removeEmptyProperties.default)(item, ['element', 'parentItem', 'body', 'head']), useExclusions)
+  return JSON.stringify((0, _removeEmptyProperties.default)(siFunciona.cloneObject(item), ['element', 'parentItem', 'body', 'head']), useExclusions)
 }
 var _default = domItemToJson
 exports.default = _default

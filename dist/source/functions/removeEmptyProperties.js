@@ -16,6 +16,15 @@ require('core-js/stable')
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 /**
+ * Check if the value is an empty object / array, or if it is null or undefined.
+ * @param {*} propertyValue
+ * @returns {boolean}
+ */
+var isEmpty = function isEmpty (propertyValue) {
+  return _siFunciona.default.emptyObject(propertyValue) || propertyValue === null || typeof propertyValue === 'undefined'
+}
+
+/**
  * Remove all empty properties to reduce total size of the object.
  * @function
  * @memberOf module:domFunctions
@@ -28,7 +37,8 @@ var removeEmptyProperties = function removeEmptyProperties (item, propertiesToDe
     removeEmptyProperties(child, propertiesToDelete)
   })
   _siFunciona.default.objectKeys(item).forEach(function (property) {
-    if (!item[property] || propertiesToDelete.includes(property)) {
+    var propertyValue = item[property]
+    if (isEmpty(propertyValue) || propertiesToDelete.includes(property)) {
       delete item[property]
     }
   })

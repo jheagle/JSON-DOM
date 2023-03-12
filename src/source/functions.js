@@ -6,6 +6,7 @@
  * @memberOf module:jsonDom
  */
 import 'core-js/stable'
+import addDomItemProperties from './functions/addDomItemProperties.js'
 import appendChild from './functions/appendChild.js'
 import appendListeners from './functions/appendListeners.js'
 import assignListener from './functions/assignListener.js'
@@ -47,6 +48,7 @@ import updateElement from './functions/updateElement.js'
 import updateElements from './functions/updateElements.js'
 
 export default {
+  addDomItemProperties,
   appendChild,
   appendListeners,
   assignListener,

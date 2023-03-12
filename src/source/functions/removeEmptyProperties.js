@@ -2,6 +2,13 @@ import 'core-js/stable'
 import siFunciona from 'si-funciona'
 
 /**
+ * Check if the value is an empty object / array, or if it is null or undefined.
+ * @param {*} propertyValue
+ * @returns {boolean}
+ */
+const isEmpty = propertyValue => siFunciona.emptyObject(propertyValue) || propertyValue === null || typeof propertyValue === 'undefined'
+
+/**
  * Remove all empty properties to reduce total size of the object.
  * @function
  * @memberOf module:domFunctions
@@ -14,7 +21,8 @@ const removeEmptyProperties = (item, propertiesToDelete) => {
     removeEmptyProperties(child, propertiesToDelete)
   })
   siFunciona.objectKeys(item).forEach(property => {
-    if (!item[property] || propertiesToDelete.includes(property)) {
+    const propertyValue = item[property]
+    if (isEmpty(propertyValue) || propertiesToDelete.includes(property)) {
       delete item[property]
     }
   })
