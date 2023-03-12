@@ -36,6 +36,7 @@ var _registerListener = _interopRequireDefault(require('./functions/registerList
 var _registerListeners = _interopRequireDefault(require('./functions/registerListeners.js'))
 var _removeChild = _interopRequireDefault(require('./functions/removeChild.js'))
 var _renderHtml = _interopRequireDefault(require('./functions/renderHtml.js'))
+var _removeEmptyProperties = _interopRequireDefault(require('./functions/removeEmptyProperties.js'))
 var _retrieveListener = _interopRequireDefault(require('./functions/retrieveListener.js'))
 var _setParentItemReferences = _interopRequireDefault(require('./functions/setParentItemReferences.js'))
 var _updateChildNodes = _interopRequireDefault(require('./functions/updateChildNodes.js'))
@@ -83,6 +84,7 @@ var _default = {
   registerListeners: _registerListeners.default,
   removeChild: _removeChild.default,
   renderHtml: _renderHtml.default,
+  removeEmptyProperties: _removeEmptyProperties.default,
   retrieveListener: _retrieveListener.default,
   setParentItemReferences: _setParentItemReferences.default,
   updateChildNodes: _updateChildNodes.default,

@@ -36,6 +36,7 @@ import registerListener from './functions/registerListener.js'
 import registerListeners from './functions/registerListeners.js'
 import removeChild from './functions/removeChild.js'
 import renderHtml from './functions/renderHtml.js'
+import removeEmptyProperties from './functions/removeEmptyProperties.js'
 import retrieveListener from './functions/retrieveListener.js'
 import setParentItemReferences from './functions/setParentItemReferences.js'
 import updateChildNodes from './functions/updateChildNodes.js'
@@ -76,6 +77,7 @@ export default {
   registerListeners,
   removeChild,
   renderHtml,
+  removeEmptyProperties,
   retrieveListener,
   setParentItemReferences,
   updateChildNodes,

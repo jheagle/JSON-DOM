@@ -1,4 +1,5 @@
 import 'core-js/stable'
+import removeEmptyProperties from './removeEmptyProperties'
 
 const useExclusions = (function makeExclusions () {
   let jsonExclusions = []
@@ -33,6 +34,14 @@ const useExclusions = (function makeExclusions () {
  * @param {DomItem} item
  * @returns {string}
  */
-const domItemToJson = item => JSON.stringify(item, useExclusions)
+const domItemToJson = item => JSON.stringify(
+  removeEmptyProperties(item, [
+    'element',
+    'parentItem',
+    'body',
+    'head'
+  ]),
+  useExclusions
+)
 
 export default domItemToJson

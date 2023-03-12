@@ -9,6 +9,8 @@ require('core-js/modules/es.array.includes.js')
 require('core-js/modules/es.string.includes.js')
 require('core-js/modules/es.json.stringify.js')
 require('core-js/stable')
+var _removeEmptyProperties = _interopRequireDefault(require('./removeEmptyProperties'))
+function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 var useExclusions = (function makeExclusions () {
   var jsonExclusions = []
   return function (key, value) {
@@ -43,7 +45,7 @@ var useExclusions = (function makeExclusions () {
  * @returns {string}
  */
 var domItemToJson = function domItemToJson (item) {
-  return JSON.stringify(item, useExclusions)
+  return JSON.stringify((0, _removeEmptyProperties.default)(item, ['element', 'parentItem', 'body', 'head']), useExclusions)
 }
 var _default = domItemToJson
 exports.default = _default

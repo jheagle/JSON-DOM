@@ -38,8 +38,8 @@ describe('jsonToDomItem', () => {
     expect(typeof domJson).toBe('string')
     // Parsed into DomItem, but elements are null
     const parsedJson = jsonToDomItem(domJson)
-    expect(parsedJson.element).toBeNull()
-    expect(parsedJson.children[0].element).toBeNull()
+    expect(parsedJson).not.toHaveProperty('element')
+    expect(parsedJson.children[0]).not.toHaveProperty('element')
     // Attempt to re-add the elements
     const updatedParsed = updateElements(parsedJson)
     expect(updatedParsed.element.constructor.name).toBe('HTMLDivElement')

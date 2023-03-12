@@ -17,10 +17,10 @@ describe('domItemToJson', () => {
     const domJson = domItemToJson(parentInstance)
     expect(typeof domJson).toBe('string')
     const parsedJson = JSON.parse(domJson)
-    expect(parsedJson.parentItem).toBeNull()
-    expect(parsedJson.element).toBeNull()
-    expect(parsedJson.children[0].parentItem).toBeNull()
-    expect(parsedJson.children[0].element).toBeNull()
+    expect(parsedJson).not.toHaveProperty('parentItem')
+    expect(parsedJson).not.toHaveProperty('element')
+    expect(parsedJson.children[0]).not.toHaveProperty('parentItem')
+    expect(parsedJson.children[0]).not.toHaveProperty('element')
   })
 
   test('will handle exclusion rules', () => {

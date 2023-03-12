@@ -297,6 +297,7 @@ Core Dom management functions
         * [.setParentItemReferences(item)](#module_domFunctions.setParentItemReferences) ⇒ <code>DomItem</code>
         * [.retrieveListener(listenerName, [parent])](#module_domFunctions.retrieveListener) ⇒ <code>listenerFunction</code> \| <code>function</code> \| <code>Object</code>
         * [.renderHtml(item)](#module_domFunctions.renderHtml) ⇒ <code>DomItem</code>
+        * [.removeEmptyProperties(item, propertiesToDelete)](#module_domFunctions.removeEmptyProperties) ⇒ <code>DomItem</code>
         * [.removeChild(parent, child)](#module_domFunctions.removeChild) ⇒ <code>Array.&lt;DomItem&gt;</code>
         * [.registerListeners(listeners, [parent])](#module_domFunctions.registerListeners) ⇒ <code>DomItemRoot</code> \| <code>Object</code>
         * [.registerListener(listener, [name], [parent])](#module_domFunctions.registerListener) ⇒ <code>Object.&lt;string, listenerFunction&gt;</code>
@@ -429,6 +430,18 @@ with associated listeners.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | item | <code>DomItem</code> \| <code>null</code> | <code></code> | The DomItem that we want to render the element for |
+
+<a name="module_domFunctions.removeEmptyProperties"></a>
+
+### domFunctions.removeEmptyProperties(item, propertiesToDelete) ⇒ <code>DomItem</code>
+Remove all empty properties to reduce total size of the object.
+
+**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | <code>DomItem</code> | The DomItem with properties to check for empty. |
+| propertiesToDelete | <code>Array</code> | Optional array of additional property names to remove. |
 
 <a name="module_domFunctions.removeChild"></a>
 
