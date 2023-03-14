@@ -5,7 +5,7 @@ import createDomItem from '../objects/createDomItem'
  * Ensure all basic properties of the DomItem are present.
  * @function
  * @memberOf module:domFunctions
- * @param {DomItem} item - The object that will be formatted as a DomItem.
+ * @param {Object} item - The object that will be formatted as a DomItem.
  * @returns {DomItem}
  */
 const addDomItemProperties = item => {

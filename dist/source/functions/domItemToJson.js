@@ -30,10 +30,21 @@ var useExclusions = (function makeExclusions () {
  * @function
  * @memberOf module:domFunctions
  * @param {DomItem} item
+ * @param {Object} [options={}]
+ * @param {int} [options.mapLimit=100]
+ * @param {int} [options.relevancyRange=1000]
  * @returns {string}
  */
 var domItemToJson = function domItemToJson (item) {
-  return JSON.stringify((0, _removeEmptyProperties.default)(siFunciona.cloneObject(item), ['element', 'parentItem', 'body', 'head']), useExclusions)
+  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
+  var _ref$mapLimit = _ref.mapLimit
+  var mapLimit = _ref$mapLimit === void 0 ? 100 : _ref$mapLimit
+  var _ref$relevancyRange = _ref.relevancyRange
+  var relevancyRange = _ref$relevancyRange === void 0 ? 1000 : _ref$relevancyRange
+  return JSON.stringify((0, _removeEmptyProperties.default)(siFunciona.cloneObject(item, {
+    mapLimit: mapLimit,
+    relevancyRange: relevancyRange
+  }), ['element', 'parentItem', 'body', 'head']), useExclusions)
 }
 var _default = domItemToJson
 exports.default = _default

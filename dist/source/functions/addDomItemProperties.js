@@ -17,7 +17,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * Ensure all basic properties of the DomItem are present.
  * @function
  * @memberOf module:domFunctions
- * @param {DomItem} item - The object that will be formatted as a DomItem.
+ * @param {Object} item - The object that will be formatted as a DomItem.
  * @returns {DomItem}
  */
 var addDomItemProperties = function addDomItemProperties (item) {

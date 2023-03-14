@@ -20,10 +20,13 @@ const useExclusions = (function makeExclusions () {
  * @function
  * @memberOf module:domFunctions
  * @param {DomItem} item
+ * @param {Object} [options={}]
+ * @param {int} [options.mapLimit=100]
+ * @param {int} [options.relevancyRange=1000]
  * @returns {string}
  */
-const domItemToJson = item => JSON.stringify(
-  removeEmptyProperties(siFunciona.cloneObject(item), [
+const domItemToJson = (item, { mapLimit = 100, relevancyRange = 1000 } = {}) => JSON.stringify(
+  removeEmptyProperties(siFunciona.cloneObject(item, {mapLimit, relevancyRange}), [
     'element',
     'parentItem',
     'body',

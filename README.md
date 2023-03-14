@@ -320,7 +320,7 @@ Core Dom management functions
         * [.gatherChildItems(item, test)](#module_domFunctions.gatherChildItems) ⇒ <code>Array.&lt;DomItem&gt;</code>
         * [.elementHasAttribute(element, key, attr)](#module_domFunctions.elementHasAttribute) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
         * [.elementChanges(domItem)](#module_domFunctions.elementChanges) ⇒ <code>ChangeList</code>
-        * [.domItemToJson(item)](#module_domFunctions.domItemToJson) ⇒ <code>string</code>
+        * [.domItemToJson(item, [options])](#module_domFunctions.domItemToJson) ⇒ <code>string</code>
         * [.domItemHasAttribute(domItem, key, attr)](#module_domFunctions.domItemHasAttribute) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
         * [.domItemChanges(domItem)](#module_domFunctions.domItemChanges) ⇒ <code>ChangeList</code>
         * [.deactivateListeners(item)](#module_domFunctions.deactivateListeners) ⇒ <code>DomItem</code>
@@ -647,14 +647,17 @@ Given a domObjects.DomItem as config, this function will return the changes from
 
 <a name="module_domFunctions.domItemToJson"></a>
 
-### domFunctions.domItemToJson(item) ⇒ <code>string</code>
+### domFunctions.domItemToJson(item, [options]) ⇒ <code>string</code>
 Convert DOM Item to JSON string.
 
 **Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
 
-| Param | Type |
-| --- | --- |
-| item | <code>DomItem</code> | 
+| Param | Type | Default |
+| --- | --- | --- |
+| item | <code>DomItem</code> |  | 
+| [options] | <code>Object</code> | <code>{}</code> | 
+| [options.mapLimit] | <code>int</code> | <code>100</code> | 
+| [options.relevancyRange] | <code>int</code> | <code>1000</code> | 
 
 <a name="module_domFunctions.domItemHasAttribute"></a>
 
@@ -774,7 +777,7 @@ Ensure all basic properties of the DomItem are present.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| item | <code>DomItem</code> | The object that will be formatted as a DomItem. |
+| item | <code>Object</code> | The object that will be formatted as a DomItem. |
 
 <a name="module_domFunctions..testChildItem"></a>
 
