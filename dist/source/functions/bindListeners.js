@@ -1,6 +1,5 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
@@ -18,8 +17,6 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * element
  * @returns {DomItem}
  */
-var bindListeners = function bindListeners (item) {
-  return !_siFunciona.default.emptyObject(item.eventListeners) && item.element ? (0, _bindElementListeners.default)(item) : item
-}
+const bindListeners = item => !_siFunciona.default.emptyObject(item.eventListeners) && item.element ? (0, _bindElementListeners.default)(item) : item
 var _default = bindListeners
 exports.default = _default

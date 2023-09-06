@@ -1,6 +1,5 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
@@ -24,7 +23,6 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @property {DomItemHead} head - A specific reference to head item
  * @property {DomItemBody} body - A specific reference to body item
  */
-
 /**
  * Initiate the Root for DocumentItem. This is primary a helper for {@link documentDomItem}.
  * @function
@@ -36,8 +34,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * listeners to be registered in the Dom
  * @returns {DomItemRoot|DomItem}
  */
-var initRoot = function initRoot (children) {
-  var listeners = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
+const initRoot = function (children) {
+  const listeners = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
   return (0, _createDomItem.default)({
     nodeName: '#document',
     nodeValue: null,

@@ -1,6 +1,5 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
@@ -15,8 +14,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {string|null} data
  * @returns {Text|Comment|HTMLElement}
  */
-var makeElementType = function makeElementType (nodeName) {
-  var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null
+const makeElementType = function (nodeName) {
+  const data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null
   switch (nodeName) {
     case '#text':
       return document.createTextNode(data)
@@ -34,7 +33,7 @@ var makeElementType = function makeElementType (nodeName) {
  * @param {DomItem} domItem - The DomItem requiring matching HTML element property
  * @return {DomItem}
  */
-var generateElement = function generateElement (domItem) {
+const generateElement = domItem => {
   domItem.element = makeElementType(domItem.nodeName, domItem.nodeValue)
   return (0, _updateElement.default)(domItem)
 }

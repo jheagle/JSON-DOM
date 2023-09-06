@@ -1,6 +1,5 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
@@ -17,8 +16,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {DomItem|null} item - The DomItem that we want to render the element for
  * @returns {DomItem}
  */
-var renderHtml = function renderHtml () {
-  var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null
+const renderHtml = function () {
+  let item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null
   if (item === null) {
     item = _documentItem.default
   }

@@ -13,16 +13,28 @@ State management with JSON
 <dt><a href="#module_domFunctions">domFunctions</a></dt>
 <dd><p>Core Dom management functions</p>
 </dd>
+<dt><a href="#module_optionFlags">optionFlags</a></dt>
+<dd><p>Be able to use Flags (Options) in a well-formed way.</p>
+</dd>
 </dl>
 
 ## Functions
 
 <dl>
+<dt><a href="#createEventProxy">createEventProxy(event)</a> ⇒ <code>EventProxy</code></dt>
+<dd><p>Return a modified version of the event.</p>
+</dd>
 <dt><a href="#appendChangesTo">appendChangesTo(changeList)</a> ⇒ <code>appendChanges</code></dt>
 <dd><p>Initialize the appendChanges method with the changeList, return the appendChanges method.</p>
 </dd>
+<dt><a href="#getListenerOptions">getListenerOptions()</a> ⇒ <code>OptionsTemplate</code></dt>
+<dd><p>Retrieve the OptionsTemplate for EventListenerOptions.</p>
+</dd>
 <dt><a href="#isEmpty">isEmpty(propertyValue)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Check if the value is an empty object / array, or if it is null or undefined.</p>
+</dd>
+<dt><a href="#makeEventHandler">makeEventHandler(listener, item, [...args])</a> ⇒ <code>eventHandler</code></dt>
+<dd><p>Prepare a listener to be used before assigning to an element.</p>
 </dd>
 <dt><a href="#makeElementType">makeElementType(nodeName, data)</a> ⇒ <code>Text</code> | <code>Comment</code> | <code>HTMLElement</code></dt>
 <dd><p>Create a new DOM Node based on name and data.</p>
@@ -50,6 +62,12 @@ State management with JSON
 </dd>
 <dt><a href="#kabobCaseAttributes">kabobCaseAttributes(attributesToSet)</a> ⇒ <code>Object.&lt;string, *&gt;</code></dt>
 <dd><p>Updates all the keys to be kabob-case</p>
+</dd>
+<dt><a href="#applyActiveListeners">applyActiveListeners(item, eventName)</a> ⇒ <code>DomItem</code></dt>
+<dd><p>Apply each active event listener for event type to the DOM Item&#39;s element.</p>
+</dd>
+<dt><a href="#activateListener">activateListener(item, eventName, eventListener)</a> ⇒ <code>DomItem</code></dt>
+<dd><p>Activate listener by pushing it to activeListeners.</p>
 </dd>
 </dl>
 
@@ -91,17 +109,24 @@ Core objects for representing the DOM in JSON.
     * [.initRoot(children, listeners)](#module_domObjects.initRoot) ⇒ <code>DomItemRoot</code> \| <code>DomItem</code>
     * [.initChildren()](#module_domObjects.initChildren) ⇒ <code>Array.&lt;(DomItemHead\|DomItemBody)&gt;</code>
     * [.documentDomItem(listeners, [rootItem])](#module_domObjects.documentDomItem) ⇒ <code>DomItemRoot</code> \| <code>DomItem</code>
+    * [.createEventResponder(eventHandler, [abort])](#module_domObjects.createEventResponder) ⇒ <code>EventResponder</code>
     * [.createDomItem([item])](#module_domObjects.createDomItem) ⇒ <code>DomItem</code>
     * [.createChangeList(changeList)](#module_domObjects.createChangeList) ⇒ <code>ChangeList</code>
+    * [.Option](#module_domObjects.Option) : <code>boolean</code>
     * [.DomItemRoot](#module_domObjects.DomItemRoot) : <code>DomItem</code>
+    * [.EventResponder](#module_domObjects.EventResponder) : <code>Object</code>
+    * [.EventProxy](#module_domObjects.EventProxy) : <code>Event</code>
     * [.listenerFunction](#module_domObjects.listenerFunction) : <code>function</code>
     * [.UseCapture](#module_domObjects.UseCapture) : <code>boolean</code>
     * [.OptionsObject](#module_domObjects.OptionsObject) : <code>Object</code>
     * [.EventListenerOptions](#module_domObjects.EventListenerOptions) : <code>OptionsObject</code> \| <code>UseCapture</code>
     * [.EventListener](#module_domObjects.EventListener) : <code>Object</code>
+    * [.EventListeners](#module_domObjects.EventListeners) : <code>Array.&lt;EventListener&gt;</code>
+    * [.EventName](#module_domObjects.EventName) : <code>string</code>
     * [.DomItem](#module_domObjects.DomItem) : <code>Object</code>
     * [.appendChanges](#module_domObjects.appendChanges) : <code>function</code>
     * [.ChangeList](#module_domObjects.ChangeList) : <code>Object.&lt;string, DotNotatedObject&gt;</code>
+    * [.eventHandler](#module_domObjects.eventHandler) : <code>function</code>
 
 <a name="module_domObjects.documentItem"></a>
 
@@ -139,10 +164,22 @@ Return a DomItem reference to the document. The rootItem argument is a system va
 | listeners | <code>Object.&lt;string, listenerFunction&gt;</code> | An object of all event listeners to be registered in the Dom |
 | [rootItem] | <code>DomItemRoot</code> \| <code>DomItem</code> | This is a reference to DomItemRoot which will be defaulted with [initRoot](initRoot) |
 
+<a name="module_domObjects.createEventResponder"></a>
+
+### domObjects.createEventResponder(eventHandler, [abort]) ⇒ <code>EventResponder</code>
+Store the handler function and associated abort controller instance if available to be used when events are triggered.
+
+**Kind**: static method of [<code>domObjects</code>](#module_domObjects)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| eventHandler | <code>eventHandler</code> |  | The eventHandler wrapped function to be called for the event. |
+| [abort] | <code>AbortController</code> \| <code>boolean</code> \| <code>null</code> | <code></code> | Assign an AbortSignal provided or create one (if true), otherwise null. |
+
 <a name="module_domObjects.createDomItem"></a>
 
 ### domObjects.createDomItem([item]) ⇒ <code>DomItem</code>
-This is the basic Object for representing the Dom in a virtual perspective. All incoming attributes will be mergedto the specified format.
+This is the basic Object for representing the Dom from a virtual perspective. All incoming attributes will be mergedto the specified format.
 
 **Kind**: static method of [<code>domObjects</code>](#module_domObjects)  
 
@@ -163,6 +200,12 @@ Create the change list template.
 | [changeList.removed] | <code>DotNotatedObject</code> | <code>{}</code> | 
 | [changeList.added] | <code>DotNotatedObject</code> | <code>{}</code> | 
 
+<a name="module_domObjects.Option"></a>
+
+### domObjects.Option : <code>boolean</code>
+A boolean value used to alter functionality.
+
+**Kind**: static typedef of [<code>domObjects</code>](#module_domObjects)  
 <a name="module_domObjects.DomItemRoot"></a>
 
 ### domObjects.DomItemRoot : <code>DomItem</code>
@@ -182,6 +225,31 @@ DomItemRoot defines the structure for a single element in the Dom
 | head | [<code>DomItemHead</code>](#DomItemHead) |  | A specific reference to head item |
 | body | [<code>DomItemBody</code>](#DomItemBody) |  | A specific reference to body item |
 
+<a name="module_domObjects.EventResponder"></a>
+
+### domObjects.EventResponder : <code>Object</code>
+Track an event handler and optional abort signal.
+
+**Kind**: static typedef of [<code>domObjects</code>](#module_domObjects)  
+**Properties**
+
+| Name | Type |
+| --- | --- |
+| handler | <code>eventHandler</code> | 
+| abort | <code>AbortController</code> \| <code>null</code> | 
+
+<a name="module_domObjects.EventProxy"></a>
+
+### domObjects.EventProxy : <code>Event</code>
+A wrapped Event which provides additional utilities.
+
+**Kind**: static typedef of [<code>domObjects</code>](#module_domObjects)  
+**Properties**
+
+| Name | Type |
+| --- | --- |
+| immediatePropagationStopped | <code>boolean</code> | 
+
 <a name="module_domObjects.listenerFunction"></a>
 
 ### domObjects.listenerFunction : <code>function</code>
@@ -191,7 +259,7 @@ This is the standard definition of a listenerFunction to be used
 
 | Param | Type | Description |
 | --- | --- | --- |
-| e | <code>Event</code> | The event object passed to the listener |
+| e | <code>Event</code> \| <code>EventProxy</code> | The event object passed to the listener |
 | target | <code>DomItem</code> | The element which triggered the event |
 | [...args] | <code>\*</code> | Optional args as required by the listener |
 
@@ -214,6 +282,7 @@ OptionsObject defines the structure for the options to be passed to addEventList
 | capture | <code>boolean</code> | Indicate that events of this type will be dispatched to the registered listenerFunction before being dispatched to any EventTarget beneath it in the Dom tree. |
 | once | <code>boolean</code> | Indicate that the listenerFunction should be invoked at most once after being added. If 'true', the listenerFunction would be automatically removed when invoked. |
 | passive | <code>boolean</code> | Indicate that, if 'true', indicates that the listenerFunction will never call preventDefault(). If preventDefault() is called, the user agent will do nothing with it. |
+| signal | <code>boolean</code> | The listener will be removed when the given AbortSignal object's abort() method is called. If not specified, no AbortSignal is associated with the listener. |
 
 <a name="module_domObjects.EventListenerOptions"></a>
 
@@ -236,6 +305,18 @@ An EventListener Object to be appended to the element within the DomItem
 | listenerOptions | <code>EventListenerOptions</code> | Provides support for options parameter of addEventListener, or false for default |
 | listenerActive | <code>boolean</code> | Indicate whether this listener has been applied to the element. |
 
+<a name="module_domObjects.EventListeners"></a>
+
+### domObjects.EventListeners : <code>Array.&lt;EventListener&gt;</code>
+One or more listeners assigned to the same event.
+
+**Kind**: static typedef of [<code>domObjects</code>](#module_domObjects)  
+<a name="module_domObjects.EventName"></a>
+
+### domObjects.EventName : <code>string</code>
+The name of the trigger used to fire the event.
+
+**Kind**: static typedef of [<code>domObjects</code>](#module_domObjects)  
 <a name="module_domObjects.DomItem"></a>
 
 ### domObjects.DomItem : <code>Object</code>
@@ -246,10 +327,11 @@ DomItem defines the structure for a single element in the Dom
 
 | Name | Type | Description |
 | --- | --- | --- |
+| activeListeners | <code>Object.&lt;EventName, Object.&lt;number, eventHandler&gt;&gt;</code> | Generated property storing assigned listeners. |
 | attributes | <code>Object.&lt;string, (string\|Object)&gt;</code> | All potential HTML element attributes can be defined here (including the defaulted style object) |
 | children | <code>Array.&lt;DomItem&gt;</code> | A reference to an array of child objects |
 | element | <code>Object</code> \| <code>HTMLElement</code> \| <code>null</code> | A reference to an existing HTML element will be stored here (default null) |
-| eventListeners | <code>Object.&lt;Event, EventListener&gt;</code> | An object holding all events to be registered for the associated element |
+| eventListeners | <code>Object.&lt;EventName, EventListeners&gt;</code> | An object holding all events to be registered for the associated element |
 | jsonExclusions | <code>Array</code> | array of properties to exclude |
 | nodeName | <code>string</code> | This is any document node name |
 | nodeValue | <code>string</code> | Is a string of text, null for HTML elements |
@@ -280,6 +362,17 @@ Represent changes / a diff of an object, including removed, added, and changed p
 | removed | <code>DotNotatedObject</code> | 
 | added | <code>DotNotatedObject</code> | 
 | appendChanges | <code>appendChanges</code> | 
+
+<a name="module_domObjects.eventHandler"></a>
+
+### domObjects.eventHandler : <code>function</code>
+Based on available flags, either proceed to process the listener or skip.
+
+**Kind**: static typedef of [<code>domObjects</code>](#module_domObjects)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| event | <code>EventProxy</code> | The event object passed to the listener |
 
 <a name="module_domFunctions"></a>
 
@@ -328,7 +421,6 @@ Core Dom management functions
         * [.bindElementListeners(item)](#module_domFunctions.bindElementListeners) ⇒ <code>DomItem</code>
         * [.bindAllListeners(item)](#module_domFunctions.bindAllListeners) ⇒ <code>DomItem</code>
         * [.assignListener(trigger, elem, fn, options)](#module_domFunctions.assignListener) ⇒ <code>listenerFunction</code> \| <code>function</code>
-        * [.appendListeners(item, event, listener, args, options)](#module_domFunctions.appendListeners) ⇒ <code>DomItem</code>
         * [.appendChild(parent, child)](#module_domFunctions.appendChild) ⇒ <code>DomItem</code>
         * [.addDomItemProperties(item)](#module_domFunctions.addDomItemProperties) ⇒ <code>DomItem</code>
     * _inner_
@@ -741,21 +833,6 @@ Provide compatibility for assigning listeners.
 | fn | <code>EventListenerOrEventListenerObject</code> \| <code>null</code> |  | The function which will be invoked when the event is triggered |
 | options | <code>EventListenerOptions</code> \| <code>boolean</code> | <code>false</code> | Additional options to how the event will be fired |
 
-<a name="module_domFunctions.appendListeners"></a>
-
-### domFunctions.appendListeners(item, event, listener, args, options) ⇒ <code>DomItem</code>
-When there may be extra data needed for the event listener function call, this function may be used as a helperto pass the additional data. Also, if it is desirable to add event listeners during run-time, this function can beused to achieve this.WARNING: This is a recursive function.
-
-**Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| item | <code>DomItem</code> |  | The DomItem which will have its eventListeners updated. |
-| event | <code>string</code> |  | The string name of the event trigger type to be added. |
-| listener | <code>string</code> |  | The name of the function to be called once the event is triggered. |
-| args | <code>Object</code> |  | Additional arguments to be used in the listener function. |
-| options | <code>EventListenerOptions</code> | <code>false</code> | The strategy used when the event is triggered. |
-
 <a name="module_domFunctions.appendChild"></a>
 
 ### domFunctions.appendChild(parent, child) ⇒ <code>DomItem</code>
@@ -791,6 +868,77 @@ To be used with gatherChildItems which will start at item and recurse over all c
 | item | <code>DomItem</code> \| <code>Object</code> | The DomItem is the child being tested |
 | gatheredResults | <code>Array.&lt;DomItem&gt;</code> | All of the child items gathered based on the test |
 
+<a name="module_optionFlags"></a>
+
+## optionFlags
+Be able to use Flags (Options) in a well-formed way.
+
+**Version**: 1.0.0  
+**Author**: Joshua Heagle <joshuaheagle@gmail.com>  
+
+* [optionFlags](#module_optionFlags)
+    * _static_
+        * [.optionsToNumber(optionsTemplate, listenerOptions)](#module_optionFlags.optionsToNumber) ⇒ <code>int</code>
+        * [.numberToOptions(optionsTemplate, binaryOptions)](#module_optionFlags.numberToOptions) ⇒ <code>EventListenerOptions</code>
+    * _inner_
+        * [~Options](#module_optionFlags..Options) : <code>Object.&lt;string, Option&gt;</code> \| <code>Option</code>
+        * [~Flag](#module_optionFlags..Flag) : <code>int</code>
+        * [~OptionsTemplate](#module_optionFlags..OptionsTemplate) : <code>Object.&lt;string, Flag&gt;</code>
+
+<a name="module_optionFlags.optionsToNumber"></a>
+
+### optionFlags.optionsToNumber(optionsTemplate, listenerOptions) ⇒ <code>int</code>
+Take the given options and convert them (using binary) to an integer. Given listener options, each one is assigned a
+bitwise position. The resulting binary number represents any possible combination of the available flags set.
+
+**Kind**: static method of [<code>optionFlags</code>](#module_optionFlags)  
+
+| Param | Type |
+| --- | --- |
+| optionsTemplate | <code>OptionsTemplate</code> | 
+| listenerOptions | <code>Options</code> \| <code>Option</code> | 
+
+<a name="module_optionFlags.numberToOptions"></a>
+
+### optionFlags.numberToOptions(optionsTemplate, binaryOptions) ⇒ <code>EventListenerOptions</code>
+Take an integer representation of the listener options and convert them to the listener options object.
+
+**Kind**: static method of [<code>optionFlags</code>](#module_optionFlags)  
+
+| Param | Type |
+| --- | --- |
+| optionsTemplate | <code>OptionsTemplate</code> | 
+| binaryOptions | <code>int</code> | 
+
+<a name="module_optionFlags..Options"></a>
+
+### optionFlags~Options : <code>Object.&lt;string, Option&gt;</code> \| <code>Option</code>
+A set of named options within an object, or simply a singular Option.
+
+**Kind**: inner typedef of [<code>optionFlags</code>](#module_optionFlags)  
+<a name="module_optionFlags..Flag"></a>
+
+### optionFlags~Flag : <code>int</code>
+A numeric value used as position in a binary number having any numeric value 2^n.
+
+**Kind**: inner typedef of [<code>optionFlags</code>](#module_optionFlags)  
+<a name="module_optionFlags..OptionsTemplate"></a>
+
+### optionFlags~OptionsTemplate : <code>Object.&lt;string, Flag&gt;</code>
+Object containing available Option names and the Flag value associated with each.
+
+**Kind**: inner typedef of [<code>optionFlags</code>](#module_optionFlags)  
+<a name="createEventProxy"></a>
+
+## createEventProxy(event) ⇒ <code>EventProxy</code>
+Return a modified version of the event.
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| event | <code>Event</code> | 
+
 <a name="appendChangesTo"></a>
 
 ## appendChangesTo(changeList) ⇒ <code>appendChanges</code>
@@ -802,6 +950,12 @@ Initialize the appendChanges method with the changeList, return the appendChange
 | --- | --- |
 | changeList | <code>ChangeList</code> | 
 
+<a name="getListenerOptions"></a>
+
+## getListenerOptions() ⇒ <code>OptionsTemplate</code>
+Retrieve the OptionsTemplate for EventListenerOptions.
+
+**Kind**: global function  
 <a name="isEmpty"></a>
 
 ## isEmpty(propertyValue) ⇒ <code>boolean</code>
@@ -812,6 +966,19 @@ Check if the value is an empty object / array, or if it is null or undefined.
 | Param | Type |
 | --- | --- |
 | propertyValue | <code>\*</code> | 
+
+<a name="makeEventHandler"></a>
+
+## makeEventHandler(listener, item, [...args]) ⇒ <code>eventHandler</code>
+Prepare a listener to be used before assigning to an element.
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| listener | <code>listenerFunction</code> | 
+| item | <code>DomItem</code> | 
+| [...args] | <code>\*</code> | 
 
 <a name="makeElementType"></a>
 
@@ -916,6 +1083,31 @@ Updates all the keys to be kabob-case
 | Param | Type |
 | --- | --- |
 | attributesToSet | <code>Object.&lt;string, \*&gt;</code> | 
+
+<a name="applyActiveListeners"></a>
+
+## applyActiveListeners(item, eventName) ⇒ <code>DomItem</code>
+Apply each active event listener for event type to the DOM Item's element.
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| item | <code>DomItem</code> | 
+| eventName | <code>EventName</code> | 
+
+<a name="activateListener"></a>
+
+## activateListener(item, eventName, eventListener) ⇒ <code>DomItem</code>
+Activate listener by pushing it to activeListeners.
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| item | <code>DomItem</code> | 
+| eventName | <code>EventName</code> | 
+| eventListener | <code>EventListener</code> | 
 
 <a name="DomItemHead"></a>
 

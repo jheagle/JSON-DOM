@@ -1,19 +1,15 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/es.array.includes.js')
-require('core-js/modules/es.string.includes.js')
-require('core-js/modules/es.json.stringify.js')
 require('core-js/stable')
 var _removeEmptyProperties = _interopRequireDefault(require('./removeEmptyProperties'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
-var useExclusions = (function makeExclusions () {
-  var jsonExclusions = []
-  return function (key, value) {
+const useExclusions = (function makeExclusions () {
+  let jsonExclusions = []
+  return (key, value) => {
     if (key === 'jsonExclusions') {
       jsonExclusions = value
       return value
@@ -35,16 +31,15 @@ var useExclusions = (function makeExclusions () {
  * @param {int} [options.relevancyRange=1000]
  * @returns {string}
  */
-var domItemToJson = function domItemToJson (item) {
-  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
-  var _ref$mapLimit = _ref.mapLimit
-  var mapLimit = _ref$mapLimit === void 0 ? 100 : _ref$mapLimit
-  var _ref$relevancyRange = _ref.relevancyRange
-  var relevancyRange = _ref$relevancyRange === void 0 ? 1000 : _ref$relevancyRange
+const domItemToJson = function (item) {
+  const {
+    mapLimit = 100,
+    relevancyRange = 1000
+  } = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
   return JSON.stringify((0, _removeEmptyProperties.default)(siFunciona.cloneObject(item, {
-    mapLimit: mapLimit,
-    relevancyRange: relevancyRange
-  }), ['element', 'parentItem', 'body', 'head']), useExclusions)
+    mapLimit,
+    relevancyRange
+  }), ['activeListeners', 'element', 'parentItem', 'body', 'head']), useExclusions)
 }
 var _default = domItemToJson
 exports.default = _default

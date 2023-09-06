@@ -1,14 +1,14 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
 require('core-js/stable')
+var _activateListener = _interopRequireDefault(require('./functions/activateListener.js'))
 var _addDomItemProperties = _interopRequireDefault(require('./functions/addDomItemProperties.js'))
 var _appendChild = _interopRequireDefault(require('./functions/appendChild.js'))
-var _appendListeners = _interopRequireDefault(require('./functions/appendListeners.js'))
+var _applyActiveListeners = _interopRequireDefault(require('./functions/applyActiveListeners.js'))
 var _assignListener = _interopRequireDefault(require('./functions/assignListener.js'))
 var _bindAllListeners = _interopRequireDefault(require('./functions/bindAllListeners.js'))
 var _bindElementListeners = _interopRequireDefault(require('./functions/bindElementListeners.js'))
@@ -33,6 +33,7 @@ var _getParentsFromAttribute = _interopRequireDefault(require('./functions/getPa
 var _getTopParentItem = _interopRequireDefault(require('./functions/getTopParentItem.js'))
 var _jsonToDomItem = _interopRequireDefault(require('./functions/jsonToDomItem.js'))
 var _listenerOptions = _interopRequireDefault(require('./functions/listenerOptions.js'))
+var _makeEventHandler = _interopRequireDefault(require('./functions/makeEventHandler.js'))
 var _registerListener = _interopRequireDefault(require('./functions/registerListener.js'))
 var _registerListeners = _interopRequireDefault(require('./functions/registerListeners.js'))
 var _removeChild = _interopRequireDefault(require('./functions/removeChild.js'))
@@ -55,9 +56,10 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @memberOf module:jsonDom
  */
 var _default = {
+  activateListener: _activateListener.default,
   addDomItemProperties: _addDomItemProperties.default,
   appendChild: _appendChild.default,
-  appendListeners: _appendListeners.default,
+  applyActiveListeners: _applyActiveListeners.default,
   assignListener: _assignListener.default,
   bindAllListeners: _bindAllListeners.default,
   bindElementListeners: _bindElementListeners.default,
@@ -82,6 +84,7 @@ var _default = {
   getTopParentItem: _getTopParentItem.default,
   jsonToDomItem: _jsonToDomItem.default,
   listenerOptions: _listenerOptions.default,
+  makeEventHandler: _makeEventHandler.default,
   registerListener: _registerListener.default,
   registerListeners: _registerListeners.default,
   removeChild: _removeChild.default,

@@ -1,13 +1,9 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/es.array.includes.js')
-require('core-js/modules/es.string.includes.js')
-require('core-js/modules/es.object.keys.js')
 require('core-js/stable')
 var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
@@ -19,8 +15,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
  * @returns {listenerFunction|function|Object}
  */
-var retrieveListener = function retrieveListener (listenerName) {
-  var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default
+const retrieveListener = function (listenerName) {
+  const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default
   return Object.keys(parent.eventListeners).includes(listenerName) ? parent.eventListeners[listenerName] : (function (e) {
     throw e
   }('Undefined listener function on this DomItemRoot: '.concat(listenerName)))

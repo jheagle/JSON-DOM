@@ -1,14 +1,9 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/es.array.includes.js')
-require('core-js/modules/es.string.includes.js')
-require('core-js/modules/es.regexp.exec.js')
-require('core-js/modules/es.regexp.test.js')
 require('core-js/stable')
 var _bindListeners = _interopRequireDefault(require('./bindListeners.js'))
 var _deactivateListeners = _interopRequireDefault(require('./deactivateListeners.js'))
@@ -24,18 +19,18 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * element
  * @returns {DomItem}
  */
-var updateElement = function updateElement (domItem) {
+const updateElement = domItem => {
   if (!domItem.element) {
     return (0, _generateElement.default)((0, _deactivateListeners.default)(domItem))
   }
-  var changes = (0, _domItemChanges.default)(domItem)
+  const changes = (0, _domItemChanges.default)(domItem)
   if (changes.removed.nodeName || changes.added.nodeName) {
     // if the nodeName has changed then remove the element and create a new one
     domItem.element.remove()
     return (0, _generateElement.default)((0, _deactivateListeners.default)(domItem))
   }
-  for (var dotKey in changes.removed) {
-    var value = changes.removed[dotKey]
+  for (const dotKey in changes.removed) {
+    const value = changes.removed[dotKey]
     if (!dotKey.includes('.')) {
       if (dotKey in domItem.element) {
         delete domItem.element[dotKey]
@@ -44,7 +39,7 @@ var updateElement = function updateElement (domItem) {
       domItem.element.removeAttribute(dotKey)
       continue
     }
-    var baseKey = _siFunciona.default.strBefore(dotKey, '.')
+    const baseKey = _siFunciona.default.strBefore(dotKey, '.')
     if (baseKey !== 'class' && baseKey !== 'style') {
       throw new Error('Unhandled dotKey: ' + dotKey)
     }
@@ -54,41 +49,41 @@ var updateElement = function updateElement (domItem) {
     }
     domItem.element.style.removeProperty(_siFunciona.default.strAfter(dotKey, '.'))
   }
-  for (var _dotKey in changes.added) {
-    var _value = changes.added[_dotKey]
-    if (_dotKey === 'className') {
-      domItem.element.className = _value
+  for (const dotKey in changes.added) {
+    const value = changes.added[dotKey]
+    if (dotKey === 'className') {
+      domItem.element.className = value
       continue
     }
-    if (_dotKey === 'style') {
+    if (dotKey === 'style') {
       // Update all styles based on incoming style object
-      for (var style in _value) {
-        domItem.element.style.setProperty(style, _value[style])
+      for (const style in value) {
+        domItem.element.style.setProperty(style, value[style])
       }
       continue
     }
-    if (!_dotKey.includes('.')) {
-      if (_dotKey in domItem.element && _dotKey !== 'form') {
+    if (!dotKey.includes('.')) {
+      if (dotKey in domItem.element && dotKey !== 'form') {
         // Some things can be assigned directly, but 'form' attribute cannot
-        domItem.element[_dotKey] = _value
+        domItem.element[dotKey] = value
         continue
       }
-      domItem.element.setAttribute(_dotKey, _value)
+      domItem.element.setAttribute(dotKey, value)
       continue
     }
-    var _baseKey = _siFunciona.default.strBefore(_dotKey, '.')
-    if (_baseKey !== 'class' && _baseKey !== 'style') {
-      throw new Error('Unhandled dotKey: ' + _dotKey)
+    const baseKey = _siFunciona.default.strBefore(dotKey, '.')
+    if (baseKey !== 'class' && baseKey !== 'style') {
+      throw new Error('Unhandled dotKey: ' + dotKey)
     }
-    if (_baseKey === 'class' && (/\s/.test(_value) || !_value)) {
+    if (baseKey === 'class' && (/\s/.test(value) || !value)) {
       // Skip this empty class name
       continue
     }
-    if (_baseKey === 'class') {
-      domItem.element.classList.add(_value)
+    if (baseKey === 'class') {
+      domItem.element.classList.add(value)
       continue
     }
-    domItem.element.style.setProperty(_siFunciona.default.strAfter(_dotKey, '.'), _value)
+    domItem.element.style.setProperty(_siFunciona.default.strAfter(dotKey, '.'), value)
   }
   return (0, _bindListeners.default)(domItem)
 }

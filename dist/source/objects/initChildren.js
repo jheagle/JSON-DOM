@@ -1,6 +1,5 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
@@ -26,17 +25,16 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @property {HTMLBodyElement} element - A reference to the HTML body element
  * @property {Array.<DomItem>} children - A reference to an array of child objects
  */
-
 /**
  * Initiate the children of Root / DocumentItem. This is a helper for {@link documentDomItem}.
  * @function
  * @memberOf module:domObjects
  * @returns {Array.<DomItemHead|DomItemBody>}
  */
-var initChildren = function initChildren () {
-  var head = document.head
-  var body = document.body
-  var children = [(0, _createDomItem.default)({
+const initChildren = () => {
+  const head = document.head
+  const body = document.body
+  const children = [(0, _createDomItem.default)({
     nodeName: 'head',
     attributes: {},
     element: head,
@@ -48,7 +46,7 @@ var initChildren = function initChildren () {
     children: []
   })]
   if (!head || !body) {
-    (0, _onBodyLoad.default)(function () {
+    (0, _onBodyLoad.default)(() => {
       if (children[1].element === null) {
         children[0].element = document.head
         children[1].element = document.body

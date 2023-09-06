@@ -1,15 +1,12 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/es.object.to-string.js')
 require('core-js/modules/esnext.async-iterator.for-each.js')
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.for-each.js')
-require('core-js/modules/web.dom-collections.for-each.js')
 require('core-js/stable')
 var _createDomItem = _interopRequireDefault(require('../objects/createDomItem'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
@@ -20,9 +17,9 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {Object} item - The object that will be formatted as a DomItem.
  * @returns {DomItem}
  */
-var addDomItemProperties = function addDomItemProperties (item) {
+const addDomItemProperties = item => {
   if (typeof item.children !== 'undefined') {
-    item.children.forEach(function (child) {
+    item.children.forEach(child => {
       addDomItemProperties(child)
     })
   }

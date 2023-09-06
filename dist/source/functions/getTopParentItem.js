@@ -1,11 +1,9 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/es.object.keys.js')
 require('core-js/stable')
 /**
  * Get the upper parentItem for the provided child. (usually this is a documentItem reference)
@@ -15,7 +13,7 @@ require('core-js/stable')
  * @param {DomItem} item - The DomItem which we want the highest parent item of
  * @returns {DomItemRoot}
  */
-var getTopParentItem = function getTopParentItem (item) {
+const getTopParentItem = item => {
   if (item.parentItem === null) {
     if (item.nodeName === '#document') {
       throw new Error('Root parent item must be an empty object, null reference found.')

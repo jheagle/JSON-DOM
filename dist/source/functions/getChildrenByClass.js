@@ -1,6 +1,5 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
@@ -15,6 +14,6 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @memberOf module:domFunctions
  * @returns {DomItem[]}
  */
-var getChildrenByClass = _siFunciona.default.curry(_getChildrenFromAttribute.default)('className')
+const getChildrenByClass = _siFunciona.default.curry(_getChildrenFromAttribute.default)('className')
 var _default = getChildrenByClass
 exports.default = _default

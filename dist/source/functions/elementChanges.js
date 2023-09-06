@@ -1,16 +1,12 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/es.array.reduce.js')
-require('core-js/modules/es.object.to-string.js')
 require('core-js/modules/esnext.async-iterator.reduce.js')
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.reduce.js')
-require('core-js/modules/es.array.iterator.js')
 require('core-js/modules/web.dom-collections.iterator.js')
 require('core-js/stable')
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
@@ -23,35 +19,28 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {string} key - The property name of the current property being processed in the object.
  * @return {int} - -1: removed, 0: unchanged, 1: added.
  */
-
 /**
  * Given some config, provide a function to testing attribute and key existence in that config.
  * @param {DomItem} domItem
  * @returns {testAttributeChange}
  */
-var checkAttribute = function checkAttribute (domItem) {
-  return function (attr, key) {
-    if (key === 'className') {
-      var diff = (0, _domItemHasAttribute.default)(domItem, key, attr)
-      if (diff.length === 1 && diff[0].result[0] === 0) {
-        return 0
-      }
-      return _siFunciona.default.filterObject(diff, function (arrayDiff) {
-        return arrayDiff.result[0] !== 0
-      })
+const checkAttribute = domItem => (attr, key) => {
+  if (key === 'className') {
+    const diff = (0, _domItemHasAttribute.default)(domItem, key, attr)
+    if (diff.length === 1 && diff[0].result[0] === 0) {
+      return 0
     }
-    if (key === 'style') {
-      var _diff = (0, _domItemHasAttribute.default)(domItem, key, attr)
-      var firstDiffResult = _diff[0]
-      if (_diff.length === 1 && firstDiffResult.result[0] === 0 && domItem.attributes.style[firstDiffResult.value] === attr[firstDiffResult.value]) {
-        return 0
-      }
-      return _siFunciona.default.filterObject(_diff, function (arrayDiff) {
-        return arrayDiff.result[0] !== 0 || domItem.attributes.style[arrayDiff.value] !== attr[arrayDiff.value]
-      })
-    }
-    return (0, _domItemHasAttribute.default)(domItem, key, attr)
+    return _siFunciona.default.filterObject(diff, arrayDiff => arrayDiff.result[0] !== 0)
   }
+  if (key === 'style') {
+    const diff = (0, _domItemHasAttribute.default)(domItem, key, attr)
+    const firstDiffResult = diff[0]
+    if (diff.length === 1 && firstDiffResult.result[0] === 0 && domItem.attributes.style[firstDiffResult.value] === attr[firstDiffResult.value]) {
+      return 0
+    }
+    return _siFunciona.default.filterObject(diff, arrayDiff => arrayDiff.result[0] !== 0 || domItem.attributes.style[arrayDiff.value] !== attr[arrayDiff.value])
+  }
+  return (0, _domItemHasAttribute.default)(domItem, key, attr)
 }
 
 /**
@@ -59,21 +48,19 @@ var checkAttribute = function checkAttribute (domItem) {
  * @param {DomItem} domItem
  * @returns {Object.<string, *>}
  */
-var camelCaseAttributes = function camelCaseAttributes (domItem) {
-  return domItem.element ? _siFunciona.default.reduceObject(domItem.element.attributes, function (attributes, attr) {
-    var _domItem$element$attr
-    if (!attr.name) {
-      return attributes
-    }
-    var camelKey = attr.name === 'class' ? 'className' : _siFunciona.default.camelCase(attr.name)
-    var attributeValue = (_domItem$element$attr = domItem.element[attr.name]) !== null && _domItem$element$attr !== void 0 ? _domItem$element$attr : attr.value
-    if (typeof attributeValue === 'undefined') {
-      return attributes
-    }
-    attributes[camelKey] = attributeValue
+const camelCaseAttributes = domItem => domItem.element ? _siFunciona.default.reduceObject(domItem.element.attributes, (attributes, attr) => {
+  var _domItem$element$attr
+  if (!attr.name) {
     return attributes
-  }, {}) : {}
-}
+  }
+  const camelKey = attr.name === 'class' ? 'className' : _siFunciona.default.camelCase(attr.name)
+  const attributeValue = (_domItem$element$attr = domItem.element[attr.name]) !== null && _domItem$element$attr !== void 0 ? _domItem$element$attr : attr.value
+  if (typeof attributeValue === 'undefined') {
+    return attributes
+  }
+  attributes[camelKey] = attributeValue
+  return attributes
+}, {}) : {}
 
 /**
  * Given a domObjects.DomItem as config, this function will return the changes from the element
@@ -84,8 +71,8 @@ var camelCaseAttributes = function camelCaseAttributes (domItem) {
  * element
  * @returns {ChangeList}
  */
-var elementChanges = function elementChanges (domItem) {
-  var changeList = (0, _createChangeList.default)()
+const elementChanges = domItem => {
+  const changeList = (0, _createChangeList.default)()
   if (!domItem.element) {
     changeList.removed.nodeName = domItem.nodeName.toLowerCase()
   }
@@ -119,12 +106,10 @@ var elementChanges = function elementChanges (domItem) {
     }))
     return changeList
   }
-  var elementAttributes = camelCaseAttributes(domItem)
-  var diffMap = _siFunciona.default.mapObject(elementAttributes, function (attr, key) {
-    return checkAttribute(domItem)(attr, key)
-  })
-  return _siFunciona.default.reduceObject(diffMap, function (changed, result, key) {
-    var isArray = Array.isArray(result)
+  const elementAttributes = camelCaseAttributes(domItem)
+  const diffMap = _siFunciona.default.mapObject(elementAttributes, (attr, key) => checkAttribute(domItem)(attr, key))
+  return _siFunciona.default.reduceObject(diffMap, (changed, result, key) => {
+    const isArray = Array.isArray(result)
     if (!isArray && !result) {
       // Skip if the attribute is not changed (false and not an array)
       return changed
@@ -140,13 +125,13 @@ var elementChanges = function elementChanges (domItem) {
       return changed
     }
     if (key === 'className') {
-      changed.removed = result.reduce(function (removed, results) {
+      changed.removed = result.reduce((removed, results) => {
         if (results.result[0] === -1) {
           removed['attributes.className.'.concat(results.keys[1])] = results.value
         }
         return removed
       }, changed.removed)
-      changed.added = result.reduce(function (added, results) {
+      changed.added = result.reduce((added, results) => {
         if (results.result[0] === 1) {
           added['attributes.className.'.concat(results.keys[0])] = results.value
         }
@@ -154,7 +139,7 @@ var elementChanges = function elementChanges (domItem) {
       }, changed.added)
       return changed
     }
-    changed.removed = result.reduce(function (removed, results) {
+    changed.removed = result.reduce((removed, results) => {
       if (results.result[0] === -1) {
         removed['attributes.style.'.concat(results.value)] = domItem.attributes.style[results.value]
       }
@@ -163,7 +148,7 @@ var elementChanges = function elementChanges (domItem) {
       }
       return removed
     }, changed.removed)
-    changed.added = result.reduce(function (added, results) {
+    changed.added = result.reduce((added, results) => {
       if (results.result[0] === 1) {
         added['attributes.style.'.concat(results.value)] = elementAttributes.style[results.value]
       }

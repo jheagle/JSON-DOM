@@ -1,6 +1,5 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
@@ -13,7 +12,6 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @typedef {EventTarget} MicrosoftHtmlObject
  * @property {Function} attachEvent
  */
-
 /**
  * Provide compatibility for assigning listeners.
  * @function
@@ -26,8 +24,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * fired
  * @returns {listenerFunction|Function}
  */
-var assignListener = function assignListener (trigger, elem, fn) {
-  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false
+const assignListener = function (trigger, elem, fn) {
+  const options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false
   // Attaching a listener may be done differently based on the browser support
   if (elem.addEventListener) {
     // Latest support is provided from addEventListener with the options parameter varying slightly

@@ -1,11 +1,9 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/es.array.map.js')
 require('core-js/modules/esnext.async-iterator.map.js')
 require('core-js/modules/esnext.iterator.map.js')
 require('core-js/stable')
@@ -25,13 +23,11 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * reference to DomItemRoot which will be defaulted with {@link initRoot}
  * @returns {DomItemRoot|DomItem}
  */
-var documentDomItem = function documentDomItem () {
-  var listeners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
-  var rootItem = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _initRoot.default)((0, _initChildren.default)(), listeners)
-  rootItem.children = rootItem.children.map(function (child) {
-    return (0, _createDomItem.default)(child)
-  })
-  rootItem.children.map(function (child) {
+const documentDomItem = function () {
+  const listeners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
+  const rootItem = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _initRoot.default)((0, _initChildren.default)(), listeners)
+  rootItem.children = rootItem.children.map(child => (0, _createDomItem.default)(child))
+  rootItem.children.map(child => {
     child.parentItem = rootItem
     return child
   })

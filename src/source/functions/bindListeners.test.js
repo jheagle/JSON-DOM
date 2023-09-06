@@ -11,7 +11,7 @@ describe('bindListeners', () => {
     const domItem = createDomItem({
       nodeName: 'button',
       element: clickButton,
-      eventListeners: { click: { listenerFunc: 'clickFn' } }
+      eventListeners: { click: [{ listenerFunc: 'clickFn' }] }
     })
     domItem.parentItem = createDomItem({
       nodeName: '#document', element: document, eventListeners: { clickFn: clickFn }, children: [

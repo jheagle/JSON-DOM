@@ -1,16 +1,12 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/es.array.reduce.js')
-require('core-js/modules/es.object.to-string.js')
 require('core-js/modules/esnext.async-iterator.reduce.js')
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.reduce.js')
-require('core-js/modules/es.array.concat.js')
 require('core-js/stable')
 /**
  * To be used with gatherChildItems which will start at item and recurse over all child items, this test
@@ -22,7 +18,6 @@ require('core-js/stable')
  * the test
  * @returns {Array.<DomItem>}
  */
-
 /**
  * A selector function for retrieving existing child domObjects.DomItems from the given parent item.
  * This function will check all the children starting from and including item, and run the test function on each
@@ -35,10 +30,6 @@ require('core-js/stable')
  * @param {module:domFunctions~testChildItem} test - Assess each child, and return the ones which qualify
  * @returns {Array.<DomItem>}
  */
-var gatherChildItems = function gatherChildItems (item, test) {
-  return test(item, item.children.reduce(function (a, b) {
-    return a.concat(gatherChildItems(b, test))
-  }, []))
-}
+const gatherChildItems = (item, test) => test(item, item.children.reduce((a, b) => a.concat(gatherChildItems(b, test)), []))
 var _default = gatherChildItems
 exports.default = _default

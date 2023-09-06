@@ -1,16 +1,11 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/es.array.map.js')
 require('core-js/modules/esnext.async-iterator.map.js')
 require('core-js/modules/esnext.iterator.map.js')
-require('core-js/modules/es.object.keys.js')
-require('core-js/modules/es.array.from.js')
-require('core-js/modules/es.string.iterator.js')
 require('core-js/stable')
 var _getAssignedStyles2 = _interopRequireDefault(require('./getAssignedStyles.js'))
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
@@ -21,10 +16,10 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {string|Object<string, string>} attr
  * @returns {int|Object.<string, number>}
  */
-var checkStyles = function checkStyles (element) {
+const checkStyles = function (element) {
   var _getAssignedStyles
-  var attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
-  var assignedStyles = (_getAssignedStyles = (0, _getAssignedStyles2.default)(element.style)) !== null && _getAssignedStyles !== void 0 ? _getAssignedStyles : {}
+  const attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
+  const assignedStyles = (_getAssignedStyles = (0, _getAssignedStyles2.default)(element.style)) !== null && _getAssignedStyles !== void 0 ? _getAssignedStyles : {}
   if (_siFunciona.default.emptyObject(assignedStyles)) {
     return 1
   }
@@ -37,13 +32,13 @@ var checkStyles = function checkStyles (element) {
  * @param {string} attr
  * @returns {int|Object.<string, number>}
  */
-var checkClasses = function checkClasses (element) {
-  var attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ''
+const checkClasses = function (element) {
+  let attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ''
   if (typeof attr !== 'string') {
     // Somehow an empty object got in here one time
     attr = ''
   }
-  var assignedClasses = Array.from(element.classList)
+  const assignedClasses = Array.from(element.classList)
   if (!assignedClasses.length) {
     return 1
   }
@@ -60,7 +55,7 @@ var checkClasses = function checkClasses (element) {
  * @param {string|Object.<string, string>} attr - The expected value of the attribute to compare against
  * @returns {int|Object.<string, number>}
  */
-var elementHasAttribute = function elementHasAttribute (element, key, attr) {
+const elementHasAttribute = (element, key, attr) => {
   if (!element) {
     return 1
   }
@@ -70,7 +65,7 @@ var elementHasAttribute = function elementHasAttribute (element, key, attr) {
   if (key === 'class') {
     return checkClasses(element, attr)
   }
-  var kabobKey = _siFunciona.default.kabobCase(key)
+  const kabobKey = _siFunciona.default.kabobCase(key)
   if (!element.hasAttribute(kabobKey)) {
     return 1
   }

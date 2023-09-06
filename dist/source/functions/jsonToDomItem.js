@@ -1,6 +1,5 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
@@ -16,8 +15,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {string} jsonString
  * @returns {DomItem}
  */
-var jsonToDomItem = function jsonToDomItem (jsonString) {
-  var parsedJson = (0, _setParentItemReferences.default)((0, _addDomItemProperties.default)(JSON.parse(jsonString)))
+const jsonToDomItem = jsonString => {
+  const parsedJson = (0, _setParentItemReferences.default)((0, _addDomItemProperties.default)(JSON.parse(jsonString)))
   if (parsedJson.nodeName === '#document') {
     parsedJson.element = document
     parsedJson.head = parsedJson.children[0]

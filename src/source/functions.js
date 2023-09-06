@@ -6,9 +6,10 @@
  * @memberOf module:jsonDom
  */
 import 'core-js/stable'
+import activateListener from './functions/activateListener.js'
 import addDomItemProperties from './functions/addDomItemProperties.js'
 import appendChild from './functions/appendChild.js'
-import appendListeners from './functions/appendListeners.js'
+import applyActiveListeners from './functions/applyActiveListeners.js'
 import assignListener from './functions/assignListener.js'
 import bindAllListeners from './functions/bindAllListeners.js'
 import bindElementListeners from './functions/bindElementListeners.js'
@@ -33,6 +34,7 @@ import getParentsFromAttribute from './functions/getParentsFromAttribute.js'
 import getTopParentItem from './functions/getTopParentItem.js'
 import jsonToDomItem from './functions/jsonToDomItem.js'
 import listenerOptions from './functions/listenerOptions.js'
+import makeEventHandler from './functions/makeEventHandler.js'
 import registerListener from './functions/registerListener.js'
 import registerListeners from './functions/registerListeners.js'
 import removeChild from './functions/removeChild.js'
@@ -48,9 +50,10 @@ import updateElement from './functions/updateElement.js'
 import updateElements from './functions/updateElements.js'
 
 export default {
+  activateListener,
   addDomItemProperties,
   appendChild,
-  appendListeners,
+  applyActiveListeners,
   assignListener,
   bindAllListeners,
   bindElementListeners,
@@ -75,6 +78,7 @@ export default {
   getTopParentItem,
   jsonToDomItem,
   listenerOptions,
+  makeEventHandler,
   registerListener,
   registerListeners,
   removeChild,

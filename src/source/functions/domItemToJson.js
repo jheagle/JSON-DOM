@@ -27,6 +27,7 @@ const useExclusions = (function makeExclusions () {
  */
 const domItemToJson = (item, { mapLimit = 100, relevancyRange = 1000 } = {}) => JSON.stringify(
   removeEmptyProperties(siFunciona.cloneObject(item, {mapLimit, relevancyRange}), [
+    'activeListeners',
     'element',
     'parentItem',
     'body',

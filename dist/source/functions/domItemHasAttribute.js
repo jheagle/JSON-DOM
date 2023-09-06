@@ -1,14 +1,11 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/es.array.map.js')
 require('core-js/modules/esnext.async-iterator.map.js')
 require('core-js/modules/esnext.iterator.map.js')
-require('core-js/modules/es.object.keys.js')
 require('core-js/stable')
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _getAssignedStyles = _interopRequireDefault(require('./getAssignedStyles'))
@@ -19,10 +16,10 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {Object.<string, string>} attr
  * @returns {int|Object.<string, number>}
  */
-var checkStyles = function checkStyles (domItem) {
+const checkStyles = function (domItem) {
   var _domItem$attributes$s
-  var attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
-  var assignedStyles = (_domItem$attributes$s = domItem.attributes.style) !== null && _domItem$attributes$s !== void 0 ? _domItem$attributes$s : {}
+  const attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
+  const assignedStyles = (_domItem$attributes$s = domItem.attributes.style) !== null && _domItem$attributes$s !== void 0 ? _domItem$attributes$s : {}
   if (_siFunciona.default.emptyObject(assignedStyles)) {
     return 1
   }
@@ -35,10 +32,10 @@ var checkStyles = function checkStyles (domItem) {
  * @param {string} attr
  * @returns {int|Object.<string, number>}
  */
-var checkClasses = function checkClasses (domItem) {
+const checkClasses = function (domItem) {
   var _domItem$attributes$c
-  var attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ''
-  var assignedClasses = (_domItem$attributes$c = domItem.attributes.className) !== null && _domItem$attributes$c !== void 0 ? _domItem$attributes$c : ''
+  const attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ''
+  const assignedClasses = (_domItem$attributes$c = domItem.attributes.className) !== null && _domItem$attributes$c !== void 0 ? _domItem$attributes$c : ''
   if (!assignedClasses.length) {
     return 1
   }
@@ -55,14 +52,14 @@ var checkClasses = function checkClasses (domItem) {
  * @param {string|Object} attr - The expected value of the attribute to compare against
  * @returns {int|Object.<string, number>}
  */
-var domItemHasAttribute = function domItemHasAttribute (domItem, key, attr) {
+const domItemHasAttribute = (domItem, key, attr) => {
   if (key === 'style') {
     return checkStyles(domItem, attr)
   }
   if (key === 'className') {
     return checkClasses(domItem, attr)
   }
-  var camelKey = _siFunciona.default.camelCase(key)
+  const camelKey = _siFunciona.default.camelCase(key)
   if (typeof domItem.attributes[camelKey] === 'undefined') {
     return 1
   }

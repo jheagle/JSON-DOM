@@ -1,17 +1,12 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/es.object.to-string.js')
 require('core-js/modules/esnext.async-iterator.for-each.js')
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.for-each.js')
-require('core-js/modules/web.dom-collections.for-each.js')
-require('core-js/modules/es.array.includes.js')
-require('core-js/modules/es.string.includes.js')
 require('core-js/stable')
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
@@ -20,9 +15,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {*} propertyValue
  * @returns {boolean}
  */
-var isEmpty = function isEmpty (propertyValue) {
-  return _siFunciona.default.emptyObject(propertyValue) || propertyValue === null || typeof propertyValue === 'undefined'
-}
+const isEmpty = propertyValue => _siFunciona.default.emptyObject(propertyValue) || propertyValue === null || typeof propertyValue === 'undefined'
 
 /**
  * Remove all empty properties to reduce total size of the object.
@@ -32,12 +25,12 @@ var isEmpty = function isEmpty (propertyValue) {
  * @param {Array} propertiesToDelete - Optional array of additional property names to remove.
  * @returns {DomItem}
  */
-var removeEmptyProperties = function removeEmptyProperties (item, propertiesToDelete) {
-  item.children.forEach(function (child) {
+const removeEmptyProperties = (item, propertiesToDelete) => {
+  item.children.forEach(child => {
     removeEmptyProperties(child, propertiesToDelete)
   })
-  _siFunciona.default.objectKeys(item).forEach(function (property) {
-    var propertyValue = item[property]
+  _siFunciona.default.objectKeys(item).forEach(property => {
+    const propertyValue = item[property]
     if (isEmpty(propertyValue) || propertiesToDelete.includes(property)) {
       delete item[property]
     }

@@ -1,6 +1,5 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
@@ -23,8 +22,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * criteria
  * @returns {Array.<DomItem>}
  */
-var getChildrenFromAttribute = function getChildrenFromAttribute (attr, value) {
-  var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default.body
+const getChildrenFromAttribute = function (attr, value) {
+  const item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default.body
   return (0, _gatherChildItems.default)(item, (0, _getChildTest.default)(attr, value))
 }
 var _default = getChildrenFromAttribute

@@ -1,6 +1,5 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
@@ -18,8 +17,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which has eventListeners property.
  * @returns {DomItemRoot|Object}
  */
-var registerListeners = function registerListeners (listeners) {
-  var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default
+const registerListeners = function (listeners) {
+  const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default
   _siFunciona.default.mergeObjectsMutable(parent.eventListeners, listeners)
   return parent
 }

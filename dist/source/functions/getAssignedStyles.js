@@ -1,6 +1,5 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
@@ -17,10 +16,6 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {Object.<style, style>|CSSProperties} elementStyles
  * @returns {object}
  */
-var getAssignedStyles = function getAssignedStyles (elementStyles) {
-  return _siFunciona.default.reduceObject(elementStyles, function (styles, attr, key) {
-    return isNaN(key) ? styles : _siFunciona.default.setValue(attr, elementStyles[attr], styles)
-  }, {})
-}
+const getAssignedStyles = elementStyles => _siFunciona.default.reduceObject(elementStyles, (styles, attr, key) => isNaN(key) ? styles : _siFunciona.default.setValue(attr, elementStyles[attr], styles), {})
 var _default = getAssignedStyles
 exports.default = _default

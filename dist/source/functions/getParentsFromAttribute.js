@@ -1,12 +1,9 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/es.object.keys.js')
-require('core-js/modules/es.array.concat.js')
 require('core-js/stable')
 var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
@@ -23,8 +20,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * attribute criteria
  * @returns {Array}
  */
-var getParentsFromAttribute = function getParentsFromAttribute (attr, value) {
-  var item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default.body
+const getParentsFromAttribute = function (attr, value) {
+  const item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default.body
   if (item.parentItem === null) {
     if (item.nodeName === '#document') {
       throw new Error('Root parent item must be an empty object, null reference found.')

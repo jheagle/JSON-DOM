@@ -1,63 +1,47 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/es.array.reduce.js')
-require('core-js/modules/es.object.to-string.js')
 require('core-js/modules/esnext.async-iterator.reduce.js')
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.reduce.js')
-require('core-js/modules/es.array.iterator.js')
 require('core-js/modules/web.dom-collections.iterator.js')
-require('core-js/modules/es.symbol.js')
-require('core-js/modules/es.symbol.description.js')
-require('core-js/modules/es.symbol.iterator.js')
-require('core-js/modules/es.string.iterator.js')
 require('core-js/stable')
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _elementHasAttribute = _interopRequireDefault(require('./elementHasAttribute.js'))
 var _createChangeList = _interopRequireDefault(require('../objects/createChangeList'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
-function _typeof (obj) { '@babel/helpers - typeof'; return _typeof = typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol' ? function (obj) { return typeof obj } : function (obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj }, _typeof(obj) }
 /**
  * @typedef {module:objectHelpers~mapCallback} testAttributeChange
  * @param {*} attr - The current property being processed in the object.
  * @param {string} key - The property name of the current property being processed in the object.
  * @return {int} - -1: removed, 0: unchanged, 1: added.
  */
-
 /**
  * Given some config, provide a function to testing attribute and key existence in that config.
  * @param {Node|HTMLElement} element
  * @returns {testAttributeChange}
  */
-var checkAttribute = function checkAttribute (element) {
-  return function (attr, key) {
-    if (_typeof(attr) === 'object') {
-      var styleDiff = (0, _elementHasAttribute.default)(element, key, attr)
-      var firstStyleDiff = styleDiff[0]
-      if (styleDiff.length === 1 && firstStyleDiff.result[0] === 0 && element.style[firstStyleDiff.value] === attr[firstStyleDiff.value]) {
-        return 0
-      }
-      // Check new, removed, or changed styles
-      return _siFunciona.default.filterObject(styleDiff, function (arrayDiff) {
-        return arrayDiff.result[0] !== 0 || element.style[arrayDiff.value] !== attr[arrayDiff.value]
-      })
+const checkAttribute = element => (attr, key) => {
+  if (typeof attr === 'object') {
+    const styleDiff = (0, _elementHasAttribute.default)(element, key, attr)
+    const firstStyleDiff = styleDiff[0]
+    if (styleDiff.length === 1 && firstStyleDiff.result[0] === 0 && element.style[firstStyleDiff.value] === attr[firstStyleDiff.value]) {
+      return 0
     }
-    if (key === 'class') {
-      var classDiff = (0, _elementHasAttribute.default)(element, key, attr)
-      if (classDiff.length === 1 && classDiff[0].result[0] === 0) {
-        return 0
-      }
-      return _siFunciona.default.filterObject(classDiff, function (arrayDiff) {
-        return arrayDiff.result[0] !== 0
-      })
-    }
-    return (0, _elementHasAttribute.default)(element, key, attr)
+    // Check new, removed, or changed styles
+    return _siFunciona.default.filterObject(styleDiff, arrayDiff => arrayDiff.result[0] !== 0 || element.style[arrayDiff.value] !== attr[arrayDiff.value])
   }
+  if (key === 'class') {
+    const classDiff = (0, _elementHasAttribute.default)(element, key, attr)
+    if (classDiff.length === 1 && classDiff[0].result[0] === 0) {
+      return 0
+    }
+    return _siFunciona.default.filterObject(classDiff, arrayDiff => arrayDiff.result[0] !== 0)
+  }
+  return (0, _elementHasAttribute.default)(element, key, attr)
 }
 
 /**
@@ -65,18 +49,16 @@ var checkAttribute = function checkAttribute (element) {
  * @param {Object.<string, *>} attributesToSet
  * @returns {Object.<string, *>}
  */
-var kabobCaseAttributes = function kabobCaseAttributes (attributesToSet) {
-  return _siFunciona.default.reduceObject(attributesToSet, function (attributes, value, name) {
-    var _attributesToSet$name
-    var attrValue = (_attributesToSet$name = attributesToSet[name]) !== null && _attributesToSet$name !== void 0 ? _attributesToSet$name : value
-    if (_siFunciona.default.isObject(attrValue)) {
-      attrValue = kabobCaseAttributes(attrValue)
-    }
-    var kabobKey = name === 'className' ? 'class' : _siFunciona.default.kabobCase(name)
-    attributes[kabobKey] = attrValue
-    return attributes
-  }, {})
-}
+const kabobCaseAttributes = attributesToSet => _siFunciona.default.reduceObject(attributesToSet, (attributes, value, name) => {
+  var _attributesToSet$name
+  let attrValue = (_attributesToSet$name = attributesToSet[name]) !== null && _attributesToSet$name !== void 0 ? _attributesToSet$name : value
+  if (_siFunciona.default.isObject(attrValue)) {
+    attrValue = kabobCaseAttributes(attrValue)
+  }
+  const kabobKey = name === 'className' ? 'class' : _siFunciona.default.kabobCase(name)
+  attributes[kabobKey] = attrValue
+  return attributes
+}, {})
 
 /**
  * Given a domObjects.DomItem as domItem, this function will return the changes to be applied
@@ -86,8 +68,8 @@ var kabobCaseAttributes = function kabobCaseAttributes (attributesToSet) {
  * @param {DomItem} domItem - The DomItem having changes to be applied to its element
  * @returns {ChangeList}
  */
-var domItemChanges = function domItemChanges (domItem) {
-  var changeList = (0, _createChangeList.default)()
+const domItemChanges = domItem => {
+  const changeList = (0, _createChangeList.default)()
   if (!domItem.element) {
     changeList.added.nodeName = domItem.nodeName.toLowerCase()
   }
@@ -110,12 +92,10 @@ var domItemChanges = function domItemChanges (domItem) {
     }
     return changeList
   }
-  var domItemAttributes = kabobCaseAttributes(domItem.attributes)
-  var diffMap = _siFunciona.default.mapObject(domItemAttributes, function (attr, key) {
-    return checkAttribute(domItem.element)(attr, key)
-  })
-  return _siFunciona.default.reduceObject(diffMap, function (changed, result, key) {
-    var isArray = Array.isArray(result)
+  const domItemAttributes = kabobCaseAttributes(domItem.attributes)
+  const diffMap = _siFunciona.default.mapObject(domItemAttributes, (attr, key) => checkAttribute(domItem.element)(attr, key))
+  return _siFunciona.default.reduceObject(diffMap, (changed, result, key) => {
+    const isArray = Array.isArray(result)
     if (!isArray && !result) {
       // Skip if the attribute is not changed (false and not an array)
       return changed
@@ -135,13 +115,13 @@ var domItemChanges = function domItemChanges (domItem) {
       return changed
     }
     if (key === 'class') {
-      changed.removed = result.reduce(function (removed, results) {
+      changed.removed = result.reduce((removed, results) => {
         if (results.result[0] === -1) {
           removed['class.'.concat(results.keys[1])] = results.value
         }
         return removed
       }, changed.removed)
-      changed.added = result.reduce(function (added, results) {
+      changed.added = result.reduce((added, results) => {
         if (results.result[0] === 1) {
           added['class.'.concat(results.keys[0])] = results.value
         }
@@ -149,7 +129,7 @@ var domItemChanges = function domItemChanges (domItem) {
       }, changed.added)
       return changed
     }
-    changed.removed = result.reduce(function (removed, results) {
+    changed.removed = result.reduce((removed, results) => {
       if (!domItem.element) {
         return removed
       }
@@ -161,7 +141,7 @@ var domItemChanges = function domItemChanges (domItem) {
       }
       return removed
     }, changed.removed)
-    changed.added = result.reduce(function (added, results) {
+    changed.added = result.reduce((added, results) => {
       if (results.result[0] === 1) {
         added['style.'.concat(results.value)] = domItemAttributes.style[results.value]
       }

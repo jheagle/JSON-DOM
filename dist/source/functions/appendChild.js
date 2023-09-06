@@ -1,6 +1,5 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
@@ -14,7 +13,7 @@ require('core-js/stable')
  * @param {DomItem} child - The new child to attach to the parent.
  * @returns {DomItem}
  */
-var appendChild = function appendChild (parent, child) {
+const appendChild = (parent, child) => {
   parent.children.push(child)
   child.parentItem = parent
   return parent

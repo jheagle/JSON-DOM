@@ -1,21 +1,14 @@
 'use strict'
 
-require('core-js/modules/es.object.define-property.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/es.array.from.js')
-require('core-js/modules/es.string.iterator.js')
-require('core-js/modules/es.object.to-string.js')
 require('core-js/modules/esnext.async-iterator.for-each.js')
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.for-each.js')
-require('core-js/modules/web.dom-collections.for-each.js')
-require('core-js/modules/es.array.map.js')
 require('core-js/modules/esnext.async-iterator.map.js')
 require('core-js/modules/esnext.iterator.map.js')
-require('core-js/modules/es.array.find.js')
 require('core-js/modules/esnext.async-iterator.find.js')
 require('core-js/modules/esnext.iterator.find.js')
 require('core-js/stable')
@@ -28,16 +21,14 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {DomItem} domItem
  * @returns {DomItem}
  */
-var updateChildNodes = function updateChildNodes (domItem) {
+const updateChildNodes = domItem => {
   if (!domItem.element) {
     domItem = (0, _updateElement.default)(domItem)
   }
-  var previousChildNodes = Array.from(domItem.element.childNodes)
-  domItem.children.map(function (child, index) {
-    var existing = previousChildNodes.find(function (childNode) {
-      return childNode === child.element
-    })
-    var childNode = existing !== null && existing !== void 0 ? existing : child.element
+  const previousChildNodes = Array.from(domItem.element.childNodes)
+  domItem.children.map((child, index) => {
+    const existing = previousChildNodes.find(childNode => childNode === child.element)
+    let childNode = existing !== null && existing !== void 0 ? existing : child.element
     if (!childNode) {
       childNode = (0, _updateElement.default)(child).element
     }
@@ -49,12 +40,12 @@ var updateChildNodes = function updateChildNodes (domItem) {
       domItem.element.replaceChild(childNode, previousChildNodes[index])
     }
     return childNode
-  }).forEach(function (childNode, index) {
+  }).forEach((childNode, index) => {
     domItem.children[index].element = childNode
   })
   if (domItem.element.childNodes.length > domItem.children.length) {
-    var maxLength = domItem.children.length
-    var nodeToRemove = domItem.element.childNodes[maxLength]
+    const maxLength = domItem.children.length
+    let nodeToRemove = domItem.element.childNodes[maxLength]
     while (nodeToRemove) {
       domItem.element.removeChild(nodeToRemove)
       nodeToRemove = domItem.element.childNodes[maxLength]
