@@ -21,5 +21,4 @@ const documentItem = (() => {
   }
   return existingItem
 })()
-var _default = documentItem
-exports.default = _default
+var _default = exports.default = documentItem

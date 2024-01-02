@@ -13,6 +13,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {string} changeType - Either 'removed' or 'added'
  * @param {DotNotatedObject} changes - The changes to append to existing type
  */
+
 /**
  * Initialize the appendChanges method with the changeList, return the appendChanges method.
  * @param {ChangeList} changeList
@@ -20,7 +21,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  */
 const appendChangesTo = changeList => (changeType, changes) => {
   if (!['added', 'removed'].includes(changeType)) {
-    throw Error("Method appendChanges change type must be 'added' or 'removed'; ".concat(changeType, ' given.'))
+    throw Error(`Method appendChanges change type must be 'added' or 'removed'; ${changeType} given.`)
   }
   return _siFunciona.default.mergeObjects(changeList[changeType], changes)
 }
@@ -55,5 +56,4 @@ const createChangeList = function () {
   changeList.appendChanges = appendChangesTo(changeList)
   return changeList
 }
-var _default = createChangeList
-exports.default = _default
+var _default = exports.default = createChangeList

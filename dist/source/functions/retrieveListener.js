@@ -19,7 +19,6 @@ const retrieveListener = function (listenerName) {
   const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default
   return Object.keys(parent.eventListeners).includes(listenerName) ? parent.eventListeners[listenerName] : (function (e) {
     throw e
-  }('Undefined listener function on this DomItemRoot: '.concat(listenerName)))
+  }(`Undefined listener function on this DomItemRoot: ${listenerName}`))
 }
-var _default = retrieveListener
-exports.default = _default
+var _default = exports.default = retrieveListener

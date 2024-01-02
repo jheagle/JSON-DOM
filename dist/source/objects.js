@@ -22,7 +22,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @module domObjects
  * @memberOf module:jsonDom
  */
-var _default = {
+var _default = exports.default = {
   createChangeList: _createChangeList.default,
   createDomItem: _createDomItem.default,
   createEventProxy: _createEventProxy.default,
@@ -33,4 +33,3 @@ var _default = {
   initRoot: _initRoot.default,
   options: _options.default
 }
-exports.default = _default

@@ -17,5 +17,4 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {object}
  */
 const getAssignedStyles = elementStyles => _siFunciona.default.reduceObject(elementStyles, (styles, attr, key) => isNaN(key) ? styles : _siFunciona.default.setValue(attr, elementStyles[attr], styles), {})
-var _default = getAssignedStyles
-exports.default = _default
+var _default = exports.default = getAssignedStyles

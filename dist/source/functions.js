@@ -55,7 +55,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @module domFunctions
  * @memberOf module:jsonDom
  */
-var _default = {
+var _default = exports.default = {
   activateListener: _activateListener.default,
   addDomItemProperties: _addDomItemProperties.default,
   appendChild: _appendChild.default,
@@ -99,4 +99,3 @@ var _default = {
   updateElement: _updateElement.default,
   updateElements: _updateElements.default
 }
-exports.default = _default

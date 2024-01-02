@@ -7,7 +7,6 @@ exports.default = void 0
 require('core-js/modules/esnext.async-iterator.reduce.js')
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.reduce.js')
-require('core-js/modules/web.dom-collections.iterator.js')
 require('core-js/stable')
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _domItemHasAttribute = _interopRequireDefault(require('./domItemHasAttribute.js'))
@@ -19,6 +18,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @param {string} key - The property name of the current property being processed in the object.
  * @return {int} - -1: removed, 0: unchanged, 1: added.
  */
+
 /**
  * Given some config, provide a function to testing attribute and key existence in that config.
  * @param {DomItem} domItem
@@ -49,12 +49,11 @@ const checkAttribute = domItem => (attr, key) => {
  * @returns {Object.<string, *>}
  */
 const camelCaseAttributes = domItem => domItem.element ? _siFunciona.default.reduceObject(domItem.element.attributes, (attributes, attr) => {
-  var _domItem$element$attr
   if (!attr.name) {
     return attributes
   }
   const camelKey = attr.name === 'class' ? 'className' : _siFunciona.default.camelCase(attr.name)
-  const attributeValue = (_domItem$element$attr = domItem.element[attr.name]) !== null && _domItem$element$attr !== void 0 ? _domItem$element$attr : attr.value
+  const attributeValue = domItem.element[attr.name] ?? attr.value
   if (typeof attributeValue === 'undefined') {
     return attributes
   }
@@ -115,9 +114,8 @@ const elementChanges = domItem => {
       return changed
     }
     if (!isArray) {
-      var _domItem$element$key
       // Not an array, simply set the attribute as added
-      changed.added['attributes.'.concat(key)] = (_domItem$element$key = domItem.element[key]) !== null && _domItem$element$key !== void 0 ? _domItem$element$key : domItem.element.getAttribute(_siFunciona.default.kabobCase(key))
+      changed.added[`attributes.${key}`] = domItem.element[key] ?? domItem.element.getAttribute(_siFunciona.default.kabobCase(key))
       return changed
     }
     if (key !== 'className' && key !== 'style') {
@@ -127,13 +125,13 @@ const elementChanges = domItem => {
     if (key === 'className') {
       changed.removed = result.reduce((removed, results) => {
         if (results.result[0] === -1) {
-          removed['attributes.className.'.concat(results.keys[1])] = results.value
+          removed[`attributes.className.${results.keys[1]}`] = results.value
         }
         return removed
       }, changed.removed)
       changed.added = result.reduce((added, results) => {
         if (results.result[0] === 1) {
-          added['attributes.className.'.concat(results.keys[0])] = results.value
+          added[`attributes.className.${results.keys[0]}`] = results.value
         }
         return added
       }, changed.added)
@@ -141,24 +139,23 @@ const elementChanges = domItem => {
     }
     changed.removed = result.reduce((removed, results) => {
       if (results.result[0] === -1) {
-        removed['attributes.style.'.concat(results.value)] = domItem.attributes.style[results.value]
+        removed[`attributes.style.${results.value}`] = domItem.attributes.style[results.value]
       }
       if (results.result[0] === 0 && domItem.attributes.style[results.value] !== elementAttributes.style[results.value]) {
-        removed['attributes.style.'.concat(results.value)] = domItem.attributes.style[results.value]
+        removed[`attributes.style.${results.value}`] = domItem.attributes.style[results.value]
       }
       return removed
     }, changed.removed)
     changed.added = result.reduce((added, results) => {
       if (results.result[0] === 1) {
-        added['attributes.style.'.concat(results.value)] = elementAttributes.style[results.value]
+        added[`attributes.style.${results.value}`] = elementAttributes.style[results.value]
       }
       if (results.result[0] === 0 && domItem.attributes.style[results.value] !== elementAttributes.style[results.value]) {
-        added['attributes.style.'.concat(results.value)] = elementAttributes.style[results.value]
+        added[`attributes.style.${results.value}`] = elementAttributes.style[results.value]
       }
       return added
     }, changed.added)
     return changed
   }, changeList)
 }
-var _default = elementChanges
-exports.default = _default
+var _default = exports.default = elementChanges

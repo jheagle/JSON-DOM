@@ -22,5 +22,4 @@ const registerListeners = function (listeners) {
   _siFunciona.default.mergeObjectsMutable(parent.eventListeners, listeners)
   return parent
 }
-var _default = registerListeners
-exports.default = _default
+var _default = exports.default = registerListeners

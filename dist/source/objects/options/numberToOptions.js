@@ -16,5 +16,4 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {EventListenerOptions}
  */
 const numberToOptions = (optionsTemplate, binaryOptions) => _siFunciona.default.mapObject(optionsTemplate, flag => !!(binaryOptions & flag))
-var _default = numberToOptions
-exports.default = _default
+var _default = exports.default = numberToOptions

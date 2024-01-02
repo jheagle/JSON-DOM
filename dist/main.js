@@ -17,7 +17,6 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  */
 
 const jsonDom = Object.assign({}, _functions.default, _objects.default)
-var _default = jsonDom
-exports.default = _default
+var _default = exports.default = jsonDom
 const root = void 0 || typeof window !== 'undefined' ? window : {}
 root.jsonDom = jsonDom

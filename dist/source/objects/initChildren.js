@@ -25,6 +25,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @property {HTMLBodyElement} element - A reference to the HTML body element
  * @property {Array.<DomItem>} children - A reference to an array of child objects
  */
+
 /**
  * Initiate the children of Root / DocumentItem. This is a helper for {@link documentDomItem}.
  * @function
@@ -56,5 +57,4 @@ const initChildren = () => {
   }
   return children
 }
-var _default = initChildren
-exports.default = _default
+var _default = exports.default = initChildren

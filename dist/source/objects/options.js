@@ -33,9 +33,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * Object containing available Option names and the Flag value associated with each.
  * @typedef {Object.<string, Flag>} OptionsTemplate
  */
-var _default = {
+var _default = exports.default = {
   getListenerOptions: _getListenerOptions.default,
   numberToOptions: _numberToOptions.default,
   optionsToNumber: _optionsToNumber.default
 }
-exports.default = _default

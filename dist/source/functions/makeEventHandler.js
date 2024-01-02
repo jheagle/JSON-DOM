@@ -4,7 +4,6 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/web.dom-collections.iterator.js')
 require('core-js/stable')
 /**
  * Based on available flags, either proceed to process the listener or skip.
@@ -12,6 +11,7 @@ require('core-js/stable')
  * @memberOf module:domObjects
  * @param {EventProxy} event - The event object passed to the listener
  */
+
 /**
  * Prepare a listener to be used before assigning to an element.
  * @param {listenerFunction} listener
@@ -30,5 +30,4 @@ const makeEventHandler = function (listener, item) {
     return listener(event, item, ...args)
   }
 }
-var _default = makeEventHandler
-exports.default = _default
+var _default = exports.default = makeEventHandler

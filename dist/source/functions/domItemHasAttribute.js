@@ -17,9 +17,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {int|Object.<string, number>}
  */
 const checkStyles = function (domItem) {
-  var _domItem$attributes$s
   const attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
-  const assignedStyles = (_domItem$attributes$s = domItem.attributes.style) !== null && _domItem$attributes$s !== void 0 ? _domItem$attributes$s : {}
+  const assignedStyles = domItem.attributes.style ?? {}
   if (_siFunciona.default.emptyObject(assignedStyles)) {
     return 1
   }
@@ -33,9 +32,8 @@ const checkStyles = function (domItem) {
  * @returns {int|Object.<string, number>}
  */
 const checkClasses = function (domItem) {
-  var _domItem$attributes$c
   const attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ''
-  const assignedClasses = (_domItem$attributes$c = domItem.attributes.className) !== null && _domItem$attributes$c !== void 0 ? _domItem$attributes$c : ''
+  const assignedClasses = domItem.attributes.className ?? ''
   if (!assignedClasses.length) {
     return 1
   }
@@ -68,5 +66,4 @@ const domItemHasAttribute = (domItem, key, attr) => {
   }
   return 1
 }
-var _default = domItemHasAttribute
-exports.default = _default
+var _default = exports.default = domItemHasAttribute

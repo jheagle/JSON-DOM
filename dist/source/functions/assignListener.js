@@ -12,6 +12,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @typedef {EventTarget} MicrosoftHtmlObject
  * @property {Function} attachEvent
  */
+
 /**
  * Provide compatibility for assigning listeners.
  * @function
@@ -32,12 +33,11 @@ const assignListener = function (trigger, elem, fn) {
     elem.addEventListener(trigger, fn, (0, _listenerOptions.default)(options))
   } else if (elem.attachEvent) {
     // Older browsers, especially Internet Explorer
-    elem.attachEvent('on'.concat(trigger), fn)
+    elem.attachEvent(`on${trigger}`, fn)
   } else {
     // General support for adding a new function onto the element which can be called to trigger the function
-    elem['on'.concat(trigger)] = fn
+    elem[`on${trigger}`] = fn
   }
   return fn
 }
-var _default = assignListener
-exports.default = _default
+var _default = exports.default = assignListener

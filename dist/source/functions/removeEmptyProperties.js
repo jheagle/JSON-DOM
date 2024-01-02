@@ -37,5 +37,4 @@ const removeEmptyProperties = (item, propertiesToDelete) => {
   })
   return item
 }
-var _default = removeEmptyProperties
-exports.default = _default
+var _default = exports.default = removeEmptyProperties

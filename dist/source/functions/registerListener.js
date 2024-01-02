@@ -24,5 +24,4 @@ const registerListener = function (listener) {
     [name]: listener
   })
 }
-var _default = registerListener
-exports.default = _default
+var _default = exports.default = registerListener

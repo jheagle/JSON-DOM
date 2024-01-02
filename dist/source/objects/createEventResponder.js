@@ -12,6 +12,7 @@ require('core-js/stable')
  * @property {eventHandler} handler
  * @property {AbortController|null} abort
  */
+
 /**
  * Store the handler function and associated abort controller instance if available to be used when events are triggered.
  * @function
@@ -33,5 +34,4 @@ const createEventResponder = function (eventHandler) {
     abort: abort
   })
 }
-var _default = createEventResponder
-exports.default = _default
+var _default = exports.default = createEventResponder

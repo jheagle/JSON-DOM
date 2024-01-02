@@ -87,5 +87,4 @@ const updateElement = domItem => {
   }
   return (0, _bindListeners.default)(domItem)
 }
-var _default = updateElement
-exports.default = _default
+var _default = exports.default = updateElement

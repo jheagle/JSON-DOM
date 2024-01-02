@@ -44,5 +44,4 @@ const updateDomItem = config => {
   }
   return config
 }
-var _default = updateDomItem
-exports.default = _default
+var _default = exports.default = updateDomItem

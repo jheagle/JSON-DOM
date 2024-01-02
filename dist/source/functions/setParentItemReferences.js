@@ -22,5 +22,4 @@ const setParentItemReferences = item => {
   })
   return item
 }
-var _default = setParentItemReferences
-exports.default = _default
+var _default = exports.default = setParentItemReferences

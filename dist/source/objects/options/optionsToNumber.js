@@ -22,5 +22,4 @@ const optionsToNumber = (optionsTemplate, listenerOptions) => {
   }
   return _siFunciona.default.reduceObject(optionsTemplate, (binaryOptions, flag, name) => listenerOptions[name] ? binaryOptions | flag : binaryOptions, 0)
 }
-var _default = optionsToNumber
-exports.default = _default
+var _default = exports.default = optionsToNumber

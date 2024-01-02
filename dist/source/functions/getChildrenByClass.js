@@ -15,5 +15,4 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {DomItem[]}
  */
 const getChildrenByClass = _siFunciona.default.curry(_getChildrenFromAttribute.default)('className')
-var _default = getChildrenByClass
-exports.default = _default
+var _default = exports.default = getChildrenByClass

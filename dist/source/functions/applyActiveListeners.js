@@ -7,7 +7,6 @@ exports.default = void 0
 require('core-js/modules/esnext.async-iterator.for-each.js')
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.for-each.js')
-require('core-js/modules/web.dom-collections.iterator.js')
 require('core-js/modules/esnext.async-iterator.map.js')
 require('core-js/modules/esnext.iterator.map.js')
 require('core-js/stable')
@@ -38,5 +37,4 @@ const applyActiveListeners = (item, eventName) => {
   })
   return item
 }
-var _default = applyActiveListeners
-exports.default = _default
+var _default = exports.default = applyActiveListeners

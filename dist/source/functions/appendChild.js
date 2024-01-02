@@ -18,5 +18,4 @@ const appendChild = (parent, child) => {
   child.parentItem = parent
   return parent
 }
-var _default = appendChild
-exports.default = _default
+var _default = exports.default = appendChild

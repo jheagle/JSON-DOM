@@ -18,6 +18,7 @@ require('core-js/stable')
  * the test
  * @returns {Array.<DomItem>}
  */
+
 /**
  * A selector function for retrieving existing child domObjects.DomItems from the given parent item.
  * This function will check all the children starting from and including item, and run the test function on each
@@ -31,5 +32,4 @@ require('core-js/stable')
  * @returns {Array.<DomItem>}
  */
 const gatherChildItems = (item, test) => test(item, item.children.reduce((a, b) => a.concat(gatherChildItems(b, test)), []))
-var _default = gatherChildItems
-exports.default = _default
+var _default = exports.default = gatherChildItems

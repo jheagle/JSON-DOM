@@ -7,7 +7,7 @@ exports.default = void 0
 require('core-js/modules/esnext.async-iterator.map.js')
 require('core-js/modules/esnext.iterator.map.js')
 require('core-js/stable')
-var _getAssignedStyles2 = _interopRequireDefault(require('./getAssignedStyles.js'))
+var _getAssignedStyles = _interopRequireDefault(require('./getAssignedStyles.js'))
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
 function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
 /**
@@ -17,9 +17,8 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {int|Object.<string, number>}
  */
 const checkStyles = function (element) {
-  var _getAssignedStyles
   const attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
-  const assignedStyles = (_getAssignedStyles = (0, _getAssignedStyles2.default)(element.style)) !== null && _getAssignedStyles !== void 0 ? _getAssignedStyles : {}
+  const assignedStyles = (0, _getAssignedStyles.default)(element.style) ?? {}
   if (_siFunciona.default.emptyObject(assignedStyles)) {
     return 1
   }
@@ -74,5 +73,4 @@ const elementHasAttribute = (element, key, attr) => {
   }
   return 1
 }
-var _default = elementHasAttribute
-exports.default = _default
+var _default = exports.default = elementHasAttribute

@@ -32,5 +32,4 @@ const bindElementListeners = item => {
   }
   return item
 }
-var _default = bindElementListeners
-exports.default = _default
+var _default = exports.default = bindElementListeners

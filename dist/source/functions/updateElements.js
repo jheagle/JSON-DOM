@@ -4,7 +4,6 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/web.dom-collections.iterator.js')
 require('core-js/modules/esnext.async-iterator.for-each.js')
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.for-each.js')
@@ -32,5 +31,4 @@ const updateElements = config => {
   domItem.children.forEach(updateElements)
   return domItem
 }
-var _default = updateElements
-exports.default = _default
+var _default = exports.default = updateElements

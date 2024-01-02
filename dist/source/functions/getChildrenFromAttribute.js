@@ -26,5 +26,4 @@ const getChildrenFromAttribute = function (attr, value) {
   const item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default.body
   return (0, _gatherChildItems.default)(item, (0, _getChildTest.default)(attr, value))
 }
-var _default = getChildrenFromAttribute
-exports.default = _default
+var _default = exports.default = getChildrenFromAttribute

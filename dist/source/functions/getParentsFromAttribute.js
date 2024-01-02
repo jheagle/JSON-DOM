@@ -30,5 +30,4 @@ const getParentsFromAttribute = function (attr, value) {
   }
   return Object.keys(item.parentItem).length ? (item.parentItem.attributes[attr] || item[attr] || false) === value ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem]) : getParentsFromAttribute(attr, value, item.parentItem) : []
 }
-var _default = getParentsFromAttribute
-exports.default = _default
+var _default = exports.default = getParentsFromAttribute

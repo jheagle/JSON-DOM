@@ -87,6 +87,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @property {Function} appendChild - Attach a child to this DOM Item
  * @property {Function} removeChild - Attach a child to this DOM Item
  */
+
 /**
  * This is the basic Object for representing the Dom from a virtual perspective. All incoming attributes will be merged
  * to the specified format.
@@ -117,5 +118,4 @@ const createDomItem = function () {
   newDomItem.removeChild = _siFunciona.default.curry(_removeChild.default)(newDomItem)
   return newDomItem
 }
-var _default = createDomItem
-exports.default = _default
+var _default = exports.default = createDomItem

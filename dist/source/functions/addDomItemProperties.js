@@ -25,5 +25,4 @@ const addDomItemProperties = item => {
   }
   return (0, _createDomItem.default)(item)
 }
-var _default = addDomItemProperties
-exports.default = _default
+var _default = exports.default = addDomItemProperties

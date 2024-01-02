@@ -4,7 +4,6 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/web.dom-collections.iterator.js')
 require('core-js/stable')
 /**
  * A wrapped Event which provides additional utilities.
@@ -12,6 +11,7 @@ require('core-js/stable')
  * @memberOf module:domObjects
  * @property {boolean} immediatePropagationStopped
  */
+
 /**
  * Return a modified version of the event.
  * @param {Event} event
@@ -29,5 +29,4 @@ const createEventProxy = event => new Proxy(Object.defineProperty(event, 'immedi
     return Reflect.get(...arguments)
   }
 })
-var _default = createEventProxy
-exports.default = _default
+var _default = exports.default = createEventProxy

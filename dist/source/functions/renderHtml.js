@@ -23,5 +23,4 @@ const renderHtml = function () {
   }
   return (0, _updateElements.default)(item)
 }
-var _default = renderHtml
-exports.default = _default
+var _default = exports.default = renderHtml

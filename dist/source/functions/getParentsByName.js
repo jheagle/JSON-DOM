@@ -15,5 +15,4 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @returns {Array}
  */
 const getParentsByName = _siFunciona.default.curry(_getParentsFromAttribute.default)('name')
-var _default = getParentsByName
-exports.default = _default
+var _default = exports.default = getParentsByName

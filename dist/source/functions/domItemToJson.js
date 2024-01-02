@@ -41,5 +41,4 @@ const domItemToJson = function (item) {
     relevancyRange
   }), ['activeListeners', 'element', 'parentItem', 'body', 'head']), useExclusions)
 }
-var _default = domItemToJson
-exports.default = _default
+var _default = exports.default = domItemToJson

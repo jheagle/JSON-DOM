@@ -37,5 +37,4 @@ const generateElement = domItem => {
   domItem.element = makeElementType(domItem.nodeName, domItem.nodeValue)
   return (0, _updateElement.default)(domItem)
 }
-var _default = generateElement
-exports.default = _default
+var _default = exports.default = generateElement

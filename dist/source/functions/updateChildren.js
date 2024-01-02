@@ -28,7 +28,7 @@ const updateChildren = domItem => {
   domItem.children = []
   domItem.element.childNodes.forEach((childNode, index) => {
     const existing = previousChildren.find(child => child.element === childNode)
-    const child = existing !== null && existing !== void 0 ? existing : (0, _createDomItem.default)({
+    const child = existing ?? (0, _createDomItem.default)({
       nodeName: childNode.nodeName.toLowerCase(),
       nodeValue: childNode.nodeValue,
       element: childNode
@@ -38,5 +38,4 @@ const updateChildren = domItem => {
   })
   return domItem
 }
-var _default = updateChildren
-exports.default = _default
+var _default = exports.default = updateChildren

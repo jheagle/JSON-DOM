@@ -35,5 +35,4 @@ const documentDomItem = function () {
   rootItem.body = rootItem.children[1]
   return (0, _updateDomItems.default)((0, _createDomItem.default)(rootItem))
 }
-var _default = documentDomItem
-exports.default = _default
+var _default = exports.default = documentDomItem

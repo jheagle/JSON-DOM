@@ -23,6 +23,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  * @property {DomItemHead} head - A specific reference to head item
  * @property {DomItemBody} body - A specific reference to body item
  */
+
 /**
  * Initiate the Root for DocumentItem. This is primary a helper for {@link documentDomItem}.
  * @function
@@ -47,5 +48,4 @@ const initRoot = function (children) {
     body: children[1]
   })
 }
-var _default = initRoot
-exports.default = _default
+var _default = exports.default = initRoot

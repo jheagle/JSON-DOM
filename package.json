@@ -24,13 +24,12 @@
     "watch:test": "gulp watchTest"
   },
   "dependencies": {
-    "@babel/plugin-proposal-throw-expressions": "^7.22.5",
-    "npm": "^10.0.0",
-    "si-funciona": "^1.2.0"
+    "@babel/plugin-proposal-throw-expressions": "^7.23.3",
+    "si-funciona": "^2.2.2"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
-    "js-build-tools": "^2.1.2",
+    "js-build-tools": "^2.2.12",
     "jsdoc": "^4.0.2",
     "standard": "^17.1.0"
   },

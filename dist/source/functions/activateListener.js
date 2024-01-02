@@ -36,5 +36,4 @@ const activateListener = (item, eventName, eventListener) => {
   item.activeListeners[eventName][optionIdentifier].push((0, _createEventResponder.default)(eventHandler, !!(optionIdentifier & listenerOptions.signal)))
   return item
 }
-var _default = activateListener
-exports.default = _default
+var _default = exports.default = activateListener
