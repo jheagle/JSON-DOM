@@ -518,8 +518,7 @@ Based on the provided function / listener name, retrieve the associated function
 <a name="module_domFunctions.renderHtml"></a>
 
 ### domFunctions.renderHtml(item) ⇒ <code>DomItem</code>
-This is a shortcut for building the specified HTML elements and appending them to the Dom
-with associated listeners.
+This is a shortcut for building the specified HTML elements and appending them to the Domwith associated listeners.
 
 **Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
 
@@ -680,9 +679,7 @@ Retrieve the [testChildItem](#module_domFunctions..testChildItem) function by pr
 <a name="module_domFunctions.getAssignedStyles"></a>
 
 ### domFunctions.getAssignedStyles(elementStyles) ⇒ <code>object</code>
-Get all the styles which have been assigned to this element. Assigned styles are indicated as numeric-key
-properties with a value indicating the string-key property which has been assigned. The string-key properties
-have the assigned values.
+Get all the styles which have been assigned to this element. Assigned styles are indicated as numeric-keyproperties with a value indicating the string-key property which has been assigned. The string-key propertieshave the assigned values.
 
 **Kind**: static method of [<code>domFunctions</code>](#module_domFunctions)  
 
@@ -888,8 +885,7 @@ Be able to use Flags (Options) in a well-formed way.
 <a name="module_optionFlags.optionsToNumber"></a>
 
 ### optionFlags.optionsToNumber(optionsTemplate, listenerOptions) ⇒ <code>int</code>
-Take the given options and convert them (using binary) to an integer. Given listener options, each one is assigned a
-bitwise position. The resulting binary number represents any possible combination of the available flags set.
+Take the given options and convert them (using binary) to an integer. Given listener options, each one is assigned abitwise position. The resulting binary number represents any possible combination of the available flags set.
 
 **Kind**: static method of [<code>optionFlags</code>](#module_optionFlags)  
 
