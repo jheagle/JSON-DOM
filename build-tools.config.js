@@ -1,3 +1,5 @@
 module.exports = {
-  browserName: 'jsonDom'
+  browser: {
+    name: 'jsonDom'
+  }
 }
