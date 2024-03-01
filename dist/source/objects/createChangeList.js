@@ -21,7 +21,7 @@ function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { d
  */
 const appendChangesTo = changeList => (changeType, changes) => {
   if (!['added', 'removed'].includes(changeType)) {
-    throw Error(`Method appendChanges change type must be 'added' or 'removed'; ${changeType} given.`)
+    throw Error("Method appendChanges change type must be 'added' or 'removed'; ".concat(changeType, ' given.'))
   }
   return _siFunciona.default.mergeObjects(changeList[changeType], changes)
 }

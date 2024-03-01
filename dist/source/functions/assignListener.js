@@ -33,10 +33,10 @@ const assignListener = function (trigger, elem, fn) {
     elem.addEventListener(trigger, fn, (0, _listenerOptions.default)(options))
   } else if (elem.attachEvent) {
     // Older browsers, especially Internet Explorer
-    elem.attachEvent(`on${trigger}`, fn)
+    elem.attachEvent('on'.concat(trigger), fn)
   } else {
     // General support for adding a new function onto the element which can be called to trigger the function
-    elem[`on${trigger}`] = fn
+    elem['on'.concat(trigger)] = fn
   }
   return fn
 }

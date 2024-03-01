@@ -7,6 +7,7 @@ exports.default = void 0
 require('core-js/modules/esnext.async-iterator.for-each.js')
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.for-each.js')
+require('core-js/modules/web.dom-collections.iterator.js')
 require('core-js/stable')
 var _updateChildren = _interopRequireDefault(require('./updateChildren.js'))
 var _updateDomItem = _interopRequireDefault(require('./updateDomItem.js'))

@@ -22,7 +22,7 @@
     var _default = exports.default = jsonDom
     const root = void 0 || typeof window !== 'undefined' ? window : {}
     root.jsonDom = jsonDom
-  }, { './source/functions.js': 2, './source/objects.js': 45, 'core-js/stable': 613 }],
+  }, { './source/functions.js': 2, './source/objects.js': 45, 'core-js/stable': 619 }],
   2: [function (require, module, exports) {
     'use strict'
 
@@ -125,7 +125,7 @@
       updateElement: _updateElement.default,
       updateElements: _updateElements.default
     }
-  }, { './functions/activateListener.js': 3, './functions/addDomItemProperties.js': 4, './functions/appendChild.js': 5, './functions/applyActiveListeners.js': 6, './functions/assignListener.js': 7, './functions/bindAllListeners.js': 8, './functions/bindElementListeners.js': 9, './functions/bindListeners.js': 10, './functions/deactivateListeners.js': 11, './functions/domItemChanges.js': 12, './functions/domItemHasAttribute.js': 13, './functions/domItemToJson.js': 14, './functions/elementChanges.js': 15, './functions/elementHasAttribute.js': 16, './functions/gatherChildItems.js': 17, './functions/generateElement.js': 18, './functions/getAssignedStyles.js': 19, './functions/getChildTest.js': 20, './functions/getChildrenByClass.js': 21, './functions/getChildrenByName.js': 22, './functions/getChildrenFromAttribute.js': 23, './functions/getParentsByClass.js': 24, './functions/getParentsByName.js': 25, './functions/getParentsByTagName.js': 26, './functions/getParentsFromAttribute.js': 27, './functions/getTopParentItem.js': 28, './functions/jsonToDomItem.js': 29, './functions/listenerOptions.js': 30, './functions/makeEventHandler.js': 31, './functions/registerListener.js': 32, './functions/registerListeners.js': 33, './functions/removeChild.js': 34, './functions/removeEmptyProperties.js': 35, './functions/renderHtml.js': 36, './functions/retrieveListener.js': 37, './functions/setParentItemReferences.js': 38, './functions/updateChildNodes.js': 39, './functions/updateChildren.js': 40, './functions/updateDomItem.js': 41, './functions/updateDomItems.js': 42, './functions/updateElement.js': 43, './functions/updateElements.js': 44, 'core-js/stable': 613 }],
+  }, { './functions/activateListener.js': 3, './functions/addDomItemProperties.js': 4, './functions/appendChild.js': 5, './functions/applyActiveListeners.js': 6, './functions/assignListener.js': 7, './functions/bindAllListeners.js': 8, './functions/bindElementListeners.js': 9, './functions/bindListeners.js': 10, './functions/deactivateListeners.js': 11, './functions/domItemChanges.js': 12, './functions/domItemHasAttribute.js': 13, './functions/domItemToJson.js': 14, './functions/elementChanges.js': 15, './functions/elementHasAttribute.js': 16, './functions/gatherChildItems.js': 17, './functions/generateElement.js': 18, './functions/getAssignedStyles.js': 19, './functions/getChildTest.js': 20, './functions/getChildrenByClass.js': 21, './functions/getChildrenByName.js': 22, './functions/getChildrenFromAttribute.js': 23, './functions/getParentsByClass.js': 24, './functions/getParentsByName.js': 25, './functions/getParentsByTagName.js': 26, './functions/getParentsFromAttribute.js': 27, './functions/getTopParentItem.js': 28, './functions/jsonToDomItem.js': 29, './functions/listenerOptions.js': 30, './functions/makeEventHandler.js': 31, './functions/registerListener.js': 32, './functions/registerListeners.js': 33, './functions/removeChild.js': 34, './functions/removeEmptyProperties.js': 35, './functions/renderHtml.js': 36, './functions/retrieveListener.js': 37, './functions/setParentItemReferences.js': 38, './functions/updateChildNodes.js': 39, './functions/updateChildren.js': 40, './functions/updateDomItem.js': 41, './functions/updateDomItems.js': 42, './functions/updateElement.js': 43, './functions/updateElements.js': 44, 'core-js/stable': 619 }],
   3: [function (require, module, exports) {
     'use strict'
 
@@ -166,7 +166,7 @@
       return item
     }
     var _default = exports.default = activateListener
-  }, { '../objects/createEventResponder.js': 49, '../objects/options/getListenerOptions.js': 55, '../objects/options/optionsToNumber.js': 57, './getTopParentItem.js': 28, './makeEventHandler.js': 31, './retrieveListener.js': 37, 'core-js/stable': 613 }],
+  }, { '../objects/createEventResponder.js': 49, '../objects/options/getListenerOptions.js': 55, '../objects/options/optionsToNumber.js': 57, './getTopParentItem.js': 28, './makeEventHandler.js': 31, './retrieveListener.js': 37, 'core-js/stable': 619 }],
   4: [function (require, module, exports) {
     'use strict'
 
@@ -196,7 +196,7 @@
       return (0, _createDomItem.default)(item)
     }
     var _default = exports.default = addDomItemProperties
-  }, { '../objects/createDomItem': 47, 'core-js/modules/esnext.async-iterator.for-each.js': 576, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.for-each.js': 584, 'core-js/stable': 613 }],
+  }, { '../objects/createDomItem': 47, 'core-js/modules/esnext.async-iterator.for-each.js': 582, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.for-each.js': 590, 'core-js/stable': 619 }],
   5: [function (require, module, exports) {
     'use strict'
 
@@ -219,7 +219,7 @@
       return parent
     }
     var _default = exports.default = appendChild
-  }, { 'core-js/stable': 613 }],
+  }, { 'core-js/stable': 619 }],
   6: [function (require, module, exports) {
     'use strict'
 
@@ -232,6 +232,7 @@
     require('core-js/modules/esnext.iterator.constructor.js')
     require('core-js/modules/esnext.iterator.for-each.js')
     require('core-js/modules/esnext.iterator.map.js')
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     var _siFunciona = _interopRequireDefault(require('si-funciona'))
     var _getListenerOptions = _interopRequireDefault(require('../objects/options/getListenerOptions.js'))
@@ -261,7 +262,7 @@
       return item
     }
     var _default = exports.default = applyActiveListeners
-  }, { '../objects/createEventProxy.js': 48, '../objects/options/getListenerOptions.js': 55, '../objects/options/numberToOptions.js': 56, './assignListener.js': 7, 'core-js/modules/esnext.async-iterator.for-each.js': 576, 'core-js/modules/esnext.async-iterator.map.js': 577, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.for-each.js': 584, 'core-js/modules/esnext.iterator.map.js': 585, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { '../objects/createEventProxy.js': 48, '../objects/options/getListenerOptions.js': 55, '../objects/options/numberToOptions.js': 56, './assignListener.js': 7, 'core-js/modules/esnext.async-iterator.for-each.js': 582, 'core-js/modules/esnext.async-iterator.map.js': 583, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.for-each.js': 590, 'core-js/modules/esnext.iterator.map.js': 591, 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619, 'si-funciona': 694 }],
   7: [function (require, module, exports) {
     'use strict'
 
@@ -298,15 +299,15 @@
         elem.addEventListener(trigger, fn, (0, _listenerOptions.default)(options))
       } else if (elem.attachEvent) {
         // Older browsers, especially Internet Explorer
-        elem.attachEvent(`on${trigger}`, fn)
+        elem.attachEvent('on'.concat(trigger), fn)
       } else {
         // General support for adding a new function onto the element which can be called to trigger the function
-        elem[`on${trigger}`] = fn
+        elem['on'.concat(trigger)] = fn
       }
       return fn
     }
     var _default = exports.default = assignListener
-  }, { './listenerOptions.js': 30, 'core-js/stable': 613 }],
+  }, { './listenerOptions.js': 30, 'core-js/stable': 619 }],
   8: [function (require, module, exports) {
     'use strict'
 
@@ -314,6 +315,7 @@
       value: true
     })
     exports.default = void 0
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     var _bindListeners = _interopRequireDefault(require('./bindListeners.js'))
     function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
@@ -334,7 +336,7 @@
       return (0, _bindListeners.default)(item)
     }
     var _default = exports.default = bindAllListeners
-  }, { './bindListeners.js': 10, 'core-js/stable': 613 }],
+  }, { './bindListeners.js': 10, 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619 }],
   9: [function (require, module, exports) {
     'use strict'
 
@@ -371,7 +373,7 @@
       return item
     }
     var _default = exports.default = bindElementListeners
-  }, { './activateListener.js': 3, './applyActiveListeners': 6, 'core-js/modules/esnext.async-iterator.for-each.js': 576, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.for-each.js': 584, 'core-js/stable': 613 }],
+  }, { './activateListener.js': 3, './applyActiveListeners': 6, 'core-js/modules/esnext.async-iterator.for-each.js': 582, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.for-each.js': 590, 'core-js/stable': 619 }],
   10: [function (require, module, exports) {
     'use strict'
 
@@ -394,7 +396,7 @@
  */
     const bindListeners = item => !_siFunciona.default.emptyObject(item.eventListeners) && item.element ? (0, _bindElementListeners.default)(item) : item
     var _default = exports.default = bindListeners
-  }, { './bindElementListeners.js': 9, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { './bindElementListeners.js': 9, 'core-js/stable': 619, 'si-funciona': 694 }],
   11: [function (require, module, exports) {
     'use strict'
 
@@ -421,7 +423,7 @@
       return item
     }
     var _default = exports.default = deactivateListeners
-  }, { 'core-js/modules/esnext.async-iterator.for-each.js': 576, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.for-each.js': 584, 'core-js/stable': 613 }],
+  }, { 'core-js/modules/esnext.async-iterator.for-each.js': 582, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.for-each.js': 590, 'core-js/stable': 619 }],
   12: [function (require, module, exports) {
     'use strict'
 
@@ -432,6 +434,7 @@
     require('core-js/modules/esnext.async-iterator.reduce.js')
     require('core-js/modules/esnext.iterator.constructor.js')
     require('core-js/modules/esnext.iterator.reduce.js')
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     var _siFunciona = _interopRequireDefault(require('si-funciona'))
     var _elementHasAttribute = _interopRequireDefault(require('./elementHasAttribute.js'))
@@ -475,7 +478,8 @@
  * @returns {Object.<string, *>}
  */
     const kabobCaseAttributes = attributesToSet => _siFunciona.default.reduceObject(attributesToSet, (attributes, value, name) => {
-      let attrValue = attributesToSet[name] ?? value
+      var _attributesToSet$name
+      let attrValue = (_attributesToSet$name = attributesToSet[name]) !== null && _attributesToSet$name !== void 0 ? _attributesToSet$name : value
       if (_siFunciona.default.isObject(attrValue)) {
         attrValue = kabobCaseAttributes(attrValue)
       }
@@ -541,13 +545,13 @@
         if (key === 'class') {
           changed.removed = result.reduce((removed, results) => {
             if (results.result[0] === -1) {
-              removed[`class.${results.keys[1]}`] = results.value
+              removed['class.'.concat(results.keys[1])] = results.value
             }
             return removed
           }, changed.removed)
           changed.added = result.reduce((added, results) => {
             if (results.result[0] === 1) {
-              added[`class.${results.keys[0]}`] = results.value
+              added['class.'.concat(results.keys[0])] = results.value
             }
             return added
           }, changed.added)
@@ -558,19 +562,19 @@
             return removed
           }
           if (results.result[0] === -1) {
-            removed[`style.${results.value}`] = domItem.element.style[results.value]
+            removed['style.'.concat(results.value)] = domItem.element.style[results.value]
           }
           if (results.result[0] === 0 && domItem.element.style[results.value] !== domItemAttributes.style[results.value]) {
-            removed[`style.${results.value}`] = domItem.element.style[results.value]
+            removed['style.'.concat(results.value)] = domItem.element.style[results.value]
           }
           return removed
         }, changed.removed)
         changed.added = result.reduce((added, results) => {
           if (results.result[0] === 1) {
-            added[`style.${results.value}`] = domItemAttributes.style[results.value]
+            added['style.'.concat(results.value)] = domItemAttributes.style[results.value]
           }
           if (results.result[0] === 0 && domItem.element.style[results.value] !== domItemAttributes.style[results.value]) {
-            added[`style.${results.value}`] = domItemAttributes.style[results.value]
+            added['style.'.concat(results.value)] = domItemAttributes.style[results.value]
           }
           return added
         }, changed.added)
@@ -578,7 +582,7 @@
       }, changeList)
     }
     var _default = exports.default = domItemChanges
-  }, { '../objects/createChangeList': 46, './elementHasAttribute.js': 16, 'core-js/modules/esnext.async-iterator.reduce.js': 578, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.reduce.js': 586, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { '../objects/createChangeList': 46, './elementHasAttribute.js': 16, 'core-js/modules/esnext.async-iterator.reduce.js': 584, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.reduce.js': 592, 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619, 'si-funciona': 694 }],
   13: [function (require, module, exports) {
     'use strict'
 
@@ -599,8 +603,9 @@
  * @returns {int|Object.<string, number>}
  */
     const checkStyles = function (domItem) {
+      var _domItem$attributes$s
       const attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
-      const assignedStyles = domItem.attributes.style ?? {}
+      const assignedStyles = (_domItem$attributes$s = domItem.attributes.style) !== null && _domItem$attributes$s !== void 0 ? _domItem$attributes$s : {}
       if (_siFunciona.default.emptyObject(assignedStyles)) {
         return 1
       }
@@ -614,8 +619,9 @@
  * @returns {int|Object.<string, number>}
  */
     const checkClasses = function (domItem) {
+      var _domItem$attributes$c
       const attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ''
-      const assignedClasses = domItem.attributes.className ?? ''
+      const assignedClasses = (_domItem$attributes$c = domItem.attributes.className) !== null && _domItem$attributes$c !== void 0 ? _domItem$attributes$c : ''
       if (!assignedClasses.length) {
         return 1
       }
@@ -649,7 +655,7 @@
       return 1
     }
     var _default = exports.default = domItemHasAttribute
-  }, { './getAssignedStyles': 19, 'core-js/modules/esnext.async-iterator.map.js': 577, 'core-js/modules/esnext.iterator.map.js': 585, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { './getAssignedStyles': 19, 'core-js/modules/esnext.async-iterator.map.js': 583, 'core-js/modules/esnext.iterator.map.js': 591, 'core-js/stable': 619, 'si-funciona': 694 }],
   14: [function (require, module, exports) {
     'use strict'
 
@@ -695,7 +701,7 @@
       }), ['activeListeners', 'element', 'parentItem', 'body', 'head']), useExclusions)
     }
     var _default = exports.default = domItemToJson
-  }, { './removeEmptyProperties': 35, 'core-js/stable': 613 }],
+  }, { './removeEmptyProperties': 35, 'core-js/stable': 619 }],
   15: [function (require, module, exports) {
     'use strict'
 
@@ -706,6 +712,7 @@
     require('core-js/modules/esnext.async-iterator.reduce.js')
     require('core-js/modules/esnext.iterator.constructor.js')
     require('core-js/modules/esnext.iterator.reduce.js')
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     var _siFunciona = _interopRequireDefault(require('si-funciona'))
     var _domItemHasAttribute = _interopRequireDefault(require('./domItemHasAttribute.js'))
@@ -748,11 +755,12 @@
  * @returns {Object.<string, *>}
  */
     const camelCaseAttributes = domItem => domItem.element ? _siFunciona.default.reduceObject(domItem.element.attributes, (attributes, attr) => {
+      var _domItem$element$attr
       if (!attr.name) {
         return attributes
       }
       const camelKey = attr.name === 'class' ? 'className' : _siFunciona.default.camelCase(attr.name)
-      const attributeValue = domItem.element[attr.name] ?? attr.value
+      const attributeValue = (_domItem$element$attr = domItem.element[attr.name]) !== null && _domItem$element$attr !== void 0 ? _domItem$element$attr : attr.value
       if (typeof attributeValue === 'undefined') {
         return attributes
       }
@@ -813,8 +821,9 @@
           return changed
         }
         if (!isArray) {
+          var _domItem$element$key
           // Not an array, simply set the attribute as added
-          changed.added[`attributes.${key}`] = domItem.element[key] ?? domItem.element.getAttribute(_siFunciona.default.kabobCase(key))
+          changed.added['attributes.'.concat(key)] = (_domItem$element$key = domItem.element[key]) !== null && _domItem$element$key !== void 0 ? _domItem$element$key : domItem.element.getAttribute(_siFunciona.default.kabobCase(key))
           return changed
         }
         if (key !== 'className' && key !== 'style') {
@@ -824,13 +833,13 @@
         if (key === 'className') {
           changed.removed = result.reduce((removed, results) => {
             if (results.result[0] === -1) {
-              removed[`attributes.className.${results.keys[1]}`] = results.value
+              removed['attributes.className.'.concat(results.keys[1])] = results.value
             }
             return removed
           }, changed.removed)
           changed.added = result.reduce((added, results) => {
             if (results.result[0] === 1) {
-              added[`attributes.className.${results.keys[0]}`] = results.value
+              added['attributes.className.'.concat(results.keys[0])] = results.value
             }
             return added
           }, changed.added)
@@ -838,19 +847,19 @@
         }
         changed.removed = result.reduce((removed, results) => {
           if (results.result[0] === -1) {
-            removed[`attributes.style.${results.value}`] = domItem.attributes.style[results.value]
+            removed['attributes.style.'.concat(results.value)] = domItem.attributes.style[results.value]
           }
           if (results.result[0] === 0 && domItem.attributes.style[results.value] !== elementAttributes.style[results.value]) {
-            removed[`attributes.style.${results.value}`] = domItem.attributes.style[results.value]
+            removed['attributes.style.'.concat(results.value)] = domItem.attributes.style[results.value]
           }
           return removed
         }, changed.removed)
         changed.added = result.reduce((added, results) => {
           if (results.result[0] === 1) {
-            added[`attributes.style.${results.value}`] = elementAttributes.style[results.value]
+            added['attributes.style.'.concat(results.value)] = elementAttributes.style[results.value]
           }
           if (results.result[0] === 0 && domItem.attributes.style[results.value] !== elementAttributes.style[results.value]) {
-            added[`attributes.style.${results.value}`] = elementAttributes.style[results.value]
+            added['attributes.style.'.concat(results.value)] = elementAttributes.style[results.value]
           }
           return added
         }, changed.added)
@@ -858,7 +867,7 @@
       }, changeList)
     }
     var _default = exports.default = elementChanges
-  }, { '../objects/createChangeList.js': 46, './domItemHasAttribute.js': 13, 'core-js/modules/esnext.async-iterator.reduce.js': 578, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.reduce.js': 586, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { '../objects/createChangeList.js': 46, './domItemHasAttribute.js': 13, 'core-js/modules/esnext.async-iterator.reduce.js': 584, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.reduce.js': 592, 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619, 'si-funciona': 694 }],
   16: [function (require, module, exports) {
     'use strict'
 
@@ -869,7 +878,7 @@
     require('core-js/modules/esnext.async-iterator.map.js')
     require('core-js/modules/esnext.iterator.map.js')
     require('core-js/stable')
-    var _getAssignedStyles = _interopRequireDefault(require('./getAssignedStyles.js'))
+    var _getAssignedStyles2 = _interopRequireDefault(require('./getAssignedStyles.js'))
     var _siFunciona = _interopRequireDefault(require('si-funciona'))
     function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
     /**
@@ -879,8 +888,9 @@
  * @returns {int|Object.<string, number>}
  */
     const checkStyles = function (element) {
+      var _getAssignedStyles
       const attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
-      const assignedStyles = (0, _getAssignedStyles.default)(element.style) ?? {}
+      const assignedStyles = (_getAssignedStyles = (0, _getAssignedStyles2.default)(element.style)) !== null && _getAssignedStyles !== void 0 ? _getAssignedStyles : {}
       if (_siFunciona.default.emptyObject(assignedStyles)) {
         return 1
       }
@@ -936,7 +946,7 @@
       return 1
     }
     var _default = exports.default = elementHasAttribute
-  }, { './getAssignedStyles.js': 19, 'core-js/modules/esnext.async-iterator.map.js': 577, 'core-js/modules/esnext.iterator.map.js': 585, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { './getAssignedStyles.js': 19, 'core-js/modules/esnext.async-iterator.map.js': 583, 'core-js/modules/esnext.iterator.map.js': 591, 'core-js/stable': 619, 'si-funciona': 694 }],
   17: [function (require, module, exports) {
     'use strict'
 
@@ -973,7 +983,7 @@
  */
     const gatherChildItems = (item, test) => test(item, item.children.reduce((a, b) => a.concat(gatherChildItems(b, test)), []))
     var _default = exports.default = gatherChildItems
-  }, { 'core-js/modules/esnext.async-iterator.reduce.js': 578, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.reduce.js': 586, 'core-js/stable': 613 }],
+  }, { 'core-js/modules/esnext.async-iterator.reduce.js': 584, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.reduce.js': 592, 'core-js/stable': 619 }],
   18: [function (require, module, exports) {
     'use strict'
 
@@ -1015,7 +1025,7 @@
       return (0, _updateElement.default)(domItem)
     }
     var _default = exports.default = generateElement
-  }, { './updateElement.js': 43, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { './updateElement.js': 43, 'core-js/stable': 619, 'si-funciona': 694 }],
   19: [function (require, module, exports) {
     'use strict'
 
@@ -1037,7 +1047,7 @@
  */
     const getAssignedStyles = elementStyles => _siFunciona.default.reduceObject(elementStyles, (styles, attr, key) => isNaN(key) ? styles : _siFunciona.default.setValue(attr, elementStyles[attr], styles), {})
     var _default = exports.default = getAssignedStyles
-  }, { 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { 'core-js/stable': 619, 'si-funciona': 694 }],
   20: [function (require, module, exports) {
     'use strict'
 
@@ -1056,7 +1066,7 @@
  */
     const getChildTest = (attr, value) => (item, gatheredResults) => item.attributes[attr] && item.attributes[attr] === value ? gatheredResults.concat([item]) : gatheredResults
     var _default = exports.default = getChildTest
-  }, { 'core-js/stable': 613 }],
+  }, { 'core-js/stable': 619 }],
   21: [function (require, module, exports) {
     'use strict'
 
@@ -1076,7 +1086,7 @@
  */
     const getChildrenByClass = _siFunciona.default.curry(_getChildrenFromAttribute.default)('className')
     var _default = exports.default = getChildrenByClass
-  }, { './getChildrenFromAttribute.js': 23, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { './getChildrenFromAttribute.js': 23, 'core-js/stable': 619, 'si-funciona': 694 }],
   22: [function (require, module, exports) {
     'use strict'
 
@@ -1096,7 +1106,7 @@
  */
     const getChildrenByName = _siFunciona.default.curry(_getChildrenFromAttribute.default)('name')
     var _default = exports.default = getChildrenByName
-  }, { './getChildrenFromAttribute.js': 23, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { './getChildrenFromAttribute.js': 23, 'core-js/stable': 619, 'si-funciona': 694 }],
   23: [function (require, module, exports) {
     'use strict'
 
@@ -1127,7 +1137,7 @@
       return (0, _gatherChildItems.default)(item, (0, _getChildTest.default)(attr, value))
     }
     var _default = exports.default = getChildrenFromAttribute
-  }, { '../objects/documentItem.js': 51, './gatherChildItems.js': 17, './getChildTest.js': 20, 'core-js/stable': 613 }],
+  }, { '../objects/documentItem.js': 51, './gatherChildItems.js': 17, './getChildTest.js': 20, 'core-js/stable': 619 }],
   24: [function (require, module, exports) {
     'use strict'
 
@@ -1147,7 +1157,7 @@
  */
     const getParentsByClass = _siFunciona.default.curry(_getParentsFromAttribute.default)('className')
     var _default = exports.default = getParentsByClass
-  }, { './getParentsFromAttribute.js': 27, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { './getParentsFromAttribute.js': 27, 'core-js/stable': 619, 'si-funciona': 694 }],
   25: [function (require, module, exports) {
     'use strict'
 
@@ -1167,7 +1177,7 @@
  */
     const getParentsByName = _siFunciona.default.curry(_getParentsFromAttribute.default)('name')
     var _default = exports.default = getParentsByName
-  }, { './getParentsFromAttribute.js': 27, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { './getParentsFromAttribute.js': 27, 'core-js/stable': 619, 'si-funciona': 694 }],
   26: [function (require, module, exports) {
     'use strict'
 
@@ -1187,7 +1197,7 @@
  */
     const getParentsByTagName = _siFunciona.default.curry(_getParentsFromAttribute.default)('nodeName')
     var _default = exports.default = getParentsByTagName
-  }, { './getParentsFromAttribute.js': 27, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { './getParentsFromAttribute.js': 27, 'core-js/stable': 619, 'si-funciona': 694 }],
   27: [function (require, module, exports) {
     'use strict'
 
@@ -1222,7 +1232,7 @@
       return Object.keys(item.parentItem).length ? (item.parentItem.attributes[attr] || item[attr] || false) === value ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem]) : getParentsFromAttribute(attr, value, item.parentItem) : []
     }
     var _default = exports.default = getParentsFromAttribute
-  }, { '../objects/documentItem.js': 51, 'core-js/stable': 613 }],
+  }, { '../objects/documentItem.js': 51, 'core-js/stable': 619 }],
   28: [function (require, module, exports) {
     'use strict'
 
@@ -1249,7 +1259,7 @@
       return Object.keys(item.parentItem).length ? getTopParentItem(item.parentItem) : item
     }
     var _default = exports.default = getTopParentItem
-  }, { 'core-js/stable': 613 }],
+  }, { 'core-js/stable': 619 }],
   29: [function (require, module, exports) {
     'use strict'
 
@@ -1278,7 +1288,7 @@
       return parsedJson
     }
     var _default = exports.default = jsonToDomItem
-  }, { './addDomItemProperties': 4, './setParentItemReferences.js': 38, 'core-js/stable': 613 }],
+  }, { './addDomItemProperties': 4, './setParentItemReferences.js': 38, 'core-js/stable': 619 }],
   30: [function (require, module, exports) {
     'use strict'
 
@@ -1313,7 +1323,7 @@
       return typeof options === 'object' && listenerOptions.supportsOptions ? options : false
     }
     var _default = exports.default = listenerOptions
-  }, { 'core-js/stable': 613 }],
+  }, { 'core-js/stable': 619 }],
   31: [function (require, module, exports) {
     'use strict'
 
@@ -1321,6 +1331,7 @@
       value: true
     })
     exports.default = void 0
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     /**
  * Based on available flags, either proceed to process the listener or skip.
@@ -1348,7 +1359,7 @@
       }
     }
     var _default = exports.default = makeEventHandler
-  }, { 'core-js/stable': 613 }],
+  }, { 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619 }],
   32: [function (require, module, exports) {
     'use strict'
 
@@ -1377,7 +1388,7 @@
       })
     }
     var _default = exports.default = registerListener
-  }, { '../objects/documentItem.js': 51, 'core-js/stable': 613 }],
+  }, { '../objects/documentItem.js': 51, 'core-js/stable': 619 }],
   33: [function (require, module, exports) {
     'use strict'
 
@@ -1404,7 +1415,7 @@
       return parent
     }
     var _default = exports.default = registerListeners
-  }, { '../objects/documentItem.js': 51, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { '../objects/documentItem.js': 51, 'core-js/stable': 619, 'si-funciona': 694 }],
   34: [function (require, module, exports) {
     'use strict'
 
@@ -1426,7 +1437,7 @@
       return parent.children.splice(parent.children.indexOf(child), 1)
     }
     var _default = exports.default = removeChild
-  }, { 'core-js/stable': 613 }],
+  }, { 'core-js/stable': 619 }],
   35: [function (require, module, exports) {
     'use strict'
 
@@ -1468,7 +1479,7 @@
       return item
     }
     var _default = exports.default = removeEmptyProperties
-  }, { 'core-js/modules/esnext.async-iterator.for-each.js': 576, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.for-each.js': 584, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { 'core-js/modules/esnext.async-iterator.for-each.js': 582, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.for-each.js': 590, 'core-js/stable': 619, 'si-funciona': 694 }],
   36: [function (require, module, exports) {
     'use strict'
 
@@ -1496,7 +1507,7 @@
       return (0, _updateElements.default)(item)
     }
     var _default = exports.default = renderHtml
-  }, { '../objects/documentItem.js': 51, './updateElements.js': 44, 'core-js/stable': 613 }],
+  }, { '../objects/documentItem.js': 51, './updateElements.js': 44, 'core-js/stable': 619 }],
   37: [function (require, module, exports) {
     'use strict'
 
@@ -1519,10 +1530,10 @@
       const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default
       return Object.keys(parent.eventListeners).includes(listenerName) ? parent.eventListeners[listenerName] : (function (e) {
         throw e
-      }(`Undefined listener function on this DomItemRoot: ${listenerName}`))
+      }('Undefined listener function on this DomItemRoot: '.concat(listenerName)))
     }
     var _default = exports.default = retrieveListener
-  }, { '../objects/documentItem.js': 51, 'core-js/stable': 613 }],
+  }, { '../objects/documentItem.js': 51, 'core-js/stable': 619 }],
   38: [function (require, module, exports) {
     'use strict'
 
@@ -1549,7 +1560,7 @@
       return item
     }
     var _default = exports.default = setParentItemReferences
-  }, { 'core-js/modules/esnext.async-iterator.for-each.js': 576, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.for-each.js': 584, 'core-js/stable': 613 }],
+  }, { 'core-js/modules/esnext.async-iterator.for-each.js': 582, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.for-each.js': 590, 'core-js/stable': 619 }],
   39: [function (require, module, exports) {
     'use strict'
 
@@ -1581,7 +1592,7 @@
       const previousChildNodes = Array.from(domItem.element.childNodes)
       domItem.children.map((child, index) => {
         const existing = previousChildNodes.find(childNode => childNode === child.element)
-        let childNode = existing ?? child.element
+        let childNode = existing !== null && existing !== void 0 ? existing : child.element
         if (!childNode) {
           childNode = (0, _updateElement.default)(child).element
         }
@@ -1607,7 +1618,7 @@
       return domItem
     }
     var _default = exports.default = updateChildNodes
-  }, { './updateElement.js': 43, 'core-js/modules/esnext.async-iterator.find.js': 575, 'core-js/modules/esnext.async-iterator.for-each.js': 576, 'core-js/modules/esnext.async-iterator.map.js': 577, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.find.js': 583, 'core-js/modules/esnext.iterator.for-each.js': 584, 'core-js/modules/esnext.iterator.map.js': 585, 'core-js/stable': 613 }],
+  }, { './updateElement.js': 43, 'core-js/modules/esnext.async-iterator.find.js': 581, 'core-js/modules/esnext.async-iterator.for-each.js': 582, 'core-js/modules/esnext.async-iterator.map.js': 583, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.find.js': 589, 'core-js/modules/esnext.iterator.for-each.js': 590, 'core-js/modules/esnext.iterator.map.js': 591, 'core-js/stable': 619 }],
   40: [function (require, module, exports) {
     'use strict'
 
@@ -1639,7 +1650,7 @@
       domItem.children = []
       domItem.element.childNodes.forEach((childNode, index) => {
         const existing = previousChildren.find(child => child.element === childNode)
-        const child = existing ?? (0, _createDomItem.default)({
+        const child = existing !== null && existing !== void 0 ? existing : (0, _createDomItem.default)({
           nodeName: childNode.nodeName.toLowerCase(),
           nodeValue: childNode.nodeValue,
           element: childNode
@@ -1650,7 +1661,7 @@
       return domItem
     }
     var _default = exports.default = updateChildren
-  }, { '../objects/createDomItem': 47, 'core-js/modules/esnext.async-iterator.find.js': 575, 'core-js/modules/esnext.async-iterator.for-each.js': 576, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.find.js': 583, 'core-js/modules/esnext.iterator.for-each.js': 584, 'core-js/stable': 613 }],
+  }, { '../objects/createDomItem': 47, 'core-js/modules/esnext.async-iterator.find.js': 581, 'core-js/modules/esnext.async-iterator.for-each.js': 582, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.find.js': 589, 'core-js/modules/esnext.iterator.for-each.js': 590, 'core-js/stable': 619 }],
   41: [function (require, module, exports) {
     'use strict'
 
@@ -1699,7 +1710,7 @@
       return config
     }
     var _default = exports.default = updateDomItem
-  }, { './elementChanges.js': 15, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { './elementChanges.js': 15, 'core-js/stable': 619, 'si-funciona': 694 }],
   42: [function (require, module, exports) {
     'use strict'
 
@@ -1710,6 +1721,7 @@
     require('core-js/modules/esnext.async-iterator.for-each.js')
     require('core-js/modules/esnext.iterator.constructor.js')
     require('core-js/modules/esnext.iterator.for-each.js')
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     var _updateChildren = _interopRequireDefault(require('./updateChildren.js'))
     var _updateDomItem = _interopRequireDefault(require('./updateDomItem.js'))
@@ -1735,7 +1747,7 @@
       return domItem
     }
     var _default = exports.default = updateDomItems
-  }, { './updateChildren.js': 40, './updateDomItem.js': 41, 'core-js/modules/esnext.async-iterator.for-each.js': 576, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.for-each.js': 584, 'core-js/stable': 613 }],
+  }, { './updateChildren.js': 40, './updateDomItem.js': 41, 'core-js/modules/esnext.async-iterator.for-each.js': 582, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.for-each.js': 590, 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619 }],
   43: [function (require, module, exports) {
     'use strict'
 
@@ -1827,7 +1839,7 @@
       return (0, _bindListeners.default)(domItem)
     }
     var _default = exports.default = updateElement
-  }, { './bindListeners.js': 10, './deactivateListeners.js': 11, './domItemChanges.js': 12, './generateElement.js': 18, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { './bindListeners.js': 10, './deactivateListeners.js': 11, './domItemChanges.js': 12, './generateElement.js': 18, 'core-js/stable': 619, 'si-funciona': 694 }],
   44: [function (require, module, exports) {
     'use strict'
 
@@ -1838,6 +1850,7 @@
     require('core-js/modules/esnext.async-iterator.for-each.js')
     require('core-js/modules/esnext.iterator.constructor.js')
     require('core-js/modules/esnext.iterator.for-each.js')
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     var _updateChildNodes = _interopRequireDefault(require('./updateChildNodes.js'))
     var _updateElement = _interopRequireDefault(require('./updateElement.js'))
@@ -1863,7 +1876,7 @@
       return domItem
     }
     var _default = exports.default = updateElements
-  }, { './updateChildNodes.js': 39, './updateElement.js': 43, 'core-js/modules/esnext.async-iterator.for-each.js': 576, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.for-each.js': 584, 'core-js/stable': 613 }],
+  }, { './updateChildNodes.js': 39, './updateElement.js': 43, 'core-js/modules/esnext.async-iterator.for-each.js': 582, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.for-each.js': 590, 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619 }],
   45: [function (require, module, exports) {
     'use strict'
 
@@ -1900,7 +1913,7 @@
       initRoot: _initRoot.default,
       options: _options.default
     }
-  }, { './objects/createChangeList.js': 46, './objects/createDomItem.js': 47, './objects/createEventProxy.js': 48, './objects/createEventResponder.js': 49, './objects/documentDomItem.js': 50, './objects/documentItem.js': 51, './objects/initChildren.js': 52, './objects/initRoot.js': 53, './objects/options.js': 54, 'core-js/stable': 613 }],
+  }, { './objects/createChangeList.js': 46, './objects/createDomItem.js': 47, './objects/createEventProxy.js': 48, './objects/createEventResponder.js': 49, './objects/documentDomItem.js': 50, './objects/documentItem.js': 51, './objects/initChildren.js': 52, './objects/initRoot.js': 53, './objects/options.js': 54, 'core-js/stable': 619 }],
   46: [function (require, module, exports) {
     'use strict'
 
@@ -1925,7 +1938,7 @@
  */
     const appendChangesTo = changeList => (changeType, changes) => {
       if (!['added', 'removed'].includes(changeType)) {
-        throw Error(`Method appendChanges change type must be 'added' or 'removed'; ${changeType} given.`)
+        throw Error("Method appendChanges change type must be 'added' or 'removed'; ".concat(changeType, ' given.'))
       }
       return _siFunciona.default.mergeObjects(changeList[changeType], changes)
     }
@@ -1961,7 +1974,7 @@
       return changeList
     }
     var _default = exports.default = createChangeList
-  }, { 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { 'core-js/stable': 619, 'si-funciona': 694 }],
   47: [function (require, module, exports) {
     'use strict'
 
@@ -2084,7 +2097,7 @@
       return newDomItem
     }
     var _default = exports.default = createDomItem
-  }, { '../functions/appendChild.js': 5, '../functions/removeChild': 34, 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { '../functions/appendChild.js': 5, '../functions/removeChild': 34, 'core-js/stable': 619, 'si-funciona': 694 }],
   48: [function (require, module, exports) {
     'use strict'
 
@@ -2092,6 +2105,7 @@
       value: true
     })
     exports.default = void 0
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     /**
  * A wrapped Event which provides additional utilities.
@@ -2118,7 +2132,7 @@
       }
     })
     var _default = exports.default = createEventProxy
-  }, { 'core-js/stable': 613 }],
+  }, { 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619 }],
   49: [function (require, module, exports) {
     'use strict'
 
@@ -2157,7 +2171,7 @@
       })
     }
     var _default = exports.default = createEventResponder
-  }, { 'core-js/stable': 613 }],
+  }, { 'core-js/stable': 619 }],
   50: [function (require, module, exports) {
     'use strict'
 
@@ -2197,7 +2211,7 @@
       return (0, _updateDomItems.default)((0, _createDomItem.default)(rootItem))
     }
     var _default = exports.default = documentDomItem
-  }, { '../functions/updateDomItems': 42, './createDomItem.js': 47, './initChildren.js': 52, './initRoot.js': 53, 'core-js/modules/esnext.async-iterator.map.js': 577, 'core-js/modules/esnext.iterator.map.js': 585, 'core-js/stable': 613 }],
+  }, { '../functions/updateDomItems': 42, './createDomItem.js': 47, './initChildren.js': 52, './initRoot.js': 53, 'core-js/modules/esnext.async-iterator.map.js': 583, 'core-js/modules/esnext.iterator.map.js': 591, 'core-js/stable': 619 }],
   51: [function (require, module, exports) {
     'use strict'
 
@@ -2223,7 +2237,7 @@
       return existingItem
     })()
     var _default = exports.default = documentItem
-  }, { './documentDomItem.js': 50, 'core-js/stable': 613 }],
+  }, { './documentDomItem.js': 50, 'core-js/stable': 619 }],
   52: [function (require, module, exports) {
     'use strict'
 
@@ -2285,7 +2299,7 @@
       return children
     }
     var _default = exports.default = initChildren
-  }, { './createDomItem.js': 47, 'core-js/stable': 613, 'si-funciona/dist/helpers/functions/onBodyLoad': 641 }],
+  }, { './createDomItem.js': 47, 'core-js/stable': 619, 'si-funciona/dist/helpers/functions/onBodyLoad': 647 }],
   53: [function (require, module, exports) {
     'use strict'
 
@@ -2338,7 +2352,7 @@
       })
     }
     var _default = exports.default = initRoot
-  }, { './createDomItem.js': 47, 'core-js/stable': 613 }],
+  }, { './createDomItem.js': 47, 'core-js/stable': 619 }],
   54: [function (require, module, exports) {
     'use strict'
 
@@ -2380,7 +2394,7 @@
       numberToOptions: _numberToOptions.default,
       optionsToNumber: _optionsToNumber.default
     }
-  }, { './options/getListenerOptions.js': 55, './options/numberToOptions.js': 56, './options/optionsToNumber.js': 57, 'core-js/stable': 613 }],
+  }, { './options/getListenerOptions.js': 55, './options/numberToOptions.js': 56, './options/optionsToNumber.js': 57, 'core-js/stable': 619 }],
   55: [function (require, module, exports) {
     'use strict'
 
@@ -2406,7 +2420,7 @@
       signal: SIGNAL
     })
     var _default = exports.default = getListenerOptions
-  }, { 'core-js/stable': 613 }],
+  }, { 'core-js/stable': 619 }],
   56: [function (require, module, exports) {
     'use strict'
 
@@ -2427,7 +2441,7 @@
  */
     const numberToOptions = (optionsTemplate, binaryOptions) => _siFunciona.default.mapObject(optionsTemplate, flag => !!(binaryOptions & flag))
     var _default = exports.default = numberToOptions
-  }, { 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { 'core-js/stable': 619, 'si-funciona': 694 }],
   57: [function (require, module, exports) {
     'use strict'
 
@@ -2454,7 +2468,7 @@
       return _siFunciona.default.reduceObject(optionsTemplate, (binaryOptions, flag, name) => listenerOptions[name] ? binaryOptions | flag : binaryOptions, 0)
     }
     var _default = exports.default = optionsToNumber
-  }, { 'core-js/stable': 613, 'si-funciona': 688 }],
+  }, { 'core-js/stable': 619, 'si-funciona': 694 }],
   58: [function (require, module, exports) {
     'use strict'
     var isCallable = require('../internals/is-callable')
@@ -2467,7 +2481,7 @@
       if (isCallable(argument)) return argument
       throw new $TypeError(tryToString(argument) + ' is not a function')
     }
-  }, { '../internals/is-callable': 178, '../internals/try-to-string': 293 }],
+  }, { '../internals/is-callable': 181, '../internals/try-to-string': 296 }],
   59: [function (require, module, exports) {
     'use strict'
     var isConstructor = require('../internals/is-constructor')
@@ -2480,7 +2494,7 @@
       if (isConstructor(argument)) return argument
       throw new $TypeError(tryToString(argument) + ' is not a constructor')
     }
-  }, { '../internals/is-constructor': 179, '../internals/try-to-string': 293 }],
+  }, { '../internals/is-constructor': 182, '../internals/try-to-string': 296 }],
   60: [function (require, module, exports) {
     'use strict'
     var isPossiblePrototype = require('../internals/is-possible-prototype')
@@ -2492,7 +2506,7 @@
       if (isPossiblePrototype(argument)) return argument
       throw new $TypeError("Can't set " + $String(argument) + ' as a prototype')
     }
-  }, { '../internals/is-possible-prototype': 185 }],
+  }, { '../internals/is-possible-prototype': 188 }],
   61: [function (require, module, exports) {
     'use strict'
     var wellKnownSymbol = require('../internals/well-known-symbol')
@@ -2515,7 +2529,7 @@
     module.exports = function (key) {
       ArrayPrototype[UNSCOPABLES][key] = true
     }
-  }, { '../internals/object-create': 216, '../internals/object-define-property': 218, '../internals/well-known-symbol': 307 }],
+  }, { '../internals/object-create': 219, '../internals/object-define-property': 221, '../internals/well-known-symbol': 310 }],
   62: [function (require, module, exports) {
     'use strict'
     var charAt = require('../internals/string-multibyte').charAt
@@ -2525,7 +2539,7 @@
     module.exports = function (S, index, unicode) {
       return index + (unicode ? charAt(S, index).length : 1)
     }
-  }, { '../internals/string-multibyte': 263 }],
+  }, { '../internals/string-multibyte': 266 }],
   63: [function (require, module, exports) {
     'use strict'
     var isPrototypeOf = require('../internals/object-is-prototype-of')
@@ -2536,7 +2550,7 @@
       if (isPrototypeOf(Prototype, it)) return it
       throw new $TypeError('Incorrect invocation')
     }
-  }, { '../internals/object-is-prototype-of': 225 }],
+  }, { '../internals/object-is-prototype-of': 228 }],
   64: [function (require, module, exports) {
     'use strict'
     var isObject = require('../internals/is-object')
@@ -2549,13 +2563,45 @@
       if (isObject(argument)) return argument
       throw new $TypeError($String(argument) + ' is not an object')
     }
-  }, { '../internals/is-object': 184 }],
+  }, { '../internals/is-object': 187 }],
   65: [function (require, module, exports) {
     'use strict'
     // eslint-disable-next-line es/no-typed-arrays -- safe
     module.exports = typeof ArrayBuffer !== 'undefined' && typeof DataView !== 'undefined'
   }, {}],
   66: [function (require, module, exports) {
+    'use strict'
+    var uncurryThisAccessor = require('../internals/function-uncurry-this-accessor')
+    var classof = require('../internals/classof-raw')
+
+    var $TypeError = TypeError
+
+    // Includes
+    // - Perform ? RequireInternalSlot(O, [[ArrayBufferData]]).
+    // - If IsSharedArrayBuffer(O) is true, throw a TypeError exception.
+    module.exports = uncurryThisAccessor(ArrayBuffer.prototype, 'byteLength', 'get') || function (O) {
+      if (classof(O) !== 'ArrayBuffer') throw new $TypeError('ArrayBuffer expected')
+      return O.byteLength
+    }
+  }, { '../internals/classof-raw': 99, '../internals/function-uncurry-this-accessor': 154 }],
+  67: [function (require, module, exports) {
+    'use strict'
+    var uncurryThis = require('../internals/function-uncurry-this')
+    var arrayBufferByteLength = require('../internals/array-buffer-byte-length')
+
+    var slice = uncurryThis(ArrayBuffer.prototype.slice)
+
+    module.exports = function (O) {
+      if (arrayBufferByteLength(O) !== 0) return false
+      try {
+        slice(O, 0, 0)
+        return false
+      } catch (error) {
+        return true
+      }
+    }
+  }, { '../internals/array-buffer-byte-length': 66, '../internals/function-uncurry-this': 156 }],
+  68: [function (require, module, exports) {
     'use strict'
     // FF26- bug: ArrayBuffers are non-extensible, but Object.isExtensible does not report it
     var fails = require('../internals/fails')
@@ -2567,8 +2613,56 @@
         if (Object.isExtensible(buffer)) Object.defineProperty(buffer, 'a', { value: 8 })
       }
     })
-  }, { '../internals/fails': 141 }],
-  67: [function (require, module, exports) {
+  }, { '../internals/fails': 144 }],
+  69: [function (require, module, exports) {
+    'use strict'
+    var global = require('../internals/global')
+    var uncurryThis = require('../internals/function-uncurry-this')
+    var uncurryThisAccessor = require('../internals/function-uncurry-this-accessor')
+    var toIndex = require('../internals/to-index')
+    var isDetached = require('../internals/array-buffer-is-detached')
+    var arrayBufferByteLength = require('../internals/array-buffer-byte-length')
+    var detachTransferable = require('../internals/detach-transferable')
+    var PROPER_STRUCTURED_CLONE_TRANSFER = require('../internals/structured-clone-proper-transfer')
+
+    var structuredClone = global.structuredClone
+    var ArrayBuffer = global.ArrayBuffer
+    var DataView = global.DataView
+    var TypeError = global.TypeError
+    var min = Math.min
+    var ArrayBufferPrototype = ArrayBuffer.prototype
+    var DataViewPrototype = DataView.prototype
+    var slice = uncurryThis(ArrayBufferPrototype.slice)
+    var isResizable = uncurryThisAccessor(ArrayBufferPrototype, 'resizable', 'get')
+    var maxByteLength = uncurryThisAccessor(ArrayBufferPrototype, 'maxByteLength', 'get')
+    var getInt8 = uncurryThis(DataViewPrototype.getInt8)
+    var setInt8 = uncurryThis(DataViewPrototype.setInt8)
+
+    module.exports = (PROPER_STRUCTURED_CLONE_TRANSFER || detachTransferable) && function (arrayBuffer, newLength, preserveResizability) {
+      var byteLength = arrayBufferByteLength(arrayBuffer)
+      var newByteLength = newLength === undefined ? byteLength : toIndex(newLength)
+      var fixedLength = !isResizable || !isResizable(arrayBuffer)
+      var newBuffer
+      if (isDetached(arrayBuffer)) throw new TypeError('ArrayBuffer is detached')
+      if (PROPER_STRUCTURED_CLONE_TRANSFER) {
+        arrayBuffer = structuredClone(arrayBuffer, { transfer: [arrayBuffer] })
+        if (byteLength === newByteLength && (preserveResizability || fixedLength)) return arrayBuffer
+      }
+      if (byteLength >= newByteLength && (!preserveResizability || fixedLength)) {
+        newBuffer = slice(arrayBuffer, 0, newByteLength)
+      } else {
+        var options = preserveResizability && !fixedLength && maxByteLength ? { maxByteLength: maxByteLength(arrayBuffer) } : undefined
+        newBuffer = new ArrayBuffer(newByteLength, options)
+        var a = new DataView(arrayBuffer)
+        var b = new DataView(newBuffer)
+        var copyLength = min(newByteLength, byteLength)
+        for (var i = 0; i < copyLength; i++) setInt8(b, i, getInt8(a, i))
+      }
+      if (!PROPER_STRUCTURED_CLONE_TRANSFER) detachTransferable(arrayBuffer)
+      return newBuffer
+    }
+  }, { '../internals/array-buffer-byte-length': 66, '../internals/array-buffer-is-detached': 67, '../internals/detach-transferable': 120, '../internals/function-uncurry-this': 156, '../internals/function-uncurry-this-accessor': 154, '../internals/global': 165, '../internals/structured-clone-proper-transfer': 275, '../internals/to-index': 283 }],
+  70: [function (require, module, exports) {
     'use strict'
     var NATIVE_ARRAY_BUFFER = require('../internals/array-buffer-basic-detection')
     var DESCRIPTORS = require('../internals/descriptors')
@@ -2776,8 +2870,8 @@
       TypedArray: TypedArray,
       TypedArrayPrototype: TypedArrayPrototype
     }
-  }, { '../internals/array-buffer-basic-detection': 65, '../internals/classof': 97, '../internals/create-non-enumerable-property': 106, '../internals/define-built-in': 112, '../internals/define-built-in-accessor': 111, '../internals/descriptors': 116, '../internals/global': 162, '../internals/has-own-property': 163, '../internals/internal-state': 174, '../internals/is-callable': 178, '../internals/is-object': 184, '../internals/object-get-prototype-of': 223, '../internals/object-is-prototype-of': 225, '../internals/object-set-prototype-of': 230, '../internals/try-to-string': 293, '../internals/uid': 299, '../internals/well-known-symbol': 307 }],
-  68: [function (require, module, exports) {
+  }, { '../internals/array-buffer-basic-detection': 65, '../internals/classof': 100, '../internals/create-non-enumerable-property': 109, '../internals/define-built-in': 115, '../internals/define-built-in-accessor': 114, '../internals/descriptors': 119, '../internals/global': 165, '../internals/has-own-property': 166, '../internals/internal-state': 177, '../internals/is-callable': 181, '../internals/is-object': 187, '../internals/object-get-prototype-of': 226, '../internals/object-is-prototype-of': 228, '../internals/object-set-prototype-of': 233, '../internals/try-to-string': 296, '../internals/uid': 302, '../internals/well-known-symbol': 310 }],
+  71: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -3040,8 +3134,8 @@
       ArrayBuffer: $ArrayBuffer,
       DataView: $DataView
     }
-  }, { '../internals/an-instance': 63, '../internals/array-buffer-basic-detection': 65, '../internals/array-fill': 70, '../internals/array-slice': 82, '../internals/copy-constructor-properties': 101, '../internals/create-non-enumerable-property': 106, '../internals/define-built-in-accessor': 111, '../internals/define-built-ins': 113, '../internals/descriptors': 116, '../internals/fails': 141, '../internals/function-name': 150, '../internals/function-uncurry-this': 153, '../internals/global': 162, '../internals/ieee754': 168, '../internals/inherit-if-required': 170, '../internals/internal-state': 174, '../internals/math-fround': 203, '../internals/object-get-prototype-of': 223, '../internals/object-set-prototype-of': 230, '../internals/set-to-string-tag': 257, '../internals/to-index': 280, '../internals/to-integer-or-infinity': 282, '../internals/to-length': 283 }],
-  69: [function (require, module, exports) {
+  }, { '../internals/an-instance': 63, '../internals/array-buffer-basic-detection': 65, '../internals/array-fill': 73, '../internals/array-slice': 85, '../internals/copy-constructor-properties': 104, '../internals/create-non-enumerable-property': 109, '../internals/define-built-in-accessor': 114, '../internals/define-built-ins': 116, '../internals/descriptors': 119, '../internals/fails': 144, '../internals/function-name': 153, '../internals/function-uncurry-this': 156, '../internals/global': 165, '../internals/ieee754': 171, '../internals/inherit-if-required': 173, '../internals/internal-state': 177, '../internals/math-fround': 206, '../internals/object-get-prototype-of': 226, '../internals/object-set-prototype-of': 233, '../internals/set-to-string-tag': 260, '../internals/to-index': 283, '../internals/to-integer-or-infinity': 285, '../internals/to-length': 286 }],
+  72: [function (require, module, exports) {
     'use strict'
     var toObject = require('../internals/to-object')
     var toAbsoluteIndex = require('../internals/to-absolute-index')
@@ -3073,8 +3167,8 @@
         from += inc
       } return O
     }
-  }, { '../internals/delete-property-or-throw': 115, '../internals/length-of-array-like': 198, '../internals/to-absolute-index': 278, '../internals/to-object': 284 }],
-  70: [function (require, module, exports) {
+  }, { '../internals/delete-property-or-throw': 118, '../internals/length-of-array-like': 201, '../internals/to-absolute-index': 281, '../internals/to-object': 287 }],
+  73: [function (require, module, exports) {
     'use strict'
     var toObject = require('../internals/to-object')
     var toAbsoluteIndex = require('../internals/to-absolute-index')
@@ -3092,8 +3186,8 @@
       while (endPos > index) O[index++] = value
       return O
     }
-  }, { '../internals/length-of-array-like': 198, '../internals/to-absolute-index': 278, '../internals/to-object': 284 }],
-  71: [function (require, module, exports) {
+  }, { '../internals/length-of-array-like': 201, '../internals/to-absolute-index': 281, '../internals/to-object': 287 }],
+  74: [function (require, module, exports) {
     'use strict'
     var $forEach = require('../internals/array-iteration').forEach
     var arrayMethodIsStrict = require('../internals/array-method-is-strict')
@@ -3106,8 +3200,8 @@
       return $forEach(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined)
       // eslint-disable-next-line es/no-array-prototype-foreach -- safe
     } : [].forEach
-  }, { '../internals/array-iteration': 76, '../internals/array-method-is-strict': 79 }],
-  72: [function (require, module, exports) {
+  }, { '../internals/array-iteration': 79, '../internals/array-method-is-strict': 82 }],
+  75: [function (require, module, exports) {
     'use strict'
     var lengthOfArrayLike = require('../internals/length-of-array-like')
 
@@ -3118,8 +3212,8 @@
       while (length > index) result[index] = list[index++]
       return result
     }
-  }, { '../internals/length-of-array-like': 198 }],
-  73: [function (require, module, exports) {
+  }, { '../internals/length-of-array-like': 201 }],
+  76: [function (require, module, exports) {
     'use strict'
     var bind = require('../internals/function-bind-context')
     var call = require('../internals/function-call')
@@ -3166,8 +3260,8 @@
       result.length = index
       return result
     }
-  }, { '../internals/call-with-safe-iteration-closing': 94, '../internals/create-property': 108, '../internals/function-bind-context': 146, '../internals/function-call': 149, '../internals/get-iterator': 158, '../internals/get-iterator-method': 157, '../internals/is-array-iterator-method': 175, '../internals/is-constructor': 179, '../internals/length-of-array-like': 198, '../internals/to-object': 284 }],
-  74: [function (require, module, exports) {
+  }, { '../internals/call-with-safe-iteration-closing': 97, '../internals/create-property': 111, '../internals/function-bind-context': 149, '../internals/function-call': 152, '../internals/get-iterator': 161, '../internals/get-iterator-method': 160, '../internals/is-array-iterator-method': 178, '../internals/is-constructor': 182, '../internals/length-of-array-like': 201, '../internals/to-object': 287 }],
+  77: [function (require, module, exports) {
     'use strict'
     var toIndexedObject = require('../internals/to-indexed-object')
     var toAbsoluteIndex = require('../internals/to-absolute-index')
@@ -3178,6 +3272,7 @@
       return function ($this, el, fromIndex) {
         var O = toIndexedObject($this)
         var length = lengthOfArrayLike(O)
+        if (length === 0) return !IS_INCLUDES && -1
         var index = toAbsoluteIndex(fromIndex, length)
         var value
         // Array#includes uses SameValueZero equality algorithm
@@ -3205,8 +3300,8 @@
       // https://tc39.es/ecma262/#sec-array.prototype.indexof
       indexOf: createMethod(false)
     }
-  }, { '../internals/length-of-array-like': 198, '../internals/to-absolute-index': 278, '../internals/to-indexed-object': 281 }],
-  75: [function (require, module, exports) {
+  }, { '../internals/length-of-array-like': 201, '../internals/to-absolute-index': 281, '../internals/to-indexed-object': 284 }],
+  78: [function (require, module, exports) {
     'use strict'
     var bind = require('../internals/function-bind-context')
     var IndexedObject = require('../internals/indexed-object')
@@ -3244,8 +3339,8 @@
       // https://github.com/tc39/proposal-array-find-from-last
       findLastIndex: createMethod(1)
     }
-  }, { '../internals/function-bind-context': 146, '../internals/indexed-object': 169, '../internals/length-of-array-like': 198, '../internals/to-object': 284 }],
-  76: [function (require, module, exports) {
+  }, { '../internals/function-bind-context': 149, '../internals/indexed-object': 172, '../internals/length-of-array-like': 201, '../internals/to-object': 287 }],
+  79: [function (require, module, exports) {
     'use strict'
     var bind = require('../internals/function-bind-context')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -3326,8 +3421,8 @@
       // https://github.com/tc39/proposal-array-filtering
       filterReject: createMethod(7)
     }
-  }, { '../internals/array-species-create': 85, '../internals/function-bind-context': 146, '../internals/function-uncurry-this': 153, '../internals/indexed-object': 169, '../internals/length-of-array-like': 198, '../internals/to-object': 284 }],
-  77: [function (require, module, exports) {
+  }, { '../internals/array-species-create': 88, '../internals/function-bind-context': 149, '../internals/function-uncurry-this': 156, '../internals/indexed-object': 172, '../internals/length-of-array-like': 201, '../internals/to-object': 287 }],
+  80: [function (require, module, exports) {
     'use strict'
     /* eslint-disable es/no-array-prototype-lastindexof -- safe */
     var apply = require('../internals/function-apply')
@@ -3349,14 +3444,15 @@
       if (NEGATIVE_ZERO) return apply($lastIndexOf, this, arguments) || 0
       var O = toIndexedObject(this)
       var length = lengthOfArrayLike(O)
+      if (length === 0) return -1
       var index = length - 1
       if (arguments.length > 1) index = min(index, toIntegerOrInfinity(arguments[1]))
       if (index < 0) index = length + index
       for (;index >= 0; index--) if (index in O && O[index] === searchElement) return index || 0
       return -1
     } : $lastIndexOf
-  }, { '../internals/array-method-is-strict': 79, '../internals/function-apply': 145, '../internals/length-of-array-like': 198, '../internals/to-indexed-object': 281, '../internals/to-integer-or-infinity': 282 }],
-  78: [function (require, module, exports) {
+  }, { '../internals/array-method-is-strict': 82, '../internals/function-apply': 148, '../internals/length-of-array-like': 201, '../internals/to-indexed-object': 284, '../internals/to-integer-or-infinity': 285 }],
+  81: [function (require, module, exports) {
     'use strict'
     var fails = require('../internals/fails')
     var wellKnownSymbol = require('../internals/well-known-symbol')
@@ -3377,8 +3473,8 @@
         return array[METHOD_NAME](Boolean).foo !== 1
       })
     }
-  }, { '../internals/engine-v8-version': 133, '../internals/fails': 141, '../internals/well-known-symbol': 307 }],
-  79: [function (require, module, exports) {
+  }, { '../internals/engine-v8-version': 136, '../internals/fails': 144, '../internals/well-known-symbol': 310 }],
+  82: [function (require, module, exports) {
     'use strict'
     var fails = require('../internals/fails')
 
@@ -3389,8 +3485,8 @@
         method.call(null, argument || function () { return 1 }, 1)
       })
     }
-  }, { '../internals/fails': 141 }],
-  80: [function (require, module, exports) {
+  }, { '../internals/fails': 144 }],
+  83: [function (require, module, exports) {
     'use strict'
     var aCallable = require('../internals/a-callable')
     var toObject = require('../internals/to-object')
@@ -3399,6 +3495,8 @@
 
     var $TypeError = TypeError
 
+    var REDUCE_EMPTY = 'Reduce of empty array with no initial value'
+
     // `Array.prototype.{ reduce, reduceRight }` methods implementation
     var createMethod = function (IS_RIGHT) {
       return function (that, callbackfn, argumentsLength, memo) {
@@ -3406,6 +3504,7 @@
         var self = IndexedObject(O)
         var length = lengthOfArrayLike(O)
         aCallable(callbackfn)
+        if (length === 0 && argumentsLength < 2) throw new $TypeError(REDUCE_EMPTY)
         var index = IS_RIGHT ? length - 1 : 0
         var i = IS_RIGHT ? -1 : 1
         if (argumentsLength < 2) {
@@ -3417,7 +3516,7 @@
             }
             index += i
             if (IS_RIGHT ? index < 0 : length <= index) {
-              throw new $TypeError('Reduce of empty array with no initial value')
+              throw new $TypeError(REDUCE_EMPTY)
             }
           }
         }
@@ -3438,8 +3537,8 @@
       // https://tc39.es/ecma262/#sec-array.prototype.reduceright
       right: createMethod(true)
     }
-  }, { '../internals/a-callable': 58, '../internals/indexed-object': 169, '../internals/length-of-array-like': 198, '../internals/to-object': 284 }],
-  81: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/indexed-object': 172, '../internals/length-of-array-like': 201, '../internals/to-object': 287 }],
+  84: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var isArray = require('../internals/is-array')
@@ -3467,14 +3566,14 @@
     } : function (O, length) {
       return O.length = length
     }
-  }, { '../internals/descriptors': 116, '../internals/is-array': 176 }],
-  82: [function (require, module, exports) {
+  }, { '../internals/descriptors': 119, '../internals/is-array': 179 }],
+  85: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
 
     module.exports = uncurryThis([].slice)
-  }, { '../internals/function-uncurry-this': 153 }],
-  83: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156 }],
+  86: [function (require, module, exports) {
     'use strict'
     var arraySlice = require('../internals/array-slice')
 
@@ -3517,8 +3616,8 @@
     }
 
     module.exports = sort
-  }, { '../internals/array-slice': 82 }],
-  84: [function (require, module, exports) {
+  }, { '../internals/array-slice': 85 }],
+  87: [function (require, module, exports) {
     'use strict'
     var isArray = require('../internals/is-array')
     var isConstructor = require('../internals/is-constructor')
@@ -3542,8 +3641,8 @@
         }
       } return C === undefined ? $Array : C
     }
-  }, { '../internals/is-array': 176, '../internals/is-constructor': 179, '../internals/is-object': 184, '../internals/well-known-symbol': 307 }],
-  85: [function (require, module, exports) {
+  }, { '../internals/is-array': 179, '../internals/is-constructor': 182, '../internals/is-object': 187, '../internals/well-known-symbol': 310 }],
+  88: [function (require, module, exports) {
     'use strict'
     var arraySpeciesConstructor = require('../internals/array-species-constructor')
 
@@ -3552,8 +3651,8 @@
     module.exports = function (originalArray, length) {
       return new (arraySpeciesConstructor(originalArray))(length === 0 ? 0 : length)
     }
-  }, { '../internals/array-species-constructor': 84 }],
-  86: [function (require, module, exports) {
+  }, { '../internals/array-species-constructor': 87 }],
+  89: [function (require, module, exports) {
     'use strict'
     var lengthOfArrayLike = require('../internals/length-of-array-like')
 
@@ -3566,8 +3665,8 @@
       for (; k < len; k++) A[k] = O[len - k - 1]
       return A
     }
-  }, { '../internals/length-of-array-like': 198 }],
-  87: [function (require, module, exports) {
+  }, { '../internals/length-of-array-like': 201 }],
+  90: [function (require, module, exports) {
     'use strict'
     var lengthOfArrayLike = require('../internals/length-of-array-like')
     var toIntegerOrInfinity = require('../internals/to-integer-or-infinity')
@@ -3586,8 +3685,8 @@
       for (; k < len; k++) A[k] = k === actualIndex ? value : O[k]
       return A
     }
-  }, { '../internals/length-of-array-like': 198, '../internals/to-integer-or-infinity': 282 }],
-  88: [function (require, module, exports) {
+  }, { '../internals/length-of-array-like': 201, '../internals/to-integer-or-infinity': 285 }],
+  91: [function (require, module, exports) {
     'use strict'
     var call = require('../internals/function-call')
     var getBuiltIn = require('../internals/get-built-in')
@@ -3607,8 +3706,8 @@
         return reject(error2)
       } method(argument)
     }
-  }, { '../internals/function-call': 149, '../internals/get-built-in': 155, '../internals/get-method': 160 }],
-  89: [function (require, module, exports) {
+  }, { '../internals/function-call': 152, '../internals/get-built-in': 158, '../internals/get-method': 163 }],
+  92: [function (require, module, exports) {
     'use strict'
     var call = require('../internals/function-call')
     var perform = require('../internals/perform')
@@ -3716,8 +3815,8 @@
 
       return AsyncIteratorProxy
     }
-  }, { '../internals/an-object': 64, '../internals/async-iterator-prototype': 92, '../internals/create-iter-result-object': 105, '../internals/create-non-enumerable-property': 106, '../internals/define-built-ins': 113, '../internals/function-call': 149, '../internals/get-built-in': 155, '../internals/get-method': 160, '../internals/internal-state': 174, '../internals/iterator-close': 191, '../internals/object-create': 216, '../internals/perform': 236, '../internals/well-known-symbol': 307 }],
-  90: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/async-iterator-prototype': 95, '../internals/create-iter-result-object': 108, '../internals/create-non-enumerable-property': 109, '../internals/define-built-ins': 116, '../internals/function-call': 152, '../internals/get-built-in': 158, '../internals/get-method': 163, '../internals/internal-state': 177, '../internals/iterator-close': 194, '../internals/object-create': 219, '../internals/perform': 239, '../internals/well-known-symbol': 310 }],
+  93: [function (require, module, exports) {
     'use strict'
     // https://github.com/tc39/proposal-iterator-helpers
     // https://github.com/tc39/proposal-array-from-async
@@ -3810,8 +3909,8 @@
       some: createMethod(3),
       find: createMethod(4)
     }
-  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/async-iterator-close': 88, '../internals/does-not-exceed-safe-integer': 119, '../internals/function-call': 149, '../internals/get-built-in': 155, '../internals/get-iterator-direct': 156, '../internals/is-object': 184 }],
-  91: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/async-iterator-close': 91, '../internals/does-not-exceed-safe-integer': 122, '../internals/function-call': 152, '../internals/get-built-in': 158, '../internals/get-iterator-direct': 159, '../internals/is-object': 187 }],
+  94: [function (require, module, exports) {
     'use strict'
     var call = require('../internals/function-call')
     var aCallable = require('../internals/a-callable')
@@ -3869,8 +3968,8 @@
         mapper: mapper
       })
     }
-  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/async-iterator-close': 88, '../internals/async-iterator-create-proxy': 89, '../internals/create-iter-result-object': 105, '../internals/function-call': 149, '../internals/get-iterator-direct': 156, '../internals/is-object': 184 }],
-  92: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/async-iterator-close': 91, '../internals/async-iterator-create-proxy': 92, '../internals/create-iter-result-object': 108, '../internals/function-call': 152, '../internals/get-iterator-direct': 159, '../internals/is-object': 187 }],
+  95: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var shared = require('../internals/shared-store')
@@ -3909,8 +4008,8 @@
     }
 
     module.exports = AsyncIteratorPrototype
-  }, { '../internals/define-built-in': 112, '../internals/global': 162, '../internals/is-callable': 178, '../internals/is-pure': 186, '../internals/object-create': 216, '../internals/object-get-prototype-of': 223, '../internals/shared-store': 259, '../internals/well-known-symbol': 307 }],
-  93: [function (require, module, exports) {
+  }, { '../internals/define-built-in': 115, '../internals/global': 165, '../internals/is-callable': 181, '../internals/is-pure': 189, '../internals/object-create': 219, '../internals/object-get-prototype-of': 226, '../internals/shared-store': 262, '../internals/well-known-symbol': 310 }],
+  96: [function (require, module, exports) {
     'use strict'
     var commonAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     var base64Alphabet = commonAlphabet + '+/'
@@ -3931,7 +4030,7 @@
       c2iUrl: inverse(base64UrlAlphabet)
     }
   }, {}],
-  94: [function (require, module, exports) {
+  97: [function (require, module, exports) {
     'use strict'
     var anObject = require('../internals/an-object')
     var iteratorClose = require('../internals/iterator-close')
@@ -3944,8 +4043,8 @@
         iteratorClose(iterator, 'throw', error)
       }
     }
-  }, { '../internals/an-object': 64, '../internals/iterator-close': 191 }],
-  95: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/iterator-close': 194 }],
+  98: [function (require, module, exports) {
     'use strict'
     var wellKnownSymbol = require('../internals/well-known-symbol')
 
@@ -3987,8 +4086,8 @@
       } catch (error) { /* empty */ }
       return ITERATION_SUPPORT
     }
-  }, { '../internals/well-known-symbol': 307 }],
-  96: [function (require, module, exports) {
+  }, { '../internals/well-known-symbol': 310 }],
+  99: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
 
@@ -3998,8 +4097,8 @@
     module.exports = function (it) {
       return stringSlice(toString(it), 8, -1)
     }
-  }, { '../internals/function-uncurry-this': 153 }],
-  97: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156 }],
+  100: [function (require, module, exports) {
     'use strict'
     var TO_STRING_TAG_SUPPORT = require('../internals/to-string-tag-support')
     var isCallable = require('../internals/is-callable')
@@ -4030,8 +4129,8 @@
           // ES3 arguments fallback
             : (result = classofRaw(O)) === 'Object' && isCallable(O.callee) ? 'Arguments' : result
     }
-  }, { '../internals/classof-raw': 96, '../internals/is-callable': 178, '../internals/to-string-tag-support': 289, '../internals/well-known-symbol': 307 }],
-  98: [function (require, module, exports) {
+  }, { '../internals/classof-raw': 99, '../internals/is-callable': 181, '../internals/to-string-tag-support': 292, '../internals/well-known-symbol': 310 }],
+  101: [function (require, module, exports) {
     'use strict'
     var create = require('../internals/object-create')
     var defineBuiltInAccessor = require('../internals/define-built-in-accessor')
@@ -4240,8 +4339,8 @@
         setSpecies(CONSTRUCTOR_NAME)
       }
     }
-  }, { '../internals/an-instance': 63, '../internals/create-iter-result-object': 105, '../internals/define-built-in-accessor': 111, '../internals/define-built-ins': 113, '../internals/descriptors': 116, '../internals/function-bind-context': 146, '../internals/internal-metadata': 173, '../internals/internal-state': 174, '../internals/is-null-or-undefined': 183, '../internals/iterate': 190, '../internals/iterator-define': 194, '../internals/object-create': 216, '../internals/set-species': 256 }],
-  99: [function (require, module, exports) {
+  }, { '../internals/an-instance': 63, '../internals/create-iter-result-object': 108, '../internals/define-built-in-accessor': 114, '../internals/define-built-ins': 116, '../internals/descriptors': 119, '../internals/function-bind-context': 149, '../internals/internal-metadata': 176, '../internals/internal-state': 177, '../internals/is-null-or-undefined': 186, '../internals/iterate': 193, '../internals/iterator-define': 197, '../internals/object-create': 219, '../internals/set-species': 259 }],
+  102: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var defineBuiltIns = require('../internals/define-built-ins')
@@ -4373,8 +4472,8 @@
         return Constructor
       }
     }
-  }, { '../internals/an-instance': 63, '../internals/an-object': 64, '../internals/array-iteration': 76, '../internals/define-built-ins': 113, '../internals/function-uncurry-this': 153, '../internals/has-own-property': 163, '../internals/internal-metadata': 173, '../internals/internal-state': 174, '../internals/is-null-or-undefined': 183, '../internals/is-object': 184, '../internals/iterate': 190 }],
-  100: [function (require, module, exports) {
+  }, { '../internals/an-instance': 63, '../internals/an-object': 64, '../internals/array-iteration': 79, '../internals/define-built-ins': 116, '../internals/function-uncurry-this': 156, '../internals/has-own-property': 166, '../internals/internal-metadata': 176, '../internals/internal-state': 177, '../internals/is-null-or-undefined': 186, '../internals/is-object': 187, '../internals/iterate': 193 }],
+  103: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var global = require('../internals/global')
@@ -4481,8 +4580,8 @@
 
       return Constructor
     }
-  }, { '../internals/an-instance': 63, '../internals/check-correctness-of-iteration': 95, '../internals/define-built-in': 112, '../internals/export': 140, '../internals/fails': 141, '../internals/function-uncurry-this': 153, '../internals/global': 162, '../internals/inherit-if-required': 170, '../internals/internal-metadata': 173, '../internals/is-callable': 178, '../internals/is-forced': 181, '../internals/is-null-or-undefined': 183, '../internals/is-object': 184, '../internals/iterate': 190, '../internals/set-to-string-tag': 257 }],
-  101: [function (require, module, exports) {
+  }, { '../internals/an-instance': 63, '../internals/check-correctness-of-iteration': 98, '../internals/define-built-in': 115, '../internals/export': 143, '../internals/fails': 144, '../internals/function-uncurry-this': 156, '../internals/global': 165, '../internals/inherit-if-required': 173, '../internals/internal-metadata': 176, '../internals/is-callable': 181, '../internals/is-forced': 184, '../internals/is-null-or-undefined': 186, '../internals/is-object': 187, '../internals/iterate': 193, '../internals/set-to-string-tag': 260 }],
+  104: [function (require, module, exports) {
     'use strict'
     var hasOwn = require('../internals/has-own-property')
     var ownKeys = require('../internals/own-keys')
@@ -4500,8 +4599,8 @@
         }
       }
     }
-  }, { '../internals/has-own-property': 163, '../internals/object-define-property': 218, '../internals/object-get-own-property-descriptor': 219, '../internals/own-keys': 234 }],
-  102: [function (require, module, exports) {
+  }, { '../internals/has-own-property': 166, '../internals/object-define-property': 221, '../internals/object-get-own-property-descriptor': 222, '../internals/own-keys': 237 }],
+  105: [function (require, module, exports) {
     'use strict'
     var wellKnownSymbol = require('../internals/well-known-symbol')
 
@@ -4518,8 +4617,8 @@
         } catch (error2) { /* empty */ }
       } return false
     }
-  }, { '../internals/well-known-symbol': 307 }],
-  103: [function (require, module, exports) {
+  }, { '../internals/well-known-symbol': 310 }],
+  106: [function (require, module, exports) {
     'use strict'
     var fails = require('../internals/fails')
 
@@ -4529,8 +4628,8 @@
       // eslint-disable-next-line es/no-object-getprototypeof -- required for testing
       return Object.getPrototypeOf(new F()) !== F.prototype
     })
-  }, { '../internals/fails': 141 }],
-  104: [function (require, module, exports) {
+  }, { '../internals/fails': 144 }],
+  107: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var requireObjectCoercible = require('../internals/require-object-coercible')
@@ -4547,8 +4646,8 @@
       if (attribute !== '') p1 += ' ' + attribute + '="' + replace(toString(value), quot, '&quot;') + '"'
       return p1 + '>' + S + '</' + tag + '>'
     }
-  }, { '../internals/function-uncurry-this': 153, '../internals/require-object-coercible': 250, '../internals/to-string': 290 }],
-  105: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156, '../internals/require-object-coercible': 253, '../internals/to-string': 293 }],
+  108: [function (require, module, exports) {
     'use strict'
     // `CreateIterResultObject` abstract operation
     // https://tc39.es/ecma262/#sec-createiterresultobject
@@ -4556,7 +4655,7 @@
       return { value: value, done: done }
     }
   }, {}],
-  106: [function (require, module, exports) {
+  109: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var definePropertyModule = require('../internals/object-define-property')
@@ -4568,8 +4667,8 @@
       object[key] = value
       return object
     }
-  }, { '../internals/create-property-descriptor': 107, '../internals/descriptors': 116, '../internals/object-define-property': 218 }],
-  107: [function (require, module, exports) {
+  }, { '../internals/create-property-descriptor': 110, '../internals/descriptors': 119, '../internals/object-define-property': 221 }],
+  110: [function (require, module, exports) {
     'use strict'
     module.exports = function (bitmap, value) {
       return {
@@ -4580,19 +4679,18 @@
       }
     }
   }, {}],
-  108: [function (require, module, exports) {
+  111: [function (require, module, exports) {
     'use strict'
-    var toPropertyKey = require('../internals/to-property-key')
+    var DESCRIPTORS = require('../internals/descriptors')
     var definePropertyModule = require('../internals/object-define-property')
     var createPropertyDescriptor = require('../internals/create-property-descriptor')
 
     module.exports = function (object, key, value) {
-      var propertyKey = toPropertyKey(key)
-      if (propertyKey in object) definePropertyModule.f(object, propertyKey, createPropertyDescriptor(0, value))
-      else object[propertyKey] = value
+      if (DESCRIPTORS) definePropertyModule.f(object, key, createPropertyDescriptor(0, value))
+      else object[key] = value
     }
-  }, { '../internals/create-property-descriptor': 107, '../internals/object-define-property': 218, '../internals/to-property-key': 288 }],
-  109: [function (require, module, exports) {
+  }, { '../internals/create-property-descriptor': 110, '../internals/descriptors': 119, '../internals/object-define-property': 221 }],
+  112: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var fails = require('../internals/fails')
@@ -4634,8 +4732,8 @@
     '.' + padStart(milliseconds, 3, 0) +
     'Z'
       } : nativeDateToISOString
-  }, { '../internals/fails': 141, '../internals/function-uncurry-this': 153, '../internals/string-pad': 265 }],
-  110: [function (require, module, exports) {
+  }, { '../internals/fails': 144, '../internals/function-uncurry-this': 156, '../internals/string-pad': 268 }],
+  113: [function (require, module, exports) {
     'use strict'
     var anObject = require('../internals/an-object')
     var ordinaryToPrimitive = require('../internals/ordinary-to-primitive')
@@ -4650,8 +4748,8 @@
       else if (hint !== 'number') throw new $TypeError('Incorrect hint')
       return ordinaryToPrimitive(this, hint)
     }
-  }, { '../internals/an-object': 64, '../internals/ordinary-to-primitive': 233 }],
-  111: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/ordinary-to-primitive': 236 }],
+  114: [function (require, module, exports) {
     'use strict'
     var makeBuiltIn = require('../internals/make-built-in')
     var defineProperty = require('../internals/object-define-property')
@@ -4661,8 +4759,8 @@
       if (descriptor.set) makeBuiltIn(descriptor.set, name, { setter: true })
       return defineProperty.f(target, name, descriptor)
     }
-  }, { '../internals/make-built-in': 199, '../internals/object-define-property': 218 }],
-  112: [function (require, module, exports) {
+  }, { '../internals/make-built-in': 202, '../internals/object-define-property': 221 }],
+  115: [function (require, module, exports) {
     'use strict'
     var isCallable = require('../internals/is-callable')
     var definePropertyModule = require('../internals/object-define-property')
@@ -4693,8 +4791,8 @@
         }
       } return O
     }
-  }, { '../internals/define-global-property': 114, '../internals/is-callable': 178, '../internals/make-built-in': 199, '../internals/object-define-property': 218 }],
-  113: [function (require, module, exports) {
+  }, { '../internals/define-global-property': 117, '../internals/is-callable': 181, '../internals/make-built-in': 202, '../internals/object-define-property': 221 }],
+  116: [function (require, module, exports) {
     'use strict'
     var defineBuiltIn = require('../internals/define-built-in')
 
@@ -4702,8 +4800,8 @@
       for (var key in src) defineBuiltIn(target, key, src[key], options)
       return target
     }
-  }, { '../internals/define-built-in': 112 }],
-  114: [function (require, module, exports) {
+  }, { '../internals/define-built-in': 115 }],
+  117: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
 
@@ -4717,8 +4815,8 @@
         global[key] = value
       } return value
     }
-  }, { '../internals/global': 162 }],
-  115: [function (require, module, exports) {
+  }, { '../internals/global': 165 }],
+  118: [function (require, module, exports) {
     'use strict'
     var tryToString = require('../internals/try-to-string')
 
@@ -4727,8 +4825,8 @@
     module.exports = function (O, P) {
       if (!delete O[P]) throw new $TypeError('Cannot delete property ' + tryToString(P) + ' of ' + tryToString(O))
     }
-  }, { '../internals/try-to-string': 293 }],
-  116: [function (require, module, exports) {
+  }, { '../internals/try-to-string': 296 }],
+  119: [function (require, module, exports) {
     'use strict'
     var fails = require('../internals/fails')
 
@@ -4737,8 +4835,8 @@
       // eslint-disable-next-line es/no-object-defineproperty -- required for testing
       return Object.defineProperty({}, 1, { get: function () { return 7 } })[1] !== 7
     })
-  }, { '../internals/fails': 141 }],
-  117: [function (require, module, exports) {
+  }, { '../internals/fails': 144 }],
+  120: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var tryNodeRequire = require('../internals/try-node-require')
@@ -4778,8 +4876,8 @@
     }
 
     module.exports = detach
-  }, { '../internals/global': 162, '../internals/structured-clone-proper-transfer': 272, '../internals/try-node-require': 292 }],
-  118: [function (require, module, exports) {
+  }, { '../internals/global': 165, '../internals/structured-clone-proper-transfer': 275, '../internals/try-node-require': 295 }],
+  121: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var isObject = require('../internals/is-object')
@@ -4791,8 +4889,8 @@
     module.exports = function (it) {
       return EXISTS ? document.createElement(it) : {}
     }
-  }, { '../internals/global': 162, '../internals/is-object': 184 }],
-  119: [function (require, module, exports) {
+  }, { '../internals/global': 165, '../internals/is-object': 187 }],
+  122: [function (require, module, exports) {
     'use strict'
     var $TypeError = TypeError
     var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF // 2 ** 53 - 1 == 9007199254740991
@@ -4802,7 +4900,7 @@
       return it
     }
   }, {}],
-  120: [function (require, module, exports) {
+  123: [function (require, module, exports) {
     'use strict'
     module.exports = {
       IndexSizeError: { s: 'INDEX_SIZE_ERR', c: 1, m: 1 },
@@ -4832,7 +4930,7 @@
       DataCloneError: { s: 'DATA_CLONE_ERR', c: 25, m: 1 }
     }
   }, {}],
-  121: [function (require, module, exports) {
+  124: [function (require, module, exports) {
     'use strict'
     // iterable DOM collections
     // flag - `iterable` interface - 'entries', 'keys', 'values', 'forEach' methods
@@ -4870,7 +4968,7 @@
       TouchList: 0
     }
   }, {}],
-  122: [function (require, module, exports) {
+  125: [function (require, module, exports) {
     'use strict'
     // in old WebKit versions, `element.classList` is not an instance of global `DOMTokenList`
     var documentCreateElement = require('../internals/document-create-element')
@@ -4879,16 +4977,16 @@
     var DOMTokenListPrototype = classList && classList.constructor && classList.constructor.prototype
 
     module.exports = DOMTokenListPrototype === Object.prototype ? undefined : DOMTokenListPrototype
-  }, { '../internals/document-create-element': 118 }],
-  123: [function (require, module, exports) {
+  }, { '../internals/document-create-element': 121 }],
+  126: [function (require, module, exports) {
     'use strict'
     var userAgent = require('../internals/engine-user-agent')
 
     var firefox = userAgent.match(/firefox\/(\d+)/i)
 
     module.exports = !!firefox && +firefox[1]
-  }, { '../internals/engine-user-agent': 132 }],
-  124: [function (require, module, exports) {
+  }, { '../internals/engine-user-agent': 135 }],
+  127: [function (require, module, exports) {
     'use strict'
     var IS_DENO = require('../internals/engine-is-deno')
     var IS_NODE = require('../internals/engine-is-node')
@@ -4896,54 +4994,54 @@
     module.exports = !IS_DENO && !IS_NODE &&
   typeof window === 'object' &&
   typeof document === 'object'
-  }, { '../internals/engine-is-deno': 126, '../internals/engine-is-node': 130 }],
-  125: [function (require, module, exports) {
+  }, { '../internals/engine-is-deno': 129, '../internals/engine-is-node': 133 }],
+  128: [function (require, module, exports) {
     'use strict'
     /* global Bun -- Bun case */
     module.exports = typeof Bun === 'function' && Bun && typeof Bun.version === 'string'
   }, {}],
-  126: [function (require, module, exports) {
+  129: [function (require, module, exports) {
     'use strict'
     /* global Deno -- Deno case */
     module.exports = typeof Deno === 'object' && Deno && typeof Deno.version === 'object'
   }, {}],
-  127: [function (require, module, exports) {
+  130: [function (require, module, exports) {
     'use strict'
     var UA = require('../internals/engine-user-agent')
 
     module.exports = /MSIE|Trident/.test(UA)
-  }, { '../internals/engine-user-agent': 132 }],
-  128: [function (require, module, exports) {
+  }, { '../internals/engine-user-agent': 135 }],
+  131: [function (require, module, exports) {
     'use strict'
     var userAgent = require('../internals/engine-user-agent')
 
     module.exports = /ipad|iphone|ipod/i.test(userAgent) && typeof Pebble !== 'undefined'
-  }, { '../internals/engine-user-agent': 132 }],
-  129: [function (require, module, exports) {
+  }, { '../internals/engine-user-agent': 135 }],
+  132: [function (require, module, exports) {
     'use strict'
     var userAgent = require('../internals/engine-user-agent')
 
     // eslint-disable-next-line redos/no-vulnerable -- safe
     module.exports = /(?:ipad|iphone|ipod).*applewebkit/i.test(userAgent)
-  }, { '../internals/engine-user-agent': 132 }],
-  130: [function (require, module, exports) {
+  }, { '../internals/engine-user-agent': 135 }],
+  133: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var classof = require('../internals/classof-raw')
 
     module.exports = classof(global.process) === 'process'
-  }, { '../internals/classof-raw': 96, '../internals/global': 162 }],
-  131: [function (require, module, exports) {
+  }, { '../internals/classof-raw': 99, '../internals/global': 165 }],
+  134: [function (require, module, exports) {
     'use strict'
     var userAgent = require('../internals/engine-user-agent')
 
     module.exports = /web0s(?!.*chrome)/i.test(userAgent)
-  }, { '../internals/engine-user-agent': 132 }],
-  132: [function (require, module, exports) {
+  }, { '../internals/engine-user-agent': 135 }],
+  135: [function (require, module, exports) {
     'use strict'
     module.exports = typeof navigator !== 'undefined' && String(navigator.userAgent) || ''
   }, {}],
-  133: [function (require, module, exports) {
+  136: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var userAgent = require('../internals/engine-user-agent')
@@ -4972,16 +5070,16 @@
     }
 
     module.exports = version
-  }, { '../internals/engine-user-agent': 132, '../internals/global': 162 }],
-  134: [function (require, module, exports) {
+  }, { '../internals/engine-user-agent': 135, '../internals/global': 165 }],
+  137: [function (require, module, exports) {
     'use strict'
     var userAgent = require('../internals/engine-user-agent')
 
     var webkit = userAgent.match(/AppleWebKit\/(\d+)\./)
 
     module.exports = !!webkit && +webkit[1]
-  }, { '../internals/engine-user-agent': 132 }],
-  135: [function (require, module, exports) {
+  }, { '../internals/engine-user-agent': 135 }],
+  138: [function (require, module, exports) {
     'use strict'
     // IE8- don't enum bug keys
     module.exports = [
@@ -4994,7 +5092,7 @@
       'valueOf'
     ]
   }, {}],
-  136: [function (require, module, exports) {
+  139: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
 
@@ -5011,8 +5109,8 @@
         while (dropEntries--) stack = replace(stack, V8_OR_CHAKRA_STACK_ENTRY, '')
       } return stack
     }
-  }, { '../internals/function-uncurry-this': 153 }],
-  137: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156 }],
+  140: [function (require, module, exports) {
     'use strict'
     var createNonEnumerableProperty = require('../internals/create-non-enumerable-property')
     var clearErrorStack = require('../internals/error-stack-clear')
@@ -5027,8 +5125,8 @@
         else createNonEnumerableProperty(error, 'stack', clearErrorStack(stack, dropEntries))
       }
     }
-  }, { '../internals/create-non-enumerable-property': 106, '../internals/error-stack-clear': 136, '../internals/error-stack-installable': 138 }],
-  138: [function (require, module, exports) {
+  }, { '../internals/create-non-enumerable-property': 109, '../internals/error-stack-clear': 139, '../internals/error-stack-installable': 141 }],
+  141: [function (require, module, exports) {
     'use strict'
     var fails = require('../internals/fails')
     var createPropertyDescriptor = require('../internals/create-property-descriptor')
@@ -5040,8 +5138,8 @@
       Object.defineProperty(error, 'stack', createPropertyDescriptor(1, 7))
       return error.stack !== 7
     })
-  }, { '../internals/create-property-descriptor': 107, '../internals/fails': 141 }],
-  139: [function (require, module, exports) {
+  }, { '../internals/create-property-descriptor': 110, '../internals/fails': 144 }],
+  142: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var fails = require('../internals/fails')
@@ -5073,8 +5171,8 @@
       var message = normalizeStringArgument(O.message)
       return !name ? message : !message ? name : name + ': ' + message
     } : nativeErrorToString
-  }, { '../internals/an-object': 64, '../internals/descriptors': 116, '../internals/fails': 141, '../internals/normalize-string-argument': 210 }],
-  140: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/descriptors': 119, '../internals/fails': 144, '../internals/normalize-string-argument': 213 }],
+  143: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var getOwnPropertyDescriptor = require('../internals/object-get-own-property-descriptor').f
@@ -5132,8 +5230,8 @@
         }
       }
     }
-  }, { '../internals/copy-constructor-properties': 101, '../internals/create-non-enumerable-property': 106, '../internals/define-built-in': 112, '../internals/define-global-property': 114, '../internals/global': 162, '../internals/is-forced': 181, '../internals/object-get-own-property-descriptor': 219 }],
-  141: [function (require, module, exports) {
+  }, { '../internals/copy-constructor-properties': 104, '../internals/create-non-enumerable-property': 109, '../internals/define-built-in': 115, '../internals/define-global-property': 117, '../internals/global': 165, '../internals/is-forced': 184, '../internals/object-get-own-property-descriptor': 222 }],
+  144: [function (require, module, exports) {
     'use strict'
     module.exports = function (exec) {
       try {
@@ -5143,7 +5241,7 @@
       }
     }
   }, {}],
-  142: [function (require, module, exports) {
+  145: [function (require, module, exports) {
     'use strict'
     // TODO: Remove from `core-js@4` since it's moved to entry points
     require('../modules/es.regexp.exec')
@@ -5220,8 +5318,8 @@
 
       if (SHAM) createNonEnumerableProperty(RegExpPrototype[SYMBOL], 'sham', true)
     }
-  }, { '../internals/create-non-enumerable-property': 106, '../internals/define-built-in': 112, '../internals/fails': 141, '../internals/function-call': 149, '../internals/regexp-exec': 244, '../internals/well-known-symbol': 307, '../modules/es.regexp.exec': 465 }],
-  143: [function (require, module, exports) {
+  }, { '../internals/create-non-enumerable-property': 109, '../internals/define-built-in': 115, '../internals/fails': 144, '../internals/function-call': 152, '../internals/regexp-exec': 247, '../internals/well-known-symbol': 310, '../modules/es.regexp.exec': 471 }],
+  146: [function (require, module, exports) {
     'use strict'
     var isArray = require('../internals/is-array')
     var lengthOfArrayLike = require('../internals/length-of-array-like')
@@ -5256,8 +5354,8 @@
     }
 
     module.exports = flattenIntoArray
-  }, { '../internals/does-not-exceed-safe-integer': 119, '../internals/function-bind-context': 146, '../internals/is-array': 176, '../internals/length-of-array-like': 198 }],
-  144: [function (require, module, exports) {
+  }, { '../internals/does-not-exceed-safe-integer': 122, '../internals/function-bind-context': 149, '../internals/is-array': 179, '../internals/length-of-array-like': 201 }],
+  147: [function (require, module, exports) {
     'use strict'
     var fails = require('../internals/fails')
 
@@ -5265,8 +5363,8 @@
       // eslint-disable-next-line es/no-object-isextensible, es/no-object-preventextensions -- required for testing
       return Object.isExtensible(Object.preventExtensions({}))
     })
-  }, { '../internals/fails': 141 }],
-  145: [function (require, module, exports) {
+  }, { '../internals/fails': 144 }],
+  148: [function (require, module, exports) {
     'use strict'
     var NATIVE_BIND = require('../internals/function-bind-native')
 
@@ -5278,8 +5376,8 @@
     module.exports = typeof Reflect === 'object' && Reflect.apply || (NATIVE_BIND ? call.bind(apply) : function () {
       return call.apply(apply, arguments)
     })
-  }, { '../internals/function-bind-native': 147 }],
-  146: [function (require, module, exports) {
+  }, { '../internals/function-bind-native': 150 }],
+  149: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this-clause')
     var aCallable = require('../internals/a-callable')
@@ -5294,8 +5392,8 @@
         return fn.apply(that, arguments)
       }
     }
-  }, { '../internals/a-callable': 58, '../internals/function-bind-native': 147, '../internals/function-uncurry-this-clause': 152 }],
-  147: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/function-bind-native': 150, '../internals/function-uncurry-this-clause': 155 }],
+  150: [function (require, module, exports) {
     'use strict'
     var fails = require('../internals/fails')
 
@@ -5305,8 +5403,8 @@
       // eslint-disable-next-line no-prototype-builtins -- safe
       return typeof test !== 'function' || test.hasOwnProperty('prototype')
     })
-  }, { '../internals/fails': 141 }],
-  148: [function (require, module, exports) {
+  }, { '../internals/fails': 144 }],
+  151: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var aCallable = require('../internals/a-callable')
@@ -5343,8 +5441,8 @@
       if (isObject(Prototype)) boundFunction.prototype = Prototype
       return boundFunction
     }
-  }, { '../internals/a-callable': 58, '../internals/array-slice': 82, '../internals/function-bind-native': 147, '../internals/function-uncurry-this': 153, '../internals/has-own-property': 163, '../internals/is-object': 184 }],
-  149: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/array-slice': 85, '../internals/function-bind-native': 150, '../internals/function-uncurry-this': 156, '../internals/has-own-property': 166, '../internals/is-object': 187 }],
+  152: [function (require, module, exports) {
     'use strict'
     var NATIVE_BIND = require('../internals/function-bind-native')
 
@@ -5353,8 +5451,8 @@
     module.exports = NATIVE_BIND ? call.bind(call) : function () {
       return call.apply(call, arguments)
     }
-  }, { '../internals/function-bind-native': 147 }],
-  150: [function (require, module, exports) {
+  }, { '../internals/function-bind-native': 150 }],
+  153: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var hasOwn = require('../internals/has-own-property')
@@ -5373,8 +5471,8 @@
       PROPER: PROPER,
       CONFIGURABLE: CONFIGURABLE
     }
-  }, { '../internals/descriptors': 116, '../internals/has-own-property': 163 }],
-  151: [function (require, module, exports) {
+  }, { '../internals/descriptors': 119, '../internals/has-own-property': 166 }],
+  154: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var aCallable = require('../internals/a-callable')
@@ -5385,8 +5483,8 @@
         return uncurryThis(aCallable(Object.getOwnPropertyDescriptor(object, key)[method]))
       } catch (error) { /* empty */ }
     }
-  }, { '../internals/a-callable': 58, '../internals/function-uncurry-this': 153 }],
-  152: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/function-uncurry-this': 156 }],
+  155: [function (require, module, exports) {
     'use strict'
     var classofRaw = require('../internals/classof-raw')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -5397,8 +5495,8 @@
       //   https://github.com/zloirock/core-js/issues/1130
       if (classofRaw(fn) === 'Function') return uncurryThis(fn)
     }
-  }, { '../internals/classof-raw': 96, '../internals/function-uncurry-this': 153 }],
-  153: [function (require, module, exports) {
+  }, { '../internals/classof-raw': 99, '../internals/function-uncurry-this': 156 }],
+  156: [function (require, module, exports) {
     'use strict'
     var NATIVE_BIND = require('../internals/function-bind-native')
 
@@ -5411,8 +5509,8 @@
         return call.apply(fn, arguments)
       }
     }
-  }, { '../internals/function-bind-native': 147 }],
-  154: [function (require, module, exports) {
+  }, { '../internals/function-bind-native': 150 }],
+  157: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
 
@@ -5421,8 +5519,8 @@
       var Prototype = Constructor && Constructor.prototype
       return Prototype && Prototype[METHOD]
     }
-  }, { '../internals/global': 162 }],
-  155: [function (require, module, exports) {
+  }, { '../internals/global': 165 }],
+  158: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var isCallable = require('../internals/is-callable')
@@ -5434,8 +5532,8 @@
     module.exports = function (namespace, method) {
       return arguments.length < 2 ? aFunction(global[namespace]) : global[namespace] && global[namespace][method]
     }
-  }, { '../internals/global': 162, '../internals/is-callable': 178 }],
-  156: [function (require, module, exports) {
+  }, { '../internals/global': 165, '../internals/is-callable': 181 }],
+  159: [function (require, module, exports) {
     'use strict'
     // `GetIteratorDirect(obj)` abstract operation
     // https://tc39.es/proposal-iterator-helpers/#sec-getiteratordirect
@@ -5447,7 +5545,7 @@
       }
     }
   }, {}],
-  157: [function (require, module, exports) {
+  160: [function (require, module, exports) {
     'use strict'
     var classof = require('../internals/classof')
     var getMethod = require('../internals/get-method')
@@ -5464,8 +5562,8 @@
     Iterators[classof(it)]
       }
     }
-  }, { '../internals/classof': 97, '../internals/get-method': 160, '../internals/is-null-or-undefined': 183, '../internals/iterators': 197, '../internals/well-known-symbol': 307 }],
-  158: [function (require, module, exports) {
+  }, { '../internals/classof': 100, '../internals/get-method': 163, '../internals/is-null-or-undefined': 186, '../internals/iterators': 200, '../internals/well-known-symbol': 310 }],
+  161: [function (require, module, exports) {
     'use strict'
     var call = require('../internals/function-call')
     var aCallable = require('../internals/a-callable')
@@ -5480,8 +5578,8 @@
       if (aCallable(iteratorMethod)) return anObject(call(iteratorMethod, argument))
       throw new $TypeError(tryToString(argument) + ' is not iterable')
     }
-  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/function-call': 149, '../internals/get-iterator-method': 157, '../internals/try-to-string': 293 }],
-  159: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/function-call': 152, '../internals/get-iterator-method': 160, '../internals/try-to-string': 296 }],
+  162: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var isArray = require('../internals/is-array')
@@ -5512,8 +5610,8 @@
         for (var j = 0; j < keysLength; j++) if (keys[j] === key) return value
       }
     }
-  }, { '../internals/classof-raw': 96, '../internals/function-uncurry-this': 153, '../internals/is-array': 176, '../internals/is-callable': 178, '../internals/to-string': 290 }],
-  160: [function (require, module, exports) {
+  }, { '../internals/classof-raw': 99, '../internals/function-uncurry-this': 156, '../internals/is-array': 179, '../internals/is-callable': 181, '../internals/to-string': 293 }],
+  163: [function (require, module, exports) {
     'use strict'
     var aCallable = require('../internals/a-callable')
     var isNullOrUndefined = require('../internals/is-null-or-undefined')
@@ -5524,8 +5622,8 @@
       var func = V[P]
       return isNullOrUndefined(func) ? undefined : aCallable(func)
     }
-  }, { '../internals/a-callable': 58, '../internals/is-null-or-undefined': 183 }],
-  161: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/is-null-or-undefined': 186 }],
+  164: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var toObject = require('../internals/to-object')
@@ -5572,8 +5670,8 @@
         return capture === undefined ? '' : capture
       })
     }
-  }, { '../internals/function-uncurry-this': 153, '../internals/to-object': 284 }],
-  162: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156, '../internals/to-object': 287 }],
+  165: [function (require, module, exports) {
     (function (global) {
       (function () {
         'use strict'
@@ -5595,7 +5693,7 @@
       }).call(this)
     }).call(this, typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : {})
   }, {}],
-  163: [function (require, module, exports) {
+  166: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var toObject = require('../internals/to-object')
@@ -5608,12 +5706,12 @@
     module.exports = Object.hasOwn || function hasOwn (it, key) {
       return hasOwnProperty(toObject(it), key)
     }
-  }, { '../internals/function-uncurry-this': 153, '../internals/to-object': 284 }],
-  164: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156, '../internals/to-object': 287 }],
+  167: [function (require, module, exports) {
     'use strict'
     module.exports = {}
   }, {}],
-  165: [function (require, module, exports) {
+  168: [function (require, module, exports) {
     'use strict'
     module.exports = function (a, b) {
       try {
@@ -5622,13 +5720,13 @@
       } catch (error) { /* empty */ }
     }
   }, {}],
-  166: [function (require, module, exports) {
+  169: [function (require, module, exports) {
     'use strict'
     var getBuiltIn = require('../internals/get-built-in')
 
     module.exports = getBuiltIn('document', 'documentElement')
-  }, { '../internals/get-built-in': 155 }],
-  167: [function (require, module, exports) {
+  }, { '../internals/get-built-in': 158 }],
+  170: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var fails = require('../internals/fails')
@@ -5641,8 +5739,8 @@
         get: function () { return 7 }
       }).a !== 7
     })
-  }, { '../internals/descriptors': 116, '../internals/document-create-element': 118, '../internals/fails': 141 }],
-  168: [function (require, module, exports) {
+  }, { '../internals/descriptors': 119, '../internals/document-create-element': 121, '../internals/fails': 144 }],
+  171: [function (require, module, exports) {
     'use strict'
     // IEEE754 conversions based on https://github.com/feross/ieee754
     var $Array = Array
@@ -5747,7 +5845,7 @@
       unpack: unpack
     }
   }, {}],
-  169: [function (require, module, exports) {
+  172: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var fails = require('../internals/fails')
@@ -5764,8 +5862,8 @@
     }) ? function (it) {
         return classof(it) === 'String' ? split(it, '') : $Object(it)
       } : $Object
-  }, { '../internals/classof-raw': 96, '../internals/fails': 141, '../internals/function-uncurry-this': 153 }],
-  170: [function (require, module, exports) {
+  }, { '../internals/classof-raw': 99, '../internals/fails': 144, '../internals/function-uncurry-this': 156 }],
+  173: [function (require, module, exports) {
     'use strict'
     var isCallable = require('../internals/is-callable')
     var isObject = require('../internals/is-object')
@@ -5785,8 +5883,8 @@
       ) setPrototypeOf($this, NewTargetPrototype)
       return $this
     }
-  }, { '../internals/is-callable': 178, '../internals/is-object': 184, '../internals/object-set-prototype-of': 230 }],
-  171: [function (require, module, exports) {
+  }, { '../internals/is-callable': 181, '../internals/is-object': 187, '../internals/object-set-prototype-of': 233 }],
+  174: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var isCallable = require('../internals/is-callable')
@@ -5802,8 +5900,8 @@
     }
 
     module.exports = store.inspectSource
-  }, { '../internals/function-uncurry-this': 153, '../internals/is-callable': 178, '../internals/shared-store': 259 }],
-  172: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156, '../internals/is-callable': 181, '../internals/shared-store': 262 }],
+  175: [function (require, module, exports) {
     'use strict'
     var isObject = require('../internals/is-object')
     var createNonEnumerableProperty = require('../internals/create-non-enumerable-property')
@@ -5815,8 +5913,8 @@
         createNonEnumerableProperty(O, 'cause', options.cause)
       }
     }
-  }, { '../internals/create-non-enumerable-property': 106, '../internals/is-object': 184 }],
-  173: [function (require, module, exports) {
+  }, { '../internals/create-non-enumerable-property': 109, '../internals/is-object': 187 }],
+  176: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -5909,8 +6007,8 @@
     }
 
     hiddenKeys[METADATA] = true
-  }, { '../internals/export': 140, '../internals/freezing': 144, '../internals/function-uncurry-this': 153, '../internals/has-own-property': 163, '../internals/hidden-keys': 164, '../internals/is-object': 184, '../internals/object-define-property': 218, '../internals/object-get-own-property-names': 221, '../internals/object-get-own-property-names-external': 220, '../internals/object-is-extensible': 224, '../internals/uid': 299 }],
-  174: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/freezing': 147, '../internals/function-uncurry-this': 156, '../internals/has-own-property': 166, '../internals/hidden-keys': 167, '../internals/is-object': 187, '../internals/object-define-property': 221, '../internals/object-get-own-property-names': 224, '../internals/object-get-own-property-names-external': 223, '../internals/object-is-extensible': 227, '../internals/uid': 302 }],
+  177: [function (require, module, exports) {
     'use strict'
     var NATIVE_WEAK_MAP = require('../internals/weak-map-basic-detection')
     var global = require('../internals/global')
@@ -5982,8 +6080,8 @@
       enforce: enforce,
       getterFor: getterFor
     }
-  }, { '../internals/create-non-enumerable-property': 106, '../internals/global': 162, '../internals/has-own-property': 163, '../internals/hidden-keys': 164, '../internals/is-object': 184, '../internals/shared-key': 258, '../internals/shared-store': 259, '../internals/weak-map-basic-detection': 304 }],
-  175: [function (require, module, exports) {
+  }, { '../internals/create-non-enumerable-property': 109, '../internals/global': 165, '../internals/has-own-property': 166, '../internals/hidden-keys': 167, '../internals/is-object': 187, '../internals/shared-key': 261, '../internals/shared-store': 262, '../internals/weak-map-basic-detection': 307 }],
+  178: [function (require, module, exports) {
     'use strict'
     var wellKnownSymbol = require('../internals/well-known-symbol')
     var Iterators = require('../internals/iterators')
@@ -5995,8 +6093,8 @@
     module.exports = function (it) {
       return it !== undefined && (Iterators.Array === it || ArrayPrototype[ITERATOR] === it)
     }
-  }, { '../internals/iterators': 197, '../internals/well-known-symbol': 307 }],
-  176: [function (require, module, exports) {
+  }, { '../internals/iterators': 200, '../internals/well-known-symbol': 310 }],
+  179: [function (require, module, exports) {
     'use strict'
     var classof = require('../internals/classof-raw')
 
@@ -6006,8 +6104,8 @@
     module.exports = Array.isArray || function isArray (argument) {
       return classof(argument) === 'Array'
     }
-  }, { '../internals/classof-raw': 96 }],
-  177: [function (require, module, exports) {
+  }, { '../internals/classof-raw': 99 }],
+  180: [function (require, module, exports) {
     'use strict'
     var classof = require('../internals/classof')
 
@@ -6015,8 +6113,8 @@
       var klass = classof(it)
       return klass === 'BigInt64Array' || klass === 'BigUint64Array'
     }
-  }, { '../internals/classof': 97 }],
-  178: [function (require, module, exports) {
+  }, { '../internals/classof': 100 }],
+  181: [function (require, module, exports) {
     'use strict'
     // https://tc39.es/ecma262/#sec-IsHTMLDDA-internal-slot
     var documentAll = typeof document === 'object' && document.all
@@ -6030,7 +6128,7 @@
       return typeof argument === 'function'
     }
   }, {}],
-  179: [function (require, module, exports) {
+  182: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var fails = require('../internals/fails')
@@ -6083,16 +6181,16 @@
     !isConstructorModern(function () { called = true }) ||
     called
     }) ? isConstructorLegacy : isConstructorModern
-  }, { '../internals/classof': 97, '../internals/fails': 141, '../internals/function-uncurry-this': 153, '../internals/get-built-in': 155, '../internals/inspect-source': 171, '../internals/is-callable': 178 }],
-  180: [function (require, module, exports) {
+  }, { '../internals/classof': 100, '../internals/fails': 144, '../internals/function-uncurry-this': 156, '../internals/get-built-in': 158, '../internals/inspect-source': 174, '../internals/is-callable': 181 }],
+  183: [function (require, module, exports) {
     'use strict'
     var hasOwn = require('../internals/has-own-property')
 
     module.exports = function (descriptor) {
       return descriptor !== undefined && (hasOwn(descriptor, 'value') || hasOwn(descriptor, 'writable'))
     }
-  }, { '../internals/has-own-property': 163 }],
-  181: [function (require, module, exports) {
+  }, { '../internals/has-own-property': 166 }],
+  184: [function (require, module, exports) {
     'use strict'
     var fails = require('../internals/fails')
     var isCallable = require('../internals/is-callable')
@@ -6116,8 +6214,8 @@
     var POLYFILL = isForced.POLYFILL = 'P'
 
     module.exports = isForced
-  }, { '../internals/fails': 141, '../internals/is-callable': 178 }],
-  182: [function (require, module, exports) {
+  }, { '../internals/fails': 144, '../internals/is-callable': 181 }],
+  185: [function (require, module, exports) {
     'use strict'
     var isObject = require('../internals/is-object')
 
@@ -6129,8 +6227,8 @@
     module.exports = Number.isInteger || function isInteger (it) {
       return !isObject(it) && isFinite(it) && floor(it) === it
     }
-  }, { '../internals/is-object': 184 }],
-  183: [function (require, module, exports) {
+  }, { '../internals/is-object': 187 }],
+  186: [function (require, module, exports) {
     'use strict'
     // we can't use just `it == null` since of `document.all` special case
     // https://tc39.es/ecma262/#sec-IsHTMLDDA-internal-slot-aec
@@ -6138,27 +6236,27 @@
       return it === null || it === undefined
     }
   }, {}],
-  184: [function (require, module, exports) {
+  187: [function (require, module, exports) {
     'use strict'
     var isCallable = require('../internals/is-callable')
 
     module.exports = function (it) {
       return typeof it === 'object' ? it !== null : isCallable(it)
     }
-  }, { '../internals/is-callable': 178 }],
-  185: [function (require, module, exports) {
+  }, { '../internals/is-callable': 181 }],
+  188: [function (require, module, exports) {
     'use strict'
     var isObject = require('../internals/is-object')
 
     module.exports = function (argument) {
       return isObject(argument) || argument === null
     }
-  }, { '../internals/is-object': 184 }],
-  186: [function (require, module, exports) {
+  }, { '../internals/is-object': 187 }],
+  189: [function (require, module, exports) {
     'use strict'
     module.exports = false
   }, {}],
-  187: [function (require, module, exports) {
+  190: [function (require, module, exports) {
     'use strict'
     var isObject = require('../internals/is-object')
     var classof = require('../internals/classof-raw')
@@ -6172,8 +6270,8 @@
       var isRegExp
       return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : classof(it) === 'RegExp')
     }
-  }, { '../internals/classof-raw': 96, '../internals/is-object': 184, '../internals/well-known-symbol': 307 }],
-  188: [function (require, module, exports) {
+  }, { '../internals/classof-raw': 99, '../internals/is-object': 187, '../internals/well-known-symbol': 310 }],
+  191: [function (require, module, exports) {
     'use strict'
     var getBuiltIn = require('../internals/get-built-in')
     var isCallable = require('../internals/is-callable')
@@ -6188,8 +6286,8 @@
       var $Symbol = getBuiltIn('Symbol')
       return isCallable($Symbol) && isPrototypeOf($Symbol.prototype, $Object(it))
     }
-  }, { '../internals/get-built-in': 155, '../internals/is-callable': 178, '../internals/object-is-prototype-of': 225, '../internals/use-symbol-as-uid': 301 }],
-  189: [function (require, module, exports) {
+  }, { '../internals/get-built-in': 158, '../internals/is-callable': 181, '../internals/object-is-prototype-of': 228, '../internals/use-symbol-as-uid': 304 }],
+  192: [function (require, module, exports) {
     'use strict'
     var call = require('../internals/function-call')
 
@@ -6202,8 +6300,8 @@
         if (result !== undefined) return result
       }
     }
-  }, { '../internals/function-call': 149 }],
-  190: [function (require, module, exports) {
+  }, { '../internals/function-call': 152 }],
+  193: [function (require, module, exports) {
     'use strict'
     var bind = require('../internals/function-bind-context')
     var call = require('../internals/function-call')
@@ -6273,8 +6371,8 @@
         if (typeof result === 'object' && result && isPrototypeOf(ResultPrototype, result)) return result
       } return new Result(false)
     }
-  }, { '../internals/an-object': 64, '../internals/function-bind-context': 146, '../internals/function-call': 149, '../internals/get-iterator': 158, '../internals/get-iterator-method': 157, '../internals/is-array-iterator-method': 175, '../internals/iterator-close': 191, '../internals/length-of-array-like': 198, '../internals/object-is-prototype-of': 225, '../internals/try-to-string': 293 }],
-  191: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/function-bind-context': 149, '../internals/function-call': 152, '../internals/get-iterator': 161, '../internals/get-iterator-method': 160, '../internals/is-array-iterator-method': 178, '../internals/iterator-close': 194, '../internals/length-of-array-like': 201, '../internals/object-is-prototype-of': 228, '../internals/try-to-string': 296 }],
+  194: [function (require, module, exports) {
     'use strict'
     var call = require('../internals/function-call')
     var anObject = require('../internals/an-object')
@@ -6299,8 +6397,8 @@
       anObject(innerResult)
       return value
     }
-  }, { '../internals/an-object': 64, '../internals/function-call': 149, '../internals/get-method': 160 }],
-  192: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/function-call': 152, '../internals/get-method': 163 }],
+  195: [function (require, module, exports) {
     'use strict'
     var IteratorPrototype = require('../internals/iterators-core').IteratorPrototype
     var create = require('../internals/object-create')
@@ -6317,8 +6415,8 @@
       Iterators[TO_STRING_TAG] = returnThis
       return IteratorConstructor
     }
-  }, { '../internals/create-property-descriptor': 107, '../internals/iterators': 197, '../internals/iterators-core': 196, '../internals/object-create': 216, '../internals/set-to-string-tag': 257 }],
-  193: [function (require, module, exports) {
+  }, { '../internals/create-property-descriptor': 110, '../internals/iterators': 200, '../internals/iterators-core': 199, '../internals/object-create': 219, '../internals/set-to-string-tag': 260 }],
+  196: [function (require, module, exports) {
     'use strict'
     var call = require('../internals/function-call')
     var create = require('../internals/object-create')
@@ -6397,8 +6495,8 @@
 
       return IteratorProxy
     }
-  }, { '../internals/create-iter-result-object': 105, '../internals/create-non-enumerable-property': 106, '../internals/define-built-ins': 113, '../internals/function-call': 149, '../internals/get-method': 160, '../internals/internal-state': 174, '../internals/iterator-close': 191, '../internals/iterators-core': 196, '../internals/object-create': 216, '../internals/well-known-symbol': 307 }],
-  194: [function (require, module, exports) {
+  }, { '../internals/create-iter-result-object': 108, '../internals/create-non-enumerable-property': 109, '../internals/define-built-ins': 116, '../internals/function-call': 152, '../internals/get-method': 163, '../internals/internal-state': 177, '../internals/iterator-close': 194, '../internals/iterators-core': 199, '../internals/object-create': 219, '../internals/well-known-symbol': 310 }],
+  197: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var call = require('../internals/function-call')
@@ -6503,8 +6601,8 @@
 
       return methods
     }
-  }, { '../internals/create-non-enumerable-property': 106, '../internals/define-built-in': 112, '../internals/export': 140, '../internals/function-call': 149, '../internals/function-name': 150, '../internals/is-callable': 178, '../internals/is-pure': 186, '../internals/iterator-create-constructor': 192, '../internals/iterators': 197, '../internals/iterators-core': 196, '../internals/object-get-prototype-of': 223, '../internals/object-set-prototype-of': 230, '../internals/set-to-string-tag': 257, '../internals/well-known-symbol': 307 }],
-  195: [function (require, module, exports) {
+  }, { '../internals/create-non-enumerable-property': 109, '../internals/define-built-in': 115, '../internals/export': 143, '../internals/function-call': 152, '../internals/function-name': 153, '../internals/is-callable': 181, '../internals/is-pure': 189, '../internals/iterator-create-constructor': 195, '../internals/iterators': 200, '../internals/iterators-core': 199, '../internals/object-get-prototype-of': 226, '../internals/object-set-prototype-of': 233, '../internals/set-to-string-tag': 260, '../internals/well-known-symbol': 310 }],
+  198: [function (require, module, exports) {
     'use strict'
     var call = require('../internals/function-call')
     var aCallable = require('../internals/a-callable')
@@ -6529,8 +6627,8 @@
         mapper: mapper
       })
     }
-  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/call-with-safe-iteration-closing': 94, '../internals/function-call': 149, '../internals/get-iterator-direct': 156, '../internals/iterator-create-proxy': 193 }],
-  196: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/call-with-safe-iteration-closing': 97, '../internals/function-call': 152, '../internals/get-iterator-direct': 159, '../internals/iterator-create-proxy': 196 }],
+  199: [function (require, module, exports) {
     'use strict'
     var fails = require('../internals/fails')
     var isCallable = require('../internals/is-callable')
@@ -6580,11 +6678,11 @@
       IteratorPrototype: IteratorPrototype,
       BUGGY_SAFARI_ITERATORS: BUGGY_SAFARI_ITERATORS
     }
-  }, { '../internals/define-built-in': 112, '../internals/fails': 141, '../internals/is-callable': 178, '../internals/is-object': 184, '../internals/is-pure': 186, '../internals/object-create': 216, '../internals/object-get-prototype-of': 223, '../internals/well-known-symbol': 307 }],
-  197: [function (require, module, exports) {
-    arguments[4][164][0].apply(exports, arguments)
-  }, { dup: 164 }],
-  198: [function (require, module, exports) {
+  }, { '../internals/define-built-in': 115, '../internals/fails': 144, '../internals/is-callable': 181, '../internals/is-object': 187, '../internals/is-pure': 189, '../internals/object-create': 219, '../internals/object-get-prototype-of': 226, '../internals/well-known-symbol': 310 }],
+  200: [function (require, module, exports) {
+    arguments[4][167][0].apply(exports, arguments)
+  }, { dup: 167 }],
+  201: [function (require, module, exports) {
     'use strict'
     var toLength = require('../internals/to-length')
 
@@ -6593,8 +6691,8 @@
     module.exports = function (obj) {
       return toLength(obj.length)
     }
-  }, { '../internals/to-length': 283 }],
-  199: [function (require, module, exports) {
+  }, { '../internals/to-length': 286 }],
+  202: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var fails = require('../internals/fails')
@@ -6650,8 +6748,8 @@
     Function.prototype.toString = makeBuiltIn(function toString () {
       return isCallable(this) && getInternalState(this).source || inspectSource(this)
     }, 'toString')
-  }, { '../internals/descriptors': 116, '../internals/fails': 141, '../internals/function-name': 150, '../internals/function-uncurry-this': 153, '../internals/has-own-property': 163, '../internals/inspect-source': 171, '../internals/internal-state': 174, '../internals/is-callable': 178 }],
-  200: [function (require, module, exports) {
+  }, { '../internals/descriptors': 119, '../internals/fails': 144, '../internals/function-name': 153, '../internals/function-uncurry-this': 156, '../internals/has-own-property': 166, '../internals/inspect-source': 174, '../internals/internal-state': 177, '../internals/is-callable': 181 }],
+  203: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
 
@@ -6667,8 +6765,8 @@
       remove: uncurryThis(MapPrototype.delete),
       proto: MapPrototype
     }
-  }, { '../internals/function-uncurry-this': 153 }],
-  201: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156 }],
+  204: [function (require, module, exports) {
     'use strict'
     // eslint-disable-next-line es/no-math-expm1 -- safe
     var $expm1 = Math.expm1
@@ -6687,7 +6785,7 @@
         return n === 0 ? n : n > -1e-6 && n < 1e-6 ? n + n * n / 2 : exp(n) - 1
       } : $expm1
   }, {}],
-  202: [function (require, module, exports) {
+  205: [function (require, module, exports) {
     'use strict'
     var sign = require('../internals/math-sign')
 
@@ -6711,8 +6809,8 @@
       if (result > FLOAT_MAX_VALUE || result !== result) return s * Infinity
       return s * result
     }
-  }, { '../internals/math-sign': 206 }],
-  203: [function (require, module, exports) {
+  }, { '../internals/math-sign': 209 }],
+  206: [function (require, module, exports) {
     'use strict'
     var floatRound = require('../internals/math-float-round')
 
@@ -6726,8 +6824,8 @@
     module.exports = Math.fround || function fround (x) {
       return floatRound(x, FLOAT32_EPSILON, FLOAT32_MAX_VALUE, FLOAT32_MIN_VALUE)
     }
-  }, { '../internals/math-float-round': 202 }],
-  204: [function (require, module, exports) {
+  }, { '../internals/math-float-round': 205 }],
+  207: [function (require, module, exports) {
     'use strict'
     var log = Math.log
     var LOG10E = Math.LOG10E
@@ -6737,7 +6835,7 @@
       return log(x) * LOG10E
     }
   }, {}],
-  205: [function (require, module, exports) {
+  208: [function (require, module, exports) {
     'use strict'
     var log = Math.log
 
@@ -6749,7 +6847,7 @@
       return n > -1e-8 && n < 1e-8 ? n - n * n / 2 : log(1 + n)
     }
   }, {}],
-  206: [function (require, module, exports) {
+  209: [function (require, module, exports) {
     'use strict'
     // `Math.sign` method implementation
     // https://tc39.es/ecma262/#sec-math.sign
@@ -6760,7 +6858,7 @@
       return n === 0 || n !== n ? n : n < 0 ? -1 : 1
     }
   }, {}],
-  207: [function (require, module, exports) {
+  210: [function (require, module, exports) {
     'use strict'
     var ceil = Math.ceil
     var floor = Math.floor
@@ -6773,7 +6871,7 @@
       return (n > 0 ? floor : ceil)(n)
     }
   }, {}],
-  208: [function (require, module, exports) {
+  211: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var safeGetBuiltIn = require('../internals/safe-get-built-in')
@@ -6855,8 +6953,8 @@
     }
 
     module.exports = microtask
-  }, { '../internals/engine-is-ios': 129, '../internals/engine-is-ios-pebble': 128, '../internals/engine-is-node': 130, '../internals/engine-is-webos-webkit': 131, '../internals/function-bind-context': 146, '../internals/global': 162, '../internals/queue': 242, '../internals/safe-get-built-in': 251, '../internals/task': 276 }],
-  209: [function (require, module, exports) {
+  }, { '../internals/engine-is-ios': 132, '../internals/engine-is-ios-pebble': 131, '../internals/engine-is-node': 133, '../internals/engine-is-webos-webkit': 134, '../internals/function-bind-context': 149, '../internals/global': 165, '../internals/queue': 245, '../internals/safe-get-built-in': 254, '../internals/task': 279 }],
+  212: [function (require, module, exports) {
     'use strict'
     var aCallable = require('../internals/a-callable')
 
@@ -6879,15 +6977,15 @@
       return new PromiseCapability(C)
     }
   }, { '../internals/a-callable': 58 }],
-  210: [function (require, module, exports) {
+  213: [function (require, module, exports) {
     'use strict'
     var toString = require('../internals/to-string')
 
     module.exports = function (argument, $default) {
       return argument === undefined ? arguments.length < 2 ? '' : $default : toString(argument)
     }
-  }, { '../internals/to-string': 290 }],
-  211: [function (require, module, exports) {
+  }, { '../internals/to-string': 293 }],
+  214: [function (require, module, exports) {
     'use strict'
     var isRegExp = require('../internals/is-regexp')
 
@@ -6898,8 +6996,8 @@
         throw new $TypeError("The method doesn't accept regular expressions")
       } return it
     }
-  }, { '../internals/is-regexp': 187 }],
-  212: [function (require, module, exports) {
+  }, { '../internals/is-regexp': 190 }],
+  215: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
 
@@ -6911,8 +7009,8 @@
     module.exports = Number.isFinite || function isFinite (it) {
       return typeof it === 'number' && globalIsFinite(it)
     }
-  }, { '../internals/global': 162 }],
-  213: [function (require, module, exports) {
+  }, { '../internals/global': 165 }],
+  216: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var fails = require('../internals/fails')
@@ -6936,8 +7034,8 @@
       var result = $parseFloat(trimmedString)
       return result === 0 && charAt(trimmedString, 0) === '-' ? -0 : result
     } : $parseFloat
-  }, { '../internals/fails': 141, '../internals/function-uncurry-this': 153, '../internals/global': 162, '../internals/string-trim': 271, '../internals/to-string': 290, '../internals/whitespaces': 308 }],
-  214: [function (require, module, exports) {
+  }, { '../internals/fails': 144, '../internals/function-uncurry-this': 156, '../internals/global': 165, '../internals/string-trim': 274, '../internals/to-string': 293, '../internals/whitespaces': 311 }],
+  217: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var fails = require('../internals/fails')
@@ -6961,8 +7059,8 @@
       var S = trim(toString(string))
       return $parseInt(S, (radix >>> 0) || (exec(hex, S) ? 16 : 10))
     } : $parseInt
-  }, { '../internals/fails': 141, '../internals/function-uncurry-this': 153, '../internals/global': 162, '../internals/string-trim': 271, '../internals/to-string': 290, '../internals/whitespaces': 308 }],
-  215: [function (require, module, exports) {
+  }, { '../internals/fails': 144, '../internals/function-uncurry-this': 156, '../internals/global': 165, '../internals/string-trim': 274, '../internals/to-string': 293, '../internals/whitespaces': 311 }],
+  218: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -7020,8 +7118,8 @@
           }
         } return T
       } : $assign
-  }, { '../internals/descriptors': 116, '../internals/fails': 141, '../internals/function-call': 149, '../internals/function-uncurry-this': 153, '../internals/indexed-object': 169, '../internals/object-get-own-property-symbols': 222, '../internals/object-keys': 227, '../internals/object-property-is-enumerable': 228, '../internals/to-object': 284 }],
-  216: [function (require, module, exports) {
+  }, { '../internals/descriptors': 119, '../internals/fails': 144, '../internals/function-call': 152, '../internals/function-uncurry-this': 156, '../internals/indexed-object': 172, '../internals/object-get-own-property-symbols': 225, '../internals/object-keys': 230, '../internals/object-property-is-enumerable': 231, '../internals/to-object': 287 }],
+  219: [function (require, module, exports) {
     'use strict'
     /* global ActiveXObject -- old IE, WSH */
     var anObject = require('../internals/an-object')
@@ -7106,8 +7204,8 @@
       } else result = NullProtoObject()
       return Properties === undefined ? result : definePropertiesModule.f(result, Properties)
     }
-  }, { '../internals/an-object': 64, '../internals/document-create-element': 118, '../internals/enum-bug-keys': 135, '../internals/hidden-keys': 164, '../internals/html': 166, '../internals/object-define-properties': 217, '../internals/shared-key': 258 }],
-  217: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/document-create-element': 121, '../internals/enum-bug-keys': 138, '../internals/hidden-keys': 167, '../internals/html': 169, '../internals/object-define-properties': 220, '../internals/shared-key': 261 }],
+  220: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var V8_PROTOTYPE_DEFINE_BUG = require('../internals/v8-prototype-define-bug')
@@ -7129,8 +7227,8 @@
       while (length > index) definePropertyModule.f(O, key = keys[index++], props[key])
       return O
     }
-  }, { '../internals/an-object': 64, '../internals/descriptors': 116, '../internals/object-define-property': 218, '../internals/object-keys': 227, '../internals/to-indexed-object': 281, '../internals/v8-prototype-define-bug': 302 }],
-  218: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/descriptors': 119, '../internals/object-define-property': 221, '../internals/object-keys': 230, '../internals/to-indexed-object': 284, '../internals/v8-prototype-define-bug': 305 }],
+  221: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var IE8_DOM_DEFINE = require('../internals/ie8-dom-define')
@@ -7177,8 +7275,8 @@
       if ('value' in Attributes) O[P] = Attributes.value
       return O
     }
-  }, { '../internals/an-object': 64, '../internals/descriptors': 116, '../internals/ie8-dom-define': 167, '../internals/to-property-key': 288, '../internals/v8-prototype-define-bug': 302 }],
-  219: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/descriptors': 119, '../internals/ie8-dom-define': 170, '../internals/to-property-key': 291, '../internals/v8-prototype-define-bug': 305 }],
+  222: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var call = require('../internals/function-call')
@@ -7204,8 +7302,8 @@
       }
       if (hasOwn(O, P)) return createPropertyDescriptor(!call(propertyIsEnumerableModule.f, O, P), O[P])
     }
-  }, { '../internals/create-property-descriptor': 107, '../internals/descriptors': 116, '../internals/function-call': 149, '../internals/has-own-property': 163, '../internals/ie8-dom-define': 167, '../internals/object-property-is-enumerable': 228, '../internals/to-indexed-object': 281, '../internals/to-property-key': 288 }],
-  220: [function (require, module, exports) {
+  }, { '../internals/create-property-descriptor': 110, '../internals/descriptors': 119, '../internals/function-call': 152, '../internals/has-own-property': 166, '../internals/ie8-dom-define': 170, '../internals/object-property-is-enumerable': 231, '../internals/to-indexed-object': 284, '../internals/to-property-key': 291 }],
+  223: [function (require, module, exports) {
     'use strict'
     /* eslint-disable es/no-object-getownpropertynames -- safe */
     var classof = require('../internals/classof-raw')
@@ -7230,8 +7328,8 @@
         ? getWindowNames(it)
         : $getOwnPropertyNames(toIndexedObject(it))
     }
-  }, { '../internals/array-slice': 82, '../internals/classof-raw': 96, '../internals/object-get-own-property-names': 221, '../internals/to-indexed-object': 281 }],
-  221: [function (require, module, exports) {
+  }, { '../internals/array-slice': 85, '../internals/classof-raw': 99, '../internals/object-get-own-property-names': 224, '../internals/to-indexed-object': 284 }],
+  224: [function (require, module, exports) {
     'use strict'
     var internalObjectKeys = require('../internals/object-keys-internal')
     var enumBugKeys = require('../internals/enum-bug-keys')
@@ -7244,13 +7342,13 @@
     exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames (O) {
       return internalObjectKeys(O, hiddenKeys)
     }
-  }, { '../internals/enum-bug-keys': 135, '../internals/object-keys-internal': 226 }],
-  222: [function (require, module, exports) {
+  }, { '../internals/enum-bug-keys': 138, '../internals/object-keys-internal': 229 }],
+  225: [function (require, module, exports) {
     'use strict'
     // eslint-disable-next-line es/no-object-getownpropertysymbols -- safe
     exports.f = Object.getOwnPropertySymbols
   }, {}],
-  223: [function (require, module, exports) {
+  226: [function (require, module, exports) {
     'use strict'
     var hasOwn = require('../internals/has-own-property')
     var isCallable = require('../internals/is-callable')
@@ -7273,8 +7371,8 @@
         return constructor.prototype
       } return object instanceof $Object ? ObjectPrototype : null
     }
-  }, { '../internals/correct-prototype-getter': 103, '../internals/has-own-property': 163, '../internals/is-callable': 178, '../internals/shared-key': 258, '../internals/to-object': 284 }],
-  224: [function (require, module, exports) {
+  }, { '../internals/correct-prototype-getter': 106, '../internals/has-own-property': 166, '../internals/is-callable': 181, '../internals/shared-key': 261, '../internals/to-object': 287 }],
+  227: [function (require, module, exports) {
     'use strict'
     var fails = require('../internals/fails')
     var isObject = require('../internals/is-object')
@@ -7292,14 +7390,14 @@
       if (ARRAY_BUFFER_NON_EXTENSIBLE && classof(it) === 'ArrayBuffer') return false
       return $isExtensible ? $isExtensible(it) : true
     } : $isExtensible
-  }, { '../internals/array-buffer-non-extensible': 66, '../internals/classof-raw': 96, '../internals/fails': 141, '../internals/is-object': 184 }],
-  225: [function (require, module, exports) {
+  }, { '../internals/array-buffer-non-extensible': 68, '../internals/classof-raw': 99, '../internals/fails': 144, '../internals/is-object': 187 }],
+  228: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
 
     module.exports = uncurryThis({}.isPrototypeOf)
-  }, { '../internals/function-uncurry-this': 153 }],
-  226: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156 }],
+  229: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var hasOwn = require('../internals/has-own-property')
@@ -7323,8 +7421,8 @@
       }
       return result
     }
-  }, { '../internals/array-includes': 74, '../internals/function-uncurry-this': 153, '../internals/has-own-property': 163, '../internals/hidden-keys': 164, '../internals/to-indexed-object': 281 }],
-  227: [function (require, module, exports) {
+  }, { '../internals/array-includes': 77, '../internals/function-uncurry-this': 156, '../internals/has-own-property': 166, '../internals/hidden-keys': 167, '../internals/to-indexed-object': 284 }],
+  230: [function (require, module, exports) {
     'use strict'
     var internalObjectKeys = require('../internals/object-keys-internal')
     var enumBugKeys = require('../internals/enum-bug-keys')
@@ -7335,8 +7433,8 @@
     module.exports = Object.keys || function keys (O) {
       return internalObjectKeys(O, enumBugKeys)
     }
-  }, { '../internals/enum-bug-keys': 135, '../internals/object-keys-internal': 226 }],
-  228: [function (require, module, exports) {
+  }, { '../internals/enum-bug-keys': 138, '../internals/object-keys-internal': 229 }],
+  231: [function (require, module, exports) {
     'use strict'
     var $propertyIsEnumerable = {}.propertyIsEnumerable
     // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
@@ -7352,7 +7450,7 @@
       return !!descriptor && descriptor.enumerable
     } : $propertyIsEnumerable
   }, {}],
-  229: [function (require, module, exports) {
+  232: [function (require, module, exports) {
     'use strict'
     var IS_PURE = require('../internals/is-pure')
     var global = require('../internals/global')
@@ -7370,8 +7468,8 @@
       __defineSetter__.call(null, key, function () { /* empty */ })
       delete global[key]
     })
-  }, { '../internals/engine-webkit-version': 134, '../internals/fails': 141, '../internals/global': 162, '../internals/is-pure': 186 }],
-  230: [function (require, module, exports) {
+  }, { '../internals/engine-webkit-version': 137, '../internals/fails': 144, '../internals/global': 165, '../internals/is-pure': 189 }],
+  233: [function (require, module, exports) {
     'use strict'
     /* eslint-disable no-proto -- safe */
     var uncurryThisAccessor = require('../internals/function-uncurry-this-accessor')
@@ -7399,8 +7497,8 @@
         return O
       }
     }()) : undefined)
-  }, { '../internals/a-possible-prototype': 60, '../internals/an-object': 64, '../internals/function-uncurry-this-accessor': 151 }],
-  231: [function (require, module, exports) {
+  }, { '../internals/a-possible-prototype': 60, '../internals/an-object': 64, '../internals/function-uncurry-this-accessor': 154 }],
+  234: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var fails = require('../internals/fails')
@@ -7450,8 +7548,8 @@
       // https://tc39.es/ecma262/#sec-object.values
       values: createMethod(false)
     }
-  }, { '../internals/descriptors': 116, '../internals/fails': 141, '../internals/function-uncurry-this': 153, '../internals/object-get-prototype-of': 223, '../internals/object-keys': 227, '../internals/object-property-is-enumerable': 228, '../internals/to-indexed-object': 281 }],
-  232: [function (require, module, exports) {
+  }, { '../internals/descriptors': 119, '../internals/fails': 144, '../internals/function-uncurry-this': 156, '../internals/object-get-prototype-of': 226, '../internals/object-keys': 230, '../internals/object-property-is-enumerable': 231, '../internals/to-indexed-object': 284 }],
+  235: [function (require, module, exports) {
     'use strict'
     var TO_STRING_TAG_SUPPORT = require('../internals/to-string-tag-support')
     var classof = require('../internals/classof')
@@ -7461,8 +7559,8 @@
     module.exports = TO_STRING_TAG_SUPPORT ? {}.toString : function toString () {
       return '[object ' + classof(this) + ']'
     }
-  }, { '../internals/classof': 97, '../internals/to-string-tag-support': 289 }],
-  233: [function (require, module, exports) {
+  }, { '../internals/classof': 100, '../internals/to-string-tag-support': 292 }],
+  236: [function (require, module, exports) {
     'use strict'
     var call = require('../internals/function-call')
     var isCallable = require('../internals/is-callable')
@@ -7479,8 +7577,8 @@
       if (pref !== 'string' && isCallable(fn = input.toString) && !isObject(val = call(fn, input))) return val
       throw new $TypeError("Can't convert object to primitive value")
     }
-  }, { '../internals/function-call': 149, '../internals/is-callable': 178, '../internals/is-object': 184 }],
-  234: [function (require, module, exports) {
+  }, { '../internals/function-call': 152, '../internals/is-callable': 181, '../internals/is-object': 187 }],
+  237: [function (require, module, exports) {
     'use strict'
     var getBuiltIn = require('../internals/get-built-in')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -7496,14 +7594,14 @@
       var getOwnPropertySymbols = getOwnPropertySymbolsModule.f
       return getOwnPropertySymbols ? concat(keys, getOwnPropertySymbols(it)) : keys
     }
-  }, { '../internals/an-object': 64, '../internals/function-uncurry-this': 153, '../internals/get-built-in': 155, '../internals/object-get-own-property-names': 221, '../internals/object-get-own-property-symbols': 222 }],
-  235: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/function-uncurry-this': 156, '../internals/get-built-in': 158, '../internals/object-get-own-property-names': 224, '../internals/object-get-own-property-symbols': 225 }],
+  238: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
 
     module.exports = global
-  }, { '../internals/global': 162 }],
-  236: [function (require, module, exports) {
+  }, { '../internals/global': 165 }],
+  239: [function (require, module, exports) {
     'use strict'
     module.exports = function (exec) {
       try {
@@ -7513,7 +7611,7 @@
       }
     }
   }, {}],
-  237: [function (require, module, exports) {
+  240: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var NativePromiseConstructor = require('../internals/promise-native-constructor')
@@ -7562,14 +7660,14 @@
       REJECTION_EVENT: NATIVE_PROMISE_REJECTION_EVENT,
       SUBCLASSING: SUBCLASSING
     }
-  }, { '../internals/engine-is-browser': 124, '../internals/engine-is-deno': 126, '../internals/engine-v8-version': 133, '../internals/global': 162, '../internals/inspect-source': 171, '../internals/is-callable': 178, '../internals/is-forced': 181, '../internals/is-pure': 186, '../internals/promise-native-constructor': 238, '../internals/well-known-symbol': 307 }],
-  238: [function (require, module, exports) {
+  }, { '../internals/engine-is-browser': 127, '../internals/engine-is-deno': 129, '../internals/engine-v8-version': 136, '../internals/global': 165, '../internals/inspect-source': 174, '../internals/is-callable': 181, '../internals/is-forced': 184, '../internals/is-pure': 189, '../internals/promise-native-constructor': 241, '../internals/well-known-symbol': 310 }],
+  241: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
 
     module.exports = global.Promise
-  }, { '../internals/global': 162 }],
-  239: [function (require, module, exports) {
+  }, { '../internals/global': 165 }],
+  242: [function (require, module, exports) {
     'use strict'
     var anObject = require('../internals/an-object')
     var isObject = require('../internals/is-object')
@@ -7583,8 +7681,8 @@
       resolve(x)
       return promiseCapability.promise
     }
-  }, { '../internals/an-object': 64, '../internals/is-object': 184, '../internals/new-promise-capability': 209 }],
-  240: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/is-object': 187, '../internals/new-promise-capability': 212 }],
+  243: [function (require, module, exports) {
     'use strict'
     var NativePromiseConstructor = require('../internals/promise-native-constructor')
     var checkCorrectnessOfIteration = require('../internals/check-correctness-of-iteration')
@@ -7593,8 +7691,8 @@
     module.exports = FORCED_PROMISE_CONSTRUCTOR || !checkCorrectnessOfIteration(function (iterable) {
       NativePromiseConstructor.all(iterable).then(undefined, function () { /* empty */ })
     })
-  }, { '../internals/check-correctness-of-iteration': 95, '../internals/promise-constructor-detection': 237, '../internals/promise-native-constructor': 238 }],
-  241: [function (require, module, exports) {
+  }, { '../internals/check-correctness-of-iteration': 98, '../internals/promise-constructor-detection': 240, '../internals/promise-native-constructor': 241 }],
+  244: [function (require, module, exports) {
     'use strict'
     var defineProperty = require('../internals/object-define-property').f
 
@@ -7605,8 +7703,8 @@
         set: function (it) { Source[key] = it }
       })
     }
-  }, { '../internals/object-define-property': 218 }],
-  242: [function (require, module, exports) {
+  }, { '../internals/object-define-property': 221 }],
+  245: [function (require, module, exports) {
     'use strict'
     var Queue = function () {
       this.head = null
@@ -7633,7 +7731,7 @@
 
     module.exports = Queue
   }, {}],
-  243: [function (require, module, exports) {
+  246: [function (require, module, exports) {
     'use strict'
     var call = require('../internals/function-call')
     var anObject = require('../internals/an-object')
@@ -7655,8 +7753,8 @@
       if (classof(R) === 'RegExp') return call(regexpExec, R, S)
       throw new $TypeError('RegExp#exec called on incompatible receiver')
     }
-  }, { '../internals/an-object': 64, '../internals/classof-raw': 96, '../internals/function-call': 149, '../internals/is-callable': 178, '../internals/regexp-exec': 244 }],
-  244: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/classof-raw': 99, '../internals/function-call': 152, '../internals/is-callable': 181, '../internals/regexp-exec': 247 }],
+  247: [function (require, module, exports) {
     'use strict'
     /* eslint-disable regexp/no-empty-capturing-group, regexp/no-empty-group, regexp/no-lazy-ends -- testing */
     /* eslint-disable regexp/no-useless-quantifier -- testing */
@@ -7774,8 +7872,8 @@
     }
 
     module.exports = patchedExec
-  }, { '../internals/function-call': 149, '../internals/function-uncurry-this': 153, '../internals/internal-state': 174, '../internals/object-create': 216, '../internals/regexp-flags': 245, '../internals/regexp-sticky-helpers': 247, '../internals/regexp-unsupported-dot-all': 248, '../internals/regexp-unsupported-ncg': 249, '../internals/shared': 260, '../internals/to-string': 290 }],
-  245: [function (require, module, exports) {
+  }, { '../internals/function-call': 152, '../internals/function-uncurry-this': 156, '../internals/internal-state': 177, '../internals/object-create': 219, '../internals/regexp-flags': 248, '../internals/regexp-sticky-helpers': 250, '../internals/regexp-unsupported-dot-all': 251, '../internals/regexp-unsupported-ncg': 252, '../internals/shared': 263, '../internals/to-string': 293 }],
+  248: [function (require, module, exports) {
     'use strict'
     var anObject = require('../internals/an-object')
 
@@ -7795,7 +7893,7 @@
       return result
     }
   }, { '../internals/an-object': 64 }],
-  246: [function (require, module, exports) {
+  249: [function (require, module, exports) {
     'use strict'
     var call = require('../internals/function-call')
     var hasOwn = require('../internals/has-own-property')
@@ -7809,8 +7907,8 @@
       return flags === undefined && !('flags' in RegExpPrototype) && !hasOwn(R, 'flags') && isPrototypeOf(RegExpPrototype, R)
         ? call(regExpFlags, R) : flags
     }
-  }, { '../internals/function-call': 149, '../internals/has-own-property': 163, '../internals/object-is-prototype-of': 225, '../internals/regexp-flags': 245 }],
-  247: [function (require, module, exports) {
+  }, { '../internals/function-call': 152, '../internals/has-own-property': 166, '../internals/object-is-prototype-of': 228, '../internals/regexp-flags': 248 }],
+  250: [function (require, module, exports) {
     'use strict'
     var fails = require('../internals/fails')
     var global = require('../internals/global')
@@ -7842,8 +7940,8 @@
       MISSED_STICKY: MISSED_STICKY,
       UNSUPPORTED_Y: UNSUPPORTED_Y
     }
-  }, { '../internals/fails': 141, '../internals/global': 162 }],
-  248: [function (require, module, exports) {
+  }, { '../internals/fails': 144, '../internals/global': 165 }],
+  251: [function (require, module, exports) {
     'use strict'
     var fails = require('../internals/fails')
     var global = require('../internals/global')
@@ -7855,8 +7953,8 @@
       var re = $RegExp('.', 's')
       return !(re.dotAll && re.test('\n') && re.flags === 's')
     })
-  }, { '../internals/fails': 141, '../internals/global': 162 }],
-  249: [function (require, module, exports) {
+  }, { '../internals/fails': 144, '../internals/global': 165 }],
+  252: [function (require, module, exports) {
     'use strict'
     var fails = require('../internals/fails')
     var global = require('../internals/global')
@@ -7869,8 +7967,8 @@
       return re.exec('b').groups.a !== 'b' ||
     'b'.replace(re, '$<a>c') !== 'bc'
     })
-  }, { '../internals/fails': 141, '../internals/global': 162 }],
-  250: [function (require, module, exports) {
+  }, { '../internals/fails': 144, '../internals/global': 165 }],
+  253: [function (require, module, exports) {
     'use strict'
     var isNullOrUndefined = require('../internals/is-null-or-undefined')
 
@@ -7882,8 +7980,8 @@
       if (isNullOrUndefined(it)) throw new $TypeError("Can't call method on " + it)
       return it
     }
-  }, { '../internals/is-null-or-undefined': 183 }],
-  251: [function (require, module, exports) {
+  }, { '../internals/is-null-or-undefined': 186 }],
+  254: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var DESCRIPTORS = require('../internals/descriptors')
@@ -7897,8 +7995,8 @@
       var descriptor = getOwnPropertyDescriptor(global, name)
       return descriptor && descriptor.value
     }
-  }, { '../internals/descriptors': 116, '../internals/global': 162 }],
-  252: [function (require, module, exports) {
+  }, { '../internals/descriptors': 119, '../internals/global': 165 }],
+  255: [function (require, module, exports) {
     'use strict'
     // `SameValue` abstract operation
     // https://tc39.es/ecma262/#sec-samevalue
@@ -7908,7 +8006,7 @@
       return x === y ? x !== 0 || 1 / x === 1 / y : x !== x && y !== y
     }
   }, {}],
-  253: [function (require, module, exports) {
+  256: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var apply = require('../internals/function-apply')
@@ -7940,8 +8038,8 @@
         return hasTimeArg ? scheduler(callback, timeout) : scheduler(callback)
       } : scheduler
     }
-  }, { '../internals/array-slice': 82, '../internals/engine-is-bun': 125, '../internals/engine-user-agent': 132, '../internals/function-apply': 145, '../internals/global': 162, '../internals/is-callable': 178, '../internals/validate-arguments-length': 303 }],
-  254: [function (require, module, exports) {
+  }, { '../internals/array-slice': 85, '../internals/engine-is-bun': 128, '../internals/engine-user-agent': 135, '../internals/function-apply': 148, '../internals/global': 165, '../internals/is-callable': 181, '../internals/validate-arguments-length': 306 }],
+  257: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
 
@@ -7956,8 +8054,8 @@
       remove: uncurryThis(SetPrototype.delete),
       proto: SetPrototype
     }
-  }, { '../internals/function-uncurry-this': 153 }],
-  255: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156 }],
+  258: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var iterateSimple = require('../internals/iterate-simple')
@@ -7972,8 +8070,8 @@
     module.exports = function (set, fn, interruptible) {
       return interruptible ? iterateSimple({ iterator: keys(set), next: next }, fn) : forEach(set, fn)
     }
-  }, { '../internals/function-uncurry-this': 153, '../internals/iterate-simple': 189, '../internals/set-helpers': 254 }],
-  256: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156, '../internals/iterate-simple': 192, '../internals/set-helpers': 257 }],
+  259: [function (require, module, exports) {
     'use strict'
     var getBuiltIn = require('../internals/get-built-in')
     var defineBuiltInAccessor = require('../internals/define-built-in-accessor')
@@ -7992,8 +8090,8 @@
         })
       }
     }
-  }, { '../internals/define-built-in-accessor': 111, '../internals/descriptors': 116, '../internals/get-built-in': 155, '../internals/well-known-symbol': 307 }],
-  257: [function (require, module, exports) {
+  }, { '../internals/define-built-in-accessor': 114, '../internals/descriptors': 119, '../internals/get-built-in': 158, '../internals/well-known-symbol': 310 }],
+  260: [function (require, module, exports) {
     'use strict'
     var defineProperty = require('../internals/object-define-property').f
     var hasOwn = require('../internals/has-own-property')
@@ -8007,8 +8105,8 @@
         defineProperty(target, TO_STRING_TAG, { configurable: true, value: TAG })
       }
     }
-  }, { '../internals/has-own-property': 163, '../internals/object-define-property': 218, '../internals/well-known-symbol': 307 }],
-  258: [function (require, module, exports) {
+  }, { '../internals/has-own-property': 166, '../internals/object-define-property': 221, '../internals/well-known-symbol': 310 }],
+  261: [function (require, module, exports) {
     'use strict'
     var shared = require('../internals/shared')
     var uid = require('../internals/uid')
@@ -8018,33 +8116,33 @@
     module.exports = function (key) {
       return keys[key] || (keys[key] = uid(key))
     }
-  }, { '../internals/shared': 260, '../internals/uid': 299 }],
-  259: [function (require, module, exports) {
+  }, { '../internals/shared': 263, '../internals/uid': 302 }],
+  262: [function (require, module, exports) {
     'use strict'
-    var global = require('../internals/global')
+    var IS_PURE = require('../internals/is-pure')
+    var globalThis = require('../internals/global')
     var defineGlobalProperty = require('../internals/define-global-property')
 
     var SHARED = '__core-js_shared__'
-    var store = global[SHARED] || defineGlobalProperty(SHARED, {})
+    var store = module.exports = globalThis[SHARED] || defineGlobalProperty(SHARED, {});
 
-    module.exports = store
-  }, { '../internals/define-global-property': 114, '../internals/global': 162 }],
-  260: [function (require, module, exports) {
-    'use strict'
-    var IS_PURE = require('../internals/is-pure')
-    var store = require('../internals/shared-store');
-
-    (module.exports = function (key, value) {
-      return store[key] || (store[key] = value !== undefined ? value : {})
-    })('versions', []).push({
-      version: '3.35.1',
+    (store.versions || (store.versions = [])).push({
+      version: '3.36.0',
       mode: IS_PURE ? 'pure' : 'global',
       copyright: '© 2014-2024 Denis Pushkarev (zloirock.ru)',
-      license: 'https://github.com/zloirock/core-js/blob/v3.35.1/LICENSE',
+      license: 'https://github.com/zloirock/core-js/blob/v3.36.0/LICENSE',
       source: 'https://github.com/zloirock/core-js'
     })
-  }, { '../internals/is-pure': 186, '../internals/shared-store': 259 }],
-  261: [function (require, module, exports) {
+  }, { '../internals/define-global-property': 117, '../internals/global': 165, '../internals/is-pure': 189 }],
+  263: [function (require, module, exports) {
+    'use strict'
+    var store = require('../internals/shared-store')
+
+    module.exports = function (key, value) {
+      return store[key] || (store[key] = value || {})
+    }
+  }, { '../internals/shared-store': 262 }],
+  264: [function (require, module, exports) {
     'use strict'
     var anObject = require('../internals/an-object')
     var aConstructor = require('../internals/a-constructor')
@@ -8060,8 +8158,8 @@
       var S
       return C === undefined || isNullOrUndefined(S = anObject(C)[SPECIES]) ? defaultConstructor : aConstructor(S)
     }
-  }, { '../internals/a-constructor': 59, '../internals/an-object': 64, '../internals/is-null-or-undefined': 183, '../internals/well-known-symbol': 307 }],
-  262: [function (require, module, exports) {
+  }, { '../internals/a-constructor': 59, '../internals/an-object': 64, '../internals/is-null-or-undefined': 186, '../internals/well-known-symbol': 310 }],
+  265: [function (require, module, exports) {
     'use strict'
     var fails = require('../internals/fails')
 
@@ -8073,8 +8171,8 @@
         return test !== test.toLowerCase() || test.split('"').length > 3
       })
     }
-  }, { '../internals/fails': 141 }],
-  263: [function (require, module, exports) {
+  }, { '../internals/fails': 144 }],
+  266: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var toIntegerOrInfinity = require('../internals/to-integer-or-infinity')
@@ -8112,15 +8210,15 @@
       // https://github.com/mathiasbynens/String.prototype.at
       charAt: createMethod(true)
     }
-  }, { '../internals/function-uncurry-this': 153, '../internals/require-object-coercible': 250, '../internals/to-integer-or-infinity': 282, '../internals/to-string': 290 }],
-  264: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156, '../internals/require-object-coercible': 253, '../internals/to-integer-or-infinity': 285, '../internals/to-string': 293 }],
+  267: [function (require, module, exports) {
     'use strict'
     // https://github.com/zloirock/core-js/issues/280
     var userAgent = require('../internals/engine-user-agent')
 
     module.exports = /Version\/10(?:\.\d+){1,2}(?: [\w./]+)?(?: Mobile\/\w+)? Safari\//.test(userAgent)
-  }, { '../internals/engine-user-agent': 132 }],
-  265: [function (require, module, exports) {
+  }, { '../internals/engine-user-agent': 135 }],
+  268: [function (require, module, exports) {
     'use strict'
     // https://github.com/tc39/proposal-string-pad-start-end
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -8157,8 +8255,8 @@
       // https://tc39.es/ecma262/#sec-string.prototype.padend
       end: createMethod(true)
     }
-  }, { '../internals/function-uncurry-this': 153, '../internals/require-object-coercible': 250, '../internals/string-repeat': 267, '../internals/to-length': 283, '../internals/to-string': 290 }],
-  266: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156, '../internals/require-object-coercible': 253, '../internals/string-repeat': 270, '../internals/to-length': 286, '../internals/to-string': 293 }],
+  269: [function (require, module, exports) {
     'use strict'
     // based on https://github.com/bestiejs/punycode.js/blob/master/punycode.js
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -8340,8 +8438,8 @@
       }
       return join(encoded, '.')
     }
-  }, { '../internals/function-uncurry-this': 153 }],
-  267: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156 }],
+  270: [function (require, module, exports) {
     'use strict'
     var toIntegerOrInfinity = require('../internals/to-integer-or-infinity')
     var toString = require('../internals/to-string')
@@ -8359,8 +8457,8 @@
       for (;n > 0; (n >>>= 1) && (str += str)) if (n & 1) result += str
       return result
     }
-  }, { '../internals/require-object-coercible': 250, '../internals/to-integer-or-infinity': 282, '../internals/to-string': 290 }],
-  268: [function (require, module, exports) {
+  }, { '../internals/require-object-coercible': 253, '../internals/to-integer-or-infinity': 285, '../internals/to-string': 293 }],
+  271: [function (require, module, exports) {
     'use strict'
     var $trimEnd = require('../internals/string-trim').end
     var forcedStringTrimMethod = require('../internals/string-trim-forced')
@@ -8372,8 +8470,8 @@
       return $trimEnd(this)
       // eslint-disable-next-line es/no-string-prototype-trimstart-trimend -- safe
     } : ''.trimEnd
-  }, { '../internals/string-trim': 271, '../internals/string-trim-forced': 269 }],
-  269: [function (require, module, exports) {
+  }, { '../internals/string-trim': 274, '../internals/string-trim-forced': 272 }],
+  272: [function (require, module, exports) {
     'use strict'
     var PROPER_FUNCTION_NAME = require('../internals/function-name').PROPER
     var fails = require('../internals/fails')
@@ -8390,8 +8488,8 @@
       (PROPER_FUNCTION_NAME && whitespaces[METHOD_NAME].name !== METHOD_NAME)
       })
     }
-  }, { '../internals/fails': 141, '../internals/function-name': 150, '../internals/whitespaces': 308 }],
-  270: [function (require, module, exports) {
+  }, { '../internals/fails': 144, '../internals/function-name': 153, '../internals/whitespaces': 311 }],
+  273: [function (require, module, exports) {
     'use strict'
     var $trimStart = require('../internals/string-trim').start
     var forcedStringTrimMethod = require('../internals/string-trim-forced')
@@ -8403,8 +8501,8 @@
       return $trimStart(this)
       // eslint-disable-next-line es/no-string-prototype-trimstart-trimend -- safe
     } : ''.trimStart
-  }, { '../internals/string-trim': 271, '../internals/string-trim-forced': 269 }],
-  271: [function (require, module, exports) {
+  }, { '../internals/string-trim': 274, '../internals/string-trim-forced': 272 }],
+  274: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var requireObjectCoercible = require('../internals/require-object-coercible')
@@ -8436,8 +8534,8 @@
       // https://tc39.es/ecma262/#sec-string.prototype.trim
       trim: createMethod(3)
     }
-  }, { '../internals/function-uncurry-this': 153, '../internals/require-object-coercible': 250, '../internals/to-string': 290, '../internals/whitespaces': 308 }],
-  272: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156, '../internals/require-object-coercible': 253, '../internals/to-string': 293, '../internals/whitespaces': 311 }],
+  275: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var fails = require('../internals/fails')
@@ -8456,8 +8554,8 @@
       var clone = structuredClone(buffer, { transfer: [buffer] })
       return buffer.byteLength !== 0 || clone.byteLength !== 8
     })
-  }, { '../internals/engine-is-browser': 124, '../internals/engine-is-deno': 126, '../internals/engine-is-node': 130, '../internals/engine-v8-version': 133, '../internals/fails': 141, '../internals/global': 162 }],
-  273: [function (require, module, exports) {
+  }, { '../internals/engine-is-browser': 127, '../internals/engine-is-deno': 129, '../internals/engine-is-node': 133, '../internals/engine-v8-version': 136, '../internals/fails': 144, '../internals/global': 165 }],
+  276: [function (require, module, exports) {
     'use strict'
     /* eslint-disable es/no-symbol -- required for testing */
     var V8_VERSION = require('../internals/engine-v8-version')
@@ -8477,8 +8575,8 @@
     // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
     !Symbol.sham && V8_VERSION && V8_VERSION < 41
     })
-  }, { '../internals/engine-v8-version': 133, '../internals/fails': 141, '../internals/global': 162 }],
-  274: [function (require, module, exports) {
+  }, { '../internals/engine-v8-version': 136, '../internals/fails': 144, '../internals/global': 165 }],
+  277: [function (require, module, exports) {
     'use strict'
     var call = require('../internals/function-call')
     var getBuiltIn = require('../internals/get-built-in')
@@ -8500,15 +8598,15 @@
         }, { arity: 1 })
       }
     }
-  }, { '../internals/define-built-in': 112, '../internals/function-call': 149, '../internals/get-built-in': 155, '../internals/well-known-symbol': 307 }],
-  275: [function (require, module, exports) {
+  }, { '../internals/define-built-in': 115, '../internals/function-call': 152, '../internals/get-built-in': 158, '../internals/well-known-symbol': 310 }],
+  278: [function (require, module, exports) {
     'use strict'
     var NATIVE_SYMBOL = require('../internals/symbol-constructor-detection')
 
     /* eslint-disable es/no-symbol -- safe */
     module.exports = NATIVE_SYMBOL && !!Symbol.for && !!Symbol.keyFor
-  }, { '../internals/symbol-constructor-detection': 273 }],
-  276: [function (require, module, exports) {
+  }, { '../internals/symbol-constructor-detection': 276 }],
+  279: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var apply = require('../internals/function-apply')
@@ -8626,16 +8724,16 @@
       set: set,
       clear: clear
     }
-  }, { '../internals/array-slice': 82, '../internals/document-create-element': 118, '../internals/engine-is-ios': 129, '../internals/engine-is-node': 130, '../internals/fails': 141, '../internals/function-apply': 145, '../internals/function-bind-context': 146, '../internals/global': 162, '../internals/has-own-property': 163, '../internals/html': 166, '../internals/is-callable': 178, '../internals/validate-arguments-length': 303 }],
-  277: [function (require, module, exports) {
+  }, { '../internals/array-slice': 85, '../internals/document-create-element': 121, '../internals/engine-is-ios': 132, '../internals/engine-is-node': 133, '../internals/fails': 144, '../internals/function-apply': 148, '../internals/function-bind-context': 149, '../internals/global': 165, '../internals/has-own-property': 166, '../internals/html': 169, '../internals/is-callable': 181, '../internals/validate-arguments-length': 306 }],
+  280: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
 
     // `thisNumberValue` abstract operation
     // https://tc39.es/ecma262/#sec-thisnumbervalue
     module.exports = uncurryThis(1.0.valueOf)
-  }, { '../internals/function-uncurry-this': 153 }],
-  278: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156 }],
+  281: [function (require, module, exports) {
     'use strict'
     var toIntegerOrInfinity = require('../internals/to-integer-or-infinity')
 
@@ -8649,8 +8747,8 @@
       var integer = toIntegerOrInfinity(index)
       return integer < 0 ? max(integer + length, 0) : min(integer, length)
     }
-  }, { '../internals/to-integer-or-infinity': 282 }],
-  279: [function (require, module, exports) {
+  }, { '../internals/to-integer-or-infinity': 285 }],
+  282: [function (require, module, exports) {
     'use strict'
     var toPrimitive = require('../internals/to-primitive')
 
@@ -8664,8 +8762,8 @@
       // eslint-disable-next-line es/no-bigint -- safe
       return BigInt(prim)
     }
-  }, { '../internals/to-primitive': 287 }],
-  280: [function (require, module, exports) {
+  }, { '../internals/to-primitive': 290 }],
+  283: [function (require, module, exports) {
     'use strict'
     var toIntegerOrInfinity = require('../internals/to-integer-or-infinity')
     var toLength = require('../internals/to-length')
@@ -8681,8 +8779,8 @@
       if (number !== length) throw new $RangeError('Wrong length or index')
       return length
     }
-  }, { '../internals/to-integer-or-infinity': 282, '../internals/to-length': 283 }],
-  281: [function (require, module, exports) {
+  }, { '../internals/to-integer-or-infinity': 285, '../internals/to-length': 286 }],
+  284: [function (require, module, exports) {
     'use strict'
     // toObject with fallback for non-array-like ES3 strings
     var IndexedObject = require('../internals/indexed-object')
@@ -8691,8 +8789,8 @@
     module.exports = function (it) {
       return IndexedObject(requireObjectCoercible(it))
     }
-  }, { '../internals/indexed-object': 169, '../internals/require-object-coercible': 250 }],
-  282: [function (require, module, exports) {
+  }, { '../internals/indexed-object': 172, '../internals/require-object-coercible': 253 }],
+  285: [function (require, module, exports) {
     'use strict'
     var trunc = require('../internals/math-trunc')
 
@@ -8703,8 +8801,8 @@
       // eslint-disable-next-line no-self-compare -- NaN check
       return number !== number || number === 0 ? 0 : trunc(number)
     }
-  }, { '../internals/math-trunc': 207 }],
-  283: [function (require, module, exports) {
+  }, { '../internals/math-trunc': 210 }],
+  286: [function (require, module, exports) {
     'use strict'
     var toIntegerOrInfinity = require('../internals/to-integer-or-infinity')
 
@@ -8716,8 +8814,8 @@
       var len = toIntegerOrInfinity(argument)
       return len > 0 ? min(len, 0x1FFFFFFFFFFFFF) : 0 // 2 ** 53 - 1 == 9007199254740991
     }
-  }, { '../internals/to-integer-or-infinity': 282 }],
-  284: [function (require, module, exports) {
+  }, { '../internals/to-integer-or-infinity': 285 }],
+  287: [function (require, module, exports) {
     'use strict'
     var requireObjectCoercible = require('../internals/require-object-coercible')
 
@@ -8728,8 +8826,8 @@
     module.exports = function (argument) {
       return $Object(requireObjectCoercible(argument))
     }
-  }, { '../internals/require-object-coercible': 250 }],
-  285: [function (require, module, exports) {
+  }, { '../internals/require-object-coercible': 253 }],
+  288: [function (require, module, exports) {
     'use strict'
     var toPositiveInteger = require('../internals/to-positive-integer')
 
@@ -8740,8 +8838,8 @@
       if (offset % BYTES) throw new $RangeError('Wrong offset')
       return offset
     }
-  }, { '../internals/to-positive-integer': 286 }],
-  286: [function (require, module, exports) {
+  }, { '../internals/to-positive-integer': 289 }],
+  289: [function (require, module, exports) {
     'use strict'
     var toIntegerOrInfinity = require('../internals/to-integer-or-infinity')
 
@@ -8752,8 +8850,8 @@
       if (result < 0) throw new $RangeError("The argument can't be less than 0")
       return result
     }
-  }, { '../internals/to-integer-or-infinity': 282 }],
-  287: [function (require, module, exports) {
+  }, { '../internals/to-integer-or-infinity': 285 }],
+  290: [function (require, module, exports) {
     'use strict'
     var call = require('../internals/function-call')
     var isObject = require('../internals/is-object')
@@ -8780,8 +8878,8 @@
       if (pref === undefined) pref = 'number'
       return ordinaryToPrimitive(input, pref)
     }
-  }, { '../internals/function-call': 149, '../internals/get-method': 160, '../internals/is-object': 184, '../internals/is-symbol': 188, '../internals/ordinary-to-primitive': 233, '../internals/well-known-symbol': 307 }],
-  288: [function (require, module, exports) {
+  }, { '../internals/function-call': 152, '../internals/get-method': 163, '../internals/is-object': 187, '../internals/is-symbol': 191, '../internals/ordinary-to-primitive': 236, '../internals/well-known-symbol': 310 }],
+  291: [function (require, module, exports) {
     'use strict'
     var toPrimitive = require('../internals/to-primitive')
     var isSymbol = require('../internals/is-symbol')
@@ -8792,8 +8890,8 @@
       var key = toPrimitive(argument, 'string')
       return isSymbol(key) ? key : key + ''
     }
-  }, { '../internals/is-symbol': 188, '../internals/to-primitive': 287 }],
-  289: [function (require, module, exports) {
+  }, { '../internals/is-symbol': 191, '../internals/to-primitive': 290 }],
+  292: [function (require, module, exports) {
     'use strict'
     var wellKnownSymbol = require('../internals/well-known-symbol')
 
@@ -8803,8 +8901,8 @@
     test[TO_STRING_TAG] = 'z'
 
     module.exports = String(test) === '[object z]'
-  }, { '../internals/well-known-symbol': 307 }],
-  290: [function (require, module, exports) {
+  }, { '../internals/well-known-symbol': 310 }],
+  293: [function (require, module, exports) {
     'use strict'
     var classof = require('../internals/classof')
 
@@ -8814,8 +8912,8 @@
       if (classof(argument) === 'Symbol') throw new TypeError('Cannot convert a Symbol value to a string')
       return $String(argument)
     }
-  }, { '../internals/classof': 97 }],
-  291: [function (require, module, exports) {
+  }, { '../internals/classof': 100 }],
+  294: [function (require, module, exports) {
     'use strict'
     var round = Math.round
 
@@ -8824,7 +8922,7 @@
       return value < 0 ? 0 : value > 0xFF ? 0xFF : value & 0xFF
     }
   }, {}],
-  292: [function (require, module, exports) {
+  295: [function (require, module, exports) {
     'use strict'
     var IS_NODE = require('../internals/engine-is-node')
 
@@ -8834,8 +8932,8 @@
         if (IS_NODE) return Function('return require("' + name + '")')()
       } catch (error) { /* empty */ }
     }
-  }, { '../internals/engine-is-node': 130 }],
-  293: [function (require, module, exports) {
+  }, { '../internals/engine-is-node': 133 }],
+  296: [function (require, module, exports) {
     'use strict'
     var $String = String
 
@@ -8847,7 +8945,7 @@
       }
     }
   }, {}],
-  294: [function (require, module, exports) {
+  297: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var global = require('../internals/global')
@@ -9086,8 +9184,8 @@
         setSpecies(CONSTRUCTOR_NAME)
       }
     } else module.exports = function () { /* empty */ }
-  }, { '../internals/an-instance': 63, '../internals/array-buffer': 68, '../internals/array-buffer-view-core': 67, '../internals/array-from-constructor-and-list': 72, '../internals/array-iteration': 76, '../internals/classof': 97, '../internals/create-non-enumerable-property': 106, '../internals/create-property-descriptor': 107, '../internals/define-built-in-accessor': 111, '../internals/descriptors': 116, '../internals/export': 140, '../internals/function-call': 149, '../internals/global': 162, '../internals/has-own-property': 163, '../internals/inherit-if-required': 170, '../internals/internal-state': 174, '../internals/is-integral-number': 182, '../internals/is-object': 184, '../internals/is-symbol': 188, '../internals/object-create': 216, '../internals/object-define-property': 218, '../internals/object-get-own-property-descriptor': 219, '../internals/object-get-own-property-names': 221, '../internals/object-is-prototype-of': 225, '../internals/object-set-prototype-of': 230, '../internals/set-species': 256, '../internals/to-index': 280, '../internals/to-length': 283, '../internals/to-offset': 285, '../internals/to-property-key': 288, '../internals/to-uint8-clamped': 291, '../internals/typed-array-constructors-require-wrappers': 295, '../internals/typed-array-from': 297 }],
-  295: [function (require, module, exports) {
+  }, { '../internals/an-instance': 63, '../internals/array-buffer': 71, '../internals/array-buffer-view-core': 70, '../internals/array-from-constructor-and-list': 75, '../internals/array-iteration': 79, '../internals/classof': 100, '../internals/create-non-enumerable-property': 109, '../internals/create-property-descriptor': 110, '../internals/define-built-in-accessor': 114, '../internals/descriptors': 119, '../internals/export': 143, '../internals/function-call': 152, '../internals/global': 165, '../internals/has-own-property': 166, '../internals/inherit-if-required': 173, '../internals/internal-state': 177, '../internals/is-integral-number': 185, '../internals/is-object': 187, '../internals/is-symbol': 191, '../internals/object-create': 219, '../internals/object-define-property': 221, '../internals/object-get-own-property-descriptor': 222, '../internals/object-get-own-property-names': 224, '../internals/object-is-prototype-of': 228, '../internals/object-set-prototype-of': 233, '../internals/set-species': 259, '../internals/to-index': 283, '../internals/to-length': 286, '../internals/to-offset': 288, '../internals/to-property-key': 291, '../internals/to-uint8-clamped': 294, '../internals/typed-array-constructors-require-wrappers': 298, '../internals/typed-array-from': 300 }],
+  298: [function (require, module, exports) {
     'use strict'
     /* eslint-disable no-new -- required for testing */
     var global = require('../internals/global')
@@ -9111,8 +9209,8 @@
       // Safari (11+) bug - a reason why even Safari 13 should load a typed array polyfill
       return new Int8Array(new ArrayBuffer(2), 1, undefined).length !== 1
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/check-correctness-of-iteration': 95, '../internals/fails': 141, '../internals/global': 162 }],
-  296: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/check-correctness-of-iteration': 98, '../internals/fails': 144, '../internals/global': 165 }],
+  299: [function (require, module, exports) {
     'use strict'
     var arrayFromConstructorAndList = require('../internals/array-from-constructor-and-list')
     var typedArraySpeciesConstructor = require('../internals/typed-array-species-constructor')
@@ -9120,8 +9218,8 @@
     module.exports = function (instance, list) {
       return arrayFromConstructorAndList(typedArraySpeciesConstructor(instance), list)
     }
-  }, { '../internals/array-from-constructor-and-list': 72, '../internals/typed-array-species-constructor': 298 }],
-  297: [function (require, module, exports) {
+  }, { '../internals/array-from-constructor-and-list': 75, '../internals/typed-array-species-constructor': 301 }],
+  300: [function (require, module, exports) {
     'use strict'
     var bind = require('../internals/function-bind-context')
     var call = require('../internals/function-call')
@@ -9164,8 +9262,8 @@
       }
       return result
     }
-  }, { '../internals/a-constructor': 59, '../internals/array-buffer-view-core': 67, '../internals/function-bind-context': 146, '../internals/function-call': 149, '../internals/get-iterator': 158, '../internals/get-iterator-method': 157, '../internals/is-array-iterator-method': 175, '../internals/is-big-int-array': 177, '../internals/length-of-array-like': 198, '../internals/to-big-int': 279, '../internals/to-object': 284 }],
-  298: [function (require, module, exports) {
+  }, { '../internals/a-constructor': 59, '../internals/array-buffer-view-core': 70, '../internals/function-bind-context': 149, '../internals/function-call': 152, '../internals/get-iterator': 161, '../internals/get-iterator-method': 160, '../internals/is-array-iterator-method': 178, '../internals/is-big-int-array': 180, '../internals/length-of-array-like': 201, '../internals/to-big-int': 282, '../internals/to-object': 287 }],
+  301: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var speciesConstructor = require('../internals/species-constructor')
@@ -9178,8 +9276,8 @@
     module.exports = function (originalArray) {
       return aTypedArrayConstructor(speciesConstructor(originalArray, getTypedArrayConstructor(originalArray)))
     }
-  }, { '../internals/array-buffer-view-core': 67, '../internals/species-constructor': 261 }],
-  299: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/species-constructor': 264 }],
+  302: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
 
@@ -9190,8 +9288,8 @@
     module.exports = function (key) {
       return 'Symbol(' + (key === undefined ? '' : key) + ')_' + toString(++id + postfix, 36)
     }
-  }, { '../internals/function-uncurry-this': 153 }],
-  300: [function (require, module, exports) {
+  }, { '../internals/function-uncurry-this': 156 }],
+  303: [function (require, module, exports) {
     'use strict'
     var fails = require('../internals/fails')
     var wellKnownSymbol = require('../internals/well-known-symbol')
@@ -9234,8 +9332,8 @@
     // throws in Safari
     new URL('http://x', undefined).host !== 'x'
     })
-  }, { '../internals/descriptors': 116, '../internals/fails': 141, '../internals/is-pure': 186, '../internals/well-known-symbol': 307 }],
-  301: [function (require, module, exports) {
+  }, { '../internals/descriptors': 119, '../internals/fails': 144, '../internals/is-pure': 189, '../internals/well-known-symbol': 310 }],
+  304: [function (require, module, exports) {
     'use strict'
     /* eslint-disable es/no-symbol -- required for testing */
     var NATIVE_SYMBOL = require('../internals/symbol-constructor-detection')
@@ -9243,8 +9341,8 @@
     module.exports = NATIVE_SYMBOL &&
   !Symbol.sham &&
   typeof Symbol.iterator === 'symbol'
-  }, { '../internals/symbol-constructor-detection': 273 }],
-  302: [function (require, module, exports) {
+  }, { '../internals/symbol-constructor-detection': 276 }],
+  305: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var fails = require('../internals/fails')
@@ -9258,8 +9356,8 @@
         writable: false
       }).prototype !== 42
     })
-  }, { '../internals/descriptors': 116, '../internals/fails': 141 }],
-  303: [function (require, module, exports) {
+  }, { '../internals/descriptors': 119, '../internals/fails': 144 }],
+  306: [function (require, module, exports) {
     'use strict'
     var $TypeError = TypeError
 
@@ -9268,7 +9366,7 @@
       return passed
     }
   }, {}],
-  304: [function (require, module, exports) {
+  307: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var isCallable = require('../internals/is-callable')
@@ -9276,8 +9374,8 @@
     var WeakMap = global.WeakMap
 
     module.exports = isCallable(WeakMap) && /native code/.test(String(WeakMap))
-  }, { '../internals/global': 162, '../internals/is-callable': 178 }],
-  305: [function (require, module, exports) {
+  }, { '../internals/global': 165, '../internals/is-callable': 181 }],
+  308: [function (require, module, exports) {
     'use strict'
     var path = require('../internals/path')
     var hasOwn = require('../internals/has-own-property')
@@ -9292,14 +9390,14 @@
         })
       }
     }
-  }, { '../internals/has-own-property': 163, '../internals/object-define-property': 218, '../internals/path': 235, '../internals/well-known-symbol-wrapped': 306 }],
-  306: [function (require, module, exports) {
+  }, { '../internals/has-own-property': 166, '../internals/object-define-property': 221, '../internals/path': 238, '../internals/well-known-symbol-wrapped': 309 }],
+  309: [function (require, module, exports) {
     'use strict'
     var wellKnownSymbol = require('../internals/well-known-symbol')
 
     exports.f = wellKnownSymbol
-  }, { '../internals/well-known-symbol': 307 }],
-  307: [function (require, module, exports) {
+  }, { '../internals/well-known-symbol': 310 }],
+  310: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var shared = require('../internals/shared')
@@ -9319,14 +9417,14 @@
           : createWellKnownSymbol('Symbol.' + name)
       } return WellKnownSymbolsStore[name]
     }
-  }, { '../internals/global': 162, '../internals/has-own-property': 163, '../internals/shared': 260, '../internals/symbol-constructor-detection': 273, '../internals/uid': 299, '../internals/use-symbol-as-uid': 301 }],
-  308: [function (require, module, exports) {
+  }, { '../internals/global': 165, '../internals/has-own-property': 166, '../internals/shared': 263, '../internals/symbol-constructor-detection': 276, '../internals/uid': 302, '../internals/use-symbol-as-uid': 304 }],
+  311: [function (require, module, exports) {
     'use strict'
     // a string of all valid unicode whitespaces
     module.exports = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u2000\u2001\u2002' +
   '\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF'
   }, {}],
-  309: [function (require, module, exports) {
+  312: [function (require, module, exports) {
     'use strict'
     var getBuiltIn = require('../internals/get-built-in')
     var hasOwn = require('../internals/has-own-property')
@@ -9394,8 +9492,8 @@
 
       return WrappedError
     }
-  }, { '../internals/copy-constructor-properties': 101, '../internals/create-non-enumerable-property': 106, '../internals/descriptors': 116, '../internals/error-stack-install': 137, '../internals/get-built-in': 155, '../internals/has-own-property': 163, '../internals/inherit-if-required': 170, '../internals/install-error-cause': 172, '../internals/is-pure': 186, '../internals/normalize-string-argument': 210, '../internals/object-is-prototype-of': 225, '../internals/object-set-prototype-of': 230, '../internals/proxy-accessor': 241 }],
-  310: [function (require, module, exports) {
+  }, { '../internals/copy-constructor-properties': 104, '../internals/create-non-enumerable-property': 109, '../internals/descriptors': 119, '../internals/error-stack-install': 140, '../internals/get-built-in': 158, '../internals/has-own-property': 166, '../internals/inherit-if-required': 173, '../internals/install-error-cause': 175, '../internals/is-pure': 189, '../internals/normalize-string-argument': 213, '../internals/object-is-prototype-of': 228, '../internals/object-set-prototype-of': 233, '../internals/proxy-accessor': 244 }],
+  313: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var getBuiltIn = require('../internals/get-built-in')
@@ -9419,8 +9517,8 @@
         return function AggregateError (errors, message) { return apply(init, this, arguments) }
       }, FORCED, true)
     })
-  }, { '../internals/export': 140, '../internals/fails': 141, '../internals/function-apply': 145, '../internals/get-built-in': 155, '../internals/wrap-error-constructor-with-cause': 309 }],
-  311: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144, '../internals/function-apply': 148, '../internals/get-built-in': 158, '../internals/wrap-error-constructor-with-cause': 312 }],
+  314: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var isPrototypeOf = require('../internals/object-is-prototype-of')
@@ -9472,13 +9570,13 @@
     $({ global: true, constructor: true, arity: 2 }, {
       AggregateError: $AggregateError
     })
-  }, { '../internals/copy-constructor-properties': 101, '../internals/create-non-enumerable-property': 106, '../internals/create-property-descriptor': 107, '../internals/error-stack-install': 137, '../internals/export': 140, '../internals/install-error-cause': 172, '../internals/iterate': 190, '../internals/normalize-string-argument': 210, '../internals/object-create': 216, '../internals/object-get-prototype-of': 223, '../internals/object-is-prototype-of': 225, '../internals/object-set-prototype-of': 230, '../internals/well-known-symbol': 307 }],
-  312: [function (require, module, exports) {
+  }, { '../internals/copy-constructor-properties': 104, '../internals/create-non-enumerable-property': 109, '../internals/create-property-descriptor': 110, '../internals/error-stack-install': 140, '../internals/export': 143, '../internals/install-error-cause': 175, '../internals/iterate': 193, '../internals/normalize-string-argument': 213, '../internals/object-create': 219, '../internals/object-get-prototype-of': 226, '../internals/object-is-prototype-of': 228, '../internals/object-set-prototype-of': 233, '../internals/well-known-symbol': 310 }],
+  315: [function (require, module, exports) {
     'use strict'
     // TODO: Remove this module from `core-js@4` since it's replaced to module below
     require('../modules/es.aggregate-error.constructor')
-  }, { '../modules/es.aggregate-error.constructor': 311 }],
-  313: [function (require, module, exports) {
+  }, { '../modules/es.aggregate-error.constructor': 314 }],
+  316: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var global = require('../internals/global')
@@ -9496,8 +9594,25 @@
     })
 
     setSpecies(ARRAY_BUFFER)
-  }, { '../internals/array-buffer': 68, '../internals/export': 140, '../internals/global': 162, '../internals/set-species': 256 }],
-  314: [function (require, module, exports) {
+  }, { '../internals/array-buffer': 71, '../internals/export': 143, '../internals/global': 165, '../internals/set-species': 259 }],
+  317: [function (require, module, exports) {
+    'use strict'
+    var DESCRIPTORS = require('../internals/descriptors')
+    var defineBuiltInAccessor = require('../internals/define-built-in-accessor')
+    var isDetached = require('../internals/array-buffer-is-detached')
+
+    var ArrayBufferPrototype = ArrayBuffer.prototype
+
+    if (DESCRIPTORS && !('detached' in ArrayBufferPrototype)) {
+      defineBuiltInAccessor(ArrayBufferPrototype, 'detached', {
+        configurable: true,
+        get: function detached () {
+          return isDetached(this)
+        }
+      })
+    }
+  }, { '../internals/array-buffer-is-detached': 67, '../internals/define-built-in-accessor': 114, '../internals/descriptors': 119 }],
+  318: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
@@ -9509,8 +9624,8 @@
     $({ target: 'ArrayBuffer', stat: true, forced: !NATIVE_ARRAY_BUFFER_VIEWS }, {
       isView: ArrayBufferViewCore.isView
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/export': 140 }],
-  315: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/export': 143 }],
+  319: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this-clause')
@@ -9551,8 +9666,38 @@
         } return result
       }
     })
-  }, { '../internals/an-object': 64, '../internals/array-buffer': 68, '../internals/export': 140, '../internals/fails': 141, '../internals/function-uncurry-this-clause': 152, '../internals/species-constructor': 261, '../internals/to-absolute-index': 278, '../internals/to-length': 283 }],
-  316: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/array-buffer': 71, '../internals/export': 143, '../internals/fails': 144, '../internals/function-uncurry-this-clause': 155, '../internals/species-constructor': 264, '../internals/to-absolute-index': 281, '../internals/to-length': 286 }],
+  320: [function (require, module, exports) {
+    'use strict'
+    var $ = require('../internals/export')
+    var $transfer = require('../internals/array-buffer-transfer')
+
+    // `ArrayBuffer.prototype.transferToFixedLength` method
+    // https://tc39.es/proposal-arraybuffer-transfer/#sec-arraybuffer.prototype.transfertofixedlength
+    if ($transfer) {
+      $({ target: 'ArrayBuffer', proto: true }, {
+        transferToFixedLength: function transferToFixedLength () {
+          return $transfer(this, arguments.length ? arguments[0] : undefined, false)
+        }
+      })
+    }
+  }, { '../internals/array-buffer-transfer': 69, '../internals/export': 143 }],
+  321: [function (require, module, exports) {
+    'use strict'
+    var $ = require('../internals/export')
+    var $transfer = require('../internals/array-buffer-transfer')
+
+    // `ArrayBuffer.prototype.transfer` method
+    // https://tc39.es/proposal-arraybuffer-transfer/#sec-arraybuffer.prototype.transfer
+    if ($transfer) {
+      $({ target: 'ArrayBuffer', proto: true }, {
+        transfer: function transfer () {
+          return $transfer(this, arguments.length ? arguments[0] : undefined, true)
+        }
+      })
+    }
+  }, { '../internals/array-buffer-transfer': 69, '../internals/export': 143 }],
+  322: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var toObject = require('../internals/to-object')
@@ -9573,8 +9718,8 @@
     })
 
     addToUnscopables('at')
-  }, { '../internals/add-to-unscopables': 61, '../internals/export': 140, '../internals/length-of-array-like': 198, '../internals/to-integer-or-infinity': 282, '../internals/to-object': 284 }],
-  317: [function (require, module, exports) {
+  }, { '../internals/add-to-unscopables': 61, '../internals/export': 143, '../internals/length-of-array-like': 201, '../internals/to-integer-or-infinity': 285, '../internals/to-object': 287 }],
+  323: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var fails = require('../internals/fails')
@@ -9633,8 +9778,8 @@
         return A
       }
     })
-  }, { '../internals/array-method-has-species-support': 78, '../internals/array-species-create': 85, '../internals/create-property': 108, '../internals/does-not-exceed-safe-integer': 119, '../internals/engine-v8-version': 133, '../internals/export': 140, '../internals/fails': 141, '../internals/is-array': 176, '../internals/is-object': 184, '../internals/length-of-array-like': 198, '../internals/to-object': 284, '../internals/well-known-symbol': 307 }],
-  318: [function (require, module, exports) {
+  }, { '../internals/array-method-has-species-support': 81, '../internals/array-species-create': 88, '../internals/create-property': 111, '../internals/does-not-exceed-safe-integer': 122, '../internals/engine-v8-version': 136, '../internals/export': 143, '../internals/fails': 144, '../internals/is-array': 179, '../internals/is-object': 187, '../internals/length-of-array-like': 201, '../internals/to-object': 287, '../internals/well-known-symbol': 310 }],
+  324: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var copyWithin = require('../internals/array-copy-within')
@@ -9648,8 +9793,8 @@
 
     // https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
     addToUnscopables('copyWithin')
-  }, { '../internals/add-to-unscopables': 61, '../internals/array-copy-within': 69, '../internals/export': 140 }],
-  319: [function (require, module, exports) {
+  }, { '../internals/add-to-unscopables': 61, '../internals/array-copy-within': 72, '../internals/export': 143 }],
+  325: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $every = require('../internals/array-iteration').every
@@ -9664,8 +9809,8 @@
         return $every(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined)
       }
     })
-  }, { '../internals/array-iteration': 76, '../internals/array-method-is-strict': 79, '../internals/export': 140 }],
-  320: [function (require, module, exports) {
+  }, { '../internals/array-iteration': 79, '../internals/array-method-is-strict': 82, '../internals/export': 143 }],
+  326: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var fill = require('../internals/array-fill')
@@ -9679,8 +9824,8 @@
 
     // https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
     addToUnscopables('fill')
-  }, { '../internals/add-to-unscopables': 61, '../internals/array-fill': 70, '../internals/export': 140 }],
-  321: [function (require, module, exports) {
+  }, { '../internals/add-to-unscopables': 61, '../internals/array-fill': 73, '../internals/export': 143 }],
+  327: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $filter = require('../internals/array-iteration').filter
@@ -9696,8 +9841,8 @@
         return $filter(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined)
       }
     })
-  }, { '../internals/array-iteration': 76, '../internals/array-method-has-species-support': 78, '../internals/export': 140 }],
-  322: [function (require, module, exports) {
+  }, { '../internals/array-iteration': 79, '../internals/array-method-has-species-support': 81, '../internals/export': 143 }],
+  328: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $findIndex = require('../internals/array-iteration').findIndex
@@ -9720,8 +9865,8 @@
 
     // https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
     addToUnscopables(FIND_INDEX)
-  }, { '../internals/add-to-unscopables': 61, '../internals/array-iteration': 76, '../internals/export': 140 }],
-  323: [function (require, module, exports) {
+  }, { '../internals/add-to-unscopables': 61, '../internals/array-iteration': 79, '../internals/export': 143 }],
+  329: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $findLastIndex = require('../internals/array-iteration-from-last').findLastIndex
@@ -9736,8 +9881,8 @@
     })
 
     addToUnscopables('findLastIndex')
-  }, { '../internals/add-to-unscopables': 61, '../internals/array-iteration-from-last': 75, '../internals/export': 140 }],
-  324: [function (require, module, exports) {
+  }, { '../internals/add-to-unscopables': 61, '../internals/array-iteration-from-last': 78, '../internals/export': 143 }],
+  330: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $findLast = require('../internals/array-iteration-from-last').findLast
@@ -9752,8 +9897,8 @@
     })
 
     addToUnscopables('findLast')
-  }, { '../internals/add-to-unscopables': 61, '../internals/array-iteration-from-last': 75, '../internals/export': 140 }],
-  325: [function (require, module, exports) {
+  }, { '../internals/add-to-unscopables': 61, '../internals/array-iteration-from-last': 78, '../internals/export': 143 }],
+  331: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $find = require('../internals/array-iteration').find
@@ -9776,8 +9921,8 @@
 
     // https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
     addToUnscopables(FIND)
-  }, { '../internals/add-to-unscopables': 61, '../internals/array-iteration': 76, '../internals/export': 140 }],
-  326: [function (require, module, exports) {
+  }, { '../internals/add-to-unscopables': 61, '../internals/array-iteration': 79, '../internals/export': 143 }],
+  332: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var flattenIntoArray = require('../internals/flatten-into-array')
@@ -9799,8 +9944,8 @@
         return A
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/array-species-create': 85, '../internals/export': 140, '../internals/flatten-into-array': 143, '../internals/length-of-array-like': 198, '../internals/to-object': 284 }],
-  327: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/array-species-create': 88, '../internals/export': 143, '../internals/flatten-into-array': 146, '../internals/length-of-array-like': 201, '../internals/to-object': 287 }],
+  333: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var flattenIntoArray = require('../internals/flatten-into-array')
@@ -9821,8 +9966,8 @@
         return A
       }
     })
-  }, { '../internals/array-species-create': 85, '../internals/export': 140, '../internals/flatten-into-array': 143, '../internals/length-of-array-like': 198, '../internals/to-integer-or-infinity': 282, '../internals/to-object': 284 }],
-  328: [function (require, module, exports) {
+  }, { '../internals/array-species-create': 88, '../internals/export': 143, '../internals/flatten-into-array': 146, '../internals/length-of-array-like': 201, '../internals/to-integer-or-infinity': 285, '../internals/to-object': 287 }],
+  334: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var forEach = require('../internals/array-for-each')
@@ -9833,8 +9978,8 @@
     $({ target: 'Array', proto: true, forced: [].forEach !== forEach }, {
       forEach: forEach
     })
-  }, { '../internals/array-for-each': 71, '../internals/export': 140 }],
-  329: [function (require, module, exports) {
+  }, { '../internals/array-for-each': 74, '../internals/export': 143 }],
+  335: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var from = require('../internals/array-from')
@@ -9850,8 +9995,8 @@
     $({ target: 'Array', stat: true, forced: INCORRECT_ITERATION }, {
       from: from
     })
-  }, { '../internals/array-from': 73, '../internals/check-correctness-of-iteration': 95, '../internals/export': 140 }],
-  330: [function (require, module, exports) {
+  }, { '../internals/array-from': 76, '../internals/check-correctness-of-iteration': 98, '../internals/export': 143 }],
+  336: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $includes = require('../internals/array-includes').includes
@@ -9874,8 +10019,8 @@
 
     // https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
     addToUnscopables('includes')
-  }, { '../internals/add-to-unscopables': 61, '../internals/array-includes': 74, '../internals/export': 140, '../internals/fails': 141 }],
-  331: [function (require, module, exports) {
+  }, { '../internals/add-to-unscopables': 61, '../internals/array-includes': 77, '../internals/export': 143, '../internals/fails': 144 }],
+  337: [function (require, module, exports) {
     'use strict'
     /* eslint-disable es/no-array-prototype-indexof -- required for testing */
     var $ = require('../internals/export')
@@ -9899,8 +10044,8 @@
           : $indexOf(this, searchElement, fromIndex)
       }
     })
-  }, { '../internals/array-includes': 74, '../internals/array-method-is-strict': 79, '../internals/export': 140, '../internals/function-uncurry-this-clause': 152 }],
-  332: [function (require, module, exports) {
+  }, { '../internals/array-includes': 77, '../internals/array-method-is-strict': 82, '../internals/export': 143, '../internals/function-uncurry-this-clause': 155 }],
+  338: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var isArray = require('../internals/is-array')
@@ -9910,8 +10055,8 @@
     $({ target: 'Array', stat: true }, {
       isArray: isArray
     })
-  }, { '../internals/export': 140, '../internals/is-array': 176 }],
-  333: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/is-array': 179 }],
+  339: [function (require, module, exports) {
     'use strict'
     var toIndexedObject = require('../internals/to-indexed-object')
     var addToUnscopables = require('../internals/add-to-unscopables')
@@ -9976,8 +10121,8 @@
         defineProperty(values, 'name', { value: 'values' })
       } catch (error) { /* empty */ }
     }
-  }, { '../internals/add-to-unscopables': 61, '../internals/create-iter-result-object': 105, '../internals/descriptors': 116, '../internals/internal-state': 174, '../internals/is-pure': 186, '../internals/iterator-define': 194, '../internals/iterators': 197, '../internals/object-define-property': 218, '../internals/to-indexed-object': 281 }],
-  334: [function (require, module, exports) {
+  }, { '../internals/add-to-unscopables': 61, '../internals/create-iter-result-object': 108, '../internals/descriptors': 119, '../internals/internal-state': 177, '../internals/is-pure': 189, '../internals/iterator-define': 197, '../internals/iterators': 200, '../internals/object-define-property': 221, '../internals/to-indexed-object': 284 }],
+  340: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -9997,8 +10142,8 @@
         return nativeJoin(toIndexedObject(this), separator === undefined ? ',' : separator)
       }
     })
-  }, { '../internals/array-method-is-strict': 79, '../internals/export': 140, '../internals/function-uncurry-this': 153, '../internals/indexed-object': 169, '../internals/to-indexed-object': 281 }],
-  335: [function (require, module, exports) {
+  }, { '../internals/array-method-is-strict': 82, '../internals/export': 143, '../internals/function-uncurry-this': 156, '../internals/indexed-object': 172, '../internals/to-indexed-object': 284 }],
+  341: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var lastIndexOf = require('../internals/array-last-index-of')
@@ -10009,8 +10154,8 @@
     $({ target: 'Array', proto: true, forced: lastIndexOf !== [].lastIndexOf }, {
       lastIndexOf: lastIndexOf
     })
-  }, { '../internals/array-last-index-of': 77, '../internals/export': 140 }],
-  336: [function (require, module, exports) {
+  }, { '../internals/array-last-index-of': 80, '../internals/export': 143 }],
+  342: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $map = require('../internals/array-iteration').map
@@ -10026,8 +10171,8 @@
         return $map(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined)
       }
     })
-  }, { '../internals/array-iteration': 76, '../internals/array-method-has-species-support': 78, '../internals/export': 140 }],
-  337: [function (require, module, exports) {
+  }, { '../internals/array-iteration': 79, '../internals/array-method-has-species-support': 81, '../internals/export': 143 }],
+  343: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var fails = require('../internals/fails')
@@ -10055,8 +10200,8 @@
         return result
       }
     })
-  }, { '../internals/create-property': 108, '../internals/export': 140, '../internals/fails': 141, '../internals/is-constructor': 179 }],
-  338: [function (require, module, exports) {
+  }, { '../internals/create-property': 111, '../internals/export': 143, '../internals/fails': 144, '../internals/is-constructor': 182 }],
+  344: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var toObject = require('../internals/to-object')
@@ -10099,8 +10244,8 @@
         return len
       }
     })
-  }, { '../internals/array-set-length': 81, '../internals/does-not-exceed-safe-integer': 119, '../internals/export': 140, '../internals/fails': 141, '../internals/length-of-array-like': 198, '../internals/to-object': 284 }],
-  339: [function (require, module, exports) {
+  }, { '../internals/array-set-length': 84, '../internals/does-not-exceed-safe-integer': 122, '../internals/export': 143, '../internals/fails': 144, '../internals/length-of-array-like': 201, '../internals/to-object': 287 }],
+  345: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $reduceRight = require('../internals/array-reduce').right
@@ -10120,8 +10265,8 @@
         return $reduceRight(this, callbackfn, arguments.length, arguments.length > 1 ? arguments[1] : undefined)
       }
     })
-  }, { '../internals/array-method-is-strict': 79, '../internals/array-reduce': 80, '../internals/engine-is-node': 130, '../internals/engine-v8-version': 133, '../internals/export': 140 }],
-  340: [function (require, module, exports) {
+  }, { '../internals/array-method-is-strict': 82, '../internals/array-reduce': 83, '../internals/engine-is-node': 133, '../internals/engine-v8-version': 136, '../internals/export': 143 }],
+  346: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $reduce = require('../internals/array-reduce').left
@@ -10142,8 +10287,8 @@
         return $reduce(this, callbackfn, length, length > 1 ? arguments[1] : undefined)
       }
     })
-  }, { '../internals/array-method-is-strict': 79, '../internals/array-reduce': 80, '../internals/engine-is-node': 130, '../internals/engine-v8-version': 133, '../internals/export': 140 }],
-  341: [function (require, module, exports) {
+  }, { '../internals/array-method-is-strict': 82, '../internals/array-reduce': 83, '../internals/engine-is-node': 133, '../internals/engine-v8-version': 136, '../internals/export': 143 }],
+  347: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -10163,8 +10308,8 @@
         return nativeReverse(this)
       }
     })
-  }, { '../internals/export': 140, '../internals/function-uncurry-this': 153, '../internals/is-array': 176 }],
-  342: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/function-uncurry-this': 156, '../internals/is-array': 179 }],
+  348: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var isArray = require('../internals/is-array')
@@ -10214,8 +10359,8 @@
         return result
       }
     })
-  }, { '../internals/array-method-has-species-support': 78, '../internals/array-slice': 82, '../internals/create-property': 108, '../internals/export': 140, '../internals/is-array': 176, '../internals/is-constructor': 179, '../internals/is-object': 184, '../internals/length-of-array-like': 198, '../internals/to-absolute-index': 278, '../internals/to-indexed-object': 281, '../internals/well-known-symbol': 307 }],
-  343: [function (require, module, exports) {
+  }, { '../internals/array-method-has-species-support': 81, '../internals/array-slice': 85, '../internals/create-property': 111, '../internals/export': 143, '../internals/is-array': 179, '../internals/is-constructor': 182, '../internals/is-object': 187, '../internals/length-of-array-like': 201, '../internals/to-absolute-index': 281, '../internals/to-indexed-object': 284, '../internals/well-known-symbol': 310 }],
+  349: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $some = require('../internals/array-iteration').some
@@ -10230,8 +10375,8 @@
         return $some(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined)
       }
     })
-  }, { '../internals/array-iteration': 76, '../internals/array-method-is-strict': 79, '../internals/export': 140 }],
-  344: [function (require, module, exports) {
+  }, { '../internals/array-iteration': 79, '../internals/array-method-is-strict': 82, '../internals/export': 143 }],
+  350: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -10338,16 +10483,16 @@
         return array
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/array-method-is-strict': 79, '../internals/array-sort': 83, '../internals/delete-property-or-throw': 115, '../internals/engine-ff-version': 123, '../internals/engine-is-ie-or-edge': 127, '../internals/engine-v8-version': 133, '../internals/engine-webkit-version': 134, '../internals/export': 140, '../internals/fails': 141, '../internals/function-uncurry-this': 153, '../internals/length-of-array-like': 198, '../internals/to-object': 284, '../internals/to-string': 290 }],
-  345: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/array-method-is-strict': 82, '../internals/array-sort': 86, '../internals/delete-property-or-throw': 118, '../internals/engine-ff-version': 126, '../internals/engine-is-ie-or-edge': 130, '../internals/engine-v8-version': 136, '../internals/engine-webkit-version': 137, '../internals/export': 143, '../internals/fails': 144, '../internals/function-uncurry-this': 156, '../internals/length-of-array-like': 201, '../internals/to-object': 287, '../internals/to-string': 293 }],
+  351: [function (require, module, exports) {
     'use strict'
     var setSpecies = require('../internals/set-species')
 
     // `Array[@@species]` getter
     // https://tc39.es/ecma262/#sec-get-array-@@species
     setSpecies('Array')
-  }, { '../internals/set-species': 256 }],
-  346: [function (require, module, exports) {
+  }, { '../internals/set-species': 259 }],
+  352: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var toObject = require('../internals/to-object')
@@ -10415,8 +10560,8 @@
         return A
       }
     })
-  }, { '../internals/array-method-has-species-support': 78, '../internals/array-set-length': 81, '../internals/array-species-create': 85, '../internals/create-property': 108, '../internals/delete-property-or-throw': 115, '../internals/does-not-exceed-safe-integer': 119, '../internals/export': 140, '../internals/length-of-array-like': 198, '../internals/to-absolute-index': 278, '../internals/to-integer-or-infinity': 282, '../internals/to-object': 284 }],
-  347: [function (require, module, exports) {
+  }, { '../internals/array-method-has-species-support': 81, '../internals/array-set-length': 84, '../internals/array-species-create': 88, '../internals/create-property': 111, '../internals/delete-property-or-throw': 118, '../internals/does-not-exceed-safe-integer': 122, '../internals/export': 143, '../internals/length-of-array-like': 201, '../internals/to-absolute-index': 281, '../internals/to-integer-or-infinity': 285, '../internals/to-object': 287 }],
+  353: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var arrayToReversed = require('../internals/array-to-reversed')
@@ -10434,8 +10579,8 @@
     })
 
     addToUnscopables('toReversed')
-  }, { '../internals/add-to-unscopables': 61, '../internals/array-to-reversed': 86, '../internals/export': 140, '../internals/to-indexed-object': 281 }],
-  348: [function (require, module, exports) {
+  }, { '../internals/add-to-unscopables': 61, '../internals/array-to-reversed': 89, '../internals/export': 143, '../internals/to-indexed-object': 284 }],
+  354: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -10460,8 +10605,8 @@
     })
 
     addToUnscopables('toSorted')
-  }, { '../internals/a-callable': 58, '../internals/add-to-unscopables': 61, '../internals/array-from-constructor-and-list': 72, '../internals/export': 140, '../internals/function-uncurry-this': 153, '../internals/get-built-in-prototype-method': 154, '../internals/to-indexed-object': 281 }],
-  349: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/add-to-unscopables': 61, '../internals/array-from-constructor-and-list': 75, '../internals/export': 143, '../internals/function-uncurry-this': 156, '../internals/get-built-in-prototype-method': 157, '../internals/to-indexed-object': 284 }],
+  355: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var addToUnscopables = require('../internals/add-to-unscopables')
@@ -10506,8 +10651,8 @@
     })
 
     addToUnscopables('toSpliced')
-  }, { '../internals/add-to-unscopables': 61, '../internals/does-not-exceed-safe-integer': 119, '../internals/export': 140, '../internals/length-of-array-like': 198, '../internals/to-absolute-index': 278, '../internals/to-indexed-object': 281, '../internals/to-integer-or-infinity': 282 }],
-  350: [function (require, module, exports) {
+  }, { '../internals/add-to-unscopables': 61, '../internals/does-not-exceed-safe-integer': 122, '../internals/export': 143, '../internals/length-of-array-like': 201, '../internals/to-absolute-index': 281, '../internals/to-indexed-object': 284, '../internals/to-integer-or-infinity': 285 }],
+  356: [function (require, module, exports) {
     'use strict'
     // this method was added to unscopables after implementation
     // in popular engines, so it's moved to a separate module
@@ -10516,7 +10661,7 @@
     // https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
     addToUnscopables('flatMap')
   }, { '../internals/add-to-unscopables': 61 }],
-  351: [function (require, module, exports) {
+  357: [function (require, module, exports) {
     'use strict'
     // this method was added to unscopables after implementation
     // in popular engines, so it's moved to a separate module
@@ -10525,7 +10670,7 @@
     // https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
     addToUnscopables('flat')
   }, { '../internals/add-to-unscopables': 61 }],
-  352: [function (require, module, exports) {
+  358: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var toObject = require('../internals/to-object')
@@ -10571,8 +10716,8 @@
         } return setArrayLength(O, len + argCount)
       }
     })
-  }, { '../internals/array-set-length': 81, '../internals/delete-property-or-throw': 115, '../internals/does-not-exceed-safe-integer': 119, '../internals/export': 140, '../internals/length-of-array-like': 198, '../internals/to-object': 284 }],
-  353: [function (require, module, exports) {
+  }, { '../internals/array-set-length': 84, '../internals/delete-property-or-throw': 118, '../internals/does-not-exceed-safe-integer': 122, '../internals/export': 143, '../internals/length-of-array-like': 201, '../internals/to-object': 287 }],
+  359: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var arrayWith = require('../internals/array-with')
@@ -10587,8 +10732,8 @@
         return arrayWith(toIndexedObject(this), $Array, index, value)
       }
     })
-  }, { '../internals/array-with': 87, '../internals/export': 140, '../internals/to-indexed-object': 281 }],
-  354: [function (require, module, exports) {
+  }, { '../internals/array-with': 90, '../internals/export': 143, '../internals/to-indexed-object': 284 }],
+  360: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var ArrayBufferModule = require('../internals/array-buffer')
@@ -10599,13 +10744,13 @@
     $({ global: true, constructor: true, forced: !NATIVE_ARRAY_BUFFER }, {
       DataView: ArrayBufferModule.DataView
     })
-  }, { '../internals/array-buffer': 68, '../internals/array-buffer-basic-detection': 65, '../internals/export': 140 }],
-  355: [function (require, module, exports) {
+  }, { '../internals/array-buffer': 71, '../internals/array-buffer-basic-detection': 65, '../internals/export': 143 }],
+  361: [function (require, module, exports) {
     'use strict'
     // TODO: Remove this module from `core-js@4` since it's replaced to module below
     require('../modules/es.data-view.constructor')
-  }, { '../modules/es.data-view.constructor': 354 }],
-  356: [function (require, module, exports) {
+  }, { '../modules/es.data-view.constructor': 360 }],
+  362: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -10626,8 +10771,8 @@
         return getFullYear(this) - 1900
       }
     })
-  }, { '../internals/export': 140, '../internals/fails': 141, '../internals/function-uncurry-this': 153 }],
-  357: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144, '../internals/function-uncurry-this': 156 }],
+  363: [function (require, module, exports) {
     'use strict'
     // TODO: Remove from `core-js@4`
     var $ = require('../internals/export')
@@ -10643,8 +10788,8 @@
         return thisTimeValue(new $Date())
       }
     })
-  }, { '../internals/export': 140, '../internals/function-uncurry-this': 153 }],
-  358: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/function-uncurry-this': 156 }],
+  364: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -10665,8 +10810,8 @@
         return setFullYear(this, yyyy)
       }
     })
-  }, { '../internals/export': 140, '../internals/function-uncurry-this': 153, '../internals/to-integer-or-infinity': 282 }],
-  359: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/function-uncurry-this': 156, '../internals/to-integer-or-infinity': 285 }],
+  365: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
 
@@ -10675,8 +10820,8 @@
     $({ target: 'Date', proto: true }, {
       toGMTString: Date.prototype.toUTCString
     })
-  }, { '../internals/export': 140 }],
-  360: [function (require, module, exports) {
+  }, { '../internals/export': 143 }],
+  366: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var toISOString = require('../internals/date-to-iso-string')
@@ -10687,8 +10832,8 @@
     $({ target: 'Date', proto: true, forced: Date.prototype.toISOString !== toISOString }, {
       toISOString: toISOString
     })
-  }, { '../internals/date-to-iso-string': 109, '../internals/export': 140 }],
-  361: [function (require, module, exports) {
+  }, { '../internals/date-to-iso-string': 112, '../internals/export': 143 }],
+  367: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var fails = require('../internals/fails')
@@ -10710,8 +10855,8 @@
         return typeof pv === 'number' && !isFinite(pv) ? null : O.toISOString()
       }
     })
-  }, { '../internals/export': 140, '../internals/fails': 141, '../internals/to-object': 284, '../internals/to-primitive': 287 }],
-  362: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144, '../internals/to-object': 287, '../internals/to-primitive': 290 }],
+  368: [function (require, module, exports) {
     'use strict'
     var hasOwn = require('../internals/has-own-property')
     var defineBuiltIn = require('../internals/define-built-in')
@@ -10726,8 +10871,8 @@
     if (!hasOwn(DatePrototype, TO_PRIMITIVE)) {
       defineBuiltIn(DatePrototype, TO_PRIMITIVE, dateToPrimitive)
     }
-  }, { '../internals/date-to-primitive': 110, '../internals/define-built-in': 112, '../internals/has-own-property': 163, '../internals/well-known-symbol': 307 }],
-  363: [function (require, module, exports) {
+  }, { '../internals/date-to-primitive': 113, '../internals/define-built-in': 115, '../internals/has-own-property': 166, '../internals/well-known-symbol': 310 }],
+  369: [function (require, module, exports) {
     'use strict'
     // TODO: Remove from `core-js@4`
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -10748,8 +10893,8 @@
         return value === value ? nativeDateToString(this) : INVALID_DATE
       })
     }
-  }, { '../internals/define-built-in': 112, '../internals/function-uncurry-this': 153 }],
-  364: [function (require, module, exports) {
+  }, { '../internals/define-built-in': 115, '../internals/function-uncurry-this': 156 }],
+  370: [function (require, module, exports) {
     'use strict'
     /* eslint-disable no-unused-vars -- required for functions `.length` */
     var $ = require('../internals/export')
@@ -10808,8 +10953,8 @@
     exportWebAssemblyErrorCauseWrapper('RuntimeError', function (init) {
       return function RuntimeError (message) { return apply(init, this, arguments) }
     })
-  }, { '../internals/export': 140, '../internals/function-apply': 145, '../internals/global': 162, '../internals/wrap-error-constructor-with-cause': 309 }],
-  365: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/function-apply': 148, '../internals/global': 165, '../internals/wrap-error-constructor-with-cause': 312 }],
+  371: [function (require, module, exports) {
     'use strict'
     var defineBuiltIn = require('../internals/define-built-in')
     var errorToString = require('../internals/error-to-string')
@@ -10821,8 +10966,8 @@
     if (ErrorPrototype.toString !== errorToString) {
       defineBuiltIn(ErrorPrototype, 'toString', errorToString)
     }
-  }, { '../internals/define-built-in': 112, '../internals/error-to-string': 139 }],
-  366: [function (require, module, exports) {
+  }, { '../internals/define-built-in': 115, '../internals/error-to-string': 142 }],
+  372: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -10866,8 +11011,8 @@
         } return result
       }
     })
-  }, { '../internals/export': 140, '../internals/function-uncurry-this': 153, '../internals/to-string': 290 }],
-  367: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/function-uncurry-this': 156, '../internals/to-string': 293 }],
+  373: [function (require, module, exports) {
     'use strict'
     // TODO: Remove from `core-js@4`
     var $ = require('../internals/export')
@@ -10879,8 +11024,8 @@
     $({ target: 'Function', proto: true, forced: Function.bind !== bind }, {
       bind: bind
     })
-  }, { '../internals/export': 140, '../internals/function-bind': 148 }],
-  368: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/function-bind': 151 }],
+  374: [function (require, module, exports) {
     'use strict'
     var isCallable = require('../internals/is-callable')
     var isObject = require('../internals/is-object')
@@ -10903,8 +11048,8 @@
         }, HAS_INSTANCE)
       })
     }
-  }, { '../internals/is-callable': 178, '../internals/is-object': 184, '../internals/make-built-in': 199, '../internals/object-define-property': 218, '../internals/object-is-prototype-of': 225, '../internals/well-known-symbol': 307 }],
-  369: [function (require, module, exports) {
+  }, { '../internals/is-callable': 181, '../internals/is-object': 187, '../internals/make-built-in': 202, '../internals/object-define-property': 221, '../internals/object-is-prototype-of': 228, '../internals/well-known-symbol': 310 }],
+  375: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var FUNCTION_NAME_EXISTS = require('../internals/function-name').EXISTS
@@ -10931,8 +11076,8 @@
         }
       })
     }
-  }, { '../internals/define-built-in-accessor': 111, '../internals/descriptors': 116, '../internals/function-name': 150, '../internals/function-uncurry-this': 153 }],
-  370: [function (require, module, exports) {
+  }, { '../internals/define-built-in-accessor': 114, '../internals/descriptors': 119, '../internals/function-name': 153, '../internals/function-uncurry-this': 156 }],
+  376: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var global = require('../internals/global')
@@ -10942,8 +11087,8 @@
     $({ global: true, forced: global.globalThis !== global }, {
       globalThis: global
     })
-  }, { '../internals/export': 140, '../internals/global': 162 }],
-  371: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/global': 165 }],
+  377: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var getBuiltIn = require('../internals/get-built-in')
@@ -11017,8 +11162,8 @@
         }
       })
     }
-  }, { '../internals/array-slice': 82, '../internals/export': 140, '../internals/fails': 141, '../internals/function-apply': 145, '../internals/function-call': 149, '../internals/function-uncurry-this': 153, '../internals/get-built-in': 155, '../internals/get-json-replacer-function': 159, '../internals/is-callable': 178, '../internals/is-symbol': 188, '../internals/symbol-constructor-detection': 273 }],
-  372: [function (require, module, exports) {
+  }, { '../internals/array-slice': 85, '../internals/export': 143, '../internals/fails': 144, '../internals/function-apply': 148, '../internals/function-call': 152, '../internals/function-uncurry-this': 156, '../internals/get-built-in': 158, '../internals/get-json-replacer-function': 162, '../internals/is-callable': 181, '../internals/is-symbol': 191, '../internals/symbol-constructor-detection': 276 }],
+  378: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var setToStringTag = require('../internals/set-to-string-tag')
@@ -11026,8 +11171,8 @@
     // JSON[@@toStringTag] property
     // https://tc39.es/ecma262/#sec-json-@@tostringtag
     setToStringTag(global.JSON, 'JSON', true)
-  }, { '../internals/global': 162, '../internals/set-to-string-tag': 257 }],
-  373: [function (require, module, exports) {
+  }, { '../internals/global': 165, '../internals/set-to-string-tag': 260 }],
+  379: [function (require, module, exports) {
     'use strict'
     var collection = require('../internals/collection')
     var collectionStrong = require('../internals/collection-strong')
@@ -11037,8 +11182,8 @@
     collection('Map', function (init) {
       return function Map () { return init(this, arguments.length ? arguments[0] : undefined) }
     }, collectionStrong)
-  }, { '../internals/collection': 100, '../internals/collection-strong': 98 }],
-  374: [function (require, module, exports) {
+  }, { '../internals/collection': 103, '../internals/collection-strong': 101 }],
+  380: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -11070,13 +11215,13 @@
         return map
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/export': 140, '../internals/function-uncurry-this': 153, '../internals/is-pure': 186, '../internals/iterate': 190, '../internals/map-helpers': 200, '../internals/require-object-coercible': 250 }],
-  375: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/export': 143, '../internals/function-uncurry-this': 156, '../internals/is-pure': 189, '../internals/iterate': 193, '../internals/map-helpers': 203, '../internals/require-object-coercible': 253 }],
+  381: [function (require, module, exports) {
     'use strict'
     // TODO: Remove this module from `core-js@4` since it's replaced to module below
     require('../modules/es.map.constructor')
-  }, { '../modules/es.map.constructor': 373 }],
-  376: [function (require, module, exports) {
+  }, { '../modules/es.map.constructor': 379 }],
+  382: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var log1p = require('../internals/math-log1p')
@@ -11103,8 +11248,8 @@
           : log1p(n - 1 + sqrt(n - 1) * sqrt(n + 1))
       }
     })
-  }, { '../internals/export': 140, '../internals/math-log1p': 205 }],
-  377: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/math-log1p': 208 }],
+  383: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
 
@@ -11126,8 +11271,8 @@
     $({ target: 'Math', stat: true, forced: FORCED }, {
       asinh: asinh
     })
-  }, { '../internals/export': 140 }],
-  378: [function (require, module, exports) {
+  }, { '../internals/export': 143 }],
+  384: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
 
@@ -11146,8 +11291,8 @@
         return n === 0 ? n : log((1 + n) / (1 - n)) / 2
       }
     })
-  }, { '../internals/export': 140 }],
-  379: [function (require, module, exports) {
+  }, { '../internals/export': 143 }],
+  385: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var sign = require('../internals/math-sign')
@@ -11163,8 +11308,8 @@
         return sign(n) * pow(abs(n), 1 / 3)
       }
     })
-  }, { '../internals/export': 140, '../internals/math-sign': 206 }],
-  380: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/math-sign': 209 }],
+  386: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
 
@@ -11180,8 +11325,8 @@
         return n ? 31 - floor(log(n + 0.5) * LOG2E) : 32
       }
     })
-  }, { '../internals/export': 140 }],
-  381: [function (require, module, exports) {
+  }, { '../internals/export': 143 }],
+  387: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var expm1 = require('../internals/math-expm1')
@@ -11201,8 +11346,8 @@
         return (t + 1 / (t * E * E)) * (E / 2)
       }
     })
-  }, { '../internals/export': 140, '../internals/math-expm1': 201 }],
-  382: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/math-expm1': 204 }],
+  388: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var expm1 = require('../internals/math-expm1')
@@ -11211,8 +11356,8 @@
     // https://tc39.es/ecma262/#sec-math.expm1
     // eslint-disable-next-line es/no-math-expm1 -- required for testing
     $({ target: 'Math', stat: true, forced: expm1 !== Math.expm1 }, { expm1: expm1 })
-  }, { '../internals/export': 140, '../internals/math-expm1': 201 }],
-  383: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/math-expm1': 204 }],
+  389: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var fround = require('../internals/math-fround')
@@ -11220,8 +11365,8 @@
     // `Math.fround` method
     // https://tc39.es/ecma262/#sec-math.fround
     $({ target: 'Math', stat: true }, { fround: fround })
-  }, { '../internals/export': 140, '../internals/math-fround': 203 }],
-  384: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/math-fround': 206 }],
+  390: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
 
@@ -11258,8 +11403,8 @@
         return larg === Infinity ? Infinity : larg * sqrt(sum)
       }
     })
-  }, { '../internals/export': 140 }],
-  385: [function (require, module, exports) {
+  }, { '../internals/export': 143 }],
+  391: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var fails = require('../internals/fails')
@@ -11284,8 +11429,8 @@
         return 0 | xl * yl + ((UINT16 & xn >>> 16) * yl + xl * (UINT16 & yn >>> 16) << 16 >>> 0)
       }
     })
-  }, { '../internals/export': 140, '../internals/fails': 141 }],
-  386: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144 }],
+  392: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var log10 = require('../internals/math-log10')
@@ -11295,8 +11440,8 @@
     $({ target: 'Math', stat: true }, {
       log10: log10
     })
-  }, { '../internals/export': 140, '../internals/math-log10': 204 }],
-  387: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/math-log10': 207 }],
+  393: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var log1p = require('../internals/math-log1p')
@@ -11304,8 +11449,8 @@
     // `Math.log1p` method
     // https://tc39.es/ecma262/#sec-math.log1p
     $({ target: 'Math', stat: true }, { log1p: log1p })
-  }, { '../internals/export': 140, '../internals/math-log1p': 205 }],
-  388: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/math-log1p': 208 }],
+  394: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
 
@@ -11319,8 +11464,8 @@
         return log(x) / LN2
       }
     })
-  }, { '../internals/export': 140 }],
-  389: [function (require, module, exports) {
+  }, { '../internals/export': 143 }],
+  395: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var sign = require('../internals/math-sign')
@@ -11330,8 +11475,8 @@
     $({ target: 'Math', stat: true }, {
       sign: sign
     })
-  }, { '../internals/export': 140, '../internals/math-sign': 206 }],
-  390: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/math-sign': 209 }],
+  396: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var fails = require('../internals/fails')
@@ -11355,8 +11500,8 @@
         return abs(n) < 1 ? (expm1(n) - expm1(-n)) / 2 : (exp(n - 1) - exp(-n - 1)) * (E / 2)
       }
     })
-  }, { '../internals/export': 140, '../internals/fails': 141, '../internals/math-expm1': 201 }],
-  391: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144, '../internals/math-expm1': 204 }],
+  397: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var expm1 = require('../internals/math-expm1')
@@ -11373,16 +11518,16 @@
         return a === Infinity ? 1 : b === Infinity ? -1 : (a - b) / (exp(n) + exp(-n))
       }
     })
-  }, { '../internals/export': 140, '../internals/math-expm1': 201 }],
-  392: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/math-expm1': 204 }],
+  398: [function (require, module, exports) {
     'use strict'
     var setToStringTag = require('../internals/set-to-string-tag')
 
     // Math[@@toStringTag] property
     // https://tc39.es/ecma262/#sec-math-@@tostringtag
     setToStringTag(Math, 'Math', true)
-  }, { '../internals/set-to-string-tag': 257 }],
-  393: [function (require, module, exports) {
+  }, { '../internals/set-to-string-tag': 260 }],
+  399: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var trunc = require('../internals/math-trunc')
@@ -11392,8 +11537,8 @@
     $({ target: 'Math', stat: true }, {
       trunc: trunc
     })
-  }, { '../internals/export': 140, '../internals/math-trunc': 207 }],
-  394: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/math-trunc': 210 }],
+  400: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var IS_PURE = require('../internals/is-pure')
@@ -11509,8 +11654,8 @@
 
     if (IS_PURE && PureNumberNamespace) copyConstructorProperties(path[NUMBER], PureNumberNamespace)
     if (FORCED || IS_PURE) copyConstructorProperties(path[NUMBER], NativeNumber)
-  }, { '../internals/descriptors': 116, '../internals/export': 140, '../internals/fails': 141, '../internals/function-uncurry-this': 153, '../internals/global': 162, '../internals/has-own-property': 163, '../internals/inherit-if-required': 170, '../internals/is-forced': 181, '../internals/is-pure': 186, '../internals/is-symbol': 188, '../internals/object-define-property': 218, '../internals/object-get-own-property-descriptor': 219, '../internals/object-get-own-property-names': 221, '../internals/object-is-prototype-of': 225, '../internals/path': 235, '../internals/string-trim': 271, '../internals/this-number-value': 277, '../internals/to-primitive': 287 }],
-  395: [function (require, module, exports) {
+  }, { '../internals/descriptors': 119, '../internals/export': 143, '../internals/fails': 144, '../internals/function-uncurry-this': 156, '../internals/global': 165, '../internals/has-own-property': 166, '../internals/inherit-if-required': 173, '../internals/is-forced': 184, '../internals/is-pure': 189, '../internals/is-symbol': 191, '../internals/object-define-property': 221, '../internals/object-get-own-property-descriptor': 222, '../internals/object-get-own-property-names': 224, '../internals/object-is-prototype-of': 228, '../internals/path': 238, '../internals/string-trim': 274, '../internals/this-number-value': 280, '../internals/to-primitive': 290 }],
+  401: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
 
@@ -11519,8 +11664,8 @@
     $({ target: 'Number', stat: true, nonConfigurable: true, nonWritable: true }, {
       EPSILON: Math.pow(2, -52)
     })
-  }, { '../internals/export': 140 }],
-  396: [function (require, module, exports) {
+  }, { '../internals/export': 143 }],
+  402: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var numberIsFinite = require('../internals/number-is-finite')
@@ -11528,8 +11673,8 @@
     // `Number.isFinite` method
     // https://tc39.es/ecma262/#sec-number.isfinite
     $({ target: 'Number', stat: true }, { isFinite: numberIsFinite })
-  }, { '../internals/export': 140, '../internals/number-is-finite': 212 }],
-  397: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/number-is-finite': 215 }],
+  403: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var isIntegralNumber = require('../internals/is-integral-number')
@@ -11539,8 +11684,8 @@
     $({ target: 'Number', stat: true }, {
       isInteger: isIntegralNumber
     })
-  }, { '../internals/export': 140, '../internals/is-integral-number': 182 }],
-  398: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/is-integral-number': 185 }],
+  404: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
 
@@ -11552,8 +11697,8 @@
         return number !== number
       }
     })
-  }, { '../internals/export': 140 }],
-  399: [function (require, module, exports) {
+  }, { '../internals/export': 143 }],
+  405: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var isIntegralNumber = require('../internals/is-integral-number')
@@ -11567,8 +11712,8 @@
         return isIntegralNumber(number) && abs(number) <= 0x1FFFFFFFFFFFFF
       }
     })
-  }, { '../internals/export': 140, '../internals/is-integral-number': 182 }],
-  400: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/is-integral-number': 185 }],
+  406: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
 
@@ -11577,8 +11722,8 @@
     $({ target: 'Number', stat: true, nonConfigurable: true, nonWritable: true }, {
       MAX_SAFE_INTEGER: 0x1FFFFFFFFFFFFF
     })
-  }, { '../internals/export': 140 }],
-  401: [function (require, module, exports) {
+  }, { '../internals/export': 143 }],
+  407: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
 
@@ -11587,8 +11732,8 @@
     $({ target: 'Number', stat: true, nonConfigurable: true, nonWritable: true }, {
       MIN_SAFE_INTEGER: -0x1FFFFFFFFFFFFF
     })
-  }, { '../internals/export': 140 }],
-  402: [function (require, module, exports) {
+  }, { '../internals/export': 143 }],
+  408: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var parseFloat = require('../internals/number-parse-float')
@@ -11599,8 +11744,8 @@
     $({ target: 'Number', stat: true, forced: Number.parseFloat !== parseFloat }, {
       parseFloat: parseFloat
     })
-  }, { '../internals/export': 140, '../internals/number-parse-float': 213 }],
-  403: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/number-parse-float': 216 }],
+  409: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var parseInt = require('../internals/number-parse-int')
@@ -11611,8 +11756,8 @@
     $({ target: 'Number', stat: true, forced: Number.parseInt !== parseInt }, {
       parseInt: parseInt
     })
-  }, { '../internals/export': 140, '../internals/number-parse-int': 214 }],
-  404: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/number-parse-int': 217 }],
+  410: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -11715,8 +11860,8 @@
         return s + m
       }
     })
-  }, { '../internals/export': 140, '../internals/fails': 141, '../internals/function-uncurry-this': 153, '../internals/math-log10': 204, '../internals/string-repeat': 267, '../internals/this-number-value': 277, '../internals/to-integer-or-infinity': 282 }],
-  405: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144, '../internals/function-uncurry-this': 156, '../internals/math-log10': 207, '../internals/string-repeat': 270, '../internals/this-number-value': 280, '../internals/to-integer-or-infinity': 285 }],
+  411: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -11848,8 +11993,8 @@
         } return result
       }
     })
-  }, { '../internals/export': 140, '../internals/fails': 141, '../internals/function-uncurry-this': 153, '../internals/string-repeat': 267, '../internals/this-number-value': 277, '../internals/to-integer-or-infinity': 282 }],
-  406: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144, '../internals/function-uncurry-this': 156, '../internals/string-repeat': 270, '../internals/this-number-value': 280, '../internals/to-integer-or-infinity': 285 }],
+  412: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -11875,8 +12020,8 @@
           : nativeToPrecision(thisNumberValue(this), precision)
       }
     })
-  }, { '../internals/export': 140, '../internals/fails': 141, '../internals/function-uncurry-this': 153, '../internals/this-number-value': 277 }],
-  407: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144, '../internals/function-uncurry-this': 156, '../internals/this-number-value': 280 }],
+  413: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var assign = require('../internals/object-assign')
@@ -11887,8 +12032,8 @@
     $({ target: 'Object', stat: true, arity: 2, forced: Object.assign !== assign }, {
       assign: assign
     })
-  }, { '../internals/export': 140, '../internals/object-assign': 215 }],
-  408: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/object-assign': 218 }],
+  414: [function (require, module, exports) {
     'use strict'
     // TODO: Remove from `core-js@4`
     var $ = require('../internals/export')
@@ -11900,8 +12045,8 @@
     $({ target: 'Object', stat: true, sham: !DESCRIPTORS }, {
       create: create
     })
-  }, { '../internals/descriptors': 116, '../internals/export': 140, '../internals/object-create': 216 }],
-  409: [function (require, module, exports) {
+  }, { '../internals/descriptors': 119, '../internals/export': 143, '../internals/object-create': 219 }],
+  415: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var DESCRIPTORS = require('../internals/descriptors')
@@ -11919,8 +12064,8 @@
         }
       })
     }
-  }, { '../internals/a-callable': 58, '../internals/descriptors': 116, '../internals/export': 140, '../internals/object-define-property': 218, '../internals/object-prototype-accessors-forced': 229, '../internals/to-object': 284 }],
-  410: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/descriptors': 119, '../internals/export': 143, '../internals/object-define-property': 221, '../internals/object-prototype-accessors-forced': 232, '../internals/to-object': 287 }],
+  416: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var DESCRIPTORS = require('../internals/descriptors')
@@ -11932,8 +12077,8 @@
     $({ target: 'Object', stat: true, forced: Object.defineProperties !== defineProperties, sham: !DESCRIPTORS }, {
       defineProperties: defineProperties
     })
-  }, { '../internals/descriptors': 116, '../internals/export': 140, '../internals/object-define-properties': 217 }],
-  411: [function (require, module, exports) {
+  }, { '../internals/descriptors': 119, '../internals/export': 143, '../internals/object-define-properties': 220 }],
+  417: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var DESCRIPTORS = require('../internals/descriptors')
@@ -11945,8 +12090,8 @@
     $({ target: 'Object', stat: true, forced: Object.defineProperty !== defineProperty, sham: !DESCRIPTORS }, {
       defineProperty: defineProperty
     })
-  }, { '../internals/descriptors': 116, '../internals/export': 140, '../internals/object-define-property': 218 }],
-  412: [function (require, module, exports) {
+  }, { '../internals/descriptors': 119, '../internals/export': 143, '../internals/object-define-property': 221 }],
+  418: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var DESCRIPTORS = require('../internals/descriptors')
@@ -11964,8 +12109,8 @@
         }
       })
     }
-  }, { '../internals/a-callable': 58, '../internals/descriptors': 116, '../internals/export': 140, '../internals/object-define-property': 218, '../internals/object-prototype-accessors-forced': 229, '../internals/to-object': 284 }],
-  413: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/descriptors': 119, '../internals/export': 143, '../internals/object-define-property': 221, '../internals/object-prototype-accessors-forced': 232, '../internals/to-object': 287 }],
+  419: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $entries = require('../internals/object-to-array').entries
@@ -11977,8 +12122,8 @@
         return $entries(O)
       }
     })
-  }, { '../internals/export': 140, '../internals/object-to-array': 231 }],
-  414: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/object-to-array': 234 }],
+  420: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var FREEZING = require('../internals/freezing')
@@ -11997,8 +12142,8 @@
         return $freeze && isObject(it) ? $freeze(onFreeze(it)) : it
       }
     })
-  }, { '../internals/export': 140, '../internals/fails': 141, '../internals/freezing': 144, '../internals/internal-metadata': 173, '../internals/is-object': 184 }],
-  415: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144, '../internals/freezing': 147, '../internals/internal-metadata': 176, '../internals/is-object': 187 }],
+  421: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var iterate = require('../internals/iterate')
@@ -12015,8 +12160,8 @@
         return obj
       }
     })
-  }, { '../internals/create-property': 108, '../internals/export': 140, '../internals/iterate': 190 }],
-  416: [function (require, module, exports) {
+  }, { '../internals/create-property': 111, '../internals/export': 143, '../internals/iterate': 193 }],
+  422: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var fails = require('../internals/fails')
@@ -12033,8 +12178,8 @@
         return nativeGetOwnPropertyDescriptor(toIndexedObject(it), key)
       }
     })
-  }, { '../internals/descriptors': 116, '../internals/export': 140, '../internals/fails': 141, '../internals/object-get-own-property-descriptor': 219, '../internals/to-indexed-object': 281 }],
-  417: [function (require, module, exports) {
+  }, { '../internals/descriptors': 119, '../internals/export': 143, '../internals/fails': 144, '../internals/object-get-own-property-descriptor': 222, '../internals/to-indexed-object': 284 }],
+  423: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var DESCRIPTORS = require('../internals/descriptors')
@@ -12060,8 +12205,8 @@
         return result
       }
     })
-  }, { '../internals/create-property': 108, '../internals/descriptors': 116, '../internals/export': 140, '../internals/object-get-own-property-descriptor': 219, '../internals/own-keys': 234, '../internals/to-indexed-object': 281 }],
-  418: [function (require, module, exports) {
+  }, { '../internals/create-property': 111, '../internals/descriptors': 119, '../internals/export': 143, '../internals/object-get-own-property-descriptor': 222, '../internals/own-keys': 237, '../internals/to-indexed-object': 284 }],
+  424: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var fails = require('../internals/fails')
@@ -12075,8 +12220,8 @@
     $({ target: 'Object', stat: true, forced: FAILS_ON_PRIMITIVES }, {
       getOwnPropertyNames: getOwnPropertyNames
     })
-  }, { '../internals/export': 140, '../internals/fails': 141, '../internals/object-get-own-property-names-external': 220 }],
-  419: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144, '../internals/object-get-own-property-names-external': 223 }],
+  425: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var NATIVE_SYMBOL = require('../internals/symbol-constructor-detection')
@@ -12096,8 +12241,8 @@
         return $getOwnPropertySymbols ? $getOwnPropertySymbols(toObject(it)) : []
       }
     })
-  }, { '../internals/export': 140, '../internals/fails': 141, '../internals/object-get-own-property-symbols': 222, '../internals/symbol-constructor-detection': 273, '../internals/to-object': 284 }],
-  420: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144, '../internals/object-get-own-property-symbols': 225, '../internals/symbol-constructor-detection': 276, '../internals/to-object': 287 }],
+  426: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var fails = require('../internals/fails')
@@ -12114,8 +12259,8 @@
         return nativeGetPrototypeOf(toObject(it))
       }
     })
-  }, { '../internals/correct-prototype-getter': 103, '../internals/export': 140, '../internals/fails': 141, '../internals/object-get-prototype-of': 223, '../internals/to-object': 284 }],
-  421: [function (require, module, exports) {
+  }, { '../internals/correct-prototype-getter': 106, '../internals/export': 143, '../internals/fails': 144, '../internals/object-get-prototype-of': 226, '../internals/to-object': 287 }],
+  427: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var getBuiltIn = require('../internals/get-built-in')
@@ -12146,8 +12291,8 @@
         return obj
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/export': 140, '../internals/function-uncurry-this': 153, '../internals/get-built-in': 155, '../internals/iterate': 190, '../internals/require-object-coercible': 250, '../internals/to-property-key': 288 }],
-  422: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/export': 143, '../internals/function-uncurry-this': 156, '../internals/get-built-in': 158, '../internals/iterate': 193, '../internals/require-object-coercible': 253, '../internals/to-property-key': 291 }],
+  428: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var hasOwn = require('../internals/has-own-property')
@@ -12157,8 +12302,8 @@
     $({ target: 'Object', stat: true }, {
       hasOwn: hasOwn
     })
-  }, { '../internals/export': 140, '../internals/has-own-property': 163 }],
-  423: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/has-own-property': 166 }],
+  429: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $isExtensible = require('../internals/object-is-extensible')
@@ -12169,8 +12314,8 @@
     $({ target: 'Object', stat: true, forced: Object.isExtensible !== $isExtensible }, {
       isExtensible: $isExtensible
     })
-  }, { '../internals/export': 140, '../internals/object-is-extensible': 224 }],
-  424: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/object-is-extensible': 227 }],
+  430: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var fails = require('../internals/fails')
@@ -12192,8 +12337,8 @@
         return $isFrozen ? $isFrozen(it) : false
       }
     })
-  }, { '../internals/array-buffer-non-extensible': 66, '../internals/classof-raw': 96, '../internals/export': 140, '../internals/fails': 141, '../internals/is-object': 184 }],
-  425: [function (require, module, exports) {
+  }, { '../internals/array-buffer-non-extensible': 68, '../internals/classof-raw': 99, '../internals/export': 143, '../internals/fails': 144, '../internals/is-object': 187 }],
+  431: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var fails = require('../internals/fails')
@@ -12215,8 +12360,8 @@
         return $isSealed ? $isSealed(it) : false
       }
     })
-  }, { '../internals/array-buffer-non-extensible': 66, '../internals/classof-raw': 96, '../internals/export': 140, '../internals/fails': 141, '../internals/is-object': 184 }],
-  426: [function (require, module, exports) {
+  }, { '../internals/array-buffer-non-extensible': 68, '../internals/classof-raw': 99, '../internals/export': 143, '../internals/fails': 144, '../internals/is-object': 187 }],
+  432: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var is = require('../internals/same-value')
@@ -12226,8 +12371,8 @@
     $({ target: 'Object', stat: true }, {
       is: is
     })
-  }, { '../internals/export': 140, '../internals/same-value': 252 }],
-  427: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/same-value': 255 }],
+  433: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var toObject = require('../internals/to-object')
@@ -12243,8 +12388,8 @@
         return nativeKeys(toObject(it))
       }
     })
-  }, { '../internals/export': 140, '../internals/fails': 141, '../internals/object-keys': 227, '../internals/to-object': 284 }],
-  428: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144, '../internals/object-keys': 230, '../internals/to-object': 287 }],
+  434: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var DESCRIPTORS = require('../internals/descriptors')
@@ -12268,8 +12413,8 @@
         }
       })
     }
-  }, { '../internals/descriptors': 116, '../internals/export': 140, '../internals/object-get-own-property-descriptor': 219, '../internals/object-get-prototype-of': 223, '../internals/object-prototype-accessors-forced': 229, '../internals/to-object': 284, '../internals/to-property-key': 288 }],
-  429: [function (require, module, exports) {
+  }, { '../internals/descriptors': 119, '../internals/export': 143, '../internals/object-get-own-property-descriptor': 222, '../internals/object-get-prototype-of': 226, '../internals/object-prototype-accessors-forced': 232, '../internals/to-object': 287, '../internals/to-property-key': 291 }],
+  435: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var DESCRIPTORS = require('../internals/descriptors')
@@ -12293,8 +12438,8 @@
         }
       })
     }
-  }, { '../internals/descriptors': 116, '../internals/export': 140, '../internals/object-get-own-property-descriptor': 219, '../internals/object-get-prototype-of': 223, '../internals/object-prototype-accessors-forced': 229, '../internals/to-object': 284, '../internals/to-property-key': 288 }],
-  430: [function (require, module, exports) {
+  }, { '../internals/descriptors': 119, '../internals/export': 143, '../internals/object-get-own-property-descriptor': 222, '../internals/object-get-prototype-of': 226, '../internals/object-prototype-accessors-forced': 232, '../internals/to-object': 287, '../internals/to-property-key': 291 }],
+  436: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var isObject = require('../internals/is-object')
@@ -12313,8 +12458,8 @@
         return $preventExtensions && isObject(it) ? $preventExtensions(onFreeze(it)) : it
       }
     })
-  }, { '../internals/export': 140, '../internals/fails': 141, '../internals/freezing': 144, '../internals/internal-metadata': 173, '../internals/is-object': 184 }],
-  431: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144, '../internals/freezing': 147, '../internals/internal-metadata': 176, '../internals/is-object': 187 }],
+  437: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var defineBuiltInAccessor = require('../internals/define-built-in-accessor')
@@ -12348,8 +12493,8 @@
         })
       } catch (error) { /* empty */ }
     }
-  }, { '../internals/define-built-in-accessor': 111, '../internals/descriptors': 116, '../internals/is-object': 184, '../internals/is-possible-prototype': 185, '../internals/require-object-coercible': 250, '../internals/to-object': 284 }],
-  432: [function (require, module, exports) {
+  }, { '../internals/define-built-in-accessor': 114, '../internals/descriptors': 119, '../internals/is-object': 187, '../internals/is-possible-prototype': 188, '../internals/require-object-coercible': 253, '../internals/to-object': 287 }],
+  438: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var isObject = require('../internals/is-object')
@@ -12368,8 +12513,8 @@
         return $seal && isObject(it) ? $seal(onFreeze(it)) : it
       }
     })
-  }, { '../internals/export': 140, '../internals/fails': 141, '../internals/freezing': 144, '../internals/internal-metadata': 173, '../internals/is-object': 184 }],
-  433: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144, '../internals/freezing': 147, '../internals/internal-metadata': 176, '../internals/is-object': 187 }],
+  439: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var setPrototypeOf = require('../internals/object-set-prototype-of')
@@ -12379,8 +12524,8 @@
     $({ target: 'Object', stat: true }, {
       setPrototypeOf: setPrototypeOf
     })
-  }, { '../internals/export': 140, '../internals/object-set-prototype-of': 230 }],
-  434: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/object-set-prototype-of': 233 }],
+  440: [function (require, module, exports) {
     'use strict'
     var TO_STRING_TAG_SUPPORT = require('../internals/to-string-tag-support')
     var defineBuiltIn = require('../internals/define-built-in')
@@ -12391,8 +12536,8 @@
     if (!TO_STRING_TAG_SUPPORT) {
       defineBuiltIn(Object.prototype, 'toString', toString, { unsafe: true })
     }
-  }, { '../internals/define-built-in': 112, '../internals/object-to-string': 232, '../internals/to-string-tag-support': 289 }],
-  435: [function (require, module, exports) {
+  }, { '../internals/define-built-in': 115, '../internals/object-to-string': 235, '../internals/to-string-tag-support': 292 }],
+  441: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $values = require('../internals/object-to-array').values
@@ -12404,8 +12549,8 @@
         return $values(O)
       }
     })
-  }, { '../internals/export': 140, '../internals/object-to-array': 231 }],
-  436: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/object-to-array': 234 }],
+  442: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $parseFloat = require('../internals/number-parse-float')
@@ -12415,8 +12560,8 @@
     $({ global: true, forced: parseFloat !== $parseFloat }, {
       parseFloat: $parseFloat
     })
-  }, { '../internals/export': 140, '../internals/number-parse-float': 213 }],
-  437: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/number-parse-float': 216 }],
+  443: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $parseInt = require('../internals/number-parse-int')
@@ -12426,8 +12571,8 @@
     $({ global: true, forced: parseInt !== $parseInt }, {
       parseInt: $parseInt
     })
-  }, { '../internals/export': 140, '../internals/number-parse-int': 214 }],
-  438: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/number-parse-int': 217 }],
+  444: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var call = require('../internals/function-call')
@@ -12472,8 +12617,8 @@
         return capability.promise
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/export': 140, '../internals/function-call': 149, '../internals/iterate': 190, '../internals/new-promise-capability': 209, '../internals/perform': 236, '../internals/promise-statics-incorrect-iteration': 240 }],
-  439: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/export': 143, '../internals/function-call': 152, '../internals/iterate': 193, '../internals/new-promise-capability': 212, '../internals/perform': 239, '../internals/promise-statics-incorrect-iteration': 243 }],
+  445: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var call = require('../internals/function-call')
@@ -12513,8 +12658,8 @@
         return capability.promise
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/export': 140, '../internals/function-call': 149, '../internals/iterate': 190, '../internals/new-promise-capability': 209, '../internals/perform': 236, '../internals/promise-statics-incorrect-iteration': 240 }],
-  440: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/export': 143, '../internals/function-call': 152, '../internals/iterate': 193, '../internals/new-promise-capability': 212, '../internals/perform': 239, '../internals/promise-statics-incorrect-iteration': 243 }],
+  446: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var call = require('../internals/function-call')
@@ -12563,8 +12708,8 @@
         return capability.promise
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/export': 140, '../internals/function-call': 149, '../internals/get-built-in': 155, '../internals/iterate': 190, '../internals/new-promise-capability': 209, '../internals/perform': 236, '../internals/promise-statics-incorrect-iteration': 240 }],
-  441: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/export': 143, '../internals/function-call': 152, '../internals/get-built-in': 158, '../internals/iterate': 193, '../internals/new-promise-capability': 212, '../internals/perform': 239, '../internals/promise-statics-incorrect-iteration': 243 }],
+  447: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var IS_PURE = require('../internals/is-pure')
@@ -12591,8 +12736,8 @@
         defineBuiltIn(NativePromisePrototype, 'catch', method, { unsafe: true })
       }
     }
-  }, { '../internals/define-built-in': 112, '../internals/export': 140, '../internals/get-built-in': 155, '../internals/is-callable': 178, '../internals/is-pure': 186, '../internals/promise-constructor-detection': 237, '../internals/promise-native-constructor': 238 }],
-  442: [function (require, module, exports) {
+  }, { '../internals/define-built-in': 115, '../internals/export': 143, '../internals/get-built-in': 158, '../internals/is-callable': 181, '../internals/is-pure': 189, '../internals/promise-constructor-detection': 240, '../internals/promise-native-constructor': 241 }],
+  448: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var IS_PURE = require('../internals/is-pure')
@@ -12883,8 +13028,8 @@
 
     setToStringTag(PromiseConstructor, PROMISE, false, true)
     setSpecies(PROMISE)
-  }, { '../internals/a-callable': 58, '../internals/an-instance': 63, '../internals/define-built-in': 112, '../internals/engine-is-node': 130, '../internals/export': 140, '../internals/function-call': 149, '../internals/global': 162, '../internals/host-report-errors': 165, '../internals/internal-state': 174, '../internals/is-callable': 178, '../internals/is-object': 184, '../internals/is-pure': 186, '../internals/microtask': 208, '../internals/new-promise-capability': 209, '../internals/object-set-prototype-of': 230, '../internals/perform': 236, '../internals/promise-constructor-detection': 237, '../internals/promise-native-constructor': 238, '../internals/queue': 242, '../internals/set-species': 256, '../internals/set-to-string-tag': 257, '../internals/species-constructor': 261, '../internals/task': 276 }],
-  443: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/an-instance': 63, '../internals/define-built-in': 115, '../internals/engine-is-node': 133, '../internals/export': 143, '../internals/function-call': 152, '../internals/global': 165, '../internals/host-report-errors': 168, '../internals/internal-state': 177, '../internals/is-callable': 181, '../internals/is-object': 187, '../internals/is-pure': 189, '../internals/microtask': 211, '../internals/new-promise-capability': 212, '../internals/object-set-prototype-of': 233, '../internals/perform': 239, '../internals/promise-constructor-detection': 240, '../internals/promise-native-constructor': 241, '../internals/queue': 245, '../internals/set-species': 259, '../internals/set-to-string-tag': 260, '../internals/species-constructor': 264, '../internals/task': 279 }],
+  449: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var IS_PURE = require('../internals/is-pure')
@@ -12928,8 +13073,8 @@
         defineBuiltIn(NativePromisePrototype, 'finally', method, { unsafe: true })
       }
     }
-  }, { '../internals/define-built-in': 112, '../internals/export': 140, '../internals/fails': 141, '../internals/get-built-in': 155, '../internals/is-callable': 178, '../internals/is-pure': 186, '../internals/promise-native-constructor': 238, '../internals/promise-resolve': 239, '../internals/species-constructor': 261 }],
-  444: [function (require, module, exports) {
+  }, { '../internals/define-built-in': 115, '../internals/export': 143, '../internals/fails': 144, '../internals/get-built-in': 158, '../internals/is-callable': 181, '../internals/is-pure': 189, '../internals/promise-native-constructor': 241, '../internals/promise-resolve': 242, '../internals/species-constructor': 264 }],
+  450: [function (require, module, exports) {
     'use strict'
     // TODO: Remove this module from `core-js@4` since it's split to modules listed below
     require('../modules/es.promise.constructor')
@@ -12938,8 +13083,8 @@
     require('../modules/es.promise.race')
     require('../modules/es.promise.reject')
     require('../modules/es.promise.resolve')
-  }, { '../modules/es.promise.all': 439, '../modules/es.promise.catch': 441, '../modules/es.promise.constructor': 442, '../modules/es.promise.race': 445, '../modules/es.promise.reject': 446, '../modules/es.promise.resolve': 447 }],
-  445: [function (require, module, exports) {
+  }, { '../modules/es.promise.all': 445, '../modules/es.promise.catch': 447, '../modules/es.promise.constructor': 448, '../modules/es.promise.race': 451, '../modules/es.promise.reject': 452, '../modules/es.promise.resolve': 453 }],
+  451: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var call = require('../internals/function-call')
@@ -12966,8 +13111,8 @@
         return capability.promise
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/export': 140, '../internals/function-call': 149, '../internals/iterate': 190, '../internals/new-promise-capability': 209, '../internals/perform': 236, '../internals/promise-statics-incorrect-iteration': 240 }],
-  446: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/export': 143, '../internals/function-call': 152, '../internals/iterate': 193, '../internals/new-promise-capability': 212, '../internals/perform': 239, '../internals/promise-statics-incorrect-iteration': 243 }],
+  452: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var newPromiseCapabilityModule = require('../internals/new-promise-capability')
@@ -12983,8 +13128,8 @@
         return capability.promise
       }
     })
-  }, { '../internals/export': 140, '../internals/new-promise-capability': 209, '../internals/promise-constructor-detection': 237 }],
-  447: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/new-promise-capability': 212, '../internals/promise-constructor-detection': 240 }],
+  453: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var getBuiltIn = require('../internals/get-built-in')
@@ -13003,8 +13148,8 @@
         return promiseResolve(CHECK_WRAPPER && this === PromiseConstructorWrapper ? NativePromiseConstructor : this, x)
       }
     })
-  }, { '../internals/export': 140, '../internals/get-built-in': 155, '../internals/is-pure': 186, '../internals/promise-constructor-detection': 237, '../internals/promise-native-constructor': 238, '../internals/promise-resolve': 239 }],
-  448: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/get-built-in': 158, '../internals/is-pure': 189, '../internals/promise-constructor-detection': 240, '../internals/promise-native-constructor': 241, '../internals/promise-resolve': 242 }],
+  454: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var newPromiseCapabilityModule = require('../internals/new-promise-capability')
@@ -13021,8 +13166,8 @@
         }
       }
     })
-  }, { '../internals/export': 140, '../internals/new-promise-capability': 209 }],
-  449: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/new-promise-capability': 212 }],
+  455: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var functionApply = require('../internals/function-apply')
@@ -13043,8 +13188,8 @@
         return functionApply(aCallable(target), thisArgument, anObject(argumentsList))
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/export': 140, '../internals/fails': 141, '../internals/function-apply': 145 }],
-  450: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/export': 143, '../internals/fails': 144, '../internals/function-apply': 148 }],
+  456: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var getBuiltIn = require('../internals/get-built-in')
@@ -13102,8 +13247,8 @@
         return isObject(result) ? result : instance
       }
     })
-  }, { '../internals/a-constructor': 59, '../internals/an-object': 64, '../internals/export': 140, '../internals/fails': 141, '../internals/function-apply': 145, '../internals/function-bind': 148, '../internals/get-built-in': 155, '../internals/is-object': 184, '../internals/object-create': 216 }],
-  451: [function (require, module, exports) {
+  }, { '../internals/a-constructor': 59, '../internals/an-object': 64, '../internals/export': 143, '../internals/fails': 144, '../internals/function-apply': 148, '../internals/function-bind': 151, '../internals/get-built-in': 158, '../internals/is-object': 187, '../internals/object-create': 219 }],
+  457: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var DESCRIPTORS = require('../internals/descriptors')
@@ -13133,8 +13278,8 @@
         }
       }
     })
-  }, { '../internals/an-object': 64, '../internals/descriptors': 116, '../internals/export': 140, '../internals/fails': 141, '../internals/object-define-property': 218, '../internals/to-property-key': 288 }],
-  452: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/descriptors': 119, '../internals/export': 143, '../internals/fails': 144, '../internals/object-define-property': 221, '../internals/to-property-key': 291 }],
+  458: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var anObject = require('../internals/an-object')
@@ -13148,8 +13293,8 @@
         return descriptor && !descriptor.configurable ? false : delete target[propertyKey]
       }
     })
-  }, { '../internals/an-object': 64, '../internals/export': 140, '../internals/object-get-own-property-descriptor': 219 }],
-  453: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/export': 143, '../internals/object-get-own-property-descriptor': 222 }],
+  459: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var DESCRIPTORS = require('../internals/descriptors')
@@ -13163,8 +13308,8 @@
         return getOwnPropertyDescriptorModule.f(anObject(target), propertyKey)
       }
     })
-  }, { '../internals/an-object': 64, '../internals/descriptors': 116, '../internals/export': 140, '../internals/object-get-own-property-descriptor': 219 }],
-  454: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/descriptors': 119, '../internals/export': 143, '../internals/object-get-own-property-descriptor': 222 }],
+  460: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var anObject = require('../internals/an-object')
@@ -13178,8 +13323,8 @@
         return objectGetPrototypeOf(anObject(target))
       }
     })
-  }, { '../internals/an-object': 64, '../internals/correct-prototype-getter': 103, '../internals/export': 140, '../internals/object-get-prototype-of': 223 }],
-  455: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/correct-prototype-getter': 106, '../internals/export': 143, '../internals/object-get-prototype-of': 226 }],
+  461: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var call = require('../internals/function-call')
@@ -13207,8 +13352,8 @@
     $({ target: 'Reflect', stat: true }, {
       get: get
     })
-  }, { '../internals/an-object': 64, '../internals/export': 140, '../internals/function-call': 149, '../internals/is-data-descriptor': 180, '../internals/is-object': 184, '../internals/object-get-own-property-descriptor': 219, '../internals/object-get-prototype-of': 223 }],
-  456: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/export': 143, '../internals/function-call': 152, '../internals/is-data-descriptor': 183, '../internals/is-object': 187, '../internals/object-get-own-property-descriptor': 222, '../internals/object-get-prototype-of': 226 }],
+  462: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
 
@@ -13219,8 +13364,8 @@
         return propertyKey in target
       }
     })
-  }, { '../internals/export': 140 }],
-  457: [function (require, module, exports) {
+  }, { '../internals/export': 143 }],
+  463: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var anObject = require('../internals/an-object')
@@ -13234,8 +13379,8 @@
         return $isExtensible(target)
       }
     })
-  }, { '../internals/an-object': 64, '../internals/export': 140, '../internals/object-is-extensible': 224 }],
-  458: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/export': 143, '../internals/object-is-extensible': 227 }],
+  464: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var ownKeys = require('../internals/own-keys')
@@ -13245,8 +13390,8 @@
     $({ target: 'Reflect', stat: true }, {
       ownKeys: ownKeys
     })
-  }, { '../internals/export': 140, '../internals/own-keys': 234 }],
-  459: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/own-keys': 237 }],
+  465: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var getBuiltIn = require('../internals/get-built-in')
@@ -13267,8 +13412,8 @@
         }
       }
     })
-  }, { '../internals/an-object': 64, '../internals/export': 140, '../internals/freezing': 144, '../internals/get-built-in': 155 }],
-  460: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/export': 143, '../internals/freezing': 147, '../internals/get-built-in': 158 }],
+  466: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var anObject = require('../internals/an-object')
@@ -13291,8 +13436,8 @@
         }
       })
     }
-  }, { '../internals/a-possible-prototype': 60, '../internals/an-object': 64, '../internals/export': 140, '../internals/object-set-prototype-of': 230 }],
-  461: [function (require, module, exports) {
+  }, { '../internals/a-possible-prototype': 60, '../internals/an-object': 64, '../internals/export': 143, '../internals/object-set-prototype-of': 233 }],
+  467: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var call = require('../internals/function-call')
@@ -13343,8 +13488,8 @@
     $({ target: 'Reflect', stat: true, forced: MS_EDGE_BUG }, {
       set: set
     })
-  }, { '../internals/an-object': 64, '../internals/create-property-descriptor': 107, '../internals/export': 140, '../internals/fails': 141, '../internals/function-call': 149, '../internals/is-data-descriptor': 180, '../internals/is-object': 184, '../internals/object-define-property': 218, '../internals/object-get-own-property-descriptor': 219, '../internals/object-get-prototype-of': 223 }],
-  462: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/create-property-descriptor': 110, '../internals/export': 143, '../internals/fails': 144, '../internals/function-call': 152, '../internals/is-data-descriptor': 183, '../internals/is-object': 187, '../internals/object-define-property': 221, '../internals/object-get-own-property-descriptor': 222, '../internals/object-get-prototype-of': 226 }],
+  468: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var global = require('../internals/global')
@@ -13355,8 +13500,8 @@
     // Reflect[@@toStringTag] property
     // https://tc39.es/ecma262/#sec-reflect-@@tostringtag
     setToStringTag(global.Reflect, 'Reflect', true)
-  }, { '../internals/export': 140, '../internals/global': 162, '../internals/set-to-string-tag': 257 }],
-  463: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/global': 165, '../internals/set-to-string-tag': 260 }],
+  469: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var global = require('../internals/global')
@@ -13553,8 +13698,8 @@
 
     // https://tc39.es/ecma262/#sec-get-regexp-@@species
     setSpecies('RegExp')
-  }, { '../internals/create-non-enumerable-property': 106, '../internals/define-built-in': 112, '../internals/descriptors': 116, '../internals/fails': 141, '../internals/function-uncurry-this': 153, '../internals/global': 162, '../internals/has-own-property': 163, '../internals/inherit-if-required': 170, '../internals/internal-state': 174, '../internals/is-forced': 181, '../internals/is-regexp': 187, '../internals/object-create': 216, '../internals/object-get-own-property-names': 221, '../internals/object-is-prototype-of': 225, '../internals/proxy-accessor': 241, '../internals/regexp-get-flags': 246, '../internals/regexp-sticky-helpers': 247, '../internals/regexp-unsupported-dot-all': 248, '../internals/regexp-unsupported-ncg': 249, '../internals/set-species': 256, '../internals/to-string': 290, '../internals/well-known-symbol': 307 }],
-  464: [function (require, module, exports) {
+  }, { '../internals/create-non-enumerable-property': 109, '../internals/define-built-in': 115, '../internals/descriptors': 119, '../internals/fails': 144, '../internals/function-uncurry-this': 156, '../internals/global': 165, '../internals/has-own-property': 166, '../internals/inherit-if-required': 173, '../internals/internal-state': 177, '../internals/is-forced': 184, '../internals/is-regexp': 190, '../internals/object-create': 219, '../internals/object-get-own-property-names': 224, '../internals/object-is-prototype-of': 228, '../internals/proxy-accessor': 244, '../internals/regexp-get-flags': 249, '../internals/regexp-sticky-helpers': 250, '../internals/regexp-unsupported-dot-all': 251, '../internals/regexp-unsupported-ncg': 252, '../internals/set-species': 259, '../internals/to-string': 293, '../internals/well-known-symbol': 310 }],
+  470: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var UNSUPPORTED_DOT_ALL = require('../internals/regexp-unsupported-dot-all')
@@ -13581,8 +13726,8 @@
         }
       })
     }
-  }, { '../internals/classof-raw': 96, '../internals/define-built-in-accessor': 111, '../internals/descriptors': 116, '../internals/internal-state': 174, '../internals/regexp-unsupported-dot-all': 248 }],
-  465: [function (require, module, exports) {
+  }, { '../internals/classof-raw': 99, '../internals/define-built-in-accessor': 114, '../internals/descriptors': 119, '../internals/internal-state': 177, '../internals/regexp-unsupported-dot-all': 251 }],
+  471: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var exec = require('../internals/regexp-exec')
@@ -13592,8 +13737,8 @@
     $({ target: 'RegExp', proto: true, forced: /./.exec !== exec }, {
       exec: exec
     })
-  }, { '../internals/export': 140, '../internals/regexp-exec': 244 }],
-  466: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/regexp-exec': 247 }],
+  472: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var DESCRIPTORS = require('../internals/descriptors')
@@ -13654,8 +13799,8 @@
         get: regExpFlags
       })
     }
-  }, { '../internals/define-built-in-accessor': 111, '../internals/descriptors': 116, '../internals/fails': 141, '../internals/global': 162, '../internals/regexp-flags': 245 }],
-  467: [function (require, module, exports) {
+  }, { '../internals/define-built-in-accessor': 114, '../internals/descriptors': 119, '../internals/fails': 144, '../internals/global': 165, '../internals/regexp-flags': 248 }],
+  473: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var MISSED_STICKY = require('../internals/regexp-sticky-helpers').MISSED_STICKY
@@ -13682,8 +13827,8 @@
         }
       })
     }
-  }, { '../internals/classof-raw': 96, '../internals/define-built-in-accessor': 111, '../internals/descriptors': 116, '../internals/internal-state': 174, '../internals/regexp-sticky-helpers': 247 }],
-  468: [function (require, module, exports) {
+  }, { '../internals/classof-raw': 99, '../internals/define-built-in-accessor': 114, '../internals/descriptors': 119, '../internals/internal-state': 177, '../internals/regexp-sticky-helpers': 250 }],
+  474: [function (require, module, exports) {
     'use strict'
     // TODO: Remove from `core-js@4` since it's moved to entry points
     require('../modules/es.regexp.exec')
@@ -13719,8 +13864,8 @@
         return true
       }
     })
-  }, { '../internals/an-object': 64, '../internals/export': 140, '../internals/function-call': 149, '../internals/is-callable': 178, '../internals/to-string': 290, '../modules/es.regexp.exec': 465 }],
-  469: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/export': 143, '../internals/function-call': 152, '../internals/is-callable': 181, '../internals/to-string': 293, '../modules/es.regexp.exec': 471 }],
+  475: [function (require, module, exports) {
     'use strict'
     var PROPER_FUNCTION_NAME = require('../internals/function-name').PROPER
     var defineBuiltIn = require('../internals/define-built-in')
@@ -13747,8 +13892,8 @@
         return '/' + pattern + '/' + flags
       }, { unsafe: true })
     }
-  }, { '../internals/an-object': 64, '../internals/define-built-in': 112, '../internals/fails': 141, '../internals/function-name': 150, '../internals/regexp-get-flags': 246, '../internals/to-string': 290 }],
-  470: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/define-built-in': 115, '../internals/fails': 144, '../internals/function-name': 153, '../internals/regexp-get-flags': 249, '../internals/to-string': 293 }],
+  476: [function (require, module, exports) {
     'use strict'
     var collection = require('../internals/collection')
     var collectionStrong = require('../internals/collection-strong')
@@ -13758,13 +13903,13 @@
     collection('Set', function (init) {
       return function Set () { return init(this, arguments.length ? arguments[0] : undefined) }
     }, collectionStrong)
-  }, { '../internals/collection': 100, '../internals/collection-strong': 98 }],
-  471: [function (require, module, exports) {
+  }, { '../internals/collection': 103, '../internals/collection-strong': 101 }],
+  477: [function (require, module, exports) {
     'use strict'
     // TODO: Remove this module from `core-js@4` since it's replaced to module below
     require('../modules/es.set.constructor')
-  }, { '../modules/es.set.constructor': 470 }],
-  472: [function (require, module, exports) {
+  }, { '../modules/es.set.constructor': 476 }],
+  478: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var createHTML = require('../internals/create-html')
@@ -13777,8 +13922,8 @@
         return createHTML(this, 'a', 'name', name)
       }
     })
-  }, { '../internals/create-html': 104, '../internals/export': 140, '../internals/string-html-forced': 262 }],
-  473: [function (require, module, exports) {
+  }, { '../internals/create-html': 107, '../internals/export': 143, '../internals/string-html-forced': 265 }],
+  479: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -13805,8 +13950,8 @@
         return (k < 0 || k >= len) ? undefined : charAt(S, k)
       }
     })
-  }, { '../internals/export': 140, '../internals/fails': 141, '../internals/function-uncurry-this': 153, '../internals/require-object-coercible': 250, '../internals/to-integer-or-infinity': 282, '../internals/to-string': 290 }],
-  474: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144, '../internals/function-uncurry-this': 156, '../internals/require-object-coercible': 253, '../internals/to-integer-or-infinity': 285, '../internals/to-string': 293 }],
+  480: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var createHTML = require('../internals/create-html')
@@ -13819,8 +13964,8 @@
         return createHTML(this, 'big', '', '')
       }
     })
-  }, { '../internals/create-html': 104, '../internals/export': 140, '../internals/string-html-forced': 262 }],
-  475: [function (require, module, exports) {
+  }, { '../internals/create-html': 107, '../internals/export': 143, '../internals/string-html-forced': 265 }],
+  481: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var createHTML = require('../internals/create-html')
@@ -13833,8 +13978,8 @@
         return createHTML(this, 'blink', '', '')
       }
     })
-  }, { '../internals/create-html': 104, '../internals/export': 140, '../internals/string-html-forced': 262 }],
-  476: [function (require, module, exports) {
+  }, { '../internals/create-html': 107, '../internals/export': 143, '../internals/string-html-forced': 265 }],
+  482: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var createHTML = require('../internals/create-html')
@@ -13847,8 +13992,8 @@
         return createHTML(this, 'b', '', '')
       }
     })
-  }, { '../internals/create-html': 104, '../internals/export': 140, '../internals/string-html-forced': 262 }],
-  477: [function (require, module, exports) {
+  }, { '../internals/create-html': 107, '../internals/export': 143, '../internals/string-html-forced': 265 }],
+  483: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var codeAt = require('../internals/string-multibyte').codeAt
@@ -13860,8 +14005,8 @@
         return codeAt(this, pos)
       }
     })
-  }, { '../internals/export': 140, '../internals/string-multibyte': 263 }],
-  478: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/string-multibyte': 266 }],
+  484: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this-clause')
@@ -13896,8 +14041,8 @@
         return slice(that, end - search.length, end) === search
       }
     })
-  }, { '../internals/correct-is-regexp-logic': 102, '../internals/export': 140, '../internals/function-uncurry-this-clause': 152, '../internals/is-pure': 186, '../internals/not-a-regexp': 211, '../internals/object-get-own-property-descriptor': 219, '../internals/require-object-coercible': 250, '../internals/to-length': 283, '../internals/to-string': 290 }],
-  479: [function (require, module, exports) {
+  }, { '../internals/correct-is-regexp-logic': 105, '../internals/export': 143, '../internals/function-uncurry-this-clause': 155, '../internals/is-pure': 189, '../internals/not-a-regexp': 214, '../internals/object-get-own-property-descriptor': 222, '../internals/require-object-coercible': 253, '../internals/to-length': 286, '../internals/to-string': 293 }],
+  485: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var createHTML = require('../internals/create-html')
@@ -13910,8 +14055,8 @@
         return createHTML(this, 'tt', '', '')
       }
     })
-  }, { '../internals/create-html': 104, '../internals/export': 140, '../internals/string-html-forced': 262 }],
-  480: [function (require, module, exports) {
+  }, { '../internals/create-html': 107, '../internals/export': 143, '../internals/string-html-forced': 265 }],
+  486: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var createHTML = require('../internals/create-html')
@@ -13924,8 +14069,8 @@
         return createHTML(this, 'font', 'color', color)
       }
     })
-  }, { '../internals/create-html': 104, '../internals/export': 140, '../internals/string-html-forced': 262 }],
-  481: [function (require, module, exports) {
+  }, { '../internals/create-html': 107, '../internals/export': 143, '../internals/string-html-forced': 265 }],
+  487: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var createHTML = require('../internals/create-html')
@@ -13938,8 +14083,8 @@
         return createHTML(this, 'font', 'size', size)
       }
     })
-  }, { '../internals/create-html': 104, '../internals/export': 140, '../internals/string-html-forced': 262 }],
-  482: [function (require, module, exports) {
+  }, { '../internals/create-html': 107, '../internals/export': 143, '../internals/string-html-forced': 265 }],
+  488: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -13972,8 +14117,8 @@
         } return join(elements, '')
       }
     })
-  }, { '../internals/export': 140, '../internals/function-uncurry-this': 153, '../internals/to-absolute-index': 278 }],
-  483: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/function-uncurry-this': 156, '../internals/to-absolute-index': 281 }],
+  489: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -13995,8 +14140,8 @@
         )
       }
     })
-  }, { '../internals/correct-is-regexp-logic': 102, '../internals/export': 140, '../internals/function-uncurry-this': 153, '../internals/not-a-regexp': 211, '../internals/require-object-coercible': 250, '../internals/to-string': 290 }],
-  484: [function (require, module, exports) {
+  }, { '../internals/correct-is-regexp-logic': 105, '../internals/export': 143, '../internals/function-uncurry-this': 156, '../internals/not-a-regexp': 214, '../internals/require-object-coercible': 253, '../internals/to-string': 293 }],
+  490: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -14020,8 +14165,8 @@
         } return true
       }
     })
-  }, { '../internals/export': 140, '../internals/function-uncurry-this': 153, '../internals/require-object-coercible': 250, '../internals/to-string': 290 }],
-  485: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/function-uncurry-this': 156, '../internals/require-object-coercible': 253, '../internals/to-string': 293 }],
+  491: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var createHTML = require('../internals/create-html')
@@ -14034,8 +14179,8 @@
         return createHTML(this, 'i', '', '')
       }
     })
-  }, { '../internals/create-html': 104, '../internals/export': 140, '../internals/string-html-forced': 262 }],
-  486: [function (require, module, exports) {
+  }, { '../internals/create-html': 107, '../internals/export': 143, '../internals/string-html-forced': 265 }],
+  492: [function (require, module, exports) {
     'use strict'
     var charAt = require('../internals/string-multibyte').charAt
     var toString = require('../internals/to-string')
@@ -14067,8 +14212,8 @@
       state.index += point.length
       return createIterResultObject(point, false)
     })
-  }, { '../internals/create-iter-result-object': 105, '../internals/internal-state': 174, '../internals/iterator-define': 194, '../internals/string-multibyte': 263, '../internals/to-string': 290 }],
-  487: [function (require, module, exports) {
+  }, { '../internals/create-iter-result-object': 108, '../internals/internal-state': 177, '../internals/iterator-define': 197, '../internals/string-multibyte': 266, '../internals/to-string': 293 }],
+  493: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var createHTML = require('../internals/create-html')
@@ -14081,8 +14226,8 @@
         return createHTML(this, 'a', 'href', url)
       }
     })
-  }, { '../internals/create-html': 104, '../internals/export': 140, '../internals/string-html-forced': 262 }],
-  488: [function (require, module, exports) {
+  }, { '../internals/create-html': 107, '../internals/export': 143, '../internals/string-html-forced': 265 }],
+  494: [function (require, module, exports) {
     'use strict'
     /* eslint-disable es/no-string-prototype-matchall -- safe */
     var $ = require('../internals/export')
@@ -14185,8 +14330,8 @@
     })
 
     IS_PURE || MATCH_ALL in RegExpPrototype || defineBuiltIn(RegExpPrototype, MATCH_ALL, $matchAll)
-  }, { '../internals/advance-string-index': 62, '../internals/an-object': 64, '../internals/classof-raw': 96, '../internals/create-iter-result-object': 105, '../internals/define-built-in': 112, '../internals/export': 140, '../internals/fails': 141, '../internals/function-call': 149, '../internals/function-uncurry-this-clause': 152, '../internals/get-method': 160, '../internals/internal-state': 174, '../internals/is-null-or-undefined': 183, '../internals/is-pure': 186, '../internals/is-regexp': 187, '../internals/iterator-create-constructor': 192, '../internals/regexp-exec-abstract': 243, '../internals/regexp-get-flags': 246, '../internals/require-object-coercible': 250, '../internals/species-constructor': 261, '../internals/to-length': 283, '../internals/to-string': 290, '../internals/well-known-symbol': 307 }],
-  489: [function (require, module, exports) {
+  }, { '../internals/advance-string-index': 62, '../internals/an-object': 64, '../internals/classof-raw': 99, '../internals/create-iter-result-object': 108, '../internals/define-built-in': 115, '../internals/export': 143, '../internals/fails': 144, '../internals/function-call': 152, '../internals/function-uncurry-this-clause': 155, '../internals/get-method': 163, '../internals/internal-state': 177, '../internals/is-null-or-undefined': 186, '../internals/is-pure': 189, '../internals/is-regexp': 190, '../internals/iterator-create-constructor': 195, '../internals/regexp-exec-abstract': 246, '../internals/regexp-get-flags': 249, '../internals/require-object-coercible': 253, '../internals/species-constructor': 264, '../internals/to-length': 286, '../internals/to-string': 293, '../internals/well-known-symbol': 310 }],
+  495: [function (require, module, exports) {
     'use strict'
     var call = require('../internals/function-call')
     var fixRegExpWellKnownSymbolLogic = require('../internals/fix-regexp-well-known-symbol-logic')
@@ -14235,8 +14380,8 @@
         }
       ]
     })
-  }, { '../internals/advance-string-index': 62, '../internals/an-object': 64, '../internals/fix-regexp-well-known-symbol-logic': 142, '../internals/function-call': 149, '../internals/get-method': 160, '../internals/is-null-or-undefined': 183, '../internals/regexp-exec-abstract': 243, '../internals/require-object-coercible': 250, '../internals/to-length': 283, '../internals/to-string': 290 }],
-  490: [function (require, module, exports) {
+  }, { '../internals/advance-string-index': 62, '../internals/an-object': 64, '../internals/fix-regexp-well-known-symbol-logic': 145, '../internals/function-call': 152, '../internals/get-method': 163, '../internals/is-null-or-undefined': 186, '../internals/regexp-exec-abstract': 246, '../internals/require-object-coercible': 253, '../internals/to-length': 286, '../internals/to-string': 293 }],
+  496: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $padEnd = require('../internals/string-pad').end
@@ -14249,8 +14394,8 @@
         return $padEnd(this, maxLength, arguments.length > 1 ? arguments[1] : undefined)
       }
     })
-  }, { '../internals/export': 140, '../internals/string-pad': 265, '../internals/string-pad-webkit-bug': 264 }],
-  491: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/string-pad': 268, '../internals/string-pad-webkit-bug': 267 }],
+  497: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $padStart = require('../internals/string-pad').start
@@ -14263,8 +14408,8 @@
         return $padStart(this, maxLength, arguments.length > 1 ? arguments[1] : undefined)
       }
     })
-  }, { '../internals/export': 140, '../internals/string-pad': 265, '../internals/string-pad-webkit-bug': 264 }],
-  492: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/string-pad': 268, '../internals/string-pad-webkit-bug': 267 }],
+  498: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -14293,8 +14438,8 @@
         }
       }
     })
-  }, { '../internals/export': 140, '../internals/function-uncurry-this': 153, '../internals/length-of-array-like': 198, '../internals/to-indexed-object': 281, '../internals/to-object': 284, '../internals/to-string': 290 }],
-  493: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/function-uncurry-this': 156, '../internals/length-of-array-like': 201, '../internals/to-indexed-object': 284, '../internals/to-object': 287, '../internals/to-string': 293 }],
+  499: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var repeat = require('../internals/string-repeat')
@@ -14304,8 +14449,8 @@
     $({ target: 'String', proto: true }, {
       repeat: repeat
     })
-  }, { '../internals/export': 140, '../internals/string-repeat': 267 }],
-  494: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/string-repeat': 270 }],
+  500: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var call = require('../internals/function-call')
@@ -14371,8 +14516,8 @@
         return result
       }
     })
-  }, { '../internals/export': 140, '../internals/function-call': 149, '../internals/function-uncurry-this': 153, '../internals/get-method': 160, '../internals/get-substitution': 161, '../internals/is-callable': 178, '../internals/is-null-or-undefined': 183, '../internals/is-pure': 186, '../internals/is-regexp': 187, '../internals/regexp-get-flags': 246, '../internals/require-object-coercible': 250, '../internals/to-string': 290, '../internals/well-known-symbol': 307 }],
-  495: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/function-call': 152, '../internals/function-uncurry-this': 156, '../internals/get-method': 163, '../internals/get-substitution': 164, '../internals/is-callable': 181, '../internals/is-null-or-undefined': 186, '../internals/is-pure': 189, '../internals/is-regexp': 190, '../internals/regexp-get-flags': 249, '../internals/require-object-coercible': 253, '../internals/to-string': 293, '../internals/well-known-symbol': 310 }],
+  501: [function (require, module, exports) {
     'use strict'
     var apply = require('../internals/function-apply')
     var call = require('../internals/function-call')
@@ -14515,8 +14660,8 @@
         }
       ]
     }, !REPLACE_SUPPORTS_NAMED_GROUPS || !REPLACE_KEEPS_$0 || REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE)
-  }, { '../internals/advance-string-index': 62, '../internals/an-object': 64, '../internals/fails': 141, '../internals/fix-regexp-well-known-symbol-logic': 142, '../internals/function-apply': 145, '../internals/function-call': 149, '../internals/function-uncurry-this': 153, '../internals/get-method': 160, '../internals/get-substitution': 161, '../internals/is-callable': 178, '../internals/is-null-or-undefined': 183, '../internals/regexp-exec-abstract': 243, '../internals/require-object-coercible': 250, '../internals/to-integer-or-infinity': 282, '../internals/to-length': 283, '../internals/to-string': 290, '../internals/well-known-symbol': 307 }],
-  496: [function (require, module, exports) {
+  }, { '../internals/advance-string-index': 62, '../internals/an-object': 64, '../internals/fails': 144, '../internals/fix-regexp-well-known-symbol-logic': 145, '../internals/function-apply': 148, '../internals/function-call': 152, '../internals/function-uncurry-this': 156, '../internals/get-method': 163, '../internals/get-substitution': 164, '../internals/is-callable': 181, '../internals/is-null-or-undefined': 186, '../internals/regexp-exec-abstract': 246, '../internals/require-object-coercible': 253, '../internals/to-integer-or-infinity': 285, '../internals/to-length': 286, '../internals/to-string': 293, '../internals/well-known-symbol': 310 }],
+  502: [function (require, module, exports) {
     'use strict'
     var call = require('../internals/function-call')
     var fixRegExpWellKnownSymbolLogic = require('../internals/fix-regexp-well-known-symbol-logic')
@@ -14555,8 +14700,8 @@
         }
       ]
     })
-  }, { '../internals/an-object': 64, '../internals/fix-regexp-well-known-symbol-logic': 142, '../internals/function-call': 149, '../internals/get-method': 160, '../internals/is-null-or-undefined': 183, '../internals/regexp-exec-abstract': 243, '../internals/require-object-coercible': 250, '../internals/same-value': 252, '../internals/to-string': 290 }],
-  497: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/fix-regexp-well-known-symbol-logic': 145, '../internals/function-call': 152, '../internals/get-method': 163, '../internals/is-null-or-undefined': 186, '../internals/regexp-exec-abstract': 246, '../internals/require-object-coercible': 253, '../internals/same-value': 255, '../internals/to-string': 293 }],
+  503: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var createHTML = require('../internals/create-html')
@@ -14569,8 +14714,8 @@
         return createHTML(this, 'small', '', '')
       }
     })
-  }, { '../internals/create-html': 104, '../internals/export': 140, '../internals/string-html-forced': 262 }],
-  498: [function (require, module, exports) {
+  }, { '../internals/create-html': 107, '../internals/export': 143, '../internals/string-html-forced': 265 }],
+  504: [function (require, module, exports) {
     'use strict'
     var call = require('../internals/function-call')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -14682,8 +14827,8 @@
         }
       ]
     }, BUGGY || !SPLIT_WORKS_WITH_OVERWRITTEN_EXEC, UNSUPPORTED_Y)
-  }, { '../internals/advance-string-index': 62, '../internals/an-object': 64, '../internals/fails': 141, '../internals/fix-regexp-well-known-symbol-logic': 142, '../internals/function-call': 149, '../internals/function-uncurry-this': 153, '../internals/get-method': 160, '../internals/is-null-or-undefined': 183, '../internals/regexp-exec-abstract': 243, '../internals/regexp-sticky-helpers': 247, '../internals/require-object-coercible': 250, '../internals/species-constructor': 261, '../internals/to-length': 283, '../internals/to-string': 290 }],
-  499: [function (require, module, exports) {
+  }, { '../internals/advance-string-index': 62, '../internals/an-object': 64, '../internals/fails': 144, '../internals/fix-regexp-well-known-symbol-logic': 145, '../internals/function-call': 152, '../internals/function-uncurry-this': 156, '../internals/get-method': 163, '../internals/is-null-or-undefined': 186, '../internals/regexp-exec-abstract': 246, '../internals/regexp-sticky-helpers': 250, '../internals/require-object-coercible': 253, '../internals/species-constructor': 264, '../internals/to-length': 286, '../internals/to-string': 293 }],
+  505: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this-clause')
@@ -14716,8 +14861,8 @@
         return stringSlice(that, index, index + search.length) === search
       }
     })
-  }, { '../internals/correct-is-regexp-logic': 102, '../internals/export': 140, '../internals/function-uncurry-this-clause': 152, '../internals/is-pure': 186, '../internals/not-a-regexp': 211, '../internals/object-get-own-property-descriptor': 219, '../internals/require-object-coercible': 250, '../internals/to-length': 283, '../internals/to-string': 290 }],
-  500: [function (require, module, exports) {
+  }, { '../internals/correct-is-regexp-logic': 105, '../internals/export': 143, '../internals/function-uncurry-this-clause': 155, '../internals/is-pure': 189, '../internals/not-a-regexp': 214, '../internals/object-get-own-property-descriptor': 222, '../internals/require-object-coercible': 253, '../internals/to-length': 286, '../internals/to-string': 293 }],
+  506: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var createHTML = require('../internals/create-html')
@@ -14730,8 +14875,8 @@
         return createHTML(this, 'strike', '', '')
       }
     })
-  }, { '../internals/create-html': 104, '../internals/export': 140, '../internals/string-html-forced': 262 }],
-  501: [function (require, module, exports) {
+  }, { '../internals/create-html': 107, '../internals/export': 143, '../internals/string-html-forced': 265 }],
+  507: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var createHTML = require('../internals/create-html')
@@ -14744,8 +14889,8 @@
         return createHTML(this, 'sub', '', '')
       }
     })
-  }, { '../internals/create-html': 104, '../internals/export': 140, '../internals/string-html-forced': 262 }],
-  502: [function (require, module, exports) {
+  }, { '../internals/create-html': 107, '../internals/export': 143, '../internals/string-html-forced': 265 }],
+  508: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -14776,8 +14921,8 @@
         return intStart >= intEnd ? '' : stringSlice(that, intStart, intEnd)
       }
     })
-  }, { '../internals/export': 140, '../internals/function-uncurry-this': 153, '../internals/require-object-coercible': 250, '../internals/to-integer-or-infinity': 282, '../internals/to-string': 290 }],
-  503: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/function-uncurry-this': 156, '../internals/require-object-coercible': 253, '../internals/to-integer-or-infinity': 285, '../internals/to-string': 293 }],
+  509: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var createHTML = require('../internals/create-html')
@@ -14790,8 +14935,8 @@
         return createHTML(this, 'sup', '', '')
       }
     })
-  }, { '../internals/create-html': 104, '../internals/export': 140, '../internals/string-html-forced': 262 }],
-  504: [function (require, module, exports) {
+  }, { '../internals/create-html': 107, '../internals/export': 143, '../internals/string-html-forced': 265 }],
+  510: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var call = require('../internals/function-call')
@@ -14835,8 +14980,8 @@
         } return join(result, '')
       }
     })
-  }, { '../internals/export': 140, '../internals/fails': 141, '../internals/function-call': 149, '../internals/function-uncurry-this': 153, '../internals/require-object-coercible': 250, '../internals/to-string': 290 }],
-  505: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144, '../internals/function-call': 152, '../internals/function-uncurry-this': 156, '../internals/require-object-coercible': 253, '../internals/to-string': 293 }],
+  511: [function (require, module, exports) {
     'use strict'
     // TODO: Remove this line from `core-js@4`
     require('../modules/es.string.trim-right')
@@ -14849,8 +14994,8 @@
     $({ target: 'String', proto: true, name: 'trimEnd', forced: ''.trimEnd !== trimEnd }, {
       trimEnd: trimEnd
     })
-  }, { '../internals/export': 140, '../internals/string-trim-end': 268, '../modules/es.string.trim-right': 507 }],
-  506: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/string-trim-end': 271, '../modules/es.string.trim-right': 513 }],
+  512: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var trimStart = require('../internals/string-trim-start')
@@ -14861,8 +15006,8 @@
     $({ target: 'String', proto: true, name: 'trimStart', forced: ''.trimLeft !== trimStart }, {
       trimLeft: trimStart
     })
-  }, { '../internals/export': 140, '../internals/string-trim-start': 270 }],
-  507: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/string-trim-start': 273 }],
+  513: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var trimEnd = require('../internals/string-trim-end')
@@ -14873,8 +15018,8 @@
     $({ target: 'String', proto: true, name: 'trimEnd', forced: ''.trimRight !== trimEnd }, {
       trimRight: trimEnd
     })
-  }, { '../internals/export': 140, '../internals/string-trim-end': 268 }],
-  508: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/string-trim-end': 271 }],
+  514: [function (require, module, exports) {
     'use strict'
     // TODO: Remove this line from `core-js@4`
     require('../modules/es.string.trim-left')
@@ -14887,8 +15032,8 @@
     $({ target: 'String', proto: true, name: 'trimStart', forced: ''.trimStart !== trimStart }, {
       trimStart: trimStart
     })
-  }, { '../internals/export': 140, '../internals/string-trim-start': 270, '../modules/es.string.trim-left': 506 }],
-  509: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/string-trim-start': 273, '../modules/es.string.trim-left': 512 }],
+  515: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $trim = require('../internals/string-trim').trim
@@ -14901,16 +15046,16 @@
         return $trim(this)
       }
     })
-  }, { '../internals/export': 140, '../internals/string-trim': 271, '../internals/string-trim-forced': 269 }],
-  510: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/string-trim': 274, '../internals/string-trim-forced': 272 }],
+  516: [function (require, module, exports) {
     'use strict'
     var defineWellKnownSymbol = require('../internals/well-known-symbol-define')
 
     // `Symbol.asyncIterator` well-known symbol
     // https://tc39.es/ecma262/#sec-symbol.asynciterator
     defineWellKnownSymbol('asyncIterator')
-  }, { '../internals/well-known-symbol-define': 305 }],
-  511: [function (require, module, exports) {
+  }, { '../internals/well-known-symbol-define': 308 }],
+  517: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var global = require('../internals/global')
@@ -15174,8 +15319,8 @@
     setToStringTag($Symbol, SYMBOL)
 
     hiddenKeys[HIDDEN] = true
-  }, { '../internals/an-object': 64, '../internals/array-iteration': 76, '../internals/create-property-descriptor': 107, '../internals/define-built-in': 112, '../internals/define-built-in-accessor': 111, '../internals/descriptors': 116, '../internals/export': 140, '../internals/fails': 141, '../internals/function-call': 149, '../internals/function-uncurry-this': 153, '../internals/global': 162, '../internals/has-own-property': 163, '../internals/hidden-keys': 164, '../internals/internal-state': 174, '../internals/is-pure': 186, '../internals/object-create': 216, '../internals/object-define-properties': 217, '../internals/object-define-property': 218, '../internals/object-get-own-property-descriptor': 219, '../internals/object-get-own-property-names': 221, '../internals/object-get-own-property-names-external': 220, '../internals/object-get-own-property-symbols': 222, '../internals/object-is-prototype-of': 225, '../internals/object-keys': 227, '../internals/object-property-is-enumerable': 228, '../internals/set-to-string-tag': 257, '../internals/shared': 260, '../internals/shared-key': 258, '../internals/symbol-constructor-detection': 273, '../internals/symbol-define-to-primitive': 274, '../internals/to-indexed-object': 281, '../internals/to-property-key': 288, '../internals/to-string': 290, '../internals/uid': 299, '../internals/well-known-symbol': 307, '../internals/well-known-symbol-define': 305, '../internals/well-known-symbol-wrapped': 306 }],
-  512: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/array-iteration': 79, '../internals/create-property-descriptor': 110, '../internals/define-built-in': 115, '../internals/define-built-in-accessor': 114, '../internals/descriptors': 119, '../internals/export': 143, '../internals/fails': 144, '../internals/function-call': 152, '../internals/function-uncurry-this': 156, '../internals/global': 165, '../internals/has-own-property': 166, '../internals/hidden-keys': 167, '../internals/internal-state': 177, '../internals/is-pure': 189, '../internals/object-create': 219, '../internals/object-define-properties': 220, '../internals/object-define-property': 221, '../internals/object-get-own-property-descriptor': 222, '../internals/object-get-own-property-names': 224, '../internals/object-get-own-property-names-external': 223, '../internals/object-get-own-property-symbols': 225, '../internals/object-is-prototype-of': 228, '../internals/object-keys': 230, '../internals/object-property-is-enumerable': 231, '../internals/set-to-string-tag': 260, '../internals/shared': 263, '../internals/shared-key': 261, '../internals/symbol-constructor-detection': 276, '../internals/symbol-define-to-primitive': 277, '../internals/to-indexed-object': 284, '../internals/to-property-key': 291, '../internals/to-string': 293, '../internals/uid': 302, '../internals/well-known-symbol': 310, '../internals/well-known-symbol-define': 308, '../internals/well-known-symbol-wrapped': 309 }],
+  518: [function (require, module, exports) {
     // `Symbol.prototype.description` getter
     // https://tc39.es/ecma262/#sec-symbol.prototype.description
     'use strict'
@@ -15235,8 +15380,8 @@
         Symbol: SymbolWrapper
       })
     }
-  }, { '../internals/copy-constructor-properties': 101, '../internals/define-built-in-accessor': 111, '../internals/descriptors': 116, '../internals/export': 140, '../internals/function-uncurry-this': 153, '../internals/global': 162, '../internals/has-own-property': 163, '../internals/is-callable': 178, '../internals/object-is-prototype-of': 225, '../internals/to-string': 290 }],
-  513: [function (require, module, exports) {
+  }, { '../internals/copy-constructor-properties': 104, '../internals/define-built-in-accessor': 114, '../internals/descriptors': 119, '../internals/export': 143, '../internals/function-uncurry-this': 156, '../internals/global': 165, '../internals/has-own-property': 166, '../internals/is-callable': 181, '../internals/object-is-prototype-of': 228, '../internals/to-string': 293 }],
+  519: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var getBuiltIn = require('../internals/get-built-in')
@@ -15260,32 +15405,32 @@
         return symbol
       }
     })
-  }, { '../internals/export': 140, '../internals/get-built-in': 155, '../internals/has-own-property': 163, '../internals/shared': 260, '../internals/symbol-registry-detection': 275, '../internals/to-string': 290 }],
-  514: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/get-built-in': 158, '../internals/has-own-property': 166, '../internals/shared': 263, '../internals/symbol-registry-detection': 278, '../internals/to-string': 293 }],
+  520: [function (require, module, exports) {
     'use strict'
     var defineWellKnownSymbol = require('../internals/well-known-symbol-define')
 
     // `Symbol.hasInstance` well-known symbol
     // https://tc39.es/ecma262/#sec-symbol.hasinstance
     defineWellKnownSymbol('hasInstance')
-  }, { '../internals/well-known-symbol-define': 305 }],
-  515: [function (require, module, exports) {
+  }, { '../internals/well-known-symbol-define': 308 }],
+  521: [function (require, module, exports) {
     'use strict'
     var defineWellKnownSymbol = require('../internals/well-known-symbol-define')
 
     // `Symbol.isConcatSpreadable` well-known symbol
     // https://tc39.es/ecma262/#sec-symbol.isconcatspreadable
     defineWellKnownSymbol('isConcatSpreadable')
-  }, { '../internals/well-known-symbol-define': 305 }],
-  516: [function (require, module, exports) {
+  }, { '../internals/well-known-symbol-define': 308 }],
+  522: [function (require, module, exports) {
     'use strict'
     var defineWellKnownSymbol = require('../internals/well-known-symbol-define')
 
     // `Symbol.iterator` well-known symbol
     // https://tc39.es/ecma262/#sec-symbol.iterator
     defineWellKnownSymbol('iterator')
-  }, { '../internals/well-known-symbol-define': 305 }],
-  517: [function (require, module, exports) {
+  }, { '../internals/well-known-symbol-define': 308 }],
+  523: [function (require, module, exports) {
     'use strict'
     // TODO: Remove this module from `core-js@4` since it's split to modules listed below
     require('../modules/es.symbol.constructor')
@@ -15293,8 +15438,8 @@
     require('../modules/es.symbol.key-for')
     require('../modules/es.json.stringify')
     require('../modules/es.object.get-own-property-symbols')
-  }, { '../modules/es.json.stringify': 371, '../modules/es.object.get-own-property-symbols': 419, '../modules/es.symbol.constructor': 511, '../modules/es.symbol.for': 513, '../modules/es.symbol.key-for': 518 }],
-  518: [function (require, module, exports) {
+  }, { '../modules/es.json.stringify': 377, '../modules/es.object.get-own-property-symbols': 425, '../modules/es.symbol.constructor': 517, '../modules/es.symbol.for': 519, '../modules/es.symbol.key-for': 524 }],
+  524: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var hasOwn = require('../internals/has-own-property')
@@ -15313,56 +15458,56 @@
         if (hasOwn(SymbolToStringRegistry, sym)) return SymbolToStringRegistry[sym]
       }
     })
-  }, { '../internals/export': 140, '../internals/has-own-property': 163, '../internals/is-symbol': 188, '../internals/shared': 260, '../internals/symbol-registry-detection': 275, '../internals/try-to-string': 293 }],
-  519: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/has-own-property': 166, '../internals/is-symbol': 191, '../internals/shared': 263, '../internals/symbol-registry-detection': 278, '../internals/try-to-string': 296 }],
+  525: [function (require, module, exports) {
     'use strict'
     var defineWellKnownSymbol = require('../internals/well-known-symbol-define')
 
     // `Symbol.matchAll` well-known symbol
     // https://tc39.es/ecma262/#sec-symbol.matchall
     defineWellKnownSymbol('matchAll')
-  }, { '../internals/well-known-symbol-define': 305 }],
-  520: [function (require, module, exports) {
+  }, { '../internals/well-known-symbol-define': 308 }],
+  526: [function (require, module, exports) {
     'use strict'
     var defineWellKnownSymbol = require('../internals/well-known-symbol-define')
 
     // `Symbol.match` well-known symbol
     // https://tc39.es/ecma262/#sec-symbol.match
     defineWellKnownSymbol('match')
-  }, { '../internals/well-known-symbol-define': 305 }],
-  521: [function (require, module, exports) {
+  }, { '../internals/well-known-symbol-define': 308 }],
+  527: [function (require, module, exports) {
     'use strict'
     var defineWellKnownSymbol = require('../internals/well-known-symbol-define')
 
     // `Symbol.replace` well-known symbol
     // https://tc39.es/ecma262/#sec-symbol.replace
     defineWellKnownSymbol('replace')
-  }, { '../internals/well-known-symbol-define': 305 }],
-  522: [function (require, module, exports) {
+  }, { '../internals/well-known-symbol-define': 308 }],
+  528: [function (require, module, exports) {
     'use strict'
     var defineWellKnownSymbol = require('../internals/well-known-symbol-define')
 
     // `Symbol.search` well-known symbol
     // https://tc39.es/ecma262/#sec-symbol.search
     defineWellKnownSymbol('search')
-  }, { '../internals/well-known-symbol-define': 305 }],
-  523: [function (require, module, exports) {
+  }, { '../internals/well-known-symbol-define': 308 }],
+  529: [function (require, module, exports) {
     'use strict'
     var defineWellKnownSymbol = require('../internals/well-known-symbol-define')
 
     // `Symbol.species` well-known symbol
     // https://tc39.es/ecma262/#sec-symbol.species
     defineWellKnownSymbol('species')
-  }, { '../internals/well-known-symbol-define': 305 }],
-  524: [function (require, module, exports) {
+  }, { '../internals/well-known-symbol-define': 308 }],
+  530: [function (require, module, exports) {
     'use strict'
     var defineWellKnownSymbol = require('../internals/well-known-symbol-define')
 
     // `Symbol.split` well-known symbol
     // https://tc39.es/ecma262/#sec-symbol.split
     defineWellKnownSymbol('split')
-  }, { '../internals/well-known-symbol-define': 305 }],
-  525: [function (require, module, exports) {
+  }, { '../internals/well-known-symbol-define': 308 }],
+  531: [function (require, module, exports) {
     'use strict'
     var defineWellKnownSymbol = require('../internals/well-known-symbol-define')
     var defineSymbolToPrimitive = require('../internals/symbol-define-to-primitive')
@@ -15374,8 +15519,8 @@
     // `Symbol.prototype[@@toPrimitive]` method
     // https://tc39.es/ecma262/#sec-symbol.prototype-@@toprimitive
     defineSymbolToPrimitive()
-  }, { '../internals/symbol-define-to-primitive': 274, '../internals/well-known-symbol-define': 305 }],
-  526: [function (require, module, exports) {
+  }, { '../internals/symbol-define-to-primitive': 277, '../internals/well-known-symbol-define': 308 }],
+  532: [function (require, module, exports) {
     'use strict'
     var getBuiltIn = require('../internals/get-built-in')
     var defineWellKnownSymbol = require('../internals/well-known-symbol-define')
@@ -15388,16 +15533,16 @@
     // `Symbol.prototype[@@toStringTag]` property
     // https://tc39.es/ecma262/#sec-symbol.prototype-@@tostringtag
     setToStringTag(getBuiltIn('Symbol'), 'Symbol')
-  }, { '../internals/get-built-in': 155, '../internals/set-to-string-tag': 257, '../internals/well-known-symbol-define': 305 }],
-  527: [function (require, module, exports) {
+  }, { '../internals/get-built-in': 158, '../internals/set-to-string-tag': 260, '../internals/well-known-symbol-define': 308 }],
+  533: [function (require, module, exports) {
     'use strict'
     var defineWellKnownSymbol = require('../internals/well-known-symbol-define')
 
     // `Symbol.unscopables` well-known symbol
     // https://tc39.es/ecma262/#sec-symbol.unscopables
     defineWellKnownSymbol('unscopables')
-  }, { '../internals/well-known-symbol-define': 305 }],
-  528: [function (require, module, exports) {
+  }, { '../internals/well-known-symbol-define': 308 }],
+  534: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var lengthOfArrayLike = require('../internals/length-of-array-like')
@@ -15415,8 +15560,8 @@
       var k = relativeIndex >= 0 ? relativeIndex : len + relativeIndex
       return (k < 0 || k >= len) ? undefined : O[k]
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/length-of-array-like': 198, '../internals/to-integer-or-infinity': 282 }],
-  529: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/length-of-array-like': 201, '../internals/to-integer-or-infinity': 285 }],
+  535: [function (require, module, exports) {
     'use strict'
     var uncurryThis = require('../internals/function-uncurry-this')
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
@@ -15431,8 +15576,8 @@
     exportTypedArrayMethod('copyWithin', function copyWithin (target, start /* , end */) {
       return u$ArrayCopyWithin(aTypedArray(this), target, start, arguments.length > 2 ? arguments[2] : undefined)
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-copy-within': 69, '../internals/function-uncurry-this': 153 }],
-  530: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-copy-within': 72, '../internals/function-uncurry-this': 156 }],
+  536: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var $every = require('../internals/array-iteration').every
@@ -15445,8 +15590,8 @@
     exportTypedArrayMethod('every', function every (callbackfn /* , thisArg */) {
       return $every(aTypedArray(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined)
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-iteration': 76 }],
-  531: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-iteration': 79 }],
+  537: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var $fill = require('../internals/array-fill')
@@ -15476,8 +15621,8 @@
       var actualValue = slice(classof(this), 0, 3) === 'Big' ? toBigInt(value) : +value
       return call($fill, this, actualValue, length > 1 ? arguments[1] : undefined, length > 2 ? arguments[2] : undefined)
     }, CONVERSION_BUG)
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-fill': 70, '../internals/classof': 97, '../internals/fails': 141, '../internals/function-call': 149, '../internals/function-uncurry-this': 153, '../internals/to-big-int': 279 }],
-  532: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-fill': 73, '../internals/classof': 100, '../internals/fails': 144, '../internals/function-call': 152, '../internals/function-uncurry-this': 156, '../internals/to-big-int': 282 }],
+  538: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var $filter = require('../internals/array-iteration').filter
@@ -15492,8 +15637,8 @@
       var list = $filter(aTypedArray(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined)
       return fromSpeciesAndList(this, list)
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-iteration': 76, '../internals/typed-array-from-species-and-list': 296 }],
-  533: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-iteration': 79, '../internals/typed-array-from-species-and-list': 299 }],
+  539: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var $findIndex = require('../internals/array-iteration').findIndex
@@ -15506,8 +15651,8 @@
     exportTypedArrayMethod('findIndex', function findIndex (predicate /* , thisArg */) {
       return $findIndex(aTypedArray(this), predicate, arguments.length > 1 ? arguments[1] : undefined)
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-iteration': 76 }],
-  534: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-iteration': 79 }],
+  540: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var $findLastIndex = require('../internals/array-iteration-from-last').findLastIndex
@@ -15520,8 +15665,8 @@
     exportTypedArrayMethod('findLastIndex', function findLastIndex (predicate /* , thisArg */) {
       return $findLastIndex(aTypedArray(this), predicate, arguments.length > 1 ? arguments[1] : undefined)
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-iteration-from-last': 75 }],
-  535: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-iteration-from-last': 78 }],
+  541: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var $findLast = require('../internals/array-iteration-from-last').findLast
@@ -15534,8 +15679,8 @@
     exportTypedArrayMethod('findLast', function findLast (predicate /* , thisArg */) {
       return $findLast(aTypedArray(this), predicate, arguments.length > 1 ? arguments[1] : undefined)
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-iteration-from-last': 75 }],
-  536: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-iteration-from-last': 78 }],
+  542: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var $find = require('../internals/array-iteration').find
@@ -15548,8 +15693,8 @@
     exportTypedArrayMethod('find', function find (predicate /* , thisArg */) {
       return $find(aTypedArray(this), predicate, arguments.length > 1 ? arguments[1] : undefined)
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-iteration': 76 }],
-  537: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-iteration': 79 }],
+  543: [function (require, module, exports) {
     'use strict'
     var createTypedArrayConstructor = require('../internals/typed-array-constructor')
 
@@ -15560,8 +15705,8 @@
         return init(this, data, byteOffset, length)
       }
     })
-  }, { '../internals/typed-array-constructor': 294 }],
-  538: [function (require, module, exports) {
+  }, { '../internals/typed-array-constructor': 297 }],
+  544: [function (require, module, exports) {
     'use strict'
     var createTypedArrayConstructor = require('../internals/typed-array-constructor')
 
@@ -15572,8 +15717,8 @@
         return init(this, data, byteOffset, length)
       }
     })
-  }, { '../internals/typed-array-constructor': 294 }],
-  539: [function (require, module, exports) {
+  }, { '../internals/typed-array-constructor': 297 }],
+  545: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var $forEach = require('../internals/array-iteration').forEach
@@ -15586,8 +15731,8 @@
     exportTypedArrayMethod('forEach', function forEach (callbackfn /* , thisArg */) {
       $forEach(aTypedArray(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined)
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-iteration': 76 }],
-  540: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-iteration': 79 }],
+  546: [function (require, module, exports) {
     'use strict'
     var TYPED_ARRAYS_CONSTRUCTORS_REQUIRES_WRAPPERS = require('../internals/typed-array-constructors-require-wrappers')
     var exportTypedArrayStaticMethod = require('../internals/array-buffer-view-core').exportTypedArrayStaticMethod
@@ -15596,8 +15741,8 @@
     // `%TypedArray%.from` method
     // https://tc39.es/ecma262/#sec-%typedarray%.from
     exportTypedArrayStaticMethod('from', typedArrayFrom, TYPED_ARRAYS_CONSTRUCTORS_REQUIRES_WRAPPERS)
-  }, { '../internals/array-buffer-view-core': 67, '../internals/typed-array-constructors-require-wrappers': 295, '../internals/typed-array-from': 297 }],
-  541: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/typed-array-constructors-require-wrappers': 298, '../internals/typed-array-from': 300 }],
+  547: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var $includes = require('../internals/array-includes').includes
@@ -15610,8 +15755,8 @@
     exportTypedArrayMethod('includes', function includes (searchElement /* , fromIndex */) {
       return $includes(aTypedArray(this), searchElement, arguments.length > 1 ? arguments[1] : undefined)
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-includes': 74 }],
-  542: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-includes': 77 }],
+  548: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var $indexOf = require('../internals/array-includes').indexOf
@@ -15624,8 +15769,8 @@
     exportTypedArrayMethod('indexOf', function indexOf (searchElement /* , fromIndex */) {
       return $indexOf(aTypedArray(this), searchElement, arguments.length > 1 ? arguments[1] : undefined)
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-includes': 74 }],
-  543: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-includes': 77 }],
+  549: [function (require, module, exports) {
     'use strict'
     var createTypedArrayConstructor = require('../internals/typed-array-constructor')
 
@@ -15636,8 +15781,8 @@
         return init(this, data, byteOffset, length)
       }
     })
-  }, { '../internals/typed-array-constructor': 294 }],
-  544: [function (require, module, exports) {
+  }, { '../internals/typed-array-constructor': 297 }],
+  550: [function (require, module, exports) {
     'use strict'
     var createTypedArrayConstructor = require('../internals/typed-array-constructor')
 
@@ -15648,8 +15793,8 @@
         return init(this, data, byteOffset, length)
       }
     })
-  }, { '../internals/typed-array-constructor': 294 }],
-  545: [function (require, module, exports) {
+  }, { '../internals/typed-array-constructor': 297 }],
+  551: [function (require, module, exports) {
     'use strict'
     var createTypedArrayConstructor = require('../internals/typed-array-constructor')
 
@@ -15660,8 +15805,8 @@
         return init(this, data, byteOffset, length)
       }
     })
-  }, { '../internals/typed-array-constructor': 294 }],
-  546: [function (require, module, exports) {
+  }, { '../internals/typed-array-constructor': 297 }],
+  552: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var fails = require('../internals/fails')
@@ -15708,8 +15853,8 @@
     // `%TypedArray%.prototype[@@iterator]` method
     // https://tc39.es/ecma262/#sec-%typedarray%.prototype-@@iterator
     exportTypedArrayMethod(ITERATOR, typedArrayValues, GENERIC || !ITERATOR_IS_VALUES, { name: 'values' })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/fails': 141, '../internals/function-uncurry-this': 153, '../internals/global': 162, '../internals/well-known-symbol': 307, '../modules/es.array.iterator': 333 }],
-  547: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/fails': 144, '../internals/function-uncurry-this': 156, '../internals/global': 165, '../internals/well-known-symbol': 310, '../modules/es.array.iterator': 339 }],
+  553: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -15723,8 +15868,8 @@
     exportTypedArrayMethod('join', function join (separator) {
       return $join(aTypedArray(this), separator)
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/function-uncurry-this': 153 }],
-  548: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/function-uncurry-this': 156 }],
+  554: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var apply = require('../internals/function-apply')
@@ -15739,8 +15884,8 @@
       var length = arguments.length
       return apply($lastIndexOf, aTypedArray(this), length > 1 ? [searchElement, arguments[1]] : [searchElement])
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-last-index-of': 77, '../internals/function-apply': 145 }],
-  549: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-last-index-of': 80, '../internals/function-apply': 148 }],
+  555: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var $map = require('../internals/array-iteration').map
@@ -15756,8 +15901,8 @@
         return new (typedArraySpeciesConstructor(O))(length)
       })
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-iteration': 76, '../internals/typed-array-species-constructor': 298 }],
-  550: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-iteration': 79, '../internals/typed-array-species-constructor': 301 }],
+  556: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var TYPED_ARRAYS_CONSTRUCTORS_REQUIRES_WRAPPERS = require('../internals/typed-array-constructors-require-wrappers')
@@ -15774,8 +15919,8 @@
       while (length > index) result[index] = arguments[index++]
       return result
     }, TYPED_ARRAYS_CONSTRUCTORS_REQUIRES_WRAPPERS)
-  }, { '../internals/array-buffer-view-core': 67, '../internals/typed-array-constructors-require-wrappers': 295 }],
-  551: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/typed-array-constructors-require-wrappers': 298 }],
+  557: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var $reduceRight = require('../internals/array-reduce').right
@@ -15789,8 +15934,8 @@
       var length = arguments.length
       return $reduceRight(aTypedArray(this), callbackfn, length, length > 1 ? arguments[1] : undefined)
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-reduce': 80 }],
-  552: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-reduce': 83 }],
+  558: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var $reduce = require('../internals/array-reduce').left
@@ -15804,8 +15949,8 @@
       var length = arguments.length
       return $reduce(aTypedArray(this), callbackfn, length, length > 1 ? arguments[1] : undefined)
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-reduce': 80 }],
-  553: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-reduce': 83 }],
+  559: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
 
@@ -15827,8 +15972,8 @@
         that[length] = value
       } return that
     })
-  }, { '../internals/array-buffer-view-core': 67 }],
-  554: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70 }],
+  560: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var call = require('../internals/function-call')
@@ -15873,8 +16018,8 @@
       if (len + offset > length) throw new RangeError('Wrong length')
       while (index < len) this[offset + index] = src[index++]
     }, !WORKS_WITH_OBJECTS_AND_GENERIC_ON_TYPED_ARRAYS || TO_OBJECT_BUG)
-  }, { '../internals/array-buffer-view-core': 67, '../internals/fails': 141, '../internals/function-call': 149, '../internals/global': 162, '../internals/length-of-array-like': 198, '../internals/to-object': 284, '../internals/to-offset': 285 }],
-  555: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/fails': 144, '../internals/function-call': 152, '../internals/global': 165, '../internals/length-of-array-like': 201, '../internals/to-object': 287, '../internals/to-offset': 288 }],
+  561: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var typedArraySpeciesConstructor = require('../internals/typed-array-species-constructor')
@@ -15900,8 +16045,8 @@
       while (length > index) result[index] = list[index++]
       return result
     }, FORCED)
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-slice': 82, '../internals/fails': 141, '../internals/typed-array-species-constructor': 298 }],
-  556: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-slice': 85, '../internals/fails': 144, '../internals/typed-array-species-constructor': 301 }],
+  562: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var $some = require('../internals/array-iteration').some
@@ -15914,8 +16059,8 @@
     exportTypedArrayMethod('some', function some (callbackfn /* , thisArg */) {
       return $some(aTypedArray(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined)
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-iteration': 76 }],
-  557: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-iteration': 79 }],
+  563: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var uncurryThis = require('../internals/function-uncurry-this-clause')
@@ -15986,8 +16131,8 @@
 
       return internalSort(aTypedArray(this), getSortCompare(comparefn))
     }, !STABLE_SORT || ACCEPT_INCORRECT_ARGUMENTS)
-  }, { '../internals/a-callable': 58, '../internals/array-buffer-view-core': 67, '../internals/array-sort': 83, '../internals/engine-ff-version': 123, '../internals/engine-is-ie-or-edge': 127, '../internals/engine-v8-version': 133, '../internals/engine-webkit-version': 134, '../internals/fails': 141, '../internals/function-uncurry-this-clause': 152, '../internals/global': 162 }],
-  558: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/array-buffer-view-core': 70, '../internals/array-sort': 86, '../internals/engine-ff-version': 126, '../internals/engine-is-ie-or-edge': 130, '../internals/engine-v8-version': 136, '../internals/engine-webkit-version': 137, '../internals/fails': 144, '../internals/function-uncurry-this-clause': 155, '../internals/global': 165 }],
+  564: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var toLength = require('../internals/to-length')
@@ -16010,8 +16155,8 @@
         toLength((end === undefined ? length : toAbsoluteIndex(end, length)) - beginIndex)
       )
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/to-absolute-index': 278, '../internals/to-length': 283, '../internals/typed-array-species-constructor': 298 }],
-  559: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/to-absolute-index': 281, '../internals/to-length': 286, '../internals/typed-array-species-constructor': 301 }],
+  565: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var apply = require('../internals/function-apply')
@@ -16044,8 +16189,8 @@
         arraySlice(arguments)
       )
     }, FORCED)
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-slice': 82, '../internals/fails': 141, '../internals/function-apply': 145, '../internals/global': 162 }],
-  560: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-slice': 85, '../internals/fails': 144, '../internals/function-apply': 148, '../internals/global': 165 }],
+  566: [function (require, module, exports) {
     'use strict'
     var arrayToReversed = require('../internals/array-to-reversed')
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
@@ -16059,8 +16204,8 @@
     exportTypedArrayMethod('toReversed', function toReversed () {
       return arrayToReversed(aTypedArray(this), getTypedArrayConstructor(this))
     })
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-to-reversed': 86 }],
-  561: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-to-reversed': 89 }],
+  567: [function (require, module, exports) {
     'use strict'
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -16080,8 +16225,8 @@
       var A = arrayFromConstructorAndList(getTypedArrayConstructor(O), O)
       return sort(A, compareFn)
     })
-  }, { '../internals/a-callable': 58, '../internals/array-buffer-view-core': 67, '../internals/array-from-constructor-and-list': 72, '../internals/function-uncurry-this': 153 }],
-  562: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/array-buffer-view-core': 70, '../internals/array-from-constructor-and-list': 75, '../internals/function-uncurry-this': 156 }],
+  568: [function (require, module, exports) {
     'use strict'
     var exportTypedArrayMethod = require('../internals/array-buffer-view-core').exportTypedArrayMethod
     var fails = require('../internals/fails')
@@ -16104,8 +16249,8 @@
     // `%TypedArray%.prototype.toString` method
     // https://tc39.es/ecma262/#sec-%typedarray%.prototype.tostring
     exportTypedArrayMethod('toString', arrayToString, IS_NOT_ARRAY_METHOD)
-  }, { '../internals/array-buffer-view-core': 67, '../internals/fails': 141, '../internals/function-uncurry-this': 153, '../internals/global': 162 }],
-  563: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/fails': 144, '../internals/function-uncurry-this': 156, '../internals/global': 165 }],
+  569: [function (require, module, exports) {
     'use strict'
     var createTypedArrayConstructor = require('../internals/typed-array-constructor')
 
@@ -16116,8 +16261,8 @@
         return init(this, data, byteOffset, length)
       }
     })
-  }, { '../internals/typed-array-constructor': 294 }],
-  564: [function (require, module, exports) {
+  }, { '../internals/typed-array-constructor': 297 }],
+  570: [function (require, module, exports) {
     'use strict'
     var createTypedArrayConstructor = require('../internals/typed-array-constructor')
 
@@ -16128,8 +16273,8 @@
         return init(this, data, byteOffset, length)
       }
     })
-  }, { '../internals/typed-array-constructor': 294 }],
-  565: [function (require, module, exports) {
+  }, { '../internals/typed-array-constructor': 297 }],
+  571: [function (require, module, exports) {
     'use strict'
     var createTypedArrayConstructor = require('../internals/typed-array-constructor')
 
@@ -16140,8 +16285,8 @@
         return init(this, data, byteOffset, length)
       }
     })
-  }, { '../internals/typed-array-constructor': 294 }],
-  566: [function (require, module, exports) {
+  }, { '../internals/typed-array-constructor': 297 }],
+  572: [function (require, module, exports) {
     'use strict'
     var createTypedArrayConstructor = require('../internals/typed-array-constructor')
 
@@ -16152,8 +16297,8 @@
         return init(this, data, byteOffset, length)
       }
     }, true)
-  }, { '../internals/typed-array-constructor': 294 }],
-  567: [function (require, module, exports) {
+  }, { '../internals/typed-array-constructor': 297 }],
+  573: [function (require, module, exports) {
     'use strict'
     var arrayWith = require('../internals/array-with')
     var ArrayBufferViewCore = require('../internals/array-buffer-view-core')
@@ -16186,8 +16331,8 @@
         return arrayWith(O, getTypedArrayConstructor(O), relativeIndex, actualValue)
       }
     }.with, !PROPER_ORDER)
-  }, { '../internals/array-buffer-view-core': 67, '../internals/array-with': 87, '../internals/is-big-int-array': 177, '../internals/to-big-int': 279, '../internals/to-integer-or-infinity': 282 }],
-  568: [function (require, module, exports) {
+  }, { '../internals/array-buffer-view-core': 70, '../internals/array-with': 90, '../internals/is-big-int-array': 180, '../internals/to-big-int': 282, '../internals/to-integer-or-infinity': 285 }],
+  574: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -16233,8 +16378,8 @@
         } return result
       }
     })
-  }, { '../internals/export': 140, '../internals/function-uncurry-this': 153, '../internals/to-string': 290 }],
-  569: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/function-uncurry-this': 156, '../internals/to-string': 293 }],
+  575: [function (require, module, exports) {
     'use strict'
     var FREEZING = require('../internals/freezing')
     var global = require('../internals/global')
@@ -16343,13 +16488,13 @@
         })
       }
     }
-  }, { '../internals/collection': 100, '../internals/collection-weak': 99, '../internals/define-built-ins': 113, '../internals/fails': 141, '../internals/freezing': 144, '../internals/function-uncurry-this': 153, '../internals/global': 162, '../internals/internal-metadata': 173, '../internals/internal-state': 174, '../internals/is-object': 184, '../internals/weak-map-basic-detection': 304 }],
-  570: [function (require, module, exports) {
+  }, { '../internals/collection': 103, '../internals/collection-weak': 102, '../internals/define-built-ins': 116, '../internals/fails': 144, '../internals/freezing': 147, '../internals/function-uncurry-this': 156, '../internals/global': 165, '../internals/internal-metadata': 176, '../internals/internal-state': 177, '../internals/is-object': 187, '../internals/weak-map-basic-detection': 307 }],
+  576: [function (require, module, exports) {
     'use strict'
     // TODO: Remove this module from `core-js@4` since it's replaced to module below
     require('../modules/es.weak-map.constructor')
-  }, { '../modules/es.weak-map.constructor': 569 }],
-  571: [function (require, module, exports) {
+  }, { '../modules/es.weak-map.constructor': 575 }],
+  577: [function (require, module, exports) {
     'use strict'
     var collection = require('../internals/collection')
     var collectionWeak = require('../internals/collection-weak')
@@ -16359,13 +16504,13 @@
     collection('WeakSet', function (init) {
       return function WeakSet () { return init(this, arguments.length ? arguments[0] : undefined) }
     }, collectionWeak)
-  }, { '../internals/collection': 100, '../internals/collection-weak': 99 }],
-  572: [function (require, module, exports) {
+  }, { '../internals/collection': 103, '../internals/collection-weak': 102 }],
+  578: [function (require, module, exports) {
     'use strict'
     // TODO: Remove this module from `core-js@4` since it's replaced to module below
     require('../modules/es.weak-set.constructor')
-  }, { '../modules/es.weak-set.constructor': 571 }],
-  573: [function (require, module, exports) {
+  }, { '../modules/es.weak-set.constructor': 577 }],
+  579: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $every = require('../internals/async-iterator-iteration').every
@@ -16377,8 +16522,8 @@
         return $every(this, predicate)
       }
     })
-  }, { '../internals/async-iterator-iteration': 90, '../internals/export': 140 }],
-  574: [function (require, module, exports) {
+  }, { '../internals/async-iterator-iteration': 93, '../internals/export': 143 }],
+  580: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var call = require('../internals/function-call')
@@ -16446,8 +16591,8 @@
         })
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/async-iterator-close': 88, '../internals/async-iterator-create-proxy': 89, '../internals/create-iter-result-object': 105, '../internals/export': 140, '../internals/function-call': 149, '../internals/get-iterator-direct': 156, '../internals/is-object': 184, '../internals/is-pure': 186 }],
-  575: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/async-iterator-close': 91, '../internals/async-iterator-create-proxy': 92, '../internals/create-iter-result-object': 108, '../internals/export': 143, '../internals/function-call': 152, '../internals/get-iterator-direct': 159, '../internals/is-object': 187, '../internals/is-pure': 189 }],
+  581: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $find = require('../internals/async-iterator-iteration').find
@@ -16459,8 +16604,8 @@
         return $find(this, predicate)
       }
     })
-  }, { '../internals/async-iterator-iteration': 90, '../internals/export': 140 }],
-  576: [function (require, module, exports) {
+  }, { '../internals/async-iterator-iteration': 93, '../internals/export': 143 }],
+  582: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $forEach = require('../internals/async-iterator-iteration').forEach
@@ -16472,8 +16617,8 @@
         return $forEach(this, fn)
       }
     })
-  }, { '../internals/async-iterator-iteration': 90, '../internals/export': 140 }],
-  577: [function (require, module, exports) {
+  }, { '../internals/async-iterator-iteration': 93, '../internals/export': 143 }],
+  583: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var map = require('../internals/async-iterator-map')
@@ -16484,8 +16629,8 @@
     $({ target: 'AsyncIterator', proto: true, real: true, forced: IS_PURE }, {
       map: map
     })
-  }, { '../internals/async-iterator-map': 91, '../internals/export': 140, '../internals/is-pure': 186 }],
-  578: [function (require, module, exports) {
+  }, { '../internals/async-iterator-map': 94, '../internals/export': 143, '../internals/is-pure': 189 }],
+  584: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var call = require('../internals/function-call')
@@ -16553,8 +16698,8 @@
         })
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/async-iterator-close': 88, '../internals/export': 140, '../internals/function-call': 149, '../internals/get-built-in': 155, '../internals/get-iterator-direct': 156, '../internals/is-object': 184 }],
-  579: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/async-iterator-close': 91, '../internals/export': 143, '../internals/function-call': 152, '../internals/get-built-in': 158, '../internals/get-iterator-direct': 159, '../internals/is-object': 187 }],
+  585: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var $some = require('../internals/async-iterator-iteration').some
@@ -16566,8 +16711,8 @@
         return $some(this, predicate)
       }
     })
-  }, { '../internals/async-iterator-iteration': 90, '../internals/export': 140 }],
-  580: [function (require, module, exports) {
+  }, { '../internals/async-iterator-iteration': 93, '../internals/export': 143 }],
+  586: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var global = require('../internals/global')
@@ -16633,8 +16778,8 @@
     $({ global: true, constructor: true, forced: FORCED }, {
       Iterator: IteratorConstructor
     })
-  }, { '../internals/an-instance': 63, '../internals/an-object': 64, '../internals/create-property': 108, '../internals/define-built-in-accessor': 111, '../internals/descriptors': 116, '../internals/export': 140, '../internals/fails': 141, '../internals/global': 162, '../internals/has-own-property': 163, '../internals/is-callable': 178, '../internals/is-pure': 186, '../internals/iterators-core': 196, '../internals/object-get-prototype-of': 223, '../internals/well-known-symbol': 307 }],
-  581: [function (require, module, exports) {
+  }, { '../internals/an-instance': 63, '../internals/an-object': 64, '../internals/create-property': 111, '../internals/define-built-in-accessor': 114, '../internals/descriptors': 119, '../internals/export': 143, '../internals/fails': 144, '../internals/global': 165, '../internals/has-own-property': 166, '../internals/is-callable': 181, '../internals/is-pure': 189, '../internals/iterators-core': 199, '../internals/object-get-prototype-of': 226, '../internals/well-known-symbol': 310 }],
+  587: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var iterate = require('../internals/iterate')
@@ -16655,8 +16800,8 @@
         }, { IS_RECORD: true, INTERRUPTED: true }).stopped
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/export': 140, '../internals/get-iterator-direct': 156, '../internals/iterate': 190 }],
-  582: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/export': 143, '../internals/get-iterator-direct': 159, '../internals/iterate': 193 }],
+  588: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var call = require('../internals/function-call')
@@ -16692,8 +16837,8 @@
         })
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/call-with-safe-iteration-closing': 94, '../internals/export': 140, '../internals/function-call': 149, '../internals/get-iterator-direct': 156, '../internals/is-pure': 186, '../internals/iterator-create-proxy': 193 }],
-  583: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/call-with-safe-iteration-closing': 97, '../internals/export': 143, '../internals/function-call': 152, '../internals/get-iterator-direct': 159, '../internals/is-pure': 189, '../internals/iterator-create-proxy': 196 }],
+  589: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var iterate = require('../internals/iterate')
@@ -16714,8 +16859,8 @@
         }, { IS_RECORD: true, INTERRUPTED: true }).result
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/export': 140, '../internals/get-iterator-direct': 156, '../internals/iterate': 190 }],
-  584: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/export': 143, '../internals/get-iterator-direct': 159, '../internals/iterate': 193 }],
+  590: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var iterate = require('../internals/iterate')
@@ -16736,8 +16881,8 @@
         }, { IS_RECORD: true })
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/export': 140, '../internals/get-iterator-direct': 156, '../internals/iterate': 190 }],
-  585: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/export': 143, '../internals/get-iterator-direct': 159, '../internals/iterate': 193 }],
+  591: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var map = require('../internals/iterator-map')
@@ -16748,8 +16893,8 @@
     $({ target: 'Iterator', proto: true, real: true, forced: IS_PURE }, {
       map: map
     })
-  }, { '../internals/export': 140, '../internals/is-pure': 186, '../internals/iterator-map': 195 }],
-  586: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/is-pure': 189, '../internals/iterator-map': 198 }],
+  592: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var iterate = require('../internals/iterate')
@@ -16782,8 +16927,8 @@
         return accumulator
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/export': 140, '../internals/get-iterator-direct': 156, '../internals/iterate': 190 }],
-  587: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/export': 143, '../internals/get-iterator-direct': 159, '../internals/iterate': 193 }],
+  593: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var iterate = require('../internals/iterate')
@@ -16804,8 +16949,8 @@
         }, { IS_RECORD: true, INTERRUPTED: true }).stopped
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/export': 140, '../internals/get-iterator-direct': 156, '../internals/iterate': 190 }],
-  588: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/an-object': 64, '../internals/export': 143, '../internals/get-iterator-direct': 159, '../internals/iterate': 193 }],
+  594: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var global = require('../internals/global')
@@ -16873,8 +17018,8 @@
         } return output
       }
     })
-  }, { '../internals/base64-map': 93, '../internals/export': 140, '../internals/fails': 141, '../internals/function-call': 149, '../internals/function-uncurry-this': 153, '../internals/get-built-in': 155, '../internals/global': 162, '../internals/to-string': 290, '../internals/validate-arguments-length': 303 }],
-  589: [function (require, module, exports) {
+  }, { '../internals/base64-map': 96, '../internals/export': 143, '../internals/fails': 144, '../internals/function-call': 152, '../internals/function-uncurry-this': 156, '../internals/get-built-in': 158, '../internals/global': 165, '../internals/to-string': 293, '../internals/validate-arguments-length': 306 }],
+  595: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var global = require('../internals/global')
@@ -16926,8 +17071,8 @@
         } return output
       }
     })
-  }, { '../internals/base64-map': 93, '../internals/export': 140, '../internals/fails': 141, '../internals/function-call': 149, '../internals/function-uncurry-this': 153, '../internals/get-built-in': 155, '../internals/global': 162, '../internals/to-string': 290, '../internals/validate-arguments-length': 303 }],
-  590: [function (require, module, exports) {
+  }, { '../internals/base64-map': 96, '../internals/export': 143, '../internals/fails': 144, '../internals/function-call': 152, '../internals/function-uncurry-this': 156, '../internals/get-built-in': 158, '../internals/global': 165, '../internals/to-string': 293, '../internals/validate-arguments-length': 306 }],
+  596: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var global = require('../internals/global')
@@ -16938,8 +17083,8 @@
     $({ global: true, bind: true, enumerable: true, forced: global.clearImmediate !== clearImmediate }, {
       clearImmediate: clearImmediate
     })
-  }, { '../internals/export': 140, '../internals/global': 162, '../internals/task': 276 }],
-  591: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/global': 165, '../internals/task': 279 }],
+  597: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var DOMIterables = require('../internals/dom-iterables')
@@ -16965,8 +17110,8 @@
     }
 
     handlePrototype(DOMTokenListPrototype)
-  }, { '../internals/array-for-each': 71, '../internals/create-non-enumerable-property': 106, '../internals/dom-iterables': 121, '../internals/dom-token-list-prototype': 122, '../internals/global': 162 }],
-  592: [function (require, module, exports) {
+  }, { '../internals/array-for-each': 74, '../internals/create-non-enumerable-property': 109, '../internals/dom-iterables': 124, '../internals/dom-token-list-prototype': 125, '../internals/global': 165 }],
+  598: [function (require, module, exports) {
     'use strict'
     var global = require('../internals/global')
     var DOMIterables = require('../internals/dom-iterables')
@@ -17010,8 +17155,8 @@
     }
 
     handlePrototype(DOMTokenListPrototype, 'DOMTokenList')
-  }, { '../internals/create-non-enumerable-property': 106, '../internals/dom-iterables': 121, '../internals/dom-token-list-prototype': 122, '../internals/global': 162, '../internals/set-to-string-tag': 257, '../internals/well-known-symbol': 307, '../modules/es.array.iterator': 333 }],
-  593: [function (require, module, exports) {
+  }, { '../internals/create-non-enumerable-property': 109, '../internals/dom-iterables': 124, '../internals/dom-token-list-prototype': 125, '../internals/global': 165, '../internals/set-to-string-tag': 260, '../internals/well-known-symbol': 310, '../modules/es.array.iterator': 339 }],
+  599: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var tryNodeRequire = require('../internals/try-node-require')
@@ -17159,8 +17304,8 @@
         }
       }
     }
-  }, { '../internals/an-instance': 63, '../internals/an-object': 64, '../internals/create-property-descriptor': 107, '../internals/define-built-in': 112, '../internals/define-built-in-accessor': 111, '../internals/descriptors': 116, '../internals/dom-exception-constants': 120, '../internals/error-stack-clear': 136, '../internals/error-to-string': 139, '../internals/export': 140, '../internals/fails': 141, '../internals/get-built-in': 155, '../internals/has-own-property': 163, '../internals/internal-state': 174, '../internals/is-pure': 186, '../internals/normalize-string-argument': 210, '../internals/object-create': 216, '../internals/object-define-property': 218, '../internals/try-node-require': 292 }],
-  594: [function (require, module, exports) {
+  }, { '../internals/an-instance': 63, '../internals/an-object': 64, '../internals/create-property-descriptor': 110, '../internals/define-built-in': 115, '../internals/define-built-in-accessor': 114, '../internals/descriptors': 119, '../internals/dom-exception-constants': 123, '../internals/error-stack-clear': 139, '../internals/error-to-string': 142, '../internals/export': 143, '../internals/fails': 144, '../internals/get-built-in': 158, '../internals/has-own-property': 166, '../internals/internal-state': 177, '../internals/is-pure': 189, '../internals/normalize-string-argument': 213, '../internals/object-create': 219, '../internals/object-define-property': 221, '../internals/try-node-require': 295 }],
+  600: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var global = require('../internals/global')
@@ -17231,8 +17376,8 @@
         }
       }
     }
-  }, { '../internals/an-instance': 63, '../internals/create-property-descriptor': 107, '../internals/descriptors': 116, '../internals/dom-exception-constants': 120, '../internals/error-stack-clear': 136, '../internals/export': 140, '../internals/get-built-in': 155, '../internals/global': 162, '../internals/has-own-property': 163, '../internals/inherit-if-required': 170, '../internals/is-pure': 186, '../internals/normalize-string-argument': 210, '../internals/object-define-property': 218 }],
-  595: [function (require, module, exports) {
+  }, { '../internals/an-instance': 63, '../internals/create-property-descriptor': 110, '../internals/descriptors': 119, '../internals/dom-exception-constants': 123, '../internals/error-stack-clear': 139, '../internals/export': 143, '../internals/get-built-in': 158, '../internals/global': 165, '../internals/has-own-property': 166, '../internals/inherit-if-required': 173, '../internals/is-pure': 189, '../internals/normalize-string-argument': 213, '../internals/object-define-property': 221 }],
+  601: [function (require, module, exports) {
     'use strict'
     var getBuiltIn = require('../internals/get-built-in')
     var setToStringTag = require('../internals/set-to-string-tag')
@@ -17241,14 +17386,14 @@
 
     // `DOMException.prototype[@@toStringTag]` property
     setToStringTag(getBuiltIn(DOM_EXCEPTION), DOM_EXCEPTION)
-  }, { '../internals/get-built-in': 155, '../internals/set-to-string-tag': 257 }],
-  596: [function (require, module, exports) {
+  }, { '../internals/get-built-in': 158, '../internals/set-to-string-tag': 260 }],
+  602: [function (require, module, exports) {
     'use strict'
     // TODO: Remove this module from `core-js@4` since it's split to modules listed below
     require('../modules/web.clear-immediate')
     require('../modules/web.set-immediate')
-  }, { '../modules/web.clear-immediate': 590, '../modules/web.set-immediate': 599 }],
-  597: [function (require, module, exports) {
+  }, { '../modules/web.clear-immediate': 596, '../modules/web.set-immediate': 605 }],
+  603: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var microtask = require('../internals/microtask')
@@ -17263,8 +17408,8 @@
         microtask(aCallable(fn))
       }
     })
-  }, { '../internals/a-callable': 58, '../internals/export': 140, '../internals/microtask': 208, '../internals/validate-arguments-length': 303 }],
-  598: [function (require, module, exports) {
+  }, { '../internals/a-callable': 58, '../internals/export': 143, '../internals/microtask': 211, '../internals/validate-arguments-length': 306 }],
+  604: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var global = require('../internals/global')
@@ -17308,8 +17453,8 @@
         })
       }
     } catch (error) { /* empty */ }
-  }, { '../internals/define-built-in-accessor': 111, '../internals/descriptors': 116, '../internals/export': 140, '../internals/global': 162 }],
-  599: [function (require, module, exports) {
+  }, { '../internals/define-built-in-accessor': 114, '../internals/descriptors': 119, '../internals/export': 143, '../internals/global': 165 }],
+  605: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var global = require('../internals/global')
@@ -17324,8 +17469,8 @@
     $({ global: true, bind: true, enumerable: true, forced: global.setImmediate !== setImmediate }, {
       setImmediate: setImmediate
     })
-  }, { '../internals/export': 140, '../internals/global': 162, '../internals/schedulers-fix': 253, '../internals/task': 276 }],
-  600: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/global': 165, '../internals/schedulers-fix': 256, '../internals/task': 279 }],
+  606: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var global = require('../internals/global')
@@ -17338,8 +17483,8 @@
     $({ global: true, bind: true, forced: global.setInterval !== setInterval }, {
       setInterval: setInterval
     })
-  }, { '../internals/export': 140, '../internals/global': 162, '../internals/schedulers-fix': 253 }],
-  601: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/global': 165, '../internals/schedulers-fix': 256 }],
+  607: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var global = require('../internals/global')
@@ -17352,8 +17497,8 @@
     $({ global: true, bind: true, forced: global.setTimeout !== setTimeout }, {
       setTimeout: setTimeout
     })
-  }, { '../internals/export': 140, '../internals/global': 162, '../internals/schedulers-fix': 253 }],
-  602: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/global': 165, '../internals/schedulers-fix': 256 }],
+  608: [function (require, module, exports) {
     'use strict'
     var IS_PURE = require('../internals/is-pure')
     var $ = require('../internals/export')
@@ -17893,14 +18038,14 @@
         return clone
       }
     })
-  }, { '../internals/an-object': 64, '../internals/classof': 97, '../internals/create-non-enumerable-property': 106, '../internals/create-property': 108, '../internals/detach-transferable': 117, '../internals/error-stack-installable': 138, '../internals/export': 140, '../internals/fails': 141, '../internals/function-uncurry-this': 153, '../internals/get-built-in': 155, '../internals/global': 162, '../internals/has-own-property': 163, '../internals/is-callable': 178, '../internals/is-constructor': 179, '../internals/is-null-or-undefined': 183, '../internals/is-object': 184, '../internals/is-pure': 186, '../internals/is-symbol': 188, '../internals/iterate': 190, '../internals/length-of-array-like': 198, '../internals/map-helpers': 200, '../internals/regexp-get-flags': 246, '../internals/set-helpers': 254, '../internals/set-iterate': 255, '../internals/structured-clone-proper-transfer': 272, '../internals/uid': 299, '../internals/validate-arguments-length': 303 }],
-  603: [function (require, module, exports) {
+  }, { '../internals/an-object': 64, '../internals/classof': 100, '../internals/create-non-enumerable-property': 109, '../internals/create-property': 111, '../internals/detach-transferable': 120, '../internals/error-stack-installable': 141, '../internals/export': 143, '../internals/fails': 144, '../internals/function-uncurry-this': 156, '../internals/get-built-in': 158, '../internals/global': 165, '../internals/has-own-property': 166, '../internals/is-callable': 181, '../internals/is-constructor': 182, '../internals/is-null-or-undefined': 186, '../internals/is-object': 187, '../internals/is-pure': 189, '../internals/is-symbol': 191, '../internals/iterate': 193, '../internals/length-of-array-like': 201, '../internals/map-helpers': 203, '../internals/regexp-get-flags': 249, '../internals/set-helpers': 257, '../internals/set-iterate': 258, '../internals/structured-clone-proper-transfer': 275, '../internals/uid': 302, '../internals/validate-arguments-length': 306 }],
+  609: [function (require, module, exports) {
     'use strict'
     // TODO: Remove this module from `core-js@4` since it's split to modules listed below
     require('../modules/web.set-interval')
     require('../modules/web.set-timeout')
-  }, { '../modules/web.set-interval': 600, '../modules/web.set-timeout': 601 }],
-  604: [function (require, module, exports) {
+  }, { '../modules/web.set-interval': 606, '../modules/web.set-timeout': 607 }],
+  610: [function (require, module, exports) {
     'use strict'
     // TODO: in core-js@4, move /modules/ dependencies to public entries for better optimization by tools like `preset-env`
     require('../modules/es.array.iterator')
@@ -18323,8 +18468,8 @@
       URLSearchParams: URLSearchParamsConstructor,
       getState: getInternalParamsState
     }
-  }, { '../internals/an-instance': 63, '../internals/an-object': 64, '../internals/array-sort': 83, '../internals/classof': 97, '../internals/create-iter-result-object': 105, '../internals/create-property-descriptor': 107, '../internals/define-built-in': 112, '../internals/define-built-in-accessor': 111, '../internals/define-built-ins': 113, '../internals/descriptors': 116, '../internals/export': 140, '../internals/function-bind-context': 146, '../internals/function-call': 149, '../internals/function-uncurry-this': 153, '../internals/get-iterator': 158, '../internals/get-iterator-method': 157, '../internals/global': 162, '../internals/has-own-property': 163, '../internals/internal-state': 174, '../internals/is-callable': 178, '../internals/is-object': 184, '../internals/iterator-create-constructor': 192, '../internals/object-create': 216, '../internals/safe-get-built-in': 251, '../internals/set-to-string-tag': 257, '../internals/to-string': 290, '../internals/url-constructor-detection': 300, '../internals/validate-arguments-length': 303, '../internals/well-known-symbol': 307, '../modules/es.array.iterator': 333 }],
-  605: [function (require, module, exports) {
+  }, { '../internals/an-instance': 63, '../internals/an-object': 64, '../internals/array-sort': 86, '../internals/classof': 100, '../internals/create-iter-result-object': 108, '../internals/create-property-descriptor': 110, '../internals/define-built-in': 115, '../internals/define-built-in-accessor': 114, '../internals/define-built-ins': 116, '../internals/descriptors': 119, '../internals/export': 143, '../internals/function-bind-context': 149, '../internals/function-call': 152, '../internals/function-uncurry-this': 156, '../internals/get-iterator': 161, '../internals/get-iterator-method': 160, '../internals/global': 165, '../internals/has-own-property': 166, '../internals/internal-state': 177, '../internals/is-callable': 181, '../internals/is-object': 187, '../internals/iterator-create-constructor': 195, '../internals/object-create': 219, '../internals/safe-get-built-in': 254, '../internals/set-to-string-tag': 260, '../internals/to-string': 293, '../internals/url-constructor-detection': 303, '../internals/validate-arguments-length': 306, '../internals/well-known-symbol': 310, '../modules/es.array.iterator': 339 }],
+  611: [function (require, module, exports) {
     'use strict'
     var defineBuiltIn = require('../internals/define-built-in')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -18374,8 +18519,8 @@
         }
       }, { enumerable: true, unsafe: true })
     }
-  }, { '../internals/define-built-in': 112, '../internals/function-uncurry-this': 153, '../internals/to-string': 290, '../internals/validate-arguments-length': 303 }],
-  606: [function (require, module, exports) {
+  }, { '../internals/define-built-in': 115, '../internals/function-uncurry-this': 156, '../internals/to-string': 293, '../internals/validate-arguments-length': 306 }],
+  612: [function (require, module, exports) {
     'use strict'
     var defineBuiltIn = require('../internals/define-built-in')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -18404,13 +18549,13 @@
         } return false
       }, { enumerable: true, unsafe: true })
     }
-  }, { '../internals/define-built-in': 112, '../internals/function-uncurry-this': 153, '../internals/to-string': 290, '../internals/validate-arguments-length': 303 }],
-  607: [function (require, module, exports) {
+  }, { '../internals/define-built-in': 115, '../internals/function-uncurry-this': 156, '../internals/to-string': 293, '../internals/validate-arguments-length': 306 }],
+  613: [function (require, module, exports) {
     'use strict'
     // TODO: Remove this module from `core-js@4` since it's replaced to module below
     require('../modules/web.url-search-params.constructor')
-  }, { '../modules/web.url-search-params.constructor': 604 }],
-  608: [function (require, module, exports) {
+  }, { '../modules/web.url-search-params.constructor': 610 }],
+  614: [function (require, module, exports) {
     'use strict'
     var DESCRIPTORS = require('../internals/descriptors')
     var uncurryThis = require('../internals/function-uncurry-this')
@@ -18432,8 +18577,8 @@
         enumerable: true
       })
     }
-  }, { '../internals/define-built-in-accessor': 111, '../internals/descriptors': 116, '../internals/function-uncurry-this': 153 }],
-  609: [function (require, module, exports) {
+  }, { '../internals/define-built-in-accessor': 114, '../internals/descriptors': 119, '../internals/function-uncurry-this': 156 }],
+  615: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var getBuiltIn = require('../internals/get-built-in')
@@ -18464,8 +18609,8 @@
         }
       }
     })
-  }, { '../internals/export': 140, '../internals/fails': 141, '../internals/get-built-in': 155, '../internals/to-string': 290, '../internals/url-constructor-detection': 300, '../internals/validate-arguments-length': 303 }],
-  610: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/fails': 144, '../internals/get-built-in': 158, '../internals/to-string': 293, '../internals/url-constructor-detection': 303, '../internals/validate-arguments-length': 306 }],
+  616: [function (require, module, exports) {
     'use strict'
     // TODO: in core-js@4, move /modules/ dependencies to public entries for better optimization by tools like `preset-env`
     require('../modules/es.string.iterator')
@@ -19516,13 +19661,13 @@
     $({ global: true, constructor: true, forced: !USE_NATIVE_URL, sham: !DESCRIPTORS }, {
       URL: URLConstructor
     })
-  }, { '../internals/an-instance': 63, '../internals/array-from': 73, '../internals/array-slice': 82, '../internals/define-built-in': 112, '../internals/define-built-in-accessor': 111, '../internals/descriptors': 116, '../internals/export': 140, '../internals/function-bind-context': 146, '../internals/function-uncurry-this': 153, '../internals/global': 162, '../internals/has-own-property': 163, '../internals/internal-state': 174, '../internals/object-assign': 215, '../internals/set-to-string-tag': 257, '../internals/string-multibyte': 263, '../internals/string-punycode-to-ascii': 266, '../internals/to-string': 290, '../internals/url-constructor-detection': 300, '../internals/validate-arguments-length': 303, '../modules/es.string.iterator': 486, '../modules/web.url-search-params.constructor': 604 }],
-  611: [function (require, module, exports) {
+  }, { '../internals/an-instance': 63, '../internals/array-from': 76, '../internals/array-slice': 85, '../internals/define-built-in': 115, '../internals/define-built-in-accessor': 114, '../internals/descriptors': 119, '../internals/export': 143, '../internals/function-bind-context': 149, '../internals/function-uncurry-this': 156, '../internals/global': 165, '../internals/has-own-property': 166, '../internals/internal-state': 177, '../internals/object-assign': 218, '../internals/set-to-string-tag': 260, '../internals/string-multibyte': 266, '../internals/string-punycode-to-ascii': 269, '../internals/to-string': 293, '../internals/url-constructor-detection': 303, '../internals/validate-arguments-length': 306, '../modules/es.string.iterator': 492, '../modules/web.url-search-params.constructor': 610 }],
+  617: [function (require, module, exports) {
     'use strict'
     // TODO: Remove this module from `core-js@4` since it's replaced to module below
     require('../modules/web.url.constructor')
-  }, { '../modules/web.url.constructor': 610 }],
-  612: [function (require, module, exports) {
+  }, { '../modules/web.url.constructor': 616 }],
+  618: [function (require, module, exports) {
     'use strict'
     var $ = require('../internals/export')
     var call = require('../internals/function-call')
@@ -19534,8 +19679,8 @@
         return call(URL.prototype.toString, this)
       }
     })
-  }, { '../internals/export': 140, '../internals/function-call': 149 }],
-  613: [function (require, module, exports) {
+  }, { '../internals/export': 143, '../internals/function-call': 152 }],
+  619: [function (require, module, exports) {
     'use strict'
     require('../modules/es.symbol')
     require('../modules/es.symbol.description')
@@ -19598,6 +19743,9 @@
     require('../modules/es.array-buffer.is-view')
     require('../modules/es.array-buffer.slice')
     require('../modules/es.data-view')
+    require('../modules/es.array-buffer.detached')
+    require('../modules/es.array-buffer.transfer')
+    require('../modules/es.array-buffer.transfer-to-fixed-length')
     require('../modules/es.date.get-year')
     require('../modules/es.date.now')
     require('../modules/es.date.set-year')
@@ -19803,8 +19951,8 @@
     require('../modules/web.url-search-params.size')
 
     module.exports = require('../internals/path')
-  }, { '../internals/path': 235, '../modules/es.aggregate-error': 312, '../modules/es.aggregate-error.cause': 310, '../modules/es.array-buffer.constructor': 313, '../modules/es.array-buffer.is-view': 314, '../modules/es.array-buffer.slice': 315, '../modules/es.array.at': 316, '../modules/es.array.concat': 317, '../modules/es.array.copy-within': 318, '../modules/es.array.every': 319, '../modules/es.array.fill': 320, '../modules/es.array.filter': 321, '../modules/es.array.find': 325, '../modules/es.array.find-index': 322, '../modules/es.array.find-last': 324, '../modules/es.array.find-last-index': 323, '../modules/es.array.flat': 327, '../modules/es.array.flat-map': 326, '../modules/es.array.for-each': 328, '../modules/es.array.from': 329, '../modules/es.array.includes': 330, '../modules/es.array.index-of': 331, '../modules/es.array.is-array': 332, '../modules/es.array.iterator': 333, '../modules/es.array.join': 334, '../modules/es.array.last-index-of': 335, '../modules/es.array.map': 336, '../modules/es.array.of': 337, '../modules/es.array.push': 338, '../modules/es.array.reduce': 340, '../modules/es.array.reduce-right': 339, '../modules/es.array.reverse': 341, '../modules/es.array.slice': 342, '../modules/es.array.some': 343, '../modules/es.array.sort': 344, '../modules/es.array.species': 345, '../modules/es.array.splice': 346, '../modules/es.array.to-reversed': 347, '../modules/es.array.to-sorted': 348, '../modules/es.array.to-spliced': 349, '../modules/es.array.unscopables.flat': 351, '../modules/es.array.unscopables.flat-map': 350, '../modules/es.array.unshift': 352, '../modules/es.array.with': 353, '../modules/es.data-view': 355, '../modules/es.date.get-year': 356, '../modules/es.date.now': 357, '../modules/es.date.set-year': 358, '../modules/es.date.to-gmt-string': 359, '../modules/es.date.to-iso-string': 360, '../modules/es.date.to-json': 361, '../modules/es.date.to-primitive': 362, '../modules/es.date.to-string': 363, '../modules/es.error.cause': 364, '../modules/es.error.to-string': 365, '../modules/es.escape': 366, '../modules/es.function.bind': 367, '../modules/es.function.has-instance': 368, '../modules/es.function.name': 369, '../modules/es.global-this': 370, '../modules/es.json.stringify': 371, '../modules/es.json.to-string-tag': 372, '../modules/es.map': 375, '../modules/es.map.group-by': 374, '../modules/es.math.acosh': 376, '../modules/es.math.asinh': 377, '../modules/es.math.atanh': 378, '../modules/es.math.cbrt': 379, '../modules/es.math.clz32': 380, '../modules/es.math.cosh': 381, '../modules/es.math.expm1': 382, '../modules/es.math.fround': 383, '../modules/es.math.hypot': 384, '../modules/es.math.imul': 385, '../modules/es.math.log10': 386, '../modules/es.math.log1p': 387, '../modules/es.math.log2': 388, '../modules/es.math.sign': 389, '../modules/es.math.sinh': 390, '../modules/es.math.tanh': 391, '../modules/es.math.to-string-tag': 392, '../modules/es.math.trunc': 393, '../modules/es.number.constructor': 394, '../modules/es.number.epsilon': 395, '../modules/es.number.is-finite': 396, '../modules/es.number.is-integer': 397, '../modules/es.number.is-nan': 398, '../modules/es.number.is-safe-integer': 399, '../modules/es.number.max-safe-integer': 400, '../modules/es.number.min-safe-integer': 401, '../modules/es.number.parse-float': 402, '../modules/es.number.parse-int': 403, '../modules/es.number.to-exponential': 404, '../modules/es.number.to-fixed': 405, '../modules/es.number.to-precision': 406, '../modules/es.object.assign': 407, '../modules/es.object.create': 408, '../modules/es.object.define-getter': 409, '../modules/es.object.define-properties': 410, '../modules/es.object.define-property': 411, '../modules/es.object.define-setter': 412, '../modules/es.object.entries': 413, '../modules/es.object.freeze': 414, '../modules/es.object.from-entries': 415, '../modules/es.object.get-own-property-descriptor': 416, '../modules/es.object.get-own-property-descriptors': 417, '../modules/es.object.get-own-property-names': 418, '../modules/es.object.get-prototype-of': 420, '../modules/es.object.group-by': 421, '../modules/es.object.has-own': 422, '../modules/es.object.is': 426, '../modules/es.object.is-extensible': 423, '../modules/es.object.is-frozen': 424, '../modules/es.object.is-sealed': 425, '../modules/es.object.keys': 427, '../modules/es.object.lookup-getter': 428, '../modules/es.object.lookup-setter': 429, '../modules/es.object.prevent-extensions': 430, '../modules/es.object.proto': 431, '../modules/es.object.seal': 432, '../modules/es.object.set-prototype-of': 433, '../modules/es.object.to-string': 434, '../modules/es.object.values': 435, '../modules/es.parse-float': 436, '../modules/es.parse-int': 437, '../modules/es.promise': 444, '../modules/es.promise.all-settled': 438, '../modules/es.promise.any': 440, '../modules/es.promise.finally': 443, '../modules/es.promise.with-resolvers': 448, '../modules/es.reflect.apply': 449, '../modules/es.reflect.construct': 450, '../modules/es.reflect.define-property': 451, '../modules/es.reflect.delete-property': 452, '../modules/es.reflect.get': 455, '../modules/es.reflect.get-own-property-descriptor': 453, '../modules/es.reflect.get-prototype-of': 454, '../modules/es.reflect.has': 456, '../modules/es.reflect.is-extensible': 457, '../modules/es.reflect.own-keys': 458, '../modules/es.reflect.prevent-extensions': 459, '../modules/es.reflect.set': 461, '../modules/es.reflect.set-prototype-of': 460, '../modules/es.reflect.to-string-tag': 462, '../modules/es.regexp.constructor': 463, '../modules/es.regexp.dot-all': 464, '../modules/es.regexp.exec': 465, '../modules/es.regexp.flags': 466, '../modules/es.regexp.sticky': 467, '../modules/es.regexp.test': 468, '../modules/es.regexp.to-string': 469, '../modules/es.set': 471, '../modules/es.string.anchor': 472, '../modules/es.string.at-alternative': 473, '../modules/es.string.big': 474, '../modules/es.string.blink': 475, '../modules/es.string.bold': 476, '../modules/es.string.code-point-at': 477, '../modules/es.string.ends-with': 478, '../modules/es.string.fixed': 479, '../modules/es.string.fontcolor': 480, '../modules/es.string.fontsize': 481, '../modules/es.string.from-code-point': 482, '../modules/es.string.includes': 483, '../modules/es.string.is-well-formed': 484, '../modules/es.string.italics': 485, '../modules/es.string.iterator': 486, '../modules/es.string.link': 487, '../modules/es.string.match': 489, '../modules/es.string.match-all': 488, '../modules/es.string.pad-end': 490, '../modules/es.string.pad-start': 491, '../modules/es.string.raw': 492, '../modules/es.string.repeat': 493, '../modules/es.string.replace': 495, '../modules/es.string.replace-all': 494, '../modules/es.string.search': 496, '../modules/es.string.small': 497, '../modules/es.string.split': 498, '../modules/es.string.starts-with': 499, '../modules/es.string.strike': 500, '../modules/es.string.sub': 501, '../modules/es.string.substr': 502, '../modules/es.string.sup': 503, '../modules/es.string.to-well-formed': 504, '../modules/es.string.trim': 509, '../modules/es.string.trim-end': 505, '../modules/es.string.trim-start': 508, '../modules/es.symbol': 517, '../modules/es.symbol.async-iterator': 510, '../modules/es.symbol.description': 512, '../modules/es.symbol.has-instance': 514, '../modules/es.symbol.is-concat-spreadable': 515, '../modules/es.symbol.iterator': 516, '../modules/es.symbol.match': 520, '../modules/es.symbol.match-all': 519, '../modules/es.symbol.replace': 521, '../modules/es.symbol.search': 522, '../modules/es.symbol.species': 523, '../modules/es.symbol.split': 524, '../modules/es.symbol.to-primitive': 525, '../modules/es.symbol.to-string-tag': 526, '../modules/es.symbol.unscopables': 527, '../modules/es.typed-array.at': 528, '../modules/es.typed-array.copy-within': 529, '../modules/es.typed-array.every': 530, '../modules/es.typed-array.fill': 531, '../modules/es.typed-array.filter': 532, '../modules/es.typed-array.find': 536, '../modules/es.typed-array.find-index': 533, '../modules/es.typed-array.find-last': 535, '../modules/es.typed-array.find-last-index': 534, '../modules/es.typed-array.float32-array': 537, '../modules/es.typed-array.float64-array': 538, '../modules/es.typed-array.for-each': 539, '../modules/es.typed-array.from': 540, '../modules/es.typed-array.includes': 541, '../modules/es.typed-array.index-of': 542, '../modules/es.typed-array.int16-array': 543, '../modules/es.typed-array.int32-array': 544, '../modules/es.typed-array.int8-array': 545, '../modules/es.typed-array.iterator': 546, '../modules/es.typed-array.join': 547, '../modules/es.typed-array.last-index-of': 548, '../modules/es.typed-array.map': 549, '../modules/es.typed-array.of': 550, '../modules/es.typed-array.reduce': 552, '../modules/es.typed-array.reduce-right': 551, '../modules/es.typed-array.reverse': 553, '../modules/es.typed-array.set': 554, '../modules/es.typed-array.slice': 555, '../modules/es.typed-array.some': 556, '../modules/es.typed-array.sort': 557, '../modules/es.typed-array.subarray': 558, '../modules/es.typed-array.to-locale-string': 559, '../modules/es.typed-array.to-reversed': 560, '../modules/es.typed-array.to-sorted': 561, '../modules/es.typed-array.to-string': 562, '../modules/es.typed-array.uint16-array': 563, '../modules/es.typed-array.uint32-array': 564, '../modules/es.typed-array.uint8-array': 565, '../modules/es.typed-array.uint8-clamped-array': 566, '../modules/es.typed-array.with': 567, '../modules/es.unescape': 568, '../modules/es.weak-map': 570, '../modules/es.weak-set': 572, '../modules/web.atob': 588, '../modules/web.btoa': 589, '../modules/web.dom-collections.for-each': 591, '../modules/web.dom-collections.iterator': 592, '../modules/web.dom-exception.constructor': 593, '../modules/web.dom-exception.stack': 594, '../modules/web.dom-exception.to-string-tag': 595, '../modules/web.immediate': 596, '../modules/web.queue-microtask': 597, '../modules/web.self': 598, '../modules/web.structured-clone': 602, '../modules/web.timers': 603, '../modules/web.url': 611, '../modules/web.url-search-params': 607, '../modules/web.url-search-params.delete': 605, '../modules/web.url-search-params.has': 606, '../modules/web.url-search-params.size': 608, '../modules/web.url.can-parse': 609, '../modules/web.url.to-json': 612 }],
-  614: [function (require, module, exports) {
+  }, { '../internals/path': 238, '../modules/es.aggregate-error': 315, '../modules/es.aggregate-error.cause': 313, '../modules/es.array-buffer.constructor': 316, '../modules/es.array-buffer.detached': 317, '../modules/es.array-buffer.is-view': 318, '../modules/es.array-buffer.slice': 319, '../modules/es.array-buffer.transfer': 321, '../modules/es.array-buffer.transfer-to-fixed-length': 320, '../modules/es.array.at': 322, '../modules/es.array.concat': 323, '../modules/es.array.copy-within': 324, '../modules/es.array.every': 325, '../modules/es.array.fill': 326, '../modules/es.array.filter': 327, '../modules/es.array.find': 331, '../modules/es.array.find-index': 328, '../modules/es.array.find-last': 330, '../modules/es.array.find-last-index': 329, '../modules/es.array.flat': 333, '../modules/es.array.flat-map': 332, '../modules/es.array.for-each': 334, '../modules/es.array.from': 335, '../modules/es.array.includes': 336, '../modules/es.array.index-of': 337, '../modules/es.array.is-array': 338, '../modules/es.array.iterator': 339, '../modules/es.array.join': 340, '../modules/es.array.last-index-of': 341, '../modules/es.array.map': 342, '../modules/es.array.of': 343, '../modules/es.array.push': 344, '../modules/es.array.reduce': 346, '../modules/es.array.reduce-right': 345, '../modules/es.array.reverse': 347, '../modules/es.array.slice': 348, '../modules/es.array.some': 349, '../modules/es.array.sort': 350, '../modules/es.array.species': 351, '../modules/es.array.splice': 352, '../modules/es.array.to-reversed': 353, '../modules/es.array.to-sorted': 354, '../modules/es.array.to-spliced': 355, '../modules/es.array.unscopables.flat': 357, '../modules/es.array.unscopables.flat-map': 356, '../modules/es.array.unshift': 358, '../modules/es.array.with': 359, '../modules/es.data-view': 361, '../modules/es.date.get-year': 362, '../modules/es.date.now': 363, '../modules/es.date.set-year': 364, '../modules/es.date.to-gmt-string': 365, '../modules/es.date.to-iso-string': 366, '../modules/es.date.to-json': 367, '../modules/es.date.to-primitive': 368, '../modules/es.date.to-string': 369, '../modules/es.error.cause': 370, '../modules/es.error.to-string': 371, '../modules/es.escape': 372, '../modules/es.function.bind': 373, '../modules/es.function.has-instance': 374, '../modules/es.function.name': 375, '../modules/es.global-this': 376, '../modules/es.json.stringify': 377, '../modules/es.json.to-string-tag': 378, '../modules/es.map': 381, '../modules/es.map.group-by': 380, '../modules/es.math.acosh': 382, '../modules/es.math.asinh': 383, '../modules/es.math.atanh': 384, '../modules/es.math.cbrt': 385, '../modules/es.math.clz32': 386, '../modules/es.math.cosh': 387, '../modules/es.math.expm1': 388, '../modules/es.math.fround': 389, '../modules/es.math.hypot': 390, '../modules/es.math.imul': 391, '../modules/es.math.log10': 392, '../modules/es.math.log1p': 393, '../modules/es.math.log2': 394, '../modules/es.math.sign': 395, '../modules/es.math.sinh': 396, '../modules/es.math.tanh': 397, '../modules/es.math.to-string-tag': 398, '../modules/es.math.trunc': 399, '../modules/es.number.constructor': 400, '../modules/es.number.epsilon': 401, '../modules/es.number.is-finite': 402, '../modules/es.number.is-integer': 403, '../modules/es.number.is-nan': 404, '../modules/es.number.is-safe-integer': 405, '../modules/es.number.max-safe-integer': 406, '../modules/es.number.min-safe-integer': 407, '../modules/es.number.parse-float': 408, '../modules/es.number.parse-int': 409, '../modules/es.number.to-exponential': 410, '../modules/es.number.to-fixed': 411, '../modules/es.number.to-precision': 412, '../modules/es.object.assign': 413, '../modules/es.object.create': 414, '../modules/es.object.define-getter': 415, '../modules/es.object.define-properties': 416, '../modules/es.object.define-property': 417, '../modules/es.object.define-setter': 418, '../modules/es.object.entries': 419, '../modules/es.object.freeze': 420, '../modules/es.object.from-entries': 421, '../modules/es.object.get-own-property-descriptor': 422, '../modules/es.object.get-own-property-descriptors': 423, '../modules/es.object.get-own-property-names': 424, '../modules/es.object.get-prototype-of': 426, '../modules/es.object.group-by': 427, '../modules/es.object.has-own': 428, '../modules/es.object.is': 432, '../modules/es.object.is-extensible': 429, '../modules/es.object.is-frozen': 430, '../modules/es.object.is-sealed': 431, '../modules/es.object.keys': 433, '../modules/es.object.lookup-getter': 434, '../modules/es.object.lookup-setter': 435, '../modules/es.object.prevent-extensions': 436, '../modules/es.object.proto': 437, '../modules/es.object.seal': 438, '../modules/es.object.set-prototype-of': 439, '../modules/es.object.to-string': 440, '../modules/es.object.values': 441, '../modules/es.parse-float': 442, '../modules/es.parse-int': 443, '../modules/es.promise': 450, '../modules/es.promise.all-settled': 444, '../modules/es.promise.any': 446, '../modules/es.promise.finally': 449, '../modules/es.promise.with-resolvers': 454, '../modules/es.reflect.apply': 455, '../modules/es.reflect.construct': 456, '../modules/es.reflect.define-property': 457, '../modules/es.reflect.delete-property': 458, '../modules/es.reflect.get': 461, '../modules/es.reflect.get-own-property-descriptor': 459, '../modules/es.reflect.get-prototype-of': 460, '../modules/es.reflect.has': 462, '../modules/es.reflect.is-extensible': 463, '../modules/es.reflect.own-keys': 464, '../modules/es.reflect.prevent-extensions': 465, '../modules/es.reflect.set': 467, '../modules/es.reflect.set-prototype-of': 466, '../modules/es.reflect.to-string-tag': 468, '../modules/es.regexp.constructor': 469, '../modules/es.regexp.dot-all': 470, '../modules/es.regexp.exec': 471, '../modules/es.regexp.flags': 472, '../modules/es.regexp.sticky': 473, '../modules/es.regexp.test': 474, '../modules/es.regexp.to-string': 475, '../modules/es.set': 477, '../modules/es.string.anchor': 478, '../modules/es.string.at-alternative': 479, '../modules/es.string.big': 480, '../modules/es.string.blink': 481, '../modules/es.string.bold': 482, '../modules/es.string.code-point-at': 483, '../modules/es.string.ends-with': 484, '../modules/es.string.fixed': 485, '../modules/es.string.fontcolor': 486, '../modules/es.string.fontsize': 487, '../modules/es.string.from-code-point': 488, '../modules/es.string.includes': 489, '../modules/es.string.is-well-formed': 490, '../modules/es.string.italics': 491, '../modules/es.string.iterator': 492, '../modules/es.string.link': 493, '../modules/es.string.match': 495, '../modules/es.string.match-all': 494, '../modules/es.string.pad-end': 496, '../modules/es.string.pad-start': 497, '../modules/es.string.raw': 498, '../modules/es.string.repeat': 499, '../modules/es.string.replace': 501, '../modules/es.string.replace-all': 500, '../modules/es.string.search': 502, '../modules/es.string.small': 503, '../modules/es.string.split': 504, '../modules/es.string.starts-with': 505, '../modules/es.string.strike': 506, '../modules/es.string.sub': 507, '../modules/es.string.substr': 508, '../modules/es.string.sup': 509, '../modules/es.string.to-well-formed': 510, '../modules/es.string.trim': 515, '../modules/es.string.trim-end': 511, '../modules/es.string.trim-start': 514, '../modules/es.symbol': 523, '../modules/es.symbol.async-iterator': 516, '../modules/es.symbol.description': 518, '../modules/es.symbol.has-instance': 520, '../modules/es.symbol.is-concat-spreadable': 521, '../modules/es.symbol.iterator': 522, '../modules/es.symbol.match': 526, '../modules/es.symbol.match-all': 525, '../modules/es.symbol.replace': 527, '../modules/es.symbol.search': 528, '../modules/es.symbol.species': 529, '../modules/es.symbol.split': 530, '../modules/es.symbol.to-primitive': 531, '../modules/es.symbol.to-string-tag': 532, '../modules/es.symbol.unscopables': 533, '../modules/es.typed-array.at': 534, '../modules/es.typed-array.copy-within': 535, '../modules/es.typed-array.every': 536, '../modules/es.typed-array.fill': 537, '../modules/es.typed-array.filter': 538, '../modules/es.typed-array.find': 542, '../modules/es.typed-array.find-index': 539, '../modules/es.typed-array.find-last': 541, '../modules/es.typed-array.find-last-index': 540, '../modules/es.typed-array.float32-array': 543, '../modules/es.typed-array.float64-array': 544, '../modules/es.typed-array.for-each': 545, '../modules/es.typed-array.from': 546, '../modules/es.typed-array.includes': 547, '../modules/es.typed-array.index-of': 548, '../modules/es.typed-array.int16-array': 549, '../modules/es.typed-array.int32-array': 550, '../modules/es.typed-array.int8-array': 551, '../modules/es.typed-array.iterator': 552, '../modules/es.typed-array.join': 553, '../modules/es.typed-array.last-index-of': 554, '../modules/es.typed-array.map': 555, '../modules/es.typed-array.of': 556, '../modules/es.typed-array.reduce': 558, '../modules/es.typed-array.reduce-right': 557, '../modules/es.typed-array.reverse': 559, '../modules/es.typed-array.set': 560, '../modules/es.typed-array.slice': 561, '../modules/es.typed-array.some': 562, '../modules/es.typed-array.sort': 563, '../modules/es.typed-array.subarray': 564, '../modules/es.typed-array.to-locale-string': 565, '../modules/es.typed-array.to-reversed': 566, '../modules/es.typed-array.to-sorted': 567, '../modules/es.typed-array.to-string': 568, '../modules/es.typed-array.uint16-array': 569, '../modules/es.typed-array.uint32-array': 570, '../modules/es.typed-array.uint8-array': 571, '../modules/es.typed-array.uint8-clamped-array': 572, '../modules/es.typed-array.with': 573, '../modules/es.unescape': 574, '../modules/es.weak-map': 576, '../modules/es.weak-set': 578, '../modules/web.atob': 594, '../modules/web.btoa': 595, '../modules/web.dom-collections.for-each': 597, '../modules/web.dom-collections.iterator': 598, '../modules/web.dom-exception.constructor': 599, '../modules/web.dom-exception.stack': 600, '../modules/web.dom-exception.to-string-tag': 601, '../modules/web.immediate': 602, '../modules/web.queue-microtask': 603, '../modules/web.self': 604, '../modules/web.structured-clone': 608, '../modules/web.timers': 609, '../modules/web.url': 617, '../modules/web.url-search-params': 613, '../modules/web.url-search-params.delete': 611, '../modules/web.url-search-params.has': 612, '../modules/web.url-search-params.size': 614, '../modules/web.url.can-parse': 615, '../modules/web.url.to-json': 618 }],
+  620: [function (require, module, exports) {
     /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -20559,7 +20707,7 @@
       }
     }
   }, {}],
-  615: [function (require, module, exports) {
+  621: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -20592,8 +20740,8 @@
       mergeArrays: _mergeArrays.default,
       uniqueArray: _uniqueArray.default
     }
-  }, { './arrays/BasicQueue': 616, './arrays/addUniqueToArray': 617, './arrays/buildArray': 618, './arrays/buildArrayOfReferences': 619, './arrays/compareArrays': 620, './arrays/mergeArrays': 621, './arrays/uniqueArray': 622, 'core-js/stable': 613 }],
-  616: [function (require, module, exports) {
+  }, { './arrays/BasicQueue': 622, './arrays/addUniqueToArray': 623, './arrays/buildArray': 624, './arrays/buildArrayOfReferences': 625, './arrays/compareArrays': 626, './arrays/mergeArrays': 627, './arrays/uniqueArray': 628, 'core-js/stable': 619 }],
+  622: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -20654,8 +20802,8 @@
       }
     }
     var _default = exports.default = BasicQueue
-  }, { 'core-js/stable': 613 }],
-  617: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  623: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -20672,8 +20820,8 @@
  */
     const addUniqueToArray = (item, array) => !array.includes(item) ? array.concat([item]) : array
     var _default = exports.default = addUniqueToArray
-  }, { 'core-js/stable': 613 }],
-  618: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  624: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -20700,8 +20848,8 @@
       return arr
     }
     var _default = exports.default = buildArray
-  }, { '../objects/cloneObject': 655, 'core-js/stable': 613 }],
-  619: [function (require, module, exports) {
+  }, { '../objects/cloneObject': 661, 'core-js/stable': 619 }],
+  625: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -20725,8 +20873,8 @@
       return arr
     }
     var _default = exports.default = buildArrayOfReferences
-  }, { 'core-js/stable': 613 }],
-  620: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  626: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -20740,6 +20888,7 @@
     require('core-js/modules/esnext.iterator.every.js')
     require('core-js/modules/esnext.iterator.map.js')
     require('core-js/modules/esnext.iterator.reduce.js')
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     var _isObject = _interopRequireDefault(require('../objects/isObject'))
     var _mergeArrays = _interopRequireDefault(require('./mergeArrays'))
@@ -20832,8 +20981,8 @@
       }, [])
     }
     var _default = exports.default = compareArrays
-  }, { '../objects/isObject': 664, '../objects/objectKeys': 669, './mergeArrays': 621, 'core-js/modules/esnext.async-iterator.every.js': 573, 'core-js/modules/esnext.async-iterator.map.js': 577, 'core-js/modules/esnext.async-iterator.reduce.js': 578, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.every.js': 581, 'core-js/modules/esnext.iterator.map.js': 585, 'core-js/modules/esnext.iterator.reduce.js': 586, 'core-js/stable': 613 }],
-  621: [function (require, module, exports) {
+  }, { '../objects/isObject': 670, '../objects/objectKeys': 675, './mergeArrays': 627, 'core-js/modules/esnext.async-iterator.every.js': 579, 'core-js/modules/esnext.async-iterator.map.js': 583, 'core-js/modules/esnext.async-iterator.reduce.js': 584, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.every.js': 587, 'core-js/modules/esnext.iterator.map.js': 591, 'core-js/modules/esnext.iterator.reduce.js': 592, 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619 }],
+  627: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -20847,6 +20996,7 @@
     require('core-js/modules/esnext.iterator.filter.js')
     require('core-js/modules/esnext.iterator.map.js')
     require('core-js/modules/esnext.iterator.reduce.js')
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     var _uniqueArray = _interopRequireDefault(require('./uniqueArray'))
     function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
@@ -20863,8 +21013,8 @@
       return arrays.map(_uniqueArray.default).reduce((merged, arr) => [...merged, ...arr.filter(attr => !merged.includes(attr))], [])
     }
     var _default = exports.default = mergeArrays
-  }, { './uniqueArray': 622, 'core-js/modules/esnext.async-iterator.filter.js': 574, 'core-js/modules/esnext.async-iterator.map.js': 577, 'core-js/modules/esnext.async-iterator.reduce.js': 578, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.filter.js': 582, 'core-js/modules/esnext.iterator.map.js': 585, 'core-js/modules/esnext.iterator.reduce.js': 586, 'core-js/stable': 613 }],
-  622: [function (require, module, exports) {
+  }, { './uniqueArray': 628, 'core-js/modules/esnext.async-iterator.filter.js': 580, 'core-js/modules/esnext.async-iterator.map.js': 583, 'core-js/modules/esnext.async-iterator.reduce.js': 584, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.filter.js': 588, 'core-js/modules/esnext.iterator.map.js': 591, 'core-js/modules/esnext.iterator.reduce.js': 592, 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619 }],
+  628: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -20883,8 +21033,8 @@
  */
     const uniqueArray = array => array.filter((item, index) => array.indexOf(item) === index)
     var _default = exports.default = uniqueArray
-  }, { 'core-js/modules/esnext.async-iterator.filter.js': 574, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.filter.js': 582, 'core-js/stable': 613 }],
-  623: [function (require, module, exports) {
+  }, { 'core-js/modules/esnext.async-iterator.filter.js': 580, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.filter.js': 588, 'core-js/stable': 619 }],
+  629: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -20927,8 +21077,8 @@
       nextReference: _nextReference.default,
       sameDescriptor: _sameDescriptor.default
     }
-  }, { './descriptors/assignDescriptor': 624, './descriptors/assignDescriptorDetail': 625, './descriptors/checkClearValues': 626, './descriptors/checkDescriptorComplete': 627, './descriptors/cloneDescriptor': 628, './descriptors/cloneDescriptorDetail': 629, './descriptors/compareDescriptor': 630, './descriptors/describeObject': 631, './descriptors/describeObjectDetail': 632, './descriptors/describeObjectMap': 633, './descriptors/nextReference': 634, './descriptors/sameDescriptor': 635, 'core-js/stable': 613 }],
-  624: [function (require, module, exports) {
+  }, { './descriptors/assignDescriptor': 630, './descriptors/assignDescriptorDetail': 631, './descriptors/checkClearValues': 632, './descriptors/checkDescriptorComplete': 633, './descriptors/cloneDescriptor': 634, './descriptors/cloneDescriptorDetail': 635, './descriptors/compareDescriptor': 636, './descriptors/describeObject': 637, './descriptors/describeObjectDetail': 638, './descriptors/describeObjectMap': 639, './descriptors/nextReference': 640, './descriptors/sameDescriptor': 641, 'core-js/stable': 619 }],
+  630: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -20948,6 +21098,7 @@
     require('core-js/modules/esnext.iterator.for-each.js')
     require('core-js/modules/esnext.iterator.map.js')
     require('core-js/modules/esnext.iterator.reduce.js')
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     var _assignDescriptorDetail = _interopRequireDefault(require('./assignDescriptorDetail'))
     var _cloneDescriptor = _interopRequireDefault(require('./cloneDescriptor'))
@@ -20995,8 +21146,8 @@
       }, (0, _cloneDescriptor.default)(originalMap))
     }
     var _default = exports.default = assignDescriptor
-  }, { '../arrays/compareArrays': 620, '../arrays/uniqueArray': 622, './assignDescriptorDetail': 625, './cloneDescriptor': 628, 'core-js/modules/esnext.async-iterator.every.js': 573, 'core-js/modules/esnext.async-iterator.filter.js': 574, 'core-js/modules/esnext.async-iterator.find.js': 575, 'core-js/modules/esnext.async-iterator.for-each.js': 576, 'core-js/modules/esnext.async-iterator.map.js': 577, 'core-js/modules/esnext.async-iterator.reduce.js': 578, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.every.js': 581, 'core-js/modules/esnext.iterator.filter.js': 582, 'core-js/modules/esnext.iterator.find.js': 583, 'core-js/modules/esnext.iterator.for-each.js': 584, 'core-js/modules/esnext.iterator.map.js': 585, 'core-js/modules/esnext.iterator.reduce.js': 586, 'core-js/stable': 613 }],
-  625: [function (require, module, exports) {
+  }, { '../arrays/compareArrays': 626, '../arrays/uniqueArray': 628, './assignDescriptorDetail': 631, './cloneDescriptor': 634, 'core-js/modules/esnext.async-iterator.every.js': 579, 'core-js/modules/esnext.async-iterator.filter.js': 580, 'core-js/modules/esnext.async-iterator.find.js': 581, 'core-js/modules/esnext.async-iterator.for-each.js': 582, 'core-js/modules/esnext.async-iterator.map.js': 583, 'core-js/modules/esnext.async-iterator.reduce.js': 584, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.every.js': 587, 'core-js/modules/esnext.iterator.filter.js': 588, 'core-js/modules/esnext.iterator.find.js': 589, 'core-js/modules/esnext.iterator.for-each.js': 590, 'core-js/modules/esnext.iterator.map.js': 591, 'core-js/modules/esnext.iterator.reduce.js': 592, 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619 }],
+  631: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21008,6 +21159,7 @@
     require('core-js/modules/esnext.iterator.constructor.js')
     require('core-js/modules/esnext.iterator.find.js')
     require('core-js/modules/esnext.iterator.reduce.js')
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     var _cloneDescriptorDetail = _interopRequireDefault(require('./cloneDescriptorDetail'))
     var _uniqueArray = _interopRequireDefault(require('../arrays/uniqueArray'))
@@ -21039,8 +21191,8 @@
       }, (0, _cloneDescriptorDetail.default)(originalDetail))
     }
     var _default = exports.default = assignDescriptorDetail
-  }, { '../arrays/uniqueArray': 622, './cloneDescriptorDetail': 629, 'core-js/modules/esnext.async-iterator.find.js': 575, 'core-js/modules/esnext.async-iterator.reduce.js': 578, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.find.js': 583, 'core-js/modules/esnext.iterator.reduce.js': 586, 'core-js/stable': 613 }],
-  626: [function (require, module, exports) {
+  }, { '../arrays/uniqueArray': 628, './cloneDescriptorDetail': 635, 'core-js/modules/esnext.async-iterator.find.js': 581, 'core-js/modules/esnext.async-iterator.reduce.js': 584, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.find.js': 589, 'core-js/modules/esnext.iterator.reduce.js': 592, 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619 }],
+  632: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21064,8 +21216,8 @@
       return (0, _setValue.default)('details', descriptor.complete && !keepValues ? descriptor.details.map(detail => (0, _setValue.default)('value', [], detail)) : descriptor.details, descriptor)
     }
     var _default = exports.default = checkClearValues
-  }, { '../objects/setValue': 673, 'core-js/modules/esnext.async-iterator.map.js': 577, 'core-js/modules/esnext.iterator.map.js': 585, 'core-js/stable': 613 }],
-  627: [function (require, module, exports) {
+  }, { '../objects/setValue': 679, 'core-js/modules/esnext.async-iterator.map.js': 583, 'core-js/modules/esnext.iterator.map.js': 591, 'core-js/stable': 619 }],
+  633: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21088,8 +21240,8 @@
  */
     const checkDescriptorComplete = descriptor => (0, _setValue.default)('complete', descriptor.references.every(refId => [descriptor.details[refId].arrayReference, descriptor.details[refId].objectReference].some(ref => typeof ref === 'number')), descriptor)
     var _default = exports.default = checkDescriptorComplete
-  }, { '../objects/setValue': 673, 'core-js/modules/esnext.async-iterator.every.js': 573, 'core-js/modules/esnext.async-iterator.some.js': 579, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.every.js': 581, 'core-js/modules/esnext.iterator.some.js': 587, 'core-js/stable': 613 }],
-  628: [function (require, module, exports) {
+  }, { '../objects/setValue': 679, 'core-js/modules/esnext.async-iterator.every.js': 579, 'core-js/modules/esnext.async-iterator.some.js': 585, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.every.js': 587, 'core-js/modules/esnext.iterator.some.js': 593, 'core-js/stable': 619 }],
+  634: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21098,6 +21250,7 @@
     exports.default = void 0
     require('core-js/modules/esnext.async-iterator.map.js')
     require('core-js/modules/esnext.iterator.map.js')
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     var _cloneDescriptorDetail = _interopRequireDefault(require('./cloneDescriptorDetail'))
     function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
@@ -21126,8 +21279,8 @@
       return copyMap
     }
     var _default = exports.default = cloneDescriptor
-  }, { './cloneDescriptorDetail': 629, 'core-js/modules/esnext.async-iterator.map.js': 577, 'core-js/modules/esnext.iterator.map.js': 585, 'core-js/stable': 613 }],
-  629: [function (require, module, exports) {
+  }, { './cloneDescriptorDetail': 635, 'core-js/modules/esnext.async-iterator.map.js': 583, 'core-js/modules/esnext.iterator.map.js': 591, 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619 }],
+  635: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21157,8 +21310,8 @@
       return copyDetail
     }
     var _default = exports.default = cloneDescriptorDetail
-  }, { '../objects/objectKeys': 669, 'core-js/modules/esnext.async-iterator.for-each.js': 576, 'core-js/modules/esnext.async-iterator.map.js': 577, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.for-each.js': 584, 'core-js/modules/esnext.iterator.map.js': 585, 'core-js/stable': 613 }],
-  630: [function (require, module, exports) {
+  }, { '../objects/objectKeys': 675, 'core-js/modules/esnext.async-iterator.for-each.js': 582, 'core-js/modules/esnext.async-iterator.map.js': 583, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.for-each.js': 590, 'core-js/modules/esnext.iterator.map.js': 591, 'core-js/stable': 619 }],
+  636: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21172,6 +21325,7 @@
     require('core-js/modules/esnext.iterator.every.js')
     require('core-js/modules/esnext.iterator.find.js')
     require('core-js/modules/esnext.iterator.some.js')
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     /**
  * Check if two descriptors are the same or similar in that they have similar keys and the associated types are the same.
@@ -21192,8 +21346,8 @@
       return smallerDescriptor.keys.every(key => largerDescriptor.keys.includes(key)) ? smallerDescriptor.details.every(detail => detail.type.some(type => largerDescriptor.details.find(foundDetail => foundDetail.key === detail.key).type.includes(type))) : false
     }
     var _default = exports.default = compareDescriptor
-  }, { 'core-js/modules/esnext.async-iterator.every.js': 573, 'core-js/modules/esnext.async-iterator.find.js': 575, 'core-js/modules/esnext.async-iterator.some.js': 579, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.every.js': 581, 'core-js/modules/esnext.iterator.find.js': 583, 'core-js/modules/esnext.iterator.some.js': 587, 'core-js/stable': 613 }],
-  631: [function (require, module, exports) {
+  }, { 'core-js/modules/esnext.async-iterator.every.js': 579, 'core-js/modules/esnext.async-iterator.find.js': 581, 'core-js/modules/esnext.async-iterator.some.js': 585, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.every.js': 587, 'core-js/modules/esnext.iterator.find.js': 589, 'core-js/modules/esnext.iterator.some.js': 593, 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619 }],
+  637: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21245,8 +21399,8 @@
       return descriptor
     }
     var _default = exports.default = describeObject
-  }, { '../objects/objectKeys': 669, './assignDescriptorDetail': 625, './describeObjectDetail': 632, 'core-js/stable': 613 }],
-  632: [function (require, module, exports) {
+  }, { '../objects/objectKeys': 675, './assignDescriptorDetail': 631, './describeObjectDetail': 638, 'core-js/stable': 619 }],
+  638: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21285,8 +21439,8 @@
       }
     }
     var _default = exports.default = describeObjectDetail
-  }, { '../objects/emptyObject': 660, '../objects/isCloneable': 662, '../objects/isInstanceObject': 663, 'core-js/stable': 613 }],
-  633: [function (require, module, exports) {
+  }, { '../objects/emptyObject': 666, '../objects/isCloneable': 668, '../objects/isInstanceObject': 669, 'core-js/stable': 619 }],
+  639: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21384,8 +21538,8 @@
       return describeReferences(descriptor, descriptor.details[currentReference], depthLimit)
     }
     var _default = exports.default = describeObjectMap
-  }, { './assignDescriptor': 624, './checkClearValues': 626, './checkDescriptorComplete': 627, './compareDescriptor': 630, './describeObject': 631, './nextReference': 634, './sameDescriptor': 635, 'core-js/modules/esnext.async-iterator.find.js': 575, 'core-js/modules/esnext.async-iterator.for-each.js': 576, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.find.js': 583, 'core-js/modules/esnext.iterator.for-each.js': 584, 'core-js/stable': 613 }],
-  634: [function (require, module, exports) {
+  }, { './assignDescriptor': 630, './checkClearValues': 632, './checkDescriptorComplete': 633, './compareDescriptor': 636, './describeObject': 637, './nextReference': 640, './sameDescriptor': 641, 'core-js/modules/esnext.async-iterator.find.js': 581, 'core-js/modules/esnext.async-iterator.for-each.js': 582, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.find.js': 589, 'core-js/modules/esnext.iterator.for-each.js': 590, 'core-js/stable': 619 }],
+  640: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21416,8 +21570,8 @@
       return !!(0, _objectKeys.default)(val).length
     })
     var _default = exports.default = nextReference
-  }, { '../objects/objectKeys': 669, 'core-js/modules/esnext.async-iterator.find.js': 575, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.find.js': 583, 'core-js/stable': 613 }],
-  635: [function (require, module, exports) {
+  }, { '../objects/objectKeys': 675, 'core-js/modules/esnext.async-iterator.find.js': 581, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.find.js': 589, 'core-js/stable': 619 }],
+  641: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21439,8 +21593,8 @@
  */
     const sameDescriptor = (descriptor1, descriptor2) => descriptor1.details.every((detail, index) => detail.value.some(dVal => descriptor2.details[index].value.includes(dVal)))
     var _default = exports.default = sameDescriptor
-  }, { 'core-js/modules/esnext.async-iterator.every.js': 573, 'core-js/modules/esnext.async-iterator.some.js': 579, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.every.js': 581, 'core-js/modules/esnext.iterator.some.js': 587, 'core-js/stable': 613 }],
-  636: [function (require, module, exports) {
+  }, { 'core-js/modules/esnext.async-iterator.every.js': 579, 'core-js/modules/esnext.async-iterator.some.js': 585, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.every.js': 587, 'core-js/modules/esnext.iterator.some.js': 593, 'core-js/stable': 619 }],
+  642: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21481,14 +21635,15 @@
       relevancyFilter: _relevancyFilter.default,
       trace: _trace.default
     }
-  }, { './functions/callWithParams': 637, './functions/curry': 638, './functions/delay': 639, './functions/makeBasicQueue': 640, './functions/onBodyLoad': 641, './functions/pipe': 642, './functions/preloadParams': 643, './functions/queueManager': 644, './functions/queueTimeout': 645, './functions/relevancyFilter': 646, './functions/trace': 647, 'core-js/stable': 613 }],
-  637: [function (require, module, exports) {
+  }, { './functions/callWithParams': 643, './functions/curry': 644, './functions/delay': 645, './functions/makeBasicQueue': 646, './functions/onBodyLoad': 647, './functions/pipe': 648, './functions/preloadParams': 649, './functions/queueManager': 650, './functions/queueTimeout': 651, './functions/relevancyFilter': 652, './functions/trace': 653, 'core-js/stable': 619 }],
+  643: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
     exports.default = void 0
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     /**
  * Given a function, call with the correct number of parameters from an array of possible parameters.
@@ -21504,14 +21659,15 @@
       return fn(...params.slice(0, fn.length || minimum))
     }
     var _default = exports.default = callWithParams
-  }, { 'core-js/stable': 613 }],
-  638: [function (require, module, exports) {
+  }, { 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619 }],
+  644: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
     exports.default = void 0
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     /**
  * Return a curried version of the passed function.
@@ -21533,8 +21689,8 @@
       }
     }
     var _default = exports.default = curry
-  }, { 'core-js/stable': 613 }],
-  639: [function (require, module, exports) {
+  }, { 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619 }],
+  645: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21555,12 +21711,12 @@
       return {
         resolver: new Promise((resolve, reject) => {
           if (isNaN(time)) {
-            reject(new Error(`Invalid delay: ${time}`))
+            reject(new Error('Invalid delay: '.concat(time)))
           } else {
-            const timeoutId = setTimeout(resolve, time, `Delayed for: ${time}`)
+            const timeoutId = setTimeout(resolve, time, 'Delayed for: '.concat(time))
             cancel = () => {
               clearTimeout(timeoutId)
-              reject(new Error(`Cancelled delay: ${time}`))
+              reject(new Error('Cancelled delay: '.concat(time)))
             }
           }
         }),
@@ -21568,8 +21724,8 @@
       }
     }
     var _default = exports.default = delay
-  }, { 'core-js/stable': 613, 'regenerator-runtime/runtime': 614 }],
-  640: [function (require, module, exports) {
+  }, { 'core-js/stable': 619, 'regenerator-runtime/runtime': 620 }],
+  646: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21590,8 +21746,8 @@
       return new _BasicQueue.default(initialQueue)
     }
     var _default = exports.default = makeBasicQueue
-  }, { '../arrays/BasicQueue': 616, 'core-js/stable': 613 }],
-  641: [function (require, module, exports) {
+  }, { '../arrays/BasicQueue': 622, 'core-js/stable': 619 }],
+  647: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21667,8 +21823,8 @@
       return queue
     }
     var _default = exports.default = onBodyLoad
-  }, { './queueManager': 644, 'core-js/stable': 613 }],
-  642: [function (require, module, exports) {
+  }, { './queueManager': 650, 'core-js/stable': 619 }],
+  648: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21693,14 +21849,15 @@
       return x => fns.reduce((y, f) => f(y), x)
     }
     var _default = exports.default = pipe
-  }, { 'core-js/modules/esnext.async-iterator.reduce.js': 578, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.reduce.js': 586, 'core-js/stable': 613 }],
-  643: [function (require, module, exports) {
+  }, { 'core-js/modules/esnext.async-iterator.reduce.js': 584, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.reduce.js': 592, 'core-js/stable': 619 }],
+  649: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
     exports.default = void 0
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     /**
  * Provide an array of parameters to be used with a function, allow the function to be called later
@@ -21720,8 +21877,8 @@
       }
     }
     var _default = exports.default = preloadParams
-  }, { 'core-js/stable': 613 }],
-  644: [function (require, module, exports) {
+  }, { 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619 }],
+  650: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21731,6 +21888,7 @@
     require('core-js/modules/esnext.async-iterator.for-each.js')
     require('core-js/modules/esnext.iterator.constructor.js')
     require('core-js/modules/esnext.iterator.for-each.js')
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     require('regenerator-runtime/runtime')
     var _makeBasicQueue = _interopRequireDefault(require('./makeBasicQueue'))
@@ -21807,7 +21965,7 @@
             // Some run responses return an object with an 'error' property
             let errorMessage = 'Verify queued function implements "done()" state.'
             if ('error' in toRun && toRun.error) {
-              errorMessage = `[${toRun.error}]: ${errorMessage}`
+              errorMessage = '['.concat(toRun.error, ']: ').concat(errorMessage)
             }
             throw new Error(errorMessage)
           }
@@ -21854,14 +22012,15 @@
       }
     }
     var _default = exports.default = queueManager
-  }, { './makeBasicQueue': 640, 'core-js/modules/esnext.async-iterator.for-each.js': 576, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.for-each.js': 584, 'core-js/stable': 613, 'regenerator-runtime/runtime': 614 }],
-  645: [function (require, module, exports) {
+  }, { './makeBasicQueue': 646, 'core-js/modules/esnext.async-iterator.for-each.js': 582, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.for-each.js': 590, 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619, 'regenerator-runtime/runtime': 620 }],
+  651: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
     exports.default = void 0
+    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     require('regenerator-runtime/runtime')
     var _delay = _interopRequireDefault(require('./delay'))
@@ -21886,8 +22045,8 @@
       }
     }
     var _default = exports.default = queueTimeout
-  }, { './delay': 639, './queueManager': 644, 'core-js/stable': 613, 'regenerator-runtime/runtime': 614 }],
-  646: [function (require, module, exports) {
+  }, { './delay': 645, './queueManager': 650, 'core-js/modules/web.dom-collections.iterator.js': 598, 'core-js/stable': 619, 'regenerator-runtime/runtime': 620 }],
+  652: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21925,8 +22084,8 @@
       })
     }
     var _default = exports.default = relevancyFilter
-  }, { 'core-js/modules/esnext.async-iterator.filter.js': 574, 'core-js/modules/esnext.async-iterator.map.js': 577, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.filter.js': 582, 'core-js/modules/esnext.iterator.map.js': 585, 'core-js/stable': 613 }],
-  647: [function (require, module, exports) {
+  }, { 'core-js/modules/esnext.async-iterator.filter.js': 580, 'core-js/modules/esnext.async-iterator.map.js': 583, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.filter.js': 588, 'core-js/modules/esnext.iterator.map.js': 591, 'core-js/stable': 619 }],
+  653: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21948,13 +22107,13 @@
       const useClone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true
       return value => {
         // noinspection JSForgottenDebugStatementInspection
-        console.info(`${label}: `, useClone ? (0, _cloneObject.default)(value) : value)
+        console.info(''.concat(label, ': '), useClone ? (0, _cloneObject.default)(value) : value)
         return value
       }
     }
     var _default = exports.default = trace
-  }, { '../objects/cloneObject': 655, 'core-js/stable': 613, 'regenerator-runtime/runtime': 614 }],
-  648: [function (require, module, exports) {
+  }, { '../objects/cloneObject': 661, 'core-js/stable': 619, 'regenerator-runtime/runtime': 620 }],
+  654: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -21983,8 +22142,8 @@
       randomInteger: _randomInteger.default,
       randomNumber: _randomNumber.default
     }
-  }, { './numbers/absoluteMax': 649, './numbers/absoluteMin': 650, './numbers/compare': 651, './numbers/randomInteger': 652, './numbers/randomNumber': 653, 'core-js/stable': 613 }],
-  649: [function (require, module, exports) {
+  }, { './numbers/absoluteMax': 655, './numbers/absoluteMin': 656, './numbers/compare': 657, './numbers/randomInteger': 658, './numbers/randomNumber': 659, 'core-js/stable': 619 }],
+  655: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22001,8 +22160,8 @@
  */
     const absoluteMax = (num1, num2) => Math.abs(num1) > Math.abs(num2) ? num1 : num2
     var _default = exports.default = absoluteMax
-  }, { 'core-js/stable': 613 }],
-  650: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  656: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22019,8 +22178,8 @@
  */
     const absoluteMin = (num1, num2) => Math.abs(num1) < Math.abs(num2) ? num1 : num2
     var _default = exports.default = absoluteMin
-  }, { 'core-js/stable': 613 }],
-  651: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  657: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22040,8 +22199,8 @@
  */
     const compare = (val1, val2) => val1 === val2 ? 0 : val1 > val2 ? 1 : -1
     var _default = exports.default = compare
-  }, { 'core-js/stable': 613 }],
-  652: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  658: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22065,8 +22224,8 @@
       return (Math.floor(Math.random() * range) + offset) * interval
     }
     var _default = exports.default = randomInteger
-  }, { 'core-js/stable': 613 }],
-  653: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  659: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22090,8 +22249,8 @@
       return (Math.random() * range + offset) * interval
     }
     var _default = exports.default = randomNumber
-  }, { 'core-js/stable': 613 }],
-  654: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  660: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22148,8 +22307,8 @@
       setAndReturnValue: _setAndReturnValue.default,
       setValue: _setValue.default
     }
-  }, { './objects/cloneObject': 655, './objects/dotGet': 656, './objects/dotNotate': 657, './objects/dotSet': 658, './objects/dotUnset': 659, './objects/emptyObject': 660, './objects/filterObject': 661, './objects/isCloneable': 662, './objects/isInstanceObject': 663, './objects/isObject': 664, './objects/mapObject': 665, './objects/mergeObjects': 666, './objects/mergeObjectsBase': 667, './objects/mergeObjectsMutable': 668, './objects/objectKeys': 669, './objects/objectValues': 670, './objects/reduceObject': 671, './objects/setAndReturnValue': 672, './objects/setValue': 673, 'core-js/stable': 613 }],
-  655: [function (require, module, exports) {
+  }, { './objects/cloneObject': 661, './objects/dotGet': 662, './objects/dotNotate': 663, './objects/dotSet': 664, './objects/dotUnset': 665, './objects/emptyObject': 666, './objects/filterObject': 667, './objects/isCloneable': 668, './objects/isInstanceObject': 669, './objects/isObject': 670, './objects/mapObject': 671, './objects/mergeObjects': 672, './objects/mergeObjectsBase': 673, './objects/mergeObjectsMutable': 674, './objects/objectKeys': 675, './objects/objectValues': 676, './objects/reduceObject': 677, './objects/setAndReturnValue': 678, './objects/setValue': 679, 'core-js/stable': 619 }],
+  661: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22185,8 +22344,8 @@
       })(object)
     }
     var _default = exports.default = cloneObject
-  }, { './mergeObjectsBase': 667, 'core-js/stable': 613 }],
-  656: [function (require, module, exports) {
+  }, { './mergeObjectsBase': 673, 'core-js/stable': 619 }],
+  662: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22248,14 +22407,15 @@
       return dotGet(next, (0, _strAfter.default)(dotNotation, '.'), defaultValue)
     }
     var _default = exports.default = dotGet
-  }, { '../strings/strAfter': 681, '../strings/strBefore': 683, './isObject': 664, 'core-js/stable': 613 }],
-  657: [function (require, module, exports) {
+  }, { '../strings/strAfter': 687, '../strings/strBefore': 689, './isObject': 670, 'core-js/stable': 619 }],
+  663: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
     exports.default = void 0
+    require('core-js/modules/es.string.replace.js')
     require('core-js/modules/esnext.async-iterator.map.js')
     require('core-js/modules/esnext.iterator.map.js')
     require('core-js/stable')
@@ -22278,7 +22438,7 @@
         return (currentKey, value, results) => false
       }
       retainObjects = retainObjects.map(key => key.replace('\.', '\\.'))
-      const retainRegex = new RegExp(`(${retainObjects.join('|')})$`)
+      const retainRegex = new RegExp('('.concat(retainObjects.join('|'), ')$'))
       /**
    * Test if a key should be retained as an object.
    * @param {string} currentKey - The key to test
@@ -22312,12 +22472,12 @@
       for (const key in arrayObject) {
         // @ts-ignore
         const value = arrayObject[key]
-        const currentKey = `${prepend}${key}`
+        const currentKey = ''.concat(prepend).concat(key)
         if (didRetain(currentKey, value, results)) {
           continue
         }
         if ((0, _isObject.default)(value)) {
-          performDotNotate(value, didRetain, `${currentKey}.`, results)
+          performDotNotate(value, didRetain, ''.concat(currentKey, '.'), results)
           continue
         }
         results[currentKey] = value
@@ -22336,8 +22496,8 @@
       return performDotNotate(arrayObject, handleRetainObjects(retainObjects))
     }
     var _default = exports.default = dotNotate
-  }, { './isObject': 664, 'core-js/modules/esnext.async-iterator.map.js': 577, 'core-js/modules/esnext.iterator.map.js': 585, 'core-js/stable': 613 }],
-  658: [function (require, module, exports) {
+  }, { './isObject': 670, 'core-js/modules/es.string.replace.js': 501, 'core-js/modules/esnext.async-iterator.map.js': 583, 'core-js/modules/esnext.iterator.map.js': 591, 'core-js/stable': 619 }],
+  664: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22393,8 +22553,8 @@
       return arrayObject
     }
     var _default = exports.default = dotSet
-  }, { '../strings/strAfter': 681, '../strings/strBefore': 683, './isObject': 664, 'core-js/stable': 613 }],
-  659: [function (require, module, exports) {
+  }, { '../strings/strAfter': 687, '../strings/strBefore': 689, './isObject': 670, 'core-js/stable': 619 }],
+  665: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22448,8 +22608,8 @@
       return arrayObject
     }
     var _default = exports.default = dotUnset
-  }, { '../strings/strAfter': 681, '../strings/strBefore': 683, './isObject': 664, 'core-js/stable': 613 }],
-  660: [function (require, module, exports) {
+  }, { '../strings/strAfter': 687, '../strings/strBefore': 689, './isObject': 670, 'core-js/stable': 619 }],
+  666: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22468,8 +22628,8 @@
  */
     const emptyObject = item => (typeof item === 'function' || (0, _isObject.default)(item)) && !(0, _objectKeys.default)(item).length
     var _default = exports.default = emptyObject
-  }, { './isObject': 664, './objectKeys': 669, 'core-js/stable': 613 }],
-  661: [function (require, module, exports) {
+  }, { './isObject': 670, './objectKeys': 675, 'core-js/stable': 619 }],
+  667: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22507,8 +22667,8 @@
       }, {})
     }
     var _default = exports.default = filterObject
-  }, { '../functions/callWithParams': 637, './objectKeys': 669, 'core-js/modules/esnext.async-iterator.filter.js': 574, 'core-js/modules/esnext.async-iterator.reduce.js': 578, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.filter.js': 582, 'core-js/modules/esnext.iterator.reduce.js': 586, 'core-js/stable': 613 }],
-  662: [function (require, module, exports) {
+  }, { '../functions/callWithParams': 643, './objectKeys': 675, 'core-js/modules/esnext.async-iterator.filter.js': 580, 'core-js/modules/esnext.async-iterator.reduce.js': 584, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.filter.js': 588, 'core-js/modules/esnext.iterator.reduce.js': 592, 'core-js/stable': 619 }],
+  668: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22526,8 +22686,8 @@
  */
     const isCloneable = value => typeof value === 'object' && value !== null && !(0, _isInstanceObject.default)(value)
     var _default = exports.default = isCloneable
-  }, { './isInstanceObject': 663, 'core-js/stable': 613 }],
-  663: [function (require, module, exports) {
+  }, { './isInstanceObject': 669, 'core-js/stable': 619 }],
+  669: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22554,8 +22714,8 @@
       return object.constructor.name !== 'Array' && (0, _objectKeys.default)(object, true).length > (0, _objectKeys.default)(object).length
     }
     var _default = exports.default = isInstanceObject
-  }, { './isObject': 664, './objectKeys': 669, 'core-js/stable': 613 }],
-  664: [function (require, module, exports) {
+  }, { './isObject': 670, './objectKeys': 675, 'core-js/stable': 619 }],
+  670: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22571,8 +22731,8 @@
  */
     const isObject = object => typeof object === 'object' && object !== null
     var _default = exports.default = isObject
-  }, { 'core-js/stable': 613 }],
-  665: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  671: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22604,8 +22764,8 @@
       return Array.isArray(obj) ? obj.map(fn, thisArg) : (0, _objectKeys.default)(obj, true).reduce((newObj, curr) => (0, _setValue.default)(curr, (0, _callWithParams.default)(fn.bind(thisArg), [obj[curr], curr, obj], 2), newObj), {})
     }
     var _default = exports.default = mapObject
-  }, { '../functions/callWithParams': 637, './objectKeys': 669, './setValue': 673, 'core-js/modules/esnext.async-iterator.map.js': 577, 'core-js/modules/esnext.async-iterator.reduce.js': 578, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.map.js': 585, 'core-js/modules/esnext.iterator.reduce.js': 586, 'core-js/stable': 613 }],
-  666: [function (require, module, exports) {
+  }, { '../functions/callWithParams': 643, './objectKeys': 675, './setValue': 679, 'core-js/modules/esnext.async-iterator.map.js': 583, 'core-js/modules/esnext.async-iterator.reduce.js': 584, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.map.js': 591, 'core-js/modules/esnext.iterator.reduce.js': 592, 'core-js/stable': 619 }],
+  672: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22626,8 +22786,8 @@
       useClone: true
     })
     var _default = exports.default = mergeObjects
-  }, { './mergeObjectsBase': 667, 'core-js/stable': 613 }],
-  667: [function (require, module, exports) {
+  }, { './mergeObjectsBase': 673, 'core-js/stable': 619 }],
+  673: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22729,8 +22889,8 @@
       }
     }
     var _default = exports.default = mergeObjectsBase
-  }, { '../functions/relevancyFilter': 646, './isCloneable': 662, './reduceObject': 671, './setValue': 673, 'core-js/modules/esnext.async-iterator.find.js': 575, 'core-js/modules/esnext.async-iterator.map.js': 577, 'core-js/modules/esnext.async-iterator.reduce.js': 578, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.find.js': 583, 'core-js/modules/esnext.iterator.map.js': 585, 'core-js/modules/esnext.iterator.reduce.js': 586, 'core-js/stable': 613 }],
-  668: [function (require, module, exports) {
+  }, { '../functions/relevancyFilter': 652, './isCloneable': 668, './reduceObject': 677, './setValue': 679, 'core-js/modules/esnext.async-iterator.find.js': 581, 'core-js/modules/esnext.async-iterator.map.js': 583, 'core-js/modules/esnext.async-iterator.reduce.js': 584, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.find.js': 589, 'core-js/modules/esnext.iterator.map.js': 591, 'core-js/modules/esnext.iterator.reduce.js': 592, 'core-js/stable': 619 }],
+  674: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22749,8 +22909,8 @@
  */
     const mergeObjectsMutable = (0, _mergeObjectsBase.default)()
     var _default = exports.default = mergeObjectsMutable
-  }, { './mergeObjectsBase': 667, 'core-js/stable': 613 }],
-  669: [function (require, module, exports) {
+  }, { './mergeObjectsBase': 673, 'core-js/stable': 619 }],
+  675: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22792,8 +22952,8 @@
       return keys
     }
     var _default = exports.default = objectKeys
-  }, { './isObject': 664, 'core-js/stable': 613 }],
-  670: [function (require, module, exports) {
+  }, { './isObject': 670, 'core-js/stable': 619 }],
+  676: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22818,8 +22978,8 @@
       return (0, _objectKeys.default)(object, includeInherited).map(key => object[key])
     }
     var _default = exports.default = objectValues
-  }, { './objectKeys': 669, 'core-js/modules/esnext.async-iterator.map.js': 577, 'core-js/modules/esnext.iterator.map.js': 585, 'core-js/stable': 613 }],
-  671: [function (require, module, exports) {
+  }, { './objectKeys': 675, 'core-js/modules/esnext.async-iterator.map.js': 583, 'core-js/modules/esnext.iterator.map.js': 591, 'core-js/stable': 619 }],
+  677: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22850,8 +23010,8 @@
       return Array.isArray(obj) ? obj.reduce(fn, initialValue) : (0, _objectKeys.default)(obj, true).reduce((newObj, curr) => (0, _callWithParams.default)(fn, [newObj, obj[curr], curr, obj], 2), initialValue)
     }
     var _default = exports.default = reduceObject
-  }, { '../functions/callWithParams': 637, './objectKeys': 669, 'core-js/modules/esnext.async-iterator.reduce.js': 578, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.reduce.js': 586, 'core-js/stable': 613 }],
-  672: [function (require, module, exports) {
+  }, { '../functions/callWithParams': 643, './objectKeys': 675, 'core-js/modules/esnext.async-iterator.reduce.js': 584, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.reduce.js': 592, 'core-js/stable': 619 }],
+  678: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22872,8 +23032,8 @@
       return value
     }
     var _default = exports.default = setAndReturnValue
-  }, { 'core-js/stable': 613 }],
-  673: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  679: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22896,8 +23056,8 @@
       return item
     }
     var _default = exports.default = setValue
-  }, { 'core-js/stable': 613 }],
-  674: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  680: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22942,8 +23102,8 @@
       ucFirst: _ucFirst.default,
       words: _words.default
     }
-  }, { './strings/camelCase': 675, './strings/kabobCase': 676, './strings/makeFilepath': 677, './strings/makeRelativePath': 678, './strings/regexEscape': 679, './strings/snakeCase': 680, './strings/strAfter': 681, './strings/strAfterLast': 682, './strings/strBefore': 683, './strings/strBeforeLast': 684, './strings/titleCase': 685, './strings/ucFirst': 686, './strings/words': 687, 'core-js/stable': 613 }],
-  675: [function (require, module, exports) {
+  }, { './strings/camelCase': 681, './strings/kabobCase': 682, './strings/makeFilepath': 683, './strings/makeRelativePath': 684, './strings/regexEscape': 685, './strings/snakeCase': 686, './strings/strAfter': 687, './strings/strAfterLast': 688, './strings/strBefore': 689, './strings/strBeforeLast': 690, './strings/titleCase': 691, './strings/ucFirst': 692, './strings/words': 693, 'core-js/stable': 619 }],
+  681: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22965,8 +23125,8 @@
  */
     const camelCase = str => (0, _words.default)(str).reduce((camel, part) => camel ? camel.concat((0, _ucFirst.default)(part)) : part.toLowerCase(), '')
     var _default = exports.default = camelCase
-  }, { './ucFirst': 686, './words': 687, 'core-js/modules/esnext.async-iterator.reduce.js': 578, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.reduce.js': 586, 'core-js/stable': 613 }],
-  676: [function (require, module, exports) {
+  }, { './ucFirst': 692, './words': 693, 'core-js/modules/esnext.async-iterator.reduce.js': 584, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.reduce.js': 592, 'core-js/stable': 619 }],
+  682: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -22987,8 +23147,8 @@
  */
     const kabobCase = str => (0, _words.default)(str).reduce((kabob, part) => kabob ? kabob.concat('-' + part.toLowerCase()) : part.toLowerCase(), '')
     var _default = exports.default = kabobCase
-  }, { './words': 687, 'core-js/modules/esnext.async-iterator.reduce.js': 578, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.reduce.js': 586, 'core-js/stable': 613 }],
-  677: [function (require, module, exports) {
+  }, { './words': 693, 'core-js/modules/esnext.async-iterator.reduce.js': 584, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.reduce.js': 592, 'core-js/stable': 619 }],
+  683: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -23035,12 +23195,12 @@
       if (!root) {
         return append
       }
-      return append ? `${root}/${append}` : root
+      return append ? ''.concat(root, '/').concat(append) : root
     }
     exports.makeFilepath = makeFilepath
     var _default = exports.default = makeFilepath
-  }, { './strBeforeLast': 684 }],
-  678: [function (require, module, exports) {
+  }, { './strBeforeLast': 690 }],
+  684: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -23063,8 +23223,8 @@
       let firstPart = (0, _strBefore.default)(nextPart, '/')
       let hasMatches = false
       while (firstPart && relativePath.startsWith(firstPart)) {
-        relativePath = (0, _strAfter.default)(relativePath, `${firstPart}/`)
-        nextPart = (0, _strAfter.default)(nextPart, `${firstPart}/`)
+        relativePath = (0, _strAfter.default)(relativePath, ''.concat(firstPart, '/'))
+        nextPart = (0, _strAfter.default)(nextPart, ''.concat(firstPart, '/'))
         firstPart = (0, _strBefore.default)(nextPart, '/')
         hasMatches = true
       }
@@ -23084,14 +23244,15 @@
     }
     exports.makeRelativePath = makeRelativePath
     var _default = exports.default = makeRelativePath
-  }, { './strAfter': 681, './strBefore': 683 }],
-  679: [function (require, module, exports) {
+  }, { './strAfter': 687, './strBefore': 689 }],
+  685: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
     exports.regexEscape = exports.default = void 0
+    require('core-js/modules/es.string.replace.js')
     /**
  * Take a string and escape the regex characters.
  * @memberOf module:stringHelpers
@@ -23101,8 +23262,8 @@
     const regexEscape = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     exports.regexEscape = regexEscape
     var _default = exports.default = regexEscape
-  }, {}],
-  680: [function (require, module, exports) {
+  }, { 'core-js/modules/es.string.replace.js': 501 }],
+  686: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -23123,8 +23284,8 @@
  */
     const snakeCase = str => (0, _words.default)(str).reduce((snake, part) => snake ? snake.concat('_' + part.toLowerCase()) : part.toLowerCase(), '')
     var _default = exports.default = snakeCase
-  }, { './words': 687, 'core-js/modules/esnext.async-iterator.reduce.js': 578, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.reduce.js': 586, 'core-js/stable': 613 }],
-  681: [function (require, module, exports) {
+  }, { './words': 693, 'core-js/modules/esnext.async-iterator.reduce.js': 584, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.reduce.js': 592, 'core-js/stable': 619 }],
+  687: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -23144,8 +23305,8 @@
       return index === -1 ? '' : str.substring(index + search.length)
     }
     var _default = exports.default = strAfter
-  }, { 'core-js/stable': 613 }],
-  682: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  688: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -23165,8 +23326,8 @@
       return index === -1 ? '' : str.substring(index + search.length)
     }
     var _default = exports.default = strAfterLast
-  }, { 'core-js/stable': 613 }],
-  683: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  689: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -23186,8 +23347,8 @@
       return index === -1 ? '' : str.slice(0, index)
     }
     var _default = exports.default = strBefore
-  }, { 'core-js/stable': 613 }],
-  684: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  690: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -23207,8 +23368,8 @@
       return index === -1 ? '' : str.substring(0, index)
     }
     var _default = exports.default = strBeforeLast
-  }, { 'core-js/stable': 613 }],
-  685: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  691: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -23230,8 +23391,8 @@
  */
     const titleCase = str => (0, _words.default)(str).reduce((title, part) => title ? title.concat(' ' + (0, _ucFirst.default)(part)) : (0, _ucFirst.default)(part), '')
     var _default = exports.default = titleCase
-  }, { './ucFirst': 686, './words': 687, 'core-js/modules/esnext.async-iterator.reduce.js': 578, 'core-js/modules/esnext.iterator.constructor.js': 580, 'core-js/modules/esnext.iterator.reduce.js': 586, 'core-js/stable': 613 }],
-  686: [function (require, module, exports) {
+  }, { './ucFirst': 692, './words': 693, 'core-js/modules/esnext.async-iterator.reduce.js': 584, 'core-js/modules/esnext.iterator.constructor.js': 586, 'core-js/modules/esnext.iterator.reduce.js': 592, 'core-js/stable': 619 }],
+  692: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -23247,8 +23408,8 @@
  */
     const ucFirst = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
     var _default = exports.default = ucFirst
-  }, { 'core-js/stable': 613 }],
-  687: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  693: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -23264,8 +23425,8 @@
  */
     const words = str => str.match(/\d+|[A-Z]?[a-z]+|[A-Za-z]+/g)
     var _default = exports.default = words
-  }, { 'core-js/stable': 613 }],
-  688: [function (require, module, exports) {
+  }, { 'core-js/stable': 619 }],
+  694: [function (require, module, exports) {
     'use strict'; Object.defineProperty(exports, '__esModule', { value: !0 }), exports.default = void 0; var _arrays = _interopRequireDefault(require('./helpers/arrays')); var _descriptors = _interopRequireDefault(require('./helpers/descriptors')); var _functions = _interopRequireDefault(require('./helpers/functions')); var _numbers = _interopRequireDefault(require('./helpers/numbers')); var _objects = _interopRequireDefault(require('./helpers/objects')); var _strings = _interopRequireDefault(require('./helpers/strings')); function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } } const siFunciona = Object.assign({}, _arrays.default, _descriptors.default, _functions.default, _numbers.default, _objects.default, _strings.default); var _default = exports.default = siFunciona; typeof window !== 'undefined' && (window.siFunciona = siFunciona)
-  }, { './helpers/arrays': 615, './helpers/descriptors': 623, './helpers/functions': 636, './helpers/numbers': 648, './helpers/objects': 654, './helpers/strings': 674 }]
+  }, { './helpers/arrays': 621, './helpers/descriptors': 629, './helpers/functions': 642, './helpers/numbers': 654, './helpers/objects': 660, './helpers/strings': 680 }]
 }, {}, [1])
