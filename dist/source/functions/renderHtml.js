@@ -7,7 +7,7 @@ exports.default = void 0
 require('core-js/stable')
 var _updateElements = _interopRequireDefault(require('./updateElements.js'))
 var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * This is a shortcut for building the specified HTML elements and appending them to the Dom
  * with associated listeners.

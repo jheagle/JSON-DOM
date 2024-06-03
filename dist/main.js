@@ -7,7 +7,7 @@ exports.default = void 0
 require('core-js/stable')
 var _functions = _interopRequireDefault(require('./source/functions.js'))
 var _objects = _interopRequireDefault(require('./source/objects.js'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * All of the JSON DOM system functions for creating JSON components.
  * @file

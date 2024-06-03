@@ -7,7 +7,7 @@ exports.default = void 0
 require('core-js/stable')
 var _bindElementListeners = _interopRequireDefault(require('./bindElementListeners.js'))
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Based on the eventListeners property of the provided item, bind the
  * listeners to the associated element property for the provided domObjects.DomItem.

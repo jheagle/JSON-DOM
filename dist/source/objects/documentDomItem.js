@@ -11,7 +11,7 @@ var _createDomItem = _interopRequireDefault(require('./createDomItem.js'))
 var _initChildren = _interopRequireDefault(require('./initChildren.js'))
 var _initRoot = _interopRequireDefault(require('./initRoot.js'))
 var _updateDomItems = _interopRequireDefault(require('../functions/updateDomItems'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Return a DomItem reference to the document. The rootItem argument is a system variable and not necessary to
  * implement.

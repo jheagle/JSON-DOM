@@ -7,7 +7,7 @@ exports.default = void 0
 require('core-js/stable')
 var _setParentItemReferences = _interopRequireDefault(require('./setParentItemReferences.js'))
 var _addDomItemProperties = _interopRequireDefault(require('./addDomItemProperties'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Convert DOM Item to JSON string.
  * @function

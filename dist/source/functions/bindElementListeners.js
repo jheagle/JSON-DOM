@@ -10,7 +10,7 @@ require('core-js/modules/esnext.iterator.for-each.js')
 require('core-js/stable')
 var _activateListener = _interopRequireDefault(require('./activateListener.js'))
 var _applyActiveListeners = _interopRequireDefault(require('./applyActiveListeners'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Receive a DomItem with eventListeners and apply the event listeners onto the Dom element.
  * @function

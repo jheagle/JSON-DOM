@@ -9,7 +9,7 @@ require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.for-each.js')
 require('core-js/stable')
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Check if the value is an empty object / array, or if it is null or undefined.
  * @param {*} propertyValue

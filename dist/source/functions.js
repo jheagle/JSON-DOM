@@ -47,7 +47,7 @@ var _updateDomItem = _interopRequireDefault(require('./functions/updateDomItem.j
 var _updateDomItems = _interopRequireDefault(require('./functions/updateDomItems.js'))
 var _updateElement = _interopRequireDefault(require('./functions/updateElement.js'))
 var _updateElements = _interopRequireDefault(require('./functions/updateElements.js'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * @file Core Dom management functions
  * @author Joshua Heagle <joshuaheagle@gmail.com>

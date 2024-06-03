@@ -14,7 +14,7 @@ var _documentItem = _interopRequireDefault(require('./objects/documentItem.js'))
 var _initChildren = _interopRequireDefault(require('./objects/initChildren.js'))
 var _initRoot = _interopRequireDefault(require('./objects/initRoot.js'))
 var _options = _interopRequireDefault(require('./objects/options.js'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * @file Core objects for representing the DOM in JSON.
  * @author Joshua Heagle <joshuaheagle@gmail.com>

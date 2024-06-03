@@ -11,7 +11,7 @@ var _createEventResponder = _interopRequireDefault(require('../objects/createEve
 var _getListenerOptions = _interopRequireDefault(require('../objects/options/getListenerOptions.js'))
 var _optionsToNumber = _interopRequireDefault(require('../objects/options/optionsToNumber.js'))
 var _retrieveListener = _interopRequireDefault(require('./retrieveListener.js'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Activate listener by pushing it to activeListeners.
  * @param {DomItem} item

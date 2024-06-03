@@ -4,7 +4,6 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/web.dom-collections.iterator.js')
 require('core-js/stable')
 /**
  * A wrapped Event which provides additional utilities.

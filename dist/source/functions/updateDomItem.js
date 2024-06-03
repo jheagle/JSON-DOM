@@ -7,7 +7,7 @@ exports.default = void 0
 require('core-js/stable')
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _elementChanges = _interopRequireDefault(require('./elementChanges.js'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
  * @function

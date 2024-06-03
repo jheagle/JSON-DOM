@@ -10,7 +10,7 @@ var _deactivateListeners = _interopRequireDefault(require('./deactivateListeners
 var _domItemChanges = _interopRequireDefault(require('./domItemChanges.js'))
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _generateElement = _interopRequireDefault(require('./generateElement.js'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
  * @function

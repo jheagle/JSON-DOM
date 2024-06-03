@@ -8,7 +8,7 @@ require('core-js/stable')
 var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
 var _gatherChildItems = _interopRequireDefault(require('./gatherChildItems.js'))
 var _getChildTest = _interopRequireDefault(require('./getChildTest.js'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * A selector function for retrieving existing child domObjects.DomItems from the given parent item.
  * This function will check all the children starting from item, and scan the attributes

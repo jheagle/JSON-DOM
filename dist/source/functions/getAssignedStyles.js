@@ -6,7 +6,7 @@ Object.defineProperty(exports, '__esModule', {
 exports.default = void 0
 require('core-js/stable')
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Get all the styles which have been assigned to this element. Assigned styles are indicated as numeric-key
  * properties with a value indicating the string-key property which has been assigned. The string-key properties

@@ -8,7 +8,7 @@ require('core-js/stable')
 var _getListenerOptions = _interopRequireDefault(require('./options/getListenerOptions.js'))
 var _numberToOptions = _interopRequireDefault(require('./options/numberToOptions.js'))
 var _optionsToNumber = _interopRequireDefault(require('./options/optionsToNumber.js'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * @file Be able to use Flags (Options) in a well-formed way.
  * @author Joshua Heagle <joshuaheagle@gmail.com>

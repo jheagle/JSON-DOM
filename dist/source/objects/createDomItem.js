@@ -8,7 +8,7 @@ require('core-js/stable')
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _appendChild = _interopRequireDefault(require('../functions/appendChild.js'))
 var _removeChild = _interopRequireDefault(require('../functions/removeChild'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * This is the standard definition of a listenerFunction to be used
  * @callback listenerFunction

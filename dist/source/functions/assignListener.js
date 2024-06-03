@@ -6,7 +6,7 @@ Object.defineProperty(exports, '__esModule', {
 exports.default = void 0
 require('core-js/stable')
 var _listenerOptions = _interopRequireDefault(require('./listenerOptions.js'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Document attachEvent support for older browsers.
  * @typedef {EventTarget} MicrosoftHtmlObject
@@ -33,10 +33,10 @@ const assignListener = function (trigger, elem, fn) {
     elem.addEventListener(trigger, fn, (0, _listenerOptions.default)(options))
   } else if (elem.attachEvent) {
     // Older browsers, especially Internet Explorer
-    elem.attachEvent('on'.concat(trigger), fn)
+    elem.attachEvent(`on${trigger}`, fn)
   } else {
     // General support for adding a new function onto the element which can be called to trigger the function
-    elem['on'.concat(trigger)] = fn
+    elem[`on${trigger}`] = fn
   }
   return fn
 }

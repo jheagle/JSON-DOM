@@ -3,7 +3,6 @@
  */
 import activateListener from './activateListener'
 import createDomItem from '../objects/createDomItem'
-import { logObject } from 'js-build-tools/dist/testHelpers'
 
 describe('activateListener', () => {
   test('Active listeners get added', () => {

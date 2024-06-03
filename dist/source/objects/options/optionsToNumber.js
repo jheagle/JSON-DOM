@@ -6,7 +6,7 @@ Object.defineProperty(exports, '__esModule', {
 exports.default = void 0
 require('core-js/stable')
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Take the given options and convert them (using binary) to an integer. Given listener options, each one is assigned a
  * bitwise position. The resulting binary number represents any possible combination of the available flags set.

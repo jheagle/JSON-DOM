@@ -9,14 +9,13 @@ require('core-js/modules/esnext.async-iterator.map.js')
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.for-each.js')
 require('core-js/modules/esnext.iterator.map.js')
-require('core-js/modules/web.dom-collections.iterator.js')
 require('core-js/stable')
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _getListenerOptions = _interopRequireDefault(require('../objects/options/getListenerOptions.js'))
 var _numberToOptions = _interopRequireDefault(require('../objects/options/numberToOptions.js'))
 var _assignListener = _interopRequireDefault(require('./assignListener.js'))
 var _createEventProxy = _interopRequireDefault(require('../objects/createEventProxy.js'))
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Apply each active event listener for event type to the DOM Item's element.
  * @param {DomItem} item
