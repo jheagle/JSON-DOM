@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-throw-expressions": "^7.25.9",
-    "si-funciona": "^2.2.12"
+    "si-funciona": "^2.2.13"
   },
   "devDependencies": {
     "@babel/plugin-syntax-throw-expressions": "^7.25.9",
