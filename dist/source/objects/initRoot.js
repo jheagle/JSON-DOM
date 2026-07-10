@@ -6,6 +6,8 @@ Object.defineProperty(exports, '__esModule', {
 exports.default = void 0
 require('core-js/stable')
 var _createDomItem = _interopRequireDefault(require('./createDomItem.js'))
+var _mergeObjects = _interopRequireDefault(require('si-funciona/dist/helpers/objects/mergeObjects'))
+var _commonEvents = _interopRequireDefault(require('./events/commonEvents.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * DomItemRoot defines the structure for a single element in the Dom
@@ -35,15 +37,17 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * listeners to be registered in the Dom
  * @returns {DomItemRoot|DomItem}
  */
-const initRoot = function (children) {
+const initRoot = function () {
+  const children = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [{}, {}]
   const listeners = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
   return (0, _createDomItem.default)({
     nodeName: '#document',
     nodeValue: null,
     attributes: {},
     element: document,
-    eventListeners: listeners,
+    eventListeners: (0, _mergeObjects.default)((0, _commonEvents.default)(), listeners),
     children: children,
+    parentItem: {},
     head: children[0],
     body: children[1]
   })

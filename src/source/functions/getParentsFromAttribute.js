@@ -19,7 +19,7 @@ const getParentsFromAttribute = (attr, value, item = documentItem.body) => {
     if (item.nodeName === '#document') {
       throw new Error('Root parent item must be an empty object, null reference found.')
     }
-    throw new Error('Detached child, missing parentItem reference.')
+    throw new Error('Detached child, missing parentItem reference. Use empty object if this is the root item.')
   }
   return Object.keys(item.parentItem).length
     ? (item.parentItem.attributes[attr] || item[attr] || false) === value

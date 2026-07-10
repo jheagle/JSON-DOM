@@ -1,12 +1,14 @@
 /**
  * @jest-environment jsdom
  */
-import documentItem from './documentItem'
+import documentItem from './documentItem.js'
 
-test('documentItem has valid head', () => {
-  expect(documentItem.children[0].nodeName).toBe('head')
-})
+describe('documentItem', () => {
+  test('has valid head', () => {
+    expect(documentItem.children[0].nodeName).toBe('head')
+  })
 
-test('documentItem has valid body', () => {
-  expect(documentItem.children[1].nodeName).toBe('body')
+  test('has valid body', () => {
+    expect(documentItem.children[1].nodeName).toBe('body')
+  })
 })

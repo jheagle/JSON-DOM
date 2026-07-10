@@ -4,6 +4,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
+require('core-js/modules/es.regexp.exec.js')
 require('core-js/stable')
 var _bindListeners = _interopRequireDefault(require('./bindListeners.js'))
 var _deactivateListeners = _interopRequireDefault(require('./deactivateListeners.js'))

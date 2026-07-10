@@ -16,7 +16,7 @@ const isEmpty = propertyValue => siFunciona.emptyObject(propertyValue) || proper
  * @param {Array} propertiesToDelete - Optional array of additional property names to remove.
  * @returns {DomItem}
  */
-const removeEmptyProperties = (item, propertiesToDelete) => {
+const removeEmptyProperties = (item, propertiesToDelete = []) => {
   item.children.forEach(child => {
     removeEmptyProperties(child, propertiesToDelete)
   })

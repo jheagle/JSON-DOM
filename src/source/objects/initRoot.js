@@ -1,5 +1,7 @@
 import 'core-js/stable'
 import createDomItem from './createDomItem.js'
+import mergeObjects from 'si-funciona/dist/helpers/objects/mergeObjects'
+import commonEvents from './events/commonEvents.js'
 
 /**
  * DomItemRoot defines the structure for a single element in the Dom
@@ -29,13 +31,14 @@ import createDomItem from './createDomItem.js'
  * listeners to be registered in the Dom
  * @returns {DomItemRoot|DomItem}
  */
-const initRoot = (children, listeners = {}) => createDomItem({
+const initRoot = (children = [{}, {}], listeners = {}) => createDomItem({
   nodeName: '#document',
   nodeValue: null,
   attributes: {},
   element: document,
-  eventListeners: listeners,
+  eventListeners: mergeObjects(commonEvents(), listeners),
   children: children,
+  parentItem: {},
   head: children[0],
   body: children[1]
 })

@@ -13,7 +13,11 @@ import createEventProxy from '../objects/createEventProxy.js'
  */
 const applyActiveListeners = (item, eventName) => {
   const listenerOptions = getListenerOptions()
-  Object.keys(item.activeListeners[eventName]).forEach(
+  const eventOptions = siFunciona.dotGet(item, `activeListeners.${eventName}`)
+  if (eventOptions === null) {
+    return item
+  }
+  siFunciona.objectKeys(eventOptions).forEach(
     binaryOptions => {
       const optionsToUse = numberToOptions(listenerOptions, parseInt(binaryOptions))
       if (!optionsToUse.signal) {

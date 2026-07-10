@@ -12,6 +12,9 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * Helper for getting all domObjects.DomItems starting at child and having specified nodeName
  * @function
  * @memberOf module:domFunctions
+ * @param {*} nodeName - The nodeName to search for
+ * @param {DomItem} item - The DomItem which may have parent items matching the
+ * attribute criteria
  * @returns {Array}
  */
 const getParentsByTagName = _siFunciona.default.curry(_getParentsFromAttribute.default)('nodeName')

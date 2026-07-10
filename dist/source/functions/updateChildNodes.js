@@ -4,9 +4,6 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/esnext.async-iterator.find.js')
-require('core-js/modules/esnext.async-iterator.for-each.js')
-require('core-js/modules/esnext.async-iterator.map.js')
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.find.js')
 require('core-js/modules/esnext.iterator.for-each.js')
@@ -28,7 +25,7 @@ const updateChildNodes = domItem => {
   const previousChildNodes = Array.from(domItem.element.childNodes)
   domItem.children.map((child, index) => {
     const existing = previousChildNodes.find(childNode => childNode === child.element)
-    let childNode = existing ?? child.element
+    let childNode = existing !== null && existing !== void 0 ? existing : child.element
     if (!childNode) {
       childNode = (0, _updateElement.default)(child).element
     }

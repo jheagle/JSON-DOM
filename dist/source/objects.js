@@ -7,6 +7,7 @@ exports.default = void 0
 require('core-js/stable')
 var _createChangeList = _interopRequireDefault(require('./objects/createChangeList.js'))
 var _createDomItem = _interopRequireDefault(require('./objects/createDomItem.js'))
+var _createEventListener = _interopRequireDefault(require('./objects/createEventListener.js'))
 var _createEventProxy = _interopRequireDefault(require('./objects/createEventProxy.js'))
 var _createEventResponder = _interopRequireDefault(require('./objects/createEventResponder.js'))
 var _documentDomItem = _interopRequireDefault(require('./objects/documentDomItem.js'))
@@ -25,6 +26,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
 var _default = exports.default = {
   createChangeList: _createChangeList.default,
   createDomItem: _createDomItem.default,
+  createEventListener: _createEventListener.default,
   createEventProxy: _createEventProxy.default,
   createEventResponder: _createEventResponder.default,
   documentDomItem: _documentDomItem.default,

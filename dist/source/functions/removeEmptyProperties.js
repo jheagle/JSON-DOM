@@ -4,7 +4,6 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/esnext.async-iterator.for-each.js')
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.for-each.js')
 require('core-js/stable')
@@ -25,7 +24,8 @@ const isEmpty = propertyValue => _siFunciona.default.emptyObject(propertyValue) 
  * @param {Array} propertiesToDelete - Optional array of additional property names to remove.
  * @returns {DomItem}
  */
-const removeEmptyProperties = (item, propertiesToDelete) => {
+const removeEmptyProperties = function (item) {
+  const propertiesToDelete = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : []
   item.children.forEach(child => {
     removeEmptyProperties(child, propertiesToDelete)
   })

@@ -12,7 +12,10 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * Helper for getting all domObjects.DomItems starting at parent and having specified className attribute
  * @function
  * @memberOf module:domFunctions
- * @returns {DomItem[]}
+ * @param {*} className - The className searched for
+ * @param {DomItem} item - The DomItem which may have child items matching the attribute
+ * criteria
+ * @returns {Array.<DomItem>}
  */
 const getChildrenByClass = _siFunciona.default.curry(_getChildrenFromAttribute.default)('className')
 var _default = exports.default = getChildrenByClass

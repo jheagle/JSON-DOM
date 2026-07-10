@@ -8,6 +8,7 @@
 import 'core-js/stable'
 import createChangeList from './objects/createChangeList.js'
 import createDomItem from './objects/createDomItem.js'
+import createEventListener from './objects/createEventListener.js'
 import createEventProxy from './objects/createEventProxy.js'
 import createEventResponder from './objects/createEventResponder.js'
 import documentDomItem from './objects/documentDomItem.js'
@@ -19,6 +20,7 @@ import options from './objects/options.js'
 export default {
   createChangeList,
   createDomItem,
+  createEventListener,
   createEventProxy,
   createEventResponder,
   documentDomItem,

@@ -4,11 +4,10 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/esnext.async-iterator.for-each.js')
-require('core-js/modules/esnext.async-iterator.map.js')
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.for-each.js')
 require('core-js/modules/esnext.iterator.map.js')
+require('core-js/modules/web.dom-collections.iterator.js')
 require('core-js/stable')
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _getListenerOptions = _interopRequireDefault(require('../objects/options/getListenerOptions.js'))
@@ -24,7 +23,11 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  */
 const applyActiveListeners = (item, eventName) => {
   const listenerOptions = (0, _getListenerOptions.default)()
-  Object.keys(item.activeListeners[eventName]).forEach(binaryOptions => {
+  const eventOptions = _siFunciona.default.dotGet(item, 'activeListeners.'.concat(eventName))
+  if (eventOptions === null) {
+    return item
+  }
+  _siFunciona.default.objectKeys(eventOptions).forEach(binaryOptions => {
     const optionsToUse = (0, _numberToOptions.default)(listenerOptions, parseInt(binaryOptions))
     if (!optionsToUse.signal) {
       // Abort signal must be undefined if it is not required.

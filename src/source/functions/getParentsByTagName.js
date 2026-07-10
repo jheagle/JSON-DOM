@@ -6,6 +6,9 @@ import getParentsFromAttribute from './getParentsFromAttribute.js'
  * Helper for getting all domObjects.DomItems starting at child and having specified nodeName
  * @function
  * @memberOf module:domFunctions
+ * @param {*} nodeName - The nodeName to search for
+ * @param {DomItem} item - The DomItem which may have parent items matching the
+ * attribute criteria
  * @returns {Array}
  */
 const getParentsByTagName = siFunciona.curry(getParentsFromAttribute)('nodeName')

@@ -1,11 +1,14 @@
 /**
  * @jest-environment jsdom
  */
+import createDomItem from '../objects/createDomItem.js'
 import registerListener from './registerListener'
 
-const coolFunc = () => 'hello'
 describe('registerListener', () => {
   test('can register a listener', () => {
-    expect(registerListener(coolFunc).coolFunc).toBe(coolFunc)
+    const divItem = createDomItem()
+    const coolFunc = () => 'hello'
+    registerListener(coolFunc, 'coolFunc', divItem)
+    expect(divItem.eventListeners.coolFunc).toBe(coolFunc)
   })
 })

@@ -1,8 +1,10 @@
 /**
  * @jest-environment jsdom
  */
-import activateListener from './activateListener'
-import createDomItem from '../objects/createDomItem'
+import activateListener from './activateListener.js'
+import createDomItem from '../objects/createDomItem.js'
+import optionsToNumber from '../objects/options/optionsToNumber'
+import getListenerOptions from '../objects/options/getListenerOptions'
 
 describe('activateListener', () => {
   test('Active listeners get added', () => {
@@ -20,12 +22,72 @@ describe('activateListener', () => {
     expect(clickFn).toHaveBeenCalled()
   })
 
-  // TODO: Add more tests:
-  // Test passing different arguments and options into the eventListener
-  // Test assigning multiple event listeners to the same event name (ex multiple 'click')
-  // The expectation is that each function will be applied to active listeners. An object for each event name keyed by derived option value
-  // With an array of handlers to be called (one for each event listener attached)
- })
+  test('Activate listeners with options', () => {
+    const clickFn = jest.fn()
+    const eventName = 'click'
+    let domItem = createDomItemForEvents()
+    const options = { capture: true, once: true }
+    domItem = addEventToDomItem(domItem, eventName, 'clickFn', { listenerFunc: clickFn, listenerOptions: options })
+    const result = activateListener(domItem, eventName, domItem.eventListeners.click[0])
+    expect(result).toHaveProperty('activeListeners')
+    expect(result.activeListeners).toHaveProperty(eventName)
+    const optionIndex = '' + optionsToNumber(getListenerOptions(), options) + ''
+    expect(result.activeListeners.click).toHaveProperty(optionIndex)
+    expect(result.activeListeners.click[optionIndex].length).toBe(1)
+    result.activeListeners.click[optionIndex][0]['handler'](new Event(eventName))
+    expect(clickFn).toHaveBeenCalled()
+  })
+
+  test('Activate listeners with arguments', () => {
+    const clickFn = jest.fn()
+
+    const eventName = 'click'
+    let domItem = createDomItemForEvents()
+    const listenerArguments = [
+      'something',
+      'was called'
+    ]
+    domItem = addEventToDomItem(domItem, eventName, 'clickFn', {
+      listenerFunc: clickFn,
+      listenerArgs: listenerArguments
+    })
+    const result = activateListener(domItem, eventName, domItem.eventListeners.click[0])
+    expect(result).toHaveProperty('activeListeners')
+    expect(result.activeListeners).toHaveProperty(eventName)
+    const optionIndex = '0'
+    expect(result.activeListeners.click).toHaveProperty(optionIndex)
+    expect(result.activeListeners.click[optionIndex].length).toBe(1)
+    const clickEvent = new Event(eventName)
+    result.activeListeners.click[optionIndex][0]['handler'](clickEvent)
+    expect(clickFn).toHaveBeenCalledWith(clickEvent, domItem, listenerArguments)
+  })
+
+  test('Activate multiple listeners for same event', () => {
+    const eventName = 'click'
+    let domItem = createDomItemForEvents()
+    const clickFunctions = {}
+    const eventCount = 3
+    const optionIndex = '0'
+    for (let i = 0; i < eventCount; ++i) {
+      const name = `clickFn${i}`
+      const newFunc = jest.fn()
+      clickFunctions[name] = newFunc
+      domItem = addEventToDomItem(domItem, eventName, name, { listenerFunc: newFunc })
+      domItem = activateListener(domItem, eventName, domItem.eventListeners.click[i])
+    }
+
+    expect(domItem).toHaveProperty('activeListeners')
+    expect(domItem.activeListeners).toHaveProperty(eventName)
+    expect(domItem.activeListeners.click[optionIndex].length).toBe(eventCount)
+
+    for (let i = 0; i < eventCount; ++i) {
+      const name = `clickFn${i}`
+      const clickEvent = new Event(eventName)
+      domItem.activeListeners.click[optionIndex][i]['handler'](clickEvent)
+      expect(clickFunctions[name]).toHaveBeenCalled()
+    }
+  })
+})
 
 /**
  *
@@ -34,7 +96,7 @@ describe('activateListener', () => {
 function createDomItemForEvents () {
   const domItem = createDomItem({
     nodeName: 'button',
-    element:  document.createElement('button'),
+    element: document.createElement('button'),
     eventListeners: {}
   })
   domItem.parentItem = createDomItem({
