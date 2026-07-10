@@ -7,6 +7,7 @@ exports.default = void 0
 require('core-js/modules/web.dom-collections.iterator.js')
 /**
  * Create the default listeners for common events.
+ *
  * @return {{}}
  */
 const commonEvents = () => {

@@ -4,6 +4,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
+require('core-js/modules/es.array.includes.js')
 require('core-js/stable')
 var _siFunciona = _interopRequireDefault(require('si-funciona'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
@@ -45,10 +46,11 @@ const appendChangesTo = changeList => (changeType, changes) => {
  * @returns {ChangeList}
  */
 const createChangeList = function () {
-  const {
-    removed = {},
-    added = {}
-  } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
+  const _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
+  const _ref$removed = _ref.removed
+  const removed = _ref$removed === void 0 ? {} : _ref$removed
+  const _ref$added = _ref.added
+  const added = _ref$added === void 0 ? {} : _ref$added
   const changeList = {
     removed: Object.assign({}, removed),
     added: Object.assign({}, added)

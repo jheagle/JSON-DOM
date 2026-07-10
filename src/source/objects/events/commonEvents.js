@@ -1,5 +1,6 @@
 /**
  * Create the default listeners for common events.
+ *
  * @return {{}}
  */
 const commonEvents = () => {

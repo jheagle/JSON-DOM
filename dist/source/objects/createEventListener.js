@@ -51,12 +51,15 @@ exports.default = void 0
  */
 
 const createEventListener = function () {
-  const {
-    listenerFunc = 'click',
-    listenerArgs = null,
-    listenerOptions = false,
-    listenerActive = false
-  } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
+  const _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
+  const _ref$listenerFunc = _ref.listenerFunc
+  const listenerFunc = _ref$listenerFunc === void 0 ? 'click' : _ref$listenerFunc
+  const _ref$listenerArgs = _ref.listenerArgs
+  const listenerArgs = _ref$listenerArgs === void 0 ? null : _ref$listenerArgs
+  const _ref$listenerOptions = _ref.listenerOptions
+  const listenerOptions = _ref$listenerOptions === void 0 ? false : _ref$listenerOptions
+  const _ref$listenerActive = _ref.listenerActive
+  const listenerActive = _ref$listenerActive === void 0 ? false : _ref$listenerActive
   return {
     listenerFunc: listenerFunc,
     listenerArgs: listenerArgs,

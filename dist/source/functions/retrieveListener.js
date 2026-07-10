@@ -4,6 +4,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
+require('core-js/modules/es.array.includes.js')
 require('core-js/stable')
 var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
