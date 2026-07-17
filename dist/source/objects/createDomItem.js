@@ -40,6 +40,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @property {DomItem|Object|null} parentItem - A reference to the parent of this object
  * @property {Function} appendChild - Attach a child to this DOM Item
  * @property {Function} removeChild - Attach a child to this DOM Item
+ * @property {string} [is] - Optional property to define the type of object for custom elements.
  */
 
 /**

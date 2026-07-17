@@ -341,6 +341,7 @@ DomItem defines the structure for a single element in the Dom
 | parentItem | <code>DomItem</code> \| <code>Object</code> \| <code>null</code> | A reference to the parent of this object |
 | appendChild | <code>function</code> | Attach a child to this DOM Item |
 | removeChild | <code>function</code> | Attach a child to this DOM Item |
+| [is] | <code>string</code> | Optional property to define the type of object for custom elements. |
 
 <a name="module_domObjects.appendChanges"></a>
 
