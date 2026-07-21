@@ -263,7 +263,7 @@
       return item
     }
     var _default = exports.default = applyActiveListeners
-  }, { '../objects/createEventProxy.js': 49, '../objects/options/getListenerOptions.js': 57, '../objects/options/numberToOptions.js': 58, './assignListener.js': 7, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { '../objects/createEventProxy.js': 49, '../objects/options/getListenerOptions.js': 57, '../objects/options/numberToOptions.js': 58, './assignListener.js': 7, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694, 'si-funciona': 773 }],
   7: [function (require, module, exports) {
     'use strict'
 
@@ -396,7 +396,7 @@
  */
     const bindListeners = item => !_siFunciona.default.emptyObject(item.eventListeners) && item.element ? (0, _bindElementListeners.default)(item) : item
     var _default = exports.default = bindListeners
-  }, { './bindElementListeners.js': 9, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { './bindElementListeners.js': 9, 'core-js/stable': 694, 'si-funciona': 773 }],
   11: [function (require, module, exports) {
     'use strict'
 
@@ -580,7 +580,7 @@
       }, changeList)
     }
     var _default = exports.default = domItemChanges
-  }, { '../objects/createChangeList': 46, './elementHasAttribute.js': 16, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { '../objects/createChangeList': 46, './elementHasAttribute.js': 16, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694, 'si-funciona': 773 }],
   13: [function (require, module, exports) {
     'use strict'
 
@@ -653,7 +653,7 @@
       return 1
     }
     var _default = exports.default = domItemHasAttribute
-  }, { './getAssignedStyles': 19, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { './getAssignedStyles': 19, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694, 'si-funciona': 773 }],
   14: [function (require, module, exports) {
     'use strict'
 
@@ -867,7 +867,7 @@
       }, changeList)
     }
     var _default = exports.default = elementChanges
-  }, { '../objects/createChangeList.js': 46, './domItemHasAttribute.js': 13, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { '../objects/createChangeList.js': 46, './domItemHasAttribute.js': 13, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694, 'si-funciona': 773 }],
   16: [function (require, module, exports) {
     'use strict'
 
@@ -946,7 +946,7 @@
       return 1
     }
     var _default = exports.default = elementHasAttribute
-  }, { './getAssignedStyles.js': 19, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { './getAssignedStyles.js': 19, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694, 'si-funciona': 773 }],
   17: [function (require, module, exports) {
     'use strict'
 
@@ -1024,7 +1024,7 @@
       return (0, _updateElement.default)(domItem)
     }
     var _default = exports.default = generateElement
-  }, { './updateElement.js': 43, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { './updateElement.js': 43, 'core-js/stable': 694, 'si-funciona': 773 }],
   19: [function (require, module, exports) {
     'use strict'
 
@@ -1046,7 +1046,7 @@
  */
     const getAssignedStyles = elementStyles => _siFunciona.default.reduceObject(elementStyles, (styles, attr, key) => isNaN(key) ? styles : _siFunciona.default.setValue(attr, elementStyles[attr], styles), {})
     var _default = exports.default = getAssignedStyles
-  }, { 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { 'core-js/stable': 694, 'si-funciona': 773 }],
   20: [function (require, module, exports) {
     'use strict'
 
@@ -1088,7 +1088,7 @@
  */
     const getChildrenByClass = _siFunciona.default.curry(_getChildrenFromAttribute.default)('className')
     var _default = exports.default = getChildrenByClass
-  }, { './getChildrenFromAttribute.js': 23, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { './getChildrenFromAttribute.js': 23, 'core-js/stable': 694, 'si-funciona': 773 }],
   22: [function (require, module, exports) {
     'use strict'
 
@@ -1111,7 +1111,7 @@
  */
     const getChildrenByName = _siFunciona.default.curry(_getChildrenFromAttribute.default)('name')
     var _default = exports.default = getChildrenByName
-  }, { './getChildrenFromAttribute.js': 23, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { './getChildrenFromAttribute.js': 23, 'core-js/stable': 694, 'si-funciona': 773 }],
   23: [function (require, module, exports) {
     'use strict'
 
@@ -1165,7 +1165,7 @@
  */
     const getParentsByClass = _siFunciona.default.curry(_getParentsFromAttribute.default)('className')
     var _default = exports.default = getParentsByClass
-  }, { './getParentsFromAttribute.js': 27, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { './getParentsFromAttribute.js': 27, 'core-js/stable': 694, 'si-funciona': 773 }],
   25: [function (require, module, exports) {
     'use strict'
 
@@ -1188,7 +1188,7 @@
  */
     const getParentsByName = _siFunciona.default.curry(_getParentsFromAttribute.default)('name')
     var _default = exports.default = getParentsByName
-  }, { './getParentsFromAttribute.js': 27, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { './getParentsFromAttribute.js': 27, 'core-js/stable': 694, 'si-funciona': 773 }],
   26: [function (require, module, exports) {
     'use strict'
 
@@ -1211,7 +1211,7 @@
  */
     const getParentsByTagName = _siFunciona.default.curry(_getParentsFromAttribute.default)('nodeName')
     var _default = exports.default = getParentsByTagName
-  }, { './getParentsFromAttribute.js': 27, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { './getParentsFromAttribute.js': 27, 'core-js/stable': 694, 'si-funciona': 773 }],
   27: [function (require, module, exports) {
     'use strict'
 
@@ -1429,7 +1429,7 @@
       return parent
     }
     var _default = exports.default = registerListeners
-  }, { '../objects/documentItem.js': 52, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { '../objects/documentItem.js': 52, 'core-js/stable': 694, 'si-funciona': 773 }],
   34: [function (require, module, exports) {
     'use strict'
 
@@ -1494,7 +1494,7 @@
       return item
     }
     var _default = exports.default = removeEmptyProperties
-  }, { 'core-js/modules/es.array.includes.js': 369, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { 'core-js/modules/es.array.includes.js': 369, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/stable': 694, 'si-funciona': 773 }],
   36: [function (require, module, exports) {
     'use strict'
 
@@ -1720,7 +1720,7 @@
       return config
     }
     var _default = exports.default = updateDomItem
-  }, { './elementChanges.js': 15, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { './elementChanges.js': 15, 'core-js/stable': 694, 'si-funciona': 773 }],
   42: [function (require, module, exports) {
     'use strict'
 
@@ -1850,7 +1850,7 @@
       return (0, _bindListeners.default)(domItem)
     }
     var _default = exports.default = updateElement
-  }, { './bindListeners.js': 10, './deactivateListeners.js': 11, './domItemChanges.js': 12, './generateElement.js': 18, 'core-js/modules/es.array.includes.js': 369, 'core-js/modules/es.regexp.exec.js': 534, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { './bindListeners.js': 10, './deactivateListeners.js': 11, './domItemChanges.js': 12, './generateElement.js': 18, 'core-js/modules/es.array.includes.js': 369, 'core-js/modules/es.regexp.exec.js': 534, 'core-js/stable': 694, 'si-funciona': 773 }],
   44: [function (require, module, exports) {
     'use strict'
 
@@ -1988,7 +1988,7 @@
       return changeList
     }
     var _default = exports.default = createChangeList
-  }, { 'core-js/modules/es.array.includes.js': 369, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { 'core-js/modules/es.array.includes.js': 369, 'core-js/stable': 694, 'si-funciona': 773 }],
   47: [function (require, module, exports) {
     'use strict'
 
@@ -2066,7 +2066,7 @@
       return newDomItem
     }
     var _default = exports.default = createDomItem
-  }, { '../functions/appendChild.js': 5, '../functions/removeChild': 34, 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { '../functions/appendChild.js': 5, '../functions/removeChild': 34, 'core-js/stable': 694, 'si-funciona': 773 }],
   48: [function (require, module, exports) {
     'use strict'
 
@@ -2420,7 +2420,7 @@
       })
     }
     var _default = exports.default = initRoot
-  }, { './createDomItem.js': 47, './events/commonEvents.js': 53, 'core-js/stable': 694, 'si-funciona/dist/helpers/objects/mergeObjects': 747 }],
+  }, { './createDomItem.js': 47, './events/commonEvents.js': 53, 'core-js/stable': 694, 'si-funciona/dist/helpers/objects/mergeObjects': 751 }],
   56: [function (require, module, exports) {
     'use strict'
 
@@ -2509,7 +2509,7 @@
  */
     const numberToOptions = (optionsTemplate, binaryOptions) => _siFunciona.default.mapObject(optionsTemplate, flag => !!(binaryOptions & flag))
     var _default = exports.default = numberToOptions
-  }, { 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { 'core-js/stable': 694, 'si-funciona': 773 }],
   59: [function (require, module, exports) {
     'use strict'
 
@@ -2536,7 +2536,7 @@
       return _siFunciona.default.reduceObject(optionsTemplate, (binaryOptions, flag, name) => listenerOptions[name] ? binaryOptions | flag : binaryOptions, 0)
     }
     var _default = exports.default = optionsToNumber
-  }, { 'core-js/stable': 694, 'si-funciona': 769 }],
+  }, { 'core-js/stable': 694, 'si-funciona': 773 }],
   60: [function (require, module, exports) {
     'use strict'
     var isCallable = require('../internals/is-callable')
@@ -24140,7 +24140,7 @@
       return arr
     }
     var _default = exports.default = buildArray
-  }, { '../objects/cloneObject': 736, 'core-js/stable': 694 }],
+  }, { '../objects/cloneObject': 740, 'core-js/stable': 694 }],
   700: [function (require, module, exports) {
     'use strict'
 
@@ -24270,7 +24270,7 @@
       }, [])
     }
     var _default = exports.default = compareArrays
-  }, { '../objects/isObject': 745, '../objects/objectKeys': 750, './mergeArrays': 702, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.every.js': 661, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694 }],
+  }, { '../objects/isObject': 749, '../objects/objectKeys': 754, './mergeArrays': 702, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.every.js': 661, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694 }],
   702: [function (require, module, exports) {
     'use strict'
 
@@ -24489,7 +24489,7 @@
       return (0, _setValue.default)('details', descriptor.complete && !keepValues ? descriptor.details.map(detail => (0, _setValue.default)('value', [], detail)) : descriptor.details, descriptor)
     }
     var _default = exports.default = checkClearValues
-  }, { '../objects/setValue': 754, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694 }],
+  }, { '../objects/setValue': 758, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694 }],
   708: [function (require, module, exports) {
     'use strict'
 
@@ -24510,7 +24510,7 @@
  */
     const checkDescriptorComplete = descriptor => (0, _setValue.default)('complete', descriptor.references.every(refId => [descriptor.details[refId].arrayReference, descriptor.details[refId].objectReference].some(ref => typeof ref === 'number')), descriptor)
     var _default = exports.default = checkDescriptorComplete
-  }, { '../objects/setValue': 754, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.every.js': 661, 'core-js/stable': 694 }],
+  }, { '../objects/setValue': 758, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.every.js': 661, 'core-js/stable': 694 }],
   709: [function (require, module, exports) {
     'use strict'
 
@@ -24578,7 +24578,7 @@
       return copyDetail
     }
     var _default = exports.default = cloneDescriptorDetail
-  }, { '../objects/objectKeys': 750, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694 }],
+  }, { '../objects/objectKeys': 754, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694 }],
   711: [function (require, module, exports) {
     'use strict'
 
@@ -24665,7 +24665,7 @@
       return descriptor
     }
     var _default = exports.default = describeObject
-  }, { '../objects/objectKeys': 750, './assignDescriptorDetail': 706, './describeObjectDetail': 713, 'core-js/stable': 694 }],
+  }, { '../objects/objectKeys': 754, './assignDescriptorDetail': 706, './describeObjectDetail': 713, 'core-js/stable': 694 }],
   713: [function (require, module, exports) {
     'use strict'
 
@@ -24705,7 +24705,7 @@
       }
     }
     var _default = exports.default = describeObjectDetail
-  }, { '../objects/emptyObject': 741, '../objects/isCloneable': 743, '../objects/isInstanceObject': 744, 'core-js/stable': 694 }],
+  }, { '../objects/emptyObject': 745, '../objects/isCloneable': 747, '../objects/isInstanceObject': 748, 'core-js/stable': 694 }],
   714: [function (require, module, exports) {
     'use strict'
 
@@ -24835,7 +24835,7 @@
       return !!(0, _objectKeys.default)(val).length
     })
     var _default = exports.default = nextReference
-  }, { '../objects/objectKeys': 750, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.find.js': 663, 'core-js/stable': 694 }],
+  }, { '../objects/objectKeys': 754, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.find.js': 663, 'core-js/stable': 694 }],
   716: [function (require, module, exports) {
     'use strict'
 
@@ -25371,7 +25371,7 @@
       }
     }
     var _default = exports.default = trace
-  }, { '../objects/cloneObject': 736, 'core-js/stable': 694, 'regenerator-runtime/runtime': 695 }],
+  }, { '../objects/cloneObject': 740, 'core-js/stable': 694, 'regenerator-runtime/runtime': 695 }],
   729: [function (require, module, exports) {
     'use strict'
 
@@ -25383,8 +25383,12 @@
     var _absoluteMax = _interopRequireDefault(require('./numbers/absoluteMax'))
     var _absoluteMin = _interopRequireDefault(require('./numbers/absoluteMin'))
     var _compare = _interopRequireDefault(require('./numbers/compare'))
+    var _greatestCommonDivisor = _interopRequireDefault(require('./numbers/greatestCommonDivisor'))
+    var _leastCommonMultiple = _interopRequireDefault(require('./numbers/leastCommonMultiple'))
+    var _lowestCommonDenominator = _interopRequireDefault(require('./numbers/lowestCommonDenominator'))
     var _randomInteger = _interopRequireDefault(require('./numbers/randomInteger'))
     var _randomNumber = _interopRequireDefault(require('./numbers/randomNumber'))
+    var _simplestRatio = _interopRequireDefault(require('./numbers/simplestRatio'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * Some number comparators and random number generators.
@@ -25398,10 +25402,14 @@
       absoluteMax: _absoluteMax.default,
       absoluteMin: _absoluteMin.default,
       compare: _compare.default,
+      greatestCommonDivisor: _greatestCommonDivisor.default,
+      leastCommonMultiple: _leastCommonMultiple.default,
+      lowestCommonDenominator: _lowestCommonDenominator.default,
       randomInteger: _randomInteger.default,
-      randomNumber: _randomNumber.default
+      randomNumber: _randomNumber.default,
+      simplestRatio: _simplestRatio.default
     }
-  }, { './numbers/absoluteMax': 730, './numbers/absoluteMin': 731, './numbers/compare': 732, './numbers/randomInteger': 733, './numbers/randomNumber': 734, 'core-js/stable': 694 }],
+  }, { './numbers/absoluteMax': 730, './numbers/absoluteMin': 731, './numbers/compare': 732, './numbers/greatestCommonDivisor': 733, './numbers/leastCommonMultiple': 734, './numbers/lowestCommonDenominator': 735, './numbers/randomInteger': 736, './numbers/randomNumber': 737, './numbers/simplestRatio': 738, 'core-js/stable': 694 }],
   730: [function (require, module, exports) {
     'use strict'
 
@@ -25468,6 +25476,69 @@
     exports.default = void 0
     require('core-js/stable')
     /**
+ * Return the highest number than can be divided into both numbers.
+ * @memberOf module:numberHelpers
+ * @param {number} num1 - First number to assess
+ * @param {number} num2 - Second number to compare for common divisor
+ * @returns {number}
+ */
+    const greatestCommonDivisor = (num1, num2) => num2 === 0 ? num1 : greatestCommonDivisor(num2, num1 % num2)
+    var _default = exports.default = greatestCommonDivisor
+  }, { 'core-js/stable': 694 }],
+  734: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/stable')
+    var _greatestCommonDivisor = _interopRequireDefault(require('./greatestCommonDivisor'))
+    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    /**
+ * Helper for calculating the multiplier that would make each number relative to each other.
+ * @memberOf module:numberHelpers
+ * @param {number} num1 - A number to compare
+ * @param {number} num2 - Another number to be compared against
+ * @returns {number}
+ */
+    const leastCommonMultiple = (num1, num2) => num1 === 0 || num2 === 0 ? 0 : num1 * num2 / (0, _greatestCommonDivisor.default)(num1, num2)
+    var _default = exports.default = leastCommonMultiple
+  }, { './greatestCommonDivisor': 733, 'core-js/stable': 694 }],
+  735: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/stable')
+    var _leastCommonMultiple = _interopRequireDefault(require('./leastCommonMultiple'))
+    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    /**
+ * Helper for calculating the multiplier that would make each number relative to each other.
+ * @memberOf module:numberHelpers
+ * @param {number} num1 - A number to compare
+ * @param {number} num2 - Another number to be compared against
+ * @returns {number}
+ */
+    const lowestCommonDenominator = function () {
+      for (var _len = arguments.length, numbers = new Array(_len), _key = 0; _key < _len; _key++) {
+        numbers[_key] = arguments[_key]
+      }
+      return numbers.reduce((num1, num2) => (0, _leastCommonMultiple.default)(num1, num2), 1)
+    }
+    var _default = exports.default = lowestCommonDenominator
+  }, { './leastCommonMultiple': 734, 'core-js/stable': 694 }],
+  736: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/stable')
+    /**
  * Create a single random integer within provide range. And with optional offset,
  * The distance between the result numbers can be adjusted with interval.
  * @memberOf module:numberHelpers
@@ -25484,7 +25555,7 @@
     }
     var _default = exports.default = randomInteger
   }, { 'core-js/stable': 694 }],
-  734: [function (require, module, exports) {
+  737: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -25509,7 +25580,35 @@
     }
     var _default = exports.default = randomNumber
   }, { 'core-js/stable': 694 }],
-  735: [function (require, module, exports) {
+  738: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/stable')
+    var _greatestCommonDivisor = _interopRequireDefault(require('./greatestCommonDivisor'))
+    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    /**
+ * Reduce several numbers to their simplest form / ratio
+ * @memberOf module:numberHelpers
+ * @param {...number} numbers - Array of numbers to simplify
+ * @returns {Array.<number>}
+ */
+    const simplestRatio = function () {
+      for (var _len = arguments.length, numbers = new Array(_len), _key = 0; _key < _len; _key++) {
+        numbers[_key] = arguments[_key]
+      }
+      if (numbers.length === 0) {
+        return []
+      }
+      const commonDivisor = numbers.reduce((num1, num2) => (0, _greatestCommonDivisor.default)(num1, num2), 0)
+      return numbers.map(num => num / commonDivisor)
+    }
+    var _default = exports.default = simplestRatio
+  }, { './greatestCommonDivisor': 733, 'core-js/stable': 694 }],
+  739: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -25566,8 +25665,8 @@
       setAndReturnValue: _setAndReturnValue.default,
       setValue: _setValue.default
     }
-  }, { './objects/cloneObject': 736, './objects/dotGet': 737, './objects/dotNotate': 738, './objects/dotSet': 739, './objects/dotUnset': 740, './objects/emptyObject': 741, './objects/filterObject': 742, './objects/isCloneable': 743, './objects/isInstanceObject': 744, './objects/isObject': 745, './objects/mapObject': 746, './objects/mergeObjects': 747, './objects/mergeObjectsBase': 748, './objects/mergeObjectsMutable': 749, './objects/objectKeys': 750, './objects/objectValues': 751, './objects/reduceObject': 752, './objects/setAndReturnValue': 753, './objects/setValue': 754, 'core-js/stable': 694 }],
-  736: [function (require, module, exports) {
+  }, { './objects/cloneObject': 740, './objects/dotGet': 741, './objects/dotNotate': 742, './objects/dotSet': 743, './objects/dotUnset': 744, './objects/emptyObject': 745, './objects/filterObject': 746, './objects/isCloneable': 747, './objects/isInstanceObject': 748, './objects/isObject': 749, './objects/mapObject': 750, './objects/mergeObjects': 751, './objects/mergeObjectsBase': 752, './objects/mergeObjectsMutable': 753, './objects/objectKeys': 754, './objects/objectValues': 755, './objects/reduceObject': 756, './objects/setAndReturnValue': 757, './objects/setValue': 758, 'core-js/stable': 694 }],
+  740: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -25605,8 +25704,8 @@
       })(object)
     }
     var _default = exports.default = cloneObject
-  }, { './mergeObjectsBase': 748, 'core-js/stable': 694 }],
-  737: [function (require, module, exports) {
+  }, { './mergeObjectsBase': 752, 'core-js/stable': 694 }],
+  741: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -25668,8 +25767,8 @@
       return dotGet(next, (0, _strAfter.default)(dotNotation, '.'), defaultValue)
     }
     var _default = exports.default = dotGet
-  }, { '../strings/strAfter': 762, '../strings/strBefore': 764, './isObject': 745, 'core-js/stable': 694 }],
-  738: [function (require, module, exports) {
+  }, { '../strings/strAfter': 766, '../strings/strBefore': 768, './isObject': 749, 'core-js/stable': 694 }],
+  742: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -25759,8 +25858,8 @@
       return performDotNotate(arrayObject, handleRetainObjects(retainObjects))
     }
     var _default = exports.default = dotNotate
-  }, { './isObject': 745, 'core-js/modules/es.regexp.constructor.js': 531, 'core-js/modules/es.regexp.exec.js': 534, 'core-js/modules/es.string.replace.js': 571, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694 }],
-  739: [function (require, module, exports) {
+  }, { './isObject': 749, 'core-js/modules/es.regexp.constructor.js': 531, 'core-js/modules/es.regexp.exec.js': 534, 'core-js/modules/es.string.replace.js': 571, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694 }],
+  743: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -25816,8 +25915,8 @@
       return arrayObject
     }
     var _default = exports.default = dotSet
-  }, { '../strings/strAfter': 762, '../strings/strBefore': 764, './isObject': 745, 'core-js/stable': 694 }],
-  740: [function (require, module, exports) {
+  }, { '../strings/strAfter': 766, '../strings/strBefore': 768, './isObject': 749, 'core-js/stable': 694 }],
+  744: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -25871,8 +25970,8 @@
       return arrayObject
     }
     var _default = exports.default = dotUnset
-  }, { '../strings/strAfter': 762, '../strings/strBefore': 764, './isObject': 745, 'core-js/stable': 694 }],
-  741: [function (require, module, exports) {
+  }, { '../strings/strAfter': 766, '../strings/strBefore': 768, './isObject': 749, 'core-js/stable': 694 }],
+  745: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -25891,8 +25990,8 @@
  */
     const emptyObject = item => (typeof item === 'function' || (0, _isObject.default)(item)) && !(0, _objectKeys.default)(item).length
     var _default = exports.default = emptyObject
-  }, { './isObject': 745, './objectKeys': 750, 'core-js/stable': 694 }],
-  742: [function (require, module, exports) {
+  }, { './isObject': 749, './objectKeys': 754, 'core-js/stable': 694 }],
+  746: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -25928,8 +26027,8 @@
       }, {})
     }
     var _default = exports.default = filterObject
-  }, { '../functions/callWithParams': 718, './objectKeys': 750, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.filter.js': 662, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/stable': 694 }],
-  743: [function (require, module, exports) {
+  }, { '../functions/callWithParams': 718, './objectKeys': 754, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.filter.js': 662, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/stable': 694 }],
+  747: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -25947,8 +26046,8 @@
  */
     const isCloneable = value => typeof value === 'object' && value !== null && !(0, _isInstanceObject.default)(value)
     var _default = exports.default = isCloneable
-  }, { './isInstanceObject': 744, 'core-js/stable': 694 }],
-  744: [function (require, module, exports) {
+  }, { './isInstanceObject': 748, 'core-js/stable': 694 }],
+  748: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -25976,8 +26075,8 @@
       return object.constructor.name !== 'Array' && (0, _objectKeys.default)(object, true).length > (0, _objectKeys.default)(object).length
     }
     var _default = exports.default = isInstanceObject
-  }, { './isObject': 745, './objectKeys': 750, 'core-js/modules/es.array.includes.js': 369, 'core-js/stable': 694 }],
-  745: [function (require, module, exports) {
+  }, { './isObject': 749, './objectKeys': 754, 'core-js/modules/es.array.includes.js': 369, 'core-js/stable': 694 }],
+  749: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -25994,7 +26093,7 @@
     const isObject = object => typeof object === 'object' && object !== null
     var _default = exports.default = isObject
   }, { 'core-js/stable': 694 }],
-  746: [function (require, module, exports) {
+  750: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26024,8 +26123,8 @@
       return Array.isArray(obj) ? obj.map(fn, thisArg) : (0, _objectKeys.default)(obj, true).reduce((newObj, curr) => (0, _setValue.default)(curr, (0, _callWithParams.default)(fn.bind(thisArg), [obj[curr], curr, obj], 2), newObj), {})
     }
     var _default = exports.default = mapObject
-  }, { '../functions/callWithParams': 718, './objectKeys': 750, './setValue': 754, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/stable': 694 }],
-  747: [function (require, module, exports) {
+  }, { '../functions/callWithParams': 718, './objectKeys': 754, './setValue': 758, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/stable': 694 }],
+  751: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26046,8 +26145,8 @@
       useClone: true
     })
     var _default = exports.default = mergeObjects
-  }, { './mergeObjectsBase': 748, 'core-js/stable': 694 }],
-  748: [function (require, module, exports) {
+  }, { './mergeObjectsBase': 752, 'core-js/stable': 694 }],
+  752: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26149,8 +26248,8 @@
       }
     }
     var _default = exports.default = mergeObjectsBase
-  }, { '../functions/relevancyFilter': 727, './isCloneable': 743, './reduceObject': 752, './setValue': 754, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.find.js': 663, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694 }],
-  749: [function (require, module, exports) {
+  }, { '../functions/relevancyFilter': 727, './isCloneable': 747, './reduceObject': 756, './setValue': 758, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.find.js': 663, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694 }],
+  753: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26169,8 +26268,8 @@
  */
     const mergeObjectsMutable = (0, _mergeObjectsBase.default)()
     var _default = exports.default = mergeObjectsMutable
-  }, { './mergeObjectsBase': 748, 'core-js/stable': 694 }],
-  750: [function (require, module, exports) {
+  }, { './mergeObjectsBase': 752, 'core-js/stable': 694 }],
+  754: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26212,8 +26311,8 @@
       return keys
     }
     var _default = exports.default = objectKeys
-  }, { './isObject': 745, 'core-js/stable': 694 }],
-  751: [function (require, module, exports) {
+  }, { './isObject': 749, 'core-js/stable': 694 }],
+  755: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26238,8 +26337,8 @@
       return (0, _objectKeys.default)(object, includeInherited).map(key => object[key])
     }
     var _default = exports.default = objectValues
-  }, { './objectKeys': 750, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694 }],
-  752: [function (require, module, exports) {
+  }, { './objectKeys': 754, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694 }],
+  756: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26269,8 +26368,8 @@
       return Array.isArray(obj) ? obj.reduce(fn, initialValue) : (0, _objectKeys.default)(obj, true).reduce((newObj, curr) => (0, _callWithParams.default)(fn, [newObj, obj[curr], curr, obj], 2), initialValue)
     }
     var _default = exports.default = reduceObject
-  }, { '../functions/callWithParams': 718, './objectKeys': 750, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/stable': 694 }],
-  753: [function (require, module, exports) {
+  }, { '../functions/callWithParams': 718, './objectKeys': 754, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/stable': 694 }],
+  757: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26292,7 +26391,7 @@
     }
     var _default = exports.default = setAndReturnValue
   }, { 'core-js/stable': 694 }],
-  754: [function (require, module, exports) {
+  758: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26316,7 +26415,7 @@
     }
     var _default = exports.default = setValue
   }, { 'core-js/stable': 694 }],
-  755: [function (require, module, exports) {
+  759: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26361,8 +26460,8 @@
       ucFirst: _ucFirst.default,
       words: _words.default
     }
-  }, { './strings/camelCase': 756, './strings/kabobCase': 757, './strings/makeFilepath': 758, './strings/makeRelativePath': 759, './strings/regexEscape': 760, './strings/snakeCase': 761, './strings/strAfter': 762, './strings/strAfterLast': 763, './strings/strBefore': 764, './strings/strBeforeLast': 765, './strings/titleCase': 766, './strings/ucFirst': 767, './strings/words': 768, 'core-js/stable': 694 }],
-  756: [function (require, module, exports) {
+  }, { './strings/camelCase': 760, './strings/kabobCase': 761, './strings/makeFilepath': 762, './strings/makeRelativePath': 763, './strings/regexEscape': 764, './strings/snakeCase': 765, './strings/strAfter': 766, './strings/strAfterLast': 767, './strings/strBefore': 768, './strings/strBeforeLast': 769, './strings/titleCase': 770, './strings/ucFirst': 771, './strings/words': 772, 'core-js/stable': 694 }],
+  760: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26383,8 +26482,8 @@
  */
     const camelCase = str => (0, _words.default)(str).reduce((camel, part) => camel ? camel.concat((0, _ucFirst.default)(part)) : part.toLowerCase(), '')
     var _default = exports.default = camelCase
-  }, { './ucFirst': 767, './words': 768, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/stable': 694 }],
-  757: [function (require, module, exports) {
+  }, { './ucFirst': 771, './words': 772, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/stable': 694 }],
+  761: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26404,8 +26503,8 @@
  */
     const kabobCase = str => (0, _words.default)(str).reduce((kabob, part) => kabob ? kabob.concat('-' + part.toLowerCase()) : part.toLowerCase(), '')
     var _default = exports.default = kabobCase
-  }, { './words': 768, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/stable': 694 }],
-  758: [function (require, module, exports) {
+  }, { './words': 772, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/stable': 694 }],
+  762: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26456,8 +26555,8 @@
     }
     exports.makeFilepath = makeFilepath
     var _default = exports.default = makeFilepath
-  }, { './strBeforeLast': 765 }],
-  759: [function (require, module, exports) {
+  }, { './strBeforeLast': 769 }],
+  763: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26501,8 +26600,8 @@
     }
     exports.makeRelativePath = makeRelativePath
     var _default = exports.default = makeRelativePath
-  }, { './strAfter': 762, './strBefore': 764 }],
-  760: [function (require, module, exports) {
+  }, { './strAfter': 766, './strBefore': 768 }],
+  764: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26521,7 +26620,7 @@
     exports.regexEscape = regexEscape
     var _default = exports.default = regexEscape
   }, { 'core-js/modules/es.regexp.exec.js': 534, 'core-js/modules/es.string.replace.js': 571 }],
-  761: [function (require, module, exports) {
+  765: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26541,8 +26640,8 @@
  */
     const snakeCase = str => (0, _words.default)(str).reduce((snake, part) => snake ? snake.concat('_' + part.toLowerCase()) : part.toLowerCase(), '')
     var _default = exports.default = snakeCase
-  }, { './words': 768, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/stable': 694 }],
-  762: [function (require, module, exports) {
+  }, { './words': 772, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/stable': 694 }],
+  766: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26563,7 +26662,7 @@
     }
     var _default = exports.default = strAfter
   }, { 'core-js/stable': 694 }],
-  763: [function (require, module, exports) {
+  767: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26584,7 +26683,7 @@
     }
     var _default = exports.default = strAfterLast
   }, { 'core-js/stable': 694 }],
-  764: [function (require, module, exports) {
+  768: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26605,7 +26704,7 @@
     }
     var _default = exports.default = strBefore
   }, { 'core-js/stable': 694 }],
-  765: [function (require, module, exports) {
+  769: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26626,7 +26725,7 @@
     }
     var _default = exports.default = strBeforeLast
   }, { 'core-js/stable': 694 }],
-  766: [function (require, module, exports) {
+  770: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26647,8 +26746,8 @@
  */
     const titleCase = str => (0, _words.default)(str).reduce((title, part) => title ? title.concat(' ' + (0, _ucFirst.default)(part)) : (0, _ucFirst.default)(part), '')
     var _default = exports.default = titleCase
-  }, { './ucFirst': 767, './words': 768, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/stable': 694 }],
-  767: [function (require, module, exports) {
+  }, { './ucFirst': 771, './words': 772, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/stable': 694 }],
+  771: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26665,7 +26764,7 @@
     const ucFirst = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
     var _default = exports.default = ucFirst
   }, { 'core-js/stable': 694 }],
-  768: [function (require, module, exports) {
+  772: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -26683,7 +26782,7 @@
     const words = str => str.match(/\d+|[A-Z]?[a-z]+|[A-Za-z]+/g)
     var _default = exports.default = words
   }, { 'core-js/modules/es.regexp.exec.js': 534, 'core-js/stable': 694 }],
-  769: [function (require, module, exports) {
+  773: [function (require, module, exports) {
     'use strict'; Object.defineProperty(exports, '__esModule', { value: !0 }), exports.default = void 0; var _arrays = _interopRequireDefault(require('./helpers/arrays')); var _descriptors = _interopRequireDefault(require('./helpers/descriptors')); var _functions = _interopRequireDefault(require('./helpers/functions')); var _numbers = _interopRequireDefault(require('./helpers/numbers')); var _objects = _interopRequireDefault(require('./helpers/objects')); var _strings = _interopRequireDefault(require('./helpers/strings')); function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } } const siFunciona = Object.assign({}, _arrays.default, _descriptors.default, _functions.default, _numbers.default, _objects.default, _strings.default); var _default = exports.default = siFunciona; typeof window !== 'undefined' && (window.siFunciona = siFunciona)
-  }, { './helpers/arrays': 696, './helpers/descriptors': 704, './helpers/functions': 717, './helpers/numbers': 729, './helpers/objects': 735, './helpers/strings': 755 }]
+  }, { './helpers/arrays': 696, './helpers/descriptors': 704, './helpers/functions': 717, './helpers/numbers': 729, './helpers/objects': 739, './helpers/strings': 759 }]
 }, {}, [1])
