@@ -25476,7 +25476,7 @@
     exports.default = void 0
     require('core-js/stable')
     /**
- * Return the highest number than can be divided into both numbers.
+ * Return the highest number that can be divided into both numbers.
  * @memberOf module:numberHelpers
  * @param {number} num1 - First number to assess
  * @param {number} num2 - Second number to compare for common divisor
@@ -25603,7 +25603,9 @@
       if (numbers.length === 0) {
         return []
       }
-      const commonDivisor = numbers.reduce((num1, num2) => (0, _greatestCommonDivisor.default)(num1, num2), 0)
+      let commonDivisor = numbers.reduce((num1, num2) => (0, _greatestCommonDivisor.default)(num1, num2), 0)
+      // Set to positive so that when we divide the numbers they retain their +/-
+      commonDivisor = Math.abs(commonDivisor)
       return numbers.map(num => num / commonDivisor)
     }
     var _default = exports.default = simplestRatio
