@@ -1503,8 +1503,10 @@
     })
     exports.default = void 0
     require('core-js/stable')
-    var _updateElements = _interopRequireDefault(require('./updateElements.js'))
+    var _appendChild = _interopRequireDefault(require('./appendChild.js'))
     var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
+    var _setParentItemReferences = _interopRequireDefault(require('./setParentItemReferences.js'))
+    var _updateElements = _interopRequireDefault(require('./updateElements.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * This is a shortcut for building the specified HTML elements and appending them to the Dom
@@ -1515,14 +1517,21 @@
  * @returns {DomItem}
  */
     const renderHtml = function () {
-      let item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null
+      const item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null
+      let itemToRender = item
       if (item === null) {
-        item = _documentItem.default
+        itemToRender = _documentItem.default
       }
-      return (0, _updateElements.default)(item)
+      if (itemToRender.parentItem === null) {
+        // excluding when documentItme was passed in, append the item to the documentItem
+        itemToRender = (0, _appendChild.default)(_documentItem.default, item)
+      }
+      // Render the elements and return either to original reference, or updated documentItem (whichever is available)
+      const updatedItem = (0, _updateElements.default)((0, _setParentItemReferences.default)(itemToRender))
+      return item !== null && item !== void 0 ? item : updatedItem
     }
     var _default = exports.default = renderHtml
-  }, { '../objects/documentItem.js': 52, './updateElements.js': 44, 'core-js/stable': 694 }],
+  }, { '../objects/documentItem.js': 52, './appendChild.js': 5, './setParentItemReferences.js': 38, './updateElements.js': 44, 'core-js/stable': 694 }],
   37: [function (require, module, exports) {
     'use strict'
 
@@ -25606,7 +25615,8 @@
       let commonDivisor = numbers.reduce((num1, num2) => (0, _greatestCommonDivisor.default)(num1, num2), 0)
       // Set to positive so that when we divide the numbers they retain their +/-
       commonDivisor = Math.abs(commonDivisor)
-      return numbers.map(num => num / commonDivisor)
+      // Simplify the numbers, handle zero
+      return numbers.map(num => commonDivisor === 0 ? 0 : num / commonDivisor)
     }
     var _default = exports.default = simplestRatio
   }, { './greatestCommonDivisor': 733, 'core-js/stable': 694 }],

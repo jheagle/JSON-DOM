@@ -1,6 +1,8 @@
 import 'core-js/stable'
-import updateElements from './updateElements.js'
+import appendChild from './appendChild.js'
 import documentItem from '../objects/documentItem.js'
+import setParentItemReferences from './setParentItemReferences.js'
+import updateElements from './updateElements.js'
 
 /**
  * This is a shortcut for building the specified HTML elements and appending them to the Dom
@@ -11,10 +13,17 @@ import documentItem from '../objects/documentItem.js'
  * @returns {DomItem}
  */
 const renderHtml = (item = null) => {
+  let itemToRender = item
   if (item === null) {
-    item = documentItem
+    itemToRender = documentItem
   }
-  return updateElements(item)
+  if (itemToRender.parentItem === null) {
+    // excluding when documentItme was passed in, append the item to the documentItem
+    itemToRender = appendChild(documentItem, item)
+  }
+  // Render the elements and return either to original reference, or updated documentItem (whichever is available)
+  const updatedItem = updateElements(setParentItemReferences(itemToRender))
+  return item ?? updatedItem
 }
 
 export default renderHtml
