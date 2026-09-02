@@ -8,6 +8,9 @@ import 'core-js/stable'
  * @returns {DomItem}
  */
 const setParentItemReferences = item => {
+  if (!item.children || !item.children.length) {
+    return item
+  }
   item.children.forEach(child => {
     child.parentItem = item
     setParentItemReferences(child)

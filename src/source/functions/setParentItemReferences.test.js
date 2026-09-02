@@ -5,6 +5,14 @@ import 'core-js/stable'
 import setParentItemReferences from './setParentItemReferences.js'
 
 describe('setParentItemReferences', () => {
+  test('will return item if it has no children', () => {
+    const objectWithNoChildren = {
+      name: 'top parent',
+      parentItem: null
+    }
+    const assignedParentItems = setParentItemReferences(objectWithNoChildren)
+    expect(assignedParentItems).toBe(objectWithNoChildren)
+  })
   test('will set parentItem circular references correctly', () => {
     const objectWithReferences = {
       name: 'top parent',
