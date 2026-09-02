@@ -1523,8 +1523,8 @@
         itemToRender = _documentItem.default
       }
       if (itemToRender.parentItem === null) {
-        // excluding when documentItme was passed in, append the item to the documentItem
-        itemToRender = (0, _appendChild.default)(_documentItem.default, item)
+        // excluding when documentItem was passed in, append the item to the documentItem body
+        itemToRender = (0, _appendChild.default)(_documentItem.default.body, item)
       }
       // Render the elements and return either to original reference, or updated documentItem (whichever is available)
       const updatedItem = (0, _updateElements.default)((0, _setParentItemReferences.default)(itemToRender))
@@ -1578,6 +1578,7 @@
  */
     const setParentItemReferences = item => {
       if (!item.children || !item.children.length) {
+        item.children = []
         return item
       }
       item.children.forEach(child => {
@@ -1612,6 +1613,10 @@
     const updateChildNodes = domItem => {
       if (!domItem.element) {
         domItem = (0, _updateElement.default)(domItem)
+      }
+      if (!domItem.children || !domItem.children.length) {
+        domItem.children = []
+        return domItem
       }
       const previousChildNodes = Array.from(domItem.element.childNodes)
       domItem.children.map((child, index) => {

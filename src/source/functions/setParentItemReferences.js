@@ -9,6 +9,7 @@ import 'core-js/stable'
  */
 const setParentItemReferences = item => {
   if (!item.children || !item.children.length) {
+    item.children = []
     return item
   }
   item.children.forEach(child => {

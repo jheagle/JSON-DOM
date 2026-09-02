@@ -13,6 +13,7 @@ describe('renderHtml', () => {
     expect(updated.nodeName).toBe('div')
     expect(updated.element.nodeName.toLowerCase()).toBe('div')
     expect(updated.children).toHaveLength(0)
+    expect(updated.parentItem.nodeName).toBe('body')
   })
 
   test('defaults to documentItem', () => {

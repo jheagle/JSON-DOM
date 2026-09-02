@@ -22,6 +22,10 @@ const updateChildNodes = domItem => {
   if (!domItem.element) {
     domItem = (0, _updateElement.default)(domItem)
   }
+  if (!domItem.children || !domItem.children.length) {
+    domItem.children = []
+    return domItem
+  }
   const previousChildNodes = Array.from(domItem.element.childNodes)
   domItem.children.map((child, index) => {
     const existing = previousChildNodes.find(childNode => childNode === child.element)

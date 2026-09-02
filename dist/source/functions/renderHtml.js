@@ -25,8 +25,8 @@ const renderHtml = function () {
     itemToRender = _documentItem.default
   }
   if (itemToRender.parentItem === null) {
-    // excluding when documentItme was passed in, append the item to the documentItem
-    itemToRender = (0, _appendChild.default)(_documentItem.default, item)
+    // excluding when documentItem was passed in, append the item to the documentItem body
+    itemToRender = (0, _appendChild.default)(_documentItem.default.body, item)
   }
   // Render the elements and return either to original reference, or updated documentItem (whichever is available)
   const updatedItem = (0, _updateElements.default)((0, _setParentItemReferences.default)(itemToRender))

@@ -77,4 +77,11 @@ describe('updateChildNodes', () => {
     expect(updatedItem.element.childNodes).toHaveLength(1)
     expect(updatedItem.element.childNodes[0]).toBe(textNode)
   })
+  test('returns with empty children when no children are set', () => {
+    const originalItem = createDomItem({ nodeName: 'div' })
+    originalItem.children = null
+    expect(originalItem.children).toBeNull()
+    const updated = updateChildNodes(originalItem)
+    expect(updated.children).toHaveLength(0)
+  })
 })
