@@ -9,6 +9,8 @@ var _updateElement = _interopRequireDefault(require('./updateElement.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Create a new DOM Node based on name and data.
+ * @function
+ * @memberOf module:domGeneral
  * @param {string} nodeName
  * @param {string|null} data
  * @returns {Text|Comment|HTMLElement}

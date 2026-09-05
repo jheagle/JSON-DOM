@@ -12,6 +12,8 @@ var _getAssignedStyles = _interopRequireDefault(require('./getAssignedStyles'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+ * @function
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem
  * @param {Object.<string, string>} attr
  * @returns {int|Object.<string, number>}
@@ -28,6 +30,8 @@ const checkStyles = function (domItem) {
 
 /**
  * For attributes which are objects or multipart strings -1 = remove attribute, 0 = no change, 1 = add attribute
+ * @function
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem
  * @param {string} attr
  * @returns {int|Object.<string, number>}

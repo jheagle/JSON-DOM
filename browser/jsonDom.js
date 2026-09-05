@@ -488,6 +488,18 @@
     })
     exports.default = void 0
     /**
+ * One or more listeners assigned to the same event.
+ * @typedef {Array.<EventListener>} EventListeners
+ * @memberOf module:domEvents
+ */
+
+    /**
+ * The name of the trigger used to fire the event.
+ * @typedef {string} EventName
+ * @memberOf module:domEvents
+ */
+
+    /**
  * This is the standard definition of a listenerFunction to be used
  * @callback listenerFunction
  * @memberOf module:domEvents
@@ -814,6 +826,7 @@
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * @typedef {module:objectHelpers~mapCallback} testAttributeChange
+ * @memberOf module:domGeneral
  * @param {*} attr - The current property being processed in the object.
  * @param {string} key - The property name of the current property being processed in the object.
  * @return {int} - -1: removed, 0: unchanged, 1: added.
@@ -821,6 +834,8 @@
 
     /**
  * Given some config, provide a function to testing attribute and key existence in that config.
+ * @function
+ * @memberOf module:domGeneral
  * @param {Node|HTMLElement} element
  * @returns {testAttributeChange}
  */
@@ -846,6 +861,8 @@
 
     /**
  * Updates all the keys to be kabob-case
+ * @function
+ * @memberOf module:domGeneral
  * @param {Object.<string, *>} attributesToSet
  * @returns {Object.<string, *>}
  */
@@ -970,6 +987,8 @@
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+ * @function
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem
  * @param {Object.<string, string>} attr
  * @returns {int|Object.<string, number>}
@@ -986,6 +1005,8 @@
 
     /**
  * For attributes which are objects or multipart strings -1 = remove attribute, 0 = no change, 1 = add attribute
+ * @function
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem
  * @param {string} attr
  * @returns {int|Object.<string, number>}
@@ -1094,6 +1115,7 @@
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * @typedef {module:objectHelpers~mapCallback} testAttributeChange
+ * @memberOf module:domGeneral
  * @param {*} attr - The current property being processed in the object.
  * @param {string} key - The property name of the current property being processed in the object.
  * @return {int} - -1: removed, 0: unchanged, 1: added.
@@ -1101,6 +1123,8 @@
 
     /**
  * Given some config, provide a function to testing attribute and key existence in that config.
+ * @function
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem
  * @returns {testAttributeChange}
  */
@@ -1125,6 +1149,8 @@
 
     /**
  * Updates all the keys to be camelCase
+ * @function
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem
  * @returns {Object.<string, *>}
  */
@@ -1257,6 +1283,8 @@
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+ * @function
+ * @memberOf module:domGeneral
  * @param {HTMLElement} element
  * @param {string|Object<string, string>} attr
  * @returns {int|Object.<string, number>}
@@ -1273,6 +1301,8 @@
 
     /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+ * @function
+ * @memberOf module:domGeneral
  * @param {HTMLElement} element
  * @param {string} attr
  * @returns {int|Object.<string, number>}
@@ -1369,6 +1399,8 @@
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * Create a new DOM Node based on name and data.
+ * @function
+ * @memberOf module:domGeneral
  * @param {string} nodeName
  * @param {string|null} data
  * @returns {Text|Comment|HTMLElement}
@@ -2290,29 +2322,17 @@
     var _removeChild = _interopRequireDefault(require('../functions/removeChild.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
- * One or more listeners assigned to the same event.
- * @typedef {Array.<EventListener>} EventListeners
- * @memberOf module:domGeneral
- */
-
-    /**
- * The name of the trigger used to fire the event.
- * @typedef {string} EventName
- * @memberOf module:domGeneral
- */
-
-    /**
  * DomItem defines the structure for a single element in the Dom
  * @typedef {Object} DomItem
  * @memberOf module:domGeneral
- * @property {Object.<EventName, Object.<number, eventHandler>>} activeListeners - Generated property storing assigned
+ * @property {Object.<module:domEvents~EventName, Object.<number, eventHandler>>} activeListeners - Generated property storing assigned
  * listeners.
  * @property {Object.<string, string|Object>} attributes - All potential HTML element attributes can be defined here
  * (including the defaulted style object)
  * @property {Array.<DomItem>} children - A reference to an array of child objects
  * @property {(Object|HTMLElement|null)} element - A reference to an existing HTML element will be stored here (default
  * null)
- * @property {Object.<EventName, EventListeners>} eventListeners - An object holding all events to be registered for the
+ * @property {Object.<module:domEvents~EventName, module:domEvents~EventListeners>} eventListeners - An object holding all events to be registered for the
  * associated element
  * @property {Array} jsonExclusions - array of properties to exclude
  * @property {string} nodeName - This is any document node name

@@ -4,6 +4,8 @@ import siFunciona from 'si-funciona'
 
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+ * @function
+ * @memberOf module:domGeneral
  * @param {HTMLElement} element
  * @param {string|Object<string, string>} attr
  * @returns {int|Object.<string, number>}
@@ -21,6 +23,8 @@ const checkStyles = (element, attr = {}) => {
 
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+ * @function
+ * @memberOf module:domGeneral
  * @param {HTMLElement} element
  * @param {string} attr
  * @returns {int|Object.<string, number>}

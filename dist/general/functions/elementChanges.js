@@ -14,6 +14,7 @@ var _createChangeList = _interopRequireDefault(require('../objects/createChangeL
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * @typedef {module:objectHelpers~mapCallback} testAttributeChange
+ * @memberOf module:domGeneral
  * @param {*} attr - The current property being processed in the object.
  * @param {string} key - The property name of the current property being processed in the object.
  * @return {int} - -1: removed, 0: unchanged, 1: added.
@@ -21,6 +22,8 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
 
 /**
  * Given some config, provide a function to testing attribute and key existence in that config.
+ * @function
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem
  * @returns {testAttributeChange}
  */
@@ -45,6 +48,8 @@ const checkAttribute = domItem => (attr, key) => {
 
 /**
  * Updates all the keys to be camelCase
+ * @function
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem
  * @returns {Object.<string, *>}
  */

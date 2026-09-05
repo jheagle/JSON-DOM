@@ -27,33 +27,6 @@ State management with JSON
 <dt><a href="#isEmpty">isEmpty(propertyValue)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Check if the value is an empty object / array, or if it is null or undefined.</p>
 </dd>
-<dt><a href="#makeElementType">makeElementType(nodeName, data)</a> ⇒ <code>Text</code> | <code>Comment</code> | <code>HTMLElement</code></dt>
-<dd><p>Create a new DOM Node based on name and data.</p>
-</dd>
-<dt><a href="#checkStyles">checkStyles(element, attr)</a> ⇒ <code>int</code> | <code>Object.&lt;string, number&gt;</code></dt>
-<dd><p>For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute</p>
-</dd>
-<dt><a href="#checkClasses">checkClasses(element, attr)</a> ⇒ <code>int</code> | <code>Object.&lt;string, number&gt;</code></dt>
-<dd><p>For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute</p>
-</dd>
-<dt><a href="#checkAttribute">checkAttribute(domItem)</a> ⇒ <code><a href="#testAttributeChange">testAttributeChange</a></code></dt>
-<dd><p>Given some config, provide a function to testing attribute and key existence in that config.</p>
-</dd>
-<dt><a href="#camelCaseAttributes">camelCaseAttributes(domItem)</a> ⇒ <code>Object.&lt;string, *&gt;</code></dt>
-<dd><p>Updates all the keys to be camelCase</p>
-</dd>
-<dt><a href="#checkStyles">checkStyles(domItem, attr)</a> ⇒ <code>int</code> | <code>Object.&lt;string, number&gt;</code></dt>
-<dd><p>For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute</p>
-</dd>
-<dt><a href="#checkClasses">checkClasses(domItem, attr)</a> ⇒ <code>int</code> | <code>Object.&lt;string, number&gt;</code></dt>
-<dd><p>For attributes which are objects or multipart strings -1 = remove attribute, 0 = no change, 1 = add attribute</p>
-</dd>
-<dt><a href="#checkAttribute">checkAttribute(element)</a> ⇒ <code><a href="#testAttributeChange">testAttributeChange</a></code></dt>
-<dd><p>Given some config, provide a function to testing attribute and key existence in that config.</p>
-</dd>
-<dt><a href="#kabobCaseAttributes">kabobCaseAttributes(attributesToSet)</a> ⇒ <code>Object.&lt;string, *&gt;</code></dt>
-<dd><p>Updates all the keys to be kabob-case</p>
-</dd>
 </dl>
 
 ## Typedefs
@@ -65,10 +38,6 @@ State management with JSON
 <dt><a href="#DomItemBody">DomItemBody</a> : <code>DomItem</code></dt>
 <dd><p>DomItemBody defines the structure for a single element in the Dom</p>
 </dd>
-<dt><a href="#testAttributeChange">testAttributeChange</a> ⇒ <code>int</code></dt>
-<dd></dd>
-<dt><a href="#testAttributeChange">testAttributeChange</a> ⇒ <code>int</code></dt>
-<dd></dd>
 </dl>
 
 <a name="module_jsonDom"></a>
@@ -115,21 +84,30 @@ Core Dom management
         * [.getChildrenByClass(className, item)](#module_domGeneral.getChildrenByClass) ⇒ <code>Array.&lt;DomItem&gt;</code>
         * [.getChildTest(attr, value)](#module_domGeneral.getChildTest) ⇒ [<code>testChildItem</code>](#module_domGeneral..testChildItem)
         * [.getAssignedStyles(elementStyles)](#module_domGeneral.getAssignedStyles) ⇒ <code>object</code>
+        * [.makeElementType(nodeName, data)](#module_domGeneral.makeElementType) ⇒ <code>Text</code> \| <code>Comment</code> \| <code>HTMLElement</code>
         * [.generateElement(domItem)](#module_domGeneral.generateElement) ⇒ <code>DomItem</code>
         * [.gatherChildItems(item, test)](#module_domGeneral.gatherChildItems) ⇒ <code>Array.&lt;DomItem&gt;</code>
+        * [.checkStyles(element, attr)](#module_domGeneral.checkStyles) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
+        * [.checkClasses(element, attr)](#module_domGeneral.checkClasses) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
         * [.elementHasAttribute(element, key, attr)](#module_domGeneral.elementHasAttribute) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
+        * [.checkAttribute(domItem)](#module_domGeneral.checkAttribute) ⇒ <code>testAttributeChange</code>
+        * [.camelCaseAttributes(domItem)](#module_domGeneral.camelCaseAttributes) ⇒ <code>Object.&lt;string, \*&gt;</code>
         * [.elementChanges(domItem)](#module_domGeneral.elementChanges) ⇒ <code>ChangeList</code>
         * [.domItemToJson(item, [options])](#module_domGeneral.domItemToJson) ⇒ <code>string</code>
+        * [.checkStyles(domItem, attr)](#module_domGeneral.checkStyles) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
+        * [.checkClasses(domItem, attr)](#module_domGeneral.checkClasses) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
         * [.domItemHasAttribute(domItem, key, attr)](#module_domGeneral.domItemHasAttribute) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
+        * [.checkAttribute(element)](#module_domGeneral.checkAttribute) ⇒ <code>testAttributeChange</code>
+        * [.kabobCaseAttributes(attributesToSet)](#module_domGeneral.kabobCaseAttributes) ⇒ <code>Object.&lt;string, \*&gt;</code>
         * [.domItemChanges(domItem)](#module_domGeneral.domItemChanges) ⇒ <code>ChangeList</code>
         * [.appendChild(parent, child)](#module_domGeneral.appendChild) ⇒ <code>DomItem</code>
         * [.addDomItemProperties(item)](#module_domGeneral.addDomItemProperties) ⇒ <code>DomItem</code>
         * [.DomItemRoot](#module_domGeneral.DomItemRoot) : <code>DomItem</code>
-        * [.EventListeners](#module_domGeneral.EventListeners) : <code>Array.&lt;EventListener&gt;</code>
-        * [.EventName](#module_domGeneral.EventName) : <code>string</code>
         * [.DomItem](#module_domGeneral.DomItem) : <code>Object</code>
         * [.appendChanges](#module_domGeneral.appendChanges) : <code>function</code>
         * [.ChangeList](#module_domGeneral.ChangeList) : <code>Object.&lt;string, DotNotatedObject&gt;</code>
+        * [.testAttributeChange](#module_domGeneral.testAttributeChange) ⇒ <code>int</code>
+        * [.testAttributeChange](#module_domGeneral.testAttributeChange) ⇒ <code>int</code>
     * _inner_
         * [~testChildItem](#module_domGeneral..testChildItem) ⇒ <code>Array.&lt;DomItem&gt;</code>
 
@@ -436,6 +414,18 @@ Get all the styles which have been assigned to this element. Assigned styles are
 | --- | --- |
 | elementStyles | <code>Object.&lt;style, style&gt;</code> \| <code>CSSProperties</code> | 
 
+<a name="module_domGeneral.makeElementType"></a>
+
+### domGeneral.makeElementType(nodeName, data) ⇒ <code>Text</code> \| <code>Comment</code> \| <code>HTMLElement</code>
+Create a new DOM Node based on name and data.
+
+**Kind**: static method of [<code>domGeneral</code>](#module_domGeneral)  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| nodeName | <code>string</code> |  | 
+| data | <code>string</code> \| <code>null</code> | <code>null</code> | 
+
 <a name="module_domGeneral.generateElement"></a>
 
 ### domGeneral.generateElement(domItem) ⇒ <code>DomItem</code>
@@ -459,6 +449,30 @@ A selector function for retrieving existing child domGeneral.DomItems from the g
 | item | <code>DomItem</code> | The DomItem which may have child items matching the attribute criteria |
 | test | [<code>testChildItem</code>](#module_domGeneral..testChildItem) | Assess each child, and return the ones which qualify |
 
+<a name="module_domGeneral.checkStyles"></a>
+
+### domGeneral.checkStyles(element, attr) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
+For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+
+**Kind**: static method of [<code>domGeneral</code>](#module_domGeneral)  
+
+| Param | Type |
+| --- | --- |
+| element | <code>HTMLElement</code> | 
+| attr | <code>string</code> \| <code>Object.&lt;string, string&gt;</code> | 
+
+<a name="module_domGeneral.checkClasses"></a>
+
+### domGeneral.checkClasses(element, attr) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
+For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+
+**Kind**: static method of [<code>domGeneral</code>](#module_domGeneral)  
+
+| Param | Type |
+| --- | --- |
+| element | <code>HTMLElement</code> | 
+| attr | <code>string</code> | 
+
 <a name="module_domGeneral.elementHasAttribute"></a>
 
 ### domGeneral.elementHasAttribute(element, key, attr) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
@@ -471,6 +485,28 @@ Check if the provided Element has the provided attributes.Returns a boolean, or
 | element | <code>HTMLElement</code> | Receive the element to be assessed |
 | key | <code>string</code> | The attribute name to search for |
 | attr | <code>string</code> \| <code>Object.&lt;string, string&gt;</code> | The expected value of the attribute to compare against |
+
+<a name="module_domGeneral.checkAttribute"></a>
+
+### domGeneral.checkAttribute(domItem) ⇒ <code>testAttributeChange</code>
+Given some config, provide a function to testing attribute and key existence in that config.
+
+**Kind**: static method of [<code>domGeneral</code>](#module_domGeneral)  
+
+| Param | Type |
+| --- | --- |
+| domItem | <code>DomItem</code> | 
+
+<a name="module_domGeneral.camelCaseAttributes"></a>
+
+### domGeneral.camelCaseAttributes(domItem) ⇒ <code>Object.&lt;string, \*&gt;</code>
+Updates all the keys to be camelCase
+
+**Kind**: static method of [<code>domGeneral</code>](#module_domGeneral)  
+
+| Param | Type |
+| --- | --- |
+| domItem | <code>DomItem</code> | 
 
 <a name="module_domGeneral.elementChanges"></a>
 
@@ -497,6 +533,30 @@ Convert DOM Item to JSON string.
 | [options.mapLimit] | <code>int</code> | <code>100</code> | 
 | [options.relevancyRange] | <code>int</code> | <code>1000</code> | 
 
+<a name="module_domGeneral.checkStyles"></a>
+
+### domGeneral.checkStyles(domItem, attr) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
+For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+
+**Kind**: static method of [<code>domGeneral</code>](#module_domGeneral)  
+
+| Param | Type |
+| --- | --- |
+| domItem | <code>DomItem</code> | 
+| attr | <code>Object.&lt;string, string&gt;</code> | 
+
+<a name="module_domGeneral.checkClasses"></a>
+
+### domGeneral.checkClasses(domItem, attr) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
+For attributes which are objects or multipart strings -1 = remove attribute, 0 = no change, 1 = add attribute
+
+**Kind**: static method of [<code>domGeneral</code>](#module_domGeneral)  
+
+| Param | Type |
+| --- | --- |
+| domItem | <code>DomItem</code> | 
+| attr | <code>string</code> | 
+
 <a name="module_domGeneral.domItemHasAttribute"></a>
 
 ### domGeneral.domItemHasAttribute(domItem, key, attr) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
@@ -509,6 +569,28 @@ Check if the provided DomItem has the provided attributes.Returns a boolean, or
 | domItem | <code>DomItem</code> | Receive the DomItem to be assessed |
 | key | <code>string</code> | The attribute name to search for |
 | attr | <code>string</code> \| <code>Object</code> | The expected value of the attribute to compare against |
+
+<a name="module_domGeneral.checkAttribute"></a>
+
+### domGeneral.checkAttribute(element) ⇒ <code>testAttributeChange</code>
+Given some config, provide a function to testing attribute and key existence in that config.
+
+**Kind**: static method of [<code>domGeneral</code>](#module_domGeneral)  
+
+| Param | Type |
+| --- | --- |
+| element | <code>Node</code> \| <code>HTMLElement</code> | 
+
+<a name="module_domGeneral.kabobCaseAttributes"></a>
+
+### domGeneral.kabobCaseAttributes(attributesToSet) ⇒ <code>Object.&lt;string, \*&gt;</code>
+Updates all the keys to be kabob-case
+
+**Kind**: static method of [<code>domGeneral</code>](#module_domGeneral)  
+
+| Param | Type |
+| --- | --- |
+| attributesToSet | <code>Object.&lt;string, \*&gt;</code> | 
 
 <a name="module_domGeneral.domItemChanges"></a>
 
@@ -563,18 +645,6 @@ DomItemRoot defines the structure for a single element in the Dom
 | head | [<code>DomItemHead</code>](#DomItemHead) |  | A specific reference to head item |
 | body | [<code>DomItemBody</code>](#DomItemBody) |  | A specific reference to body item |
 
-<a name="module_domGeneral.EventListeners"></a>
-
-### domGeneral.EventListeners : <code>Array.&lt;EventListener&gt;</code>
-One or more listeners assigned to the same event.
-
-**Kind**: static typedef of [<code>domGeneral</code>](#module_domGeneral)  
-<a name="module_domGeneral.EventName"></a>
-
-### domGeneral.EventName : <code>string</code>
-The name of the trigger used to fire the event.
-
-**Kind**: static typedef of [<code>domGeneral</code>](#module_domGeneral)  
 <a name="module_domGeneral.DomItem"></a>
 
 ### domGeneral.DomItem : <code>Object</code>
@@ -585,11 +655,11 @@ DomItem defines the structure for a single element in the Dom
 
 | Name | Type | Description |
 | --- | --- | --- |
-| activeListeners | <code>Object.&lt;EventName, Object.&lt;number, eventHandler&gt;&gt;</code> | Generated property storing assigned listeners. |
+| activeListeners | <code>Object.&lt;module:domEvents~EventName, Object.&lt;number, eventHandler&gt;&gt;</code> | Generated property storing assigned listeners. |
 | attributes | <code>Object.&lt;string, (string\|Object)&gt;</code> | All potential HTML element attributes can be defined here (including the defaulted style object) |
 | children | <code>Array.&lt;DomItem&gt;</code> | A reference to an array of child objects |
 | element | <code>Object</code> \| <code>HTMLElement</code> \| <code>null</code> | A reference to an existing HTML element will be stored here (default null) |
-| eventListeners | <code>Object.&lt;EventName, EventListeners&gt;</code> | An object holding all events to be registered for the associated element |
+| eventListeners | <code>Object.&lt;module:domEvents~EventName, module:domEvents~EventListeners&gt;</code> | An object holding all events to be registered for the associated element |
 | jsonExclusions | <code>Array</code> | array of properties to exclude |
 | nodeName | <code>string</code> | This is any document node name |
 | nodeValue | <code>string</code> | Is a string of text, null for HTML elements |
@@ -621,6 +691,28 @@ Represent changes / a diff of an object, including removed, added, and changed p
 | removed | <code>DotNotatedObject</code> | 
 | added | <code>DotNotatedObject</code> | 
 | appendChanges | <code>appendChanges</code> | 
+
+<a name="module_domGeneral.testAttributeChange"></a>
+
+### domGeneral.testAttributeChange ⇒ <code>int</code>
+**Kind**: static typedef of [<code>domGeneral</code>](#module_domGeneral)  
+**Returns**: <code>int</code> - - -1: removed, 0: unchanged, 1: added.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| attr | <code>\*</code> | The current property being processed in the object. |
+| key | <code>string</code> | The property name of the current property being processed in the object. |
+
+<a name="module_domGeneral.testAttributeChange"></a>
+
+### domGeneral.testAttributeChange ⇒ <code>int</code>
+**Kind**: static typedef of [<code>domGeneral</code>](#module_domGeneral)  
+**Returns**: <code>int</code> - - -1: removed, 0: unchanged, 1: added.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| attr | <code>\*</code> | The current property being processed in the object. |
+| key | <code>string</code> | The property name of the current property being processed in the object. |
 
 <a name="module_domGeneral..testChildItem"></a>
 
@@ -661,6 +753,8 @@ Setting up and handling events
     * [.Option](#module_domEvents.Option) : <code>boolean</code>
     * [.EventResponder](#module_domEvents.EventResponder) : <code>Object</code>
     * [.EventProxy](#module_domEvents.EventProxy) : <code>Event</code>
+    * [.EventListeners](#module_domEvents.EventListeners) : <code>Array.&lt;EventListener&gt;</code>
+    * [.EventName](#module_domEvents.EventName) : <code>string</code>
     * [.listenerFunction](#module_domEvents.listenerFunction) : <code>function</code>
     * [.UseCapture](#module_domEvents.UseCapture) : <code>boolean</code>
     * [.OptionsObject](#module_domEvents.OptionsObject) : <code>Object</code>
@@ -873,6 +967,18 @@ A wrapped Event which provides additional utilities.
 | --- | --- |
 | immediatePropagationStopped | <code>boolean</code> | 
 
+<a name="module_domEvents.EventListeners"></a>
+
+### domEvents.EventListeners : <code>Array.&lt;EventListener&gt;</code>
+One or more listeners assigned to the same event.
+
+**Kind**: static typedef of [<code>domEvents</code>](#module_domEvents)  
+<a name="module_domEvents.EventName"></a>
+
+### domEvents.EventName : <code>string</code>
+The name of the trigger used to fire the event.
+
+**Kind**: static typedef of [<code>domEvents</code>](#module_domEvents)  
 <a name="module_domEvents.listenerFunction"></a>
 
 ### domEvents.listenerFunction : <code>function</code>
@@ -1039,110 +1145,6 @@ Check if the value is an empty object / array, or if it is null or undefined.
 | --- | --- |
 | propertyValue | <code>\*</code> | 
 
-<a name="makeElementType"></a>
-
-## makeElementType(nodeName, data) ⇒ <code>Text</code> \| <code>Comment</code> \| <code>HTMLElement</code>
-Create a new DOM Node based on name and data.
-
-**Kind**: global function  
-
-| Param | Type | Default |
-| --- | --- | --- |
-| nodeName | <code>string</code> |  | 
-| data | <code>string</code> \| <code>null</code> | <code>null</code> | 
-
-<a name="checkStyles"></a>
-
-## checkStyles(element, attr) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
-For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
-
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| element | <code>HTMLElement</code> | 
-| attr | <code>string</code> \| <code>Object.&lt;string, string&gt;</code> | 
-
-<a name="checkClasses"></a>
-
-## checkClasses(element, attr) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
-For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
-
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| element | <code>HTMLElement</code> | 
-| attr | <code>string</code> | 
-
-<a name="checkAttribute"></a>
-
-## checkAttribute(domItem) ⇒ [<code>testAttributeChange</code>](#testAttributeChange)
-Given some config, provide a function to testing attribute and key existence in that config.
-
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| domItem | <code>DomItem</code> | 
-
-<a name="camelCaseAttributes"></a>
-
-## camelCaseAttributes(domItem) ⇒ <code>Object.&lt;string, \*&gt;</code>
-Updates all the keys to be camelCase
-
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| domItem | <code>DomItem</code> | 
-
-<a name="checkStyles"></a>
-
-## checkStyles(domItem, attr) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
-For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
-
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| domItem | <code>DomItem</code> | 
-| attr | <code>Object.&lt;string, string&gt;</code> | 
-
-<a name="checkClasses"></a>
-
-## checkClasses(domItem, attr) ⇒ <code>int</code> \| <code>Object.&lt;string, number&gt;</code>
-For attributes which are objects or multipart strings -1 = remove attribute, 0 = no change, 1 = add attribute
-
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| domItem | <code>DomItem</code> | 
-| attr | <code>string</code> | 
-
-<a name="checkAttribute"></a>
-
-## checkAttribute(element) ⇒ [<code>testAttributeChange</code>](#testAttributeChange)
-Given some config, provide a function to testing attribute and key existence in that config.
-
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| element | <code>Node</code> \| <code>HTMLElement</code> | 
-
-<a name="kabobCaseAttributes"></a>
-
-## kabobCaseAttributes(attributesToSet) ⇒ <code>Object.&lt;string, \*&gt;</code>
-Updates all the keys to be kabob-case
-
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| attributesToSet | <code>Object.&lt;string, \*&gt;</code> | 
-
 <a name="DomItemHead"></a>
 
 ## DomItemHead : <code>DomItem</code>
@@ -1172,26 +1174,4 @@ DomItemBody defines the structure for a single element in the Dom
 | attributes | <code>Object.&lt;string, (string\|Object)&gt;</code> |  | All potential HTML element attributes can be defined here |
 | element | <code>HTMLBodyElement</code> |  | A reference to the HTML body element |
 | children | <code>Array.&lt;DomItem&gt;</code> |  | A reference to an array of child objects |
-
-<a name="testAttributeChange"></a>
-
-## testAttributeChange ⇒ <code>int</code>
-**Kind**: global typedef  
-**Returns**: <code>int</code> - - -1: removed, 0: unchanged, 1: added.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| attr | <code>\*</code> | The current property being processed in the object. |
-| key | <code>string</code> | The property name of the current property being processed in the object. |
-
-<a name="testAttributeChange"></a>
-
-## testAttributeChange ⇒ <code>int</code>
-**Kind**: global typedef  
-**Returns**: <code>int</code> - - -1: removed, 0: unchanged, 1: added.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| attr | <code>\*</code> | The current property being processed in the object. |
-| key | <code>string</code> | The property name of the current property being processed in the object. |
 

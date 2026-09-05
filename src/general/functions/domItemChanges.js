@@ -5,6 +5,7 @@ import createChangeList from '../objects/createChangeList.js'
 
 /**
  * @typedef {module:objectHelpers~mapCallback} testAttributeChange
+ * @memberOf module:domGeneral
  * @param {*} attr - The current property being processed in the object.
  * @param {string} key - The property name of the current property being processed in the object.
  * @return {int} - -1: removed, 0: unchanged, 1: added.
@@ -12,6 +13,8 @@ import createChangeList from '../objects/createChangeList.js'
 
 /**
  * Given some config, provide a function to testing attribute and key existence in that config.
+ * @function
+ * @memberOf module:domGeneral
  * @param {Node|HTMLElement} element
  * @returns {testAttributeChange}
  */
@@ -44,6 +47,8 @@ const checkAttribute = element =>
 
 /**
  * Updates all the keys to be kabob-case
+ * @function
+ * @memberOf module:domGeneral
  * @param {Object.<string, *>} attributesToSet
  * @returns {Object.<string, *>}
  */

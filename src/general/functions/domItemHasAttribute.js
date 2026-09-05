@@ -4,6 +4,8 @@ import getAssignedStyles from './getAssignedStyles'
 
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+ * @function
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem
  * @param {Object.<string, string>} attr
  * @returns {int|Object.<string, number>}
@@ -21,6 +23,8 @@ const checkStyles = (domItem, attr = {}) => {
 
 /**
  * For attributes which are objects or multipart strings -1 = remove attribute, 0 = no change, 1 = add attribute
+ * @function
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem
  * @param {string} attr
  * @returns {int|Object.<string, number>}

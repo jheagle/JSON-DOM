@@ -3,6 +3,8 @@ import updateElement from './updateElement.js'
 
 /**
  * Create a new DOM Node based on name and data.
+ * @function
+ * @memberOf module:domGeneral
  * @param {string} nodeName
  * @param {string|null} data
  * @returns {Text|Comment|HTMLElement}

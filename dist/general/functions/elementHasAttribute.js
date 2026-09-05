@@ -12,6 +12,8 @@ var _siFunciona = _interopRequireDefault(require('si-funciona'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+ * @function
+ * @memberOf module:domGeneral
  * @param {HTMLElement} element
  * @param {string|Object<string, string>} attr
  * @returns {int|Object.<string, number>}
@@ -28,6 +30,8 @@ const checkStyles = function (element) {
 
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
+ * @function
+ * @memberOf module:domGeneral
  * @param {HTMLElement} element
  * @param {string} attr
  * @returns {int|Object.<string, number>}

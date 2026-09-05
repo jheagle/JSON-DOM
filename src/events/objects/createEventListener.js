@@ -1,4 +1,16 @@
 /**
+ * One or more listeners assigned to the same event.
+ * @typedef {Array.<EventListener>} EventListeners
+ * @memberOf module:domEvents
+ */
+
+/**
+ * The name of the trigger used to fire the event.
+ * @typedef {string} EventName
+ * @memberOf module:domEvents
+ */
+
+/**
  * This is the standard definition of a listenerFunction to be used
  * @callback listenerFunction
  * @memberOf module:domEvents
