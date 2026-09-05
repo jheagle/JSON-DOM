@@ -7,13 +7,13 @@
  */
 
 import 'core-js/stable'
-import functions from './source/functions.js'
-import objects from './source/objects.js'
+import events from './events/index.js'
+import general from './general/index.js'
 
 const jsonDom = Object.assign(
   {},
-  functions,
-  objects
+  events,
+  general
 )
 
 export default jsonDom

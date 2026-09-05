@@ -7,134 +7,7 @@
     })
     exports.default = void 0
     require('core-js/stable')
-    var _functions = _interopRequireDefault(require('./source/functions.js'))
-    var _objects = _interopRequireDefault(require('./source/objects.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-    /**
- * All of the JSON DOM system functions for creating JSON components.
- * @file
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module jsonDom
- */
-
-    const jsonDom = Object.assign({}, _functions.default, _objects.default)
-    var _default = exports.default = jsonDom
-    const root = void 0 || typeof window !== 'undefined' ? window : {}
-    root.jsonDom = jsonDom
-  }, { './source/functions.js': 2, './source/objects.js': 45, 'core-js/stable': 694 }],
-  2: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    require('core-js/stable')
-    var _activateListener = _interopRequireDefault(require('./functions/activateListener.js'))
-    var _addDomItemProperties = _interopRequireDefault(require('./functions/addDomItemProperties.js'))
-    var _appendChild = _interopRequireDefault(require('./functions/appendChild.js'))
-    var _applyActiveListeners = _interopRequireDefault(require('./functions/applyActiveListeners.js'))
-    var _assignListener = _interopRequireDefault(require('./functions/assignListener.js'))
-    var _bindAllListeners = _interopRequireDefault(require('./functions/bindAllListeners.js'))
-    var _bindElementListeners = _interopRequireDefault(require('./functions/bindElementListeners.js'))
-    var _bindListeners = _interopRequireDefault(require('./functions/bindListeners.js'))
-    var _deactivateListeners = _interopRequireDefault(require('./functions/deactivateListeners.js'))
-    var _domItemChanges = _interopRequireDefault(require('./functions/domItemChanges.js'))
-    var _domItemHasAttribute = _interopRequireDefault(require('./functions/domItemHasAttribute.js'))
-    var _domItemToJson = _interopRequireDefault(require('./functions/domItemToJson.js'))
-    var _elementChanges = _interopRequireDefault(require('./functions/elementChanges.js'))
-    var _elementHasAttribute = _interopRequireDefault(require('./functions/elementHasAttribute.js'))
-    var _gatherChildItems = _interopRequireDefault(require('./functions/gatherChildItems.js'))
-    var _generateElement = _interopRequireDefault(require('./functions/generateElement.js'))
-    var _getAssignedStyles = _interopRequireDefault(require('./functions/getAssignedStyles.js'))
-    var _getChildTest = _interopRequireDefault(require('./functions/getChildTest.js'))
-    var _getChildrenByClass = _interopRequireDefault(require('./functions/getChildrenByClass.js'))
-    var _getChildrenByName = _interopRequireDefault(require('./functions/getChildrenByName.js'))
-    var _getChildrenFromAttribute = _interopRequireDefault(require('./functions/getChildrenFromAttribute.js'))
-    var _getParentsByClass = _interopRequireDefault(require('./functions/getParentsByClass.js'))
-    var _getParentsByName = _interopRequireDefault(require('./functions/getParentsByName.js'))
-    var _getParentsByTagName = _interopRequireDefault(require('./functions/getParentsByTagName.js'))
-    var _getParentsFromAttribute = _interopRequireDefault(require('./functions/getParentsFromAttribute.js'))
-    var _getTopParentItem = _interopRequireDefault(require('./functions/getTopParentItem.js'))
-    var _jsonToDomItem = _interopRequireDefault(require('./functions/jsonToDomItem.js'))
-    var _listenerOptions = _interopRequireDefault(require('./functions/listenerOptions.js'))
-    var _makeEventHandler = _interopRequireDefault(require('./functions/makeEventHandler.js'))
-    var _registerListener = _interopRequireDefault(require('./functions/registerListener.js'))
-    var _registerListeners = _interopRequireDefault(require('./functions/registerListeners.js'))
-    var _removeChild = _interopRequireDefault(require('./functions/removeChild.js'))
-    var _renderHtml = _interopRequireDefault(require('./functions/renderHtml.js'))
-    var _removeEmptyProperties = _interopRequireDefault(require('./functions/removeEmptyProperties.js'))
-    var _retrieveListener = _interopRequireDefault(require('./functions/retrieveListener.js'))
-    var _setParentItemReferences = _interopRequireDefault(require('./functions/setParentItemReferences.js'))
-    var _updateChildNodes = _interopRequireDefault(require('./functions/updateChildNodes.js'))
-    var _updateChildren = _interopRequireDefault(require('./functions/updateChildren.js'))
-    var _updateDomItem = _interopRequireDefault(require('./functions/updateDomItem.js'))
-    var _updateDomItems = _interopRequireDefault(require('./functions/updateDomItems.js'))
-    var _updateElement = _interopRequireDefault(require('./functions/updateElement.js'))
-    var _updateElements = _interopRequireDefault(require('./functions/updateElements.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-    /**
- * @file Core Dom management functions
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module domFunctions
- * @memberOf module:jsonDom
- */
-    var _default = exports.default = {
-      activateListener: _activateListener.default,
-      addDomItemProperties: _addDomItemProperties.default,
-      appendChild: _appendChild.default,
-      applyActiveListeners: _applyActiveListeners.default,
-      assignListener: _assignListener.default,
-      bindAllListeners: _bindAllListeners.default,
-      bindElementListeners: _bindElementListeners.default,
-      bindListeners: _bindListeners.default,
-      deactivateListeners: _deactivateListeners.default,
-      domItemChanges: _domItemChanges.default,
-      domItemHasAttribute: _domItemHasAttribute.default,
-      domItemToJson: _domItemToJson.default,
-      elementChanges: _elementChanges.default,
-      elementHasAttribute: _elementHasAttribute.default,
-      gatherChildItems: _gatherChildItems.default,
-      generateElement: _generateElement.default,
-      getAssignedStyles: _getAssignedStyles.default,
-      getChildTest: _getChildTest.default,
-      getChildrenByClass: _getChildrenByClass.default,
-      getChildrenByName: _getChildrenByName.default,
-      getChildrenFromAttribute: _getChildrenFromAttribute.default,
-      getParentsByClass: _getParentsByClass.default,
-      getParentsByName: _getParentsByName.default,
-      getParentsByTagName: _getParentsByTagName.default,
-      getParentsFromAttribute: _getParentsFromAttribute.default,
-      getTopParentItem: _getTopParentItem.default,
-      jsonToDomItem: _jsonToDomItem.default,
-      listenerOptions: _listenerOptions.default,
-      makeEventHandler: _makeEventHandler.default,
-      registerListener: _registerListener.default,
-      registerListeners: _registerListeners.default,
-      removeChild: _removeChild.default,
-      renderHtml: _renderHtml.default,
-      removeEmptyProperties: _removeEmptyProperties.default,
-      retrieveListener: _retrieveListener.default,
-      setParentItemReferences: _setParentItemReferences.default,
-      updateChildNodes: _updateChildNodes.default,
-      updateChildren: _updateChildren.default,
-      updateDomItem: _updateDomItem.default,
-      updateDomItems: _updateDomItems.default,
-      updateElement: _updateElement.default,
-      updateElements: _updateElements.default
-    }
-  }, { './functions/activateListener.js': 3, './functions/addDomItemProperties.js': 4, './functions/appendChild.js': 5, './functions/applyActiveListeners.js': 6, './functions/assignListener.js': 7, './functions/bindAllListeners.js': 8, './functions/bindElementListeners.js': 9, './functions/bindListeners.js': 10, './functions/deactivateListeners.js': 11, './functions/domItemChanges.js': 12, './functions/domItemHasAttribute.js': 13, './functions/domItemToJson.js': 14, './functions/elementChanges.js': 15, './functions/elementHasAttribute.js': 16, './functions/gatherChildItems.js': 17, './functions/generateElement.js': 18, './functions/getAssignedStyles.js': 19, './functions/getChildTest.js': 20, './functions/getChildrenByClass.js': 21, './functions/getChildrenByName.js': 22, './functions/getChildrenFromAttribute.js': 23, './functions/getParentsByClass.js': 24, './functions/getParentsByName.js': 25, './functions/getParentsByTagName.js': 26, './functions/getParentsFromAttribute.js': 27, './functions/getTopParentItem.js': 28, './functions/jsonToDomItem.js': 29, './functions/listenerOptions.js': 30, './functions/makeEventHandler.js': 31, './functions/registerListener.js': 32, './functions/registerListeners.js': 33, './functions/removeChild.js': 34, './functions/removeEmptyProperties.js': 35, './functions/renderHtml.js': 36, './functions/retrieveListener.js': 37, './functions/setParentItemReferences.js': 38, './functions/updateChildNodes.js': 39, './functions/updateChildren.js': 40, './functions/updateDomItem.js': 41, './functions/updateDomItems.js': 42, './functions/updateElement.js': 43, './functions/updateElements.js': 44, 'core-js/stable': 694 }],
-  3: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    require('core-js/stable')
-    var _getTopParentItem = _interopRequireDefault(require('./getTopParentItem.js'))
+    var _getTopParentItem = _interopRequireDefault(require('../../general/functions/getTopParentItem.js'))
     var _makeEventHandler = _interopRequireDefault(require('./makeEventHandler.js'))
     var _createEventResponder = _interopRequireDefault(require('../objects/createEventResponder.js'))
     var _getListenerOptions = _interopRequireDefault(require('../objects/options/getListenerOptions.js'))
@@ -166,60 +39,8 @@
       return item
     }
     var _default = exports.default = activateListener
-  }, { '../objects/createEventResponder.js': 50, '../objects/options/getListenerOptions.js': 57, '../objects/options/optionsToNumber.js': 59, './getTopParentItem.js': 28, './makeEventHandler.js': 31, './retrieveListener.js': 37, 'core-js/stable': 694 }],
-  4: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    require('core-js/modules/esnext.iterator.constructor.js')
-    require('core-js/modules/esnext.iterator.for-each.js')
-    require('core-js/stable')
-    var _createDomItem = _interopRequireDefault(require('../objects/createDomItem'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-    /**
- * Ensure all basic properties of the DomItem are present.
- * @function
- * @memberOf module:domFunctions
- * @param {Object} item - The object that will be formatted as a DomItem.
- * @returns {DomItem}
- */
-    const addDomItemProperties = item => {
-      if (typeof item.children !== 'undefined') {
-        item.children.forEach(child => {
-          addDomItemProperties(child)
-        })
-      }
-      return (0, _createDomItem.default)(item)
-    }
-    var _default = exports.default = addDomItemProperties
-  }, { '../objects/createDomItem': 47, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/stable': 694 }],
-  5: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    require('core-js/stable')
-    /**
- * Append a child to the end of given parent's children list.
- * @function
- * @memberOf module:domFunctions
- * @param {DomItem} parent - The parent that will receive the child.
- * @param {DomItem} child - The new child to attach to the parent.
- * @returns {DomItem}
- */
-    const appendChild = (parent, child) => {
-      parent.children.push(child)
-      child.parentItem = parent
-      return parent
-    }
-    var _default = exports.default = appendChild
-  }, { 'core-js/stable': 694 }],
-  6: [function (require, module, exports) {
+  }, { '../../general/functions/getTopParentItem.js': 40, '../objects/createEventResponder.js': 17, '../objects/options/getListenerOptions.js': 19, '../objects/options/optionsToNumber.js': 21, './makeEventHandler.js': 9, './retrieveListener.js': 12, 'core-js/stable': 694 }],
+  2: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -263,8 +84,8 @@
       return item
     }
     var _default = exports.default = applyActiveListeners
-  }, { '../objects/createEventProxy.js': 49, '../objects/options/getListenerOptions.js': 57, '../objects/options/numberToOptions.js': 58, './assignListener.js': 7, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694, 'si-funciona': 773 }],
-  7: [function (require, module, exports) {
+  }, { '../objects/createEventProxy.js': 16, '../objects/options/getListenerOptions.js': 19, '../objects/options/numberToOptions.js': 20, './assignListener.js': 3, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694, 'si-funciona': 773 }],
+  3: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -308,8 +129,8 @@
       return fn
     }
     var _default = exports.default = assignListener
-  }, { './listenerOptions.js': 30, 'core-js/stable': 694 }],
-  8: [function (require, module, exports) {
+  }, { './listenerOptions.js': 8, 'core-js/stable': 694 }],
+  4: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -337,8 +158,8 @@
       return (0, _bindListeners.default)(item)
     }
     var _default = exports.default = bindAllListeners
-  }, { './bindListeners.js': 10, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694 }],
-  9: [function (require, module, exports) {
+  }, { './bindListeners.js': 6, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694 }],
+  5: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -349,7 +170,7 @@
     require('core-js/modules/esnext.iterator.for-each.js')
     require('core-js/stable')
     var _activateListener = _interopRequireDefault(require('./activateListener.js'))
-    var _applyActiveListeners = _interopRequireDefault(require('./applyActiveListeners'))
+    var _applyActiveListeners = _interopRequireDefault(require('./applyActiveListeners.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * Receive a DomItem with eventListeners and apply the event listeners onto the Dom element.
@@ -373,8 +194,8 @@
       return item
     }
     var _default = exports.default = bindElementListeners
-  }, { './activateListener.js': 3, './applyActiveListeners': 6, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/stable': 694 }],
-  10: [function (require, module, exports) {
+  }, { './activateListener.js': 1, './applyActiveListeners.js': 2, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/stable': 694 }],
+  6: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -396,8 +217,8 @@
  */
     const bindListeners = item => !_siFunciona.default.emptyObject(item.eventListeners) && item.element ? (0, _bindElementListeners.default)(item) : item
     var _default = exports.default = bindListeners
-  }, { './bindElementListeners.js': 9, 'core-js/stable': 694, 'si-funciona': 773 }],
-  11: [function (require, module, exports) {
+  }, { './bindElementListeners.js': 5, 'core-js/stable': 694, 'si-funciona': 773 }],
+  7: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -423,7 +244,549 @@
     }
     var _default = exports.default = deactivateListeners
   }, { 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/stable': 694 }],
+  8: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/stable')
+    /**
+ * Provide compatibility for using the options parameter of addEventListener
+ * @function
+ * @memberOf module:domFunctions
+ * @param {EventListenerOptions} options - An object or boolean with the listener options
+ * @returns {boolean}
+ */
+    const listenerOptions = options => {
+      if (typeof listenerOptions.supportsOptions === 'undefined') {
+        // Check if supportsOptions has been defined. This is a compatibility checking flag.
+        listenerOptions.supportsOptions = true
+        try {
+          // If it is possible to use OptionsObject, then set our flag to true
+          window.addEventListener('test', null, {
+            capture: false,
+            once: false,
+            passive: false
+          })
+        } catch (err) {
+          // When using an OptionsObjects fails, it is only possible to pass the boolean UseCapture as the option
+          listenerOptions.supportsOptions = false
+        }
+      }
+      return typeof options === 'object' && listenerOptions.supportsOptions ? options : false
+    }
+    var _default = exports.default = listenerOptions
+  }, { 'core-js/stable': 694 }],
+  9: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/modules/web.dom-collections.iterator.js')
+    require('core-js/stable')
+    /**
+ * Based on available flags, either proceed to process the listener or skip.
+ * @typedef {Function} eventHandler
+ * @memberOf module:domObjects
+ * @param {EventProxy} event - The event object passed to the listener
+ */
+
+    /**
+ * Prepare a listener to be used before assigning to an element.
+ * @param {listenerFunction} listener
+ * @param {DomItem} item
+ * @param {...*} [args]
+ * @returns {eventHandler}
+ */
+    const makeEventHandler = function (listener, item) {
+      for (var _len = arguments.length, args = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+        args[_key - 2] = arguments[_key]
+      }
+      return event => {
+        if (!event || event.immediatePropagationStopped) {
+          return event
+        }
+        return listener(event, item, ...args)
+      }
+    }
+    var _default = exports.default = makeEventHandler
+  }, { 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694 }],
+  10: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/stable')
+    var _documentItem = _interopRequireDefault(require('../../general/objects/documentItem.js'))
+    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    /**
+ * Register a single listener function as part of the root domObjects.DomItem.
+ * @function
+ * @memberOf module:domFunctions
+ * @param {listenerFunction|function} listener - Provide a function which will be called
+ * when a Dom event is triggered.
+ * @param {string} [name] - The name of the listener to be used.
+ * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
+ * @returns {Object.<string, listenerFunction>}
+ */
+    const registerListener = function (listener) {
+      const name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : listener.name
+      const parent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default
+      return Object.assign(parent.eventListeners, {
+        [name]: listener
+      })
+    }
+    var _default = exports.default = registerListener
+  }, { '../../general/objects/documentItem.js': 56, 'core-js/stable': 694 }],
+  11: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/stable')
+    var _siFunciona = _interopRequireDefault(require('si-funciona'))
+    var _documentItem = _interopRequireDefault(require('../../general/objects/documentItem.js'))
+    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    /**
+ * Register multiple listeners from an array of functions.
+ * @function
+ * @memberOf module:domFunctions
+ * @param {Array.<listenerFunction|function>} listeners - An array of functions to be
+ * used as the registered event listeners.
+ * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which has eventListeners property.
+ * @returns {DomItemRoot|Object}
+ */
+    const registerListeners = function (listeners) {
+      const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default
+      _siFunciona.default.mergeObjectsMutable(parent.eventListeners, listeners)
+      return parent
+    }
+    var _default = exports.default = registerListeners
+  }, { '../../general/objects/documentItem.js': 56, 'core-js/stable': 694, 'si-funciona': 773 }],
   12: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/modules/es.array.includes.js')
+    require('core-js/stable')
+    var _documentDomItem = _interopRequireDefault(require('../../general/objects/documentDomItem.js'))
+    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    /**
+ * Based on the provided function / listener name, retrieve the associated function from the root domObjects.DomItem
+ * @function
+ * @memberOf module:domFunctions
+ * @param {string} listenerName - The name of one of the registered listener functions.
+ * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
+ * @returns {listenerFunction|function|Object}
+ */
+    const retrieveListener = function (listenerName) {
+      const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentDomItem.default
+      return Object.keys(parent.eventListeners).includes(listenerName) ? parent.eventListeners[listenerName] : (function (e) {
+        throw e
+      }('Undefined listener function on this DomItemRoot: '.concat(listenerName)))
+    }
+    var _default = exports.default = retrieveListener
+  }, { '../../general/objects/documentDomItem.js': 55, 'core-js/modules/es.array.includes.js': 369, 'core-js/stable': 694 }],
+  13: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/stable')
+    var _activateListener = _interopRequireDefault(require('./functions/activateListener.js'))
+    var _applyActiveListeners = _interopRequireDefault(require('./functions/applyActiveListeners.js'))
+    var _assignListener = _interopRequireDefault(require('./functions/assignListener.js'))
+    var _bindAllListeners = _interopRequireDefault(require('./functions/bindAllListeners.js'))
+    var _bindElementListeners = _interopRequireDefault(require('./functions/bindElementListeners.js'))
+    var _bindListeners = _interopRequireDefault(require('./functions/bindListeners.js'))
+    var _deactivateListeners = _interopRequireDefault(require('./functions/deactivateListeners.js'))
+    var _listenerOptions = _interopRequireDefault(require('./functions/listenerOptions.js'))
+    var _makeEventHandler = _interopRequireDefault(require('./functions/makeEventHandler.js'))
+    var _registerListener = _interopRequireDefault(require('./functions/registerListener.js'))
+    var _registerListeners = _interopRequireDefault(require('./functions/registerListeners.js'))
+    var _retrieveListener = _interopRequireDefault(require('./functions/retrieveListener.js'))
+    var _createEventListener = _interopRequireDefault(require('./objects/createEventListener.js'))
+    var _createEventProxy = _interopRequireDefault(require('./objects/createEventProxy.js'))
+    var _createEventResponder = _interopRequireDefault(require('./objects/createEventResponder.js'))
+    var _options = _interopRequireDefault(require('./objects/options.js'))
+    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    /**
+ * @file Setting up and handling events
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @version 1.0.0
+ * @module domFunctions
+ * @memberOf module:jsonDom
+ */
+    var _default = exports.default = {
+      activateListener: _activateListener.default,
+      applyActiveListeners: _applyActiveListeners.default,
+      assignListener: _assignListener.default,
+      bindAllListeners: _bindAllListeners.default,
+      bindElementListeners: _bindElementListeners.default,
+      bindListeners: _bindListeners.default,
+      deactivateListeners: _deactivateListeners.default,
+      listenerOptions: _listenerOptions.default,
+      makeEventHandler: _makeEventHandler.default,
+      registerListener: _registerListener.default,
+      registerListeners: _registerListeners.default,
+      retrieveListener: _retrieveListener.default,
+      createEventListener: _createEventListener.default,
+      createEventProxy: _createEventProxy.default,
+      createEventResponder: _createEventResponder.default,
+      options: _options.default
+    }
+  }, { './functions/activateListener.js': 1, './functions/applyActiveListeners.js': 2, './functions/assignListener.js': 3, './functions/bindAllListeners.js': 4, './functions/bindElementListeners.js': 5, './functions/bindListeners.js': 6, './functions/deactivateListeners.js': 7, './functions/listenerOptions.js': 8, './functions/makeEventHandler.js': 9, './functions/registerListener.js': 10, './functions/registerListeners.js': 11, './functions/retrieveListener.js': 12, './objects/createEventListener.js': 15, './objects/createEventProxy.js': 16, './objects/createEventResponder.js': 17, './objects/options.js': 18, 'core-js/stable': 694 }],
+  14: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/modules/web.dom-collections.iterator.js')
+    /**
+ * Create the default listeners for common events.
+ *
+ * @return {{}}
+ */
+    const commonEvents = () => {
+      const events = ['animationcancel', 'animationend', 'animationiteration', 'animationstart', 'auxclick', 'beforeinput', 'blur', 'click', 'compositionend', 'compositionstart', 'compositionupdate', 'contentvisibilityautostatechange', 'contextmenu', 'copy', 'cut', 'dblclick', 'focus', 'focusin', 'focusout', 'fullscreenchange', 'fullscreenerror', 'gotpointercapture', 'input', 'keydown', 'keyup', 'lostpointercapture', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseout', 'mouseover', 'mouseup', 'paste', 'pointercancel', 'pointerdown', 'pointerenter', 'pointerleave', 'pointermove', 'pointerout', 'pointerover', 'pointerup', 'scroll', 'scrollend', 'securitypolicyviolation', 'touchcancel', 'touchend', 'touchmove', 'touchstart', 'transitioncancel', 'transitionend', 'transitionrun', 'transitionstart', 'wheel']
+      const defaultListeners = {}
+      for (const event of events) {
+        defaultListeners[event] = () => {}
+      }
+      return defaultListeners
+    }
+    var _default = exports.default = commonEvents
+  }, { 'core-js/modules/web.dom-collections.iterator.js': 672 }],
+  15: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    /**
+ * This is the standard definition of a listenerFunction to be used
+ * @callback listenerFunction
+ * @memberOf module:domObjects
+ * @param {Event|EventProxy} e - The event object passed to the listener
+ * @param {DomItem} target - The element which triggered the event
+ * @param {...*} [args] - Optional args as required by the listener
+ */
+
+    /**
+ * A Boolean indicating whether events of this type will be dispatched to the registered listerFunction before being
+ * dispatched to any EventTarget beneath it in the Dom tree.
+ * @typedef {boolean} UseCapture
+ * @memberOf module:domObjects
+ */
+
+    /**
+ * OptionsObject defines the structure for the options to be passed to addEventListener
+ * @typedef {Object} OptionsObject
+ * @memberOf module:domObjects
+ * @property {boolean} capture - Indicate that events of this type will be dispatched to the registered
+ * listenerFunction before being dispatched to any EventTarget beneath it in the Dom tree.
+ * @property {boolean} once - Indicate that the listenerFunction should be invoked at most once after being added. If
+ * 'true', the listenerFunction would be automatically removed when invoked.
+ * @property {boolean} passive - Indicate that, if 'true', indicates that the listenerFunction will never call
+ * preventDefault(). If preventDefault() is called, the user agent will do nothing with it.
+ * @property {boolean} signal - The listener will be removed when the given AbortSignal object's abort() method is
+ * called. If not specified, no AbortSignal is associated with the listener.
+ */
+
+    /**
+ * EventListenerOptions is either a boolean as UseCapture or an Object as OptionsObject
+ * @typedef {OptionsObject|UseCapture} EventListenerOptions
+ * @memberOf module:domObjects
+ */
+
+    /**
+ * An EventListener Object to be appended to the element within the DomItem
+ * @typedef {Object} EventListener
+ * @memberOf module:domObjects
+ * @property {string} listenerFunc - A string function name matching an existing {@link listenerFunction}.
+ * @property {Object} listenerArgs - Additional args required for the listener function
+ * @property {EventListenerOptions} listenerOptions - Provides support for options parameter of addEventListener, or false for default
+ * @property {boolean} listenerActive - Indicate whether this listener has been applied to the element.
+ */
+
+    const createEventListener = function () {
+      const _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
+      const _ref$listenerFunc = _ref.listenerFunc
+      const listenerFunc = _ref$listenerFunc === void 0 ? 'click' : _ref$listenerFunc
+      const _ref$listenerArgs = _ref.listenerArgs
+      const listenerArgs = _ref$listenerArgs === void 0 ? null : _ref$listenerArgs
+      const _ref$listenerOptions = _ref.listenerOptions
+      const listenerOptions = _ref$listenerOptions === void 0 ? false : _ref$listenerOptions
+      const _ref$listenerActive = _ref.listenerActive
+      const listenerActive = _ref$listenerActive === void 0 ? false : _ref$listenerActive
+      return {
+        listenerFunc: listenerFunc,
+        listenerArgs: listenerArgs,
+        listenerOptions: listenerOptions,
+        listenerActive: listenerActive
+      }
+    }
+    var _default = exports.default = createEventListener
+  }, {}],
+  16: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/modules/web.dom-collections.iterator.js')
+    require('core-js/stable')
+    /**
+ * A wrapped Event which provides additional utilities.
+ * @typedef {Event} EventProxy
+ * @memberOf module:domObjects
+ * @property {boolean} immediatePropagationStopped
+ */
+
+    /**
+ * Return a modified version of the event.
+ * @param {Event} event
+ * @returns {EventProxy}
+ */
+    const createEventProxy = event => new Proxy(Object.defineProperty(event, 'immediatePropagationStopped', {
+      enumerable: true,
+      value: false,
+      writable: true
+    }), {
+      get (thisEvent, prop) {
+        if (prop === 'stopImmediatePropagation') {
+          thisEvent.immediatePropagationStopped = true
+        }
+        return Reflect.get(...arguments)
+      }
+    })
+    var _default = exports.default = createEventProxy
+  }, { 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694 }],
+  17: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/stable')
+    /**
+ * Track an event handler and optional abort signal.
+ * @typedef {Object} EventResponder
+ * @memberOf module:domObjects
+ * @property {eventHandler} handler
+ * @property {AbortController|null} abort
+ */
+
+    /**
+ * Store the handler function and associated abort controller instance if available to be used when events are triggered.
+ * @function
+ * @memberOf module:domObjects
+ * @param {eventHandler} eventHandler - The eventHandler wrapped function to be called for the event.
+ * @param {AbortController|boolean|null} [abort=null] - Assign an AbortSignal provided or create one (if true), otherwise null.
+ * @return {EventResponder}
+ */
+    const createEventResponder = function (eventHandler) {
+      let abort = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null
+      if (abort === true) {
+        abort = new AbortController()
+      }
+      if (abort === false) {
+        abort = null
+      }
+      return Object.assign({}, {
+        handler: eventHandler,
+        abort: abort
+      })
+    }
+    var _default = exports.default = createEventResponder
+  }, { 'core-js/stable': 694 }],
+  18: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/stable')
+    var _getListenerOptions = _interopRequireDefault(require('./options/getListenerOptions.js'))
+    var _numberToOptions = _interopRequireDefault(require('./options/numberToOptions.js'))
+    var _optionsToNumber = _interopRequireDefault(require('./options/optionsToNumber.js'))
+    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    /**
+ * @file Be able to use Flags (Options) in a well-formed way.
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @version 1.0.0
+ * @module optionFlags
+ * @memberOf module:domObjects
+ */
+    /**
+ * A boolean value used to alter functionality.
+ * @typedef {boolean} Option
+ * @memberOf module:domObjects
+ */
+    /**
+ * A set of named options within an object, or simply a singular Option.
+ * @typedef {Object.<string, Option>|Option} Options
+ */
+    /**
+ * A numeric value used as position in a binary number having any numeric value 2^n.
+ * @typedef {int} Flag
+ */
+    /**
+ * Object containing available Option names and the Flag value associated with each.
+ * @typedef {Object.<string, Flag>} OptionsTemplate
+ */
+    var _default = exports.default = {
+      getListenerOptions: _getListenerOptions.default,
+      numberToOptions: _numberToOptions.default,
+      optionsToNumber: _optionsToNumber.default
+    }
+  }, { './options/getListenerOptions.js': 19, './options/numberToOptions.js': 20, './options/optionsToNumber.js': 21, 'core-js/stable': 694 }],
+  19: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/stable')
+    const CAPTURE = 1
+    const ONCE = 2
+    const PASSIVE = 4
+    const SIGNAL = 8
+
+    /**
+ * Retrieve the OptionsTemplate for EventListenerOptions.
+ * @function
+ * @returns {OptionsTemplate}
+ */
+    const getListenerOptions = () => ({
+      capture: CAPTURE,
+      once: ONCE,
+      passive: PASSIVE,
+      signal: SIGNAL
+    })
+    var _default = exports.default = getListenerOptions
+  }, { 'core-js/stable': 694 }],
+  20: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/stable')
+    var _siFunciona = _interopRequireDefault(require('si-funciona'))
+    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    /**
+ * Take an integer representation of the listener options and convert them to the listener options object.
+ * @function
+ * @memberOf module:optionFlags
+ * @param {OptionsTemplate} optionsTemplate
+ * @param {int} binaryOptions
+ * @returns {EventListenerOptions}
+ */
+    const numberToOptions = (optionsTemplate, binaryOptions) => _siFunciona.default.mapObject(optionsTemplate, flag => !!(binaryOptions & flag))
+    var _default = exports.default = numberToOptions
+  }, { 'core-js/stable': 694, 'si-funciona': 773 }],
+  21: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/stable')
+    var _siFunciona = _interopRequireDefault(require('si-funciona'))
+    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    /**
+ * Take the given options and convert them (using binary) to an integer. Given listener options, each one is assigned a
+ * bitwise position. The resulting binary number represents any possible combination of the available flags set.
+ * @function
+ * @memberOf module:optionFlags
+ * @param {OptionsTemplate} optionsTemplate
+ * @param {Options|Option} listenerOptions
+ * @returns {int}
+ */
+    const optionsToNumber = (optionsTemplate, listenerOptions) => {
+      if (!listenerOptions) {
+        return 0
+      }
+      return _siFunciona.default.reduceObject(optionsTemplate, (binaryOptions, flag, name) => listenerOptions[name] ? binaryOptions | flag : binaryOptions, 0)
+    }
+    var _default = exports.default = optionsToNumber
+  }, { 'core-js/stable': 694, 'si-funciona': 773 }],
+  22: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.for-each.js')
+    require('core-js/stable')
+    var _createDomItem = _interopRequireDefault(require('../objects/createDomItem'))
+    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    /**
+ * Ensure all basic properties of the DomItem are present.
+ * @function
+ * @memberOf module:domFunctions
+ * @param {Object} item - The object that will be formatted as a DomItem.
+ * @returns {DomItem}
+ */
+    const addDomItemProperties = item => {
+      if (typeof item.children !== 'undefined') {
+        item.children.forEach(child => {
+          addDomItemProperties(child)
+        })
+      }
+      return (0, _createDomItem.default)(item)
+    }
+    var _default = exports.default = addDomItemProperties
+  }, { '../objects/createDomItem': 54, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/stable': 694 }],
+  23: [function (require, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    exports.default = void 0
+    require('core-js/stable')
+    /**
+ * Append a child to the end of given parent's children list.
+ * @function
+ * @memberOf module:domFunctions
+ * @param {DomItem} parent - The parent that will receive the child.
+ * @param {DomItem} child - The new child to attach to the parent.
+ * @returns {DomItem}
+ */
+    const appendChild = (parent, child) => {
+      parent.children.push(child)
+      child.parentItem = parent
+      return parent
+    }
+    var _default = exports.default = appendChild
+  }, { 'core-js/stable': 694 }],
+  24: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -436,7 +799,7 @@
     require('core-js/stable')
     var _siFunciona = _interopRequireDefault(require('si-funciona'))
     var _elementHasAttribute = _interopRequireDefault(require('./elementHasAttribute.js'))
-    var _createChangeList = _interopRequireDefault(require('../objects/createChangeList'))
+    var _createChangeList = _interopRequireDefault(require('../objects/createChangeList.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * @typedef {module:objectHelpers~mapCallback} testAttributeChange
@@ -580,8 +943,8 @@
       }, changeList)
     }
     var _default = exports.default = domItemChanges
-  }, { '../objects/createChangeList': 46, './elementHasAttribute.js': 16, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694, 'si-funciona': 773 }],
-  13: [function (require, module, exports) {
+  }, { '../objects/createChangeList.js': 53, './elementHasAttribute.js': 28, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694, 'si-funciona': 773 }],
+  25: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -653,8 +1016,8 @@
       return 1
     }
     var _default = exports.default = domItemHasAttribute
-  }, { './getAssignedStyles': 19, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694, 'si-funciona': 773 }],
-  14: [function (require, module, exports) {
+  }, { './getAssignedStyles': 31, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694, 'si-funciona': 773 }],
+  26: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -702,8 +1065,8 @@
       }), ['activeListeners', 'element', 'parentItem', 'body', 'head']), useExclusions)
     }
     var _default = exports.default = domItemToJson
-  }, { './removeEmptyProperties': 35, 'core-js/modules/es.array.includes.js': 369, 'core-js/modules/es.json.stringify.js': 434, 'core-js/stable': 694 }],
-  15: [function (require, module, exports) {
+  }, { './removeEmptyProperties': 43, 'core-js/modules/es.array.includes.js': 369, 'core-js/modules/es.json.stringify.js': 434, 'core-js/stable': 694 }],
+  27: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -867,8 +1230,8 @@
       }, changeList)
     }
     var _default = exports.default = elementChanges
-  }, { '../objects/createChangeList.js': 46, './domItemHasAttribute.js': 13, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694, 'si-funciona': 773 }],
-  16: [function (require, module, exports) {
+  }, { '../objects/createChangeList.js': 53, './domItemHasAttribute.js': 25, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694, 'si-funciona': 773 }],
+  28: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -946,8 +1309,8 @@
       return 1
     }
     var _default = exports.default = elementHasAttribute
-  }, { './getAssignedStyles.js': 19, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694, 'si-funciona': 773 }],
-  17: [function (require, module, exports) {
+  }, { './getAssignedStyles.js': 31, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694, 'si-funciona': 773 }],
+  29: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -983,7 +1346,7 @@
     const gatherChildItems = (item, test) => test(item, item.children.reduce((a, b) => a.concat(gatherChildItems(b, test)), []))
     var _default = exports.default = gatherChildItems
   }, { 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.reduce.js': 666, 'core-js/stable': 694 }],
-  18: [function (require, module, exports) {
+  30: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -991,7 +1354,6 @@
     })
     exports.default = void 0
     require('core-js/stable')
-    var _siFunciona = _interopRequireDefault(require('si-funciona'))
     var _updateElement = _interopRequireDefault(require('./updateElement.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
@@ -1024,8 +1386,8 @@
       return (0, _updateElement.default)(domItem)
     }
     var _default = exports.default = generateElement
-  }, { './updateElement.js': 43, 'core-js/stable': 694, 'si-funciona': 773 }],
-  19: [function (require, module, exports) {
+  }, { './updateElement.js': 50, 'core-js/stable': 694 }],
+  31: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1047,7 +1409,7 @@
     const getAssignedStyles = elementStyles => _siFunciona.default.reduceObject(elementStyles, (styles, attr, key) => isNaN(key) ? styles : _siFunciona.default.setValue(attr, elementStyles[attr], styles), {})
     var _default = exports.default = getAssignedStyles
   }, { 'core-js/stable': 694, 'si-funciona': 773 }],
-  20: [function (require, module, exports) {
+  32: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1066,7 +1428,7 @@
     const getChildTest = (attr, value) => (item, gatheredResults) => item.attributes[attr] && item.attributes[attr] === value ? gatheredResults.concat([item]) : gatheredResults
     var _default = exports.default = getChildTest
   }, { 'core-js/stable': 694 }],
-  21: [function (require, module, exports) {
+  33: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1088,8 +1450,8 @@
  */
     const getChildrenByClass = _siFunciona.default.curry(_getChildrenFromAttribute.default)('className')
     var _default = exports.default = getChildrenByClass
-  }, { './getChildrenFromAttribute.js': 23, 'core-js/stable': 694, 'si-funciona': 773 }],
-  22: [function (require, module, exports) {
+  }, { './getChildrenFromAttribute.js': 35, 'core-js/stable': 694, 'si-funciona': 773 }],
+  34: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1111,8 +1473,8 @@
  */
     const getChildrenByName = _siFunciona.default.curry(_getChildrenFromAttribute.default)('name')
     var _default = exports.default = getChildrenByName
-  }, { './getChildrenFromAttribute.js': 23, 'core-js/stable': 694, 'si-funciona': 773 }],
-  23: [function (require, module, exports) {
+  }, { './getChildrenFromAttribute.js': 35, 'core-js/stable': 694, 'si-funciona': 773 }],
+  35: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1142,8 +1504,8 @@
       return (0, _gatherChildItems.default)(item, (0, _getChildTest.default)(attr, value))
     }
     var _default = exports.default = getChildrenFromAttribute
-  }, { '../objects/documentItem.js': 52, './gatherChildItems.js': 17, './getChildTest.js': 20, 'core-js/stable': 694 }],
-  24: [function (require, module, exports) {
+  }, { '../objects/documentItem.js': 56, './gatherChildItems.js': 29, './getChildTest.js': 32, 'core-js/stable': 694 }],
+  36: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1165,8 +1527,8 @@
  */
     const getParentsByClass = _siFunciona.default.curry(_getParentsFromAttribute.default)('className')
     var _default = exports.default = getParentsByClass
-  }, { './getParentsFromAttribute.js': 27, 'core-js/stable': 694, 'si-funciona': 773 }],
-  25: [function (require, module, exports) {
+  }, { './getParentsFromAttribute.js': 39, 'core-js/stable': 694, 'si-funciona': 773 }],
+  37: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1188,8 +1550,8 @@
  */
     const getParentsByName = _siFunciona.default.curry(_getParentsFromAttribute.default)('name')
     var _default = exports.default = getParentsByName
-  }, { './getParentsFromAttribute.js': 27, 'core-js/stable': 694, 'si-funciona': 773 }],
-  26: [function (require, module, exports) {
+  }, { './getParentsFromAttribute.js': 39, 'core-js/stable': 694, 'si-funciona': 773 }],
+  38: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1211,8 +1573,8 @@
  */
     const getParentsByTagName = _siFunciona.default.curry(_getParentsFromAttribute.default)('nodeName')
     var _default = exports.default = getParentsByTagName
-  }, { './getParentsFromAttribute.js': 27, 'core-js/stable': 694, 'si-funciona': 773 }],
-  27: [function (require, module, exports) {
+  }, { './getParentsFromAttribute.js': 39, 'core-js/stable': 694, 'si-funciona': 773 }],
+  39: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1246,8 +1608,8 @@
       return Object.keys(item.parentItem).length ? (item.parentItem.attributes[attr] || item[attr] || false) === value ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem]) : getParentsFromAttribute(attr, value, item.parentItem) : []
     }
     var _default = exports.default = getParentsFromAttribute
-  }, { '../objects/documentItem.js': 52, 'core-js/stable': 694 }],
-  28: [function (require, module, exports) {
+  }, { '../objects/documentItem.js': 56, 'core-js/stable': 694 }],
+  40: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1274,7 +1636,7 @@
     }
     var _default = exports.default = getTopParentItem
   }, { 'core-js/stable': 694 }],
-  29: [function (require, module, exports) {
+  41: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1283,7 +1645,7 @@
     exports.default = void 0
     require('core-js/stable')
     var _setParentItemReferences = _interopRequireDefault(require('./setParentItemReferences.js'))
-    var _addDomItemProperties = _interopRequireDefault(require('./addDomItemProperties'))
+    var _addDomItemProperties = _interopRequireDefault(require('./addDomItemProperties.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * Convert DOM Item to JSON string.
@@ -1302,135 +1664,8 @@
       return parsedJson
     }
     var _default = exports.default = jsonToDomItem
-  }, { './addDomItemProperties': 4, './setParentItemReferences.js': 38, 'core-js/stable': 694 }],
-  30: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    require('core-js/stable')
-    /**
- * Provide compatibility for using the options parameter of addEventListener
- * @function
- * @memberOf module:domFunctions
- * @param {EventListenerOptions} options - An object or boolean with the listener options
- * @returns {boolean}
- */
-    const listenerOptions = options => {
-      if (typeof listenerOptions.supportsOptions === 'undefined') {
-        // Check if supportsOptions has been defined. This is a compatibility checking flag.
-        listenerOptions.supportsOptions = true
-        try {
-          // If it is possible to use OptionsObject, then set our flag to true
-          window.addEventListener('test', null, {
-            capture: false,
-            once: false,
-            passive: false
-          })
-        } catch (err) {
-          // When using an OptionsObjects fails, it is only possible to pass the boolean UseCapture as the option
-          listenerOptions.supportsOptions = false
-        }
-      }
-      return typeof options === 'object' && listenerOptions.supportsOptions ? options : false
-    }
-    var _default = exports.default = listenerOptions
-  }, { 'core-js/stable': 694 }],
-  31: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    require('core-js/modules/web.dom-collections.iterator.js')
-    require('core-js/stable')
-    /**
- * Based on available flags, either proceed to process the listener or skip.
- * @typedef {Function} eventHandler
- * @memberOf module:domObjects
- * @param {EventProxy} event - The event object passed to the listener
- */
-
-    /**
- * Prepare a listener to be used before assigning to an element.
- * @param {listenerFunction} listener
- * @param {DomItem} item
- * @param {...*} [args]
- * @returns {eventHandler}
- */
-    const makeEventHandler = function (listener, item) {
-      for (var _len = arguments.length, args = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-        args[_key - 2] = arguments[_key]
-      }
-      return event => {
-        if (!event || event.immediatePropagationStopped) {
-          return event
-        }
-        return listener(event, item, ...args)
-      }
-    }
-    var _default = exports.default = makeEventHandler
-  }, { 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694 }],
-  32: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    require('core-js/stable')
-    var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-    /**
- * Register a single listener function as part of the root domObjects.DomItem.
- * @function
- * @memberOf module:domFunctions
- * @param {listenerFunction|function} listener - Provide a function which will be called
- * when a Dom event is triggered.
- * @param {string} [name] - The name of the listener to be used.
- * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
- * @returns {Object.<string, listenerFunction>}
- */
-    const registerListener = function (listener) {
-      const name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : listener.name
-      const parent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default
-      return Object.assign(parent.eventListeners, {
-        [name]: listener
-      })
-    }
-    var _default = exports.default = registerListener
-  }, { '../objects/documentItem.js': 52, 'core-js/stable': 694 }],
-  33: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    require('core-js/stable')
-    var _siFunciona = _interopRequireDefault(require('si-funciona'))
-    var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-    /**
- * Register multiple listeners from an array of functions.
- * @function
- * @memberOf module:domFunctions
- * @param {Array.<listenerFunction|function>} listeners - An array of functions to be
- * used as the registered event listeners.
- * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which has eventListeners property.
- * @returns {DomItemRoot|Object}
- */
-    const registerListeners = function (listeners) {
-      const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default
-      _siFunciona.default.mergeObjectsMutable(parent.eventListeners, listeners)
-      return parent
-    }
-    var _default = exports.default = registerListeners
-  }, { '../objects/documentItem.js': 52, 'core-js/stable': 694, 'si-funciona': 773 }],
-  34: [function (require, module, exports) {
+  }, { './addDomItemProperties.js': 22, './setParentItemReferences.js': 45, 'core-js/stable': 694 }],
+  42: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1452,7 +1687,7 @@
     }
     var _default = exports.default = removeChild
   }, { 'core-js/stable': 694 }],
-  35: [function (require, module, exports) {
+  43: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1495,7 +1730,7 @@
     }
     var _default = exports.default = removeEmptyProperties
   }, { 'core-js/modules/es.array.includes.js': 369, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/stable': 694, 'si-funciona': 773 }],
-  36: [function (require, module, exports) {
+  44: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1531,35 +1766,8 @@
       return item !== null && item !== void 0 ? item : updatedItem
     }
     var _default = exports.default = renderHtml
-  }, { '../objects/documentItem.js': 52, './appendChild.js': 5, './setParentItemReferences.js': 38, './updateElements.js': 44, 'core-js/stable': 694 }],
-  37: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    require('core-js/modules/es.array.includes.js')
-    require('core-js/stable')
-    var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-    /**
- * Based on the provided function / listener name, retrieve the associated function from the root domObjects.DomItem
- * @function
- * @memberOf module:domFunctions
- * @param {string} listenerName - The name of one of the registered listener functions.
- * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
- * @returns {listenerFunction|function|Object}
- */
-    const retrieveListener = function (listenerName) {
-      const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default
-      return Object.keys(parent.eventListeners).includes(listenerName) ? parent.eventListeners[listenerName] : (function (e) {
-        throw e
-      }('Undefined listener function on this DomItemRoot: '.concat(listenerName)))
-    }
-    var _default = exports.default = retrieveListener
-  }, { '../objects/documentItem.js': 52, 'core-js/modules/es.array.includes.js': 369, 'core-js/stable': 694 }],
-  38: [function (require, module, exports) {
+  }, { '../objects/documentItem.js': 56, './appendChild.js': 23, './setParentItemReferences.js': 45, './updateElements.js': 51, 'core-js/stable': 694 }],
+  45: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1589,7 +1797,7 @@
     }
     var _default = exports.default = setParentItemReferences
   }, { 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/stable': 694 }],
-  39: [function (require, module, exports) {
+  46: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1647,8 +1855,8 @@
       return domItem
     }
     var _default = exports.default = updateChildNodes
-  }, { './updateElement.js': 43, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.find.js': 663, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694 }],
-  40: [function (require, module, exports) {
+  }, { './updateElement.js': 50, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.find.js': 663, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694 }],
+  47: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1688,8 +1896,8 @@
       return domItem
     }
     var _default = exports.default = updateChildren
-  }, { '../objects/createDomItem': 47, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.find.js': 663, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/stable': 694 }],
-  41: [function (require, module, exports) {
+  }, { '../objects/createDomItem': 54, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.find.js': 663, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/stable': 694 }],
+  48: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1737,8 +1945,8 @@
       return config
     }
     var _default = exports.default = updateDomItem
-  }, { './elementChanges.js': 15, 'core-js/stable': 694, 'si-funciona': 773 }],
-  42: [function (require, module, exports) {
+  }, { './elementChanges.js': 27, 'core-js/stable': 694, 'si-funciona': 773 }],
+  49: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1773,8 +1981,8 @@
       return domItem
     }
     var _default = exports.default = updateDomItems
-  }, { './updateChildren.js': 40, './updateDomItem.js': 41, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694 }],
-  43: [function (require, module, exports) {
+  }, { './updateChildren.js': 47, './updateDomItem.js': 48, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694 }],
+  50: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1784,8 +1992,8 @@
     require('core-js/modules/es.array.includes.js')
     require('core-js/modules/es.regexp.exec.js')
     require('core-js/stable')
-    var _bindListeners = _interopRequireDefault(require('./bindListeners.js'))
-    var _deactivateListeners = _interopRequireDefault(require('./deactivateListeners.js'))
+    var _bindListeners = _interopRequireDefault(require('../../events/functions/bindListeners.js'))
+    var _deactivateListeners = _interopRequireDefault(require('../../events/functions/deactivateListeners.js'))
     var _domItemChanges = _interopRequireDefault(require('./domItemChanges.js'))
     var _siFunciona = _interopRequireDefault(require('si-funciona'))
     var _generateElement = _interopRequireDefault(require('./generateElement.js'))
@@ -1867,8 +2075,8 @@
       return (0, _bindListeners.default)(domItem)
     }
     var _default = exports.default = updateElement
-  }, { './bindListeners.js': 10, './deactivateListeners.js': 11, './domItemChanges.js': 12, './generateElement.js': 18, 'core-js/modules/es.array.includes.js': 369, 'core-js/modules/es.regexp.exec.js': 534, 'core-js/stable': 694, 'si-funciona': 773 }],
-  44: [function (require, module, exports) {
+  }, { '../../events/functions/bindListeners.js': 6, '../../events/functions/deactivateListeners.js': 7, './domItemChanges.js': 24, './generateElement.js': 30, 'core-js/modules/es.array.includes.js': 369, 'core-js/modules/es.regexp.exec.js': 534, 'core-js/stable': 694, 'si-funciona': 773 }],
+  51: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1903,8 +2111,8 @@
       return domItem
     }
     var _default = exports.default = updateElements
-  }, { './updateChildNodes.js': 39, './updateElement.js': 43, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694 }],
-  45: [function (require, module, exports) {
+  }, { './updateChildNodes.js': 46, './updateElement.js': 50, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.for-each.js': 664, 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694 }],
+  52: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -1912,38 +2120,90 @@
     })
     exports.default = void 0
     require('core-js/stable')
+    var _addDomItemProperties = _interopRequireDefault(require('./functions/addDomItemProperties.js'))
+    var _appendChild = _interopRequireDefault(require('./functions/appendChild.js'))
+    var _domItemChanges = _interopRequireDefault(require('./functions/domItemChanges.js'))
+    var _domItemHasAttribute = _interopRequireDefault(require('./functions/domItemHasAttribute.js'))
+    var _domItemToJson = _interopRequireDefault(require('./functions/domItemToJson.js'))
+    var _elementChanges = _interopRequireDefault(require('./functions/elementChanges.js'))
+    var _elementHasAttribute = _interopRequireDefault(require('./functions/elementHasAttribute.js'))
+    var _gatherChildItems = _interopRequireDefault(require('./functions/gatherChildItems.js'))
+    var _generateElement = _interopRequireDefault(require('./functions/generateElement.js'))
+    var _getAssignedStyles = _interopRequireDefault(require('./functions/getAssignedStyles.js'))
+    var _getChildTest = _interopRequireDefault(require('./functions/getChildTest.js'))
+    var _getChildrenByClass = _interopRequireDefault(require('./functions/getChildrenByClass.js'))
+    var _getChildrenByName = _interopRequireDefault(require('./functions/getChildrenByName.js'))
+    var _getChildrenFromAttribute = _interopRequireDefault(require('./functions/getChildrenFromAttribute.js'))
+    var _getParentsByClass = _interopRequireDefault(require('./functions/getParentsByClass.js'))
+    var _getParentsByName = _interopRequireDefault(require('./functions/getParentsByName.js'))
+    var _getParentsByTagName = _interopRequireDefault(require('./functions/getParentsByTagName.js'))
+    var _getParentsFromAttribute = _interopRequireDefault(require('./functions/getParentsFromAttribute.js'))
+    var _getTopParentItem = _interopRequireDefault(require('./functions/getTopParentItem.js'))
+    var _jsonToDomItem = _interopRequireDefault(require('./functions/jsonToDomItem.js'))
+    var _removeChild = _interopRequireDefault(require('./functions/removeChild.js'))
+    var _renderHtml = _interopRequireDefault(require('./functions/renderHtml.js'))
+    var _removeEmptyProperties = _interopRequireDefault(require('./functions/removeEmptyProperties.js'))
+    var _setParentItemReferences = _interopRequireDefault(require('./functions/setParentItemReferences.js'))
+    var _updateChildNodes = _interopRequireDefault(require('./functions/updateChildNodes.js'))
+    var _updateChildren = _interopRequireDefault(require('./functions/updateChildren.js'))
+    var _updateDomItem = _interopRequireDefault(require('./functions/updateDomItem.js'))
+    var _updateDomItems = _interopRequireDefault(require('./functions/updateDomItems.js'))
+    var _updateElement = _interopRequireDefault(require('./functions/updateElement.js'))
+    var _updateElements = _interopRequireDefault(require('./functions/updateElements.js'))
     var _createChangeList = _interopRequireDefault(require('./objects/createChangeList.js'))
     var _createDomItem = _interopRequireDefault(require('./objects/createDomItem.js'))
-    var _createEventListener = _interopRequireDefault(require('./objects/createEventListener.js'))
-    var _createEventProxy = _interopRequireDefault(require('./objects/createEventProxy.js'))
-    var _createEventResponder = _interopRequireDefault(require('./objects/createEventResponder.js'))
     var _documentDomItem = _interopRequireDefault(require('./objects/documentDomItem.js'))
     var _documentItem = _interopRequireDefault(require('./objects/documentItem.js'))
     var _initChildren = _interopRequireDefault(require('./objects/initChildren.js'))
     var _initRoot = _interopRequireDefault(require('./objects/initRoot.js'))
-    var _options = _interopRequireDefault(require('./objects/options.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
- * @file Core objects for representing the DOM in JSON.
+ * @file Core Dom management functions
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
- * @module domObjects
+ * @module domFunctions
  * @memberOf module:jsonDom
  */
     var _default = exports.default = {
+      addDomItemProperties: _addDomItemProperties.default,
+      appendChild: _appendChild.default,
+      domItemChanges: _domItemChanges.default,
+      domItemHasAttribute: _domItemHasAttribute.default,
+      domItemToJson: _domItemToJson.default,
+      elementChanges: _elementChanges.default,
+      elementHasAttribute: _elementHasAttribute.default,
+      gatherChildItems: _gatherChildItems.default,
+      generateElement: _generateElement.default,
+      getAssignedStyles: _getAssignedStyles.default,
+      getChildTest: _getChildTest.default,
+      getChildrenByClass: _getChildrenByClass.default,
+      getChildrenByName: _getChildrenByName.default,
+      getChildrenFromAttribute: _getChildrenFromAttribute.default,
+      getParentsByClass: _getParentsByClass.default,
+      getParentsByName: _getParentsByName.default,
+      getParentsByTagName: _getParentsByTagName.default,
+      getParentsFromAttribute: _getParentsFromAttribute.default,
+      getTopParentItem: _getTopParentItem.default,
+      jsonToDomItem: _jsonToDomItem.default,
+      removeChild: _removeChild.default,
+      renderHtml: _renderHtml.default,
+      removeEmptyProperties: _removeEmptyProperties.default,
+      setParentItemReferences: _setParentItemReferences.default,
+      updateChildNodes: _updateChildNodes.default,
+      updateChildren: _updateChildren.default,
+      updateDomItem: _updateDomItem.default,
+      updateDomItems: _updateDomItems.default,
+      updateElement: _updateElement.default,
+      updateElements: _updateElements.default,
       createChangeList: _createChangeList.default,
       createDomItem: _createDomItem.default,
-      createEventListener: _createEventListener.default,
-      createEventProxy: _createEventProxy.default,
-      createEventResponder: _createEventResponder.default,
       documentDomItem: _documentDomItem.default,
       documentItem: _documentItem.default,
       initChildren: _initChildren.default,
-      initRoot: _initRoot.default,
-      options: _options.default
+      initRoot: _initRoot.default
     }
-  }, { './objects/createChangeList.js': 46, './objects/createDomItem.js': 47, './objects/createEventListener.js': 48, './objects/createEventProxy.js': 49, './objects/createEventResponder.js': 50, './objects/documentDomItem.js': 51, './objects/documentItem.js': 52, './objects/initChildren.js': 54, './objects/initRoot.js': 55, './objects/options.js': 56, 'core-js/stable': 694 }],
-  46: [function (require, module, exports) {
+  }, { './functions/addDomItemProperties.js': 22, './functions/appendChild.js': 23, './functions/domItemChanges.js': 24, './functions/domItemHasAttribute.js': 25, './functions/domItemToJson.js': 26, './functions/elementChanges.js': 27, './functions/elementHasAttribute.js': 28, './functions/gatherChildItems.js': 29, './functions/generateElement.js': 30, './functions/getAssignedStyles.js': 31, './functions/getChildTest.js': 32, './functions/getChildrenByClass.js': 33, './functions/getChildrenByName.js': 34, './functions/getChildrenFromAttribute.js': 35, './functions/getParentsByClass.js': 36, './functions/getParentsByName.js': 37, './functions/getParentsByTagName.js': 38, './functions/getParentsFromAttribute.js': 39, './functions/getTopParentItem.js': 40, './functions/jsonToDomItem.js': 41, './functions/removeChild.js': 42, './functions/removeEmptyProperties.js': 43, './functions/renderHtml.js': 44, './functions/setParentItemReferences.js': 45, './functions/updateChildNodes.js': 46, './functions/updateChildren.js': 47, './functions/updateDomItem.js': 48, './functions/updateDomItems.js': 49, './functions/updateElement.js': 50, './functions/updateElements.js': 51, './objects/createChangeList.js': 53, './objects/createDomItem.js': 54, './objects/documentDomItem.js': 55, './objects/documentItem.js': 56, './objects/initChildren.js': 57, './objects/initRoot.js': 58, 'core-js/stable': 694 }],
+  53: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2006,7 +2266,7 @@
     }
     var _default = exports.default = createChangeList
   }, { 'core-js/modules/es.array.includes.js': 369, 'core-js/stable': 694, 'si-funciona': 773 }],
-  47: [function (require, module, exports) {
+  54: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2016,7 +2276,7 @@
     require('core-js/stable')
     var _siFunciona = _interopRequireDefault(require('si-funciona'))
     var _appendChild = _interopRequireDefault(require('../functions/appendChild.js'))
-    var _removeChild = _interopRequireDefault(require('../functions/removeChild'))
+    var _removeChild = _interopRequireDefault(require('../functions/removeChild.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * One or more listeners assigned to the same event.
@@ -2083,154 +2343,8 @@
       return newDomItem
     }
     var _default = exports.default = createDomItem
-  }, { '../functions/appendChild.js': 5, '../functions/removeChild': 34, 'core-js/stable': 694, 'si-funciona': 773 }],
-  48: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    /**
- * This is the standard definition of a listenerFunction to be used
- * @callback listenerFunction
- * @memberOf module:domObjects
- * @param {Event|EventProxy} e - The event object passed to the listener
- * @param {DomItem} target - The element which triggered the event
- * @param {...*} [args] - Optional args as required by the listener
- */
-
-    /**
- * A Boolean indicating whether events of this type will be dispatched to the registered listerFunction before being
- * dispatched to any EventTarget beneath it in the Dom tree.
- * @typedef {boolean} UseCapture
- * @memberOf module:domObjects
- */
-
-    /**
- * OptionsObject defines the structure for the options to be passed to addEventListener
- * @typedef {Object} OptionsObject
- * @memberOf module:domObjects
- * @property {boolean} capture - Indicate that events of this type will be dispatched to the registered
- * listenerFunction before being dispatched to any EventTarget beneath it in the Dom tree.
- * @property {boolean} once - Indicate that the listenerFunction should be invoked at most once after being added. If
- * 'true', the listenerFunction would be automatically removed when invoked.
- * @property {boolean} passive - Indicate that, if 'true', indicates that the listenerFunction will never call
- * preventDefault(). If preventDefault() is called, the user agent will do nothing with it.
- * @property {boolean} signal - The listener will be removed when the given AbortSignal object's abort() method is
- * called. If not specified, no AbortSignal is associated with the listener.
- */
-
-    /**
- * EventListenerOptions is either a boolean as UseCapture or an Object as OptionsObject
- * @typedef {OptionsObject|UseCapture} EventListenerOptions
- * @memberOf module:domObjects
- */
-
-    /**
- * An EventListener Object to be appended to the element within the DomItem
- * @typedef {Object} EventListener
- * @memberOf module:domObjects
- * @property {string} listenerFunc - A string function name matching an existing {@link listenerFunction}.
- * @property {Object} listenerArgs - Additional args required for the listener function
- * @property {EventListenerOptions} listenerOptions - Provides support for options parameter of addEventListener, or false for default
- * @property {boolean} listenerActive - Indicate whether this listener has been applied to the element.
- */
-
-    const createEventListener = function () {
-      const _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
-      const _ref$listenerFunc = _ref.listenerFunc
-      const listenerFunc = _ref$listenerFunc === void 0 ? 'click' : _ref$listenerFunc
-      const _ref$listenerArgs = _ref.listenerArgs
-      const listenerArgs = _ref$listenerArgs === void 0 ? null : _ref$listenerArgs
-      const _ref$listenerOptions = _ref.listenerOptions
-      const listenerOptions = _ref$listenerOptions === void 0 ? false : _ref$listenerOptions
-      const _ref$listenerActive = _ref.listenerActive
-      const listenerActive = _ref$listenerActive === void 0 ? false : _ref$listenerActive
-      return {
-        listenerFunc: listenerFunc,
-        listenerArgs: listenerArgs,
-        listenerOptions: listenerOptions,
-        listenerActive: listenerActive
-      }
-    }
-    var _default = exports.default = createEventListener
-  }, {}],
-  49: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    require('core-js/modules/web.dom-collections.iterator.js')
-    require('core-js/stable')
-    /**
- * A wrapped Event which provides additional utilities.
- * @typedef {Event} EventProxy
- * @memberOf module:domObjects
- * @property {boolean} immediatePropagationStopped
- */
-
-    /**
- * Return a modified version of the event.
- * @param {Event} event
- * @returns {EventProxy}
- */
-    const createEventProxy = event => new Proxy(Object.defineProperty(event, 'immediatePropagationStopped', {
-      enumerable: true,
-      value: false,
-      writable: true
-    }), {
-      get (thisEvent, prop) {
-        if (prop === 'stopImmediatePropagation') {
-          thisEvent.immediatePropagationStopped = true
-        }
-        return Reflect.get(...arguments)
-      }
-    })
-    var _default = exports.default = createEventProxy
-  }, { 'core-js/modules/web.dom-collections.iterator.js': 672, 'core-js/stable': 694 }],
-  50: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    require('core-js/stable')
-    /**
- * Track an event handler and optional abort signal.
- * @typedef {Object} EventResponder
- * @memberOf module:domObjects
- * @property {eventHandler} handler
- * @property {AbortController|null} abort
- */
-
-    /**
- * Store the handler function and associated abort controller instance if available to be used when events are triggered.
- * @function
- * @memberOf module:domObjects
- * @param {eventHandler} eventHandler - The eventHandler wrapped function to be called for the event.
- * @param {AbortController|boolean|null} [abort=null] - Assign an AbortSignal provided or create one (if true), otherwise null.
- * @return {EventResponder}
- */
-    const createEventResponder = function (eventHandler) {
-      let abort = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null
-      if (abort === true) {
-        abort = new AbortController()
-      }
-      if (abort === false) {
-        abort = null
-      }
-      return Object.assign({}, {
-        handler: eventHandler,
-        abort: abort
-      })
-    }
-    var _default = exports.default = createEventResponder
-  }, { 'core-js/stable': 694 }],
-  51: [function (require, module, exports) {
+  }, { '../functions/appendChild.js': 23, '../functions/removeChild.js': 42, 'core-js/stable': 694, 'si-funciona': 773 }],
+  55: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2243,7 +2357,7 @@
     var _createDomItem = _interopRequireDefault(require('./createDomItem.js'))
     var _initChildren = _interopRequireDefault(require('./initChildren.js'))
     var _initRoot = _interopRequireDefault(require('./initRoot.js'))
-    var _updateDomItems = _interopRequireDefault(require('../functions/updateDomItems'))
+    var _updateDomItems = _interopRequireDefault(require('../functions/updateDomItems.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * Return a DomItem reference to the document. The rootItem argument is a system variable and not necessary to
@@ -2269,8 +2383,8 @@
       return (0, _updateDomItems.default)((0, _createDomItem.default)(rootItem))
     }
     var _default = exports.default = documentDomItem
-  }, { '../functions/updateDomItems': 42, './createDomItem.js': 47, './initChildren.js': 54, './initRoot.js': 55, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694 }],
-  52: [function (require, module, exports) {
+  }, { '../functions/updateDomItems.js': 49, './createDomItem.js': 54, './initChildren.js': 57, './initRoot.js': 58, 'core-js/modules/esnext.iterator.constructor.js': 660, 'core-js/modules/esnext.iterator.map.js': 665, 'core-js/stable': 694 }],
+  56: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2295,31 +2409,8 @@
       return existingItem
     })()
     var _default = exports.default = documentItem
-  }, { './documentDomItem.js': 51, 'core-js/stable': 694 }],
-  53: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    require('core-js/modules/web.dom-collections.iterator.js')
-    /**
- * Create the default listeners for common events.
- *
- * @return {{}}
- */
-    const commonEvents = () => {
-      const events = ['animationcancel', 'animationend', 'animationiteration', 'animationstart', 'auxclick', 'beforeinput', 'blur', 'click', 'compositionend', 'compositionstart', 'compositionupdate', 'contentvisibilityautostatechange', 'contextmenu', 'copy', 'cut', 'dblclick', 'focus', 'focusin', 'focusout', 'fullscreenchange', 'fullscreenerror', 'gotpointercapture', 'input', 'keydown', 'keyup', 'lostpointercapture', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseout', 'mouseover', 'mouseup', 'paste', 'pointercancel', 'pointerdown', 'pointerenter', 'pointerleave', 'pointermove', 'pointerout', 'pointerover', 'pointerup', 'scroll', 'scrollend', 'securitypolicyviolation', 'touchcancel', 'touchend', 'touchmove', 'touchstart', 'transitioncancel', 'transitionend', 'transitionrun', 'transitionstart', 'wheel']
-      const defaultListeners = {}
-      for (const event of events) {
-        defaultListeners[event] = () => {}
-      }
-      return defaultListeners
-    }
-    var _default = exports.default = commonEvents
-  }, { 'core-js/modules/web.dom-collections.iterator.js': 672 }],
-  54: [function (require, module, exports) {
+  }, { './documentDomItem.js': 55, 'core-js/stable': 694 }],
+  57: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2380,8 +2471,8 @@
       return children
     }
     var _default = exports.default = initChildren
-  }, { './createDomItem.js': 47, 'core-js/stable': 694, 'si-funciona/dist/helpers/functions/onBodyLoad': 722 }],
-  55: [function (require, module, exports) {
+  }, { './createDomItem.js': 54, 'core-js/stable': 694, 'si-funciona/dist/helpers/functions/onBodyLoad': 722 }],
+  58: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
@@ -2391,7 +2482,7 @@
     require('core-js/stable')
     var _createDomItem = _interopRequireDefault(require('./createDomItem.js'))
     var _mergeObjects = _interopRequireDefault(require('si-funciona/dist/helpers/objects/mergeObjects'))
-    var _commonEvents = _interopRequireDefault(require('./events/commonEvents.js'))
+    var _commonEvents = _interopRequireDefault(require('../../events/objects/commonEvents.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * DomItemRoot defines the structure for a single element in the Dom
@@ -2437,96 +2528,7 @@
       })
     }
     var _default = exports.default = initRoot
-  }, { './createDomItem.js': 47, './events/commonEvents.js': 53, 'core-js/stable': 694, 'si-funciona/dist/helpers/objects/mergeObjects': 751 }],
-  56: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    require('core-js/stable')
-    var _getListenerOptions = _interopRequireDefault(require('./options/getListenerOptions.js'))
-    var _numberToOptions = _interopRequireDefault(require('./options/numberToOptions.js'))
-    var _optionsToNumber = _interopRequireDefault(require('./options/optionsToNumber.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-    /**
- * @file Be able to use Flags (Options) in a well-formed way.
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module optionFlags
- * @memberOf module:domObjects
- */
-    /**
- * A boolean value used to alter functionality.
- * @typedef {boolean} Option
- * @memberOf module:domObjects
- */
-    /**
- * A set of named options within an object, or simply a singular Option.
- * @typedef {Object.<string, Option>|Option} Options
- */
-    /**
- * A numeric value used as position in a binary number having any numeric value 2^n.
- * @typedef {int} Flag
- */
-    /**
- * Object containing available Option names and the Flag value associated with each.
- * @typedef {Object.<string, Flag>} OptionsTemplate
- */
-    var _default = exports.default = {
-      getListenerOptions: _getListenerOptions.default,
-      numberToOptions: _numberToOptions.default,
-      optionsToNumber: _optionsToNumber.default
-    }
-  }, { './options/getListenerOptions.js': 57, './options/numberToOptions.js': 58, './options/optionsToNumber.js': 59, 'core-js/stable': 694 }],
-  57: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    require('core-js/stable')
-    const CAPTURE = 1
-    const ONCE = 2
-    const PASSIVE = 4
-    const SIGNAL = 8
-
-    /**
- * Retrieve the OptionsTemplate for EventListenerOptions.
- * @function
- * @returns {OptionsTemplate}
- */
-    const getListenerOptions = () => ({
-      capture: CAPTURE,
-      once: ONCE,
-      passive: PASSIVE,
-      signal: SIGNAL
-    })
-    var _default = exports.default = getListenerOptions
-  }, { 'core-js/stable': 694 }],
-  58: [function (require, module, exports) {
-    'use strict'
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    require('core-js/stable')
-    var _siFunciona = _interopRequireDefault(require('si-funciona'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-    /**
- * Take an integer representation of the listener options and convert them to the listener options object.
- * @function
- * @memberOf module:optionFlags
- * @param {OptionsTemplate} optionsTemplate
- * @param {int} binaryOptions
- * @returns {EventListenerOptions}
- */
-    const numberToOptions = (optionsTemplate, binaryOptions) => _siFunciona.default.mapObject(optionsTemplate, flag => !!(binaryOptions & flag))
-    var _default = exports.default = numberToOptions
-  }, { 'core-js/stable': 694, 'si-funciona': 773 }],
+  }, { '../../events/objects/commonEvents.js': 14, './createDomItem.js': 54, 'core-js/stable': 694, 'si-funciona/dist/helpers/objects/mergeObjects': 751 }],
   59: [function (require, module, exports) {
     'use strict'
 
@@ -2535,25 +2537,22 @@
     })
     exports.default = void 0
     require('core-js/stable')
-    var _siFunciona = _interopRequireDefault(require('si-funciona'))
+    var _index = _interopRequireDefault(require('./events/index.js'))
+    var _index2 = _interopRequireDefault(require('./general/index.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
- * Take the given options and convert them (using binary) to an integer. Given listener options, each one is assigned a
- * bitwise position. The resulting binary number represents any possible combination of the available flags set.
- * @function
- * @memberOf module:optionFlags
- * @param {OptionsTemplate} optionsTemplate
- * @param {Options|Option} listenerOptions
- * @returns {int}
+ * All of the JSON DOM system functions for creating JSON components.
+ * @file
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @version 1.0.0
+ * @module jsonDom
  */
-    const optionsToNumber = (optionsTemplate, listenerOptions) => {
-      if (!listenerOptions) {
-        return 0
-      }
-      return _siFunciona.default.reduceObject(optionsTemplate, (binaryOptions, flag, name) => listenerOptions[name] ? binaryOptions | flag : binaryOptions, 0)
-    }
-    var _default = exports.default = optionsToNumber
-  }, { 'core-js/stable': 694, 'si-funciona': 773 }],
+
+    const jsonDom = Object.assign({}, _index.default, _index2.default)
+    var _default = exports.default = jsonDom
+    const root = void 0 || typeof window !== 'undefined' ? window : {}
+    root.jsonDom = jsonDom
+  }, { './events/index.js': 13, './general/index.js': 52, 'core-js/stable': 694 }],
   60: [function (require, module, exports) {
     'use strict'
     var isCallable = require('../internals/is-callable')
@@ -26805,4 +26804,4 @@
   773: [function (require, module, exports) {
     'use strict'; Object.defineProperty(exports, '__esModule', { value: !0 }), exports.default = void 0; var _arrays = _interopRequireDefault(require('./helpers/arrays')); var _descriptors = _interopRequireDefault(require('./helpers/descriptors')); var _functions = _interopRequireDefault(require('./helpers/functions')); var _numbers = _interopRequireDefault(require('./helpers/numbers')); var _objects = _interopRequireDefault(require('./helpers/objects')); var _strings = _interopRequireDefault(require('./helpers/strings')); function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } } const siFunciona = Object.assign({}, _arrays.default, _descriptors.default, _functions.default, _numbers.default, _objects.default, _strings.default); var _default = exports.default = siFunciona; typeof window !== 'undefined' && (window.siFunciona = siFunciona)
   }, { './helpers/arrays': 696, './helpers/descriptors': 704, './helpers/functions': 717, './helpers/numbers': 729, './helpers/objects': 739, './helpers/strings': 759 }]
-}, {}, [1])
+}, {}, [59])
