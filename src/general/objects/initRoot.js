@@ -6,7 +6,7 @@ import commonEvents from '../../events/objects/commonEvents.js'
 /**
  * DomItemRoot defines the structure for a single element in the Dom
  * @typedef {DomItem} DomItemRoot
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @property {string} [nodeName='#document'] - This is set to the string html referring to the HTML element of the same name
  * @property {null} [nodeValue] - Must be null
  * @property {Object} attributes - Empty object as attributes placeholder
@@ -23,7 +23,7 @@ import commonEvents from '../../events/objects/commonEvents.js'
 /**
  * Initiate the Root for DocumentItem. This is primary a helper for {@link documentDomItem}.
  * @function
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @param {
  * Array.<DomItemHead|DomItemBody>
  *   } children - Provide an array of Head and Body (usually via {@link initChildren})

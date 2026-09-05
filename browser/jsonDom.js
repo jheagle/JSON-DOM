@@ -16,6 +16,8 @@
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * Activate listener by pushing it to activeListeners.
+ * @function
+ * @memberOf module:domEvents
  * @param {DomItem} item
  * @param {EventName} eventName
  * @param {EventListener} eventListener
@@ -60,6 +62,8 @@
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * Apply each active event listener for event type to the DOM Item's element.
+ * @function
+ * @memberOf module:domEvents
  * @param {DomItem} item
  * @param {EventName} eventName
  * @return {DomItem}
@@ -98,13 +102,14 @@
     /**
  * Document attachEvent support for older browsers.
  * @typedef {EventTarget} MicrosoftHtmlObject
+ * @memberOf module:domEvents
  * @property {Function} attachEvent
  */
 
     /**
  * Provide compatibility for assigning listeners.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {string} trigger - The name of the event which will trigger the listenerFunction on the element. (keyof HTMLElementEventMap)
  * @param {EventTarget|MicrosoftHtmlObject} elem - An element to append the listener onto
  * @param {EventListenerOrEventListenerObject|null} fn - The function which will be invoked when the
@@ -143,10 +148,10 @@
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * Based on the eventListeners property of the provided item, bind the listeners to the associated element property
- * for each item in the domObjects.DomItem structure.
+ * for each item in the domEvents.DomItem structure.
  * WARNING: This is a recursive function.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {DomItem} item - The DomItem with an associated HTMLElement to have a listener
  * assigned
  * @returns {DomItem}
@@ -175,7 +180,7 @@
     /**
  * Receive a DomItem with eventListeners and apply the event listeners onto the Dom element.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {DomItem} item - The DomItem which has eventListeners to apply to its element
  * @returns {DomItem}
  */
@@ -208,9 +213,9 @@
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * Based on the eventListeners property of the provided item, bind the
- * listeners to the associated element property for the provided domObjects.DomItem.
+ * listeners to the associated element property for the provided domEvents.DomItem.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {DomItem} item - The DomItem which may have eventListeners to apply to its
  * element
  * @returns {DomItem}
@@ -231,7 +236,7 @@
     /**
  * Set all the listeners for this DOMItem to be inactive.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {DomItem} item - The DomItem which will have its eventListeners updated.
  * @returns {DomItem}
  */
@@ -255,7 +260,7 @@
     /**
  * Provide compatibility for using the options parameter of addEventListener
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {EventListenerOptions} options - An object or boolean with the listener options
  * @returns {boolean}
  */
@@ -291,12 +296,14 @@
     /**
  * Based on available flags, either proceed to process the listener or skip.
  * @typedef {Function} eventHandler
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  * @param {EventProxy} event - The event object passed to the listener
  */
 
     /**
  * Prepare a listener to be used before assigning to an element.
+ * @function
+ * @memberOf module:domEvents
  * @param {listenerFunction} listener
  * @param {DomItem} item
  * @param {...*} [args]
@@ -326,9 +333,9 @@
     var _documentItem = _interopRequireDefault(require('../../general/objects/documentItem.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
- * Register a single listener function as part of the root domObjects.DomItem.
+ * Register a single listener function as part of the root domEvents.DomItem.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {listenerFunction|function} listener - Provide a function which will be called
  * when a Dom event is triggered.
  * @param {string} [name] - The name of the listener to be used.
@@ -358,7 +365,7 @@
     /**
  * Register multiple listeners from an array of functions.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {Array.<listenerFunction|function>} listeners - An array of functions to be
  * used as the registered event listeners.
  * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which has eventListeners property.
@@ -383,9 +390,9 @@
     var _documentDomItem = _interopRequireDefault(require('../../general/objects/documentDomItem.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
- * Based on the provided function / listener name, retrieve the associated function from the root domObjects.DomItem
+ * Based on the provided function / listener name, retrieve the associated function from the root domEvents.DomItem
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {string} listenerName - The name of one of the registered listener functions.
  * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
  * @returns {listenerFunction|function|Object}
@@ -459,7 +466,8 @@
     require('core-js/modules/web.dom-collections.iterator.js')
     /**
  * Create the default listeners for common events.
- *
+ * @function
+ * @memberOf module:domEvents
  * @return {{}}
  */
     const commonEvents = () => {
@@ -482,7 +490,7 @@
     /**
  * This is the standard definition of a listenerFunction to be used
  * @callback listenerFunction
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  * @param {Event|EventProxy} e - The event object passed to the listener
  * @param {DomItem} target - The element which triggered the event
  * @param {...*} [args] - Optional args as required by the listener
@@ -492,13 +500,13 @@
  * A Boolean indicating whether events of this type will be dispatched to the registered listerFunction before being
  * dispatched to any EventTarget beneath it in the Dom tree.
  * @typedef {boolean} UseCapture
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  */
 
     /**
  * OptionsObject defines the structure for the options to be passed to addEventListener
  * @typedef {Object} OptionsObject
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  * @property {boolean} capture - Indicate that events of this type will be dispatched to the registered
  * listenerFunction before being dispatched to any EventTarget beneath it in the Dom tree.
  * @property {boolean} once - Indicate that the listenerFunction should be invoked at most once after being added. If
@@ -512,13 +520,13 @@
     /**
  * EventListenerOptions is either a boolean as UseCapture or an Object as OptionsObject
  * @typedef {OptionsObject|UseCapture} EventListenerOptions
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  */
 
     /**
  * An EventListener Object to be appended to the element within the DomItem
  * @typedef {Object} EventListener
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  * @property {string} listenerFunc - A string function name matching an existing {@link listenerFunction}.
  * @property {Object} listenerArgs - Additional args required for the listener function
  * @property {EventListenerOptions} listenerOptions - Provides support for options parameter of addEventListener, or false for default
@@ -556,12 +564,14 @@
     /**
  * A wrapped Event which provides additional utilities.
  * @typedef {Event} EventProxy
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  * @property {boolean} immediatePropagationStopped
  */
 
     /**
  * Return a modified version of the event.
+ * @function
+ * @memberOf module:domEvents
  * @param {Event} event
  * @returns {EventProxy}
  */
@@ -590,7 +600,7 @@
     /**
  * Track an event handler and optional abort signal.
  * @typedef {Object} EventResponder
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  * @property {eventHandler} handler
  * @property {AbortController|null} abort
  */
@@ -598,7 +608,7 @@
     /**
  * Store the handler function and associated abort controller instance if available to be used when events are triggered.
  * @function
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  * @param {eventHandler} eventHandler - The eventHandler wrapped function to be called for the event.
  * @param {AbortController|boolean|null} [abort=null] - Assign an AbortSignal provided or create one (if true), otherwise null.
  * @return {EventResponder}
@@ -635,12 +645,12 @@
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  * @module optionFlags
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  */
     /**
  * A boolean value used to alter functionality.
  * @typedef {boolean} Option
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  */
     /**
  * A set of named options within an object, or simply a singular Option.
@@ -676,6 +686,7 @@
     /**
  * Retrieve the OptionsTemplate for EventListenerOptions.
  * @function
+ * @memberOf module:optionFlags
  * @returns {OptionsTemplate}
  */
     const getListenerOptions = () => ({
@@ -749,7 +760,7 @@
     /**
  * Ensure all basic properties of the DomItem are present.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {Object} item - The object that will be formatted as a DomItem.
  * @returns {DomItem}
  */
@@ -774,7 +785,7 @@
     /**
  * Append a child to the end of given parent's children list.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} parent - The parent that will receive the child.
  * @param {DomItem} child - The new child to attach to the parent.
  * @returns {DomItem}
@@ -850,10 +861,10 @@
     }, {})
 
     /**
- * Given a domObjects.DomItem as domItem, this function will return the changes to be applied
+ * Given a domGeneral.DomItem as domItem, this function will return the changes to be applied
  * to the stored element property.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem - The DomItem having changes to be applied to its element
  * @returns {ChangeList}
  */
@@ -993,7 +1004,7 @@
  * Check if the provided DomItem has the provided attributes.
  * Returns a boolean, or an array of 1 / 0 / -1 based on the comparison status.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem - Receive the DomItem to be assessed
  * @param {string} key - The attribute name to search for
  * @param {string|Object} attr - The expected value of the attribute to compare against
@@ -1046,7 +1057,7 @@
     /**
  * Convert DOM Item to JSON string.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} item
  * @param {Object} [options={}]
  * @param {int} [options.mapLimit=100]
@@ -1132,10 +1143,10 @@
     }, {}) : {}
 
     /**
- * Given a domObjects.DomItem as config, this function will return the changes from the element
+ * Given a domGeneral.DomItem as config, this function will return the changes from the element
  * to be applied to the domItem.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem - The DomItem having the element which changes to be applied to the config
  * element
  * @returns {ChangeList}
@@ -1283,7 +1294,7 @@
  * Check if the provided Element has the provided attributes.
  * Returns a boolean, or an array of 1 / 0 / -1 based on the comparison status.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {HTMLElement} element - Receive the element to be assessed
  * @param {string} key - The attribute name to search for
  * @param {string|Object.<string, string>} attr - The expected value of the attribute to compare against
@@ -1323,8 +1334,8 @@
     /**
  * To be used with gatherChildItems which will start at item and recurse over all child items, this test
  * will then choose which child items will be returned as the result of the test.
- * @callback module:domFunctions~testChildItem
- * @memberOf module:domFunctions
+ * @callback module:domGeneral~testChildItem
+ * @memberOf module:domGeneral
  * @param {DomItem|Object} item - The DomItem is the child being tested
  * @param {Array.<DomItem>} gatheredResults - All of the child items gathered based on
  * the test
@@ -1332,15 +1343,15 @@
  */
 
     /**
- * A selector function for retrieving existing child domObjects.DomItems from the given parent item.
+ * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
  * This function will check all the children starting from and including item, and run the test function on each
  * child encountered. The return array contains children returned from the test from all levels.
  * WARNING: This is a recursive function.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} item - The DomItem which may have child items matching the attribute
  * criteria
- * @param {module:domFunctions~testChildItem} test - Assess each child, and return the ones which qualify
+ * @param {module:domGeneral~testChildItem} test - Assess each child, and return the ones which qualify
  * @returns {Array.<DomItem>}
  */
     const gatherChildItems = (item, test) => test(item, item.children.reduce((a, b) => a.concat(gatherChildItems(b, test)), []))
@@ -1377,7 +1388,7 @@
     /**
  * Create an HTML element based on the provided attributes and return the element as an Object.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem - The DomItem requiring matching HTML element property
  * @return {DomItem}
  */
@@ -1402,7 +1413,7 @@
  * properties with a value indicating the string-key property which has been assigned. The string-key properties
  * have the assigned values.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {Object.<style, style>|CSSProperties} elementStyles
  * @returns {object}
  */
@@ -1418,12 +1429,12 @@
     exports.default = void 0
     require('core-js/stable')
     /**
- * Retrieve the {@link module:domFunctions~testChildItem} function by providing an attribute and value to check.
+ * Retrieve the {@link module:domGeneral~testChildItem} function by providing an attribute and value to check.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {string} attr - Provide the attribute name to be searched
  * @param {*} value - The attribute value to be compared
- * @returns {module:domFunctions~testChildItem}
+ * @returns {module:domGeneral~testChildItem}
  */
     const getChildTest = (attr, value) => (item, gatheredResults) => item.attributes[attr] && item.attributes[attr] === value ? gatheredResults.concat([item]) : gatheredResults
     var _default = exports.default = getChildTest
@@ -1440,9 +1451,9 @@
     var _getChildrenFromAttribute = _interopRequireDefault(require('./getChildrenFromAttribute.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
- * Helper for getting all domObjects.DomItems starting at parent and having specified className attribute
+ * Helper for getting all domGeneral.DomItems starting at parent and having specified className attribute
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {*} className - The className searched for
  * @param {DomItem} item - The DomItem which may have child items matching the attribute
  * criteria
@@ -1463,9 +1474,9 @@
     var _getChildrenFromAttribute = _interopRequireDefault(require('./getChildrenFromAttribute.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
- * Helper for getting all domObjects.DomItems starting at parent and having specified name attribute
+ * Helper for getting all domGeneral.DomItems starting at parent and having specified name attribute
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {*} name - The name searched for
  * @param {DomItem} item - The DomItem which may have child items matching the attribute
  * criteria
@@ -1487,12 +1498,12 @@
     var _getChildTest = _interopRequireDefault(require('./getChildTest.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
- * A selector function for retrieving existing child domObjects.DomItems from the given parent item.
+ * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
  * This function will check all the children starting from item, and scan the attributes
  * property for matches. The returned array contains children matching from all levels.
  * WARNING: This calls a recursive function.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {string} attr - Provide the attribute name to be searched
  * @param {*} value - The attribute value to be compared
  * @param {DomItem} item - The DomItem which may have child items matching the attribute
@@ -1517,9 +1528,9 @@
     var _getParentsFromAttribute = _interopRequireDefault(require('./getParentsFromAttribute.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
- * Helper for getting all domObjects.DomItems starting at child and having specified className attribute
+ * Helper for getting all domGeneral.DomItems starting at child and having specified className attribute
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {*} className - The className to search for
  * @param {DomItem} item - The DomItem which may have parent items matching the
  * attribute criteria
@@ -1540,9 +1551,9 @@
     var _getParentsFromAttribute = _interopRequireDefault(require('./getParentsFromAttribute.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
- * Helper for getting all domObjects.DomItems starting at child and having specified name attribute
+ * Helper for getting all domGeneral.DomItems starting at child and having specified name attribute
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {*} name - The name to search for
  * @param {DomItem} item - The DomItem which may have parent items matching the
  * attribute criteria
@@ -1563,9 +1574,9 @@
     var _getParentsFromAttribute = _interopRequireDefault(require('./getParentsFromAttribute.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
- * Helper for getting all domObjects.DomItems starting at child and having specified nodeName
+ * Helper for getting all domGeneral.DomItems starting at child and having specified nodeName
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {*} nodeName - The nodeName to search for
  * @param {DomItem} item - The DomItem which may have parent items matching the
  * attribute criteria
@@ -1585,12 +1596,12 @@
     var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
- * A selector function for retrieving existing child domObjects.DomItems from the given parent item.
+ * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
  * This function will check all the children starting from item, and scan the attributes
  * property for matches. The return array contains children matching from all levels.
  * WARNING: This is a recursive function.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {string} attr - Provide the attribute name to be searched
  * @param {*} value - The attribute value to be compared
  * @param {DomItem} item - The DomItem which may have parent items matching the
@@ -1621,7 +1632,7 @@
  * Get the upper parentItem for the provided child. (usually this is a documentItem reference)
  * WARNING: This is a recursive function.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} item - The DomItem which we want the highest parent item of
  * @returns {DomItemRoot}
  */
@@ -1650,7 +1661,7 @@
     /**
  * Convert DOM Item to JSON string.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {string} jsonString
  * @returns {DomItem}
  */
@@ -1676,7 +1687,7 @@
     /**
  * Reverse of appendHtml, remove a DomItem and have the associated element removed.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} parent - The parent of the items
  * @param {DomItem} child - The DomItem with HTMLElement to be removed
  * @returns {Array.<DomItem>}
@@ -1710,7 +1721,7 @@
     /**
  * Remove all empty properties to reduce total size of the object.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} item - The DomItem with properties to check for empty.
  * @param {Array} propertiesToDelete - Optional array of additional property names to remove.
  * @returns {DomItem}
@@ -1747,7 +1758,7 @@
  * This is a shortcut for building the specified HTML elements and appending them to the Dom
  * with associated listeners.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem|null} item - The DomItem that we want to render the element for
  * @returns {DomItem}
  */
@@ -1780,7 +1791,7 @@
     /**
  * For each child of this item, set the parentItem references.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} item - The DomItem to have parent references applied.
  * @returns {DomItem}
  */
@@ -1814,7 +1825,7 @@
     /**
  * Update all the childNodes for this domItem element to mach domItem children.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem
  * @returns {DomItem}
  */
@@ -1872,7 +1883,7 @@
     /**
  * Update all the children for this domItem to match the domItem element childNodes.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem
  * @returns {DomItem}
  */
@@ -1911,7 +1922,7 @@
     /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} config - The DomItem having config changes to be applied to its
  * element
  * @returns {DomItem}
@@ -1964,7 +1975,7 @@
  * Generate HTML element data for each object in the matrix
  * WARNING: This is a recursive function.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} config - The DomItem having child DomItems with config changes to be
  * applied
  * @returns {DomItem}
@@ -2001,7 +2012,7 @@
     /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem - The DomItem having domItem changes to be applied to its
  * element
  * @returns {DomItem}
@@ -2094,7 +2105,7 @@
  * Generate HTML element data for each object in the matrix
  * WARNING: This is a recursive function.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} config - The DomItem having child DomItems with config changes to be
  * applied
  * @returns {DomItem}
@@ -2158,7 +2169,7 @@
     var _initRoot = _interopRequireDefault(require('./objects/initRoot.js'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
- * @file Core Dom management functions
+ * @file Core Dom management
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  * @module domGeneral
@@ -2216,7 +2227,7 @@
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * @typedef {Function} appendChanges
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @param {string} changeType - Either 'removed' or 'added'
  * @param {DotNotatedObject} changes - The changes to append to existing type
  */
@@ -2236,7 +2247,7 @@
     /**
  * Represent changes / a diff of an object, including removed, added, and changed properties.
  * @typedef {Object.<string, DotNotatedObject>} ChangeList
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @property {DotNotatedObject} removed
  * @property {DotNotatedObject} added
  * @property {appendChanges} appendChanges
@@ -2245,7 +2256,7 @@
     /**
  * Create the change list template.
  * @function
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @param {ChangeList} changeList
  * @param {DotNotatedObject} [changeList.removed={}]
  * @param {DotNotatedObject} [changeList.added={}]
@@ -2281,19 +2292,19 @@
     /**
  * One or more listeners assigned to the same event.
  * @typedef {Array.<EventListener>} EventListeners
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  */
 
     /**
  * The name of the trigger used to fire the event.
  * @typedef {string} EventName
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  */
 
     /**
  * DomItem defines the structure for a single element in the Dom
  * @typedef {Object} DomItem
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @property {Object.<EventName, Object.<number, eventHandler>>} activeListeners - Generated property storing assigned
  * listeners.
  * @property {Object.<string, string|Object>} attributes - All potential HTML element attributes can be defined here
@@ -2316,7 +2327,7 @@
  * This is the basic Object for representing the Dom from a virtual perspective. All incoming attributes will be merged
  * to the specified format.
  * @function
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @param {Object} [item={}] - DomItem-like object to be formatted as DomItem
  * @returns {DomItem}
  */
@@ -2363,7 +2374,7 @@
  * Return a DomItem reference to the document. The rootItem argument is a system variable and not necessary to
  * implement.
  * @function
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @param {Object.<string, listenerFunction>} listeners - An object of all event
  * listeners to be registered in the Dom
  * @param {DomItemRoot|DomItem} [rootItem] - This is a
@@ -2399,7 +2410,7 @@
     /**
  * Create reference for storing document changes
  * @member documentItem
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @type {DomItemRoot}
  */
     const documentItem = (() => {
@@ -2442,7 +2453,7 @@
     /**
  * Initiate the children of Root / DocumentItem. This is a helper for {@link documentDomItem}.
  * @function
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @returns {Array.<DomItemHead|DomItemBody>}
  */
     const initChildren = () => {
@@ -2487,7 +2498,7 @@
     /**
  * DomItemRoot defines the structure for a single element in the Dom
  * @typedef {DomItem} DomItemRoot
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @property {string} [nodeName='#document'] - This is set to the string html referring to the HTML element of the same name
  * @property {null} [nodeValue] - Must be null
  * @property {Object} attributes - Empty object as attributes placeholder
@@ -2504,7 +2515,7 @@
     /**
  * Initiate the Root for DocumentItem. This is primary a helper for {@link documentDomItem}.
  * @function
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @param {
  * Array.<DomItemHead|DomItemBody>
  *   } children - Provide an array of Head and Body (usually via {@link initChildren})

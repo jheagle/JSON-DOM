@@ -3,7 +3,7 @@ import 'core-js/stable'
 /**
  * Set all the listeners for this DOMItem to be inactive.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {DomItem} item - The DomItem which will have its eventListeners updated.
  * @returns {DomItem}
  */

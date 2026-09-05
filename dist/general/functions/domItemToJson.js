@@ -26,7 +26,7 @@ const useExclusions = (function makeExclusions () {
 /**
  * Convert DOM Item to JSON string.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} item
  * @param {Object} [options={}]
  * @param {int} [options.mapLimit=100]

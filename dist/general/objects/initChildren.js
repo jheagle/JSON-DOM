@@ -29,7 +29,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
 /**
  * Initiate the children of Root / DocumentItem. This is a helper for {@link documentDomItem}.
  * @function
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @returns {Array.<DomItemHead|DomItemBody>}
  */
 const initChildren = () => {

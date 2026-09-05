@@ -4,9 +4,9 @@ import siFunciona from 'si-funciona'
 
 /**
  * Based on the eventListeners property of the provided item, bind the
- * listeners to the associated element property for the provided domObjects.DomItem.
+ * listeners to the associated element property for the provided domEvents.DomItem.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {DomItem} item - The DomItem which may have eventListeners to apply to its
  * element
  * @returns {DomItem}

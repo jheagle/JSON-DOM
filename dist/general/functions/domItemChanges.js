@@ -61,10 +61,10 @@ const kabobCaseAttributes = attributesToSet => _siFunciona.default.reduceObject(
 }, {})
 
 /**
- * Given a domObjects.DomItem as domItem, this function will return the changes to be applied
+ * Given a domGeneral.DomItem as domItem, this function will return the changes to be applied
  * to the stored element property.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem - The DomItem having changes to be applied to its element
  * @returns {ChangeList}
  */

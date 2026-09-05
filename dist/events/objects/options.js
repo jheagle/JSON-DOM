@@ -14,12 +14,12 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  * @module optionFlags
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  */
 /**
  * A boolean value used to alter functionality.
  * @typedef {boolean} Option
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  */
 /**
  * A set of named options within an object, or simply a singular Option.

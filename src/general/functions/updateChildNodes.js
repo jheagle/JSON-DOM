@@ -4,7 +4,7 @@ import updateElement from './updateElement.js'
 /**
  * Update all the childNodes for this domItem element to mach domItem children.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem
  * @returns {DomItem}
  */

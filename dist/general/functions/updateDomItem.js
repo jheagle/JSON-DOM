@@ -11,7 +11,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
 /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} config - The DomItem having config changes to be applied to its
  * element
  * @returns {DomItem}

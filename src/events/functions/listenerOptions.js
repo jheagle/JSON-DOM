@@ -3,7 +3,7 @@ import 'core-js/stable'
 /**
  * Provide compatibility for using the options parameter of addEventListener
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {EventListenerOptions} options - An object or boolean with the listener options
  * @returns {boolean}
  */

@@ -17,6 +17,8 @@ var _createEventProxy = _interopRequireDefault(require('../objects/createEventPr
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Apply each active event listener for event type to the DOM Item's element.
+ * @function
+ * @memberOf module:domEvents
  * @param {DomItem} item
  * @param {EventName} eventName
  * @return {DomItem}

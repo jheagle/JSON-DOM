@@ -8,7 +8,7 @@ import updateDomItems from '../functions/updateDomItems.js'
  * Return a DomItem reference to the document. The rootItem argument is a system variable and not necessary to
  * implement.
  * @function
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @param {Object.<string, listenerFunction>} listeners - An object of all event
  * listeners to be registered in the Dom
  * @param {DomItemRoot|DomItem} [rootItem] - This is a

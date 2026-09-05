@@ -12,19 +12,19 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
 /**
  * One or more listeners assigned to the same event.
  * @typedef {Array.<EventListener>} EventListeners
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  */
 
 /**
  * The name of the trigger used to fire the event.
  * @typedef {string} EventName
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  */
 
 /**
  * DomItem defines the structure for a single element in the Dom
  * @typedef {Object} DomItem
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @property {Object.<EventName, Object.<number, eventHandler>>} activeListeners - Generated property storing assigned
  * listeners.
  * @property {Object.<string, string|Object>} attributes - All potential HTML element attributes can be defined here
@@ -47,7 +47,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * This is the basic Object for representing the Dom from a virtual perspective. All incoming attributes will be merged
  * to the specified format.
  * @function
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @param {Object} [item={}] - DomItem-like object to be formatted as DomItem
  * @returns {DomItem}
  */

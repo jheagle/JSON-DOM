@@ -4,7 +4,7 @@ import createDomItem from '../objects/createDomItem'
 /**
  * Update all the children for this domItem to match the domItem element childNodes.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem
  * @returns {DomItem}
  */

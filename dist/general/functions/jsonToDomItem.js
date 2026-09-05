@@ -11,7 +11,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
 /**
  * Convert DOM Item to JSON string.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {string} jsonString
  * @returns {DomItem}
  */

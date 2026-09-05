@@ -8,7 +8,7 @@ import updateElements from './updateElements.js'
  * This is a shortcut for building the specified HTML elements and appending them to the Dom
  * with associated listeners.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem|null} item - The DomItem that we want to render the element for
  * @returns {DomItem}
  */

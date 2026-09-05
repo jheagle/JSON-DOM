@@ -3,7 +3,7 @@ import 'core-js/stable'
 /**
  * Track an event handler and optional abort signal.
  * @typedef {Object} EventResponder
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  * @property {eventHandler} handler
  * @property {AbortController|null} abort
  */
@@ -11,7 +11,7 @@ import 'core-js/stable'
 /**
  * Store the handler function and associated abort controller instance if available to be used when events are triggered.
  * @function
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  * @param {eventHandler} eventHandler - The eventHandler wrapped function to be called for the event.
  * @param {AbortController|boolean|null} [abort=null] - Assign an AbortSignal provided or create one (if true), otherwise null.
  * @return {EventResponder}

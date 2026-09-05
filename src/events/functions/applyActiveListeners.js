@@ -7,6 +7,8 @@ import createEventProxy from '../objects/createEventProxy.js'
 
 /**
  * Apply each active event listener for event type to the DOM Item's element.
+ * @function
+ * @memberOf module:domEvents
  * @param {DomItem} item
  * @param {EventName} eventName
  * @return {DomItem}

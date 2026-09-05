@@ -12,7 +12,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * properties with a value indicating the string-key property which has been assigned. The string-key properties
  * have the assigned values.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {Object.<style, style>|CSSProperties} elementStyles
  * @returns {object}
  */

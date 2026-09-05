@@ -14,7 +14,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
 /**
  * Update all the childNodes for this domItem element to mach domItem children.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem
  * @returns {DomItem}
  */

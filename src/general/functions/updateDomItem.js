@@ -5,7 +5,7 @@ import elementChanges from './elementChanges.js'
 /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} config - The DomItem having config changes to be applied to its
  * element
  * @returns {DomItem}

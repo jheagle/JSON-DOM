@@ -10,10 +10,10 @@ var _bindListeners = _interopRequireDefault(require('./bindListeners.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Based on the eventListeners property of the provided item, bind the listeners to the associated element property
- * for each item in the domObjects.DomItem structure.
+ * for each item in the domEvents.DomItem structure.
  * WARNING: This is a recursive function.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {DomItem} item - The DomItem with an associated HTMLElement to have a listener
  * assigned
  * @returns {DomItem}

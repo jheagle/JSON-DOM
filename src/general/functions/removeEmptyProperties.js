@@ -11,7 +11,7 @@ const isEmpty = propertyValue => siFunciona.emptyObject(propertyValue) || proper
 /**
  * Remove all empty properties to reduce total size of the object.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} item - The DomItem with properties to check for empty.
  * @param {Array} propertiesToDelete - Optional array of additional property names to remove.
  * @returns {DomItem}

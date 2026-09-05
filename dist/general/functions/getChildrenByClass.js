@@ -9,9 +9,9 @@ var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _getChildrenFromAttribute = _interopRequireDefault(require('./getChildrenFromAttribute.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
- * Helper for getting all domObjects.DomItems starting at parent and having specified className attribute
+ * Helper for getting all domGeneral.DomItems starting at parent and having specified className attribute
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {*} className - The className searched for
  * @param {DomItem} item - The DomItem which may have child items matching the attribute
  * criteria

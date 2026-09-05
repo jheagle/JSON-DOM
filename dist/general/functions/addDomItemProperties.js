@@ -12,7 +12,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
 /**
  * Ensure all basic properties of the DomItem are present.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {Object} item - The object that will be formatted as a DomItem.
  * @returns {DomItem}
  */

@@ -3,9 +3,9 @@ import siFunciona from 'si-funciona'
 import getParentsFromAttribute from './getParentsFromAttribute.js'
 
 /**
- * Helper for getting all domObjects.DomItems starting at child and having specified name attribute
+ * Helper for getting all domGeneral.DomItems starting at child and having specified name attribute
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {*} name - The name to search for
  * @param {DomItem} item - The DomItem which may have parent items matching the
  * attribute criteria

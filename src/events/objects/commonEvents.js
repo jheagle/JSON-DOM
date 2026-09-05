@@ -1,6 +1,7 @@
 /**
  * Create the default listeners for common events.
- *
+ * @function
+ * @memberOf module:domEvents
  * @return {{}}
  */
 const commonEvents = () => {

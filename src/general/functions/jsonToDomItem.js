@@ -5,7 +5,7 @@ import addDomItemProperties from './addDomItemProperties.js'
 /**
  * Convert DOM Item to JSON string.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {string} jsonString
  * @returns {DomItem}
  */

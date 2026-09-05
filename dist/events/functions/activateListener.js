@@ -14,6 +14,8 @@ var _retrieveListener = _interopRequireDefault(require('./retrieveListener.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Activate listener by pushing it to activeListeners.
+ * @function
+ * @memberOf module:domEvents
  * @param {DomItem} item
  * @param {EventName} eventName
  * @param {EventListener} eventListener

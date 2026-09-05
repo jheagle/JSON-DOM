@@ -3,7 +3,7 @@
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  * @module optionFlags
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  */
 import 'core-js/stable'
 import getListenerOptions from './options/getListenerOptions.js'
@@ -13,7 +13,7 @@ import optionsToNumber from './options/optionsToNumber.js'
 /**
  * A boolean value used to alter functionality.
  * @typedef {boolean} Option
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  */
 
 /**

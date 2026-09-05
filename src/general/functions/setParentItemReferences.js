@@ -3,7 +3,7 @@ import 'core-js/stable'
 /**
  * For each child of this item, set the parentItem references.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} item - The DomItem to have parent references applied.
  * @returns {DomItem}
  */

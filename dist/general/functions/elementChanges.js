@@ -63,10 +63,10 @@ const camelCaseAttributes = domItem => domItem.element ? _siFunciona.default.red
 }, {}) : {}
 
 /**
- * Given a domObjects.DomItem as config, this function will return the changes from the element
+ * Given a domGeneral.DomItem as config, this function will return the changes from the element
  * to be applied to the domItem.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem - The DomItem having the element which changes to be applied to the config
  * element
  * @returns {ChangeList}

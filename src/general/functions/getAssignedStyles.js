@@ -6,7 +6,7 @@ import siFunciona from 'si-funciona'
  * properties with a value indicating the string-key property which has been assigned. The string-key properties
  * have the assigned values.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {Object.<style, style>|CSSProperties} elementStyles
  * @returns {object}
  */

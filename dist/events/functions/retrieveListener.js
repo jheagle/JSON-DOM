@@ -9,9 +9,9 @@ require('core-js/stable')
 var _documentDomItem = _interopRequireDefault(require('../../general/objects/documentDomItem.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
- * Based on the provided function / listener name, retrieve the associated function from the root domObjects.DomItem
+ * Based on the provided function / listener name, retrieve the associated function from the root domEvents.DomItem
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {string} listenerName - The name of one of the registered listener functions.
  * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
  * @returns {listenerFunction|function|Object}

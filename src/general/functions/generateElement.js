@@ -21,7 +21,7 @@ const makeElementType = (nodeName, data = null) => {
 /**
  * Create an HTML element based on the provided attributes and return the element as an Object.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domGeneral
  * @param {DomItem} domItem - The DomItem requiring matching HTML element property
  * @return {DomItem}
  */

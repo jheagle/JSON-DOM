@@ -10,13 +10,14 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
 /**
  * Document attachEvent support for older browsers.
  * @typedef {EventTarget} MicrosoftHtmlObject
+ * @memberOf module:domEvents
  * @property {Function} attachEvent
  */
 
 /**
  * Provide compatibility for assigning listeners.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {string} trigger - The name of the event which will trigger the listenerFunction on the element. (keyof HTMLElementEventMap)
  * @param {EventTarget|MicrosoftHtmlObject} elem - An element to append the listener onto
  * @param {EventListenerOrEventListenerObject|null} fn - The function which will be invoked when the

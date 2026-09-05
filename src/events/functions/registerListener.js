@@ -2,9 +2,9 @@ import 'core-js/stable'
 import documentItem from '../../general/objects/documentItem.js'
 
 /**
- * Register a single listener function as part of the root domObjects.DomItem.
+ * Register a single listener function as part of the root domEvents.DomItem.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {listenerFunction|function} listener - Provide a function which will be called
  * when a Dom event is triggered.
  * @param {string} [name] - The name of the listener to be used.

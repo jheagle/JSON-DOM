@@ -6,7 +6,7 @@ let existingItem = null
 /**
  * Create reference for storing document changes
  * @member documentItem
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @type {DomItemRoot}
  */
 const documentItem = (() => {

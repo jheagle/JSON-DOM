@@ -5,7 +5,7 @@ import applyActiveListeners from './applyActiveListeners.js'
 /**
  * Receive a DomItem with eventListeners and apply the event listeners onto the Dom element.
  * @function
- * @memberOf module:domFunctions
+ * @memberOf module:domEvents
  * @param {DomItem} item - The DomItem which has eventListeners to apply to its element
  * @returns {DomItem}
  */

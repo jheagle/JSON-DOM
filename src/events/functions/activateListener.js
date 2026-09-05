@@ -8,6 +8,8 @@ import retrieveListener from './retrieveListener.js'
 
 /**
  * Activate listener by pushing it to activeListeners.
+ * @function
+ * @memberOf module:domEvents
  * @param {DomItem} item
  * @param {EventName} eventName
  * @param {EventListener} eventListener

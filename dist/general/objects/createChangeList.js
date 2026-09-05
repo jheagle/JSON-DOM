@@ -10,7 +10,7 @@ var _siFunciona = _interopRequireDefault(require('si-funciona'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * @typedef {Function} appendChanges
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @param {string} changeType - Either 'removed' or 'added'
  * @param {DotNotatedObject} changes - The changes to append to existing type
  */
@@ -30,7 +30,7 @@ const appendChangesTo = changeList => (changeType, changes) => {
 /**
  * Represent changes / a diff of an object, including removed, added, and changed properties.
  * @typedef {Object.<string, DotNotatedObject>} ChangeList
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @property {DotNotatedObject} removed
  * @property {DotNotatedObject} added
  * @property {appendChanges} appendChanges
@@ -39,7 +39,7 @@ const appendChangesTo = changeList => (changeType, changes) => {
 /**
  * Create the change list template.
  * @function
- * @memberOf module:domObjects
+ * @memberOf module:domGeneral
  * @param {ChangeList} changeList
  * @param {DotNotatedObject} [changeList.removed={}]
  * @param {DotNotatedObject} [changeList.added={}]

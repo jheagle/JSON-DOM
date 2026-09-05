@@ -3,12 +3,14 @@ import 'core-js/stable'
 /**
  * A wrapped Event which provides additional utilities.
  * @typedef {Event} EventProxy
- * @memberOf module:domObjects
+ * @memberOf module:domEvents
  * @property {boolean} immediatePropagationStopped
  */
 
 /**
  * Return a modified version of the event.
+ * @function
+ * @memberOf module:domEvents
  * @param {Event} event
  * @returns {EventProxy}
  */
