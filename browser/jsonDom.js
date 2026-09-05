@@ -427,7 +427,7 @@
  * @file Setting up and handling events
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
- * @module domFunctions
+ * @module domEvents
  * @memberOf module:jsonDom
  */
     var _default = exports.default = {
@@ -2161,7 +2161,7 @@
  * @file Core Dom management functions
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
- * @module domFunctions
+ * @module domGeneral
  * @memberOf module:jsonDom
  */
     var _default = exports.default = {

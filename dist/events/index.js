@@ -26,7 +26,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @file Setting up and handling events
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
- * @module domFunctions
+ * @module domEvents
  * @memberOf module:jsonDom
  */
 var _default = exports.default = {

@@ -1,8 +1,8 @@
 /**
- * @file Core Dom management functions
+ * @file Core Dom management
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
- * @module domFunctions
+ * @module domGeneral
  * @memberOf module:jsonDom
  */
 import 'core-js/stable'

@@ -46,7 +46,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @file Core Dom management functions
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
- * @module domFunctions
+ * @module domGeneral
  * @memberOf module:jsonDom
  */
 var _default = exports.default = {

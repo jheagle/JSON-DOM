@@ -2,7 +2,7 @@
  * @file Setting up and handling events
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
- * @module domFunctions
+ * @module domEvents
  * @memberOf module:jsonDom
  */
 import 'core-js/stable'
