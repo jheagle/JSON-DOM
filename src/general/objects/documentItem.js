@@ -4,7 +4,7 @@ import documentDomItem from './documentDomItem.js'
 let existingItem = null
 
 /**
- * Create reference for storing document changes
+ * The shared root DomItem of the Virtual DOM (DomItem tree) for this environment's real document.
  * @member documentItem
  * @memberOf module:domGeneral
  * @type {DomItemRoot}

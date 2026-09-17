@@ -1,5 +1,5 @@
 /**
- * @file Setting up and handling events
+ * @file Setting up and handling events for items in a Virtual DOM (DomItem tree)
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  * @module domEvents

@@ -2,7 +2,8 @@ import 'core-js/stable'
 import createDomItem from './createDomItem.js'
 
 /**
- * DomItemRoot defines the structure for a single element in the Dom
+ * DomItemRoot defines the structure for the root node of json-dom's Virtual DOM (DomItem tree) - the #document
+ * equivalent, from which every other DomItem in the tree descends.
  * @typedef {DomItem} DomItemRoot
  * @memberOf module:domGeneral
  * @property {string} [nodeName='#document'] - This is set to the string html referring to the HTML element of the same name

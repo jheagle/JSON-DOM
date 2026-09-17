@@ -1,5 +1,5 @@
 /**
- * @file Core Dom management
+ * @file Core Virtual DOM (DomItem tree) management
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  * @module domGeneral

@@ -5,8 +5,8 @@ import initRoot from './initRoot.js'
 import updateDomItems from '../functions/updateDomItems.js'
 
 /**
- * Return a DomItem reference to the document. The rootItem argument is a system variable and not necessary to
- * implement.
+ * Return the root DomItem of a Virtual DOM (DomItem tree) for the document. The rootItem argument is a system
+ * variable and not necessary to implement.
  * @function
  * @memberOf module:domGeneral
  * @param {Object.<string, listenerFunction>} listeners - An object of all event

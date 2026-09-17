@@ -5,8 +5,8 @@ import setParentItemReferences from './setParentItemReferences.js'
 import updateElements from './updateElements.js'
 
 /**
- * This is a shortcut for building the specified HTML elements and appending them to the Dom
- * with associated listeners.
+ * This is a shortcut for syncing a Virtual DOM (DomItem tree) item onto the real HTML DOM: builds the real elements
+ * for it and its descendants, appends them to the live document, and binds their associated listeners.
  * @function
  * @memberOf module:domGeneral
  * @param {DomItem|null} item - The DomItem that we want to render the element for
