@@ -1,17 +1,22 @@
 # JSON-DOM
 
 State management with JSON
+
+json-dom represents a document as a **Virtual DOM**: a tree of plain `DomItem` objects (the **DomItem tree**) that
+mirrors the real HTML DOM. You build and update the DomItem tree; json-dom syncs the corresponding real elements
+for you. `domGeneral` below covers building and syncing the DomItem tree itself, and `domEvents` covers attaching
+listeners to items in it.
 ## Modules
 
 <dl>
 <dt><a href="#module_jsonDom">jsonDom</a></dt>
-<dd><p>All of the JSON DOM system functions for creating JSON components.</p>
+<dd><p>All of the JSON DOM system functions for building and syncing a Virtual DOM (DomItem tree) to the real HTML DOM.</p>
 </dd>
 <dt><a href="#module_domGeneral">domGeneral</a></dt>
-<dd><p>Core Dom management</p>
+<dd><p>Core Virtual DOM (DomItem tree) management</p>
 </dd>
 <dt><a href="#module_domEvents">domEvents</a></dt>
-<dd><p>Setting up and handling events</p>
+<dd><p>Setting up and handling events for items in a Virtual DOM (DomItem tree)</p>
 </dd>
 <dt><a href="#module_optionFlags">optionFlags</a></dt>
 <dd><p>Be able to use Flags (Options) in a well-formed way.</p>
@@ -43,14 +48,14 @@ State management with JSON
 <a name="module_jsonDom"></a>
 
 ## jsonDom
-All of the JSON DOM system functions for creating JSON components.
+All of the JSON DOM system functions for building and syncing a Virtual DOM (DomItem tree) to the real HTML DOM.
 
 **Version**: 1.0.0  
 **Author**: Joshua Heagle <joshuaheagle@gmail.com>  
 <a name="module_domGeneral"></a>
 
 ## domGeneral
-Core Dom management
+Core Virtual DOM (DomItem tree) management
 
 **Version**: 1.0.0  
 **Author**: Joshua Heagle <joshuaheagle@gmail.com>  
@@ -114,7 +119,7 @@ Core Dom management
 <a name="module_domGeneral.documentItem"></a>
 
 ### domGeneral.documentItem : <code>DomItemRoot</code>
-Create reference for storing document changes
+The shared root DomItem of the Virtual DOM (DomItem tree) for this environment's real document.
 
 **Kind**: static property of [<code>domGeneral</code>](#module_domGeneral)  
 <a name="module_domGeneral.initRoot"></a>
@@ -138,7 +143,7 @@ Initiate the children of Root / DocumentItem. This is a helper for [documentDomI
 <a name="module_domGeneral.documentDomItem"></a>
 
 ### domGeneral.documentDomItem(listeners, [rootItem]) ⇒ <code>DomItemRoot</code> \| <code>DomItem</code>
-Return a DomItem reference to the document. The rootItem argument is a system variable and not necessary toimplement.
+Return the root DomItem of a Virtual DOM (DomItem tree) for the document. The rootItem argument is a systemvariable and not necessary to implement.
 
 **Kind**: static method of [<code>domGeneral</code>](#module_domGeneral)  
 
@@ -150,7 +155,7 @@ Return a DomItem reference to the document. The rootItem argument is a system va
 <a name="module_domGeneral.createDomItem"></a>
 
 ### domGeneral.createDomItem([item]) ⇒ <code>DomItem</code>
-This is the basic Object for representing the Dom from a virtual perspective. All incoming attributes will be mergedto the specified format.
+This is the basic Object for representing a node in json-dom's Virtual DOM (DomItem tree). All incomingattributes will be merged to the specified format.
 
 **Kind**: static method of [<code>domGeneral</code>](#module_domGeneral)  
 
@@ -251,7 +256,7 @@ For each child of this item, set the parentItem references.
 <a name="module_domGeneral.renderHtml"></a>
 
 ### domGeneral.renderHtml(item) ⇒ <code>DomItem</code>
-This is a shortcut for building the specified HTML elements and appending them to the Domwith associated listeners.
+This is a shortcut for syncing a Virtual DOM (DomItem tree) item onto the real HTML DOM: builds the real elementsfor it and its descendants, appends them to the live document, and binds their associated listeners.
 
 **Kind**: static method of [<code>domGeneral</code>](#module_domGeneral)  
 
@@ -629,7 +634,7 @@ Ensure all basic properties of the DomItem are present.
 <a name="module_domGeneral.DomItemRoot"></a>
 
 ### domGeneral.DomItemRoot : <code>DomItem</code>
-DomItemRoot defines the structure for a single element in the Dom
+DomItemRoot defines the structure for the root node of json-dom's Virtual DOM (DomItem tree) - the #documentequivalent, from which every other DomItem in the tree descends.
 
 **Kind**: static typedef of [<code>domGeneral</code>](#module_domGeneral)  
 **Properties**
@@ -649,7 +654,7 @@ DomItemRoot defines the structure for a single element in the Dom
 <a name="module_domGeneral.DomItem"></a>
 
 ### domGeneral.DomItem : <code>Object</code>
-DomItem defines the structure for a single element in the Dom
+DomItem defines the structure for a single node in json-dom's Virtual DOM (DomItem tree) - a plain objectrepresentation of one HTML element, mirrored onto a real element via [updateElement](updateElement)/[renderHtml](renderHtml).
 
 **Kind**: static typedef of [<code>domGeneral</code>](#module_domGeneral)  
 **Properties**
@@ -730,7 +735,7 @@ To be used with gatherChildItems which will start at item and recurse over all c
 <a name="module_domEvents"></a>
 
 ## domEvents
-Setting up and handling events
+Setting up and handling events for items in a Virtual DOM (DomItem tree)
 
 **Version**: 1.0.0  
 **Author**: Joshua Heagle <joshuaheagle@gmail.com>  
