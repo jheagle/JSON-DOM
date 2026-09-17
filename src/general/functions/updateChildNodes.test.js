@@ -8,7 +8,7 @@ import updateChildNodes from './updateChildNodes.js'
 describe('updateChildNodes', () => {
   test('will update the order of the childNodes for the domItem element', () => {
     const element = document.createElement('div')
-    const originalItem = createDomItem({ element: element })
+    const originalItem = createDomItem({ element })
     const comment = 'This is a comment node'
     const text = 'This is a text node'
     const childElement = 'hr'
@@ -47,7 +47,7 @@ describe('updateChildNodes', () => {
 
     // Add a new item, and re-arrange the child nodes
     const brChild = createDomItem({
-      nodeName: 'br',
+      nodeName: 'br'
     })
     textChild.nodeValue = 'This is now below the HR node'
     updated.children = [commentChild, brChild, hrChild, textChild]

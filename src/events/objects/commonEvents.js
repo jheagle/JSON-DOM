@@ -62,7 +62,7 @@ const commonEvents = () => {
     'wheel'
   ]
   const defaultListeners = {}
-  for (let event of events) {
+  for (const event of events) {
     defaultListeners[event] = () => {}
   }
   return defaultListeners

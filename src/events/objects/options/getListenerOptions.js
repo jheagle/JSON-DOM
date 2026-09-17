@@ -15,7 +15,7 @@ const getListenerOptions = () => ({
   capture: CAPTURE,
   once: ONCE,
   passive: PASSIVE,
-  signal: SIGNAL,
+  signal: SIGNAL
 })
 
 export default getListenerOptions

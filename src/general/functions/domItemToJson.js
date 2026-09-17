@@ -1,4 +1,5 @@
 import 'core-js/stable'
+import siFunciona from 'si-funciona'
 import removeEmptyProperties from './removeEmptyProperties'
 
 const useExclusions = (function makeExclusions () {
@@ -26,7 +27,7 @@ const useExclusions = (function makeExclusions () {
  * @returns {string}
  */
 const domItemToJson = (item, { mapLimit = 100, relevancyRange = 1000 } = {}) => JSON.stringify(
-  removeEmptyProperties(siFunciona.cloneObject(item, {mapLimit, relevancyRange}), [
+  removeEmptyProperties(siFunciona.cloneObject(item, { mapLimit, relevancyRange }), [
     'activeListeners',
     'element',
     'parentItem',

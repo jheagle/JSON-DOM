@@ -6,7 +6,7 @@ import getTopParentItem from './getTopParentItem.js'
 
 describe('getTopParentItem', () => {
   test('will find the top parent item for a given child item', () => {
-    const divParent = createDomItem({ nodeName: 'div', parentItem: {}, attributes: { name: 'red' }})
+    const divParent = createDomItem({ nodeName: 'div', parentItem: {}, attributes: { name: 'red' } })
     const divItem = createDomItem({ nodeName: 'div', parentItem: divParent })
     const spanItem = createDomItem({ nodeName: 'span', parentItem: divItem })
     divParent.appendChild(divItem)

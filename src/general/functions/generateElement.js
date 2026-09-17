@@ -10,7 +10,7 @@ import updateElement from './updateElement.js'
  * @returns {Text|Comment|HTMLElement}
  */
 const makeElementType = (nodeName, data = null) => {
-  switch(nodeName) {
+  switch (nodeName) {
     case '#text':
       return document.createTextNode(data)
     case '#comment':

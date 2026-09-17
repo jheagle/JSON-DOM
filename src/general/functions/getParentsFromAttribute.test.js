@@ -6,7 +6,7 @@ import getParentsFromAttribute from './getParentsFromAttribute.js'
 
 describe('getParentsFromAttribute', () => {
   test('will find the parent nodes with a specific attribute', () => {
-    const divParent = createDomItem({ nodeName: 'div', parentItem: {}, attributes: { name: 'red' }})
+    const divParent = createDomItem({ nodeName: 'div', parentItem: {}, attributes: { name: 'red' } })
     const divItem = createDomItem({ nodeName: 'div', parentItem: divParent })
     const spanItem = createDomItem({ nodeName: 'span', parentItem: divItem })
     divParent.appendChild(divItem)

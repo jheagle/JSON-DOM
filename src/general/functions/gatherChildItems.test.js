@@ -22,8 +22,8 @@ describe('gatherChildItems', () => {
       divItem3,
       // The test takes the item and an array of items (initiated as an empty array) and returns the array of items that pass the test
       (item, items = []) => item.attributes?.style?.background === 'red'
-      ? items.concat([item])
-      : items
+        ? items.concat([item])
+        : items
     )
     expect(redSpans.length).toBe(3)
     expect(redSpans[0].attributes.label).toBe('Red Span 1')

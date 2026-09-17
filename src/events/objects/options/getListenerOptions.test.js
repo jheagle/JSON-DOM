@@ -8,7 +8,7 @@ describe('getListenerOptions', () => {
       capture: 1,
       once: 2,
       passive: 4,
-      signal: 8,
+      signal: 8
     })
   })
 })

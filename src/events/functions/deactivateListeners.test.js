@@ -3,31 +3,27 @@ import createDomItem from '../../general/objects/createDomItem.js'
 
 describe('deactivateListeners', () => {
   test('listeners are set to inactive and active listeners cleared', () => {
-    const click1 = event => {}
-    const click2 = event => {}
-    const click3 = event => {}
-    const mouseover1 = event => {}
     const domItem = createDomItem({
       nodeName: 'button',
       eventListeners: {
         click: [
           {
             listenerFunc: 'click1',
-            listenerActive: true,
+            listenerActive: true
           },
           {
             listenerFunc: 'click2',
-            listenerActive: true,
+            listenerActive: true
           },
           {
             listenerFunc: 'click3',
-            listenerActive: true,
-          },
+            listenerActive: true
+          }
         ],
         onmouseover: [
           {
             listenerFunc: 'mouseover1',
-            listenerActive: true,
+            listenerActive: true
           }
         ]
       }

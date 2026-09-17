@@ -16,12 +16,15 @@ describe('bindAllListeners', () => {
     })
     const parentItem = createDomItem({
       nodeName: 'div',
-      element: parentDiv,
+      element: parentDiv
     })
     parentItem.appendChild(childItem)
     const clickFn = jest.fn()
     parentItem.parentItem = createDomItem({
-      nodeName: '#document', element: document, eventListeners: { clickFn: clickFn }, children: [
+      nodeName: '#document',
+      element: document,
+      eventActions: { clickFn },
+      children: [
         parentItem
       ],
       parentItem: {}

@@ -14,7 +14,7 @@ describe('domItemChanges', () => {
   test('will get the nodeName changes when they are different', () => {
     const element = document.createElement('span')
     const item = createDomItem({
-      element: element
+      element
     })
     const changes = domItemChanges(item)
     expect(changes.removed.nodeName).toEqual('span')
@@ -28,17 +28,17 @@ describe('domItemChanges', () => {
     element.setAttribute('width', '1000px')
     const newHeight = '400px'
     const item = createDomItem({
-        attributes: {
-          title: 'test',
-          height: newHeight,
-          width: '1000px'
-        },
-        element: element
-      }
+      attributes: {
+        title: 'test',
+        height: newHeight,
+        width: '1000px'
+      },
+      element
+    }
     )
     const changes = domItemChanges(item)
-    expect(changes.added['title']).toBeUndefined()
-    expect(changes.added['height']).toBe(newHeight)
+    expect(changes.added.title).toBeUndefined()
+    expect(changes.added.height).toBe(newHeight)
   })
 
   test('will return all attributes as added when element is null', () => {
@@ -50,8 +50,8 @@ describe('domItemChanges', () => {
       style: { bottom: 0, display: 'block', color: 'white' }
     }
     const item = createDomItem({
-        attributes: attributes
-      }
+      attributes
+    }
     )
     const changes = domItemChanges(item)
     attributes.nodeName = item.nodeName
@@ -63,11 +63,11 @@ describe('domItemChanges', () => {
     const element = document.createElement('div')
     element.className = 'remove one two three'
     const item = createDomItem({
-        attributes: {
-          className: 'two one four three'
-        },
-        element: element
-      }
+      attributes: {
+        className: 'two one four three'
+      },
+      element
+    }
     )
     const changes = domItemChanges(item)
     // After diff, intended classname will be: 'one two three four'
@@ -81,11 +81,11 @@ describe('domItemChanges', () => {
     element.style.color = 'white'
     element.style.top = '0'
     const item = createDomItem({
-        attributes: {
-          style: { bottom: 0, display: 'block', color: 'white' }
-        },
-        element: element
-      }
+      attributes: {
+        style: { bottom: 0, display: 'block', color: 'white' }
+      },
+      element
+    }
     )
     const changes = domItemChanges(item)
     expect(changes.removed).toEqual({
@@ -103,11 +103,11 @@ describe('domItemChanges', () => {
     element.style.color = 'white'
     element.style['background-color'] = 'black'
     const item = createDomItem({
-        attributes: {
-          style: { color: 'blue', backgroundColor: 'black' }
-        },
-        element: element
-      }
+      attributes: {
+        style: { color: 'blue', backgroundColor: 'black' }
+      },
+      element
+    }
     )
     const changes = domItemChanges(item)
     expect(changes.removed).toEqual({
@@ -122,8 +122,8 @@ describe('domItemChanges', () => {
     const oldInner = 'inner text'
     const element = document.createTextNode(oldInner)
     const newInner = 'new inner text'
-    const item = createDomItem({ nodeName: '#text', nodeValue: newInner, element: element })
-    let changes = domItemChanges(item)
+    const item = createDomItem({ nodeName: '#text', nodeValue: newInner, element })
+    const changes = domItemChanges(item)
     expect(changes.removed.nodeValue).toEqual(oldInner)
     expect(changes.added.nodeValue).toEqual(newInner)
   })
@@ -132,7 +132,7 @@ describe('domItemChanges', () => {
     const newInner = 'new inner text'
     const newAttribute = 'not a div'
     const item = createDomItem({ nodeName: '#text', nodeValue: newInner, attributes: { name: newAttribute } })
-    let changes = domItemChanges(item)
+    const changes = domItemChanges(item)
     expect(changes.removed).toEqual({})
     expect(changes.added.nodeValue).toEqual(newInner)
     expect(changes.added.name).toEqual(newAttribute)
@@ -143,12 +143,12 @@ describe('domItemChanges', () => {
     element.style['background-color'] = 'black'
     const dataTestValue = 'data set key'
     const item = createDomItem({
-        attributes: {
-          dataTest: dataTestValue,
-          style: { backgroundColor: 'white' }
-        },
-        element: element
-      }
+      attributes: {
+        dataTest: dataTestValue,
+        style: { backgroundColor: 'white' }
+      },
+      element
+    }
     )
     const changes = domItemChanges(item)
     expect(changes.removed).toEqual({

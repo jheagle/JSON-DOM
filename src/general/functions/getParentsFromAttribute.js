@@ -23,8 +23,8 @@ const getParentsFromAttribute = (attr, value, item = documentItem.body) => {
   }
   return Object.keys(item.parentItem).length
     ? (item.parentItem.attributes[attr] || item[attr] || false) === value
-      ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem])
-      : getParentsFromAttribute(attr, value, item.parentItem)
+        ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem])
+        : getParentsFromAttribute(attr, value, item.parentItem)
     : []
 }
 

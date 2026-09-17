@@ -34,5 +34,5 @@ import optionsToNumber from './options/optionsToNumber.js'
 export default {
   getListenerOptions,
   numberToOptions,
-  optionsToNumber,
+  optionsToNumber
 }

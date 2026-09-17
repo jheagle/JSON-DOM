@@ -79,5 +79,5 @@ export default {
   documentDomItem,
   documentItem,
   initChildren,
-  initRoot,
+  initRoot
 }

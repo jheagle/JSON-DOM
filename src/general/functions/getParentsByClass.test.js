@@ -6,7 +6,7 @@ import getParentsByClass from './getParentsByClass.js'
 
 describe('getParentsByClass', () => {
   test('will find the parent nodes with a specific class', () => {
-    const divParent = createDomItem({ nodeName: 'div', parentItem: {},attributes: { className: 'red' }})
+    const divParent = createDomItem({ nodeName: 'div', parentItem: {}, attributes: { className: 'red' } })
     const divItem = createDomItem({ nodeName: 'div' })
     const spanItem = createDomItem({ nodeName: 'span' })
     divParent.appendChild(divItem)

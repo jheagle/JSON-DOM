@@ -6,7 +6,7 @@ import getParentsByTagName from './getParentsByTagName.js'
 
 describe('getParentsByTagName', () => {
   test('will find the parent nodes with a specific tag name', () => {
-    const divParent = createDomItem({ nodeName: 'div', parentItem: {}, attributes: { name: 'red' }})
+    const divParent = createDomItem({ nodeName: 'div', parentItem: {}, attributes: { name: 'red' } })
     const divItem = createDomItem({ nodeName: 'div', parentItem: divParent })
     const spanItem = createDomItem({ nodeName: 'span', parentItem: divItem })
     divParent.appendChild(divItem)

@@ -12,7 +12,7 @@ describe('updateChildren', () => {
     const text = 'This is a text node'
     const childElement = 'hr'
     element.innerHTML = `<!--${comment}-->${text}<${childElement}>`
-    const originalItem = createDomItem({ element: element })
+    const originalItem = createDomItem({ element })
     expect(originalItem.children).toHaveLength(0)
     const updated = updateChildren(originalItem)
     expect(updated.children).toHaveLength(3)

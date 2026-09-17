@@ -17,7 +17,7 @@ describe('renderHtml', () => {
   })
 
   test('defaults to documentItem', () => {
-    const originalItem = createDomItem({'type': 'div', 'properties': {'id': 'test-div'}})
+    const originalItem = createDomItem({ type: 'div', properties: { id: 'test-div' } })
     documentItem.body.appendChild(originalItem)
     expect(originalItem.element).toBeNull()
     const updated = renderHtml()

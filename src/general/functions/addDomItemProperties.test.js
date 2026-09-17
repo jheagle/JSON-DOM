@@ -6,7 +6,7 @@ describe('addDomItemProperties', () => {
       nodeName: 'div',
       children: [
         {
-          nodeName: 'p',
+          nodeName: 'p'
         }
       ]
     }

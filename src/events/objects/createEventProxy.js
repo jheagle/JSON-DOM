@@ -18,7 +18,7 @@ const createEventProxy = event => new Proxy(
   Object.defineProperty(event, 'immediatePropagationStopped', {
     enumerable: true,
     value: false,
-    writable: true,
+    writable: true
   }),
   {
     get (thisEvent, prop) {

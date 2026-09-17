@@ -15,7 +15,7 @@ describe('updateDomItem', () => {
     const element = document.createElement('div')
     const item = createDomItem({
       nodeName: 'span',
-      element: element
+      element
     })
     const updated = updateDomItem(item)
     expect(updated.nodeName).toBe('div')
@@ -30,7 +30,7 @@ describe('updateDomItem', () => {
       attributes: {
         style: { color: 'red' }
       },
-      element: element
+      element
     })
     const updated = updateDomItem(item)
     expect(updated.nodeName).toBe('div')
@@ -45,7 +45,7 @@ describe('updateDomItem', () => {
       attributes: {
         className: 'remove one two three'
       },
-      element: element
+      element
     })
     const updated = updateDomItem(item)
     expect(updated.attributes.className).toBe('one two three four')
@@ -59,10 +59,10 @@ describe('updateDomItem', () => {
       attributes: {
         style: {
           backgroundColor: 'white',
-          color: 'black',
+          color: 'black'
         }
       },
-      element: element
+      element
     })
     const updated = updateDomItem(item)
     expect(updated.attributes.style.backgroundColor).toBe('black')
@@ -74,7 +74,7 @@ describe('updateDomItem', () => {
     const item = createDomItem({
       nodeName: '#text',
       nodeValue: 'test',
-      element: element
+      element
     })
     const updated = updateDomItem(item)
     expect(updated.nodeValue).toBe('post-test')

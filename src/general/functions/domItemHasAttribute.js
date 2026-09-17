@@ -30,7 +30,7 @@ const checkStyles = (domItem, attr = {}) => {
  * @returns {int|Object.<string, number>}
  */
 const checkClasses = (domItem, attr = '') => {
-  const assignedClasses = domItem.attributes['className'] ?? ''
+  const assignedClasses = domItem.attributes.className ?? ''
   if (!assignedClasses.length) {
     return 1
   }

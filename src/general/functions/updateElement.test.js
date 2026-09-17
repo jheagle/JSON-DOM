@@ -16,7 +16,7 @@ describe('updateElement', () => {
   test('will create new element for changed nodeName', () => {
     const element = document.createElement('span')
     const item = createDomItem({
-      element: element
+      element
     })
     expect(item.element).toBeInstanceOf(HTMLSpanElement)
     const updated = updateElement(item)
@@ -31,7 +31,7 @@ describe('updateElement', () => {
         className: 'some-class',
         style: { color: 'red' }
       },
-      element: element
+      element
     })
     expect(item.element).toBeInstanceOf(HTMLSpanElement)
     const updated = updateElement(item)
@@ -47,7 +47,7 @@ describe('updateElement', () => {
       attributes: {
         className: 'two one four three'
       },
-      element: element
+      element
     })
     const updated = updateElement(item)
     expect(updated.element.className).toBe('one two three four')
@@ -61,10 +61,10 @@ describe('updateElement', () => {
       attributes: {
         style: {
           backgroundColor: 'black',
-          color: 'white',
+          color: 'white'
         }
       },
-      element: element
+      element
     })
     const updated = updateElement(item)
     expect(updated.element.style.backgroundColor).toBe('black')
@@ -76,7 +76,7 @@ describe('updateElement', () => {
     const item = createDomItem({
       nodeName: '#text',
       nodeValue: 'post-test',
-      element: element
+      element
     })
     expect(item.element.nodeValue).toBe('test')
     const updated = updateElement(item)

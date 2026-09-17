@@ -43,7 +43,7 @@ const createDomItem = (item = {}) => {
       jsonExclusions: [],
       nodeName: 'div',
       nodeValue: null,
-      parentItem: null,
+      parentItem: null
     },
     (domItem, defaultValue, prop) => {
       if (!(prop in domItem)) {

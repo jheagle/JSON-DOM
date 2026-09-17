@@ -6,7 +6,7 @@ import removeEmptyProperties from './removeEmptyProperties.js'
 
 describe('removeEmptyProperties', () => {
   test('can remove empty properties', () => {
-    const divItem = createDomItem({'type': 'div'})
+    const divItem = createDomItem({ type: 'div' })
     divItem.someProperty = {}
     divItem.anotherProperty = null
     removeEmptyProperties(divItem)
@@ -15,7 +15,7 @@ describe('removeEmptyProperties', () => {
   })
 
   test('can remove specified properties', () => {
-    const divItem = createDomItem({'type': 'div'})
+    const divItem = createDomItem({ type: 'div' })
     divItem.someProperty = {}
     divItem.anotherProperty = null
     divItem.unwantedProperty = 'remove me'

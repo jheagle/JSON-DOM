@@ -3,6 +3,7 @@
  */
 import elementChanges from './elementChanges.js'
 import createDomItem from '../objects/createDomItem.js'
+import siFunciona from 'si-funciona'
 
 describe('elementChanges', () => {
   test('returns empty change list if element is not set', () => {
@@ -53,12 +54,12 @@ describe('elementChanges', () => {
 
   test('will return changed or added attributes', () => {
     const item = createDomItem({
-        attributes: {
-          title: 'test',
-          height: '600px',
-          width: '1000px'
-        }
+      attributes: {
+        title: 'test',
+        height: '600px',
+        width: '1000px'
       }
+    }
     )
     item.element = document.createElement(item.nodeName)
     item.element.setAttribute('title', 'test')
@@ -79,11 +80,11 @@ describe('elementChanges', () => {
       style: { bottom: 0, display: 'block', color: 'white' }
     }
     const item = createDomItem({
-        attributes: attributes
-      }
+      attributes
+    }
     )
     const changes = elementChanges(item)
-    const convertedAttributes = siFunciona.dotNotate({ attributes: attributes })
+    const convertedAttributes = siFunciona.dotNotate({ attributes })
     convertedAttributes.nodeName = item.nodeName
     expect(changes.removed).toEqual(convertedAttributes)
     expect(changes.added).toEqual({})
@@ -91,10 +92,10 @@ describe('elementChanges', () => {
 
   test('will return changed or added class names', () => {
     const item = createDomItem({
-        attributes: {
-          className: 'remove one two three'
-        }
+      attributes: {
+        className: 'remove one two three'
       }
+    }
     )
     item.element = document.createElement(item.nodeName)
     item.element.className = 'two one four three'
@@ -106,10 +107,10 @@ describe('elementChanges', () => {
 
   test('will return changed or added styles', () => {
     const item = createDomItem({
-        attributes: {
-          style: { display: 'none', color: 'white', top: 0 }
-        }
+      attributes: {
+        style: { display: 'none', color: 'white', top: 0 }
       }
+    }
     )
     item.element = document.createElement(item.nodeName)
     item.element.style.bottom = '0'
@@ -128,10 +129,10 @@ describe('elementChanges', () => {
 
   test('will ignore backgroundColor style which is same as background-color', () => {
     const item = createDomItem({
-        attributes: {
-          style: { color: 'white', backgroundColor: 'black' }
-        }
+      attributes: {
+        style: { color: 'white', backgroundColor: 'black' }
       }
+    }
     )
     item.element = document.createElement(item.nodeName)
     item.element.style.color = 'blue'
@@ -147,10 +148,10 @@ describe('elementChanges', () => {
 
   test('uses correct case-format for dom Item changes', () => {
     const item = createDomItem({
-        attributes: {
-          style: { backgroundColor: 'black' }
-        }
+      attributes: {
+        style: { backgroundColor: 'black' }
       }
+    }
     )
     item.element = document.createElement(item.nodeName)
     const dataTestValue = 'data set key'

@@ -18,7 +18,7 @@ const updateElement = domItem => {
     return generateElement(deactivateListeners(domItem))
   }
   const changes = domItemChanges(domItem)
-  if (changes.removed['nodeName'] || changes.added['nodeName']) {
+  if (changes.removed.nodeName || changes.added.nodeName) {
     // if the nodeName has changed then remove the element and create a new one
     domItem.element.remove()
     return generateElement(deactivateListeners(domItem))
@@ -51,7 +51,7 @@ const updateElement = domItem => {
     }
     if (dotKey === 'style') {
       // Update all styles based on incoming style object
-      for (let style in value) {
+      for (const style in value) {
         domItem.element.style.setProperty(style, value[style])
       }
       continue
