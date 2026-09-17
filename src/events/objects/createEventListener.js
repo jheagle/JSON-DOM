@@ -66,8 +66,8 @@ import 'core-js/stable'
  * @param {string|listenerFunction} listenerProperties.listenerFunc - The function or name (string) of the listener action
  * @param {Object|null} [listenerProperties.listenerArgs=null] - Additional parameters to apply to the function
  * @param {EventListenerOptions} [listenerProperties.listenerOptions=false] - The listener options to apply to the element
- * @param {boolean} [listenerProperties.listenerAcctive=false] - Flag for listener applied to element
- * @returns
+ * @param {boolean} [listenerProperties.listenerActive=false] - Flag for listener applied to element
+ * @returns {EventListener} An EventListener descriptor ready to be pushed onto a DomItem's eventListeners
  */
 const createEventListener = ({
   listenerFunc,

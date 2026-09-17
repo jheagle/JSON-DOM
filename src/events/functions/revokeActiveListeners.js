@@ -5,12 +5,14 @@ import numberToOptions from '../objects/options/numberToOptions.js'
 import unassignListener from './unassignListener.js'
 
 /**
- * Remove each active event listener for event type from the DOM Item's element.
+ * Detach every active listener for one event type from a DomItem's element, regardless of which EventListener
+ * descriptor each one belongs to, and clear that event's activeListeners bucket. Unlike {@link deactivateListener},
+ * this does not update the listenerActive/activeResponder state on the individual descriptors.
  * @function
  * @memberOf module:domEvents
- * @param {DomItem} item
- * @param {EventName} eventName
- * @return {DomItem}
+ * @param {module:domGeneral~DomItem} item - The DomItem to revoke active listeners from.
+ * @param {EventName} eventName - The name of the trigger event whose active listeners will be revoked.
+ * @return {module:domGeneral~DomItem} The same DomItem, with all active listeners for this event detached.
  */
 const revokeActiveListeners = (item, eventName) => {
   const listenerOptions = getListenerOptions()
