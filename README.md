@@ -807,7 +807,7 @@ Prepare an eventListener object to attach to a DOMItem
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [listenerProperties] | <code>Object</code> | <code>{}</code> |  |
-| listenerProperties.listenerFunc | <code>string</code> \| <code>listenerFunction</code> |  | The function or name (string) of the listener action |
+| listenerProperties.listenerFunc | <code>string</code> \| <code>listenerFunction</code> |  | The function or name (string) of the listener action - see [EventListener](EventListener)'s listenerFunc property for when to use which. |
 | [listenerProperties.listenerArgs] | <code>Object</code> \| <code>null</code> | <code></code> | Additional parameters to apply to the function |
 | [listenerProperties.listenerOptions] | <code>EventListenerOptions</code> | <code>false</code> | The listener options to apply to the element |
 | [listenerProperties.listenerActive] | <code>boolean</code> | <code>false</code> | Flag for listener applied to element |
@@ -848,13 +848,13 @@ Detach every active listener for one event type from a DomItem's element, regard
 <a name="module_domEvents.retrieveListener"></a>
 
 ### domEvents.retrieveListener(listenerName, [parent]) ⇒ <code>listenerFunction</code> \| <code>function</code> \| <code>Object</code>
-Based on the provided function / listener name, retrieve the associated function from the root domEvents.DomItem
+Based on the provided function / listener name, retrieve the associated function from the root domEvents.DomItem.If a raw function is passed instead of a registered name, it is returned as-is - see [EventListener](EventListener)'slistenerFunc property for the tradeoffs of that discretionary path.
 
 **Kind**: static method of [<code>domEvents</code>](#module_domEvents)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| listenerName | <code>string</code> | The name of one of the registered listener functions. |
+| listenerName | <code>string</code> \| <code>listenerFunction</code> | The name of one of the registered listener functions, or an already-resolved listener function. |
 | [parent] | <code>DomItemRoot</code> \| <code>Object</code> | The parent DomItem which is DomItemRoot which stores eventListeners property. |
 
 <a name="module_domEvents.removeEventListener"></a>
@@ -1089,13 +1089,17 @@ Does not attach anything to the real element - see [bindListeners](bindListeners
 item is the last parameter (instead of customArgs/options having literal defaults) so this can be curried and
 piped directly - see [fullAddEventListener](fullAddEventListener) for an example.
 
+Prefer calling this through [fullAddEventListener](fullAddEventListener) with a registered name (see [registerListener](registerListener)).
+Passing a raw function directly here works, but logs a console warning - see [EventListener](EventListener)'s
+listenerFunc property for what that discretionary path gives up.
+
 **Kind**: static method of [<code>domEvents</code>](#module_domEvents)  
 **Returns**: <code>module:domGeneral~DomItem</code> - The same DomItem, with the new EventListener descriptor appended.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | eventName | <code>EventName</code> |  | The name of the trigger event (e.g. 'click'). |
-| listenerFunction | <code>module:domEvents~listenerFunction</code> |  | The listener function to be registered. |
+| listenerFunction | <code>string</code> \| <code>module:domEvents~listenerFunction</code> |  | Preferably a name registered via [registerListener](registerListener); a raw listener function is also accepted, at the caller's discretion. |
 | [customArgs] | <code>Object</code> \| <code>null</code> | <code></code> | Additional args passed through to the listener when called. |
 | [options] | <code>module:domEvents~EventListenerOptions</code> | <code>false</code> | Options to be used when the listener is attached to the element. |
 | item | <code>module:domGeneral~DomItem</code> |  | The DomItem which will receive the event listener. |
@@ -1195,7 +1199,7 @@ An EventListener Object to be appended to the element within the DomItem
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| listenerFunc | <code>string</code> \| <code>listenerFunction</code> |  | A string function name matching an existing [listenerFunction](listenerFunction). |
+| listenerFunc | <code>string</code> \| <code>listenerFunction</code> |  | Prefer a string name registered via [registerListener](registerListener) (or [fullAddEventListener](fullAddEventListener), which does this for you) and resolved from the root DomItem's eventActions at activation time. This is the only form compatible with the rest of the module: it can be shared by name across multiple DomItems, and survives [domItemToJson](domItemToJson) (which serializes the DomItem to JSON - a raw function cannot be represented there, and JSON.stringify silently drops it with no warning). A raw [listenerFunction](listenerFunction) may be attached directly instead (e.g. via [addEventListener](addEventListener)), entirely at the caller's discretion for one-off listeners that don't need those features. addEventListener logs a console warning when this path is used, as a reminder of the tradeoff. |
 | [listenerArgs] | <code>Object</code> | <code></code> | Additional args required for the listener function |
 | [listenerOptions] | <code>EventListenerOptions</code> | <code>false</code> | Provides support for options parameter of addEventListener, or false for default |
 | [listenerActive] | <code>boolean</code> | <code>false</code> | Indicate whether this listener has been applied to the element. |
