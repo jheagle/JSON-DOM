@@ -748,6 +748,7 @@ Setting up and handling events
     * [.registerListener(listener, [name], [parent])](#module_domEvents.registerListener) ⇒ <code>Object.&lt;string, listenerFunction&gt;</code>
     * [.makeEventHandler(listener, item, [...args])](#module_domEvents.makeEventHandler) ⇒ <code>eventHandler</code>
     * [.listenerOptions(options)](#module_domEvents.listenerOptions) ⇒ <code>boolean</code>
+    * [.fullRemoveEventListener(eventName, listener, [name], [customArgs], [options], item)](#module_domEvents.fullRemoveEventListener) ⇒ <code>DomItem</code>
     * [.fullAddEventListener(eventName, listener, [name], [customArgs], [options], item)](#module_domEvents.fullAddEventListener) ⇒ <code>DomItem</code>
     * [.findEventListener(eventName, listenerFunction, [customArgs], [options], item)](#module_domEvents.findEventListener) ⇒ <code>Array.&lt;(number\|EventListener\|undefined)&gt;</code>
     * [.deactivateListeners(item)](#module_domEvents.deactivateListeners) ⇒ <code>DomItem</code>
@@ -925,6 +926,31 @@ Provide compatibility for using the options parameter of addEventListener
 | Param | Type | Description |
 | --- | --- | --- |
 | options | <code>EventListenerOptions</code> | An object or boolean with the listener options |
+
+<a name="module_domEvents.fullRemoveEventListener"></a>
+
+### domEvents.fullRemoveEventListener(eventName, listener, [name], [customArgs], [options], item) ⇒ <code>DomItem</code>
+Find and remove a listener that was registered by name (e.g. via [fullAddEventListener](fullAddEventListener)) - the counterpart
+to fullAddEventListener. Resolves name the same way fullAddEventListener defaults it, so a caller only needs the
+original listener function (not the internal name string it was registered under) to remove it:
+1. Resolve name (defaults to listener.name, same as [fullAddEventListener](fullAddEventListener)).
+2. [removeEventListener](removeEventListener) - find the descriptor by that name, detach it from the element if active, and
+   splice it out of item.eventListeners.
+
+Does not remove the function from the root DomItem's eventActions registry, since that name may still be shared
+by other DomItems - see [registerListener](registerListener).
+
+**Kind**: static method of [<code>domEvents</code>](#module_domEvents)  
+**Returns**: <code>DomItem</code> - The same DomItem, with the matching listener removed if one was found.  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| eventName | <code>EventName</code> |  | The name of the trigger event (e.g. 'click'). |
+| listener | <code>listenerFunction</code> \| <code>function</code> |  | The same function originally passed to fullAddEventListener. |
+| [name] | <code>string</code> | <code>&quot;listener.name&quot;</code> | The name the listener was registered under in eventActions. |
+| [customArgs] | <code>Object</code> \| <code>null</code> | <code></code> | The custom args the listener was registered with. |
+| [options] | <code>EventListenerOptions</code> | <code>false</code> | The options the listener was registered with. |
+| item | <code>DomItem</code> |  | The DomItem to remove the listener from. |
 
 <a name="module_domEvents.fullAddEventListener"></a>
 
