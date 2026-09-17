@@ -71,6 +71,24 @@ describe('updateElement', () => {
     expect(updated.element.style.color).toBe('white')
   })
 
+  test('reattaches existing children when a standalone call regenerates the element for a nodeName change', () => {
+    const oldElement = document.createElement('span')
+    const childElement = document.createElement('em')
+    oldElement.appendChild(childElement)
+    const childItem = createDomItem({ nodeName: 'em', element: childElement })
+    const item = createDomItem({
+      element: oldElement,
+      children: [childItem]
+    })
+    expect(item.element).toBeInstanceOf(HTMLSpanElement)
+
+    const updated = updateElement(item)
+
+    expect(updated.element).toBeInstanceOf(HTMLDivElement)
+    expect(updated.element.contains(childElement)).toBe(true)
+    expect(updated.children[0].element).toBe(childElement)
+  })
+
   test('can update nodeValue', () => {
     const element = document.createTextNode('test')
     const item = createDomItem({
