@@ -185,7 +185,7 @@ Generate HTML element data for each object in the matrixWARNING: This is a recu
 <a name="module_domGeneral.updateElement"></a>
 
 ### domGeneral.updateElement(domItem) ⇒ <code>DomItem</code>
-Update a single objects.DomItem element with the provided attributes / style / elementProperties
+Update a single objects.DomItem element with the provided attributes / style / elementProperties.Safe to call standalone (not just through [updateElements](updateElements)/[renderHtml](renderHtml)): whenever this ends up(re)generating domItem.element - because it had none yet, or because nodeName changed - it also re-attachesdomItem's direct children onto that element via [updateChildNodes](updateChildNodes), so a bare call never orphans anexisting child subtree. The plain attribute/style patch path below doesn't touch domItem.element itself, so itdoesn't need to.
 
 **Kind**: static method of [<code>domGeneral</code>](#module_domGeneral)  
 
