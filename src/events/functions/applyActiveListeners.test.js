@@ -5,6 +5,7 @@ import applyActiveListeners from './applyActiveListeners.js'
 import createDomItem from '../../general/objects/createDomItem.js'
 import activateListener from './activateListener.js'
 import createEventListener from '../objects/createEventListener.js'
+import registerListener from './registerListener.js'
 import documentItem from '../../general/objects/documentItem.js'
 import generateElement from '../../general/functions/generateElement.js'
 
@@ -12,7 +13,8 @@ describe('applyActiveListeners', () => {
   test('will apply a click listener to the element', () => {
     const documentReference = documentItem
     const eventName = 'click'
-    const clickEventListener = createEventListener({ listenerFunc: eventName })
+    registerListener(() => {}, 'clickFn', documentReference)
+    const clickEventListener = createEventListener({ listenerFunc: 'clickFn' })
     const inputElement = generateElement(createDomItem({ nodeName: 'input' }))
     documentReference.body.appendChild(inputElement)
     activateListener(eventName, clickEventListener, inputElement)
@@ -24,7 +26,8 @@ describe('applyActiveListeners', () => {
   test('will apply a click listener to the element with signal true', () => {
     const documentReference = documentItem
     const eventName = 'click'
-    const clickEventListener = createEventListener({ listenerFunc: eventName, listenerOptions: { signal: true } })
+    registerListener(() => {}, 'clickFn', documentReference)
+    const clickEventListener = createEventListener({ listenerFunc: 'clickFn', listenerOptions: { signal: true } })
     const inputElement = generateElement(createDomItem({ nodeName: 'input' }))
     documentReference.body.appendChild(inputElement)
     activateListener(eventName, clickEventListener, inputElement)
