@@ -9,7 +9,7 @@ var _index = _interopRequireDefault(require('./events/index.js'))
 var _index2 = _interopRequireDefault(require('./general/index.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
- * All of the JSON DOM system functions for creating JSON components.
+ * All of the JSON DOM system functions for building and syncing a Virtual DOM (DomItem tree) to the real HTML DOM.
  * @file
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0

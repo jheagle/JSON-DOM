@@ -10,7 +10,8 @@ var _appendChild = _interopRequireDefault(require('../functions/appendChild.js')
 var _removeChild = _interopRequireDefault(require('../functions/removeChild.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
- * DomItem defines the structure for a single element in the Dom
+ * DomItem defines the structure for a single node in json-dom's Virtual DOM (DomItem tree) - a plain object
+ * representation of one HTML element, mirrored onto a real element via {@link updateElement}/{@link renderHtml}.
  * @typedef {Object} DomItem
  * @memberOf module:domGeneral
  * @property {Object.<module:domEvents~EventName, Object.<number, eventHandler>>} activeListeners - Generated property storing assigned
@@ -32,8 +33,8 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  */
 
 /**
- * This is the basic Object for representing the Dom from a virtual perspective. All incoming attributes will be merged
- * to the specified format.
+ * This is the basic Object for representing a node in json-dom's Virtual DOM (DomItem tree). All incoming
+ * attributes will be merged to the specified format.
  * @function
  * @memberOf module:domGeneral
  * @param {Object} [item={}] - DomItem-like object to be formatted as DomItem

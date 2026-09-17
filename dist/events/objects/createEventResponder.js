@@ -11,6 +11,8 @@ require('core-js/stable')
  * @memberOf module:domEvents
  * @property {eventHandler} handler
  * @property {AbortController|null} abort
+ * @property {eventHandler|null} assignedHandler - The exact function reference passed to the element's
+ * addEventListener, set once applied. Required to later detach this exact listener via removeEventListener.
  */
 
 /**
@@ -31,7 +33,8 @@ const createEventResponder = function (eventHandler) {
   }
   return Object.assign({}, {
     handler: eventHandler,
-    abort: abort
+    abort,
+    assignedHandler: null
   })
 }
 var _default = exports.default = createEventResponder

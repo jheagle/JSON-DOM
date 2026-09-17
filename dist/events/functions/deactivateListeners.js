@@ -16,7 +16,9 @@ require('core-js/stable')
  */
 const deactivateListeners = item => {
   for (const eventName in item.eventListeners) {
-    item.eventListeners[eventName].forEach(eventListener => eventListener.listenerActive = false)
+    item.eventListeners[eventName].forEach(eventListener => {
+      eventListener.listenerActive = false
+    })
   }
   delete item.activeListeners
   return item

@@ -14,12 +14,12 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @memberOf module:domEvents
  * @param {Array.<listenerFunction|function>} listeners - An array of functions to be
  * used as the registered event listeners.
- * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which has eventListeners property.
+ * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which has eventActions property.
  * @returns {DomItemRoot|Object}
  */
 const registerListeners = function (listeners) {
   const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default
-  _siFunciona.default.mergeObjectsMutable(parent.eventListeners, listeners)
+  _siFunciona.default.mergeObjectsMutable(parent.eventActions, listeners)
   return parent
 }
 var _default = exports.default = registerListeners

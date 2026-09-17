@@ -24,10 +24,10 @@ const bindElementListeners = item => {
       if (eventAttributes.listenerActive) {
         return
       }
-      item = (0, _activateListener.default)(item, eventName, eventAttributes)
-      item.eventListeners[eventName].listenerActive = true
+      item = (0, _activateListener.default)(eventName, eventAttributes, item)
+      eventAttributes.listenerActive = true
     })
-    item = (0, _applyActiveListeners.default)(item, eventName)
+    item = (0, _applyActiveListeners.default)(eventName, item)
   }
   return item
 }

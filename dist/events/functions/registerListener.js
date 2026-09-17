@@ -20,7 +20,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
 const registerListener = function (listener) {
   const name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : listener.name
   const parent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default
-  return Object.assign(parent.eventListeners, {
+  return Object.assign(parent.eventActions, {
     [name]: listener
   })
 }

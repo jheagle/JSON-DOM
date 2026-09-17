@@ -16,12 +16,12 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * Activate listener by pushing it to activeListeners.
  * @function
  * @memberOf module:domEvents
- * @param {DomItem} item
  * @param {EventName} eventName
  * @param {EventListener} eventListener
+ * @param {DomItem} item
  * @returns {DomItem}
  */
-const activateListener = (item, eventName, eventListener) => {
+const activateListener = (eventName, eventListener, item) => {
   const listenerOptions = (0, _getListenerOptions.default)()
   if (typeof item.activeListeners === 'undefined') {
     item.activeListeners = {}
@@ -35,7 +35,9 @@ const activateListener = (item, eventName, eventListener) => {
   }
   const listenerFunc = (0, _retrieveListener.default)(eventListener.listenerFunc, (0, _getTopParentItem.default)(item))
   const eventHandler = (0, _makeEventHandler.default)(listenerFunc, item, eventListener.listenerArgs)
-  item.activeListeners[eventName][optionIdentifier].push((0, _createEventResponder.default)(eventHandler, !!(optionIdentifier & listenerOptions.signal)))
+  const eventResponder = (0, _createEventResponder.default)(eventHandler, !!(optionIdentifier & listenerOptions.signal))
+  item.activeListeners[eventName][optionIdentifier].push(eventResponder)
+  eventListener.activeResponder = eventResponder
   return item
 }
 var _default = exports.default = activateListener

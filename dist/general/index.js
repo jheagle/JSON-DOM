@@ -43,7 +43,7 @@ var _initChildren = _interopRequireDefault(require('./objects/initChildren.js'))
 var _initRoot = _interopRequireDefault(require('./objects/initRoot.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
- * @file Core Dom management
+ * @file Core Virtual DOM (DomItem tree) management
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
  * @module domGeneral

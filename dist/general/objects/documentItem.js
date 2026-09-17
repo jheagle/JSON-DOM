@@ -10,7 +10,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
 let existingItem = null
 
 /**
- * Create reference for storing document changes
+ * The shared root DomItem of the Virtual DOM (DomItem tree) for this environment's real document.
  * @member documentItem
  * @memberOf module:domGeneral
  * @type {DomItemRoot}

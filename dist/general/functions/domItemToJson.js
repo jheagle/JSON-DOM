@@ -7,6 +7,7 @@ exports.default = void 0
 require('core-js/modules/es.array.includes.js')
 require('core-js/modules/es.json.stringify.js')
 require('core-js/stable')
+var _siFunciona = _interopRequireDefault(require('si-funciona'))
 var _removeEmptyProperties = _interopRequireDefault(require('./removeEmptyProperties'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 const useExclusions = (function makeExclusions () {
@@ -39,7 +40,7 @@ const domItemToJson = function (item) {
   const mapLimit = _ref$mapLimit === void 0 ? 100 : _ref$mapLimit
   const _ref$relevancyRange = _ref.relevancyRange
   const relevancyRange = _ref$relevancyRange === void 0 ? 1000 : _ref$relevancyRange
-  return JSON.stringify((0, _removeEmptyProperties.default)(siFunciona.cloneObject(item, {
+  return JSON.stringify((0, _removeEmptyProperties.default)(_siFunciona.default.cloneObject(item, {
     mapLimit,
     relevancyRange
   }), ['activeListeners', 'element', 'parentItem', 'body', 'head']), useExclusions)
