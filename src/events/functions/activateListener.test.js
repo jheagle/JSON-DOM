@@ -3,6 +3,7 @@
  */
 import activateListener from './activateListener.js'
 import createDomItem from '../../general/objects/createDomItem.js'
+import createEventListener from '../objects/createEventListener.js'
 import optionsToNumber from '../objects/options/optionsToNumber.js'
 import getListenerOptions from '../objects/options/getListenerOptions.js'
 
@@ -86,6 +87,16 @@ describe('activateListener', () => {
       domItem.activeListeners.click[optionIndex][i].handler(clickEvent)
       expect(clickFunctions[name]).toHaveBeenCalled()
     }
+  })
+
+  test('Activates a listener attached as a raw function, without a registered name', () => {
+    const clickFn = jest.fn()
+    const eventName = 'click'
+    const domItem = createDomItemForEvents()
+    domItem.eventListeners.click = [createEventListener({ listenerFunc: clickFn })]
+    const result = activateListener(eventName, domItem.eventListeners.click[0], domItem)
+    result.activeListeners.click['0'][0].handler(new Event(eventName))
+    expect(clickFn).toHaveBeenCalled()
   })
 })
 
