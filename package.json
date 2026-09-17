@@ -24,12 +24,10 @@
     "watch:test": "gulp watchTest"
   },
   "dependencies": {
-    "@babel/plugin-proposal-throw-expressions": "^7.29.7",
     "si-funciona": "^2.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
-    "@babel/plugin-syntax-throw-expressions": "^7.29.7",
     "@babel/plugin-transform-modules-commonjs": "^7.29.7",
     "@babel/preset-env": "^7.29.7",
     "gulp": "^5.0.1",
@@ -47,7 +45,8 @@
   ],
   "standard": {
     "env": [
-      "jest"
+      "jest",
+      "browser"
     ]
   }
 }

@@ -1,0 +1,50 @@
+'use strict'
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+})
+exports.default = void 0
+require('core-js/stable')
+var _createDomItem = _interopRequireDefault(require('./createDomItem.js'))
+function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+/**
+ * DomItemRoot defines the structure for the root node of json-dom's Virtual DOM (DomItem tree) - the #document
+ * equivalent, from which every other DomItem in the tree descends.
+ * @typedef {DomItem} DomItemRoot
+ * @memberOf module:domGeneral
+ * @property {string} [nodeName='#document'] - This is set to the string html referring to the HTML element of the same name
+ * @property {null} [nodeValue] - Must be null
+ * @property {Object} attributes - Empty object as attributes placeholder
+ * @property {HTMLDocument} element - A reference to the entire Document
+ * @property {Object.<string, listenerFunction>} eventActions - Registered event actions (listenerFunctions), keyed by name
+ * @property {Object.<module:domEvents~EventName, module:domEvents~EventListeners>} eventListeners - all registered listeners stored as listener name and function pairs
+ * @property {Array.<DomItemHead|DomItemBody>} children - Two references: for head and body
+ * @property {DomItemHead} head - A specific reference to head item
+ * @property {DomItemBody} body - A specific reference to body item
+ */
+
+/**
+ * Initiate the Root for DocumentItem. This is primary a helper for {@link documentDomItem}.
+ * @function
+ * @memberOf module:domGeneral
+ * @param {Array.<DomItemHead|DomItemBody>} children - Provide an array of Head and Body (usually via {@link initChildren})
+ * @param {Object.<string, listenerFunction>} listeners - An object of all event listeners to be registered in the Dom
+ * @returns {DomItemRoot|DomItem}
+ */
+const initRoot = function () {
+  const children = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [{}, {}]
+  const listeners = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
+  return (0, _createDomItem.default)({
+    nodeName: '#document',
+    nodeValue: null,
+    attributes: {},
+    element: document,
+    eventActions: listeners,
+    eventListeners: {},
+    children,
+    parentItem: {},
+    head: children[0],
+    body: children[1]
+  })
+}
+var _default = exports.default = initRoot

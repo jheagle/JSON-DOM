@@ -1,5 +1,5 @@
 /**
- * All of the JSON DOM system functions for creating JSON components.
+ * All of the JSON DOM system functions for building and syncing a Virtual DOM (DomItem tree) to the real HTML DOM.
  * @file
  * @author Joshua Heagle <joshuaheagle@gmail.com>
  * @version 1.0.0
@@ -7,13 +7,13 @@
  */
 
 import 'core-js/stable'
-import functions from './source/functions.js'
-import objects from './source/objects.js'
+import events from './events/index.js'
+import general from './general/index.js'
 
 const jsonDom = Object.assign(
   {},
-  functions,
-  objects
+  events,
+  general
 )
 
 export default jsonDom
