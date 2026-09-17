@@ -17,6 +17,7 @@ import deactivateListener from './functions/deactivateListener.js'
 import deactivateListeners from './functions/deactivateListeners.js'
 import findEventListener from './functions/findEventListener.js'
 import fullAddEventListener from './functions/fullAddEventListener.js'
+import fullRemoveEventListener from './functions/fullRemoveEventListener.js'
 import listenerOptions from './functions/listenerOptions.js'
 import makeEventHandler from './functions/makeEventHandler.js'
 import registerListener from './functions/registerListener.js'
@@ -42,6 +43,7 @@ export default {
   deactivateListeners,
   findEventListener,
   fullAddEventListener,
+  fullRemoveEventListener,
   listenerOptions,
   makeEventHandler,
   registerListener,
