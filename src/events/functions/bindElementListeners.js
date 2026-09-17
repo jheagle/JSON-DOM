@@ -18,7 +18,7 @@ const bindElementListeners = item => {
           return
         }
         item = activateListener(item, eventName, eventAttributes)
-        item.eventListeners[eventName].listenerActive = true
+        eventAttributes.listenerActive = true
       }
     )
     item = applyActiveListeners(item, eventName)

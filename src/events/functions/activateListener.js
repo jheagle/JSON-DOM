@@ -29,7 +29,9 @@ const activateListener = (item, eventName, eventListener) => {
   }
   const listenerFunc = retrieveListener(eventListener.listenerFunc, getTopParentItem(item))
   const eventHandler = makeEventHandler(listenerFunc, item, eventListener.listenerArgs)
-  item.activeListeners[eventName][optionIdentifier].push(createEventResponder(eventHandler, !!(optionIdentifier & listenerOptions.signal)))
+  const eventResponder = createEventResponder(eventHandler, !!(optionIdentifier & listenerOptions.signal))
+  item.activeListeners[eventName][optionIdentifier].push(eventResponder)
+  eventListener.activeResponder = eventResponder
   return item
 }
 

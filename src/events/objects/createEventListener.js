@@ -1,14 +1,4 @@
-/**
- * One or more listeners assigned to the same event.
- * @typedef {Array.<EventListener>} EventListeners
- * @memberOf module:domEvents
- */
-
-/**
- * The name of the trigger used to fire the event.
- * @typedef {string} EventName
- * @memberOf module:domEvents
- */
+import 'core-js/stable'
 
 /**
  * This is the standard definition of a listenerFunction to be used
@@ -50,23 +40,46 @@
  * An EventListener Object to be appended to the element within the DomItem
  * @typedef {Object} EventListener
  * @memberOf module:domEvents
- * @property {string} listenerFunc - A string function name matching an existing {@link listenerFunction}.
- * @property {Object} listenerArgs - Additional args required for the listener function
- * @property {EventListenerOptions} listenerOptions - Provides support for options parameter of addEventListener, or false for default
- * @property {boolean} listenerActive - Indicate whether this listener has been applied to the element.
+ * @property {string|listenerFunction} listenerFunc - A string function name matching an existing {@link listenerFunction}.
+ * @property {Object} [listenerArgs=null] - Additional args required for the listener function
+ * @property {EventListenerOptions} [listenerOptions=false] - Provides support for options parameter of addEventListener, or false for default
+ * @property {boolean} [listenerActive=false] - Indicate whether this listener has been applied to the element.
  */
 
+/**
+ * One or more listeners assigned to the same event.
+ * @typedef {Array.<EventListener>} EventListeners
+ * @memberOf module:domEvents
+ */
+
+/**
+ * The name of the trigger used to fire the event.
+ * @typedef {string} EventName
+ * @memberOf module:domEvents
+ */
+
+/**
+ * Prepare an eventListener object to attach to a DOMItem
+ * @function
+ * @memberOf module:domEvents
+ * @param {Object} [listenerProperties={}]
+ * @param {string|listenerFunction} listenerProperties.listenerFunc - The function or name (string) of the listener action
+ * @param {Object|null} [listenerProperties.listenerArgs=null] - Additional parameters to apply to the function
+ * @param {EventListenerOptions} [listenerProperties.listenerOptions=false] - The listener options to apply to the element
+ * @param {boolean} [listenerProperties.listenerAcctive=false] - Flag for listener applied to element
+ * @returns
+ */
 const createEventListener = ({
-  listenerFunc = 'click',
+  listenerFunc,
   listenerArgs = null,
   listenerOptions = false,
   listenerActive = false
 } = {}) => (
   {
-    listenerFunc: listenerFunc,
-    listenerArgs: listenerArgs,
-    listenerOptions: listenerOptions,
-    listenerActive: listenerActive,
+    listenerFunc,
+    listenerArgs,
+    listenerOptions,
+    listenerActive
   }
 )
 

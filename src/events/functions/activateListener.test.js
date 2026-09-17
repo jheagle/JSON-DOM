@@ -18,7 +18,7 @@ describe('activateListener', () => {
     expect(result.activeListeners).toHaveProperty(eventName)
     expect(result.activeListeners.click).toHaveProperty('0')
     expect(result.activeListeners.click['0'].length).toBe(1)
-    result.activeListeners.click['0'][0]['handler'](new Event(eventName))
+    result.activeListeners.click['0'][0].handler(new Event(eventName))
     expect(clickFn).toHaveBeenCalled()
   })
 
@@ -34,7 +34,7 @@ describe('activateListener', () => {
     const optionIndex = '' + optionsToNumber(getListenerOptions(), options) + ''
     expect(result.activeListeners.click).toHaveProperty(optionIndex)
     expect(result.activeListeners.click[optionIndex].length).toBe(1)
-    result.activeListeners.click[optionIndex][0]['handler'](new Event(eventName))
+    result.activeListeners.click[optionIndex][0].handler(new Event(eventName))
     expect(clickFn).toHaveBeenCalled()
   })
 
@@ -58,7 +58,7 @@ describe('activateListener', () => {
     expect(result.activeListeners.click).toHaveProperty(optionIndex)
     expect(result.activeListeners.click[optionIndex].length).toBe(1)
     const clickEvent = new Event(eventName)
-    result.activeListeners.click[optionIndex][0]['handler'](clickEvent)
+    result.activeListeners.click[optionIndex][0].handler(clickEvent)
     expect(clickFn).toHaveBeenCalledWith(clickEvent, domItem, listenerArguments)
   })
 
@@ -83,7 +83,7 @@ describe('activateListener', () => {
     for (let i = 0; i < eventCount; ++i) {
       const name = `clickFn${i}`
       const clickEvent = new Event(eventName)
-      domItem.activeListeners.click[optionIndex][i]['handler'](clickEvent)
+      domItem.activeListeners.click[optionIndex][i].handler(clickEvent)
       expect(clickFunctions[name]).toHaveBeenCalled()
     }
   })
@@ -103,10 +103,11 @@ function createDomItemForEvents () {
     nodeName: '#document',
     element: document,
     eventListeners: {},
+    eventActions: {},
     parentItem: {},
     children: [
       domItem
-    ],
+    ]
   })
   return domItem
 }
@@ -123,7 +124,7 @@ function addEventToDomItem (domItem, eventType, funcName, eventListener) {
   if (!(eventType in domItem.eventListeners)) {
     domItem.eventListeners[eventType] = []
   }
-  domItem.parentItem.eventListeners[funcName] = eventListener.listenerFunc
+  domItem.parentItem.eventActions[funcName] = eventListener.listenerFunc
   eventListener.listenerFunc = funcName
   domItem.eventListeners[eventType].push(eventListener)
   return domItem

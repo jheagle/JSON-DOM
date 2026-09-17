@@ -12,7 +12,7 @@ describe('applyActiveListeners', () => {
   test('will apply a click listener to the element', () => {
     const documentReference = documentItem
     const eventName = 'click'
-    const clickEventListener = createEventListener({listenerFunc: eventName})
+    const clickEventListener = createEventListener({ listenerFunc: eventName })
     const inputElement = generateElement(createDomItem({ nodeName: 'input' }))
     documentReference.body.appendChild(inputElement)
     activateListener(inputElement, eventName, clickEventListener)
@@ -24,7 +24,7 @@ describe('applyActiveListeners', () => {
   test('will apply a click listener to the element with signal true', () => {
     const documentReference = documentItem
     const eventName = 'click'
-    const clickEventListener = createEventListener({listenerFunc: eventName, listenerOptions: { signal: true } })
+    const clickEventListener = createEventListener({ listenerFunc: eventName, listenerOptions: { signal: true } })
     const inputElement = generateElement(createDomItem({ nodeName: 'input' }))
     documentReference.body.appendChild(inputElement)
     activateListener(inputElement, eventName, clickEventListener)

@@ -19,31 +19,25 @@ const applyActiveListeners = (item, eventName) => {
   if (eventOptions === null) {
     return item
   }
-  siFunciona.objectKeys(eventOptions).forEach(
-    binaryOptions => {
-      const optionsToUse = numberToOptions(listenerOptions, parseInt(binaryOptions))
-      if (!optionsToUse.signal) {
-        // Abort signal must be undefined if it is not required.
-        delete optionsToUse.signal
-        return assignListener(
-          eventName,
-          item.element,
-          e => siFunciona.pipe(
-            ...item.activeListeners[eventName][binaryOptions].map(eventResponder => eventResponder.handler)
-          )(createEventProxy(e)),
-          optionsToUse
-        )
-      }
-      item.activeListeners[eventName][binaryOptions].forEach(
-        eventResponder => assignListener(
-          eventName,
-          item.element,
-          e => eventResponder.handler(createEventProxy(e)),
-          Object.assign({}, optionsToUse, { signal: eventResponder.abort.signal })
-        )
-      )
+  siFunciona.objectKeys(eventOptions).forEach(binaryOptions => {
+    const optionsToUse = numberToOptions(listenerOptions, parseInt(binaryOptions))
+    const usesSignal = !!optionsToUse.signal
+    if (!usesSignal) {
+      // Abort signal must be undefined if it is not required.
+      delete optionsToUse.signal
     }
-  )
+    item.activeListeners[eventName][binaryOptions].forEach(eventResponder => {
+      if (eventResponder.assignedHandler) {
+        // already attached to the element
+        return
+      }
+      const finalOptions = usesSignal
+        ? Object.assign({}, optionsToUse, { signal: eventResponder.abort.signal })
+        : optionsToUse
+      eventResponder.assignedHandler = e => eventResponder.handler(createEventProxy(e))
+      assignListener(eventName, item.element, eventResponder.assignedHandler, finalOptions)
+    })
+  })
   return item
 }
 
