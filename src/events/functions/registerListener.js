@@ -12,7 +12,7 @@ import documentItem from '../../general/objects/documentItem.js'
  * @returns {Object.<string, listenerFunction>}
  */
 const registerListener = (listener, name = listener.name, parent = documentItem) => Object.assign(
-  parent.eventListeners,
+  parent.eventActions,
   { [name]: listener }
 )
 
