@@ -7,7 +7,7 @@ describe('findEventListener', () => {
   test('will find function with args', () => {
     const item = makeTestEventListeners()
     const func = item.eventListeners[eventName][0].listenerFunc
-    const [foundIndex, foundListener] = findEventListener(item, eventName, func)
+    const [foundIndex, foundListener] = findEventListener(eventName, func, null, false, item)
     expect(foundIndex).toBe(0)
     expect(foundListener.listenerFunc).toBe(func)
     expect(foundListener.listenerArgs).toEqual({ arg1: 'something' })
@@ -16,7 +16,7 @@ describe('findEventListener', () => {
   test('will find function with options', () => {
     const item = makeTestEventListeners()
     const func = item.eventListeners[eventName][1].listenerFunc
-    const [foundIndex, foundListener] = findEventListener(item, eventName, func)
+    const [foundIndex, foundListener] = findEventListener(eventName, func, null, false, item)
     expect(foundIndex).toBe(1)
     expect(foundListener.listenerFunc).toBe(func)
     expect(foundListener.listenerOptions).toEqual({ once: true })
@@ -25,7 +25,7 @@ describe('findEventListener', () => {
   test('will find string function', () => {
     const item = makeTestEventListeners()
     const func = item.eventListeners[eventName][2].listenerFunc
-    const [foundIndex, foundListener] = findEventListener(item, eventName, func)
+    const [foundIndex, foundListener] = findEventListener(eventName, func, null, false, item)
     expect(foundIndex).toBe(2)
     expect(foundListener.listenerFunc).toBe(func)
     expect(foundListener.listenerActive).toBeFalsy()

@@ -10,11 +10,11 @@ import unassignListener from './unassignListener.js'
  * this does not update the listenerActive/activeResponder state on the individual descriptors.
  * @function
  * @memberOf module:domEvents
- * @param {module:domGeneral~DomItem} item - The DomItem to revoke active listeners from.
  * @param {EventName} eventName - The name of the trigger event whose active listeners will be revoked.
+ * @param {module:domGeneral~DomItem} item - The DomItem to revoke active listeners from.
  * @return {module:domGeneral~DomItem} The same DomItem, with all active listeners for this event detached.
  */
-const revokeActiveListeners = (item, eventName) => {
+const revokeActiveListeners = (eventName, item) => {
   const listenerOptions = getListenerOptions()
   const eventOptions = siFunciona.dotGet(item, `activeListeners.${eventName}`)
   if (eventOptions === null) {

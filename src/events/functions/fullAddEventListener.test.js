@@ -21,7 +21,7 @@ describe('fullAddEventListener', () => {
       children: [domItem]
     })
 
-    fullAddEventListener(domItem, 'click', clickFn, 'clickFn')
+    fullAddEventListener('click', clickFn, 'clickFn', undefined, undefined, domItem)
 
     expect(domItem.parentItem.eventActions.clickFn).toBe(clickFn)
     expect(domItem.eventListeners.click[0].listenerFunc).toBe('clickFn')

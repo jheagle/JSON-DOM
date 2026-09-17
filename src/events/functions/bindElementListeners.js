@@ -17,11 +17,11 @@ const bindElementListeners = item => {
         if (eventAttributes.listenerActive) {
           return
         }
-        item = activateListener(item, eventName, eventAttributes)
+        item = activateListener(eventName, eventAttributes, item)
         eventAttributes.listenerActive = true
       }
     )
-    item = applyActiveListeners(item, eventName)
+    item = applyActiveListeners(eventName, item)
   }
   return item
 }

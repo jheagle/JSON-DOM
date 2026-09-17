@@ -10,12 +10,12 @@ import retrieveListener from './retrieveListener.js'
  * Activate listener by pushing it to activeListeners.
  * @function
  * @memberOf module:domEvents
- * @param {DomItem} item
  * @param {EventName} eventName
  * @param {EventListener} eventListener
+ * @param {DomItem} item
  * @returns {DomItem}
  */
-const activateListener = (item, eventName, eventListener) => {
+const activateListener = (eventName, eventListener, item) => {
   const listenerOptions = getListenerOptions()
   if (typeof item.activeListeners === 'undefined') {
     item.activeListeners = {}

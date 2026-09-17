@@ -12,13 +12,13 @@ describe('revokeActiveListeners', () => {
     const eventName = 'click'
     let domItem = createDomItemForEvents()
     domItem = addEventToDomItem(domItem, eventName, 'clickFn', { listenerFunc: clickFn })
-    domItem = activateListener(domItem, eventName, domItem.eventListeners.click[0])
-    domItem = applyActiveListeners(domItem, eventName)
+    domItem = activateListener(eventName, domItem.eventListeners.click[0], domItem)
+    domItem = applyActiveListeners(eventName, domItem)
 
     domItem.element.dispatchEvent(new Event(eventName))
     expect(clickFn).toHaveBeenCalledTimes(1)
 
-    const result = revokeActiveListeners(domItem, eventName)
+    const result = revokeActiveListeners(eventName, domItem)
     expect(result.activeListeners).not.toHaveProperty(eventName)
 
     result.element.dispatchEvent(new Event(eventName))
@@ -30,13 +30,13 @@ describe('revokeActiveListeners', () => {
     const eventName = 'click'
     let domItem = createDomItemForEvents()
     domItem = addEventToDomItem(domItem, eventName, 'clickFn', { listenerFunc: clickFn, listenerOptions: { signal: true } })
-    domItem = activateListener(domItem, eventName, domItem.eventListeners.click[0])
-    domItem = applyActiveListeners(domItem, eventName)
+    domItem = activateListener(eventName, domItem.eventListeners.click[0], domItem)
+    domItem = applyActiveListeners(eventName, domItem)
 
     domItem.element.dispatchEvent(new Event(eventName))
     expect(clickFn).toHaveBeenCalledTimes(1)
 
-    const result = revokeActiveListeners(domItem, eventName)
+    const result = revokeActiveListeners(eventName, domItem)
     expect(result.activeListeners).not.toHaveProperty(eventName)
 
     result.element.dispatchEvent(new Event(eventName))
@@ -50,15 +50,15 @@ describe('revokeActiveListeners', () => {
     let domItem = createDomItemForEvents()
     domItem = addEventToDomItem(domItem, eventName, 'clickFn1', { listenerFunc: clickFn1 })
     domItem = addEventToDomItem(domItem, eventName, 'clickFn2', { listenerFunc: clickFn2 })
-    domItem = activateListener(domItem, eventName, domItem.eventListeners.click[0])
-    domItem = activateListener(domItem, eventName, domItem.eventListeners.click[1])
-    domItem = applyActiveListeners(domItem, eventName)
+    domItem = activateListener(eventName, domItem.eventListeners.click[0], domItem)
+    domItem = activateListener(eventName, domItem.eventListeners.click[1], domItem)
+    domItem = applyActiveListeners(eventName, domItem)
 
     domItem.element.dispatchEvent(new Event(eventName))
     expect(clickFn1).toHaveBeenCalledTimes(1)
     expect(clickFn2).toHaveBeenCalledTimes(1)
 
-    const result = revokeActiveListeners(domItem, eventName)
+    const result = revokeActiveListeners(eventName, domItem)
     expect(result.activeListeners).not.toHaveProperty(eventName)
 
     result.element.dispatchEvent(new Event(eventName))

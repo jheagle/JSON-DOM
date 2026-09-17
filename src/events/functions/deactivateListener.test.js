@@ -16,11 +16,11 @@ describe('deactivateListener', () => {
     let domItem = createDomItemForEvents()
     domItem = addEventToDomItem(domItem, eventName, 'clickFn', { listenerFunc: clickFn })
     expect(domItem).not.toHaveProperty('activeListeners')
-    domItem = activateListener(domItem, eventName, domItem.eventListeners.click[0])
+    domItem = activateListener(eventName, domItem.eventListeners.click[0], domItem)
     expect(domItem.activeListeners.click['0'].length).toBe(1)
     domItem.activeListeners.click['0'][0].handler(new Event(eventName))
     expect(clickFn).toHaveBeenCalled()
-    const result = deactivateListener(domItem, eventName, domItem.eventListeners.click[0])
+    const result = deactivateListener(eventName, domItem.eventListeners.click[0], domItem)
     expect(siFunciona.emptyObject(result.activeListeners.click)).toBeTruthy()
   })
 
@@ -30,12 +30,12 @@ describe('deactivateListener', () => {
     let domItem = createDomItemForEvents()
     const options = { capture: true, once: true }
     domItem = addEventToDomItem(domItem, eventName, 'clickFn', { listenerFunc: clickFn, listenerOptions: options })
-    domItem = activateListener(domItem, eventName, domItem.eventListeners.click[0])
+    domItem = activateListener(eventName, domItem.eventListeners.click[0], domItem)
     const optionIndex = '' + optionsToNumber(getListenerOptions(), options) + ''
     expect(domItem.activeListeners.click[optionIndex].length).toBe(1)
     domItem.activeListeners.click[optionIndex][0].handler(new Event(eventName))
     expect(clickFn).toHaveBeenCalled()
-    const result = deactivateListener(domItem, eventName, domItem.eventListeners.click[0])
+    const result = deactivateListener(eventName, domItem.eventListeners.click[0], domItem)
     expect(siFunciona.emptyObject(result.activeListeners.click)).toBeTruthy()
   })
 
@@ -52,13 +52,13 @@ describe('deactivateListener', () => {
       listenerFunc: clickFn,
       listenerArgs: listenerArguments
     })
-    domItem = activateListener(domItem, eventName, domItem.eventListeners.click[0])
+    domItem = activateListener(eventName, domItem.eventListeners.click[0], domItem)
     const optionIndex = '0'
     expect(domItem.activeListeners.click[optionIndex].length).toBe(1)
     const clickEvent = new Event(eventName)
     domItem.activeListeners.click[optionIndex][0].handler(clickEvent)
     expect(clickFn).toHaveBeenCalledWith(clickEvent, domItem, listenerArguments)
-    const result = deactivateListener(domItem, eventName, domItem.eventListeners.click[0])
+    const result = deactivateListener(eventName, domItem.eventListeners.click[0], domItem)
     expect(siFunciona.emptyObject(result.activeListeners.click)).toBeTruthy()
   })
 
@@ -69,15 +69,15 @@ describe('deactivateListener', () => {
     let domItem = createDomItemForEvents()
     domItem = addEventToDomItem(domItem, eventName, 'clickFn1', { listenerFunc: clickFn1 })
     domItem = addEventToDomItem(domItem, eventName, 'clickFn2', { listenerFunc: clickFn2 })
-    domItem = activateListener(domItem, eventName, domItem.eventListeners.click[0])
-    domItem = activateListener(domItem, eventName, domItem.eventListeners.click[1])
-    domItem = applyActiveListeners(domItem, eventName)
+    domItem = activateListener(eventName, domItem.eventListeners.click[0], domItem)
+    domItem = activateListener(eventName, domItem.eventListeners.click[1], domItem)
+    domItem = applyActiveListeners(eventName, domItem)
 
     domItem.element.dispatchEvent(new Event(eventName))
     expect(clickFn1).toHaveBeenCalledTimes(1)
     expect(clickFn2).toHaveBeenCalledTimes(1)
 
-    const result = deactivateListener(domItem, eventName, domItem.eventListeners.click[0])
+    const result = deactivateListener(eventName, domItem.eventListeners.click[0], domItem)
     expect(result.activeListeners.click['0'].length).toBe(1)
     expect(domItem.eventListeners.click[0].activeResponder).toBeNull()
     expect(domItem.eventListeners.click[0].listenerActive).toBe(false)

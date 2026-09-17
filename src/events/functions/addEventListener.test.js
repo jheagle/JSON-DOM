@@ -6,7 +6,7 @@ describe('addEventListener', () => {
     const item = createDomItem()
     const testFunction = () => {}
     const eventName = 'click'
-    const updatedItem = addEventListener(item, eventName, testFunction)
+    const updatedItem = addEventListener(eventName, testFunction, null, false, item)
     expect(updatedItem.eventListeners).toHaveProperty(eventName)
     expect(updatedItem.eventListeners[eventName][0].listenerFunc).toBe(testFunction)
   })

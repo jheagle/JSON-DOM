@@ -9,11 +9,11 @@ import createEventProxy from '../objects/createEventProxy.js'
  * Apply each active event listener for event type to the DOM Item's element.
  * @function
  * @memberOf module:domEvents
- * @param {DomItem} item
  * @param {EventName} eventName
+ * @param {DomItem} item
  * @return {DomItem}
  */
-const applyActiveListeners = (item, eventName) => {
+const applyActiveListeners = (eventName, item) => {
   const listenerOptions = getListenerOptions()
   const eventOptions = siFunciona.dotGet(item, `activeListeners.${eventName}`)
   if (eventOptions === null) {

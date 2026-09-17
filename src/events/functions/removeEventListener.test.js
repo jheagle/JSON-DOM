@@ -26,10 +26,10 @@ describe('removeEventListener', () => {
       parentItem: {},
       children: [item]
     })
-    activateListener(item, eventName, item.eventListeners[eventName][0])
+    activateListener(eventName, item.eventListeners[eventName][0], item)
     expect(item.activeListeners[eventName]['0'].length).toBe(1)
 
-    const updatedItem = removeEventListener(item, eventName, 'clickFn', item.eventListeners[eventName][0].listenerArgs)
+    const updatedItem = removeEventListener(eventName, 'clickFn', item.eventListeners[eventName][0].listenerArgs, undefined, item)
     expect(updatedItem.eventListeners[eventName].length).toBe(0)
     expect(updatedItem.activeListeners[eventName]).not.toHaveProperty('0')
   })
@@ -38,7 +38,7 @@ describe('removeEventListener', () => {
     const func0 = item.eventListeners[eventName][0].listenerFunc
     const func1 = item.eventListeners[eventName][1].listenerFunc
     const func2 = item.eventListeners[eventName][2].listenerFunc
-    const updatedItem = removeEventListener(item, eventName, func1, null, { once: true })
+    const updatedItem = removeEventListener(eventName, func1, null, { once: true }, item)
     const clickListeners = updatedItem.eventListeners[eventName]
     expect(clickListeners.length).toBe(2)
     expect(clickListeners[0].listenerFunc).toBe(func0)
@@ -49,7 +49,7 @@ describe('removeEventListener', () => {
     const func0 = item.eventListeners[eventName][0].listenerFunc
     const func1 = item.eventListeners[eventName][1].listenerFunc
     const func2 = item.eventListeners[eventName][2].listenerFunc
-    const updatedItem = removeEventListener(item, eventName, func2)
+    const updatedItem = removeEventListener(eventName, func2, undefined, undefined, item)
     const clickListeners = updatedItem.eventListeners[eventName]
     expect(clickListeners.length).toBe(2)
     expect(clickListeners[0].listenerFunc).toBe(func0)

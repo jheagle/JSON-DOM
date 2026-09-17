@@ -12,23 +12,31 @@ import bindListeners from './bindListeners.js'
  * 1. {@link registerListener} - store the real function in the root DomItem's eventActions, keyed by name.
  * 2. {@link addEventListener} - push an EventListener descriptor referencing that name onto item.eventListeners.
  * 3. {@link bindListeners} - activate and apply any unbound descriptors, attaching them to item.element.
+ *
+ * item is the last parameter (instead of name/customArgs/options having literal defaults) so addEventListener can
+ * be curried directly into the pipe below without an argument-reordering wrapper.
  * @function
  * @memberOf module:domEvents
- * @param {DomItem} item - The DomItem which will receive the event listener.
  * @param {EventName} eventName - The name of the trigger event (e.g. 'click').
  * @param {listenerFunction|function} listener - The function to be called when the event is triggered.
  * @param {string} [name=listener.name] - The name the listener will be registered under in eventActions.
  * @param {Object|null} [customArgs=null] - Additional args passed through to the listener when called.
  * @param {EventListenerOptions} [options=false] - Options to be used when the listener is attached to the element.
+ * @param {DomItem} item - The DomItem which will receive the event listener.
  * @returns {DomItem}
  */
-const fullAddEventListener = (item, eventName, listener, name = listener.name, customArgs = null, options = false) => pipe(
-  curry((eventName, listener, name, item) => {
-    registerListener(listener, name, getTopParentItem(item))
-    return item
-  })(eventName, listener, name),
-  curry((eventName, name, customArgs, options, item) => addEventListener(item, eventName, name, customArgs, options))(eventName, name, customArgs, options),
-  bindListeners
-)(item)
+const fullAddEventListener = (eventName, listener, name, customArgs, options, item) => {
+  name = name ?? listener.name
+  customArgs = customArgs ?? null
+  options = options ?? false
+  return pipe(
+    currentItem => {
+      registerListener(listener, name, getTopParentItem(currentItem))
+      return currentItem
+    },
+    curry(addEventListener)(eventName, name, customArgs, options),
+    bindListeners
+  )(item)
+}
 
 export default fullAddEventListener

@@ -13,7 +13,7 @@ describe('activateListener', () => {
     let domItem = createDomItemForEvents()
     domItem = addEventToDomItem(domItem, eventName, 'clickFn', { listenerFunc: clickFn })
     expect(domItem).not.toHaveProperty('activeListeners')
-    const result = activateListener(domItem, eventName, domItem.eventListeners.click[0])
+    const result = activateListener(eventName, domItem.eventListeners.click[0], domItem)
     expect(result).toHaveProperty('activeListeners')
     expect(result.activeListeners).toHaveProperty(eventName)
     expect(result.activeListeners.click).toHaveProperty('0')
@@ -28,7 +28,7 @@ describe('activateListener', () => {
     let domItem = createDomItemForEvents()
     const options = { capture: true, once: true }
     domItem = addEventToDomItem(domItem, eventName, 'clickFn', { listenerFunc: clickFn, listenerOptions: options })
-    const result = activateListener(domItem, eventName, domItem.eventListeners.click[0])
+    const result = activateListener(eventName, domItem.eventListeners.click[0], domItem)
     expect(result).toHaveProperty('activeListeners')
     expect(result.activeListeners).toHaveProperty(eventName)
     const optionIndex = '' + optionsToNumber(getListenerOptions(), options) + ''
@@ -51,7 +51,7 @@ describe('activateListener', () => {
       listenerFunc: clickFn,
       listenerArgs: listenerArguments
     })
-    const result = activateListener(domItem, eventName, domItem.eventListeners.click[0])
+    const result = activateListener(eventName, domItem.eventListeners.click[0], domItem)
     expect(result).toHaveProperty('activeListeners')
     expect(result.activeListeners).toHaveProperty(eventName)
     const optionIndex = '0'
@@ -73,7 +73,7 @@ describe('activateListener', () => {
       const newFunc = jest.fn()
       clickFunctions[name] = newFunc
       domItem = addEventToDomItem(domItem, eventName, name, { listenerFunc: newFunc })
-      domItem = activateListener(domItem, eventName, domItem.eventListeners.click[i])
+      domItem = activateListener(eventName, domItem.eventListeners.click[i], domItem)
     }
 
     expect(domItem).toHaveProperty('activeListeners')
