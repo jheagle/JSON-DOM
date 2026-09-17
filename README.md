@@ -739,7 +739,6 @@ Setting up and handling events
     * [.createEventResponder(eventHandler, [abort])](#module_domEvents.createEventResponder) ⇒ <code>EventResponder</code>
     * [.createEventProxy(event)](#module_domEvents.createEventProxy) ⇒ <code>EventProxy</code>
     * [.createEventListener([listenerProperties])](#module_domEvents.createEventListener) ⇒ <code>EventListener</code>
-    * [.commonEvents()](#module_domEvents.commonEvents) ⇒ <code>Object</code>
     * [.unassignListener(trigger, elem, fn, options)](#module_domEvents.unassignListener) ⇒ <code>listenerFunction</code> \| <code>function</code>
     * [.revokeActiveListeners(eventName, item)](#module_domEvents.revokeActiveListeners) ⇒ <code>module:domGeneral~DomItem</code>
     * [.retrieveListener(listenerName, [parent])](#module_domEvents.retrieveListener) ⇒ <code>listenerFunction</code> \| <code>function</code> \| <code>Object</code>
@@ -812,12 +811,6 @@ Prepare an eventListener object to attach to a DOMItem
 | [listenerProperties.listenerOptions] | <code>EventListenerOptions</code> | <code>false</code> | The listener options to apply to the element |
 | [listenerProperties.listenerActive] | <code>boolean</code> | <code>false</code> | Flag for listener applied to element |
 
-<a name="module_domEvents.commonEvents"></a>
-
-### domEvents.commonEvents() ⇒ <code>Object</code>
-Create the default listeners for common events.
-
-**Kind**: static method of [<code>domEvents</code>](#module_domEvents)  
 <a name="module_domEvents.unassignListener"></a>
 
 ### domEvents.unassignListener(trigger, elem, fn, options) ⇒ <code>listenerFunction</code> \| <code>function</code>
