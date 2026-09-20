@@ -4,7 +4,6 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/web.dom-collections.iterator.js')
 require('core-js/stable')
 /**
  * A wrapped Event which provides additional utilities.
@@ -29,7 +28,10 @@ const createEventProxy = event => new Proxy(Object.defineProperty(event, 'immedi
     if (prop === 'stopImmediatePropagation') {
       thisEvent.immediatePropagationStopped = true
     }
-    return Reflect.get(...arguments)
+    // Read from the event itself rather than the proxy: Event's methods and accessors rely on internal slots
+    // (private fields since Node 24), which throw when `this` is the proxy.
+    const value = Reflect.get(thisEvent, prop)
+    return typeof value === 'function' && prop !== 'constructor' ? value.bind(thisEvent) : value
   }
 })
 var _default = exports.default = createEventProxy
