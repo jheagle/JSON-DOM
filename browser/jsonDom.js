@@ -979,7 +979,6 @@
       value: true
     })
     exports.default = void 0
-    require('core-js/modules/web.dom-collections.iterator.js')
     require('core-js/stable')
     /**
  * A wrapped Event which provides additional utilities.
@@ -1004,11 +1003,14 @@
         if (prop === 'stopImmediatePropagation') {
           thisEvent.immediatePropagationStopped = true
         }
-        return Reflect.get(...arguments)
+        // Read from the event itself rather than the proxy: Event's methods and accessors rely on internal slots
+        // (private fields since Node 24), which throw when `this` is the proxy.
+        const value = Reflect.get(thisEvent, prop)
+        return typeof value === 'function' && prop !== 'constructor' ? value.bind(thisEvent) : value
       }
     })
     var _default = exports.default = createEventProxy
-  }, { 'core-js/modules/web.dom-collections.iterator.js': 679, 'core-js/stable': 701 }],
+  }, { 'core-js/stable': 701 }],
   24: [function (require, module, exports) {
     'use strict'
 

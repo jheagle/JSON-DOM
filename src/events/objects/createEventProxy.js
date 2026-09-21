@@ -25,7 +25,10 @@ const createEventProxy = event => new Proxy(
       if (prop === 'stopImmediatePropagation') {
         thisEvent.immediatePropagationStopped = true
       }
-      return Reflect.get(...arguments)
+      // Read from the event itself rather than the proxy: Event's methods and accessors rely on internal slots
+      // (private fields since Node 24), which throw when `this` is the proxy.
+      const value = Reflect.get(thisEvent, prop)
+      return typeof value === 'function' && prop !== 'constructor' ? value.bind(thisEvent) : value
     }
   }
 )
