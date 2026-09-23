@@ -5,9 +5,9 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
-var _gatherChildItems = _interopRequireDefault(require('./gatherChildItems.js'))
-var _getChildTest = _interopRequireDefault(require('./getChildTest.js'))
+const _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
+const _gatherChildItems = _interopRequireDefault(require('./gatherChildItems.js'))
+const _getChildTest = _interopRequireDefault(require('./getChildTest.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
@@ -22,8 +22,5 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * criteria
  * @returns {Array.<DomItem>}
  */
-const getChildrenFromAttribute = function (attr, value) {
-  const item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default.body
-  return (0, _gatherChildItems.default)(item, (0, _getChildTest.default)(attr, value))
-}
-var _default = exports.default = getChildrenFromAttribute
+const getChildrenFromAttribute = (attr, value, item = _documentItem.default.body) => (0, _gatherChildItems.default)(item, (0, _getChildTest.default)(attr, value))
+const _default = exports.default = getChildrenFromAttribute

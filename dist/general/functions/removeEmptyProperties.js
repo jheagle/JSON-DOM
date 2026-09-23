@@ -8,7 +8,7 @@ require('core-js/modules/es.array.includes.js')
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.for-each.js')
 require('core-js/stable')
-var _siFunciona = _interopRequireDefault(require('si-funciona'))
+const _siFunciona = _interopRequireDefault(require('si-funciona'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Check if the value is an empty object / array, or if it is null or undefined.
@@ -25,8 +25,7 @@ const isEmpty = propertyValue => _siFunciona.default.emptyObject(propertyValue) 
  * @param {Array} propertiesToDelete - Optional array of additional property names to remove.
  * @returns {DomItem}
  */
-const removeEmptyProperties = function (item) {
-  const propertiesToDelete = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : []
+const removeEmptyProperties = (item, propertiesToDelete = []) => {
   item.children.forEach(child => {
     removeEmptyProperties(child, propertiesToDelete)
   })
@@ -38,4 +37,4 @@ const removeEmptyProperties = function (item) {
   })
   return item
 }
-var _default = exports.default = removeEmptyProperties
+const _default = exports.default = removeEmptyProperties

@@ -5,14 +5,13 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/modules/es.array.includes.js')
-require('core-js/modules/es.regexp.exec.js')
 require('core-js/stable')
-var _bindListeners = _interopRequireDefault(require('../../events/functions/bindListeners.js'))
-var _deactivateListeners = _interopRequireDefault(require('../../events/functions/deactivateListeners.js'))
-var _domItemChanges = _interopRequireDefault(require('./domItemChanges.js'))
-var _siFunciona = _interopRequireDefault(require('si-funciona'))
-var _generateElement = _interopRequireDefault(require('./generateElement.js'))
-var _updateChildNodes = _interopRequireDefault(require('./updateChildNodes.js'))
+const _bindListeners = _interopRequireDefault(require('../../events/functions/bindListeners.js'))
+const _deactivateListeners = _interopRequireDefault(require('../../events/functions/deactivateListeners.js'))
+const _domItemChanges = _interopRequireDefault(require('./domItemChanges.js'))
+const _siFunciona = _interopRequireDefault(require('si-funciona'))
+const _generateElement = _interopRequireDefault(require('./generateElement.js'))
+const _updateChildNodes = _interopRequireDefault(require('./updateChildNodes.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties.
@@ -96,4 +95,4 @@ const updateElement = domItem => {
   }
   return (0, _bindListeners.default)(domItem)
 }
-var _default = exports.default = updateElement
+const _default = exports.default = updateElement

@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _createEventListener = _interopRequireDefault(require('../objects/createEventListener'))
+const _createEventListener = _interopRequireDefault(require('../objects/createEventListener'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Create an EventListener descriptor and push it onto a DomItem's eventListeners for the given event name.
@@ -29,10 +29,10 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @returns {module:domGeneral~DomItem} The same DomItem, with the new EventListener descriptor appended.
  */
 const addEventListener = (eventName, listenerFunction, customArgs, options, item) => {
-  customArgs = customArgs !== null && customArgs !== void 0 ? customArgs : null
-  options = options !== null && options !== void 0 ? options : false
+  customArgs = customArgs ?? null
+  options = options ?? false
   if (typeof listenerFunction === 'function') {
-    console.warn('addEventListener: attaching a raw function directly for "'.concat(eventName, '" instead of a name registered via ') + 'registerListener. This works, but the listener will not be discoverable via eventActions, cannot be ' + 'shared by name across DomItems, and will be silently dropped by domItemToJson (JSON.stringify omits ' + 'function values). Prefer fullAddEventListener with a name unless this one-off behavior is intentional.')
+    console.warn(`addEventListener: attaching a raw function directly for "${eventName}" instead of a name registered via ` + 'registerListener. This works, but the listener will not be discoverable via eventActions, cannot be ' + 'shared by name across DomItems, and will be silently dropped by domItemToJson (JSON.stringify omits ' + 'function values). Prefer fullAddEventListener with a name unless this one-off behavior is intentional.')
   }
   if (typeof item.eventListeners === 'undefined') {
     item.eventListeners = {}
@@ -48,4 +48,4 @@ const addEventListener = (eventName, listenerFunction, customArgs, options, item
   }))
   return item
 }
-var _default = exports.default = addEventListener
+const _default = exports.default = addEventListener

@@ -7,8 +7,8 @@ exports.default = void 0
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.map.js')
 require('core-js/stable')
-var _getAssignedStyles2 = _interopRequireDefault(require('./getAssignedStyles.js'))
-var _siFunciona = _interopRequireDefault(require('si-funciona'))
+const _getAssignedStyles = _interopRequireDefault(require('./getAssignedStyles.js'))
+const _siFunciona = _interopRequireDefault(require('si-funciona'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
@@ -18,10 +18,8 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @param {string|Object<string, string>} attr
  * @returns {int|Object.<string, number>}
  */
-const checkStyles = function (element) {
-  var _getAssignedStyles
-  const attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
-  const assignedStyles = (_getAssignedStyles = (0, _getAssignedStyles2.default)(element.style)) !== null && _getAssignedStyles !== void 0 ? _getAssignedStyles : {}
+const checkStyles = (element, attr = {}) => {
+  const assignedStyles = (0, _getAssignedStyles.default)(element.style) ?? {}
   if (_siFunciona.default.emptyObject(assignedStyles)) {
     return 1
   }
@@ -36,8 +34,7 @@ const checkStyles = function (element) {
  * @param {string} attr
  * @returns {int|Object.<string, number>}
  */
-const checkClasses = function (element) {
-  let attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ''
+const checkClasses = (element, attr = '') => {
   if (typeof attr !== 'string') {
     // Somehow an empty object got in here one time
     attr = ''
@@ -78,4 +75,4 @@ const elementHasAttribute = (element, key, attr) => {
   }
   return 1
 }
-var _default = exports.default = elementHasAttribute
+const _default = exports.default = elementHasAttribute

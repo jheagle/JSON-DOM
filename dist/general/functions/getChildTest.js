@@ -14,4 +14,4 @@ require('core-js/stable')
  * @returns {module:domGeneral~testChildItem}
  */
 const getChildTest = (attr, value) => (item, gatheredResults) => item.attributes[attr] && item.attributes[attr] === value ? gatheredResults.concat([item]) : gatheredResults
-var _default = exports.default = getChildTest
+const _default = exports.default = getChildTest

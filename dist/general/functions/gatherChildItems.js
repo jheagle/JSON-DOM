@@ -31,4 +31,4 @@ require('core-js/stable')
  * @returns {Array.<DomItem>}
  */
 const gatherChildItems = (item, test) => test(item, item.children.reduce((a, b) => a.concat(gatherChildItems(b, test)), []))
-var _default = exports.default = gatherChildItems
+const _default = exports.default = gatherChildItems

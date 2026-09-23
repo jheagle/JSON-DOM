@@ -23,8 +23,7 @@ require('core-js/stable')
  * @param {AbortController|boolean|null} [abort=null] - Assign an AbortSignal provided or create one (if true), otherwise null.
  * @return {EventResponder}
  */
-const createEventResponder = function (eventHandler) {
-  let abort = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null
+const createEventResponder = (eventHandler, abort = null) => {
   if (abort === true) {
     abort = new AbortController()
   }
@@ -37,4 +36,4 @@ const createEventResponder = function (eventHandler) {
     assignedHandler: null
   })
 }
-var _default = exports.default = createEventResponder
+const _default = exports.default = createEventResponder

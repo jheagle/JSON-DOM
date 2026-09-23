@@ -5,10 +5,10 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _appendChild = _interopRequireDefault(require('./appendChild.js'))
-var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
-var _setParentItemReferences = _interopRequireDefault(require('./setParentItemReferences.js'))
-var _updateElements = _interopRequireDefault(require('./updateElements.js'))
+const _appendChild = _interopRequireDefault(require('./appendChild.js'))
+const _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
+const _setParentItemReferences = _interopRequireDefault(require('./setParentItemReferences.js'))
+const _updateElements = _interopRequireDefault(require('./updateElements.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * This is a shortcut for syncing a Virtual DOM (DomItem tree) item onto the real HTML DOM: builds the real elements
@@ -18,8 +18,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @param {DomItem|null} item - The DomItem that we want to render the element for
  * @returns {DomItem}
  */
-const renderHtml = function () {
-  const item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null
+const renderHtml = (item = null) => {
   let itemToRender = item
   if (item === null) {
     itemToRender = _documentItem.default
@@ -30,6 +29,6 @@ const renderHtml = function () {
   }
   // Render the elements and return either to original reference, or updated documentItem (whichever is available)
   const updatedItem = (0, _updateElements.default)((0, _setParentItemReferences.default)(itemToRender))
-  return item !== null && item !== void 0 ? item : updatedItem
+  return item ?? updatedItem
 }
-var _default = exports.default = renderHtml
+const _default = exports.default = renderHtml

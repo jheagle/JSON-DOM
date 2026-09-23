@@ -5,8 +5,8 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _createDomItem = _interopRequireDefault(require('./createDomItem.js'))
-var _onBodyLoad = _interopRequireDefault(require('si-funciona/dist/helpers/functions/onBodyLoad'))
+const _createDomItem = _interopRequireDefault(require('./createDomItem.js'))
+const _onBodyLoad = _interopRequireDefault(require('si-funciona/dist/helpers/functions/onBodyLoad'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * DomItemHead defines the structure for a single element in the Dom
@@ -57,4 +57,4 @@ const initChildren = () => {
   }
   return children
 }
-var _default = exports.default = initChildren
+const _default = exports.default = initChildren

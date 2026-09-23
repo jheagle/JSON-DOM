@@ -83,20 +83,15 @@ require('core-js/stable')
  * @param {boolean} [listenerProperties.listenerActive=false] - Flag for listener applied to element
  * @returns {EventListener} An EventListener descriptor ready to be pushed onto a DomItem's eventListeners
  */
-const createEventListener = function () {
-  const _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
-  const listenerFunc = _ref.listenerFunc
-  const _ref$listenerArgs = _ref.listenerArgs
-  const listenerArgs = _ref$listenerArgs === void 0 ? null : _ref$listenerArgs
-  const _ref$listenerOptions = _ref.listenerOptions
-  const listenerOptions = _ref$listenerOptions === void 0 ? false : _ref$listenerOptions
-  const _ref$listenerActive = _ref.listenerActive
-  const listenerActive = _ref$listenerActive === void 0 ? false : _ref$listenerActive
-  return {
-    listenerFunc,
-    listenerArgs,
-    listenerOptions,
-    listenerActive
-  }
-}
-var _default = exports.default = createEventListener
+const createEventListener = ({
+  listenerFunc,
+  listenerArgs = null,
+  listenerOptions = false,
+  listenerActive = false
+} = {}) => ({
+  listenerFunc,
+  listenerArgs,
+  listenerOptions,
+  listenerActive
+})
+const _default = exports.default = createEventListener

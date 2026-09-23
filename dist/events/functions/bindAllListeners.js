@@ -4,9 +4,8 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 })
 exports.default = void 0
-require('core-js/modules/web.dom-collections.iterator.js')
 require('core-js/stable')
-var _bindListeners = _interopRequireDefault(require('./bindListeners.js'))
+const _bindListeners = _interopRequireDefault(require('./bindListeners.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Based on the eventListeners property of the provided item, bind the listeners to the associated element property
@@ -24,4 +23,4 @@ const bindAllListeners = item => {
   }
   return (0, _bindListeners.default)(item)
 }
-var _default = exports.default = bindAllListeners
+const _default = exports.default = bindAllListeners

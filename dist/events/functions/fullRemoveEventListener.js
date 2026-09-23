@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _removeEventListener = _interopRequireDefault(require('./removeEventListener.js'))
+const _removeEventListener = _interopRequireDefault(require('./removeEventListener.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Find and remove a listener that was registered by name (e.g. via {@link fullAddEventListener}) - the counterpart
@@ -28,7 +28,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @returns {DomItem} The same DomItem, with the matching listener removed if one was found.
  */
 const fullRemoveEventListener = (eventName, listener, name, customArgs, options, item) => {
-  name = name !== null && name !== void 0 ? name : listener.name
+  name = name ?? listener.name
   return (0, _removeEventListener.default)(eventName, name, customArgs, options, item)
 }
-var _default = exports.default = fullRemoveEventListener
+const _default = exports.default = fullRemoveEventListener

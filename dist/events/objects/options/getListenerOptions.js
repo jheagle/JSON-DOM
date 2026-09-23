@@ -22,4 +22,4 @@ const getListenerOptions = () => ({
   passive: PASSIVE,
   signal: SIGNAL
 })
-var _default = exports.default = getListenerOptions
+const _default = exports.default = getListenerOptions

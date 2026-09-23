@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _siFunciona = _interopRequireDefault(require('si-funciona'))
+const _siFunciona = _interopRequireDefault(require('si-funciona'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Take the given options and convert them (using binary) to an integer. Given listener options, each one is assigned a
@@ -22,4 +22,4 @@ const optionsToNumber = (optionsTemplate, listenerOptions) => {
   }
   return _siFunciona.default.reduceObject(optionsTemplate, (binaryOptions, flag, name) => listenerOptions[name] ? binaryOptions | flag : binaryOptions, 0)
 }
-var _default = exports.default = optionsToNumber
+const _default = exports.default = optionsToNumber

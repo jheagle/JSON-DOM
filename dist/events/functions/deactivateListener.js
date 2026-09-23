@@ -5,11 +5,11 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _siFunciona = _interopRequireDefault(require('si-funciona'))
-var _getListenerOptions = _interopRequireDefault(require('../objects/options/getListenerOptions.js'))
-var _optionsToNumber = _interopRequireDefault(require('../objects/options/optionsToNumber.js'))
-var _numberToOptions = _interopRequireDefault(require('../objects/options/numberToOptions.js'))
-var _unassignListener = _interopRequireDefault(require('./unassignListener.js'))
+const _siFunciona = _interopRequireDefault(require('si-funciona'))
+const _getListenerOptions = _interopRequireDefault(require('../objects/options/getListenerOptions.js'))
+const _optionsToNumber = _interopRequireDefault(require('../objects/options/optionsToNumber.js'))
+const _numberToOptions = _interopRequireDefault(require('../objects/options/numberToOptions.js'))
+const _unassignListener = _interopRequireDefault(require('./unassignListener.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Deactivate a single listener: detach it from the element (if it was actually attached) and remove it from
@@ -23,7 +23,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @returns {module:domGeneral~DomItem} The same DomItem, with this listener detached and marked inactive.
  */
 const deactivateListener = (eventName, eventListener, item) => {
-  const eventOptions = _siFunciona.default.dotGet(item, 'activeListeners.'.concat(eventName))
+  const eventOptions = _siFunciona.default.dotGet(item, `activeListeners.${eventName}`)
   if (eventOptions === null || !eventListener.activeResponder) {
     return item
   }
@@ -35,9 +35,11 @@ const deactivateListener = (eventName, eventListener, item) => {
   }
   if (eventListener.activeResponder.assignedHandler) {
     const optionsToUse = (0, _numberToOptions.default)(listenerOptions, optionIdentifier)
-    const finalOptions = optionsToUse.signal ? Object.assign({}, optionsToUse, {
-      signal: eventListener.activeResponder.abort.signal
-    }) : (delete optionsToUse.signal, optionsToUse);
+    const finalOptions = optionsToUse.signal
+      ? Object.assign({}, optionsToUse, {
+        signal: eventListener.activeResponder.abort.signal
+      })
+      : (delete optionsToUse.signal, optionsToUse);
     (0, _unassignListener.default)(eventName, item.element, eventListener.activeResponder.assignedHandler, finalOptions)
   }
   const responderIndex = bucket.indexOf(eventListener.activeResponder)
@@ -51,4 +53,4 @@ const deactivateListener = (eventName, eventListener, item) => {
   eventListener.listenerActive = false
   return item
 }
-var _default = exports.default = deactivateListener
+const _default = exports.default = deactivateListener

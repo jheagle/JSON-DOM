@@ -17,4 +17,4 @@ const removeChild = (parent, child) => {
   parent.element.removeChild(child.element)
   return parent.children.splice(parent.children.indexOf(child), 1)
 }
-var _default = exports.default = removeChild
+const _default = exports.default = removeChild

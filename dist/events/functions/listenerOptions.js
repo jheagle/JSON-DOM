@@ -30,4 +30,4 @@ const listenerOptions = options => {
   }
   return typeof options === 'object' && listenerOptions.supportsOptions ? options : false
 }
-var _default = exports.default = listenerOptions
+const _default = exports.default = listenerOptions

@@ -34,4 +34,4 @@ const createEventProxy = event => new Proxy(Object.defineProperty(event, 'immedi
     return typeof value === 'function' && prop !== 'constructor' ? value.bind(thisEvent) : value
   }
 })
-var _default = exports.default = createEventProxy
+const _default = exports.default = createEventProxy

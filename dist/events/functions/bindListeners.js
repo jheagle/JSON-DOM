@@ -5,8 +5,8 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _bindElementListeners = _interopRequireDefault(require('./bindElementListeners.js'))
-var _siFunciona = _interopRequireDefault(require('si-funciona'))
+const _bindElementListeners = _interopRequireDefault(require('./bindElementListeners.js'))
+const _siFunciona = _interopRequireDefault(require('si-funciona'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Based on the eventListeners property of the provided item, bind the
@@ -18,4 +18,4 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @returns {DomItem}
  */
 const bindListeners = item => !_siFunciona.default.emptyObject(item.eventListeners) && item.element ? (0, _bindElementListeners.default)(item) : item
-var _default = exports.default = bindListeners
+const _default = exports.default = bindListeners
