@@ -4,6 +4,7 @@
 import createDomItem from '../objects/createDomItem.js'
 import renderHtml from './renderHtml.js'
 import documentItem from '../objects/documentItem.js'
+import documentDomItem from '../objects/documentDomItem.js'
 import fullAddEventListener from '../../events/functions/fullAddEventListener.js'
 
 describe('renderHtml', () => {
@@ -25,6 +26,24 @@ describe('renderHtml', () => {
     expect(updated).toBe(documentItem)
     expect(updated.body.children[0].nodeName).toBe('div')
     expect(updated.body.children[0].element.nodeName.toLowerCase()).toBe('div')
+  })
+
+  // The real bug this covers: battleship (a downstream consumer) builds its own document via documentDomItem (so
+  // its eventActions - the registered listener functions - stay private, not on the public documentItem singleton),
+  // then calls renderHtml(item, ownDocument.body) expecting it to append there. Before this fix, the second
+  // argument was silently ignored and everything landed on the singleton instead - orphaning it from the document
+  // (and its eventActions) the caller actually meant to render into.
+  test('an explicit parent is used instead of the singleton documentItem, when given', () => {
+    const ownDocument = documentDomItem({ someAction: () => 'ran' })
+    const item = createDomItem({ nodeName: 'form' })
+    const singletonChildrenBefore = documentItem.body.children.length
+
+    const updated = renderHtml(item, ownDocument.body)
+
+    expect(ownDocument.body.children).toContain(updated)
+    expect(updated.parentItem).toBe(ownDocument.body)
+    // nothing leaked onto the public singleton
+    expect(documentItem.body.children.length).toBe(singletonChildrenBefore)
   })
 
   test('a listener survives a nodeName-driven re-render through the real pipeline, and children stay attached', () => {
