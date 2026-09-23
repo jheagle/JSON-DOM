@@ -75,7 +75,7 @@ Core Virtual DOM (DomItem tree) management
         * [.updateChildren(domItem)](#module_domGeneral.updateChildren) ⇒ <code>DomItem</code>
         * [.updateChildNodes(domItem)](#module_domGeneral.updateChildNodes) ⇒ <code>DomItem</code>
         * [.setParentItemReferences(item)](#module_domGeneral.setParentItemReferences) ⇒ <code>DomItem</code>
-        * [.renderHtml(item)](#module_domGeneral.renderHtml) ⇒ <code>DomItem</code>
+        * [.renderHtml(item, [parent])](#module_domGeneral.renderHtml) ⇒ <code>DomItem</code>
         * [.removeEmptyProperties(item, propertiesToDelete)](#module_domGeneral.removeEmptyProperties) ⇒ <code>DomItem</code>
         * [.removeChild(parent, child)](#module_domGeneral.removeChild) ⇒ <code>Array.&lt;DomItem&gt;</code>
         * [.jsonToDomItem(jsonString)](#module_domGeneral.jsonToDomItem) ⇒ <code>DomItem</code>
@@ -255,14 +255,15 @@ For each child of this item, set the parentItem references.
 
 <a name="module_domGeneral.renderHtml"></a>
 
-### domGeneral.renderHtml(item) ⇒ <code>DomItem</code>
-This is a shortcut for syncing a Virtual DOM (DomItem tree) item onto the real HTML DOM: builds the real elementsfor it and its descendants, appends them to the live document, and binds their associated listeners.
+### domGeneral.renderHtml(item, [parent]) ⇒ <code>DomItem</code>
+This is a shortcut for syncing a Virtual DOM (DomItem tree) item onto the real HTML DOM: builds the real elementsfor it and its descendants, appends them to parent (the document body by default), and binds their associatedlisteners.
 
 **Kind**: static method of [<code>domGeneral</code>](#module_domGeneral)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | item | <code>DomItem</code> \| <code>null</code> | <code></code> | The DomItem that we want to render the element for |
+| [parent] | <code>DomItem</code> |  | Where to append item, when it does not already have a parent - defaults to the document body, so passing nothing keeps working exactly as before |
 
 <a name="module_domGeneral.removeEmptyProperties"></a>
 
