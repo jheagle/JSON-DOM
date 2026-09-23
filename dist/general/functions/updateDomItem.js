@@ -5,8 +5,8 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _siFunciona = _interopRequireDefault(require('si-funciona'))
-var _elementChanges = _interopRequireDefault(require('./elementChanges.js'))
+const _siFunciona = _interopRequireDefault(require('si-funciona'))
+const _elementChanges = _interopRequireDefault(require('./elementChanges.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
@@ -44,4 +44,4 @@ const updateDomItem = config => {
   }
   return config
 }
-var _default = exports.default = updateDomItem
+const _default = exports.default = updateDomItem

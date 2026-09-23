@@ -5,8 +5,8 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _setParentItemReferences = _interopRequireDefault(require('./setParentItemReferences.js'))
-var _addDomItemProperties = _interopRequireDefault(require('./addDomItemProperties.js'))
+const _setParentItemReferences = _interopRequireDefault(require('./setParentItemReferences.js'))
+const _addDomItemProperties = _interopRequireDefault(require('./addDomItemProperties.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Convert DOM Item to JSON string.
@@ -24,4 +24,4 @@ const jsonToDomItem = jsonString => {
   }
   return parsedJson
 }
-var _default = exports.default = jsonToDomItem
+const _default = exports.default = jsonToDomItem

@@ -22,4 +22,4 @@ const getTopParentItem = item => {
   }
   return Object.keys(item.parentItem).length ? getTopParentItem(item.parentItem) : item
 }
-var _default = exports.default = getTopParentItem
+const _default = exports.default = getTopParentItem

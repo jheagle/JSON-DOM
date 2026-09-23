@@ -5,9 +5,9 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _getListenerOptions = _interopRequireDefault(require('./options/getListenerOptions.js'))
-var _numberToOptions = _interopRequireDefault(require('./options/numberToOptions.js'))
-var _optionsToNumber = _interopRequireDefault(require('./options/optionsToNumber.js'))
+const _getListenerOptions = _interopRequireDefault(require('./options/getListenerOptions.js'))
+const _numberToOptions = _interopRequireDefault(require('./options/numberToOptions.js'))
+const _optionsToNumber = _interopRequireDefault(require('./options/optionsToNumber.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * @file Be able to use Flags (Options) in a well-formed way.
@@ -33,7 +33,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * Object containing available Option names and the Flag value associated with each.
  * @typedef {Object.<string, Flag>} OptionsTemplate
  */
-var _default = exports.default = {
+const _default = exports.default = {
   getListenerOptions: _getListenerOptions.default,
   numberToOptions: _numberToOptions.default,
   optionsToNumber: _optionsToNumber.default

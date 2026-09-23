@@ -5,8 +5,8 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _siFunciona = _interopRequireDefault(require('si-funciona'))
-var _getParentsFromAttribute = _interopRequireDefault(require('./getParentsFromAttribute.js'))
+const _siFunciona = _interopRequireDefault(require('si-funciona'))
+const _getParentsFromAttribute = _interopRequireDefault(require('./getParentsFromAttribute.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Helper for getting all domGeneral.DomItems starting at child and having specified className attribute
@@ -18,4 +18,4 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @returns {Array}
  */
 const getParentsByClass = _siFunciona.default.curry(_getParentsFromAttribute.default)('className')
-var _default = exports.default = getParentsByClass
+const _default = exports.default = getParentsByClass

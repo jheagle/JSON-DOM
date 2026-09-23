@@ -5,8 +5,8 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _optionsToNumber = _interopRequireDefault(require('../objects/options/optionsToNumber.js'))
-var _siFunciona = _interopRequireDefault(require('si-funciona'))
+const _optionsToNumber = _interopRequireDefault(require('../objects/options/optionsToNumber.js'))
+const _siFunciona = _interopRequireDefault(require('si-funciona'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Search a DOM item's eventListeners for a specific event listener, matched by listener function, custom args, and
@@ -25,8 +25,8 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * found, index is -1 and matchingListener is undefined.
  */
 const findEventListener = (eventName, listenerFunction, customArgs, options, item) => {
-  customArgs = customArgs !== null && customArgs !== void 0 ? customArgs : null
-  options = options !== null && options !== void 0 ? options : false
+  customArgs = customArgs ?? null
+  options = options ?? false
   if (!_siFunciona.default.isObject(item.eventListeners)) {
     return [-1, undefined]
   }
@@ -44,4 +44,4 @@ const findEventListener = (eventName, listenerFunction, customArgs, options, ite
   })
   return [listenerIndex, item.eventListeners[eventName][listenerIndex]]
 }
-var _default = exports.default = findEventListener
+const _default = exports.default = findEventListener

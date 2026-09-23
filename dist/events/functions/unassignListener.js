@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _listenerOptions = _interopRequireDefault(require('./listenerOptions.js'))
+const _listenerOptions = _interopRequireDefault(require('./listenerOptions.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Provide compatibility for unassigning listeners.
@@ -19,8 +19,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * fired
  * @returns {listenerFunction|Function}
  */
-const unassignListener = function (trigger, elem, fn) {
-  const options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false
+const unassignListener = (trigger, elem, fn, options = false) => {
   // Removing a listener may be done differently based on the browser support
   if (elem.removeEventListener) {
     // Latest support is provided from removeEventListener with the options parameter varying slightly
@@ -28,4 +27,4 @@ const unassignListener = function (trigger, elem, fn) {
   }
   return fn
 }
-var _default = exports.default = unassignListener
+const _default = exports.default = unassignListener

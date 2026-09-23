@@ -23,4 +23,4 @@ const deactivateListeners = item => {
   delete item.activeListeners
   return item
 }
-var _default = exports.default = deactivateListeners
+const _default = exports.default = deactivateListeners

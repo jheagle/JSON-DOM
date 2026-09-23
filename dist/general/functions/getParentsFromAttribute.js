@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
+const _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
@@ -20,8 +20,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * attribute criteria
  * @returns {Array}
  */
-const getParentsFromAttribute = function (attr, value) {
-  const item = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _documentItem.default.body
+const getParentsFromAttribute = (attr, value, item = _documentItem.default.body) => {
   if (item.parentItem === null) {
     if (item.nodeName === '#document') {
       throw new Error('Root parent item must be an empty object, null reference found.')
@@ -30,4 +29,4 @@ const getParentsFromAttribute = function (attr, value) {
   }
   return Object.keys(item.parentItem).length ? (item.parentItem.attributes[attr] || item[attr] || false) === value ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem]) : getParentsFromAttribute(attr, value, item.parentItem) : []
 }
-var _default = exports.default = getParentsFromAttribute
+const _default = exports.default = getParentsFromAttribute

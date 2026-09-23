@@ -5,8 +5,8 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _siFunciona = _interopRequireDefault(require('si-funciona'))
-var _documentItem = _interopRequireDefault(require('../../general/objects/documentItem.js'))
+const _siFunciona = _interopRequireDefault(require('si-funciona'))
+const _documentItem = _interopRequireDefault(require('../../general/objects/documentItem.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Register multiple listeners from an array of functions.
@@ -17,9 +17,8 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which has eventActions property.
  * @returns {DomItemRoot|Object}
  */
-const registerListeners = function (listeners) {
-  const parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _documentItem.default
+const registerListeners = (listeners, parent = _documentItem.default) => {
   _siFunciona.default.mergeObjectsMutable(parent.eventActions, listeners)
   return parent
 }
-var _default = exports.default = registerListeners
+const _default = exports.default = registerListeners

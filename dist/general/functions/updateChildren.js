@@ -8,7 +8,7 @@ require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.find.js')
 require('core-js/modules/esnext.iterator.for-each.js')
 require('core-js/stable')
-var _createDomItem = _interopRequireDefault(require('../objects/createDomItem'))
+const _createDomItem = _interopRequireDefault(require('../objects/createDomItem'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Update all the children for this domItem to match the domItem element childNodes.
@@ -26,7 +26,7 @@ const updateChildren = domItem => {
   domItem.children = []
   domItem.element.childNodes.forEach((childNode, index) => {
     const existing = previousChildren.find(child => child.element === childNode)
-    const child = existing !== null && existing !== void 0 ? existing : (0, _createDomItem.default)({
+    const child = existing ?? (0, _createDomItem.default)({
       nodeName: childNode.nodeName.toLowerCase(),
       nodeValue: childNode.nodeValue,
       element: childNode
@@ -36,4 +36,4 @@ const updateChildren = domItem => {
   })
   return domItem
 }
-var _default = exports.default = updateChildren
+const _default = exports.default = updateChildren

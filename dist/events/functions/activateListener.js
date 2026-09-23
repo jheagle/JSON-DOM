@@ -5,12 +5,12 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _getTopParentItem = _interopRequireDefault(require('../../general/functions/getTopParentItem.js'))
-var _makeEventHandler = _interopRequireDefault(require('./makeEventHandler.js'))
-var _createEventResponder = _interopRequireDefault(require('../objects/createEventResponder.js'))
-var _getListenerOptions = _interopRequireDefault(require('../objects/options/getListenerOptions.js'))
-var _optionsToNumber = _interopRequireDefault(require('../objects/options/optionsToNumber.js'))
-var _retrieveListener = _interopRequireDefault(require('./retrieveListener.js'))
+const _getTopParentItem = _interopRequireDefault(require('../../general/functions/getTopParentItem.js'))
+const _makeEventHandler = _interopRequireDefault(require('./makeEventHandler.js'))
+const _createEventResponder = _interopRequireDefault(require('../objects/createEventResponder.js'))
+const _getListenerOptions = _interopRequireDefault(require('../objects/options/getListenerOptions.js'))
+const _optionsToNumber = _interopRequireDefault(require('../objects/options/optionsToNumber.js'))
+const _retrieveListener = _interopRequireDefault(require('./retrieveListener.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Activate listener by pushing it to activeListeners.
@@ -40,4 +40,4 @@ const activateListener = (eventName, eventListener, item) => {
   eventListener.activeResponder = eventResponder
   return item
 }
-var _default = exports.default = activateListener
+const _default = exports.default = activateListener

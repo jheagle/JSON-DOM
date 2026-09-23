@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _updateElement = _interopRequireDefault(require('./updateElement.js'))
+const _updateElement = _interopRequireDefault(require('./updateElement.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Create a new DOM Node based on name and data.
@@ -15,8 +15,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @param {string|null} data
  * @returns {Text|Comment|HTMLElement}
  */
-const makeElementType = function (nodeName) {
-  const data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null
+const makeElementType = (nodeName, data = null) => {
   switch (nodeName) {
     case '#text':
       return document.createTextNode(data)
@@ -38,4 +37,4 @@ const generateElement = domItem => {
   domItem.element = makeElementType(domItem.nodeName, domItem.nodeValue)
   return (0, _updateElement.default)(domItem)
 }
-var _default = exports.default = generateElement
+const _default = exports.default = generateElement

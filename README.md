@@ -858,12 +858,7 @@ Based on the provided function / listener name, retrieve the associated function
 <a name="module_domEvents.removeEventListener"></a>
 
 ### domEvents.removeEventListener(eventName, listenerFunction, [customArgs], [options], item) ⇒ <code>module:domGeneral~DomItem</code>
-Find and remove an event listener from a DomItem: detaches it from the element first (via
-[deactivateListener](deactivateListener)) if it was active, then splices its descriptor out of eventListeners. A no-op if no
-matching listener is found.
-
-item is the last parameter (instead of customArgs/options having literal defaults) so this can be curried and
-piped directly - see [fullAddEventListener](fullAddEventListener) for an example of the pattern.
+Find and remove an event listener from a DomItem: detaches it from the element first (via[deactivateListener](deactivateListener)) if it was active, then splices its descriptor out of eventListeners. A no-op if nomatching listener is found.item is the last parameter (instead of customArgs/options having literal defaults) so this can be curried andpiped directly - see [fullAddEventListener](fullAddEventListener) for an example of the pattern.
 
 **Kind**: static method of [<code>domEvents</code>](#module_domEvents)  
 **Returns**: <code>module:domGeneral~DomItem</code> - The same DomItem, with the matching listener removed if one was found.  
@@ -928,15 +923,7 @@ Provide compatibility for using the options parameter of addEventListener
 <a name="module_domEvents.fullRemoveEventListener"></a>
 
 ### domEvents.fullRemoveEventListener(eventName, listener, [name], [customArgs], [options], item) ⇒ <code>DomItem</code>
-Find and remove a listener that was registered by name (e.g. via [fullAddEventListener](fullAddEventListener)) - the counterpart
-to fullAddEventListener. Resolves name the same way fullAddEventListener defaults it, so a caller only needs the
-original listener function (not the internal name string it was registered under) to remove it:
-1. Resolve name (defaults to listener.name, same as [fullAddEventListener](fullAddEventListener)).
-2. [removeEventListener](removeEventListener) - find the descriptor by that name, detach it from the element if active, and
-   splice it out of item.eventListeners.
-
-Does not remove the function from the root DomItem's eventActions registry, since that name may still be shared
-by other DomItems - see [registerListener](registerListener).
+Find and remove a listener that was registered by name (e.g. via [fullAddEventListener](fullAddEventListener)) - the counterpartto fullAddEventListener. Resolves name the same way fullAddEventListener defaults it, so a caller only needs theoriginal listener function (not the internal name string it was registered under) to remove it:1. Resolve name (defaults to listener.name, same as [fullAddEventListener](fullAddEventListener)).2. [removeEventListener](removeEventListener) - find the descriptor by that name, detach it from the element if active, and   splice it out of item.eventListeners.Does not remove the function from the root DomItem's eventActions registry, since that name may still be sharedby other DomItems - see [registerListener](registerListener).
 
 **Kind**: static method of [<code>domEvents</code>](#module_domEvents)  
 **Returns**: <code>DomItem</code> - The same DomItem, with the matching listener removed if one was found.  
@@ -953,14 +940,7 @@ by other DomItems - see [registerListener](registerListener).
 <a name="module_domEvents.fullAddEventListener"></a>
 
 ### domEvents.fullAddEventListener(eventName, listener, [name], [customArgs], [options], item) ⇒ <code>DomItem</code>
-Register the listener function, attach it as a descriptor on the item, then bind it onto the
-real element - the full setup sequence for a single event listener, in order:
-1. [registerListener](registerListener) - store the real function in the root DomItem's eventActions, keyed by name.
-2. [addEventListener](addEventListener) - push an EventListener descriptor referencing that name onto item.eventListeners.
-3. [bindListeners](bindListeners) - activate and apply any unbound descriptors, attaching them to item.element.
-
-item is the last parameter (instead of name/customArgs/options having literal defaults) so addEventListener can
-be curried directly into the pipe below without an argument-reordering wrapper.
+Register the listener function, attach it as a descriptor on the item, then bind it onto thereal element - the full setup sequence for a single event listener, in order:1. [registerListener](registerListener) - store the real function in the root DomItem's eventActions, keyed by name.2. [addEventListener](addEventListener) - push an EventListener descriptor referencing that name onto item.eventListeners.3. [bindListeners](bindListeners) - activate and apply any unbound descriptors, attaching them to item.element.item is the last parameter (instead of name/customArgs/options having literal defaults) so addEventListener canbe curried directly into the pipe below without an argument-reordering wrapper.
 
 **Kind**: static method of [<code>domEvents</code>](#module_domEvents)  
 
@@ -976,15 +956,10 @@ be curried directly into the pipe below without an argument-reordering wrapper.
 <a name="module_domEvents.findEventListener"></a>
 
 ### domEvents.findEventListener(eventName, listenerFunction, [customArgs], [options], item) ⇒ <code>Array.&lt;(number\|EventListener\|undefined)&gt;</code>
-Search a DOM item's eventListeners for a specific event listener, matched by listener function, custom args, and
-options. Returns its index and the matching descriptor as a tuple.
-
-item is the last parameter (instead of customArgs/options having literal defaults) so this can be curried and
-piped directly - see [fullAddEventListener](fullAddEventListener) for an example of the pattern.
+Search a DOM item's eventListeners for a specific event listener, matched by listener function, custom args, andoptions. Returns its index and the matching descriptor as a tuple.item is the last parameter (instead of customArgs/options having literal defaults) so this can be curried andpiped directly - see [fullAddEventListener](fullAddEventListener) for an example of the pattern.
 
 **Kind**: static method of [<code>domEvents</code>](#module_domEvents)  
-**Returns**: <code>Array.&lt;(number\|EventListener\|undefined)&gt;</code> - A 2-element [index, matchingListener] tuple. If no match is
-found, index is -1 and matchingListener is undefined.  
+**Returns**: <code>Array.&lt;(number\|EventListener\|undefined)&gt;</code> - A 2-element [index, matchingListener] tuple. If no match isfound, index is -1 and matchingListener is undefined.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1081,15 +1056,7 @@ Apply each active event listener for event type to the DOM Item's element.
 <a name="module_domEvents.addEventListener"></a>
 
 ### domEvents.addEventListener(eventName, listenerFunction, [customArgs], [options], item) ⇒ <code>module:domGeneral~DomItem</code>
-Create an EventListener descriptor and push it onto a DomItem's eventListeners for the given event name.
-Does not attach anything to the real element - see [bindListeners](bindListeners) or [fullAddEventListener](fullAddEventListener) for that.
-
-item is the last parameter (instead of customArgs/options having literal defaults) so this can be curried and
-piped directly - see [fullAddEventListener](fullAddEventListener) for an example.
-
-Prefer calling this through [fullAddEventListener](fullAddEventListener) with a registered name (see [registerListener](registerListener)).
-Passing a raw function directly here works, but logs a console warning - see [EventListener](EventListener)'s
-listenerFunc property for what that discretionary path gives up.
+Create an EventListener descriptor and push it onto a DomItem's eventListeners for the given event name.Does not attach anything to the real element - see [bindListeners](bindListeners) or [fullAddEventListener](fullAddEventListener) for that.item is the last parameter (instead of customArgs/options having literal defaults) so this can be curried andpiped directly - see [fullAddEventListener](fullAddEventListener) for an example.Prefer calling this through [fullAddEventListener](fullAddEventListener) with a registered name (see [registerListener](registerListener)).Passing a raw function directly here works, but logs a console warning - see [EventListener](EventListener)'slistenerFunc property for what that discretionary path gives up.
 
 **Kind**: static method of [<code>domEvents</code>](#module_domEvents)  
 **Returns**: <code>module:domGeneral~DomItem</code> - The same DomItem, with the new EventListener descriptor appended.  

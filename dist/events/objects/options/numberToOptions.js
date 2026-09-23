@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _siFunciona = _interopRequireDefault(require('si-funciona'))
+const _siFunciona = _interopRequireDefault(require('si-funciona'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Take an integer representation of the listener options and convert them to the listener options object.
@@ -16,4 +16,4 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @returns {EventListenerOptions}
  */
 const numberToOptions = (optionsTemplate, binaryOptions) => _siFunciona.default.mapObject(optionsTemplate, flag => !!(binaryOptions & flag))
-var _default = exports.default = numberToOptions
+const _default = exports.default = numberToOptions

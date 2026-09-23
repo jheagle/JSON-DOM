@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-var _listenerOptions = _interopRequireDefault(require('./listenerOptions.js'))
+const _listenerOptions = _interopRequireDefault(require('./listenerOptions.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Document attachEvent support for older browsers.
@@ -26,19 +26,18 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * fired
  * @returns {listenerFunction|Function}
  */
-const assignListener = function (trigger, elem, fn) {
-  const options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false
+const assignListener = (trigger, elem, fn, options = false) => {
   // Attaching a listener may be done differently based on the browser support
   if (elem.addEventListener) {
     // Latest support is provided from addEventListener with the options parameter varying slightly
     elem.addEventListener(trigger, fn, (0, _listenerOptions.default)(options))
   } else if (elem.attachEvent) {
     // Older browsers, especially Internet Explorer
-    elem.attachEvent('on'.concat(trigger), fn)
+    elem.attachEvent(`on${trigger}`, fn)
   } else {
     // General support for adding a new function onto the element which can be called to trigger the function
-    elem['on'.concat(trigger)] = fn
+    elem[`on${trigger}`] = fn
   }
   return fn
 }
-var _default = exports.default = assignListener
+const _default = exports.default = assignListener

@@ -6,11 +6,10 @@ Object.defineProperty(exports, '__esModule', {
 exports.default = void 0
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.reduce.js')
-require('core-js/modules/web.dom-collections.iterator.js')
 require('core-js/stable')
-var _siFunciona = _interopRequireDefault(require('si-funciona'))
-var _elementHasAttribute = _interopRequireDefault(require('./elementHasAttribute.js'))
-var _createChangeList = _interopRequireDefault(require('../objects/createChangeList.js'))
+const _siFunciona = _interopRequireDefault(require('si-funciona'))
+const _elementHasAttribute = _interopRequireDefault(require('./elementHasAttribute.js'))
+const _createChangeList = _interopRequireDefault(require('../objects/createChangeList.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * @typedef {module:objectHelpers~mapCallback} testAttributeChange
@@ -55,8 +54,7 @@ const checkAttribute = element => (attr, key) => {
  * @returns {Object.<string, *>}
  */
 const kabobCaseAttributes = attributesToSet => _siFunciona.default.reduceObject(attributesToSet, (attributes, value, name) => {
-  var _attributesToSet$name
-  let attrValue = (_attributesToSet$name = attributesToSet[name]) !== null && _attributesToSet$name !== void 0 ? _attributesToSet$name : value
+  let attrValue = attributesToSet[name] ?? value
   if (_siFunciona.default.isObject(attrValue)) {
     attrValue = kabobCaseAttributes(attrValue)
   }
@@ -122,13 +120,13 @@ const domItemChanges = domItem => {
     if (key === 'class') {
       changed.removed = result.reduce((removed, results) => {
         if (results.result[0] === -1) {
-          removed['class.'.concat(results.keys[1])] = results.value
+          removed[`class.${results.keys[1]}`] = results.value
         }
         return removed
       }, changed.removed)
       changed.added = result.reduce((added, results) => {
         if (results.result[0] === 1) {
-          added['class.'.concat(results.keys[0])] = results.value
+          added[`class.${results.keys[0]}`] = results.value
         }
         return added
       }, changed.added)
@@ -139,23 +137,23 @@ const domItemChanges = domItem => {
         return removed
       }
       if (results.result[0] === -1) {
-        removed['style.'.concat(results.value)] = domItem.element.style[results.value]
+        removed[`style.${results.value}`] = domItem.element.style[results.value]
       }
       if (results.result[0] === 0 && domItem.element.style[results.value] !== domItemAttributes.style[results.value]) {
-        removed['style.'.concat(results.value)] = domItem.element.style[results.value]
+        removed[`style.${results.value}`] = domItem.element.style[results.value]
       }
       return removed
     }, changed.removed)
     changed.added = result.reduce((added, results) => {
       if (results.result[0] === 1) {
-        added['style.'.concat(results.value)] = domItemAttributes.style[results.value]
+        added[`style.${results.value}`] = domItemAttributes.style[results.value]
       }
       if (results.result[0] === 0 && domItem.element.style[results.value] !== domItemAttributes.style[results.value]) {
-        added['style.'.concat(results.value)] = domItemAttributes.style[results.value]
+        added[`style.${results.value}`] = domItemAttributes.style[results.value]
       }
       return added
     }, changed.added)
     return changed
   }, changeList)
 }
-var _default = exports.default = domItemChanges
+const _default = exports.default = domItemChanges

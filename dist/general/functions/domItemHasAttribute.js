@@ -7,8 +7,8 @@ exports.default = void 0
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.map.js')
 require('core-js/stable')
-var _siFunciona = _interopRequireDefault(require('si-funciona'))
-var _getAssignedStyles = _interopRequireDefault(require('./getAssignedStyles'))
+const _siFunciona = _interopRequireDefault(require('si-funciona'))
+const _getAssignedStyles = _interopRequireDefault(require('./getAssignedStyles'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
@@ -18,10 +18,8 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @param {Object.<string, string>} attr
  * @returns {int|Object.<string, number>}
  */
-const checkStyles = function (domItem) {
-  var _domItem$attributes$s
-  const attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}
-  const assignedStyles = (_domItem$attributes$s = domItem.attributes.style) !== null && _domItem$attributes$s !== void 0 ? _domItem$attributes$s : {}
+const checkStyles = (domItem, attr = {}) => {
+  const assignedStyles = domItem.attributes.style ?? {}
   if (_siFunciona.default.emptyObject(assignedStyles)) {
     return 1
   }
@@ -36,10 +34,8 @@ const checkStyles = function (domItem) {
  * @param {string} attr
  * @returns {int|Object.<string, number>}
  */
-const checkClasses = function (domItem) {
-  var _domItem$attributes$c
-  const attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ''
-  const assignedClasses = (_domItem$attributes$c = domItem.attributes.className) !== null && _domItem$attributes$c !== void 0 ? _domItem$attributes$c : ''
+const checkClasses = (domItem, attr = '') => {
+  const assignedClasses = domItem.attributes.className ?? ''
   if (!assignedClasses.length) {
     return 1
   }
@@ -72,4 +68,4 @@ const domItemHasAttribute = (domItem, key, attr) => {
   }
   return 1
 }
-var _default = exports.default = domItemHasAttribute
+const _default = exports.default = domItemHasAttribute
