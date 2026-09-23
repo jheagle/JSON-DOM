@@ -1,5 +1,6 @@
 {
   "name": "json-dom",
+  "private": true,
   "author": "Joshua Heagle <joshuaheagle@gmail.com> (https://joshuaheagle.com)",
   "description": "State management with JSON.",
   "homepage": "https://github.com/jheagle/json-dom#readme",
