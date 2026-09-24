@@ -1,4 +1,5 @@
 import 'core-js/stable'
+import type { ChildTest, DomItem } from '../types'
 
 /**
  * To be used with gatherChildItems which will start at item and recurse over all child items, this test
@@ -23,9 +24,9 @@ import 'core-js/stable'
  * @param {module:domGeneral~testChildItem} test - Assess each child, and return the ones which qualify
  * @returns {Array.<DomItem>}
  */
-const gatherChildItems = (item, test) => test(
+const gatherChildItems = (item: DomItem, test: ChildTest): DomItem[] => test(
   item,
-  item.children.reduce((a, b) => a.concat(gatherChildItems(b, test)), [])
+  item.children.reduce((a: DomItem[], b) => a.concat(gatherChildItems(b, test)), [])
 )
 
 export default gatherChildItems

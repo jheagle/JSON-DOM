@@ -1,4 +1,5 @@
 import 'core-js/stable'
+import type { DomItem } from '../types'
 
 /**
  * Append a child to the end of given parent's children list.
@@ -8,7 +9,7 @@ import 'core-js/stable'
  * @param {DomItem} child - The new child to attach to the parent.
  * @returns {DomItem}
  */
-const appendChild = (parent, child) => {
+const appendChild = (parent: DomItem, child: DomItem): DomItem => {
   parent.children.push(child)
   child.parentItem = parent
   return parent

@@ -1,5 +1,6 @@
 import 'core-js/stable'
 import documentItem from '../objects/documentItem'
+import type { DomItem } from '../types'
 
 /**
  * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
@@ -14,18 +15,20 @@ import documentItem from '../objects/documentItem'
  * attribute criteria
  * @returns {Array}
  */
-const getParentsFromAttribute = (attr, value, item = documentItem.body) => {
+const getParentsFromAttribute = (attr: string, value: unknown, item: DomItem = documentItem.body): DomItem[] => {
   if (item.parentItem === null) {
     if (item.nodeName === '#document') {
       throw new Error('Root parent item must be an empty object, null reference found.')
     }
     throw new Error('Detached child, missing parentItem reference. Use empty object if this is the root item.')
   }
-  return Object.keys(item.parentItem).length
-    ? (item.parentItem.attributes[attr] || item[attr] || false) === value
-        ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem])
-        : getParentsFromAttribute(attr, value, item.parentItem)
-    : []
+  if (!Object.keys(item.parentItem).length) {
+    return []
+  }
+  const parent = item.parentItem as DomItem
+  return (parent.attributes[attr] || (item as Record<string, unknown>)[attr] || false) === value
+    ? getParentsFromAttribute(attr, value, parent).concat([parent])
+    : getParentsFromAttribute(attr, value, parent)
 }
 
 export default getParentsFromAttribute

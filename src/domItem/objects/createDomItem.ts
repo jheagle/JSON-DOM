@@ -2,6 +2,7 @@ import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import appendChild from '../tree/appendChild'
 import removeChild from '../tree/removeChild'
+import type { DomItem, DomItemConfig } from '../types'
 
 /**
  * DomItem defines the structure for a single node in json-dom's Virtual DOM (DomItem tree) - a plain object
@@ -34,8 +35,8 @@ import removeChild from '../tree/removeChild'
  * @param {Object} [item={}] - DomItem-like object to be formatted as DomItem
  * @returns {DomItem}
  */
-const createDomItem = (item = {}) => {
-  const newDomItem = siFunciona.reduceObject(
+const createDomItem = <Custom extends object = {}>(item: DomItemConfig<Custom> = {} as DomItemConfig<Custom>): DomItem<Custom> => {
+  const newDomItem: DomItem<Custom> = siFunciona.reduceObject(
     {
       attributes: {},
       children: [],
@@ -46,7 +47,7 @@ const createDomItem = (item = {}) => {
       nodeValue: null,
       parentItem: null
     },
-    (domItem, defaultValue, prop) => {
+    (domItem: Record<string, unknown>, defaultValue: unknown, prop: string) => {
       if (!(prop in domItem)) {
         domItem[prop] = defaultValue
         return domItem

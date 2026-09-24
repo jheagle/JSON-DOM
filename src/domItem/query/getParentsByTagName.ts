@@ -1,6 +1,7 @@
 import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import getParentsFromAttribute from './getParentsFromAttribute'
+import type { DomItem } from '../types'
 
 /**
  * Helper for getting all domGeneral.DomItems starting at child and having specified nodeName
@@ -11,6 +12,6 @@ import getParentsFromAttribute from './getParentsFromAttribute'
  * attribute criteria
  * @returns {Array}
  */
-const getParentsByTagName = siFunciona.curry(getParentsFromAttribute)('nodeName')
+const getParentsByTagName: (value: string, item?: DomItem) => DomItem[] = siFunciona.curry(getParentsFromAttribute)('nodeName')
 
 export default getParentsByTagName

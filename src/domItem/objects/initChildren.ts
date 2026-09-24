@@ -1,6 +1,7 @@
 import 'core-js/stable'
 import createDomItem from './createDomItem'
 import onBodyLoad from 'si-funciona/dist/helpers/functions/onBodyLoad'
+import type { DomItem } from '../types'
 
 /**
  * DomItemHead defines the structure for a single element in the Dom
@@ -26,7 +27,7 @@ import onBodyLoad from 'si-funciona/dist/helpers/functions/onBodyLoad'
  * @memberOf module:domGeneral
  * @returns {Array.<DomItemHead|DomItemBody>}
  */
-const initChildren = () => {
+const initChildren = (): DomItem[] => {
   const head = document.head
   const body = document.body
   const children = [

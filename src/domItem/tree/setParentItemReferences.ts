@@ -1,4 +1,5 @@
 import 'core-js/stable'
+import type { DomItem } from '../types'
 
 /**
  * For each child of this item, set the parentItem references.
@@ -7,7 +8,7 @@ import 'core-js/stable'
  * @param {DomItem} item - The DomItem to have parent references applied.
  * @returns {DomItem}
  */
-const setParentItemReferences = item => {
+const setParentItemReferences = (item: DomItem): DomItem => {
   if (!item.children || !item.children.length) {
     item.children = []
     return item

@@ -1,5 +1,7 @@
 import 'core-js/stable'
 import createDomItem from './createDomItem'
+import type { DomItem, DomItemRoot, RootProperties } from '../types'
+import type { ListenerFunction } from '../../events/types'
 
 /**
  * DomItemRoot defines the structure for the root node of json-dom's Virtual DOM (DomItem tree) - the #document
@@ -25,7 +27,7 @@ import createDomItem from './createDomItem'
  * @param {Object.<string, listenerFunction>} listeners - An object of all event listeners to be registered in the Dom
  * @returns {DomItemRoot|DomItem}
  */
-const initRoot = (children = [{}, {}], listeners = {}) => createDomItem({
+const initRoot = (children: DomItem[] = [{} as DomItem, {} as DomItem], listeners: Record<string, ListenerFunction> = {}): DomItemRoot => createDomItem<RootProperties>({
   nodeName: '#document',
   nodeValue: null,
   attributes: {},

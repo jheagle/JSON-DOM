@@ -1,7 +1,8 @@
 import 'core-js/stable'
 import documentDomItem from './documentDomItem'
+import type { DomItemRoot } from '../types'
 
-let existingItem = null
+let existingItem: DomItemRoot | null = null
 
 /**
  * The shared root DomItem of the Virtual DOM (DomItem tree) for this environment's real document.
@@ -9,7 +10,7 @@ let existingItem = null
  * @memberOf module:domGeneral
  * @type {DomItemRoot}
  */
-const documentItem = (() => {
+const documentItem: DomItemRoot = (() => {
   if (existingItem === null) {
     existingItem = documentDomItem()
   }

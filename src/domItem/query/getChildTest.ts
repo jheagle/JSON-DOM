@@ -1,4 +1,5 @@
 import 'core-js/stable'
+import type { ChildTest } from '../types'
 
 /**
  * Retrieve the {@link module:domGeneral~testChildItem} function by providing an attribute and value to check.
@@ -8,7 +9,7 @@ import 'core-js/stable'
  * @param {*} value - The attribute value to be compared
  * @returns {module:domGeneral~testChildItem}
  */
-const getChildTest = (attr, value) => (item, gatheredResults) => (item.attributes[attr] && item.attributes[attr] === value)
+const getChildTest = (attr: string, value: unknown): ChildTest => (item, gatheredResults) => (item.attributes[attr] && item.attributes[attr] === value)
   ? gatheredResults.concat([item])
   : gatheredResults
 
