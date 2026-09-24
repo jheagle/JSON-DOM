@@ -3,7 +3,7 @@
  */
 import removeEventListener from './removeEventListener.js'
 import activateListener from './activateListener.js'
-import createDomItem from '../../general/objects/createDomItem.js'
+import createDomItem from '../../domItem/objects/createDomItem.js'
 import createEventListener from '../objects/createEventListener.js'
 
 describe('removeEventListener', () => {

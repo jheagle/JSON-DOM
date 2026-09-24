@@ -1,5 +1,5 @@
 import findEventListener from './findEventListener.js'
-import createDomItem from '../../general/objects/createDomItem.js'
+import createDomItem from '../../domItem/objects/createDomItem.js'
 import createEventListener from '../objects/createEventListener.js'
 
 describe('findEventListener', () => {

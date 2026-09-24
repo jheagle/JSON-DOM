@@ -6,7 +6,7 @@ Object.defineProperty(exports, '__esModule', {
 exports.default = void 0
 require('core-js/modules/es.array.includes.js')
 require('core-js/stable')
-const _documentItem = _interopRequireDefault(require('../../general/objects/documentItem.js'))
+const _documentItem = _interopRequireDefault(require('../../domItem/objects/documentItem.js'))
 function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * Based on the provided function / listener name, retrieve the associated function from the root domEvents.DomItem.

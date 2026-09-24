@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import documentDomItem from '../../general/objects/documentDomItem.js'
+import documentDomItem from '../../domItem/objects/documentDomItem.js'
 import registerListeners from './registerListeners'
 
 describe('registerListeners', () => {

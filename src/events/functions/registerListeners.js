@@ -1,6 +1,6 @@
 import 'core-js/stable'
 import siFunciona from 'si-funciona'
-import documentItem from '../../general/objects/documentItem.js'
+import documentItem from '../../domItem/objects/documentItem.js'
 
 /**
  * Register multiple listeners from an array of functions.

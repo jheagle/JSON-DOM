@@ -1,5 +1,5 @@
 import deactivateListeners from './deactivateListeners.js'
-import createDomItem from '../../general/objects/createDomItem.js'
+import createDomItem from '../../domItem/objects/createDomItem.js'
 
 describe('deactivateListeners', () => {
   test('listeners are set to inactive and active listeners cleared', () => {

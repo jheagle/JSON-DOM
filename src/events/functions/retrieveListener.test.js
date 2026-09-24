@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import 'core-js/stable'
-import createDomItem from '../../general/objects/createDomItem.js'
+import createDomItem from '../../domItem/objects/createDomItem.js'
 import retrieveListener from './retrieveListener.js'
 
 describe('retrieveListener', () => {

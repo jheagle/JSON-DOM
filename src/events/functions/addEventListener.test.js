@@ -1,5 +1,5 @@
 import addEventListener from './addEventListener.js'
-import createDomItem from '../../general/objects/createDomItem.js'
+import createDomItem from '../../domItem/objects/createDomItem.js'
 
 describe('addEventListener', () => {
   test('will add event listener to domItem', () => {

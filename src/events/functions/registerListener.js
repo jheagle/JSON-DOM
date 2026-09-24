@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import documentItem from '../../general/objects/documentItem.js'
+import documentItem from '../../domItem/objects/documentItem.js'
 
 /**
  * Register a single listener function as part of the root domEvents.DomItem.

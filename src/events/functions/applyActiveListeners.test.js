@@ -2,12 +2,12 @@
  * @jest-environment jsdom
  */
 import applyActiveListeners from './applyActiveListeners.js'
-import createDomItem from '../../general/objects/createDomItem.js'
+import createDomItem from '../../domItem/objects/createDomItem.js'
 import activateListener from './activateListener.js'
 import createEventListener from '../objects/createEventListener.js'
 import registerListener from './registerListener.js'
-import documentItem from '../../general/objects/documentItem.js'
-import generateElement from '../../general/functions/generateElement.js'
+import documentItem from '../../domItem/objects/documentItem.js'
+import generateElement from '../../render/generateElement.js'
 
 describe('applyActiveListeners', () => {
   test('will apply a click listener to the element', () => {

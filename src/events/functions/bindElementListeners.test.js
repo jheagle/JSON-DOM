@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import bindElementListeners from './bindElementListeners.js'
-import createDomItem from '../../general/objects/createDomItem.js'
+import createDomItem from '../../domItem/objects/createDomItem.js'
 
 describe('bindElementListeners', () => {
   test('will assign the listeners onto the domItem element', () => {

@@ -7,7 +7,7 @@ exports.default = void 0
 require('core-js/stable')
 const _curry = _interopRequireDefault(require('si-funciona/dist/helpers/functions/curry'))
 const _pipe = _interopRequireDefault(require('si-funciona/dist/helpers/functions/pipe'))
-const _getTopParentItem = _interopRequireDefault(require('../../general/functions/getTopParentItem.js'))
+const _getTopParentItem = _interopRequireDefault(require('../../domItem/tree/getTopParentItem.js'))
 const _registerListener = _interopRequireDefault(require('./registerListener.js'))
 const _addEventListener = _interopRequireDefault(require('./addEventListener.js'))
 const _bindListeners = _interopRequireDefault(require('./bindListeners.js'))

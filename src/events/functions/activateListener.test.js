@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import activateListener from './activateListener.js'
-import createDomItem from '../../general/objects/createDomItem.js'
+import createDomItem from '../../domItem/objects/createDomItem.js'
 import createEventListener from '../objects/createEventListener.js'
 import optionsToNumber from '../objects/options/optionsToNumber.js'
 import getListenerOptions from '../objects/options/getListenerOptions.js'
