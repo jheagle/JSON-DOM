@@ -2,16 +2,21 @@
   1: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/es.array.includes.js')
+    require('core-js/modules/es.json.stringify.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/es.array.includes.js')
-    require('core-js/modules/es.json.stringify.js')
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    const _removeEmptyProperties = _interopRequireDefault(require('./removeEmptyProperties'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
+    const removeEmptyProperties_1 = __importDefault(require('./removeEmptyProperties'))
     const useExclusions = (function makeExclusions () {
       let jsonExclusions = []
       return (key, value) => {
@@ -25,7 +30,6 @@
         return value
       }
     }())
-
     /**
  * Convert DOM Item to JSON string.
  * @function
@@ -39,48 +43,57 @@
     const domItemToJson = (item, {
       mapLimit = 100,
       relevancyRange = 1000
-    } = {}) => JSON.stringify((0, _removeEmptyProperties.default)(_siFunciona.default.cloneObject(item, {
+    } = {}) => JSON.stringify((0, removeEmptyProperties_1.default)(si_funciona_1.default.cloneObject(item, {
       mapLimit,
       relevancyRange
     }), ['activeListeners', 'element', 'parentItem', 'body', 'head']), useExclusions)
-    const _default = exports.default = domItemToJson
+    exports.default = domItemToJson
   }, { './removeEmptyProperties': 3, 'core-js/modules/es.array.includes.js': 393, 'core-js/modules/es.json.stringify.js': 460, 'core-js/stable': 752, 'si-funciona': 832 }],
   2: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _domItemToJson = _interopRequireDefault(require('./domItemToJson.js'))
-    const _removeEmptyProperties = _interopRequireDefault(require('./removeEmptyProperties.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-    const _default = exports.default = {
-      domItemToJson: _domItemToJson.default,
-      removeEmptyProperties: _removeEmptyProperties.default
+    const domItemToJson_1 = __importDefault(require('./domItemToJson'))
+    const removeEmptyProperties_1 = __importDefault(require('./removeEmptyProperties'))
+    exports.default = {
+      domItemToJson: domItemToJson_1.default,
+      removeEmptyProperties: removeEmptyProperties_1.default
     }
-  }, { './domItemToJson.js': 1, './removeEmptyProperties.js': 3, 'core-js/stable': 752 }],
+  }, { './domItemToJson': 1, './removeEmptyProperties': 3, 'core-js/stable': 752 }],
   3: [function (require, module, exports) {
     'use strict'
 
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
     require('core-js/modules/es.array.includes.js')
     require('core-js/modules/esnext.iterator.constructor.js')
     require('core-js/modules/esnext.iterator.for-each.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
     /**
  * Check if the value is an empty object / array, or if it is null or undefined.
  * @param {*} propertyValue
  * @returns {boolean}
  */
-    const isEmpty = propertyValue => _siFunciona.default.emptyObject(propertyValue) || propertyValue === null || typeof propertyValue === 'undefined'
-
+    const isEmpty = propertyValue => si_funciona_1.default.emptyObject(propertyValue) || propertyValue === null || typeof propertyValue === 'undefined'
     /**
  * Remove all empty properties to reduce total size of the object.
  * @function
@@ -93,34 +106,39 @@
       item.children.forEach(child => {
         removeEmptyProperties(child, propertiesToDelete)
       })
-      _siFunciona.default.objectKeys(item).forEach(property => {
-        const propertyValue = item[property]
+      const properties = item
+      si_funciona_1.default.objectKeys(item).forEach(property => {
+        const propertyValue = properties[property]
         if (isEmpty(propertyValue) || propertiesToDelete.includes(property)) {
-          delete item[property]
+          delete properties[property]
         }
       })
       return item
     }
-    const _default = exports.default = removeEmptyProperties
+    exports.default = removeEmptyProperties
   }, { 'core-js/modules/es.array.includes.js': 393, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/stable': 752, 'si-funciona': 832 }],
   4: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/es.array.includes.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/es.array.includes.js')
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
     /**
  * @typedef {Function} appendChanges
  * @memberOf module:domGeneral
  * @param {string} changeType - Either 'removed' or 'added'
  * @param {DotNotatedObject} changes - The changes to append to existing type
  */
-
     /**
  * Initialize the appendChanges method with the changeList, return the appendChanges method.
  * @param {ChangeList} changeList
@@ -130,9 +148,8 @@
       if (!['added', 'removed'].includes(changeType)) {
         throw Error(`Method appendChanges change type must be 'added' or 'removed'; ${changeType} given.`)
       }
-      return _siFunciona.default.mergeObjects(changeList[changeType], changes)
+      return si_funciona_1.default.mergeObjects(changeList[changeType], changes)
     }
-
     /**
  * Represent changes / a diff of an object, including removed, added, and changed properties.
  * @typedef {Object.<string, DotNotatedObject>} ChangeList
@@ -141,7 +158,6 @@
  * @property {DotNotatedObject} added
  * @property {appendChanges} appendChanges
  */
-
     /**
  * Create the change list template.
  * @function
@@ -162,22 +178,27 @@
       changeList.appendChanges = appendChangesTo(changeList)
       return changeList
     }
-    const _default = exports.default = createChangeList
+    exports.default = createChangeList
   }, { 'core-js/modules/es.array.includes.js': 393, 'core-js/stable': 752, 'si-funciona': 832 }],
   5: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.reduce.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/esnext.iterator.constructor.js')
-    require('core-js/modules/esnext.iterator.reduce.js')
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    const _elementHasAttribute = _interopRequireDefault(require('./elementHasAttribute.js'))
-    const _createChangeList = _interopRequireDefault(require('./createChangeList.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
+    const elementHasAttribute_1 = __importDefault(require('./elementHasAttribute'))
+    const createChangeList_1 = __importDefault(require('./createChangeList'))
     /**
  * @typedef {module:objectHelpers~mapCallback} testAttributeChange
  * @memberOf module:domGeneral
@@ -185,7 +206,6 @@
  * @param {string} key - The property name of the current property being processed in the object.
  * @return {int} - -1: removed, 0: unchanged, 1: added.
  */
-
     /**
  * Given some config, provide a function to testing attribute and key existence in that config.
  * @function
@@ -195,24 +215,24 @@
  */
     const checkAttribute = element => (attr, key) => {
       if (typeof attr === 'object') {
-        const styleDiff = (0, _elementHasAttribute.default)(element, key, attr)
-        const firstStyleDiff = styleDiff[0]
-        if (styleDiff.length === 1 && firstStyleDiff.result[0] === 0 && element.style[firstStyleDiff.value] === attr[firstStyleDiff.value]) {
+        const styles = attr
+        const elementStyle = () => element.style
+        const styleDiff = (0, elementHasAttribute_1.default)(element, key, attr)
+        if (Array.isArray(styleDiff) && styleDiff.length === 1 && styleDiff[0].result[0] === 0 && elementStyle()[styleDiff[0].value] === styles[styleDiff[0].value]) {
           return 0
         }
         // Check new, removed, or changed styles
-        return _siFunciona.default.filterObject(styleDiff, arrayDiff => arrayDiff.result[0] !== 0 || element.style[arrayDiff.value] !== attr[arrayDiff.value])
+        return si_funciona_1.default.filterObject(styleDiff, arrayDiff => arrayDiff.result[0] !== 0 || elementStyle()[arrayDiff.value] !== styles[arrayDiff.value])
       }
       if (key === 'class') {
-        const classDiff = (0, _elementHasAttribute.default)(element, key, attr)
-        if (classDiff.length === 1 && classDiff[0].result[0] === 0) {
+        const classDiff = (0, elementHasAttribute_1.default)(element, key, attr)
+        if (Array.isArray(classDiff) && classDiff.length === 1 && classDiff[0].result[0] === 0) {
           return 0
         }
-        return _siFunciona.default.filterObject(classDiff, arrayDiff => arrayDiff.result[0] !== 0)
+        return si_funciona_1.default.filterObject(classDiff, arrayDiff => arrayDiff.result[0] !== 0)
       }
-      return (0, _elementHasAttribute.default)(element, key, attr)
+      return (0, elementHasAttribute_1.default)(element, key, attr)
     }
-
     /**
  * Updates all the keys to be kabob-case
  * @function
@@ -220,16 +240,15 @@
  * @param {Object.<string, *>} attributesToSet
  * @returns {Object.<string, *>}
  */
-    const kabobCaseAttributes = attributesToSet => _siFunciona.default.reduceObject(attributesToSet, (attributes, value, name) => {
+    const kabobCaseAttributes = attributesToSet => si_funciona_1.default.reduceObject(attributesToSet, (attributes, value, name) => {
       let attrValue = attributesToSet[name] ?? value
-      if (_siFunciona.default.isObject(attrValue)) {
+      if (si_funciona_1.default.isObject(attrValue)) {
         attrValue = kabobCaseAttributes(attrValue)
       }
-      const kabobKey = name === 'className' ? 'class' : _siFunciona.default.kabobCase(name)
+      const kabobKey = name === 'className' ? 'class' : si_funciona_1.default.kabobCase(name)
       attributes[kabobKey] = attrValue
       return attributes
     }, {})
-
     /**
  * Given a domGeneral.DomItem as domItem, this function will return the changes to be applied
  * to the stored element property.
@@ -239,7 +258,7 @@
  * @returns {ChangeList}
  */
     const domItemChanges = domItem => {
-      const changeList = (0, _createChangeList.default)()
+      const changeList = (0, createChangeList_1.default)()
       if (!domItem.element) {
         changeList.added.nodeName = domItem.nodeName.toLowerCase()
       }
@@ -249,8 +268,8 @@
         changeList.added.nodeName = domItem.nodeName.toLowerCase()
       }
       if (domItem.nodeValue !== null) {
-        if (!_siFunciona.default.emptyObject(domItem.attributes)) {
-          changeList.added = changeList.appendChanges('added', _siFunciona.default.dotNotate(domItem.attributes))
+        if (!si_funciona_1.default.emptyObject(domItem.attributes)) {
+          changeList.added = changeList.appendChanges('added', si_funciona_1.default.dotNotate(domItem.attributes))
         }
         if (!domItem.element) {
           changeList.added.nodeValue = domItem.nodeValue
@@ -263,8 +282,8 @@
         return changeList
       }
       const domItemAttributes = kabobCaseAttributes(domItem.attributes)
-      const diffMap = _siFunciona.default.mapObject(domItemAttributes, (attr, key) => checkAttribute(domItem.element)(attr, key))
-      return _siFunciona.default.reduceObject(diffMap, (changed, result, key) => {
+      const diffMap = si_funciona_1.default.mapObject(domItemAttributes, (attr, key) => checkAttribute(domItem.element)(attr, key))
+      return si_funciona_1.default.reduceObject(diffMap, (changed, result, key) => {
         const isArray = Array.isArray(result)
         if (!isArray && !result) {
           // Skip if the attribute is not changed (false and not an array)
@@ -277,7 +296,7 @@
         }
         if (!isArray) {
           // Not an array, simply set the attribute as added
-          changed.added[key] = domItem.attributes[_siFunciona.default.camelCase(key)]
+          changed.added[key] = domItem.attributes[si_funciona_1.default.camelCase(key)]
           return changed
         }
         if (key !== 'class' && key !== 'style') {
@@ -299,15 +318,16 @@
           }, changed.added)
           return changed
         }
+        const elementStyle = () => domItem.element.style
         changed.removed = result.reduce((removed, results) => {
           if (!domItem.element) {
             return removed
           }
           if (results.result[0] === -1) {
-            removed[`style.${results.value}`] = domItem.element.style[results.value]
+            removed[`style.${results.value}`] = elementStyle()[results.value]
           }
-          if (results.result[0] === 0 && domItem.element.style[results.value] !== domItemAttributes.style[results.value]) {
-            removed[`style.${results.value}`] = domItem.element.style[results.value]
+          if (results.result[0] === 0 && elementStyle()[results.value] !== domItemAttributes.style[results.value]) {
+            removed[`style.${results.value}`] = elementStyle()[results.value]
           }
           return removed
         }, changed.removed)
@@ -315,7 +335,7 @@
           if (results.result[0] === 1) {
             added[`style.${results.value}`] = domItemAttributes.style[results.value]
           }
-          if (results.result[0] === 0 && domItem.element.style[results.value] !== domItemAttributes.style[results.value]) {
+          if (results.result[0] === 0 && elementStyle()[results.value] !== domItemAttributes.style[results.value]) {
             added[`style.${results.value}`] = domItemAttributes.style[results.value]
           }
           return added
@@ -323,21 +343,26 @@
         return changed
       }, changeList)
     }
-    const _default = exports.default = domItemChanges
-  }, { './createChangeList.js': 4, './elementHasAttribute.js': 8, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.reduce.js': 692, 'core-js/stable': 752, 'si-funciona': 832 }],
+    exports.default = domItemChanges
+  }, { './createChangeList': 4, './elementHasAttribute': 8, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.reduce.js': 692, 'core-js/stable': 752, 'si-funciona': 832 }],
   6: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.map.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/esnext.iterator.constructor.js')
-    require('core-js/modules/esnext.iterator.map.js')
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    const _getAssignedStyles = _interopRequireDefault(require('./getAssignedStyles'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
+    const getAssignedStyles_1 = __importDefault(require('./getAssignedStyles'))
     /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
  * @function
@@ -348,12 +373,11 @@
  */
     const checkStyles = (domItem, attr = {}) => {
       const assignedStyles = domItem.attributes.style ?? {}
-      if (_siFunciona.default.emptyObject(assignedStyles)) {
+      if (si_funciona_1.default.emptyObject(assignedStyles)) {
         return 1
       }
-      return _siFunciona.default.compareArrays(Object.keys((0, _getAssignedStyles.default)(attr)).map(_siFunciona.default.camelCase), Object.keys(assignedStyles))
+      return si_funciona_1.default.compareArrays(Object.keys((0, getAssignedStyles_1.default)(attr)).map(si_funciona_1.default.camelCase), Object.keys(assignedStyles))
     }
-
     /**
  * For attributes which are objects or multipart strings -1 = remove attribute, 0 = no change, 1 = add attribute
  * @function
@@ -367,9 +391,8 @@
       if (!assignedClasses.length) {
         return 1
       }
-      return _siFunciona.default.compareArrays(attr.split(' '), assignedClasses.split(' '))
+      return si_funciona_1.default.compareArrays(attr.split(' '), assignedClasses.split(' '))
     }
-
     /**
  * Check if the provided DomItem has the provided attributes.
  * Returns a boolean, or an array of 1 / 0 / -1 based on the comparison status.
@@ -387,7 +410,7 @@
       if (key === 'className') {
         return checkClasses(domItem, attr)
       }
-      const camelKey = _siFunciona.default.camelCase(key)
+      const camelKey = si_funciona_1.default.camelCase(key)
       if (typeof domItem.attributes[camelKey] === 'undefined') {
         return 1
       }
@@ -396,22 +419,27 @@
       }
       return 1
     }
-    const _default = exports.default = domItemHasAttribute
+    exports.default = domItemHasAttribute
   }, { './getAssignedStyles': 9, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.map.js': 691, 'core-js/stable': 752, 'si-funciona': 832 }],
   7: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.reduce.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/esnext.iterator.constructor.js')
-    require('core-js/modules/esnext.iterator.reduce.js')
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    const _domItemHasAttribute = _interopRequireDefault(require('./domItemHasAttribute.js'))
-    const _createChangeList = _interopRequireDefault(require('./createChangeList.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
+    const domItemHasAttribute_1 = __importDefault(require('./domItemHasAttribute'))
+    const createChangeList_1 = __importDefault(require('./createChangeList'))
     /**
  * @typedef {module:objectHelpers~mapCallback} testAttributeChange
  * @memberOf module:domGeneral
@@ -419,7 +447,6 @@
  * @param {string} key - The property name of the current property being processed in the object.
  * @return {int} - -1: removed, 0: unchanged, 1: added.
  */
-
     /**
  * Given some config, provide a function to testing attribute and key existence in that config.
  * @function
@@ -429,23 +456,23 @@
  */
     const checkAttribute = domItem => (attr, key) => {
       if (key === 'className') {
-        const diff = (0, _domItemHasAttribute.default)(domItem, key, attr)
-        if (diff.length === 1 && diff[0].result[0] === 0) {
+        const diff = (0, domItemHasAttribute_1.default)(domItem, key, attr)
+        if (Array.isArray(diff) && diff.length === 1 && diff[0].result[0] === 0) {
           return 0
         }
-        return _siFunciona.default.filterObject(diff, arrayDiff => arrayDiff.result[0] !== 0)
+        return si_funciona_1.default.filterObject(diff, arrayDiff => arrayDiff.result[0] !== 0)
       }
       if (key === 'style') {
-        const diff = (0, _domItemHasAttribute.default)(domItem, key, attr)
-        const firstDiffResult = diff[0]
-        if (diff.length === 1 && firstDiffResult.result[0] === 0 && domItem.attributes.style[firstDiffResult.value] === attr[firstDiffResult.value]) {
+        const diff = (0, domItemHasAttribute_1.default)(domItem, key, attr)
+        const styles = attr
+        const itemStyle = () => domItem.attributes.style
+        if (Array.isArray(diff) && diff.length === 1 && diff[0].result[0] === 0 && itemStyle()[diff[0].value] === styles[diff[0].value]) {
           return 0
         }
-        return _siFunciona.default.filterObject(diff, arrayDiff => arrayDiff.result[0] !== 0 || domItem.attributes.style[arrayDiff.value] !== attr[arrayDiff.value])
+        return si_funciona_1.default.filterObject(diff, arrayDiff => arrayDiff.result[0] !== 0 || itemStyle()[arrayDiff.value] !== styles[arrayDiff.value])
       }
-      return (0, _domItemHasAttribute.default)(domItem, key, attr)
+      return (0, domItemHasAttribute_1.default)(domItem, key, attr)
     }
-
     /**
  * Updates all the keys to be camelCase
  * @function
@@ -454,11 +481,11 @@
  * @returns {Object.<string, *>}
  */
     const camelCaseAttributes = domItem => domItem.element
-      ? _siFunciona.default.reduceObject(domItem.element.attributes, (attributes, attr) => {
+      ? si_funciona_1.default.reduceObject(domItem.element.attributes, (attributes, attr) => {
         if (!attr.name) {
           return attributes
         }
-        const camelKey = attr.name === 'class' ? 'className' : _siFunciona.default.camelCase(attr.name)
+        const camelKey = attr.name === 'class' ? 'className' : si_funciona_1.default.camelCase(attr.name)
         const attributeValue = domItem.element[attr.name] ?? attr.value
         if (typeof attributeValue === 'undefined') {
           return attributes
@@ -467,7 +494,6 @@
         return attributes
       }, {})
       : {}
-
     /**
  * Given a domGeneral.DomItem as config, this function will return the changes from the element
  * to be applied to the domItem.
@@ -478,7 +504,7 @@
  * @returns {ChangeList}
  */
     const elementChanges = domItem => {
-      const changeList = (0, _createChangeList.default)()
+      const changeList = (0, createChangeList_1.default)()
       if (!domItem.element) {
         changeList.removed.nodeName = domItem.nodeName.toLowerCase()
       }
@@ -488,8 +514,8 @@
       }
       if (!domItem.element && domItem.nodeValue !== null) {
         changeList.removed.nodeValue = domItem.nodeValue
-        if (!_siFunciona.default.emptyObject(domItem.attributes)) {
-          changeList.removed = changeList.appendChanges('removed', _siFunciona.default.dotNotate({
+        if (!si_funciona_1.default.emptyObject(domItem.attributes)) {
+          changeList.removed = changeList.appendChanges('removed', si_funciona_1.default.dotNotate({
             attributes: domItem.attributes
           }))
         }
@@ -499,22 +525,22 @@
         if (domItem.element.nodeValue !== domItem.nodeValue) {
           changeList.added.nodeValue = domItem.element.nodeValue
         }
-        if (!_siFunciona.default.emptyObject(domItem.attributes)) {
-          changeList.removed = changeList.appendChanges('removed', _siFunciona.default.dotNotate({
+        if (!si_funciona_1.default.emptyObject(domItem.attributes)) {
+          changeList.removed = changeList.appendChanges('removed', si_funciona_1.default.dotNotate({
             attributes: domItem.attributes
           }))
         }
         return changeList
       }
-      if (!(domItem.element && domItem.element.hasAttributes()) && !_siFunciona.default.emptyObject(domItem.attributes)) {
-        changeList.removed = changeList.appendChanges('removed', _siFunciona.default.dotNotate({
+      if (!(domItem.element && domItem.element.hasAttributes()) && !si_funciona_1.default.emptyObject(domItem.attributes)) {
+        changeList.removed = changeList.appendChanges('removed', si_funciona_1.default.dotNotate({
           attributes: domItem.attributes
         }))
         return changeList
       }
       const elementAttributes = camelCaseAttributes(domItem)
-      const diffMap = _siFunciona.default.mapObject(elementAttributes, (attr, key) => checkAttribute(domItem)(attr, key))
-      return _siFunciona.default.reduceObject(diffMap, (changed, result, key) => {
+      const diffMap = si_funciona_1.default.mapObject(elementAttributes, (attr, key) => checkAttribute(domItem)(attr, key))
+      return si_funciona_1.default.reduceObject(diffMap, (changed, result, key) => {
         const isArray = Array.isArray(result)
         if (!isArray && !result) {
           // Skip if the attribute is not changed (false and not an array)
@@ -522,7 +548,7 @@
         }
         if (!isArray) {
           // Not an array, simply set the attribute as added
-          changed.added[`attributes.${key}`] = domItem.element[key] ?? domItem.element.getAttribute(_siFunciona.default.kabobCase(key))
+          changed.added[`attributes.${key}`] = domItem.element[key] ?? domItem.element.getAttribute(si_funciona_1.default.kabobCase(key))
           return changed
         }
         if (key !== 'className' && key !== 'style') {
@@ -544,12 +570,13 @@
           }, changed.added)
           return changed
         }
+        const itemStyle = () => domItem.attributes.style
         changed.removed = result.reduce((removed, results) => {
           if (results.result[0] === -1) {
-            removed[`attributes.style.${results.value}`] = domItem.attributes.style[results.value]
+            removed[`attributes.style.${results.value}`] = itemStyle()[results.value]
           }
-          if (results.result[0] === 0 && domItem.attributes.style[results.value] !== elementAttributes.style[results.value]) {
-            removed[`attributes.style.${results.value}`] = domItem.attributes.style[results.value]
+          if (results.result[0] === 0 && itemStyle()[results.value] !== elementAttributes.style[results.value]) {
+            removed[`attributes.style.${results.value}`] = itemStyle()[results.value]
           }
           return removed
         }, changed.removed)
@@ -557,7 +584,7 @@
           if (results.result[0] === 1) {
             added[`attributes.style.${results.value}`] = elementAttributes.style[results.value]
           }
-          if (results.result[0] === 0 && domItem.attributes.style[results.value] !== elementAttributes.style[results.value]) {
+          if (results.result[0] === 0 && itemStyle()[results.value] !== elementAttributes.style[results.value]) {
             added[`attributes.style.${results.value}`] = elementAttributes.style[results.value]
           }
           return added
@@ -565,21 +592,26 @@
         return changed
       }, changeList)
     }
-    const _default = exports.default = elementChanges
-  }, { './createChangeList.js': 4, './domItemHasAttribute.js': 6, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.reduce.js': 692, 'core-js/stable': 752, 'si-funciona': 832 }],
+    exports.default = elementChanges
+  }, { './createChangeList': 4, './domItemHasAttribute': 6, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.reduce.js': 692, 'core-js/stable': 752, 'si-funciona': 832 }],
   8: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.map.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/esnext.iterator.constructor.js')
-    require('core-js/modules/esnext.iterator.map.js')
     require('core-js/stable')
-    const _getAssignedStyles = _interopRequireDefault(require('./getAssignedStyles.js'))
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const getAssignedStyles_1 = __importDefault(require('./getAssignedStyles'))
+    const si_funciona_1 = __importDefault(require('si-funciona'))
     /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
  * @function
@@ -589,13 +621,12 @@
  * @returns {int|Object.<string, number>}
  */
     const checkStyles = (element, attr = {}) => {
-      const assignedStyles = (0, _getAssignedStyles.default)(element.style) ?? {}
-      if (_siFunciona.default.emptyObject(assignedStyles)) {
+      const assignedStyles = (0, getAssignedStyles_1.default)(element.style) ?? {}
+      if (si_funciona_1.default.emptyObject(assignedStyles)) {
         return 1
       }
-      return _siFunciona.default.compareArrays(Object.keys(attr).map(_siFunciona.default.kabobCase), Object.keys(assignedStyles))
+      return si_funciona_1.default.compareArrays(Object.keys(attr).map(si_funciona_1.default.kabobCase), Object.keys(assignedStyles))
     }
-
     /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
  * @function
@@ -613,9 +644,8 @@
       if (!assignedClasses.length) {
         return 1
       }
-      return _siFunciona.default.compareArrays(attr.split(' '), assignedClasses)
+      return si_funciona_1.default.compareArrays(attr.split(' '), assignedClasses)
     }
-
     /**
  * Check if the provided Element has the provided attributes.
  * Returns a boolean, or an array of 1 / 0 / -1 based on the comparison status.
@@ -636,7 +666,7 @@
       if (key === 'class') {
         return checkClasses(element, attr)
       }
-      const kabobKey = _siFunciona.default.kabobCase(key)
+      const kabobKey = si_funciona_1.default.kabobCase(key)
       if (!element.hasAttribute(kabobKey)) {
         return 1
       }
@@ -645,18 +675,23 @@
       }
       return 1
     }
-    const _default = exports.default = elementHasAttribute
-  }, { './getAssignedStyles.js': 9, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.map.js': 691, 'core-js/stable': 752, 'si-funciona': 832 }],
+    exports.default = elementHasAttribute
+  }, { './getAssignedStyles': 9, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.map.js': 691, 'core-js/stable': 752, 'si-funciona': 832 }],
   9: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
     /**
  * Get all the styles which have been assigned to this element. Assigned styles are indicated as numeric-key
  * properties with a value indicating the string-key property which has been assigned. The string-key properties
@@ -666,95 +701,110 @@
  * @param {Object.<style, style>|CSSProperties} elementStyles
  * @returns {object}
  */
-    const getAssignedStyles = elementStyles => _siFunciona.default.reduceObject(elementStyles, (styles, attr, key) => isNaN(key) ? styles : _siFunciona.default.setValue(attr, elementStyles[attr], styles), {})
-    const _default = exports.default = getAssignedStyles
+    const getAssignedStyles = elementStyles => si_funciona_1.default.reduceObject(elementStyles, (styles, attr, key) => Number.isNaN(Number(key)) ? styles : si_funciona_1.default.setValue(attr, elementStyles[attr], styles), {})
+    exports.default = getAssignedStyles
   }, { 'core-js/stable': 752, 'si-funciona': 832 }],
   10: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _createChangeList = _interopRequireDefault(require('./createChangeList.js'))
-    const _domItemChanges = _interopRequireDefault(require('./domItemChanges.js'))
-    const _domItemHasAttribute = _interopRequireDefault(require('./domItemHasAttribute.js'))
-    const _elementChanges = _interopRequireDefault(require('./elementChanges.js'))
-    const _elementHasAttribute = _interopRequireDefault(require('./elementHasAttribute.js'))
-    const _getAssignedStyles = _interopRequireDefault(require('./getAssignedStyles.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-    const _default = exports.default = {
-      createChangeList: _createChangeList.default,
-      domItemChanges: _domItemChanges.default,
-      domItemHasAttribute: _domItemHasAttribute.default,
-      elementChanges: _elementChanges.default,
-      elementHasAttribute: _elementHasAttribute.default,
-      getAssignedStyles: _getAssignedStyles.default
+    const createChangeList_1 = __importDefault(require('./createChangeList'))
+    const domItemChanges_1 = __importDefault(require('./domItemChanges'))
+    const domItemHasAttribute_1 = __importDefault(require('./domItemHasAttribute'))
+    const elementChanges_1 = __importDefault(require('./elementChanges'))
+    const elementHasAttribute_1 = __importDefault(require('./elementHasAttribute'))
+    const getAssignedStyles_1 = __importDefault(require('./getAssignedStyles'))
+    exports.default = {
+      createChangeList: createChangeList_1.default,
+      domItemChanges: domItemChanges_1.default,
+      domItemHasAttribute: domItemHasAttribute_1.default,
+      elementChanges: elementChanges_1.default,
+      elementHasAttribute: elementHasAttribute_1.default,
+      getAssignedStyles: getAssignedStyles_1.default
     }
-  }, { './createChangeList.js': 4, './domItemChanges.js': 5, './domItemHasAttribute.js': 6, './elementChanges.js': 7, './elementHasAttribute.js': 8, './getAssignedStyles.js': 9, 'core-js/stable': 752 }],
+  }, { './createChangeList': 4, './domItemChanges': 5, './domItemHasAttribute': 6, './elementChanges': 7, './elementHasAttribute': 8, './getAssignedStyles': 9, 'core-js/stable': 752 }],
   11: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _addDomItemProperties = _interopRequireDefault(require('./objects/addDomItemProperties.js'))
-    const _appendChild = _interopRequireDefault(require('./tree/appendChild.js'))
-    const _createDomItem = _interopRequireDefault(require('./objects/createDomItem.js'))
-    const _documentDomItem = _interopRequireDefault(require('./objects/documentDomItem.js'))
-    const _documentItem = _interopRequireDefault(require('./objects/documentItem.js'))
-    const _gatherChildItems = _interopRequireDefault(require('./query/gatherChildItems.js'))
-    const _getChildrenByClass = _interopRequireDefault(require('./query/getChildrenByClass.js'))
-    const _getChildrenByName = _interopRequireDefault(require('./query/getChildrenByName.js'))
-    const _getChildrenFromAttribute = _interopRequireDefault(require('./query/getChildrenFromAttribute.js'))
-    const _getChildTest = _interopRequireDefault(require('./query/getChildTest.js'))
-    const _getParentsByClass = _interopRequireDefault(require('./query/getParentsByClass.js'))
-    const _getParentsByName = _interopRequireDefault(require('./query/getParentsByName.js'))
-    const _getParentsByTagName = _interopRequireDefault(require('./query/getParentsByTagName.js'))
-    const _getParentsFromAttribute = _interopRequireDefault(require('./query/getParentsFromAttribute.js'))
-    const _getTopParentItem = _interopRequireDefault(require('./tree/getTopParentItem.js'))
-    const _initChildren = _interopRequireDefault(require('./objects/initChildren.js'))
-    const _initRoot = _interopRequireDefault(require('./objects/initRoot.js'))
-    const _removeChild = _interopRequireDefault(require('./tree/removeChild.js'))
-    const _setParentItemReferences = _interopRequireDefault(require('./tree/setParentItemReferences.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-    const _default = exports.default = {
-      addDomItemProperties: _addDomItemProperties.default,
-      appendChild: _appendChild.default,
-      createDomItem: _createDomItem.default,
-      documentDomItem: _documentDomItem.default,
-      documentItem: _documentItem.default,
-      gatherChildItems: _gatherChildItems.default,
-      getChildrenByClass: _getChildrenByClass.default,
-      getChildrenByName: _getChildrenByName.default,
-      getChildrenFromAttribute: _getChildrenFromAttribute.default,
-      getChildTest: _getChildTest.default,
-      getParentsByClass: _getParentsByClass.default,
-      getParentsByName: _getParentsByName.default,
-      getParentsByTagName: _getParentsByTagName.default,
-      getParentsFromAttribute: _getParentsFromAttribute.default,
-      getTopParentItem: _getTopParentItem.default,
-      initChildren: _initChildren.default,
-      initRoot: _initRoot.default,
-      removeChild: _removeChild.default,
-      setParentItemReferences: _setParentItemReferences.default
+    const addDomItemProperties_1 = __importDefault(require('./objects/addDomItemProperties'))
+    const appendChild_1 = __importDefault(require('./tree/appendChild'))
+    const createDomItem_1 = __importDefault(require('./objects/createDomItem'))
+    const documentDomItem_1 = __importDefault(require('./objects/documentDomItem'))
+    const documentItem_1 = __importDefault(require('./objects/documentItem'))
+    const gatherChildItems_1 = __importDefault(require('./query/gatherChildItems'))
+    const getChildrenByClass_1 = __importDefault(require('./query/getChildrenByClass'))
+    const getChildrenByName_1 = __importDefault(require('./query/getChildrenByName'))
+    const getChildrenFromAttribute_1 = __importDefault(require('./query/getChildrenFromAttribute'))
+    const getChildTest_1 = __importDefault(require('./query/getChildTest'))
+    const getParentsByClass_1 = __importDefault(require('./query/getParentsByClass'))
+    const getParentsByName_1 = __importDefault(require('./query/getParentsByName'))
+    const getParentsByTagName_1 = __importDefault(require('./query/getParentsByTagName'))
+    const getParentsFromAttribute_1 = __importDefault(require('./query/getParentsFromAttribute'))
+    const getTopParentItem_1 = __importDefault(require('./tree/getTopParentItem'))
+    const initChildren_1 = __importDefault(require('./objects/initChildren'))
+    const initRoot_1 = __importDefault(require('./objects/initRoot'))
+    const removeChild_1 = __importDefault(require('./tree/removeChild'))
+    const setParentItemReferences_1 = __importDefault(require('./tree/setParentItemReferences'))
+    exports.default = {
+      addDomItemProperties: addDomItemProperties_1.default,
+      appendChild: appendChild_1.default,
+      createDomItem: createDomItem_1.default,
+      documentDomItem: documentDomItem_1.default,
+      documentItem: documentItem_1.default,
+      gatherChildItems: gatherChildItems_1.default,
+      getChildrenByClass: getChildrenByClass_1.default,
+      getChildrenByName: getChildrenByName_1.default,
+      getChildrenFromAttribute: getChildrenFromAttribute_1.default,
+      getChildTest: getChildTest_1.default,
+      getParentsByClass: getParentsByClass_1.default,
+      getParentsByName: getParentsByName_1.default,
+      getParentsByTagName: getParentsByTagName_1.default,
+      getParentsFromAttribute: getParentsFromAttribute_1.default,
+      getTopParentItem: getTopParentItem_1.default,
+      initChildren: initChildren_1.default,
+      initRoot: initRoot_1.default,
+      removeChild: removeChild_1.default,
+      setParentItemReferences: setParentItemReferences_1.default
     }
-  }, { './objects/addDomItemProperties.js': 12, './objects/createDomItem.js': 13, './objects/documentDomItem.js': 14, './objects/documentItem.js': 15, './objects/initChildren.js': 16, './objects/initRoot.js': 17, './query/gatherChildItems.js': 18, './query/getChildTest.js': 19, './query/getChildrenByClass.js': 20, './query/getChildrenByName.js': 21, './query/getChildrenFromAttribute.js': 22, './query/getParentsByClass.js': 23, './query/getParentsByName.js': 24, './query/getParentsByTagName.js': 25, './query/getParentsFromAttribute.js': 26, './tree/appendChild.js': 27, './tree/getTopParentItem.js': 28, './tree/removeChild.js': 29, './tree/setParentItemReferences.js': 30, 'core-js/stable': 752 }],
+  }, { './objects/addDomItemProperties': 12, './objects/createDomItem': 13, './objects/documentDomItem': 14, './objects/documentItem': 15, './objects/initChildren': 16, './objects/initRoot': 17, './query/gatherChildItems': 18, './query/getChildTest': 19, './query/getChildrenByClass': 20, './query/getChildrenByName': 21, './query/getChildrenFromAttribute': 22, './query/getParentsByClass': 23, './query/getParentsByName': 24, './query/getParentsByTagName': 25, './query/getParentsFromAttribute': 26, './tree/appendChild': 27, './tree/getTopParentItem': 28, './tree/removeChild': 29, './tree/setParentItemReferences': 30, 'core-js/stable': 752 }],
   12: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.for-each.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/esnext.iterator.constructor.js')
-    require('core-js/modules/esnext.iterator.for-each.js')
     require('core-js/stable')
-    const _createDomItem = _interopRequireDefault(require('./createDomItem'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const createDomItem_1 = __importDefault(require('./createDomItem'))
     /**
  * Ensure all basic properties of the DomItem are present.
  * @function
@@ -768,22 +818,27 @@
           addDomItemProperties(child)
         })
       }
-      return (0, _createDomItem.default)(item)
+      return (0, createDomItem_1.default)(item)
     }
-    const _default = exports.default = addDomItemProperties
+    exports.default = addDomItemProperties
   }, { './createDomItem': 13, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/stable': 752 }],
   13: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    const _appendChild = _interopRequireDefault(require('../tree/appendChild.js'))
-    const _removeChild = _interopRequireDefault(require('../tree/removeChild.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
+    const appendChild_1 = __importDefault(require('../tree/appendChild'))
+    const removeChild_1 = __importDefault(require('../tree/removeChild'))
     /**
  * DomItem defines the structure for a single node in json-dom's Virtual DOM (DomItem tree) - a plain object
  * representation of one HTML element, mirrored onto a real element via {@link updateElement}/{@link renderHtml}.
@@ -806,7 +861,6 @@
  * @property {Function} removeChild - Attach a child to this DOM Item
  * @property {string} [is] - Optional property to define the type of object for custom elements.
  */
-
     /**
  * This is the basic Object for representing a node in json-dom's Virtual DOM (DomItem tree). All incoming
  * attributes will be merged to the specified format.
@@ -816,7 +870,7 @@
  * @returns {DomItem}
  */
     const createDomItem = (item = {}) => {
-      const newDomItem = _siFunciona.default.reduceObject({
+      const newDomItem = si_funciona_1.default.reduceObject({
         attributes: {},
         children: [],
         element: null,
@@ -832,27 +886,32 @@
         }
         return domItem
       }, item)
-      newDomItem.appendChild = _siFunciona.default.curry(_appendChild.default)(newDomItem)
-      newDomItem.removeChild = _siFunciona.default.curry(_removeChild.default)(newDomItem)
+      newDomItem.appendChild = si_funciona_1.default.curry(appendChild_1.default)(newDomItem)
+      newDomItem.removeChild = si_funciona_1.default.curry(removeChild_1.default)(newDomItem)
       return newDomItem
     }
-    const _default = exports.default = createDomItem
-  }, { '../tree/appendChild.js': 27, '../tree/removeChild.js': 29, 'core-js/stable': 752, 'si-funciona': 832 }],
+    exports.default = createDomItem
+  }, { '../tree/appendChild': 27, '../tree/removeChild': 29, 'core-js/stable': 752, 'si-funciona': 832 }],
   14: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.map.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/esnext.iterator.constructor.js')
-    require('core-js/modules/esnext.iterator.map.js')
     require('core-js/stable')
-    const _createDomItem = _interopRequireDefault(require('./createDomItem.js'))
-    const _initChildren = _interopRequireDefault(require('./initChildren.js'))
-    const _initRoot = _interopRequireDefault(require('./initRoot.js'))
-    const _updateDomItems = _interopRequireDefault(require('../../sync/updateDomItems.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const createDomItem_1 = __importDefault(require('./createDomItem'))
+    const initChildren_1 = __importDefault(require('./initChildren'))
+    const initRoot_1 = __importDefault(require('./initRoot'))
+    const updateDomItems_1 = __importDefault(require('../../sync/updateDomItems'))
     /**
  * Return the root DomItem of a Virtual DOM (DomItem tree) for the document. The rootItem argument is a system
  * variable and not necessary to implement.
@@ -864,30 +923,34 @@
  * reference to DomItemRoot which will be defaulted with {@link initRoot}
  * @returns {DomItemRoot|DomItem}
  */
-    const documentDomItem = (listeners = {}, rootItem = (0, _initRoot.default)((0, _initChildren.default)(), listeners)) => {
-      rootItem.children = rootItem.children.map(child => (0, _createDomItem.default)(child))
+    const documentDomItem = (listeners = {}, rootItem = (0, initRoot_1.default)((0, initChildren_1.default)(), listeners)) => {
+      rootItem.children = rootItem.children.map(child => (0, createDomItem_1.default)(child))
       rootItem.children.map(child => {
         child.parentItem = rootItem
         return child
       })
       rootItem.head = rootItem.children[0]
       rootItem.body = rootItem.children[1]
-      return (0, _updateDomItems.default)((0, _createDomItem.default)(rootItem))
+      return (0, updateDomItems_1.default)((0, createDomItem_1.default)(rootItem))
     }
-    const _default = exports.default = documentDomItem
-  }, { '../../sync/updateDomItems.js': 71, './createDomItem.js': 13, './initChildren.js': 16, './initRoot.js': 17, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.map.js': 691, 'core-js/stable': 752 }],
+    exports.default = documentDomItem
+  }, { '../../sync/updateDomItems': 71, './createDomItem': 13, './initChildren': 16, './initRoot': 17, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.map.js': 691, 'core-js/stable': 752 }],
   15: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _documentDomItem = _interopRequireDefault(require('./documentDomItem.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const documentDomItem_1 = __importDefault(require('./documentDomItem'))
     let existingItem = null
-
     /**
  * The shared root DomItem of the Virtual DOM (DomItem tree) for this environment's real document.
  * @member documentItem
@@ -896,23 +959,28 @@
  */
     const documentItem = (() => {
       if (existingItem === null) {
-        existingItem = (0, _documentDomItem.default)()
+        existingItem = (0, documentDomItem_1.default)()
       }
       return existingItem
     })()
-    const _default = exports.default = documentItem
-  }, { './documentDomItem.js': 14, 'core-js/stable': 752 }],
+    exports.default = documentItem
+  }, { './documentDomItem': 14, 'core-js/stable': 752 }],
   16: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _createDomItem = _interopRequireDefault(require('./createDomItem.js'))
-    const _onBodyLoad = _interopRequireDefault(require('si-funciona/dist/helpers/functions/onBodyLoad'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const createDomItem_1 = __importDefault(require('./createDomItem'))
+    const onBodyLoad_1 = __importDefault(require('si-funciona/dist/helpers/functions/onBodyLoad'))
     /**
  * DomItemHead defines the structure for a single element in the Dom
  * @typedef {DomItem} DomItemHead
@@ -921,7 +989,6 @@
  * @property {HTMLHeadElement} element - A reference to the HTML head element
  * @property {Array.<DomItem>} children - A reference to an array of child objects
  */
-
     /**
  * DomItemBody defines the structure for a single element in the Dom
  * @typedef {DomItem} DomItemBody
@@ -930,7 +997,6 @@
  * @property {HTMLBodyElement} element - A reference to the HTML body element
  * @property {Array.<DomItem>} children - A reference to an array of child objects
  */
-
     /**
  * Initiate the children of Root / DocumentItem. This is a helper for {@link documentDomItem}.
  * @function
@@ -940,19 +1006,19 @@
     const initChildren = () => {
       const head = document.head
       const body = document.body
-      const children = [(0, _createDomItem.default)({
+      const children = [(0, createDomItem_1.default)({
         nodeName: 'head',
         attributes: {},
         element: head,
         children: []
-      }), (0, _createDomItem.default)({
+      }), (0, createDomItem_1.default)({
         nodeName: 'body',
         attributes: {},
         element: body,
         children: []
       })]
       if (!head || !body) {
-        (0, _onBodyLoad.default)(() => {
+        (0, onBodyLoad_1.default)(() => {
           if (children[1].element === null) {
             children[0].element = document.head
             children[1].element = document.body
@@ -962,18 +1028,23 @@
       }
       return children
     }
-    const _default = exports.default = initChildren
-  }, { './createDomItem.js': 13, 'core-js/stable': 752, 'si-funciona/dist/helpers/functions/onBodyLoad': 780 }],
+    exports.default = initChildren
+  }, { './createDomItem': 13, 'core-js/stable': 752, 'si-funciona/dist/helpers/functions/onBodyLoad': 780 }],
   17: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _createDomItem = _interopRequireDefault(require('./createDomItem.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const createDomItem_1 = __importDefault(require('./createDomItem'))
     /**
  * DomItemRoot defines the structure for the root node of json-dom's Virtual DOM (DomItem tree) - the #document
  * equivalent, from which every other DomItem in the tree descends.
@@ -989,7 +1060,6 @@
  * @property {DomItemHead} head - A specific reference to head item
  * @property {DomItemBody} body - A specific reference to body item
  */
-
     /**
  * Initiate the Root for DocumentItem. This is primary a helper for {@link documentDomItem}.
  * @function
@@ -998,7 +1068,7 @@
  * @param {Object.<string, listenerFunction>} listeners - An object of all event listeners to be registered in the Dom
  * @returns {DomItemRoot|DomItem}
  */
-    const initRoot = (children = [{}, {}], listeners = {}) => (0, _createDomItem.default)({
+    const initRoot = (children = [{}, {}], listeners = {}) => (0, createDomItem_1.default)({
       nodeName: '#document',
       nodeValue: null,
       attributes: {},
@@ -1010,17 +1080,16 @@
       head: children[0],
       body: children[1]
     })
-    const _default = exports.default = initRoot
-  }, { './createDomItem.js': 13, 'core-js/stable': 752 }],
+    exports.default = initRoot
+  }, { './createDomItem': 13, 'core-js/stable': 752 }],
   18: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.reduce.js')
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/esnext.iterator.constructor.js')
-    require('core-js/modules/esnext.iterator.reduce.js')
     require('core-js/stable')
     /**
  * To be used with gatherChildItems which will start at item and recurse over all child items, this test
@@ -1032,7 +1101,6 @@
  * the test
  * @returns {Array.<DomItem>}
  */
-
     /**
  * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
  * This function will check all the children starting from and including item, and run the test function on each
@@ -1046,7 +1114,7 @@
  * @returns {Array.<DomItem>}
  */
     const gatherChildItems = (item, test) => test(item, item.children.reduce((a, b) => a.concat(gatherChildItems(b, test)), []))
-    const _default = exports.default = gatherChildItems
+    exports.default = gatherChildItems
   }, { 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.reduce.js': 692, 'core-js/stable': 752 }],
   19: [function (require, module, exports) {
     'use strict'
@@ -1054,7 +1122,6 @@
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
     /**
  * Retrieve the {@link module:domGeneral~testChildItem} function by providing an attribute and value to check.
@@ -1065,19 +1132,24 @@
  * @returns {module:domGeneral~testChildItem}
  */
     const getChildTest = (attr, value) => (item, gatheredResults) => item.attributes[attr] && item.attributes[attr] === value ? gatheredResults.concat([item]) : gatheredResults
-    const _default = exports.default = getChildTest
+    exports.default = getChildTest
   }, { 'core-js/stable': 752 }],
   20: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    const _getChildrenFromAttribute = _interopRequireDefault(require('./getChildrenFromAttribute.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
+    const getChildrenFromAttribute_1 = __importDefault(require('./getChildrenFromAttribute'))
     /**
  * Helper for getting all domGeneral.DomItems starting at parent and having specified className attribute
  * @function
@@ -1087,20 +1159,25 @@
  * criteria
  * @returns {Array.<DomItem>}
  */
-    const getChildrenByClass = _siFunciona.default.curry(_getChildrenFromAttribute.default)('className')
-    const _default = exports.default = getChildrenByClass
-  }, { './getChildrenFromAttribute.js': 22, 'core-js/stable': 752, 'si-funciona': 832 }],
+    const getChildrenByClass = si_funciona_1.default.curry(getChildrenFromAttribute_1.default)('className')
+    exports.default = getChildrenByClass
+  }, { './getChildrenFromAttribute': 22, 'core-js/stable': 752, 'si-funciona': 832 }],
   21: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    const _getChildrenFromAttribute = _interopRequireDefault(require('./getChildrenFromAttribute.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
+    const getChildrenFromAttribute_1 = __importDefault(require('./getChildrenFromAttribute'))
     /**
  * Helper for getting all domGeneral.DomItems starting at parent and having specified name attribute
  * @function
@@ -1110,21 +1187,26 @@
  * criteria
  * @returns {Array.<DomItem>}
  */
-    const getChildrenByName = _siFunciona.default.curry(_getChildrenFromAttribute.default)('name')
-    const _default = exports.default = getChildrenByName
-  }, { './getChildrenFromAttribute.js': 22, 'core-js/stable': 752, 'si-funciona': 832 }],
+    const getChildrenByName = si_funciona_1.default.curry(getChildrenFromAttribute_1.default)('name')
+    exports.default = getChildrenByName
+  }, { './getChildrenFromAttribute': 22, 'core-js/stable': 752, 'si-funciona': 832 }],
   22: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
-    const _gatherChildItems = _interopRequireDefault(require('./gatherChildItems.js'))
-    const _getChildTest = _interopRequireDefault(require('./getChildTest.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const documentItem_1 = __importDefault(require('../objects/documentItem'))
+    const gatherChildItems_1 = __importDefault(require('./gatherChildItems'))
+    const getChildTest_1 = __importDefault(require('./getChildTest'))
     /**
  * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
  * This function will check all the children starting from item, and scan the attributes
@@ -1138,20 +1220,25 @@
  * criteria
  * @returns {Array.<DomItem>}
  */
-    const getChildrenFromAttribute = (attr, value, item = _documentItem.default.body) => (0, _gatherChildItems.default)(item, (0, _getChildTest.default)(attr, value))
-    const _default = exports.default = getChildrenFromAttribute
-  }, { '../objects/documentItem.js': 15, './gatherChildItems.js': 18, './getChildTest.js': 19, 'core-js/stable': 752 }],
+    const getChildrenFromAttribute = (attr, value, item = documentItem_1.default.body) => (0, gatherChildItems_1.default)(item, (0, getChildTest_1.default)(attr, value))
+    exports.default = getChildrenFromAttribute
+  }, { '../objects/documentItem': 15, './gatherChildItems': 18, './getChildTest': 19, 'core-js/stable': 752 }],
   23: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    const _getParentsFromAttribute = _interopRequireDefault(require('./getParentsFromAttribute.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
+    const getParentsFromAttribute_1 = __importDefault(require('./getParentsFromAttribute'))
     /**
  * Helper for getting all domGeneral.DomItems starting at child and having specified className attribute
  * @function
@@ -1161,20 +1248,25 @@
  * attribute criteria
  * @returns {Array}
  */
-    const getParentsByClass = _siFunciona.default.curry(_getParentsFromAttribute.default)('className')
-    const _default = exports.default = getParentsByClass
-  }, { './getParentsFromAttribute.js': 26, 'core-js/stable': 752, 'si-funciona': 832 }],
+    const getParentsByClass = si_funciona_1.default.curry(getParentsFromAttribute_1.default)('className')
+    exports.default = getParentsByClass
+  }, { './getParentsFromAttribute': 26, 'core-js/stable': 752, 'si-funciona': 832 }],
   24: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    const _getParentsFromAttribute = _interopRequireDefault(require('./getParentsFromAttribute.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
+    const getParentsFromAttribute_1 = __importDefault(require('./getParentsFromAttribute'))
     /**
  * Helper for getting all domGeneral.DomItems starting at child and having specified name attribute
  * @function
@@ -1184,20 +1276,25 @@
  * attribute criteria
  * @returns {Array}
  */
-    const getParentsByName = _siFunciona.default.curry(_getParentsFromAttribute.default)('name')
-    const _default = exports.default = getParentsByName
-  }, { './getParentsFromAttribute.js': 26, 'core-js/stable': 752, 'si-funciona': 832 }],
+    const getParentsByName = si_funciona_1.default.curry(getParentsFromAttribute_1.default)('name')
+    exports.default = getParentsByName
+  }, { './getParentsFromAttribute': 26, 'core-js/stable': 752, 'si-funciona': 832 }],
   25: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    const _getParentsFromAttribute = _interopRequireDefault(require('./getParentsFromAttribute.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
+    const getParentsFromAttribute_1 = __importDefault(require('./getParentsFromAttribute'))
     /**
  * Helper for getting all domGeneral.DomItems starting at child and having specified nodeName
  * @function
@@ -1207,19 +1304,24 @@
  * attribute criteria
  * @returns {Array}
  */
-    const getParentsByTagName = _siFunciona.default.curry(_getParentsFromAttribute.default)('nodeName')
-    const _default = exports.default = getParentsByTagName
-  }, { './getParentsFromAttribute.js': 26, 'core-js/stable': 752, 'si-funciona': 832 }],
+    const getParentsByTagName = si_funciona_1.default.curry(getParentsFromAttribute_1.default)('nodeName')
+    exports.default = getParentsByTagName
+  }, { './getParentsFromAttribute': 26, 'core-js/stable': 752, 'si-funciona': 832 }],
   26: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const documentItem_1 = __importDefault(require('../objects/documentItem'))
     /**
  * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
  * This function will check all the children starting from item, and scan the attributes
@@ -1233,24 +1335,27 @@
  * attribute criteria
  * @returns {Array}
  */
-    const getParentsFromAttribute = (attr, value, item = _documentItem.default.body) => {
+    const getParentsFromAttribute = (attr, value, item = documentItem_1.default.body) => {
       if (item.parentItem === null) {
         if (item.nodeName === '#document') {
           throw new Error('Root parent item must be an empty object, null reference found.')
         }
         throw new Error('Detached child, missing parentItem reference. Use empty object if this is the root item.')
       }
-      return Object.keys(item.parentItem).length ? (item.parentItem.attributes[attr] || item[attr] || false) === value ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem]) : getParentsFromAttribute(attr, value, item.parentItem) : []
+      if (!Object.keys(item.parentItem).length) {
+        return []
+      }
+      const parent = item.parentItem
+      return (parent.attributes[attr] || item[attr] || false) === value ? getParentsFromAttribute(attr, value, parent).concat([parent]) : getParentsFromAttribute(attr, value, parent)
     }
-    const _default = exports.default = getParentsFromAttribute
-  }, { '../objects/documentItem.js': 15, 'core-js/stable': 752 }],
+    exports.default = getParentsFromAttribute
+  }, { '../objects/documentItem': 15, 'core-js/stable': 752 }],
   27: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
     /**
  * Append a child to the end of given parent's children list.
@@ -1265,7 +1370,7 @@
       child.parentItem = parent
       return parent
     }
-    const _default = exports.default = appendChild
+    exports.default = appendChild
   }, { 'core-js/stable': 752 }],
   28: [function (require, module, exports) {
     'use strict'
@@ -1273,7 +1378,6 @@
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
     /**
  * Get the upper parentItem for the provided child. (usually this is a documentItem reference)
@@ -1292,7 +1396,7 @@
       }
       return Object.keys(item.parentItem).length ? getTopParentItem(item.parentItem) : item
     }
-    const _default = exports.default = getTopParentItem
+    exports.default = getTopParentItem
   }, { 'core-js/stable': 752 }],
   29: [function (require, module, exports) {
     'use strict'
@@ -1300,7 +1404,6 @@
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
     /**
  * Reverse of appendHtml, remove a DomItem and have the associated element removed.
@@ -1314,17 +1417,16 @@
       parent.element.removeChild(child.element)
       return parent.children.splice(parent.children.indexOf(child), 1)
     }
-    const _default = exports.default = removeChild
+    exports.default = removeChild
   }, { 'core-js/stable': 752 }],
   30: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.for-each.js')
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/esnext.iterator.constructor.js')
-    require('core-js/modules/esnext.iterator.for-each.js')
     require('core-js/stable')
     /**
  * For each child of this item, set the parentItem references.
@@ -1344,23 +1446,28 @@
       })
       return item
     }
-    const _default = exports.default = setParentItemReferences
+    exports.default = setParentItemReferences
   }, { 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/stable': 752 }],
   31: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _getTopParentItem = _interopRequireDefault(require('../../domItem/tree/getTopParentItem.js'))
-    const _makeEventHandler = _interopRequireDefault(require('./makeEventHandler.js'))
-    const _createEventResponder = _interopRequireDefault(require('../objects/createEventResponder.js'))
-    const _getListenerOptions = _interopRequireDefault(require('../objects/options/getListenerOptions.js'))
-    const _optionsToNumber = _interopRequireDefault(require('../objects/options/optionsToNumber.js'))
-    const _retrieveListener = _interopRequireDefault(require('./retrieveListener.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const getTopParentItem_1 = __importDefault(require('../../domItem/tree/getTopParentItem'))
+    const makeEventHandler_1 = __importDefault(require('./makeEventHandler'))
+    const createEventResponder_1 = __importDefault(require('../objects/createEventResponder'))
+    const getListenerOptions_1 = __importDefault(require('../objects/options/getListenerOptions'))
+    const optionsToNumber_1 = __importDefault(require('../objects/options/optionsToNumber'))
+    const retrieveListener_1 = __importDefault(require('./retrieveListener'))
     /**
  * Activate listener by pushing it to activeListeners.
  * @function
@@ -1371,36 +1478,41 @@
  * @returns {DomItem}
  */
     const activateListener = (eventName, eventListener, item) => {
-      const listenerOptions = (0, _getListenerOptions.default)()
+      const listenerOptions = (0, getListenerOptions_1.default)()
       if (typeof item.activeListeners === 'undefined') {
         item.activeListeners = {}
       }
       if (!(eventName in item.activeListeners)) {
         item.activeListeners[eventName] = {}
       }
-      const optionIdentifier = (0, _optionsToNumber.default)(listenerOptions, eventListener.listenerOptions)
+      const optionIdentifier = (0, optionsToNumber_1.default)(listenerOptions, eventListener.listenerOptions)
       if (!(optionIdentifier in item.activeListeners[eventName])) {
         item.activeListeners[eventName][optionIdentifier] = []
       }
-      const listenerFunc = (0, _retrieveListener.default)(eventListener.listenerFunc, (0, _getTopParentItem.default)(item))
-      const eventHandler = (0, _makeEventHandler.default)(listenerFunc, item, eventListener.listenerArgs)
-      const eventResponder = (0, _createEventResponder.default)(eventHandler, !!(optionIdentifier & listenerOptions.signal))
+      const listenerFunc = (0, retrieveListener_1.default)(eventListener.listenerFunc, (0, getTopParentItem_1.default)(item))
+      const eventHandler = (0, makeEventHandler_1.default)(listenerFunc, item, eventListener.listenerArgs)
+      const eventResponder = (0, createEventResponder_1.default)(eventHandler, !!(optionIdentifier & listenerOptions.signal))
       item.activeListeners[eventName][optionIdentifier].push(eventResponder)
       eventListener.activeResponder = eventResponder
       return item
     }
-    const _default = exports.default = activateListener
-  }, { '../../domItem/tree/getTopParentItem.js': 28, '../objects/createEventResponder.js': 54, '../objects/options/getListenerOptions.js': 56, '../objects/options/optionsToNumber.js': 58, './makeEventHandler.js': 44, './retrieveListener.js': 48, 'core-js/stable': 752 }],
+    exports.default = activateListener
+  }, { '../../domItem/tree/getTopParentItem': 28, '../objects/createEventResponder': 54, '../objects/options/getListenerOptions': 56, '../objects/options/optionsToNumber': 58, './makeEventHandler': 44, './retrieveListener': 48, 'core-js/stable': 752 }],
   32: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _createEventListener = _interopRequireDefault(require('../objects/createEventListener'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const createEventListener_1 = __importDefault(require('../objects/createEventListener'))
     /**
  * Create an EventListener descriptor and push it onto a DomItem's eventListeners for the given event name.
  * Does not attach anything to the real element - see {@link bindListeners} or {@link fullAddEventListener} for that.
@@ -1435,31 +1547,36 @@
         item.eventListeners[eventName] = []
       }
       // check if the listener already exists and don't add if it does
-      item.eventListeners[eventName].push((0, _createEventListener.default)({
+      item.eventListeners[eventName].push((0, createEventListener_1.default)({
         listenerFunc: listenerFunction,
         listenerArgs: customArgs,
         listenerOptions: options
       }))
       return item
     }
-    const _default = exports.default = addEventListener
+    exports.default = addEventListener
   }, { '../objects/createEventListener': 52, 'core-js/stable': 752 }],
   33: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.for-each.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/esnext.iterator.constructor.js')
-    require('core-js/modules/esnext.iterator.for-each.js')
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    const _getListenerOptions = _interopRequireDefault(require('../objects/options/getListenerOptions.js'))
-    const _numberToOptions = _interopRequireDefault(require('../objects/options/numberToOptions.js'))
-    const _assignListener = _interopRequireDefault(require('./assignListener.js'))
-    const _createEventProxy = _interopRequireDefault(require('../objects/createEventProxy.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
+    const getListenerOptions_1 = __importDefault(require('../objects/options/getListenerOptions'))
+    const numberToOptions_1 = __importDefault(require('../objects/options/numberToOptions'))
+    const assignListener_1 = __importDefault(require('./assignListener'))
+    const createEventProxy_1 = __importDefault(require('../objects/createEventProxy'))
     /**
  * Apply each active event listener for event type to the DOM Item's element.
  * @function
@@ -1469,19 +1586,20 @@
  * @return {DomItem}
  */
     const applyActiveListeners = (eventName, item) => {
-      const listenerOptions = (0, _getListenerOptions.default)()
-      const eventOptions = _siFunciona.default.dotGet(item, `activeListeners.${eventName}`)
+      const listenerOptions = (0, getListenerOptions_1.default)()
+      const eventOptions = si_funciona_1.default.dotGet(item, `activeListeners.${eventName}`)
       if (eventOptions === null) {
         return item
       }
-      _siFunciona.default.objectKeys(eventOptions).forEach(binaryOptions => {
-        const optionsToUse = (0, _numberToOptions.default)(listenerOptions, parseInt(binaryOptions))
+      si_funciona_1.default.objectKeys(eventOptions).forEach(binaryOptions => {
+        const optionsToUse = (0, numberToOptions_1.default)(listenerOptions, parseInt(binaryOptions))
         const usesSignal = !!optionsToUse.signal
         if (!usesSignal) {
           // Abort signal must be undefined if it is not required.
           delete optionsToUse.signal
         }
-        item.activeListeners[eventName][binaryOptions].forEach(eventResponder => {
+        ;
+        item.activeListeners[eventName][Number(binaryOptions)].forEach(eventResponder => {
           if (eventResponder.assignedHandler) {
             // already attached to the element
             return
@@ -1491,31 +1609,35 @@
               signal: eventResponder.abort.signal
             })
             : optionsToUse
-          eventResponder.assignedHandler = e => eventResponder.handler((0, _createEventProxy.default)(e));
-          (0, _assignListener.default)(eventName, item.element, eventResponder.assignedHandler, finalOptions)
+          eventResponder.assignedHandler = e => eventResponder.handler((0, createEventProxy_1.default)(e));
+          (0, assignListener_1.default)(eventName, item.element, eventResponder.assignedHandler, finalOptions)
         })
       })
       return item
     }
-    const _default = exports.default = applyActiveListeners
-  }, { '../objects/createEventProxy.js': 53, '../objects/options/getListenerOptions.js': 56, '../objects/options/numberToOptions.js': 57, './assignListener.js': 34, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/stable': 752, 'si-funciona': 832 }],
+    exports.default = applyActiveListeners
+  }, { '../objects/createEventProxy': 53, '../objects/options/getListenerOptions': 56, '../objects/options/numberToOptions': 57, './assignListener': 34, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/stable': 752, 'si-funciona': 832 }],
   34: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _listenerOptions = _interopRequireDefault(require('./listenerOptions.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const listenerOptions_1 = __importDefault(require('./listenerOptions'))
     /**
  * Document attachEvent support for older browsers.
  * @typedef {EventTarget} MicrosoftHtmlObject
  * @memberOf module:domEvents
  * @property {Function} attachEvent
  */
-
     /**
  * Provide compatibility for assigning listeners.
  * @function
@@ -1532,28 +1654,34 @@
       // Attaching a listener may be done differently based on the browser support
       if (elem.addEventListener) {
         // Latest support is provided from addEventListener with the options parameter varying slightly
-        elem.addEventListener(trigger, fn, (0, _listenerOptions.default)(options))
+        elem.addEventListener(trigger, fn, (0, listenerOptions_1.default)(options))
       } else if (elem.attachEvent) {
         // Older browsers, especially Internet Explorer
         elem.attachEvent(`on${trigger}`, fn)
       } else {
         // General support for adding a new function onto the element which can be called to trigger the function
+        ;
         elem[`on${trigger}`] = fn
       }
       return fn
     }
-    const _default = exports.default = assignListener
-  }, { './listenerOptions.js': 43, 'core-js/stable': 752 }],
+    exports.default = assignListener
+  }, { './listenerOptions': 43, 'core-js/stable': 752 }],
   35: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _bindListeners = _interopRequireDefault(require('./bindListeners.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const bindListeners_1 = __importDefault(require('./bindListeners'))
     /**
  * Based on the eventListeners property of the provided item, bind the listeners to the associated element property
  * for each item in the domEvents.DomItem structure.
@@ -1568,23 +1696,28 @@
       for (const child of item.children) {
         bindAllListeners(child)
       }
-      return (0, _bindListeners.default)(item)
+      return (0, bindListeners_1.default)(item)
     }
-    const _default = exports.default = bindAllListeners
-  }, { './bindListeners.js': 37, 'core-js/stable': 752 }],
+    exports.default = bindAllListeners
+  }, { './bindListeners': 37, 'core-js/stable': 752 }],
   36: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.for-each.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/esnext.iterator.constructor.js')
-    require('core-js/modules/esnext.iterator.for-each.js')
     require('core-js/stable')
-    const _activateListener = _interopRequireDefault(require('./activateListener.js'))
-    const _applyActiveListeners = _interopRequireDefault(require('./applyActiveListeners.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const activateListener_1 = __importDefault(require('./activateListener'))
+    const applyActiveListeners_1 = __importDefault(require('./applyActiveListeners'))
     /**
  * Receive a DomItem with eventListeners and apply the event listeners onto the Dom element.
  * @function
@@ -1599,26 +1732,31 @@
           if (eventAttributes.listenerActive) {
             return
           }
-          item = (0, _activateListener.default)(eventName, eventAttributes, item)
+          item = (0, activateListener_1.default)(eventName, eventAttributes, item)
           eventAttributes.listenerActive = true
         })
-        item = (0, _applyActiveListeners.default)(eventName, item)
+        item = (0, applyActiveListeners_1.default)(eventName, item)
       }
       return item
     }
-    const _default = exports.default = bindElementListeners
-  }, { './activateListener.js': 31, './applyActiveListeners.js': 33, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/stable': 752 }],
+    exports.default = bindElementListeners
+  }, { './activateListener': 31, './applyActiveListeners': 33, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/stable': 752 }],
   37: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _bindElementListeners = _interopRequireDefault(require('./bindElementListeners.js'))
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const bindElementListeners_1 = __importDefault(require('./bindElementListeners'))
+    const si_funciona_1 = __importDefault(require('si-funciona'))
     /**
  * Based on the eventListeners property of the provided item, bind the
  * listeners to the associated element property for the provided domEvents.DomItem.
@@ -1628,23 +1766,28 @@
  * element
  * @returns {DomItem}
  */
-    const bindListeners = item => !_siFunciona.default.emptyObject(item.eventListeners) && item.element ? (0, _bindElementListeners.default)(item) : item
-    const _default = exports.default = bindListeners
-  }, { './bindElementListeners.js': 36, 'core-js/stable': 752, 'si-funciona': 832 }],
+    const bindListeners = item => !si_funciona_1.default.emptyObject(item.eventListeners) && item.element ? (0, bindElementListeners_1.default)(item) : item
+    exports.default = bindListeners
+  }, { './bindElementListeners': 36, 'core-js/stable': 752, 'si-funciona': 832 }],
   38: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    const _getListenerOptions = _interopRequireDefault(require('../objects/options/getListenerOptions.js'))
-    const _optionsToNumber = _interopRequireDefault(require('../objects/options/optionsToNumber.js'))
-    const _numberToOptions = _interopRequireDefault(require('../objects/options/numberToOptions.js'))
-    const _unassignListener = _interopRequireDefault(require('./unassignListener.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
+    const getListenerOptions_1 = __importDefault(require('../objects/options/getListenerOptions'))
+    const optionsToNumber_1 = __importDefault(require('../objects/options/optionsToNumber'))
+    const numberToOptions_1 = __importDefault(require('../objects/options/numberToOptions'))
+    const unassignListener_1 = __importDefault(require('./unassignListener'))
     /**
  * Deactivate a single listener: detach it from the element (if it was actually attached) and remove it from
  * activeListeners, without disturbing any other listener sharing the same options bucket.
@@ -1657,47 +1800,47 @@
  * @returns {module:domGeneral~DomItem} The same DomItem, with this listener detached and marked inactive.
  */
     const deactivateListener = (eventName, eventListener, item) => {
-      const eventOptions = _siFunciona.default.dotGet(item, `activeListeners.${eventName}`)
+      const eventOptions = si_funciona_1.default.dotGet(item, `activeListeners.${eventName}`)
       if (eventOptions === null || !eventListener.activeResponder) {
         return item
       }
-      const listenerOptions = (0, _getListenerOptions.default)()
-      const optionIdentifier = (0, _optionsToNumber.default)(listenerOptions, eventListener.listenerOptions)
-      const bucket = item.activeListeners[eventName][optionIdentifier]
+      const listenerOptions = (0, getListenerOptions_1.default)()
+      const optionIdentifier = (0, optionsToNumber_1.default)(listenerOptions, eventListener.listenerOptions)
+      const active = item.activeListeners
+      const bucket = active[eventName][optionIdentifier]
       if (!bucket) {
         return item
       }
       if (eventListener.activeResponder.assignedHandler) {
-        const optionsToUse = (0, _numberToOptions.default)(listenerOptions, optionIdentifier)
+        const optionsToUse = (0, numberToOptions_1.default)(listenerOptions, optionIdentifier)
         const finalOptions = optionsToUse.signal
           ? Object.assign({}, optionsToUse, {
             signal: eventListener.activeResponder.abort.signal
           })
           : (delete optionsToUse.signal, optionsToUse);
-        (0, _unassignListener.default)(eventName, item.element, eventListener.activeResponder.assignedHandler, finalOptions)
+        (0, unassignListener_1.default)(eventName, item.element, eventListener.activeResponder.assignedHandler, finalOptions)
       }
       const responderIndex = bucket.indexOf(eventListener.activeResponder)
       if (responderIndex > -1) {
         bucket.splice(responderIndex, 1)
       }
       if (bucket.length === 0) {
-        delete item.activeListeners[eventName][optionIdentifier]
+        delete active[eventName][optionIdentifier]
       }
       eventListener.activeResponder = null
       eventListener.listenerActive = false
       return item
     }
-    const _default = exports.default = deactivateListener
-  }, { '../objects/options/getListenerOptions.js': 56, '../objects/options/numberToOptions.js': 57, '../objects/options/optionsToNumber.js': 58, './unassignListener.js': 50, 'core-js/stable': 752, 'si-funciona': 832 }],
+    exports.default = deactivateListener
+  }, { '../objects/options/getListenerOptions': 56, '../objects/options/numberToOptions': 57, '../objects/options/optionsToNumber': 58, './unassignListener': 50, 'core-js/stable': 752, 'si-funciona': 832 }],
   39: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.for-each.js')
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/esnext.iterator.constructor.js')
-    require('core-js/modules/esnext.iterator.for-each.js')
     require('core-js/stable')
     /**
  * Set all the listeners for this DOMItem to be inactive.
@@ -1715,19 +1858,23 @@
       delete item.activeListeners
       return item
     }
-    const _default = exports.default = deactivateListeners
+    exports.default = deactivateListeners
   }, { 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/stable': 752 }],
   40: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _optionsToNumber = _interopRequireDefault(require('../objects/options/optionsToNumber.js'))
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
     /**
  * Search a DOM item's eventListeners for a specific event listener, matched by listener function, custom args, and
  * options. Returns its index and the matching descriptor as a tuple.
@@ -1739,15 +1886,15 @@
  * @param {EventName} eventName - The name of the trigger event the listener was registered under.
  * @param {module:domEvents~listenerFunction} listenerFunction - The listener function to match against.
  * @param {Object|null} [customArgs=null] - The custom args the listener was registered with.
- * @param {module:domEvents~EventListenerOptions} [options=false] - The options the listener was registered with.
+ * @param {module:domEvents~EventListenerOptions} [options=false] - Accepted for symmetry with addEventListener; a listener
+ * is matched on its function and its arguments only, whatever options it was registered with.
  * @param {module:domGeneral~DomItem} item - The DomItem whose eventListeners will be searched.
  * @returns {Array.<(number|EventListener|undefined)>} A 2-element [index, matchingListener] tuple. If no match is
  * found, index is -1 and matchingListener is undefined.
  */
     const findEventListener = (eventName, listenerFunction, customArgs, options, item) => {
       customArgs = customArgs ?? null
-      options = options ?? false
-      if (!_siFunciona.default.isObject(item.eventListeners)) {
+      if (!si_funciona_1.default.isObject(item.eventListeners)) {
         return [-1, undefined]
       }
       if (typeof item.eventListeners[eventName] === 'undefined') {
@@ -1755,32 +1902,36 @@
       }
       const findListener = {
         listenerFunc: listenerFunction,
-        listenerArgs: _siFunciona.default.describeObject(customArgs),
-        listenerOptions: (0, _optionsToNumber.default)(options)
+        listenerArgs: si_funciona_1.default.describeObject(customArgs)
       }
       const listenerIndex = item.eventListeners[eventName].findIndex(eventListener => {
-        const argDescriptor = _siFunciona.default.describeObject(eventListener.listenerArgs)
-        return eventListener.listenerFunc === findListener.listenerFunc && _siFunciona.default.sameDescriptor(findListener.listenerArgs, argDescriptor) && (0, _optionsToNumber.default)(eventListener.listenerOptions) === findListener.listenerOptions
+        const argDescriptor = si_funciona_1.default.describeObject(eventListener.listenerArgs)
+        return eventListener.listenerFunc === findListener.listenerFunc && si_funciona_1.default.sameDescriptor(findListener.listenerArgs, argDescriptor)
       })
       return [listenerIndex, item.eventListeners[eventName][listenerIndex]]
     }
-    const _default = exports.default = findEventListener
-  }, { '../objects/options/optionsToNumber.js': 58, 'core-js/stable': 752, 'si-funciona': 832 }],
+    exports.default = findEventListener
+  }, { 'core-js/stable': 752, 'si-funciona': 832 }],
   41: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _curry = _interopRequireDefault(require('si-funciona/dist/helpers/functions/curry'))
-    const _pipe = _interopRequireDefault(require('si-funciona/dist/helpers/functions/pipe'))
-    const _getTopParentItem = _interopRequireDefault(require('../../domItem/tree/getTopParentItem.js'))
-    const _registerListener = _interopRequireDefault(require('./registerListener.js'))
-    const _addEventListener = _interopRequireDefault(require('./addEventListener.js'))
-    const _bindListeners = _interopRequireDefault(require('./bindListeners.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const curry_1 = __importDefault(require('si-funciona/dist/helpers/functions/curry'))
+    const pipe_1 = __importDefault(require('si-funciona/dist/helpers/functions/pipe'))
+    const getTopParentItem_1 = __importDefault(require('../../domItem/tree/getTopParentItem'))
+    const registerListener_1 = __importDefault(require('./registerListener'))
+    const addEventListener_1 = __importDefault(require('./addEventListener'))
+    const bindListeners_1 = __importDefault(require('./bindListeners'))
     /**
  * Register the listener function, attach it as a descriptor on the item, then bind it onto the
  * real element - the full setup sequence for a single event listener, in order:
@@ -1801,26 +1952,31 @@
  * @returns {DomItem}
  */
     const fullAddEventListener = (eventName, listener, name, customArgs, options, item) => {
-      name = name ?? listener.name
+      const listenerName = name ?? listener.name
       customArgs = customArgs ?? null
       options = options ?? false
-      return (0, _pipe.default)(currentItem => {
-        (0, _registerListener.default)(listener, name, (0, _getTopParentItem.default)(currentItem))
+      return (0, pipe_1.default)(currentItem => {
+        (0, registerListener_1.default)(listener, listenerName, (0, getTopParentItem_1.default)(currentItem))
         return currentItem
-      }, (0, _curry.default)(_addEventListener.default)(eventName, name, customArgs, options), _bindListeners.default)(item)
+      }, (0, curry_1.default)(addEventListener_1.default)(eventName, listenerName, customArgs, options), bindListeners_1.default)(item)
     }
-    const _default = exports.default = fullAddEventListener
-  }, { '../../domItem/tree/getTopParentItem.js': 28, './addEventListener.js': 32, './bindListeners.js': 37, './registerListener.js': 45, 'core-js/stable': 752, 'si-funciona/dist/helpers/functions/curry': 777, 'si-funciona/dist/helpers/functions/pipe': 781 }],
+    exports.default = fullAddEventListener
+  }, { '../../domItem/tree/getTopParentItem': 28, './addEventListener': 32, './bindListeners': 37, './registerListener': 45, 'core-js/stable': 752, 'si-funciona/dist/helpers/functions/curry': 777, 'si-funciona/dist/helpers/functions/pipe': 781 }],
   42: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _removeEventListener = _interopRequireDefault(require('./removeEventListener.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const removeEventListener_1 = __importDefault(require('./removeEventListener'))
     /**
  * Find and remove a listener that was registered by name (e.g. via {@link fullAddEventListener}) - the counterpart
  * to fullAddEventListener. Resolves name the same way fullAddEventListener defaults it, so a caller only needs the
@@ -1842,26 +1998,18 @@
  * @returns {DomItem} The same DomItem, with the matching listener removed if one was found.
  */
     const fullRemoveEventListener = (eventName, listener, name, customArgs, options, item) => {
-      name = name ?? listener.name
-      return (0, _removeEventListener.default)(eventName, name, customArgs, options, item)
+      const listenerName = name ?? listener.name
+      return (0, removeEventListener_1.default)(eventName, listenerName, customArgs, options, item)
     }
-    const _default = exports.default = fullRemoveEventListener
-  }, { './removeEventListener.js': 47, 'core-js/stable': 752 }],
+    exports.default = fullRemoveEventListener
+  }, { './removeEventListener': 47, 'core-js/stable': 752 }],
   43: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    /**
- * Provide compatibility for using the options parameter of addEventListener
- * @function
- * @memberOf module:domEvents
- * @param {EventListenerOptions} options - An object or boolean with the listener options
- * @returns {boolean}
- */
     const listenerOptions = options => {
       if (typeof listenerOptions.supportsOptions === 'undefined') {
         // Check if supportsOptions has been defined. This is a compatibility checking flag.
@@ -1880,7 +2028,7 @@
       }
       return typeof options === 'object' && listenerOptions.supportsOptions ? options : false
     }
-    const _default = exports.default = listenerOptions
+    exports.default = listenerOptions
   }, { 'core-js/stable': 752 }],
   44: [function (require, module, exports) {
     'use strict'
@@ -1888,7 +2036,6 @@
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
     /**
  * Based on available flags, either proceed to process the listener or skip.
@@ -1896,7 +2043,6 @@
  * @memberOf module:domEvents
  * @param {EventProxy} event - The event object passed to the listener
  */
-
     /**
  * Prepare a listener to be used before assigning to an element.
  * @function
@@ -1914,18 +2060,23 @@
         return listener(event, item, ...args)
       }
     }
-    const _default = exports.default = makeEventHandler
+    exports.default = makeEventHandler
   }, { 'core-js/stable': 752 }],
   45: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _documentItem = _interopRequireDefault(require('../../domItem/objects/documentItem.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const documentItem_1 = __importDefault(require('../../domItem/objects/documentItem'))
     /**
  * Register a single listener function as part of the root domEvents.DomItem.
  * @function
@@ -1936,22 +2087,27 @@
  * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
  * @returns {Object.<string, listenerFunction>}
  */
-    const registerListener = (listener, name = listener.name, parent = _documentItem.default) => Object.assign(parent.eventActions, {
+    const registerListener = (listener, name = listener.name, parent = documentItem_1.default) => Object.assign(parent.eventActions, {
       [name]: listener
     })
-    const _default = exports.default = registerListener
-  }, { '../../domItem/objects/documentItem.js': 15, 'core-js/stable': 752 }],
+    exports.default = registerListener
+  }, { '../../domItem/objects/documentItem': 15, 'core-js/stable': 752 }],
   46: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    const _documentItem = _interopRequireDefault(require('../../domItem/objects/documentItem.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
+    const documentItem_1 = __importDefault(require('../../domItem/objects/documentItem'))
     /**
  * Register multiple listeners from an array of functions.
  * @function
@@ -1961,23 +2117,28 @@
  * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which has eventActions property.
  * @returns {DomItemRoot|Object}
  */
-    const registerListeners = (listeners, parent = _documentItem.default) => {
-      _siFunciona.default.mergeObjectsMutable(parent.eventActions, listeners)
+    const registerListeners = (listeners, parent = documentItem_1.default) => {
+      si_funciona_1.default.mergeObjectsMutable(parent.eventActions, listeners)
       return parent
     }
-    const _default = exports.default = registerListeners
-  }, { '../../domItem/objects/documentItem.js': 15, 'core-js/stable': 752, 'si-funciona': 832 }],
+    exports.default = registerListeners
+  }, { '../../domItem/objects/documentItem': 15, 'core-js/stable': 752, 'si-funciona': 832 }],
   47: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _findEventListener = _interopRequireDefault(require('./findEventListener.js'))
-    const _deactivateListener = _interopRequireDefault(require('./deactivateListener.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const findEventListener_1 = __importDefault(require('./findEventListener'))
+    const deactivateListener_1 = __importDefault(require('./deactivateListener'))
     /**
  * Find and remove an event listener from a DomItem: detaches it from the element first (via
  * {@link deactivateListener}) if it was active, then splices its descriptor out of eventListeners. A no-op if no
@@ -1995,30 +2156,35 @@
  * @returns {module:domGeneral~DomItem} The same DomItem, with the matching listener removed if one was found.
  */
     const removeEventListener = (eventName, listenerFunction, customArgs, options, item) => {
-      const [listenerIndex, foundListener] = (0, _findEventListener.default)(eventName, listenerFunction, customArgs, options, item)
+      const [listenerIndex, foundListener] = (0, findEventListener_1.default)(eventName, listenerFunction, customArgs, options, item)
       if (listenerIndex < 0 || typeof foundListener === 'undefined') {
         // listener not found
         return item
       }
       if (foundListener.listenerActive === true) {
-        item = (0, _deactivateListener.default)(eventName, foundListener, item)
+        item = (0, deactivateListener_1.default)(eventName, foundListener, item)
       }
       item.eventListeners[eventName].splice(listenerIndex, 1)
       return item
     }
-    const _default = exports.default = removeEventListener
-  }, { './deactivateListener.js': 38, './findEventListener.js': 40, 'core-js/stable': 752 }],
+    exports.default = removeEventListener
+  }, { './deactivateListener': 38, './findEventListener': 40, 'core-js/stable': 752 }],
   48: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/es.array.includes.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/es.array.includes.js')
     require('core-js/stable')
-    const _documentItem = _interopRequireDefault(require('../../domItem/objects/documentItem.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const documentItem_1 = __importDefault(require('../../domItem/objects/documentItem'))
     /**
  * Based on the provided function / listener name, retrieve the associated function from the root domEvents.DomItem.
  * If a raw function is passed instead of a registered name, it is returned as-is - see {@link EventListener}'s
@@ -2030,7 +2196,7 @@
  * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
  * @returns {listenerFunction|function|Object}
  */
-    const retrieveListener = (listenerName, parent = _documentItem.default) => {
+    const retrieveListener = (listenerName, parent = documentItem_1.default) => {
       if (typeof listenerName === 'function') {
         return listenerName
       }
@@ -2039,23 +2205,28 @@
       }
       return parent.eventActions[listenerName]
     }
-    const _default = exports.default = retrieveListener
-  }, { '../../domItem/objects/documentItem.js': 15, 'core-js/modules/es.array.includes.js': 393, 'core-js/stable': 752 }],
+    exports.default = retrieveListener
+  }, { '../../domItem/objects/documentItem': 15, 'core-js/modules/es.array.includes.js': 393, 'core-js/stable': 752 }],
   49: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.for-each.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/esnext.iterator.constructor.js')
-    require('core-js/modules/esnext.iterator.for-each.js')
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    const _getListenerOptions = _interopRequireDefault(require('../objects/options/getListenerOptions.js'))
-    const _numberToOptions = _interopRequireDefault(require('../objects/options/numberToOptions.js'))
-    const _unassignListener = _interopRequireDefault(require('./unassignListener.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
+    const getListenerOptions_1 = __importDefault(require('../objects/options/getListenerOptions'))
+    const numberToOptions_1 = __importDefault(require('../objects/options/numberToOptions'))
+    const unassignListener_1 = __importDefault(require('./unassignListener'))
     /**
  * Detach every active listener for one event type from a DomItem's element, regardless of which EventListener
  * descriptor each one belongs to, and clear that event's activeListeners bucket. Unlike {@link deactivateListener},
@@ -2067,19 +2238,20 @@
  * @return {module:domGeneral~DomItem} The same DomItem, with all active listeners for this event detached.
  */
     const revokeActiveListeners = (eventName, item) => {
-      const listenerOptions = (0, _getListenerOptions.default)()
-      const eventOptions = _siFunciona.default.dotGet(item, `activeListeners.${eventName}`)
+      const listenerOptions = (0, getListenerOptions_1.default)()
+      const eventOptions = si_funciona_1.default.dotGet(item, `activeListeners.${eventName}`)
       if (eventOptions === null) {
         return item
       }
-      _siFunciona.default.objectKeys(eventOptions).forEach(binaryOptions => {
-        const optionsToUse = (0, _numberToOptions.default)(listenerOptions, parseInt(binaryOptions))
+      si_funciona_1.default.objectKeys(eventOptions).forEach(binaryOptions => {
+        const optionsToUse = (0, numberToOptions_1.default)(listenerOptions, parseInt(binaryOptions))
         const usesSignal = !!optionsToUse.signal
         if (!usesSignal) {
           // Abort signal must be undefined if it is not required.
           delete optionsToUse.signal
         }
-        item.activeListeners[eventName][binaryOptions].forEach(eventResponder => {
+        ;
+        item.activeListeners[eventName][Number(binaryOptions)].forEach(eventResponder => {
           if (!eventResponder.assignedHandler) {
             // never actually attached to the element, nothing to detach
             return
@@ -2089,24 +2261,29 @@
               signal: eventResponder.abort.signal
             })
             : optionsToUse;
-          (0, _unassignListener.default)(eventName, item.element, eventResponder.assignedHandler, finalOptions)
+          (0, unassignListener_1.default)(eventName, item.element, eventResponder.assignedHandler, finalOptions)
         })
       })
       delete item.activeListeners[eventName]
       return item
     }
-    const _default = exports.default = revokeActiveListeners
-  }, { '../objects/options/getListenerOptions.js': 56, '../objects/options/numberToOptions.js': 57, './unassignListener.js': 50, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/stable': 752, 'si-funciona': 832 }],
+    exports.default = revokeActiveListeners
+  }, { '../objects/options/getListenerOptions': 56, '../objects/options/numberToOptions': 57, './unassignListener': 50, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/stable': 752, 'si-funciona': 832 }],
   50: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _listenerOptions = _interopRequireDefault(require('./listenerOptions.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const listenerOptions_1 = __importDefault(require('./listenerOptions'))
     /**
  * Provide compatibility for unassigning listeners.
  * @function
@@ -2123,45 +2300,25 @@
       // Removing a listener may be done differently based on the browser support
       if (elem.removeEventListener) {
         // Latest support is provided from removeEventListener with the options parameter varying slightly
-        elem.removeEventListener(trigger, fn, (0, _listenerOptions.default)(options))
+        elem.removeEventListener(trigger, fn, (0, listenerOptions_1.default)(options))
       }
       return fn
     }
-    const _default = exports.default = unassignListener
-  }, { './listenerOptions.js': 43, 'core-js/stable': 752 }],
+    exports.default = unassignListener
+  }, { './listenerOptions': 43, 'core-js/stable': 752 }],
   51: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/stable')
-    const _activateListener = _interopRequireDefault(require('./functions/activateListener.js'))
-    const _addEventListener = _interopRequireDefault(require('./functions/addEventListener.js'))
-    const _applyActiveListeners = _interopRequireDefault(require('./functions/applyActiveListeners.js'))
-    const _assignListener = _interopRequireDefault(require('./functions/assignListener.js'))
-    const _bindAllListeners = _interopRequireDefault(require('./functions/bindAllListeners.js'))
-    const _bindElementListeners = _interopRequireDefault(require('./functions/bindElementListeners.js'))
-    const _bindListeners = _interopRequireDefault(require('./functions/bindListeners.js'))
-    const _deactivateListener = _interopRequireDefault(require('./functions/deactivateListener.js'))
-    const _deactivateListeners = _interopRequireDefault(require('./functions/deactivateListeners.js'))
-    const _findEventListener = _interopRequireDefault(require('./functions/findEventListener.js'))
-    const _fullAddEventListener = _interopRequireDefault(require('./functions/fullAddEventListener.js'))
-    const _fullRemoveEventListener = _interopRequireDefault(require('./functions/fullRemoveEventListener.js'))
-    const _listenerOptions = _interopRequireDefault(require('./functions/listenerOptions.js'))
-    const _makeEventHandler = _interopRequireDefault(require('./functions/makeEventHandler.js'))
-    const _registerListener = _interopRequireDefault(require('./functions/registerListener.js'))
-    const _registerListeners = _interopRequireDefault(require('./functions/registerListeners.js'))
-    const _removeEventListener = _interopRequireDefault(require('./functions/removeEventListener.js'))
-    const _retrieveListener = _interopRequireDefault(require('./functions/retrieveListener.js'))
-    const _revokeActiveListeners = _interopRequireDefault(require('./functions/revokeActiveListeners.js'))
-    const _unassignListener = _interopRequireDefault(require('./functions/unassignListener.js'))
-    const _createEventListener = _interopRequireDefault(require('./objects/createEventListener.js'))
-    const _createEventProxy = _interopRequireDefault(require('./objects/createEventProxy.js'))
-    const _createEventResponder = _interopRequireDefault(require('./objects/createEventResponder.js'))
-    const _options = _interopRequireDefault(require('./objects/options.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * @file Setting up and handling events for items in a Virtual DOM (DomItem tree)
  * @author Joshua Heagle <joshuaheagle@gmail.com>
@@ -2169,40 +2326,64 @@
  * @module domEvents
  * @memberOf module:jsonDom
  */
-    const _default = exports.default = {
-      activateListener: _activateListener.default,
-      addEventListener: _addEventListener.default,
-      applyActiveListeners: _applyActiveListeners.default,
-      assignListener: _assignListener.default,
-      bindAllListeners: _bindAllListeners.default,
-      bindElementListeners: _bindElementListeners.default,
-      bindListeners: _bindListeners.default,
-      deactivateListener: _deactivateListener.default,
-      deactivateListeners: _deactivateListeners.default,
-      findEventListener: _findEventListener.default,
-      fullAddEventListener: _fullAddEventListener.default,
-      fullRemoveEventListener: _fullRemoveEventListener.default,
-      listenerOptions: _listenerOptions.default,
-      makeEventHandler: _makeEventHandler.default,
-      registerListener: _registerListener.default,
-      registerListeners: _registerListeners.default,
-      removeEventListener: _removeEventListener.default,
-      retrieveListener: _retrieveListener.default,
-      revokeActiveListeners: _revokeActiveListeners.default,
-      unassignListener: _unassignListener.default,
-      createEventListener: _createEventListener.default,
-      createEventProxy: _createEventProxy.default,
-      createEventResponder: _createEventResponder.default,
-      options: _options.default
+    require('core-js/stable')
+    const activateListener_1 = __importDefault(require('./functions/activateListener'))
+    const addEventListener_1 = __importDefault(require('./functions/addEventListener'))
+    const applyActiveListeners_1 = __importDefault(require('./functions/applyActiveListeners'))
+    const assignListener_1 = __importDefault(require('./functions/assignListener'))
+    const bindAllListeners_1 = __importDefault(require('./functions/bindAllListeners'))
+    const bindElementListeners_1 = __importDefault(require('./functions/bindElementListeners'))
+    const bindListeners_1 = __importDefault(require('./functions/bindListeners'))
+    const deactivateListener_1 = __importDefault(require('./functions/deactivateListener'))
+    const deactivateListeners_1 = __importDefault(require('./functions/deactivateListeners'))
+    const findEventListener_1 = __importDefault(require('./functions/findEventListener'))
+    const fullAddEventListener_1 = __importDefault(require('./functions/fullAddEventListener'))
+    const fullRemoveEventListener_1 = __importDefault(require('./functions/fullRemoveEventListener'))
+    const listenerOptions_1 = __importDefault(require('./functions/listenerOptions'))
+    const makeEventHandler_1 = __importDefault(require('./functions/makeEventHandler'))
+    const registerListener_1 = __importDefault(require('./functions/registerListener'))
+    const registerListeners_1 = __importDefault(require('./functions/registerListeners'))
+    const removeEventListener_1 = __importDefault(require('./functions/removeEventListener'))
+    const retrieveListener_1 = __importDefault(require('./functions/retrieveListener'))
+    const revokeActiveListeners_1 = __importDefault(require('./functions/revokeActiveListeners'))
+    const unassignListener_1 = __importDefault(require('./functions/unassignListener'))
+    const createEventListener_1 = __importDefault(require('./objects/createEventListener'))
+    const createEventProxy_1 = __importDefault(require('./objects/createEventProxy'))
+    const createEventResponder_1 = __importDefault(require('./objects/createEventResponder'))
+    const options_1 = __importDefault(require('./objects/options'))
+    exports.default = {
+      activateListener: activateListener_1.default,
+      addEventListener: addEventListener_1.default,
+      applyActiveListeners: applyActiveListeners_1.default,
+      assignListener: assignListener_1.default,
+      bindAllListeners: bindAllListeners_1.default,
+      bindElementListeners: bindElementListeners_1.default,
+      bindListeners: bindListeners_1.default,
+      deactivateListener: deactivateListener_1.default,
+      deactivateListeners: deactivateListeners_1.default,
+      findEventListener: findEventListener_1.default,
+      fullAddEventListener: fullAddEventListener_1.default,
+      fullRemoveEventListener: fullRemoveEventListener_1.default,
+      listenerOptions: listenerOptions_1.default,
+      makeEventHandler: makeEventHandler_1.default,
+      registerListener: registerListener_1.default,
+      registerListeners: registerListeners_1.default,
+      removeEventListener: removeEventListener_1.default,
+      retrieveListener: retrieveListener_1.default,
+      revokeActiveListeners: revokeActiveListeners_1.default,
+      unassignListener: unassignListener_1.default,
+      createEventListener: createEventListener_1.default,
+      createEventProxy: createEventProxy_1.default,
+      createEventResponder: createEventResponder_1.default,
+      options: options_1.default
     }
-  }, { './functions/activateListener.js': 31, './functions/addEventListener.js': 32, './functions/applyActiveListeners.js': 33, './functions/assignListener.js': 34, './functions/bindAllListeners.js': 35, './functions/bindElementListeners.js': 36, './functions/bindListeners.js': 37, './functions/deactivateListener.js': 38, './functions/deactivateListeners.js': 39, './functions/findEventListener.js': 40, './functions/fullAddEventListener.js': 41, './functions/fullRemoveEventListener.js': 42, './functions/listenerOptions.js': 43, './functions/makeEventHandler.js': 44, './functions/registerListener.js': 45, './functions/registerListeners.js': 46, './functions/removeEventListener.js': 47, './functions/retrieveListener.js': 48, './functions/revokeActiveListeners.js': 49, './functions/unassignListener.js': 50, './objects/createEventListener.js': 52, './objects/createEventProxy.js': 53, './objects/createEventResponder.js': 54, './objects/options.js': 55, 'core-js/stable': 752 }],
+  }, { './functions/activateListener': 31, './functions/addEventListener': 32, './functions/applyActiveListeners': 33, './functions/assignListener': 34, './functions/bindAllListeners': 35, './functions/bindElementListeners': 36, './functions/bindListeners': 37, './functions/deactivateListener': 38, './functions/deactivateListeners': 39, './functions/findEventListener': 40, './functions/fullAddEventListener': 41, './functions/fullRemoveEventListener': 42, './functions/listenerOptions': 43, './functions/makeEventHandler': 44, './functions/registerListener': 45, './functions/registerListeners': 46, './functions/removeEventListener': 47, './functions/retrieveListener': 48, './functions/revokeActiveListeners': 49, './functions/unassignListener': 50, './objects/createEventListener': 52, './objects/createEventProxy': 53, './objects/createEventResponder': 54, './objects/options': 55, 'core-js/stable': 752 }],
   52: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
     /**
  * This is the standard definition of a listenerFunction to be used
@@ -2212,14 +2393,12 @@
  * @param {DomItem} target - The element which triggered the event
  * @param {...*} [args] - Optional args as required by the listener
  */
-
     /**
  * A Boolean indicating whether events of this type will be dispatched to the registered listerFunction before being
  * dispatched to any EventTarget beneath it in the Dom tree.
  * @typedef {boolean} UseCapture
  * @memberOf module:domEvents
  */
-
     /**
  * OptionsObject defines the structure for the options to be passed to addEventListener
  * @typedef {Object} OptionsObject
@@ -2233,13 +2412,11 @@
  * @property {boolean} signal - The listener will be removed when the given AbortSignal object's abort() method is
  * called. If not specified, no AbortSignal is associated with the listener.
  */
-
     /**
  * EventListenerOptions is either a boolean as UseCapture or an Object as OptionsObject
  * @typedef {OptionsObject|UseCapture} EventListenerOptions
  * @memberOf module:domEvents
  */
-
     /**
  * An EventListener Object to be appended to the element within the DomItem
  * @typedef {Object} EventListener
@@ -2257,19 +2434,16 @@
  * @property {EventListenerOptions} [listenerOptions=false] - Provides support for options parameter of addEventListener, or false for default
  * @property {boolean} [listenerActive=false] - Indicate whether this listener has been applied to the element.
  */
-
     /**
  * One or more listeners assigned to the same event.
  * @typedef {Array.<EventListener>} EventListeners
  * @memberOf module:domEvents
  */
-
     /**
  * The name of the trigger used to fire the event.
  * @typedef {string} EventName
  * @memberOf module:domEvents
  */
-
     /**
  * Prepare an eventListener object to attach to a DOMItem
  * @function
@@ -2293,7 +2467,7 @@
       listenerOptions,
       listenerActive
     })
-    const _default = exports.default = createEventListener
+    exports.default = createEventListener
   }, { 'core-js/stable': 752 }],
   53: [function (require, module, exports) {
     'use strict'
@@ -2301,7 +2475,6 @@
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
     /**
  * A wrapped Event which provides additional utilities.
@@ -2309,7 +2482,6 @@
  * @memberOf module:domEvents
  * @property {boolean} immediatePropagationStopped
  */
-
     /**
  * Return a modified version of the event.
  * @function
@@ -2332,7 +2504,7 @@
         return typeof value === 'function' && prop !== 'constructor' ? value.bind(thisEvent) : value
       }
     })
-    const _default = exports.default = createEventProxy
+    exports.default = createEventProxy
   }, { 'core-js/stable': 752 }],
   54: [function (require, module, exports) {
     'use strict'
@@ -2340,7 +2512,6 @@
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
     /**
  * Track an event handler and optional abort signal.
@@ -2351,7 +2522,6 @@
  * @property {eventHandler|null} assignedHandler - The exact function reference passed to the element's
  * addEventListener, set once applied. Required to later detach this exact listener via removeEventListener.
  */
-
     /**
  * Store the handler function and associated abort controller instance if available to be used when events are triggered.
  * @function
@@ -2373,20 +2543,21 @@
         assignedHandler: null
       })
     }
-    const _default = exports.default = createEventResponder
+    exports.default = createEventResponder
   }, { 'core-js/stable': 752 }],
   55: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/stable')
-    const _getListenerOptions = _interopRequireDefault(require('./options/getListenerOptions.js'))
-    const _numberToOptions = _interopRequireDefault(require('./options/numberToOptions.js'))
-    const _optionsToNumber = _interopRequireDefault(require('./options/optionsToNumber.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * @file Be able to use Flags (Options) in a well-formed way.
  * @author Joshua Heagle <joshuaheagle@gmail.com>
@@ -2394,6 +2565,10 @@
  * @module optionFlags
  * @memberOf module:domEvents
  */
+    require('core-js/stable')
+    const getListenerOptions_1 = __importDefault(require('./options/getListenerOptions'))
+    const numberToOptions_1 = __importDefault(require('./options/numberToOptions'))
+    const optionsToNumber_1 = __importDefault(require('./options/optionsToNumber'))
     /**
  * A boolean value used to alter functionality.
  * @typedef {boolean} Option
@@ -2411,25 +2586,23 @@
  * Object containing available Option names and the Flag value associated with each.
  * @typedef {Object.<string, Flag>} OptionsTemplate
  */
-    const _default = exports.default = {
-      getListenerOptions: _getListenerOptions.default,
-      numberToOptions: _numberToOptions.default,
-      optionsToNumber: _optionsToNumber.default
+    exports.default = {
+      getListenerOptions: getListenerOptions_1.default,
+      numberToOptions: numberToOptions_1.default,
+      optionsToNumber: optionsToNumber_1.default
     }
-  }, { './options/getListenerOptions.js': 56, './options/numberToOptions.js': 57, './options/optionsToNumber.js': 58, 'core-js/stable': 752 }],
+  }, { './options/getListenerOptions': 56, './options/numberToOptions': 57, './options/optionsToNumber': 58, 'core-js/stable': 752 }],
   56: [function (require, module, exports) {
     'use strict'
 
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
     const CAPTURE = 1
     const ONCE = 2
     const PASSIVE = 4
     const SIGNAL = 8
-
     /**
  * Retrieve the OptionsTemplate for EventListenerOptions.
  * @function
@@ -2442,18 +2615,23 @@
       passive: PASSIVE,
       signal: SIGNAL
     })
-    const _default = exports.default = getListenerOptions
+    exports.default = getListenerOptions
   }, { 'core-js/stable': 752 }],
   57: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
     /**
  * Take an integer representation of the listener options and convert them to the listener options object.
  * @function
@@ -2462,19 +2640,24 @@
  * @param {int} binaryOptions
  * @returns {EventListenerOptions}
  */
-    const numberToOptions = (optionsTemplate, binaryOptions) => _siFunciona.default.mapObject(optionsTemplate, flag => !!(binaryOptions & flag))
-    const _default = exports.default = numberToOptions
+    const numberToOptions = (optionsTemplate, binaryOptions) => si_funciona_1.default.mapObject(optionsTemplate, flag => !!(binaryOptions & flag))
+    exports.default = numberToOptions
   }, { 'core-js/stable': 752, 'si-funciona': 832 }],
   58: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
     /**
  * Take the given options and convert them (using binary) to an integer. Given listener options, each one is assigned a
  * bitwise position. The resulting binary number represents any possible combination of the available flags set.
@@ -2488,35 +2671,45 @@
       if (!listenerOptions) {
         return 0
       }
-      return _siFunciona.default.reduceObject(optionsTemplate, (binaryOptions, flag, name) => listenerOptions[name] ? binaryOptions | flag : binaryOptions, 0)
+      return si_funciona_1.default.reduceObject(optionsTemplate, (binaryOptions, flag, name) => listenerOptions[name] ? binaryOptions | flag : binaryOptions, 0)
     }
-    const _default = exports.default = optionsToNumber
+    exports.default = optionsToNumber
   }, { 'core-js/stable': 752, 'si-funciona': 832 }],
   59: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _jsonToDomItem = _interopRequireDefault(require('./jsonToDomItem.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-    const _default = exports.default = {
-      jsonToDomItem: _jsonToDomItem.default
+    const jsonToDomItem_1 = __importDefault(require('./jsonToDomItem'))
+    exports.default = {
+      jsonToDomItem: jsonToDomItem_1.default
     }
-  }, { './jsonToDomItem.js': 60, 'core-js/stable': 752 }],
+  }, { './jsonToDomItem': 60, 'core-js/stable': 752 }],
   60: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _setParentItemReferences = _interopRequireDefault(require('../domItem/tree/setParentItemReferences.js'))
-    const _addDomItemProperties = _interopRequireDefault(require('../domItem/objects/addDomItemProperties.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const setParentItemReferences_1 = __importDefault(require('../domItem/tree/setParentItemReferences'))
+    const addDomItemProperties_1 = __importDefault(require('../domItem/objects/addDomItemProperties'))
     /**
  * Convert DOM Item to JSON string.
  * @function
@@ -2525,32 +2718,20 @@
  * @returns {DomItem}
  */
     const jsonToDomItem = jsonString => {
-      const parsedJson = (0, _setParentItemReferences.default)((0, _addDomItemProperties.default)(JSON.parse(jsonString)))
+      const parsedJson = (0, setParentItemReferences_1.default)((0, addDomItemProperties_1.default)(JSON.parse(jsonString)))
       if (parsedJson.nodeName === '#document') {
-        parsedJson.element = document
-        parsedJson.head = parsedJson.children[0]
-        parsedJson.body = parsedJson.children[1]
+        const root = parsedJson
+        root.element = document
+        root.head = root.children[0]
+        root.body = root.children[1]
       }
       return parsedJson
     }
-    const _default = exports.default = jsonToDomItem
-  }, { '../domItem/objects/addDomItemProperties.js': 12, '../domItem/tree/setParentItemReferences.js': 30, 'core-js/stable': 752 }],
+    exports.default = jsonToDomItem
+  }, { '../domItem/objects/addDomItemProperties': 12, '../domItem/tree/setParentItemReferences': 30, 'core-js/stable': 752 }],
   61: [function (require, module, exports) {
     'use strict'
 
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
-    require('core-js/stable')
-    const _index = _interopRequireDefault(require('./events/index.js'))
-    const _index2 = _interopRequireDefault(require('./domItem/index.js'))
-    const _index3 = _interopRequireDefault(require('./inflate/index.js'))
-    const _index4 = _interopRequireDefault(require('./deflate/index.js'))
-    const _index5 = _interopRequireDefault(require('./render/index.js'))
-    const _index6 = _interopRequireDefault(require('./sync/index.js'))
-    const _index7 = _interopRequireDefault(require('./diff/index.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * All of the JSON DOM system functions for building and syncing a Virtual DOM (DomItem tree) to the real HTML DOM.
  * @file
@@ -2558,22 +2739,44 @@
  * @version 1.0.0
  * @module jsonDom
  */
-
-    const jsonDom = Object.assign({}, _index.default, _index2.default, _index3.default, _index4.default, _index5.default, _index6.default, _index7.default)
-    const _default = exports.default = jsonDom
-    const root = void 0 || typeof window !== 'undefined' ? window : {}
-    root.jsonDom = jsonDom
-  }, { './deflate/index.js': 2, './diff/index.js': 10, './domItem/index.js': 11, './events/index.js': 51, './inflate/index.js': 59, './render/index.js': 63, './sync/index.js': 68, 'core-js/stable': 752 }],
-  62: [function (require, module, exports) {
-    'use strict'
-
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _updateElement = _interopRequireDefault(require('./updateElement.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const index_1 = __importDefault(require('./events/index'))
+    const index_2 = __importDefault(require('./domItem/index'))
+    const index_3 = __importDefault(require('./inflate/index'))
+    const index_4 = __importDefault(require('./deflate/index'))
+    const index_5 = __importDefault(require('./render/index'))
+    const index_6 = __importDefault(require('./sync/index'))
+    const index_7 = __importDefault(require('./diff/index'))
+    const jsonDom = Object.assign({}, index_1.default, index_2.default, index_3.default, index_4.default, index_5.default, index_6.default, index_7.default)
+    exports.default = jsonDom
+    const root = void 0 || typeof window !== 'undefined' ? window : {}
+    root.jsonDom = jsonDom
+  }, { './deflate/index': 2, './diff/index': 10, './domItem/index': 11, './events/index': 51, './inflate/index': 59, './render/index': 63, './sync/index': 68, 'core-js/stable': 752 }],
+  62: [function (require, module, exports) {
+    'use strict'
+
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
+    require('core-js/stable')
+    const updateElement_1 = __importDefault(require('./updateElement'))
     /**
  * Create a new DOM Node based on name and data.
  * @function
@@ -2592,7 +2795,6 @@
           return document.createElement(nodeName)
       }
     }
-
     /**
  * Create an HTML element based on the provided attributes and return the element as an Object.
  * @function
@@ -2602,45 +2804,55 @@
  */
     const generateElement = domItem => {
       domItem.element = makeElementType(domItem.nodeName, domItem.nodeValue)
-      return (0, _updateElement.default)(domItem)
+      return (0, updateElement_1.default)(domItem)
     }
-    const _default = exports.default = generateElement
-  }, { './updateElement.js': 66, 'core-js/stable': 752 }],
+    exports.default = generateElement
+  }, { './updateElement': 66, 'core-js/stable': 752 }],
   63: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _generateElement = _interopRequireDefault(require('./generateElement.js'))
-    const _renderHtml = _interopRequireDefault(require('./renderHtml.js'))
-    const _updateChildNodes = _interopRequireDefault(require('./updateChildNodes.js'))
-    const _updateElement = _interopRequireDefault(require('./updateElement.js'))
-    const _updateElements = _interopRequireDefault(require('./updateElements.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-    const _default = exports.default = {
-      generateElement: _generateElement.default,
-      renderHtml: _renderHtml.default,
-      updateChildNodes: _updateChildNodes.default,
-      updateElement: _updateElement.default,
-      updateElements: _updateElements.default
+    const generateElement_1 = __importDefault(require('./generateElement'))
+    const renderHtml_1 = __importDefault(require('./renderHtml'))
+    const updateChildNodes_1 = __importDefault(require('./updateChildNodes'))
+    const updateElement_1 = __importDefault(require('./updateElement'))
+    const updateElements_1 = __importDefault(require('./updateElements'))
+    exports.default = {
+      generateElement: generateElement_1.default,
+      renderHtml: renderHtml_1.default,
+      updateChildNodes: updateChildNodes_1.default,
+      updateElement: updateElement_1.default,
+      updateElements: updateElements_1.default
     }
-  }, { './generateElement.js': 62, './renderHtml.js': 64, './updateChildNodes.js': 65, './updateElement.js': 66, './updateElements.js': 67, 'core-js/stable': 752 }],
+  }, { './generateElement': 62, './renderHtml': 64, './updateChildNodes': 65, './updateElement': 66, './updateElements': 67, 'core-js/stable': 752 }],
   64: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _appendChild = _interopRequireDefault(require('../domItem/tree/appendChild.js'))
-    const _documentItem = _interopRequireDefault(require('../domItem/objects/documentItem.js'))
-    const _setParentItemReferences = _interopRequireDefault(require('../domItem/tree/setParentItemReferences.js'))
-    const _updateElements = _interopRequireDefault(require('./updateElements.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const appendChild_1 = __importDefault(require('../domItem/tree/appendChild'))
+    const documentItem_1 = __importDefault(require('../domItem/objects/documentItem'))
+    const setParentItemReferences_1 = __importDefault(require('../domItem/tree/setParentItemReferences'))
+    const updateElements_1 = __importDefault(require('./updateElements'))
     /**
  * This is a shortcut for syncing a Virtual DOM (DomItem tree) item onto the real HTML DOM: builds the real elements
  * for it and its descendants, appends them to parent (the document body by default), and binds their associated
@@ -2652,35 +2864,37 @@
  * document body, so passing nothing keeps working exactly as before
  * @returns {DomItem}
  */
-    const renderHtml = (item = null, parent = _documentItem.default.body) => {
-      let itemToRender = item
-      if (item === null) {
-        itemToRender = _documentItem.default
-      }
+    const renderHtml = (item = null, parent = documentItem_1.default.body) => {
+      let itemToRender = item === null ? documentItem_1.default : item
       if (itemToRender.parentItem === null) {
         // excluding when documentItem was passed in, append the item to parent
-        itemToRender = (0, _appendChild.default)(parent, item)
+        itemToRender = (0, appendChild_1.default)(parent, item)
       }
       // Render the elements and return either to original reference, or updated documentItem (whichever is available)
-      const updatedItem = (0, _updateElements.default)((0, _setParentItemReferences.default)(itemToRender))
+      const updatedItem = (0, updateElements_1.default)((0, setParentItemReferences_1.default)(itemToRender))
       return item ?? updatedItem
     }
-    const _default = exports.default = renderHtml
-  }, { '../domItem/objects/documentItem.js': 15, '../domItem/tree/appendChild.js': 27, '../domItem/tree/setParentItemReferences.js': 30, './updateElements.js': 67, 'core-js/stable': 752 }],
+    exports.default = renderHtml
+  }, { '../domItem/objects/documentItem': 15, '../domItem/tree/appendChild': 27, '../domItem/tree/setParentItemReferences': 30, './updateElements': 67, 'core-js/stable': 752 }],
   65: [function (require, module, exports) {
     'use strict'
 
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
     require('core-js/modules/esnext.iterator.constructor.js')
     require('core-js/modules/esnext.iterator.find.js')
     require('core-js/modules/esnext.iterator.for-each.js')
     require('core-js/modules/esnext.iterator.map.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
     require('core-js/stable')
-    const _updateElement = _interopRequireDefault(require('./updateElement.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const updateElement_1 = __importDefault(require('./updateElement'))
     /**
  * Update all the childNodes for this domItem element to mach domItem children.
  * @function
@@ -2690,58 +2904,64 @@
  */
     const updateChildNodes = domItem => {
       if (!domItem.element) {
-        domItem = (0, _updateElement.default)(domItem)
+        domItem = (0, updateElement_1.default)(domItem)
       }
       if (!domItem.children || !domItem.children.length) {
         domItem.children = []
         return domItem
       }
-      const previousChildNodes = Array.from(domItem.element.childNodes)
+      const element = domItem.element
+      const previousChildNodes = Array.from(element.childNodes)
       domItem.children.map((child, index) => {
         const existing = previousChildNodes.find(childNode => childNode === child.element)
         let childNode = existing ?? child.element
         if (!childNode) {
-          childNode = (0, _updateElement.default)(child).element
+          childNode = (0, updateElement_1.default)(child).element
         }
         if (!previousChildNodes[index]) {
-          domItem.element.appendChild(childNode)
+          element.appendChild(childNode)
           return childNode
         }
         if (childNode !== previousChildNodes[index]) {
-          domItem.element.replaceChild(childNode, previousChildNodes[index])
+          element.replaceChild(childNode, previousChildNodes[index])
         }
         return childNode
       }).forEach((childNode, index) => {
         domItem.children[index].element = childNode
       })
-      if (domItem.element.childNodes.length > domItem.children.length) {
+      if (element.childNodes.length > domItem.children.length) {
         const maxLength = domItem.children.length
-        let nodeToRemove = domItem.element.childNodes[maxLength]
+        let nodeToRemove = element.childNodes[maxLength]
         while (nodeToRemove) {
-          domItem.element.removeChild(nodeToRemove)
-          nodeToRemove = domItem.element.childNodes[maxLength]
+          element.removeChild(nodeToRemove)
+          nodeToRemove = element.childNodes[maxLength]
         }
       }
       return domItem
     }
-    const _default = exports.default = updateChildNodes
-  }, { './updateElement.js': 66, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.find.js': 689, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/modules/esnext.iterator.map.js': 691, 'core-js/stable': 752 }],
+    exports.default = updateChildNodes
+  }, { './updateElement': 66, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.find.js': 689, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/modules/esnext.iterator.map.js': 691, 'core-js/stable': 752 }],
   66: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/es.array.includes.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/es.array.includes.js')
     require('core-js/stable')
-    const _bindListeners = _interopRequireDefault(require('../events/functions/bindListeners.js'))
-    const _deactivateListeners = _interopRequireDefault(require('../events/functions/deactivateListeners.js'))
-    const _domItemChanges = _interopRequireDefault(require('../diff/domItemChanges.js'))
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    const _generateElement = _interopRequireDefault(require('./generateElement.js'))
-    const _updateChildNodes = _interopRequireDefault(require('./updateChildNodes.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const bindListeners_1 = __importDefault(require('../events/functions/bindListeners'))
+    const deactivateListeners_1 = __importDefault(require('../events/functions/deactivateListeners'))
+    const domItemChanges_1 = __importDefault(require('../diff/domItemChanges'))
+    const si_funciona_1 = __importDefault(require('si-funciona'))
+    const generateElement_1 = __importDefault(require('./generateElement'))
+    const updateChildNodes_1 = __importDefault(require('./updateChildNodes'))
     /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties.
  *
@@ -2758,58 +2978,61 @@
  */
     const updateElement = domItem => {
       if (!domItem.element) {
-        return (0, _updateChildNodes.default)((0, _generateElement.default)((0, _deactivateListeners.default)(domItem)))
+        return (0, updateChildNodes_1.default)((0, generateElement_1.default)((0, deactivateListeners_1.default)(domItem)))
       }
-      const changes = (0, _domItemChanges.default)(domItem)
+      const changes = (0, domItemChanges_1.default)(domItem)
+      // From here on the item has an element (an element which is missing was generated above)
+      const element = domItem.element
+      const properties = element
       if (changes.removed.nodeName || changes.added.nodeName) {
         // if the nodeName has changed then remove the element and create a new one
-        domItem.element.remove()
-        return (0, _updateChildNodes.default)((0, _generateElement.default)((0, _deactivateListeners.default)(domItem)))
+        element.remove()
+        return (0, updateChildNodes_1.default)((0, generateElement_1.default)((0, deactivateListeners_1.default)(domItem)))
       }
       for (const dotKey in changes.removed) {
         const value = changes.removed[dotKey]
         if (!dotKey.includes('.')) {
-          if (dotKey in domItem.element) {
-            delete domItem.element[dotKey]
+          if (dotKey in element) {
+            delete properties[dotKey]
             continue
           }
-          domItem.element.removeAttribute(dotKey)
+          element.removeAttribute(dotKey)
           continue
         }
-        const baseKey = _siFunciona.default.strBefore(dotKey, '.')
+        const baseKey = si_funciona_1.default.strBefore(dotKey, '.')
         if (baseKey !== 'class' && baseKey !== 'style') {
           throw new Error('Unhandled dotKey: ' + dotKey)
         }
         if (baseKey === 'class') {
-          domItem.element.classList.remove(value)
+          element.classList.remove(value)
           continue
         }
-        domItem.element.style.removeProperty(_siFunciona.default.strAfter(dotKey, '.'))
+        element.style.removeProperty(si_funciona_1.default.strAfter(dotKey, '.'))
       }
       for (const dotKey in changes.added) {
         const value = changes.added[dotKey]
         if (dotKey === 'className') {
-          domItem.element.className = value
+          element.className = value
           continue
         }
         if (dotKey === 'style') {
           // Update all styles based on incoming style object
           // setProperty wants CSS names (background-color), but the style object is written in camelCase (backgroundColor)
           for (const style in value) {
-            domItem.element.style.setProperty(_siFunciona.default.kabobCase(style), value[style])
+            element.style.setProperty(si_funciona_1.default.kabobCase(style), value[style])
           }
           continue
         }
         if (!dotKey.includes('.')) {
-          if (dotKey in domItem.element && dotKey !== 'form') {
+          if (dotKey in element && dotKey !== 'form') {
             // Some things can be assigned directly, but 'form' attribute cannot
-            domItem.element[dotKey] = value
+            properties[dotKey] = value
             continue
           }
-          domItem.element.setAttribute(dotKey, value)
+          element.setAttribute(dotKey, value)
           continue
         }
-        const baseKey = _siFunciona.default.strBefore(dotKey, '.')
+        const baseKey = si_funciona_1.default.strBefore(dotKey, '.')
         if (baseKey !== 'class' && baseKey !== 'style') {
           throw new Error('Unhandled dotKey: ' + dotKey)
         }
@@ -2818,28 +3041,33 @@
           continue
         }
         if (baseKey === 'class') {
-          domItem.element.classList.add(value)
+          element.classList.add(value)
           continue
         }
-        domItem.element.style.setProperty(_siFunciona.default.strAfter(dotKey, '.'), value)
+        element.style.setProperty(si_funciona_1.default.strAfter(dotKey, '.'), value)
       }
-      return (0, _bindListeners.default)(domItem)
+      return (0, bindListeners_1.default)(domItem)
     }
-    const _default = exports.default = updateElement
-  }, { '../diff/domItemChanges.js': 5, '../events/functions/bindListeners.js': 37, '../events/functions/deactivateListeners.js': 39, './generateElement.js': 62, './updateChildNodes.js': 65, 'core-js/modules/es.array.includes.js': 393, 'core-js/stable': 752, 'si-funciona': 832 }],
+    exports.default = updateElement
+  }, { '../diff/domItemChanges': 5, '../events/functions/bindListeners': 37, '../events/functions/deactivateListeners': 39, './generateElement': 62, './updateChildNodes': 65, 'core-js/modules/es.array.includes.js': 393, 'core-js/stable': 752, 'si-funciona': 832 }],
   67: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.for-each.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/esnext.iterator.constructor.js')
-    require('core-js/modules/esnext.iterator.for-each.js')
     require('core-js/stable')
-    const _updateChildNodes = _interopRequireDefault(require('./updateChildNodes.js'))
-    const _updateElement = _interopRequireDefault(require('./updateElement.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const updateChildNodes_1 = __importDefault(require('./updateChildNodes'))
+    const updateElement_1 = __importDefault(require('./updateElement'))
     /**
  * Generate HTML element data for each object in the matrix
  * WARNING: This is a recursive function.
@@ -2856,43 +3084,53 @@
         }
         return config
       }
-      const domItem = (0, _updateChildNodes.default)((0, _updateElement.default)(config))
+      const domItem = (0, updateChildNodes_1.default)((0, updateElement_1.default)(config))
       domItem.children.forEach(updateElements)
       return domItem
     }
-    const _default = exports.default = updateElements
-  }, { './updateChildNodes.js': 65, './updateElement.js': 66, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/stable': 752 }],
+    exports.default = updateElements
+  }, { './updateChildNodes': 65, './updateElement': 66, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/stable': 752 }],
   68: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _updateChildren = _interopRequireDefault(require('./updateChildren.js'))
-    const _updateDomItem = _interopRequireDefault(require('./updateDomItem.js'))
-    const _updateDomItems = _interopRequireDefault(require('./updateDomItems.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-    const _default = exports.default = {
-      updateChildren: _updateChildren.default,
-      updateDomItem: _updateDomItem.default,
-      updateDomItems: _updateDomItems.default
+    const updateChildren_1 = __importDefault(require('./updateChildren'))
+    const updateDomItem_1 = __importDefault(require('./updateDomItem'))
+    const updateDomItems_1 = __importDefault(require('./updateDomItems'))
+    exports.default = {
+      updateChildren: updateChildren_1.default,
+      updateDomItem: updateDomItem_1.default,
+      updateDomItems: updateDomItems_1.default
     }
-  }, { './updateChildren.js': 69, './updateDomItem.js': 70, './updateDomItems.js': 71, 'core-js/stable': 752 }],
+  }, { './updateChildren': 69, './updateDomItem': 70, './updateDomItems': 71, 'core-js/stable': 752 }],
   69: [function (require, module, exports) {
     'use strict'
 
-    Object.defineProperty(exports, '__esModule', {
-      value: true
-    })
-    exports.default = void 0
     require('core-js/modules/esnext.iterator.constructor.js')
     require('core-js/modules/esnext.iterator.find.js')
     require('core-js/modules/esnext.iterator.for-each.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
+    Object.defineProperty(exports, '__esModule', {
+      value: true
+    })
     require('core-js/stable')
-    const _createDomItem = _interopRequireDefault(require('../domItem/objects/createDomItem'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const createDomItem_1 = __importDefault(require('../domItem/objects/createDomItem'))
     /**
  * Update all the children for this domItem to match the domItem element childNodes.
  * @function
@@ -2909,7 +3147,7 @@
       domItem.children = []
       domItem.element.childNodes.forEach((childNode, index) => {
         const existing = previousChildren.find(child => child.element === childNode)
-        const child = existing ?? (0, _createDomItem.default)({
+        const child = existing ?? (0, createDomItem_1.default)({
           nodeName: childNode.nodeName.toLowerCase(),
           nodeValue: childNode.nodeValue,
           element: childNode
@@ -2919,19 +3157,24 @@
       })
       return domItem
     }
-    const _default = exports.default = updateChildren
+    exports.default = updateChildren
   }, { '../domItem/objects/createDomItem': 13, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.find.js': 689, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/stable': 752 }],
   70: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
     require('core-js/stable')
-    const _siFunciona = _interopRequireDefault(require('si-funciona'))
-    const _elementChanges = _interopRequireDefault(require('../diff/elementChanges.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const si_funciona_1 = __importDefault(require('si-funciona'))
+    const elementChanges_1 = __importDefault(require('../diff/elementChanges'))
     /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
  * @function
@@ -2945,44 +3188,49 @@
         // if element is not a valid element then return the config without changes
         return config
       }
-      const changes = (0, _elementChanges.default)(config)
+      const changes = (0, elementChanges_1.default)(config)
       for (const dotKey in changes.removed) {
-        const attributeKey = _siFunciona.default.strAfter(dotKey, '.')
-        if (_siFunciona.default.strBefore(attributeKey, '.') === 'className') {
+        const attributeKey = si_funciona_1.default.strAfter(dotKey, '.')
+        if (si_funciona_1.default.strBefore(attributeKey, '.') === 'className') {
           const classList = config.attributes.className.split(' ')
-          classList.splice(_siFunciona.default.strAfterLast(attributeKey, '.'), 1)
+          classList.splice(si_funciona_1.default.strAfterLast(attributeKey, '.'), 1)
           config.attributes.className = classList.join(' ')
           continue
         }
-        _siFunciona.default.dotUnset(config, dotKey)
+        si_funciona_1.default.dotUnset(config, dotKey)
       }
       for (const dotKey in changes.added) {
-        const attributeKey = _siFunciona.default.strAfter(dotKey, '.')
-        if (_siFunciona.default.strBefore(attributeKey, '.') === 'className') {
+        const attributeKey = si_funciona_1.default.strAfter(dotKey, '.')
+        if (si_funciona_1.default.strBefore(attributeKey, '.') === 'className') {
           const classList = config.attributes.className.split(' ')
           classList.push(changes.added[dotKey])
           config.attributes.className = classList.join(' ')
           continue
         }
-        _siFunciona.default.dotSet(config, dotKey, changes.added[dotKey])
+        si_funciona_1.default.dotSet(config, dotKey, changes.added[dotKey])
       }
       return config
     }
-    const _default = exports.default = updateDomItem
-  }, { '../diff/elementChanges.js': 7, 'core-js/stable': 752, 'si-funciona': 832 }],
+    exports.default = updateDomItem
+  }, { '../diff/elementChanges': 7, 'core-js/stable': 752, 'si-funciona': 832 }],
   71: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.for-each.js')
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
-    exports.default = void 0
-    require('core-js/modules/esnext.iterator.constructor.js')
-    require('core-js/modules/esnext.iterator.for-each.js')
     require('core-js/stable')
-    const _updateChildren = _interopRequireDefault(require('./updateChildren.js'))
-    const _updateDomItem = _interopRequireDefault(require('./updateDomItem.js'))
-    function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+    const updateChildren_1 = __importDefault(require('./updateChildren'))
+    const updateDomItem_1 = __importDefault(require('./updateDomItem'))
     /**
  * Generate HTML element data for each object in the matrix
  * WARNING: This is a recursive function.
@@ -2999,12 +3247,12 @@
         }
         return config
       }
-      const domItem = (0, _updateChildren.default)((0, _updateDomItem.default)(config))
+      const domItem = (0, updateChildren_1.default)((0, updateDomItem_1.default)(config))
       domItem.children.forEach(updateDomItems)
       return domItem
     }
-    const _default = exports.default = updateDomItems
-  }, { './updateChildren.js': 69, './updateDomItem.js': 70, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/stable': 752 }],
+    exports.default = updateDomItems
+  }, { './updateChildren': 69, './updateDomItem': 70, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.for-each.js': 690, 'core-js/stable': 752 }],
   72: [function (require, module, exports) {
     'use strict'
     const isCallable = require('../internals/is-callable')
@@ -27257,7 +27505,16 @@
       const makeQueuedRunnable = (resolve, reject, fn, ...args) => {
         const generator = (function * () {
           const item = yield
-          return typeof item.fn === 'function' ? resolve(item.fn(...item.args)) : reject(item)
+          if (typeof item.fn !== 'function') {
+            return reject(item)
+          }
+          try {
+            return resolve(item.fn(...item.args))
+          } catch (error) {
+            // A function which throws rejects its own promise (as one which returns a rejected promise does), instead of
+            // throwing out of whichever function happened to finish just before it and starting the next item.
+            return reject(error)
+          }
         }())
         // Prepare the generator to be used on the subsequent call
         generator.next()
@@ -27280,6 +27537,17 @@
         return result
       }
       /**
+   * When a queued function throws (or returns a promise which rejects), carry on with the rest of the queue and pass the
+   * error on to whoever queued it - otherwise the queue would stay marked as running and never start another function.
+   * @param {*} error
+   * @throws {*} The same error
+   */
+      const postFailedRun = error => {
+        isRunning = false
+        runNextItem()
+        throw error
+      }
+      /**
    * When ready, runs the next queued runnable generator.
    * @returns {IteratorYieldResult|null}
    */
@@ -27294,7 +27562,7 @@
             new Promise((resolve, reject) => {
               toRun = makeQueuedRunnable(resolve, reject, toRun)
               runNextItem()
-            }).then(postRun)
+            }).then(postRun, postFailedRun)
           }
           if ('success' in toRun) {
             // Some run responses return an object with 'success' property.
@@ -27325,7 +27593,7 @@
       const pushAnother = (fn, ...args) => new Promise((resolve, reject) => {
         queue.enqueue(makeQueuedRunnable(resolve, reject, fn, ...args))
         runNextItem()
-      }).then(postRun)
+      }).then(postRun, postFailedRun)
       if (Array.isArray(queue)) {
         const queueArray = queue
         queue = (0, _makeBasicQueue.default)()
@@ -27643,13 +27911,19 @@
     })
     exports.default = void 0
     /**
- * Create a single random integer within provide range. And with optional offset,
- * The distance between the result numbers can be adjusted with interval.
+ * Create a single random integer from a set of `range` possible values, starting at the optional offset.
+ * With no offset the result is 0 to range - 1 (so range is the number of possible values, the same as an array length
+ * when choosing an index). The distance between the result numbers can be adjusted with interval.
+ * @example
+ * randomInteger(1) // always 0 (one possible value)
+ * randomInteger(2) // 0 or 1
+ * randomInteger(3, 1, 5) // 5, 10 or 15
+ * items[randomInteger(items.length)] // a random valid index
  * @memberOf module:numberHelpers
- * @param {number} range - Choose the breadth of the random number (0-100 would be 100 for range)
- * @param {number} [offset=0] - Choose the starting number (1-10 would be 1 for offset, 9 for range)
+ * @param {number} range - The number of possible values (0-99 would be 100 for range)
+ * @param {number} [offset=0] - Choose the starting number (1-10 would be 1 for offset, 10 for range)
  * @param {number} [interval=1] - Choose the distance between numbers (5, 10, 15 would be 5 for interval, 1 for
- * offset, 2 for range)
+ * offset, 3 for range)
  * @returns {number}
  */
     const randomInteger = (range, offset = 0, interval = 1) => (Math.floor(Math.random() * range) + offset) * interval
@@ -27663,13 +27937,14 @@
     })
     exports.default = void 0
     /**
- * Create a single random number within provided range. And with optional offset,
- * The distance between the result numbers can be adjusted with interval.
+ * Create a single random number from offset up to (but never including) offset + range. With optional offset,
+ * the distance between the result numbers can be adjusted with interval. Matches randomInteger, which gives the
+ * whole numbers of the same span.
  * @memberOf module:numberHelpers
- * @param {number} range - Choose the breadth of the random number (0-100 would be 100 for range)
- * @param {number} [offset=0] - Choose the starting number (1-10 would be 1 for offset, 9 for range)
- * @param {number} [interval=1] - Choose the distance between numbers (~5, ~10, ~15 would be 5 for interval, 1 for
- * offset, 2 for range)
+ * @param {number} range - Choose the breadth of the random number (0 up to, but not including, 100 would be 100 for range)
+ * @param {number} [offset=0] - Choose the starting number (1 up to, but not including, 10 would be 1 for offset, 9 for range)
+ * @param {number} [interval=1] - Choose the multiplier applied to the result (~5, ~10, ~15 would be 5 for interval,
+ * 1 for offset, 2 for range)
  * @returns {number}
  */
     const randomNumber = (range, offset = 0, interval = 1) => (Math.random() * range + offset) * interval
@@ -27895,14 +28170,12 @@
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * Clone objects for manipulation without data corruption, returns a copy of the provided object.
- * NOTE: Use the mapLimit and relevancyRange to resolve "too much recursion" when the object is large and is known to
- * have circular references. A high mapLimit may lead to heavy memory usage and slow performance.
  * @memberOf module:objectHelpers
  * @param {Object} object - The original object that is being cloned
  * @param {Object} [options={}]
- * @param {number} [options.mapLimit=100] - Size of temporary reference array used in memory before assessing relevancy.
+ * @param {number} [options.mapLimit=100] - Deprecated and ignored (circular references are handled without trimming).
  * @param {number} [options.depthLimit=-1] - Control how many nested levels deep will be used, -1 = no limit, >-1 = nth level limited.
- * @param {number} [options.relevancyRange=1000] - Total reference map length subtract this range, any relevancy less than that amount at time of evaluation will be removed.
+ * @param {number} [options.relevancyRange=1000] - Deprecated and ignored: see mapLimit.
  * @returns {Object}
  */
     const cloneObject = (object, {
@@ -28442,91 +28715,89 @@
     })
     exports.default = void 0
     require('core-js/modules/esnext.iterator.constructor.js')
-    require('core-js/modules/esnext.iterator.find.js')
     require('core-js/modules/esnext.iterator.map.js')
     require('core-js/modules/esnext.iterator.reduce.js')
+    require('core-js/modules/esnext.map.delete-all.js')
+    require('core-js/modules/esnext.map.every.js')
+    require('core-js/modules/esnext.map.filter.js')
+    require('core-js/modules/esnext.map.find.js')
+    require('core-js/modules/esnext.map.find-key.js')
+    require('core-js/modules/esnext.map.includes.js')
+    require('core-js/modules/esnext.map.key-of.js')
+    require('core-js/modules/esnext.map.map-keys.js')
+    require('core-js/modules/esnext.map.map-values.js')
+    require('core-js/modules/esnext.map.merge.js')
+    require('core-js/modules/esnext.map.reduce.js')
+    require('core-js/modules/esnext.map.some.js')
+    require('core-js/modules/esnext.map.update.js')
     const _isCloneable = _interopRequireDefault(require('./isCloneable'))
     const _reduceObject = _interopRequireDefault(require('./reduceObject'))
-    const _relevancyFilter = _interopRequireDefault(require('../functions/relevancyFilter'))
     const _setValue = _interopRequireDefault(require('./setValue'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * Perform a deep merge of objects. This will return a function that will combine all objects and sub-objects.
  * Objects having the same attributes will overwrite from last object to first.
- * NOTE: Use the mapLimit and relevancyRange to resolve "too much recursion" when the object is large and is known to
- * have circular references. A high mapLimit may lead to heavy memory usage and slow performance.
+ * Every call of the returned function keeps its own record of the objects it has already visited (so circular
+ * references are followed only once, and an object which is referenced in several places is merged once), and nothing
+ * is remembered between calls: the results of separate calls never share state or go stale.
  * @memberOf module:objectHelpers
  * @param {Object} [options={}]
- * @param {number} [options.mapLimit=100] - Size of temporary reference array used in memory before assessing relevancy.
+ * @param {number} [options.mapLimit=100] - Deprecated and ignored: the record of visited objects is now scoped to a
+ * single call, so it does not need trimming.
  * @param {number} [options.depthLimit=-1] - Control how many nested levels deep will be used, -1 = no limit, >-1 = nth level limited.
- * @param {number} [options.relevancyRange=1000] - Total reference map length subtract this range, any relevancy less than that amount at time of evaluation will be removed.
- * @param {Iterable|array} [options.map=[]] - A predetermined list of references gathered (to be passed to itself during recursion).
+ * @param {number} [options.relevancyRange=1000] - Deprecated and ignored: see mapLimit.
+ * @param {Iterable|array} [options.map=[]] - A predetermined list of references (source and the object it should
+ * resolve to) which every call starts from. It is only read, never added to.
  * @param {boolean} [options.useClone=false]
  * @returns {module:objectHelpers~mergeObjectsCallback|mergeObjectsCallback}
  */
     const mergeObjectsBase = ({
-      mapLimit = 100,
       depthLimit = -1,
-      relevancyRange = 1000,
       map = [],
       useClone = false
-    } = {}) => (...objects) => {
-      const firstObject = useClone ? Array.isArray(objects[0]) ? [] : {} : objects.shift()
-      if (objects.length < 1) {
-        return firstObject
-      }
-      if (depthLimit === 0) {
-        return firstObject
-      }
-      return objects.reduce((newObj, arg) => {
-        if (!arg) {
-          return newObj
+    } = {}) => {
+      const merge = (visited, depth, objects) => {
+        const firstObject = useClone ? Array.isArray(objects[0]) ? [] : {} : objects.shift()
+        if (objects.length < 1) {
+          return firstObject
         }
-        map.push({
-          source: arg,
-          object: newObj,
-          relevance: map.length
-        })
-        map = (0, _relevancyFilter.default)(map, {
-          mapLimit,
-          relevancyRange
-        })
-        return (0, _reduceObject.default)(arg, (returnObj, value, key) => {
-          if ((0, _isCloneable.default)(value)) {
-            let objectValue = newObj[key]
-            const exists = map.find(existing => existing.source === value)
-            if (exists) {
-              exists.relevance = map.length + 1
-              return (0, _setValue.default)(key, exists.object, returnObj)
-            }
-            if (!(0, _isCloneable.default)(objectValue) || !objectValue) {
-              objectValue = useClone ? Array.isArray(value) ? [] : {} : value
-            }
-            if ((0, _isCloneable.default)(objectValue)) {
-              return (0, _setValue.default)(key, mergeObjectsBase({
-                mapLimit,
-                depthLimit: depthLimit - 1,
-                relevancyRange,
-                map,
-                useClone
-              })(objectValue, value), returnObj)
-            }
-            map.push({
-              source: value,
-              object: objectValue,
-              relevance: map.length
-            })
-            map = (0, _relevancyFilter.default)(map, {
-              mapLimit,
-              relevancyRange
-            })
+        if (depth === 0) {
+          return firstObject
+        }
+        return objects.reduce((newObj, arg) => {
+          if (!arg) {
+            return newObj
           }
-          return (0, _setValue.default)(key, value, returnObj)
-        }, newObj)
-      }, firstObject || {})
+          if (!visited.has(arg)) {
+            visited.set(arg, newObj)
+          }
+          return (0, _reduceObject.default)(arg, (returnObj, value, key) => {
+            if ((0, _isCloneable.default)(value)) {
+              if (visited.has(value)) {
+                return (0, _setValue.default)(key, visited.get(value), returnObj)
+              }
+              let objectValue = newObj[key]
+              if (!(0, _isCloneable.default)(objectValue) || !objectValue) {
+                if (!useClone) {
+                  // Merging by reference: the source object is used as it is, there is nothing to merge it into.
+                  visited.set(value, value)
+                  return (0, _setValue.default)(key, value, returnObj)
+                }
+                objectValue = Array.isArray(value) ? [] : {}
+              }
+              return (0, _setValue.default)(key, merge(visited, depth - 1, [objectValue, value]), returnObj)
+            }
+            return (0, _setValue.default)(key, value, returnObj)
+          }, newObj)
+        }, firstObject || {})
+      }
+      return (...objects) => merge(new Map(map.map(({
+        source,
+        object
+      }) => [source, object])), depthLimit, objects)
     }
     const _default = exports.default = mergeObjectsBase
-  }, { '../functions/relevancyFilter': 785, './isCloneable': 805, './reduceObject': 815, './setValue': 817, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.find.js': 689, 'core-js/modules/esnext.iterator.map.js': 691, 'core-js/modules/esnext.iterator.reduce.js': 692 }],
+  }, { './isCloneable': 805, './reduceObject': 815, './setValue': 817, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.map.js': 691, 'core-js/modules/esnext.iterator.reduce.js': 692, 'core-js/modules/esnext.map.delete-all.js': 694, 'core-js/modules/esnext.map.every.js': 695, 'core-js/modules/esnext.map.filter.js': 696, 'core-js/modules/esnext.map.find-key.js': 697, 'core-js/modules/esnext.map.find.js': 698, 'core-js/modules/esnext.map.includes.js': 699, 'core-js/modules/esnext.map.key-of.js': 700, 'core-js/modules/esnext.map.map-keys.js': 701, 'core-js/modules/esnext.map.map-values.js': 702, 'core-js/modules/esnext.map.merge.js': 703, 'core-js/modules/esnext.map.reduce.js': 704, 'core-js/modules/esnext.map.some.js': 705, 'core-js/modules/esnext.map.update.js': 706 }],
   812: [function (require, module, exports) {
     'use strict'
 

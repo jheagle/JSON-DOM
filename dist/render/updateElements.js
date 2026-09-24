@@ -1,15 +1,20 @@
 'use strict'
 
+require('core-js/modules/esnext.iterator.constructor.js')
+require('core-js/modules/esnext.iterator.for-each.js')
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.for-each.js')
 require('core-js/stable')
-const _updateChildNodes = _interopRequireDefault(require('./updateChildNodes.js'))
-const _updateElement = _interopRequireDefault(require('./updateElement.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const updateChildNodes_1 = __importDefault(require('./updateChildNodes'))
+const updateElement_1 = __importDefault(require('./updateElement'))
 /**
  * Generate HTML element data for each object in the matrix
  * WARNING: This is a recursive function.
@@ -26,8 +31,8 @@ const updateElements = config => {
     }
     return config
   }
-  const domItem = (0, _updateChildNodes.default)((0, _updateElement.default)(config))
+  const domItem = (0, updateChildNodes_1.default)((0, updateElement_1.default)(config))
   domItem.children.forEach(updateElements)
   return domItem
 }
-const _default = exports.default = updateElements
+exports.default = updateElements

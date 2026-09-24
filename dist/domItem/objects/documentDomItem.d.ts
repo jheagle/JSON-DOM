@@ -1,0 +1,16 @@
+import 'core-js/stable';
+import type { DomItemRoot } from '../types';
+import type { ListenerFunction } from '../../events/types';
+/**
+ * Return the root DomItem of a Virtual DOM (DomItem tree) for the document. The rootItem argument is a system
+ * variable and not necessary to implement.
+ * @function
+ * @memberOf module:domGeneral
+ * @param {Object.<string, listenerFunction>} listeners - An object of all event
+ * listeners to be registered in the Dom
+ * @param {DomItemRoot|DomItem} [rootItem] - This is a
+ * reference to DomItemRoot which will be defaulted with {@link initRoot}
+ * @returns {DomItemRoot|DomItem}
+ */
+declare const documentDomItem: (listeners?: Record<string, ListenerFunction>, rootItem?: DomItemRoot) => DomItemRoot;
+export default documentDomItem;

@@ -3,15 +3,7 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-/**
- * Provide compatibility for using the options parameter of addEventListener
- * @function
- * @memberOf module:domEvents
- * @param {EventListenerOptions} options - An object or boolean with the listener options
- * @returns {boolean}
- */
 const listenerOptions = options => {
   if (typeof listenerOptions.supportsOptions === 'undefined') {
     // Check if supportsOptions has been defined. This is a compatibility checking flag.
@@ -30,4 +22,4 @@ const listenerOptions = options => {
   }
   return typeof options === 'object' && listenerOptions.supportsOptions ? options : false
 }
-const _default = exports.default = listenerOptions
+exports.default = listenerOptions

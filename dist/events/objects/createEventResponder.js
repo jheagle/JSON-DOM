@@ -3,7 +3,6 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
 /**
  * Track an event handler and optional abort signal.
@@ -14,7 +13,6 @@ require('core-js/stable')
  * @property {eventHandler|null} assignedHandler - The exact function reference passed to the element's
  * addEventListener, set once applied. Required to later detach this exact listener via removeEventListener.
  */
-
 /**
  * Store the handler function and associated abort controller instance if available to be used when events are triggered.
  * @function
@@ -36,4 +34,4 @@ const createEventResponder = (eventHandler, abort = null) => {
     assignedHandler: null
   })
 }
-const _default = exports.default = createEventResponder
+exports.default = createEventResponder

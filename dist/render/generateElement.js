@@ -1,12 +1,17 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _updateElement = _interopRequireDefault(require('./updateElement.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const updateElement_1 = __importDefault(require('./updateElement'))
 /**
  * Create a new DOM Node based on name and data.
  * @function
@@ -25,7 +30,6 @@ const makeElementType = (nodeName, data = null) => {
       return document.createElement(nodeName)
   }
 }
-
 /**
  * Create an HTML element based on the provided attributes and return the element as an Object.
  * @function
@@ -35,6 +39,6 @@ const makeElementType = (nodeName, data = null) => {
  */
 const generateElement = domItem => {
   domItem.element = makeElementType(domItem.nodeName, domItem.nodeValue)
-  return (0, _updateElement.default)(domItem)
+  return (0, updateElement_1.default)(domItem)
 }
-const _default = exports.default = generateElement
+exports.default = generateElement

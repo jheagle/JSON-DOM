@@ -3,13 +3,11 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
 const CAPTURE = 1
 const ONCE = 2
 const PASSIVE = 4
 const SIGNAL = 8
-
 /**
  * Retrieve the OptionsTemplate for EventListenerOptions.
  * @function
@@ -22,4 +20,4 @@ const getListenerOptions = () => ({
   passive: PASSIVE,
   signal: SIGNAL
 })
-const _default = exports.default = getListenerOptions
+exports.default = getListenerOptions

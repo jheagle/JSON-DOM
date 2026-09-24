@@ -1,12 +1,17 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _documentItem = _interopRequireDefault(require('../../domItem/objects/documentItem.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const documentItem_1 = __importDefault(require('../../domItem/objects/documentItem'))
 /**
  * Register a single listener function as part of the root domEvents.DomItem.
  * @function
@@ -17,7 +22,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
  * @returns {Object.<string, listenerFunction>}
  */
-const registerListener = (listener, name = listener.name, parent = _documentItem.default) => Object.assign(parent.eventActions, {
+const registerListener = (listener, name = listener.name, parent = documentItem_1.default) => Object.assign(parent.eventActions, {
   [name]: listener
 })
-const _default = exports.default = registerListener
+exports.default = registerListener

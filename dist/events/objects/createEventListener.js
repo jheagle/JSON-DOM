@@ -3,7 +3,6 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
 /**
  * This is the standard definition of a listenerFunction to be used
@@ -13,14 +12,12 @@ require('core-js/stable')
  * @param {DomItem} target - The element which triggered the event
  * @param {...*} [args] - Optional args as required by the listener
  */
-
 /**
  * A Boolean indicating whether events of this type will be dispatched to the registered listerFunction before being
  * dispatched to any EventTarget beneath it in the Dom tree.
  * @typedef {boolean} UseCapture
  * @memberOf module:domEvents
  */
-
 /**
  * OptionsObject defines the structure for the options to be passed to addEventListener
  * @typedef {Object} OptionsObject
@@ -34,13 +31,11 @@ require('core-js/stable')
  * @property {boolean} signal - The listener will be removed when the given AbortSignal object's abort() method is
  * called. If not specified, no AbortSignal is associated with the listener.
  */
-
 /**
  * EventListenerOptions is either a boolean as UseCapture or an Object as OptionsObject
  * @typedef {OptionsObject|UseCapture} EventListenerOptions
  * @memberOf module:domEvents
  */
-
 /**
  * An EventListener Object to be appended to the element within the DomItem
  * @typedef {Object} EventListener
@@ -58,19 +53,16 @@ require('core-js/stable')
  * @property {EventListenerOptions} [listenerOptions=false] - Provides support for options parameter of addEventListener, or false for default
  * @property {boolean} [listenerActive=false] - Indicate whether this listener has been applied to the element.
  */
-
 /**
  * One or more listeners assigned to the same event.
  * @typedef {Array.<EventListener>} EventListeners
  * @memberOf module:domEvents
  */
-
 /**
  * The name of the trigger used to fire the event.
  * @typedef {string} EventName
  * @memberOf module:domEvents
  */
-
 /**
  * Prepare an eventListener object to attach to a DOMItem
  * @function
@@ -94,4 +86,4 @@ const createEventListener = ({
   listenerOptions,
   listenerActive
 })
-const _default = exports.default = createEventListener
+exports.default = createEventListener

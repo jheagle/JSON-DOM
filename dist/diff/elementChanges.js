@@ -1,16 +1,21 @@
 'use strict'
 
+require('core-js/modules/esnext.iterator.constructor.js')
+require('core-js/modules/esnext.iterator.reduce.js')
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.reduce.js')
 require('core-js/stable')
-const _siFunciona = _interopRequireDefault(require('si-funciona'))
-const _domItemHasAttribute = _interopRequireDefault(require('./domItemHasAttribute.js'))
-const _createChangeList = _interopRequireDefault(require('./createChangeList.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const si_funciona_1 = __importDefault(require('si-funciona'))
+const domItemHasAttribute_1 = __importDefault(require('./domItemHasAttribute'))
+const createChangeList_1 = __importDefault(require('./createChangeList'))
 /**
  * @typedef {module:objectHelpers~mapCallback} testAttributeChange
  * @memberOf module:domGeneral
@@ -18,7 +23,6 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @param {string} key - The property name of the current property being processed in the object.
  * @return {int} - -1: removed, 0: unchanged, 1: added.
  */
-
 /**
  * Given some config, provide a function to testing attribute and key existence in that config.
  * @function
@@ -28,23 +32,23 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  */
 const checkAttribute = domItem => (attr, key) => {
   if (key === 'className') {
-    const diff = (0, _domItemHasAttribute.default)(domItem, key, attr)
-    if (diff.length === 1 && diff[0].result[0] === 0) {
+    const diff = (0, domItemHasAttribute_1.default)(domItem, key, attr)
+    if (Array.isArray(diff) && diff.length === 1 && diff[0].result[0] === 0) {
       return 0
     }
-    return _siFunciona.default.filterObject(diff, arrayDiff => arrayDiff.result[0] !== 0)
+    return si_funciona_1.default.filterObject(diff, arrayDiff => arrayDiff.result[0] !== 0)
   }
   if (key === 'style') {
-    const diff = (0, _domItemHasAttribute.default)(domItem, key, attr)
-    const firstDiffResult = diff[0]
-    if (diff.length === 1 && firstDiffResult.result[0] === 0 && domItem.attributes.style[firstDiffResult.value] === attr[firstDiffResult.value]) {
+    const diff = (0, domItemHasAttribute_1.default)(domItem, key, attr)
+    const styles = attr
+    const itemStyle = () => domItem.attributes.style
+    if (Array.isArray(diff) && diff.length === 1 && diff[0].result[0] === 0 && itemStyle()[diff[0].value] === styles[diff[0].value]) {
       return 0
     }
-    return _siFunciona.default.filterObject(diff, arrayDiff => arrayDiff.result[0] !== 0 || domItem.attributes.style[arrayDiff.value] !== attr[arrayDiff.value])
+    return si_funciona_1.default.filterObject(diff, arrayDiff => arrayDiff.result[0] !== 0 || itemStyle()[arrayDiff.value] !== styles[arrayDiff.value])
   }
-  return (0, _domItemHasAttribute.default)(domItem, key, attr)
+  return (0, domItemHasAttribute_1.default)(domItem, key, attr)
 }
-
 /**
  * Updates all the keys to be camelCase
  * @function
@@ -53,11 +57,11 @@ const checkAttribute = domItem => (attr, key) => {
  * @returns {Object.<string, *>}
  */
 const camelCaseAttributes = domItem => domItem.element
-  ? _siFunciona.default.reduceObject(domItem.element.attributes, (attributes, attr) => {
+  ? si_funciona_1.default.reduceObject(domItem.element.attributes, (attributes, attr) => {
     if (!attr.name) {
       return attributes
     }
-    const camelKey = attr.name === 'class' ? 'className' : _siFunciona.default.camelCase(attr.name)
+    const camelKey = attr.name === 'class' ? 'className' : si_funciona_1.default.camelCase(attr.name)
     const attributeValue = domItem.element[attr.name] ?? attr.value
     if (typeof attributeValue === 'undefined') {
       return attributes
@@ -66,7 +70,6 @@ const camelCaseAttributes = domItem => domItem.element
     return attributes
   }, {})
   : {}
-
 /**
  * Given a domGeneral.DomItem as config, this function will return the changes from the element
  * to be applied to the domItem.
@@ -77,7 +80,7 @@ const camelCaseAttributes = domItem => domItem.element
  * @returns {ChangeList}
  */
 const elementChanges = domItem => {
-  const changeList = (0, _createChangeList.default)()
+  const changeList = (0, createChangeList_1.default)()
   if (!domItem.element) {
     changeList.removed.nodeName = domItem.nodeName.toLowerCase()
   }
@@ -87,8 +90,8 @@ const elementChanges = domItem => {
   }
   if (!domItem.element && domItem.nodeValue !== null) {
     changeList.removed.nodeValue = domItem.nodeValue
-    if (!_siFunciona.default.emptyObject(domItem.attributes)) {
-      changeList.removed = changeList.appendChanges('removed', _siFunciona.default.dotNotate({
+    if (!si_funciona_1.default.emptyObject(domItem.attributes)) {
+      changeList.removed = changeList.appendChanges('removed', si_funciona_1.default.dotNotate({
         attributes: domItem.attributes
       }))
     }
@@ -98,22 +101,22 @@ const elementChanges = domItem => {
     if (domItem.element.nodeValue !== domItem.nodeValue) {
       changeList.added.nodeValue = domItem.element.nodeValue
     }
-    if (!_siFunciona.default.emptyObject(domItem.attributes)) {
-      changeList.removed = changeList.appendChanges('removed', _siFunciona.default.dotNotate({
+    if (!si_funciona_1.default.emptyObject(domItem.attributes)) {
+      changeList.removed = changeList.appendChanges('removed', si_funciona_1.default.dotNotate({
         attributes: domItem.attributes
       }))
     }
     return changeList
   }
-  if (!(domItem.element && domItem.element.hasAttributes()) && !_siFunciona.default.emptyObject(domItem.attributes)) {
-    changeList.removed = changeList.appendChanges('removed', _siFunciona.default.dotNotate({
+  if (!(domItem.element && domItem.element.hasAttributes()) && !si_funciona_1.default.emptyObject(domItem.attributes)) {
+    changeList.removed = changeList.appendChanges('removed', si_funciona_1.default.dotNotate({
       attributes: domItem.attributes
     }))
     return changeList
   }
   const elementAttributes = camelCaseAttributes(domItem)
-  const diffMap = _siFunciona.default.mapObject(elementAttributes, (attr, key) => checkAttribute(domItem)(attr, key))
-  return _siFunciona.default.reduceObject(diffMap, (changed, result, key) => {
+  const diffMap = si_funciona_1.default.mapObject(elementAttributes, (attr, key) => checkAttribute(domItem)(attr, key))
+  return si_funciona_1.default.reduceObject(diffMap, (changed, result, key) => {
     const isArray = Array.isArray(result)
     if (!isArray && !result) {
       // Skip if the attribute is not changed (false and not an array)
@@ -121,7 +124,7 @@ const elementChanges = domItem => {
     }
     if (!isArray) {
       // Not an array, simply set the attribute as added
-      changed.added[`attributes.${key}`] = domItem.element[key] ?? domItem.element.getAttribute(_siFunciona.default.kabobCase(key))
+      changed.added[`attributes.${key}`] = domItem.element[key] ?? domItem.element.getAttribute(si_funciona_1.default.kabobCase(key))
       return changed
     }
     if (key !== 'className' && key !== 'style') {
@@ -143,12 +146,13 @@ const elementChanges = domItem => {
       }, changed.added)
       return changed
     }
+    const itemStyle = () => domItem.attributes.style
     changed.removed = result.reduce((removed, results) => {
       if (results.result[0] === -1) {
-        removed[`attributes.style.${results.value}`] = domItem.attributes.style[results.value]
+        removed[`attributes.style.${results.value}`] = itemStyle()[results.value]
       }
-      if (results.result[0] === 0 && domItem.attributes.style[results.value] !== elementAttributes.style[results.value]) {
-        removed[`attributes.style.${results.value}`] = domItem.attributes.style[results.value]
+      if (results.result[0] === 0 && itemStyle()[results.value] !== elementAttributes.style[results.value]) {
+        removed[`attributes.style.${results.value}`] = itemStyle()[results.value]
       }
       return removed
     }, changed.removed)
@@ -156,7 +160,7 @@ const elementChanges = domItem => {
       if (results.result[0] === 1) {
         added[`attributes.style.${results.value}`] = elementAttributes.style[results.value]
       }
-      if (results.result[0] === 0 && domItem.attributes.style[results.value] !== elementAttributes.style[results.value]) {
+      if (results.result[0] === 0 && itemStyle()[results.value] !== elementAttributes.style[results.value]) {
         added[`attributes.style.${results.value}`] = elementAttributes.style[results.value]
       }
       return added
@@ -164,4 +168,4 @@ const elementChanges = domItem => {
     return changed
   }, changeList)
 }
-const _default = exports.default = elementChanges
+exports.default = elementChanges

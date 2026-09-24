@@ -1,12 +1,17 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _listenerOptions = _interopRequireDefault(require('./listenerOptions.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const listenerOptions_1 = __importDefault(require('./listenerOptions'))
 /**
  * Provide compatibility for unassigning listeners.
  * @function
@@ -23,8 +28,8 @@ const unassignListener = (trigger, elem, fn, options = false) => {
   // Removing a listener may be done differently based on the browser support
   if (elem.removeEventListener) {
     // Latest support is provided from removeEventListener with the options parameter varying slightly
-    elem.removeEventListener(trigger, fn, (0, _listenerOptions.default)(options))
+    elem.removeEventListener(trigger, fn, (0, listenerOptions_1.default)(options))
   }
   return fn
 }
-const _default = exports.default = unassignListener
+exports.default = unassignListener

@@ -1,15 +1,20 @@
 'use strict'
 
+require('core-js/modules/es.array.includes.js')
+require('core-js/modules/es.json.stringify.js')
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
-require('core-js/modules/es.array.includes.js')
-require('core-js/modules/es.json.stringify.js')
 require('core-js/stable')
-const _siFunciona = _interopRequireDefault(require('si-funciona'))
-const _removeEmptyProperties = _interopRequireDefault(require('./removeEmptyProperties'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const si_funciona_1 = __importDefault(require('si-funciona'))
+const removeEmptyProperties_1 = __importDefault(require('./removeEmptyProperties'))
 const useExclusions = (function makeExclusions () {
   let jsonExclusions = []
   return (key, value) => {
@@ -23,7 +28,6 @@ const useExclusions = (function makeExclusions () {
     return value
   }
 }())
-
 /**
  * Convert DOM Item to JSON string.
  * @function
@@ -37,8 +41,8 @@ const useExclusions = (function makeExclusions () {
 const domItemToJson = (item, {
   mapLimit = 100,
   relevancyRange = 1000
-} = {}) => JSON.stringify((0, _removeEmptyProperties.default)(_siFunciona.default.cloneObject(item, {
+} = {}) => JSON.stringify((0, removeEmptyProperties_1.default)(si_funciona_1.default.cloneObject(item, {
   mapLimit,
   relevancyRange
 }), ['activeListeners', 'element', 'parentItem', 'body', 'head']), useExclusions)
-const _default = exports.default = domItemToJson
+exports.default = domItemToJson

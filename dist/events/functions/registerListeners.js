@@ -1,13 +1,18 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _siFunciona = _interopRequireDefault(require('si-funciona'))
-const _documentItem = _interopRequireDefault(require('../../domItem/objects/documentItem.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const si_funciona_1 = __importDefault(require('si-funciona'))
+const documentItem_1 = __importDefault(require('../../domItem/objects/documentItem'))
 /**
  * Register multiple listeners from an array of functions.
  * @function
@@ -17,8 +22,8 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which has eventActions property.
  * @returns {DomItemRoot|Object}
  */
-const registerListeners = (listeners, parent = _documentItem.default) => {
-  _siFunciona.default.mergeObjectsMutable(parent.eventActions, listeners)
+const registerListeners = (listeners, parent = documentItem_1.default) => {
+  si_funciona_1.default.mergeObjectsMutable(parent.eventActions, listeners)
   return parent
 }
-const _default = exports.default = registerListeners
+exports.default = registerListeners

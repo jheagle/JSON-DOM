@@ -1,20 +1,24 @@
 'use strict'
 
+require('core-js/modules/es.array.includes.js')
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
-require('core-js/modules/es.array.includes.js')
 require('core-js/stable')
-const _siFunciona = _interopRequireDefault(require('si-funciona'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const si_funciona_1 = __importDefault(require('si-funciona'))
 /**
  * @typedef {Function} appendChanges
  * @memberOf module:domGeneral
  * @param {string} changeType - Either 'removed' or 'added'
  * @param {DotNotatedObject} changes - The changes to append to existing type
  */
-
 /**
  * Initialize the appendChanges method with the changeList, return the appendChanges method.
  * @param {ChangeList} changeList
@@ -24,9 +28,8 @@ const appendChangesTo = changeList => (changeType, changes) => {
   if (!['added', 'removed'].includes(changeType)) {
     throw Error(`Method appendChanges change type must be 'added' or 'removed'; ${changeType} given.`)
   }
-  return _siFunciona.default.mergeObjects(changeList[changeType], changes)
+  return si_funciona_1.default.mergeObjects(changeList[changeType], changes)
 }
-
 /**
  * Represent changes / a diff of an object, including removed, added, and changed properties.
  * @typedef {Object.<string, DotNotatedObject>} ChangeList
@@ -35,7 +38,6 @@ const appendChangesTo = changeList => (changeType, changes) => {
  * @property {DotNotatedObject} added
  * @property {appendChanges} appendChanges
  */
-
 /**
  * Create the change list template.
  * @function
@@ -56,4 +58,4 @@ const createChangeList = ({
   changeList.appendChanges = appendChangesTo(changeList)
   return changeList
 }
-const _default = exports.default = createChangeList
+exports.default = createChangeList

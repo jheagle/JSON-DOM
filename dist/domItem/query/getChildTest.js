@@ -3,7 +3,6 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
 /**
  * Retrieve the {@link module:domGeneral~testChildItem} function by providing an attribute and value to check.
@@ -14,4 +13,4 @@ require('core-js/stable')
  * @returns {module:domGeneral~testChildItem}
  */
 const getChildTest = (attr, value) => (item, gatheredResults) => item.attributes[attr] && item.attributes[attr] === value ? gatheredResults.concat([item]) : gatheredResults
-const _default = exports.default = getChildTest
+exports.default = getChildTest

@@ -1,17 +1,22 @@
 'use strict'
 
+require('core-js/modules/esnext.iterator.constructor.js')
+require('core-js/modules/esnext.iterator.map.js')
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.map.js')
 require('core-js/stable')
-const _createDomItem = _interopRequireDefault(require('./createDomItem.js'))
-const _initChildren = _interopRequireDefault(require('./initChildren.js'))
-const _initRoot = _interopRequireDefault(require('./initRoot.js'))
-const _updateDomItems = _interopRequireDefault(require('../../sync/updateDomItems.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const createDomItem_1 = __importDefault(require('./createDomItem'))
+const initChildren_1 = __importDefault(require('./initChildren'))
+const initRoot_1 = __importDefault(require('./initRoot'))
+const updateDomItems_1 = __importDefault(require('../../sync/updateDomItems'))
 /**
  * Return the root DomItem of a Virtual DOM (DomItem tree) for the document. The rootItem argument is a system
  * variable and not necessary to implement.
@@ -23,14 +28,14 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * reference to DomItemRoot which will be defaulted with {@link initRoot}
  * @returns {DomItemRoot|DomItem}
  */
-const documentDomItem = (listeners = {}, rootItem = (0, _initRoot.default)((0, _initChildren.default)(), listeners)) => {
-  rootItem.children = rootItem.children.map(child => (0, _createDomItem.default)(child))
+const documentDomItem = (listeners = {}, rootItem = (0, initRoot_1.default)((0, initChildren_1.default)(), listeners)) => {
+  rootItem.children = rootItem.children.map(child => (0, createDomItem_1.default)(child))
   rootItem.children.map(child => {
     child.parentItem = rootItem
     return child
   })
   rootItem.head = rootItem.children[0]
   rootItem.body = rootItem.children[1]
-  return (0, _updateDomItems.default)((0, _createDomItem.default)(rootItem))
+  return (0, updateDomItems_1.default)((0, createDomItem_1.default)(rootItem))
 }
-const _default = exports.default = documentDomItem
+exports.default = documentDomItem

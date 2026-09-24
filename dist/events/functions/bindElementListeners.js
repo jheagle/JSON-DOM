@@ -1,15 +1,20 @@
 'use strict'
 
+require('core-js/modules/esnext.iterator.constructor.js')
+require('core-js/modules/esnext.iterator.for-each.js')
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.for-each.js')
 require('core-js/stable')
-const _activateListener = _interopRequireDefault(require('./activateListener.js'))
-const _applyActiveListeners = _interopRequireDefault(require('./applyActiveListeners.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const activateListener_1 = __importDefault(require('./activateListener'))
+const applyActiveListeners_1 = __importDefault(require('./applyActiveListeners'))
 /**
  * Receive a DomItem with eventListeners and apply the event listeners onto the Dom element.
  * @function
@@ -24,11 +29,11 @@ const bindElementListeners = item => {
       if (eventAttributes.listenerActive) {
         return
       }
-      item = (0, _activateListener.default)(eventName, eventAttributes, item)
+      item = (0, activateListener_1.default)(eventName, eventAttributes, item)
       eventAttributes.listenerActive = true
     })
-    item = (0, _applyActiveListeners.default)(eventName, item)
+    item = (0, applyActiveListeners_1.default)(eventName, item)
   }
   return item
 }
-const _default = exports.default = bindElementListeners
+exports.default = bindElementListeners

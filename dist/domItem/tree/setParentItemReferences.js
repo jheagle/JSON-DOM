@@ -1,11 +1,10 @@
 'use strict'
 
+require('core-js/modules/esnext.iterator.constructor.js')
+require('core-js/modules/esnext.iterator.for-each.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.for-each.js')
 require('core-js/stable')
 /**
  * For each child of this item, set the parentItem references.
@@ -25,4 +24,4 @@ const setParentItemReferences = item => {
   })
   return item
 }
-const _default = exports.default = setParentItemReferences
+exports.default = setParentItemReferences

@@ -1,48 +1,53 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _addDomItemProperties = _interopRequireDefault(require('./objects/addDomItemProperties.js'))
-const _appendChild = _interopRequireDefault(require('./tree/appendChild.js'))
-const _createDomItem = _interopRequireDefault(require('./objects/createDomItem.js'))
-const _documentDomItem = _interopRequireDefault(require('./objects/documentDomItem.js'))
-const _documentItem = _interopRequireDefault(require('./objects/documentItem.js'))
-const _gatherChildItems = _interopRequireDefault(require('./query/gatherChildItems.js'))
-const _getChildrenByClass = _interopRequireDefault(require('./query/getChildrenByClass.js'))
-const _getChildrenByName = _interopRequireDefault(require('./query/getChildrenByName.js'))
-const _getChildrenFromAttribute = _interopRequireDefault(require('./query/getChildrenFromAttribute.js'))
-const _getChildTest = _interopRequireDefault(require('./query/getChildTest.js'))
-const _getParentsByClass = _interopRequireDefault(require('./query/getParentsByClass.js'))
-const _getParentsByName = _interopRequireDefault(require('./query/getParentsByName.js'))
-const _getParentsByTagName = _interopRequireDefault(require('./query/getParentsByTagName.js'))
-const _getParentsFromAttribute = _interopRequireDefault(require('./query/getParentsFromAttribute.js'))
-const _getTopParentItem = _interopRequireDefault(require('./tree/getTopParentItem.js'))
-const _initChildren = _interopRequireDefault(require('./objects/initChildren.js'))
-const _initRoot = _interopRequireDefault(require('./objects/initRoot.js'))
-const _removeChild = _interopRequireDefault(require('./tree/removeChild.js'))
-const _setParentItemReferences = _interopRequireDefault(require('./tree/setParentItemReferences.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-const _default = exports.default = {
-  addDomItemProperties: _addDomItemProperties.default,
-  appendChild: _appendChild.default,
-  createDomItem: _createDomItem.default,
-  documentDomItem: _documentDomItem.default,
-  documentItem: _documentItem.default,
-  gatherChildItems: _gatherChildItems.default,
-  getChildrenByClass: _getChildrenByClass.default,
-  getChildrenByName: _getChildrenByName.default,
-  getChildrenFromAttribute: _getChildrenFromAttribute.default,
-  getChildTest: _getChildTest.default,
-  getParentsByClass: _getParentsByClass.default,
-  getParentsByName: _getParentsByName.default,
-  getParentsByTagName: _getParentsByTagName.default,
-  getParentsFromAttribute: _getParentsFromAttribute.default,
-  getTopParentItem: _getTopParentItem.default,
-  initChildren: _initChildren.default,
-  initRoot: _initRoot.default,
-  removeChild: _removeChild.default,
-  setParentItemReferences: _setParentItemReferences.default
+const addDomItemProperties_1 = __importDefault(require('./objects/addDomItemProperties'))
+const appendChild_1 = __importDefault(require('./tree/appendChild'))
+const createDomItem_1 = __importDefault(require('./objects/createDomItem'))
+const documentDomItem_1 = __importDefault(require('./objects/documentDomItem'))
+const documentItem_1 = __importDefault(require('./objects/documentItem'))
+const gatherChildItems_1 = __importDefault(require('./query/gatherChildItems'))
+const getChildrenByClass_1 = __importDefault(require('./query/getChildrenByClass'))
+const getChildrenByName_1 = __importDefault(require('./query/getChildrenByName'))
+const getChildrenFromAttribute_1 = __importDefault(require('./query/getChildrenFromAttribute'))
+const getChildTest_1 = __importDefault(require('./query/getChildTest'))
+const getParentsByClass_1 = __importDefault(require('./query/getParentsByClass'))
+const getParentsByName_1 = __importDefault(require('./query/getParentsByName'))
+const getParentsByTagName_1 = __importDefault(require('./query/getParentsByTagName'))
+const getParentsFromAttribute_1 = __importDefault(require('./query/getParentsFromAttribute'))
+const getTopParentItem_1 = __importDefault(require('./tree/getTopParentItem'))
+const initChildren_1 = __importDefault(require('./objects/initChildren'))
+const initRoot_1 = __importDefault(require('./objects/initRoot'))
+const removeChild_1 = __importDefault(require('./tree/removeChild'))
+const setParentItemReferences_1 = __importDefault(require('./tree/setParentItemReferences'))
+exports.default = {
+  addDomItemProperties: addDomItemProperties_1.default,
+  appendChild: appendChild_1.default,
+  createDomItem: createDomItem_1.default,
+  documentDomItem: documentDomItem_1.default,
+  documentItem: documentItem_1.default,
+  gatherChildItems: gatherChildItems_1.default,
+  getChildrenByClass: getChildrenByClass_1.default,
+  getChildrenByName: getChildrenByName_1.default,
+  getChildrenFromAttribute: getChildrenFromAttribute_1.default,
+  getChildTest: getChildTest_1.default,
+  getParentsByClass: getParentsByClass_1.default,
+  getParentsByName: getParentsByName_1.default,
+  getParentsByTagName: getParentsByTagName_1.default,
+  getParentsFromAttribute: getParentsFromAttribute_1.default,
+  getTopParentItem: getTopParentItem_1.default,
+  initChildren: initChildren_1.default,
+  initRoot: initRoot_1.default,
+  removeChild: removeChild_1.default,
+  setParentItemReferences: setParentItemReferences_1.default
 }

@@ -1,15 +1,20 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _appendChild = _interopRequireDefault(require('../domItem/tree/appendChild.js'))
-const _documentItem = _interopRequireDefault(require('../domItem/objects/documentItem.js'))
-const _setParentItemReferences = _interopRequireDefault(require('../domItem/tree/setParentItemReferences.js'))
-const _updateElements = _interopRequireDefault(require('./updateElements.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const appendChild_1 = __importDefault(require('../domItem/tree/appendChild'))
+const documentItem_1 = __importDefault(require('../domItem/objects/documentItem'))
+const setParentItemReferences_1 = __importDefault(require('../domItem/tree/setParentItemReferences'))
+const updateElements_1 = __importDefault(require('./updateElements'))
 /**
  * This is a shortcut for syncing a Virtual DOM (DomItem tree) item onto the real HTML DOM: builds the real elements
  * for it and its descendants, appends them to parent (the document body by default), and binds their associated
@@ -21,17 +26,14 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * document body, so passing nothing keeps working exactly as before
  * @returns {DomItem}
  */
-const renderHtml = (item = null, parent = _documentItem.default.body) => {
-  let itemToRender = item
-  if (item === null) {
-    itemToRender = _documentItem.default
-  }
+const renderHtml = (item = null, parent = documentItem_1.default.body) => {
+  let itemToRender = item === null ? documentItem_1.default : item
   if (itemToRender.parentItem === null) {
     // excluding when documentItem was passed in, append the item to parent
-    itemToRender = (0, _appendChild.default)(parent, item)
+    itemToRender = (0, appendChild_1.default)(parent, item)
   }
   // Render the elements and return either to original reference, or updated documentItem (whichever is available)
-  const updatedItem = (0, _updateElements.default)((0, _setParentItemReferences.default)(itemToRender))
+  const updatedItem = (0, updateElements_1.default)((0, setParentItemReferences_1.default)(itemToRender))
   return item ?? updatedItem
 }
-const _default = exports.default = renderHtml
+exports.default = renderHtml

@@ -1,13 +1,18 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _createDomItem = _interopRequireDefault(require('./createDomItem.js'))
-const _onBodyLoad = _interopRequireDefault(require('si-funciona/dist/helpers/functions/onBodyLoad'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const createDomItem_1 = __importDefault(require('./createDomItem'))
+const onBodyLoad_1 = __importDefault(require('si-funciona/dist/helpers/functions/onBodyLoad'))
 /**
  * DomItemHead defines the structure for a single element in the Dom
  * @typedef {DomItem} DomItemHead
@@ -16,7 +21,6 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @property {HTMLHeadElement} element - A reference to the HTML head element
  * @property {Array.<DomItem>} children - A reference to an array of child objects
  */
-
 /**
  * DomItemBody defines the structure for a single element in the Dom
  * @typedef {DomItem} DomItemBody
@@ -25,7 +29,6 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @property {HTMLBodyElement} element - A reference to the HTML body element
  * @property {Array.<DomItem>} children - A reference to an array of child objects
  */
-
 /**
  * Initiate the children of Root / DocumentItem. This is a helper for {@link documentDomItem}.
  * @function
@@ -35,19 +38,19 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
 const initChildren = () => {
   const head = document.head
   const body = document.body
-  const children = [(0, _createDomItem.default)({
+  const children = [(0, createDomItem_1.default)({
     nodeName: 'head',
     attributes: {},
     element: head,
     children: []
-  }), (0, _createDomItem.default)({
+  }), (0, createDomItem_1.default)({
     nodeName: 'body',
     attributes: {},
     element: body,
     children: []
   })]
   if (!head || !body) {
-    (0, _onBodyLoad.default)(() => {
+    (0, onBodyLoad_1.default)(() => {
       if (children[1].element === null) {
         children[0].element = document.head
         children[1].element = document.body
@@ -57,4 +60,4 @@ const initChildren = () => {
   }
   return children
 }
-const _default = exports.default = initChildren
+exports.default = initChildren

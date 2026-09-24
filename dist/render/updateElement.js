@@ -1,18 +1,23 @@
 'use strict'
 
+require('core-js/modules/es.array.includes.js')
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
-require('core-js/modules/es.array.includes.js')
 require('core-js/stable')
-const _bindListeners = _interopRequireDefault(require('../events/functions/bindListeners.js'))
-const _deactivateListeners = _interopRequireDefault(require('../events/functions/deactivateListeners.js'))
-const _domItemChanges = _interopRequireDefault(require('../diff/domItemChanges.js'))
-const _siFunciona = _interopRequireDefault(require('si-funciona'))
-const _generateElement = _interopRequireDefault(require('./generateElement.js'))
-const _updateChildNodes = _interopRequireDefault(require('./updateChildNodes.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const bindListeners_1 = __importDefault(require('../events/functions/bindListeners'))
+const deactivateListeners_1 = __importDefault(require('../events/functions/deactivateListeners'))
+const domItemChanges_1 = __importDefault(require('../diff/domItemChanges'))
+const si_funciona_1 = __importDefault(require('si-funciona'))
+const generateElement_1 = __importDefault(require('./generateElement'))
+const updateChildNodes_1 = __importDefault(require('./updateChildNodes'))
 /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties.
  *
@@ -29,58 +34,61 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  */
 const updateElement = domItem => {
   if (!domItem.element) {
-    return (0, _updateChildNodes.default)((0, _generateElement.default)((0, _deactivateListeners.default)(domItem)))
+    return (0, updateChildNodes_1.default)((0, generateElement_1.default)((0, deactivateListeners_1.default)(domItem)))
   }
-  const changes = (0, _domItemChanges.default)(domItem)
+  const changes = (0, domItemChanges_1.default)(domItem)
+  // From here on the item has an element (an element which is missing was generated above)
+  const element = domItem.element
+  const properties = element
   if (changes.removed.nodeName || changes.added.nodeName) {
     // if the nodeName has changed then remove the element and create a new one
-    domItem.element.remove()
-    return (0, _updateChildNodes.default)((0, _generateElement.default)((0, _deactivateListeners.default)(domItem)))
+    element.remove()
+    return (0, updateChildNodes_1.default)((0, generateElement_1.default)((0, deactivateListeners_1.default)(domItem)))
   }
   for (const dotKey in changes.removed) {
     const value = changes.removed[dotKey]
     if (!dotKey.includes('.')) {
-      if (dotKey in domItem.element) {
-        delete domItem.element[dotKey]
+      if (dotKey in element) {
+        delete properties[dotKey]
         continue
       }
-      domItem.element.removeAttribute(dotKey)
+      element.removeAttribute(dotKey)
       continue
     }
-    const baseKey = _siFunciona.default.strBefore(dotKey, '.')
+    const baseKey = si_funciona_1.default.strBefore(dotKey, '.')
     if (baseKey !== 'class' && baseKey !== 'style') {
       throw new Error('Unhandled dotKey: ' + dotKey)
     }
     if (baseKey === 'class') {
-      domItem.element.classList.remove(value)
+      element.classList.remove(value)
       continue
     }
-    domItem.element.style.removeProperty(_siFunciona.default.strAfter(dotKey, '.'))
+    element.style.removeProperty(si_funciona_1.default.strAfter(dotKey, '.'))
   }
   for (const dotKey in changes.added) {
     const value = changes.added[dotKey]
     if (dotKey === 'className') {
-      domItem.element.className = value
+      element.className = value
       continue
     }
     if (dotKey === 'style') {
       // Update all styles based on incoming style object
       // setProperty wants CSS names (background-color), but the style object is written in camelCase (backgroundColor)
       for (const style in value) {
-        domItem.element.style.setProperty(_siFunciona.default.kabobCase(style), value[style])
+        element.style.setProperty(si_funciona_1.default.kabobCase(style), value[style])
       }
       continue
     }
     if (!dotKey.includes('.')) {
-      if (dotKey in domItem.element && dotKey !== 'form') {
+      if (dotKey in element && dotKey !== 'form') {
         // Some things can be assigned directly, but 'form' attribute cannot
-        domItem.element[dotKey] = value
+        properties[dotKey] = value
         continue
       }
-      domItem.element.setAttribute(dotKey, value)
+      element.setAttribute(dotKey, value)
       continue
     }
-    const baseKey = _siFunciona.default.strBefore(dotKey, '.')
+    const baseKey = si_funciona_1.default.strBefore(dotKey, '.')
     if (baseKey !== 'class' && baseKey !== 'style') {
       throw new Error('Unhandled dotKey: ' + dotKey)
     }
@@ -89,11 +97,11 @@ const updateElement = domItem => {
       continue
     }
     if (baseKey === 'class') {
-      domItem.element.classList.add(value)
+      element.classList.add(value)
       continue
     }
-    domItem.element.style.setProperty(_siFunciona.default.strAfter(dotKey, '.'), value)
+    element.style.setProperty(si_funciona_1.default.strAfter(dotKey, '.'), value)
   }
-  return (0, _bindListeners.default)(domItem)
+  return (0, bindListeners_1.default)(domItem)
 }
-const _default = exports.default = updateElement
+exports.default = updateElement

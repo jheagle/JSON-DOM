@@ -3,7 +3,6 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
 /**
  * Append a child to the end of given parent's children list.
@@ -18,4 +17,4 @@ const appendChild = (parent, child) => {
   child.parentItem = parent
   return parent
 }
-const _default = exports.default = appendChild
+exports.default = appendChild
