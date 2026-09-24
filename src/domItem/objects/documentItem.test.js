@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import documentItem from './documentItem.js'
+import documentItem from './documentItem'
 
 describe('documentItem', () => {
   test('has valid head', () => {

@@ -1,5 +1,5 @@
-import appendChild from './appendChild.js'
-import createDomItem from '../objects/createDomItem.js'
+import appendChild from './appendChild'
+import createDomItem from '../objects/createDomItem'
 
 describe('appendChild', () => {
   test('will attach a DomItem as a child with proper references', () => {

@@ -1,5 +1,9 @@
 {
   "browser": {
     "name": "jsonDom"
+  },
+  "typescript": {
+    "config": "tsconfig.json",
+    "enabled": true
   }
 }

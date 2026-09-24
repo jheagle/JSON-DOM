@@ -1,6 +1,6 @@
-import findEventListener from './findEventListener.js'
-import createDomItem from '../../domItem/objects/createDomItem.js'
-import createEventListener from '../objects/createEventListener.js'
+import findEventListener from './findEventListener'
+import createDomItem from '../../domItem/objects/createDomItem'
+import createEventListener from '../objects/createEventListener'
 
 describe('findEventListener', () => {
   const eventName = 'click'

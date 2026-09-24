@@ -2,8 +2,8 @@
  * @jest-environment jsdom
  */
 import 'core-js/stable'
-import createDomItem from '../../domItem/objects/createDomItem.js'
-import retrieveListener from './retrieveListener.js'
+import createDomItem from '../../domItem/objects/createDomItem'
+import retrieveListener from './retrieveListener'
 
 describe('retrieveListener', () => {
   test('will find the specified event listener', () => {

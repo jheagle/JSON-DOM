@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import initChildren from './initChildren.js'
+import initChildren from './initChildren'
 
 describe('initChildren', () => {
   test('initializes children correctly', () => {

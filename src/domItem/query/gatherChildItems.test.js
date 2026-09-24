@@ -1,8 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import createDomItem from '../objects/createDomItem.js'
-import gatherChildItems from './gatherChildItems.js'
+import createDomItem from '../objects/createDomItem'
+import gatherChildItems from './gatherChildItems'
 
 describe('gatherChildItems', () => {
   test('can find all of the child items passing a test', () => {

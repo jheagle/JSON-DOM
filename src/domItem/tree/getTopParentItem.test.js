@@ -1,8 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import createDomItem from '../objects/createDomItem.js'
-import getTopParentItem from './getTopParentItem.js'
+import createDomItem from '../objects/createDomItem'
+import getTopParentItem from './getTopParentItem'
 
 describe('getTopParentItem', () => {
   test('will find the top parent item for a given child item', () => {

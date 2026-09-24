@@ -1,9 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-import createDomItem from '../objects/createDomItem.js'
-import removeChild from './removeChild.js'
-import updateElements from '../../render/updateElements.js'
+import createDomItem from '../objects/createDomItem'
+import removeChild from './removeChild'
+import updateElements from '../../render/updateElements'
 
 describe('removeChild', () => {
   test('can remove a child', () => {

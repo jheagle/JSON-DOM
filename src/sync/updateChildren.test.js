@@ -2,8 +2,8 @@
  * @jest-environment jsdom
  */
 import 'core-js/stable'
-import createDomItem from '../domItem/objects/createDomItem.js'
-import updateChildren from './updateChildren.js'
+import createDomItem from '../domItem/objects/createDomItem'
+import updateChildren from './updateChildren'
 
 describe('updateChildren', () => {
   test('will update the order of the children for the domItem', () => {

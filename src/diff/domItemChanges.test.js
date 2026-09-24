@@ -1,8 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import domItemChanges from './domItemChanges.js'
-import createDomItem from '../domItem/objects/createDomItem.js'
+import domItemChanges from './domItemChanges'
+import createDomItem from '../domItem/objects/createDomItem'
 
 describe('domItemChanges', () => {
   test('returns empty change list if element is not set', () => {

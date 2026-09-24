@@ -1,8 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import createDomItem from '../domItem/objects/createDomItem.js'
-import generateElement from './generateElement.js'
+import createDomItem from '../domItem/objects/createDomItem'
+import generateElement from './generateElement'
 
 describe('generateElement', () => {
   test('can create an HTMLElement', () => {

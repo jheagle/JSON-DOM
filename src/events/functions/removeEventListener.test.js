@@ -1,10 +1,10 @@
 /**
  * @jest-environment jsdom
  */
-import removeEventListener from './removeEventListener.js'
-import activateListener from './activateListener.js'
-import createDomItem from '../../domItem/objects/createDomItem.js'
-import createEventListener from '../objects/createEventListener.js'
+import removeEventListener from './removeEventListener'
+import activateListener from './activateListener'
+import createDomItem from '../../domItem/objects/createDomItem'
+import createEventListener from '../objects/createEventListener'
 
 describe('removeEventListener', () => {
   const eventName = 'click'

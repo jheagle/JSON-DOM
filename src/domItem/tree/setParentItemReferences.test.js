@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import 'core-js/stable'
-import setParentItemReferences from './setParentItemReferences.js'
+import setParentItemReferences from './setParentItemReferences'
 
 describe('setParentItemReferences', () => {
   test('will return item if it has no children', () => {

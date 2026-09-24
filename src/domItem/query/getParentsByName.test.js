@@ -1,8 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import createDomItem from '../objects/createDomItem.js'
-import getParentsByName from './getParentsByName.js'
+import createDomItem from '../objects/createDomItem'
+import getParentsByName from './getParentsByName'
 
 describe('getParentsByName', () => {
   test('will find the parent nodes with a specific name', () => {
