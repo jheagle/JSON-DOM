@@ -3,7 +3,7 @@
  */
 import fullAddEventListener from './fullAddEventListener.js'
 import fullRemoveEventListener from './fullRemoveEventListener.js'
-import createDomItem from '../../general/objects/createDomItem.js'
+import createDomItem from '../../domItem/objects/createDomItem.js'
 
 describe('fullRemoveEventListener', () => {
   test('removes a listener added via fullAddEventListener, resolving the same registered name', () => {

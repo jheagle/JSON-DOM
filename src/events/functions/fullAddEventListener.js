@@ -1,7 +1,7 @@
 import 'core-js/stable'
 import curry from 'si-funciona/dist/helpers/functions/curry'
 import pipe from 'si-funciona/dist/helpers/functions/pipe'
-import getTopParentItem from '../../general/functions/getTopParentItem.js'
+import getTopParentItem from '../../domItem/tree/getTopParentItem.js'
 import registerListener from './registerListener.js'
 import addEventListener from './addEventListener.js'
 import bindListeners from './bindListeners.js'

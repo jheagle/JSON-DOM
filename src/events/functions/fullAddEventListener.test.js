@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import fullAddEventListener from './fullAddEventListener.js'
-import createDomItem from '../../general/objects/createDomItem.js'
+import createDomItem from '../../domItem/objects/createDomItem.js'
 
 describe('fullAddEventListener', () => {
   test('registers, attaches and binds a listener in one call', () => {

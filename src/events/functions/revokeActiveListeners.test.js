@@ -4,7 +4,7 @@
 import revokeActiveListeners from './revokeActiveListeners.js'
 import applyActiveListeners from './applyActiveListeners.js'
 import activateListener from './activateListener.js'
-import createDomItem from '../../general/objects/createDomItem.js'
+import createDomItem from '../../domItem/objects/createDomItem.js'
 
 describe('revokeActiveListeners', () => {
   test('will revoke an active click listener from the element', () => {

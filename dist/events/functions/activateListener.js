@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 exports.default = void 0
 require('core-js/stable')
-const _getTopParentItem = _interopRequireDefault(require('../../general/functions/getTopParentItem.js'))
+const _getTopParentItem = _interopRequireDefault(require('../../domItem/tree/getTopParentItem.js'))
 const _makeEventHandler = _interopRequireDefault(require('./makeEventHandler.js'))
 const _createEventResponder = _interopRequireDefault(require('../objects/createEventResponder.js'))
 const _getListenerOptions = _interopRequireDefault(require('../objects/options/getListenerOptions.js'))

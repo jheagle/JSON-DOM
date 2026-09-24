@@ -8,12 +8,22 @@
 
 import 'core-js/stable'
 import events from './events/index.js'
-import general from './general/index.js'
+import domItem from './domItem/index.js'
+import inflate from './inflate/index.js'
+import deflate from './deflate/index.js'
+import render from './render/index.js'
+import sync from './sync/index.js'
+import diff from './diff/index.js'
 
 const jsonDom = Object.assign(
   {},
   events,
-  general
+  domItem,
+  inflate,
+  deflate,
+  render,
+  sync,
+  diff
 )
 
 export default jsonDom

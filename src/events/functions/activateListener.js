@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import getTopParentItem from '../../general/functions/getTopParentItem.js'
+import getTopParentItem from '../../domItem/tree/getTopParentItem.js'
 import makeEventHandler from './makeEventHandler.js'
 import createEventResponder from '../objects/createEventResponder.js'
 import getListenerOptions from '../objects/options/getListenerOptions.js'
