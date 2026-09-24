@@ -1,6 +1,8 @@
 import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import documentItem from '../../domItem/objects/documentItem'
+import type { DomItemRoot } from '../../domItem/types'
+import type { ListenerFunction } from '../types'
 
 /**
  * Register multiple listeners from an array of functions.
@@ -11,7 +13,7 @@ import documentItem from '../../domItem/objects/documentItem'
  * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which has eventActions property.
  * @returns {DomItemRoot|Object}
  */
-const registerListeners = (listeners, parent = documentItem) => {
+const registerListeners = (listeners: ListenerFunction[] | Record<string, ListenerFunction>, parent: DomItemRoot = documentItem): DomItemRoot => {
   siFunciona.mergeObjectsMutable(parent.eventActions, listeners)
   return parent
 }

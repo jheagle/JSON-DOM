@@ -1,4 +1,6 @@
 import 'core-js/stable'
+import type { DomItem } from '../../domItem/types'
+import type { EventHandler, EventProxy, ListenerFunction } from '../types'
 
 /**
  * Based on available flags, either proceed to process the listener or skip.
@@ -16,9 +18,9 @@ import 'core-js/stable'
  * @param {...*} [args]
  * @returns {eventHandler}
  */
-const makeEventHandler = (listener, item, ...args) => {
-  return event => {
-    if (!event || event.immediatePropagationStopped) {
+const makeEventHandler = (listener: ListenerFunction, item: DomItem, ...args: unknown[]): EventHandler => {
+  return (event) => {
+    if (!event || (event as EventProxy).immediatePropagationStopped) {
       return event
     }
     return listener(event, item, ...args)

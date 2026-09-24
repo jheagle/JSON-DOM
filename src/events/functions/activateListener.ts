@@ -5,6 +5,8 @@ import createEventResponder from '../objects/createEventResponder'
 import getListenerOptions from '../objects/options/getListenerOptions'
 import optionsToNumber from '../objects/options/optionsToNumber'
 import retrieveListener from './retrieveListener'
+import type { DomItem } from '../../domItem/types'
+import type { EventName, ListenerDescriptor } from '../types'
 
 /**
  * Activate listener by pushing it to activeListeners.
@@ -15,7 +17,7 @@ import retrieveListener from './retrieveListener'
  * @param {DomItem} item
  * @returns {DomItem}
  */
-const activateListener = (eventName, eventListener, item) => {
+const activateListener = (eventName: EventName, eventListener: ListenerDescriptor, item: DomItem): DomItem => {
   const listenerOptions = getListenerOptions()
   if (typeof item.activeListeners === 'undefined') {
     item.activeListeners = {}

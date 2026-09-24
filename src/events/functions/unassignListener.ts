@@ -1,5 +1,6 @@
 import 'core-js/stable'
 import listenerOptions from './listenerOptions'
+import type { EventHandler, ListenerOptions, ListenerTarget } from '../types'
 
 /**
  * Provide compatibility for unassigning listeners.
@@ -13,11 +14,11 @@ import listenerOptions from './listenerOptions'
  * fired
  * @returns {listenerFunction|Function}
  */
-const unassignListener = (trigger, elem, fn, options = false) => {
+const unassignListener = (trigger: string, elem: ListenerTarget, fn: EventHandler, options: ListenerOptions = false): EventHandler => {
   // Removing a listener may be done differently based on the browser support
   if (elem.removeEventListener) {
     // Latest support is provided from removeEventListener with the options parameter varying slightly
-    elem.removeEventListener(trigger, fn, listenerOptions(options))
+    elem.removeEventListener(trigger, fn, listenerOptions(options) as EventListenerOptions | boolean)
   }
   return fn
 }

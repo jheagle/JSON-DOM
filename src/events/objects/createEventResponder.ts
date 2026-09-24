@@ -1,4 +1,5 @@
 import 'core-js/stable'
+import type { EventHandler, EventResponder } from '../types'
 
 /**
  * Track an event handler and optional abort signal.
@@ -18,7 +19,7 @@ import 'core-js/stable'
  * @param {AbortController|boolean|null} [abort=null] - Assign an AbortSignal provided or create one (if true), otherwise null.
  * @return {EventResponder}
  */
-const createEventResponder = (eventHandler, abort = null) => {
+const createEventResponder = (eventHandler: EventHandler, abort: AbortController | boolean | null = null): EventResponder => {
   if (abort === true) {
     abort = new AbortController()
   }

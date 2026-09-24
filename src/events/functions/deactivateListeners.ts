@@ -1,4 +1,5 @@
 import 'core-js/stable'
+import type { DomItem } from '../../domItem/types'
 
 /**
  * Set all the listeners for this DOMItem to be inactive.
@@ -7,9 +8,9 @@ import 'core-js/stable'
  * @param {DomItem} item - The DomItem which will have its eventListeners updated.
  * @returns {DomItem}
  */
-const deactivateListeners = (item) => {
+const deactivateListeners = (item: DomItem): DomItem => {
   for (const eventName in item.eventListeners) {
-    item.eventListeners[eventName].forEach(eventListener => {
+    item.eventListeners[eventName].forEach((eventListener) => {
       eventListener.listenerActive = false
     })
   }

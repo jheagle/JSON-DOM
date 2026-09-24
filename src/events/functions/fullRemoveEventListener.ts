@@ -1,5 +1,7 @@
 import 'core-js/stable'
 import removeEventListener from './removeEventListener'
+import type { DomItem } from '../../domItem/types'
+import type { EventName, ListenerFunction, ListenerOptions } from '../types'
 
 /**
  * Find and remove a listener that was registered by name (e.g. via {@link fullAddEventListener}) - the counterpart
@@ -21,9 +23,9 @@ import removeEventListener from './removeEventListener'
  * @param {DomItem} item - The DomItem to remove the listener from.
  * @returns {DomItem} The same DomItem, with the matching listener removed if one was found.
  */
-const fullRemoveEventListener = (eventName, listener, name, customArgs, options, item) => {
-  name = name ?? listener.name
-  return removeEventListener(eventName, name, customArgs, options, item)
+const fullRemoveEventListener = (eventName: EventName, listener: ListenerFunction, name: string | null | undefined, customArgs: object | null | undefined, options: ListenerOptions | null | undefined, item: DomItem): DomItem => {
+  const listenerName = name ?? listener.name
+  return removeEventListener(eventName, listenerName, customArgs, options, item)
 }
 
 export default fullRemoveEventListener

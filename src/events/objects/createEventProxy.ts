@@ -1,4 +1,5 @@
 import 'core-js/stable'
+import type { EventProxy } from '../types'
 
 /**
  * A wrapped Event which provides additional utilities.
@@ -14,14 +15,14 @@ import 'core-js/stable'
  * @param {Event} event
  * @returns {EventProxy}
  */
-const createEventProxy = event => new Proxy(
+const createEventProxy = (event: Event): EventProxy => new Proxy(
   Object.defineProperty(event, 'immediatePropagationStopped', {
     enumerable: true,
     value: false,
     writable: true
-  }),
+  }) as EventProxy,
   {
-    get (thisEvent, prop) {
+    get (thisEvent: EventProxy, prop: string | symbol) {
       if (prop === 'stopImmediatePropagation') {
         thisEvent.immediatePropagationStopped = true
       }

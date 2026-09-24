@@ -1,5 +1,7 @@
 import 'core-js/stable'
 import createEventListener from '../objects/createEventListener'
+import type { DomItem } from '../../domItem/types'
+import type { EventName, ListenerFunction, ListenerOptions } from '../types'
 
 /**
  * Create an EventListener descriptor and push it onto a DomItem's eventListeners for the given event name.
@@ -22,7 +24,7 @@ import createEventListener from '../objects/createEventListener'
  * @param {module:domGeneral~DomItem} item - The DomItem which will receive the event listener.
  * @returns {module:domGeneral~DomItem} The same DomItem, with the new EventListener descriptor appended.
  */
-const addEventListener = (eventName, listenerFunction, customArgs, options, item) => {
+const addEventListener = (eventName: EventName, listenerFunction: string | ListenerFunction, customArgs: object | null | undefined, options: ListenerOptions | null | undefined, item: DomItem): DomItem => {
   customArgs = customArgs ?? null
   options = options ?? false
   if (typeof listenerFunction === 'function') {

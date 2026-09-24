@@ -1,4 +1,5 @@
 import 'core-js/stable'
+import type { OptionsTemplate } from '../../types'
 
 const CAPTURE = 1
 const ONCE = 2
@@ -11,7 +12,7 @@ const SIGNAL = 8
  * @memberOf module:optionFlags
  * @returns {OptionsTemplate}
  */
-const getListenerOptions = () => ({
+const getListenerOptions = (): OptionsTemplate => ({
   capture: CAPTURE,
   once: ONCE,
   passive: PASSIVE,

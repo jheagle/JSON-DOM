@@ -1,5 +1,7 @@
 import 'core-js/stable'
 import documentItem from '../../domItem/objects/documentItem'
+import type { DomItemRoot } from '../../domItem/types'
+import type { ListenerFunction } from '../types'
 
 /**
  * Based on the provided function / listener name, retrieve the associated function from the root domEvents.DomItem.
@@ -12,7 +14,7 @@ import documentItem from '../../domItem/objects/documentItem'
  * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
  * @returns {listenerFunction|function|Object}
  */
-const retrieveListener = (listenerName, parent = documentItem) => {
+const retrieveListener = (listenerName: string | ListenerFunction, parent: DomItemRoot = documentItem): ListenerFunction => {
   if (typeof listenerName === 'function') {
     return listenerName
   }

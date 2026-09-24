@@ -3,6 +3,8 @@ import siFunciona from 'si-funciona'
 import getListenerOptions from '../objects/options/getListenerOptions'
 import numberToOptions from '../objects/options/numberToOptions'
 import unassignListener from './unassignListener'
+import type { DomItem } from '../../domItem/types'
+import type { EventName, EventResponder, ListenerTarget } from '../types'
 
 /**
  * Detach every active listener for one event type from a DomItem's element, regardless of which EventListener
@@ -14,31 +16,31 @@ import unassignListener from './unassignListener'
  * @param {module:domGeneral~DomItem} item - The DomItem to revoke active listeners from.
  * @return {module:domGeneral~DomItem} The same DomItem, with all active listeners for this event detached.
  */
-const revokeActiveListeners = (eventName, item) => {
+const revokeActiveListeners = (eventName: EventName, item: DomItem): DomItem => {
   const listenerOptions = getListenerOptions()
   const eventOptions = siFunciona.dotGet(item, `activeListeners.${eventName}`)
   if (eventOptions === null) {
     return item
   }
-  siFunciona.objectKeys(eventOptions).forEach(binaryOptions => {
+  siFunciona.objectKeys(eventOptions).forEach((binaryOptions: string) => {
     const optionsToUse = numberToOptions(listenerOptions, parseInt(binaryOptions))
     const usesSignal = !!optionsToUse.signal
     if (!usesSignal) {
       // Abort signal must be undefined if it is not required.
       delete optionsToUse.signal
     }
-    item.activeListeners[eventName][binaryOptions].forEach(eventResponder => {
+    ;(item.activeListeners as NonNullable<DomItem['activeListeners']>)[eventName][Number(binaryOptions)].forEach((eventResponder: EventResponder) => {
       if (!eventResponder.assignedHandler) {
         // never actually attached to the element, nothing to detach
         return
       }
       const finalOptions = usesSignal
-        ? Object.assign({}, optionsToUse, { signal: eventResponder.abort.signal })
+        ? Object.assign({}, optionsToUse, { signal: (eventResponder.abort as AbortController).signal })
         : optionsToUse
-      unassignListener(eventName, item.element, eventResponder.assignedHandler, finalOptions)
+      unassignListener(eventName, item.element as unknown as ListenerTarget, eventResponder.assignedHandler, finalOptions)
     })
   })
-  delete item.activeListeners[eventName]
+  delete (item.activeListeners as NonNullable<DomItem['activeListeners']>)[eventName]
   return item
 }
 

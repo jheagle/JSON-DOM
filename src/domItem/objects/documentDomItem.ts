@@ -25,7 +25,7 @@ const documentDomItem = (listeners: Record<string, ListenerFunction> = {}, rootI
   })
   rootItem.head = rootItem.children[0]
   rootItem.body = rootItem.children[1]
-  return updateDomItems(createDomItem(rootItem))
+  return updateDomItems(createDomItem(rootItem)) as DomItemRoot
 }
 
 export default documentDomItem

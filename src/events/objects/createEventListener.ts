@@ -1,4 +1,5 @@
 import 'core-js/stable'
+import type { ListenerDescriptor } from '../types'
 
 /**
  * This is the standard definition of a listenerFunction to be used
@@ -83,9 +84,9 @@ const createEventListener = ({
   listenerArgs = null,
   listenerOptions = false,
   listenerActive = false
-} = {}) => (
+}: Partial<ListenerDescriptor> = {}): ListenerDescriptor => (
   {
-    listenerFunc,
+    listenerFunc: listenerFunc as ListenerDescriptor['listenerFunc'],
     listenerArgs,
     listenerOptions,
     listenerActive

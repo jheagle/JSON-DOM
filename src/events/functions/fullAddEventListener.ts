@@ -5,6 +5,8 @@ import getTopParentItem from '../../domItem/tree/getTopParentItem'
 import registerListener from './registerListener'
 import addEventListener from './addEventListener'
 import bindListeners from './bindListeners'
+import type { DomItem } from '../../domItem/types'
+import type { EventName, ListenerFunction, ListenerOptions } from '../types'
 
 /**
  * Register the listener function, attach it as a descriptor on the item, then bind it onto the
@@ -25,18 +27,18 @@ import bindListeners from './bindListeners'
  * @param {DomItem} item - The DomItem which will receive the event listener.
  * @returns {DomItem}
  */
-const fullAddEventListener = (eventName, listener, name, customArgs, options, item) => {
-  name = name ?? listener.name
+const fullAddEventListener = (eventName: EventName, listener: ListenerFunction, name: string | null | undefined, customArgs: object | null | undefined, options: ListenerOptions | null | undefined, item: DomItem): DomItem => {
+  const listenerName = name ?? listener.name
   customArgs = customArgs ?? null
   options = options ?? false
   return pipe(
-    currentItem => {
-      registerListener(listener, name, getTopParentItem(currentItem))
+    (currentItem: DomItem) => {
+      registerListener(listener, listenerName, getTopParentItem(currentItem))
       return currentItem
     },
-    curry(addEventListener)(eventName, name, customArgs, options),
+    curry(addEventListener)(eventName, listenerName, customArgs, options),
     bindListeners
-  )(item)
+  )(item) as DomItem
 }
 
 export default fullAddEventListener

@@ -1,6 +1,8 @@
 import 'core-js/stable'
 import findEventListener from './findEventListener'
 import deactivateListener from './deactivateListener'
+import type { DomItem } from '../../domItem/types'
+import type { EventName, ListenerFunction, ListenerOptions } from '../types'
 
 /**
  * Find and remove an event listener from a DomItem: detaches it from the element first (via
@@ -18,7 +20,7 @@ import deactivateListener from './deactivateListener'
  * @param {module:domGeneral~DomItem} item - The DomItem to remove the listener from.
  * @returns {module:domGeneral~DomItem} The same DomItem, with the matching listener removed if one was found.
  */
-const removeEventListener = (eventName, listenerFunction, customArgs, options, item) => {
+const removeEventListener = (eventName: EventName, listenerFunction: string | ListenerFunction, customArgs: object | null | undefined, options: ListenerOptions | null | undefined, item: DomItem): DomItem => {
   const [listenerIndex, foundListener] = findEventListener(eventName, listenerFunction, customArgs, options, item)
   if (listenerIndex < 0 || typeof foundListener === 'undefined') {
     // listener not found

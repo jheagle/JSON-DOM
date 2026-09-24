@@ -1,5 +1,6 @@
 import 'core-js/stable'
 import bindListeners from './bindListeners'
+import type { DomItem } from '../../domItem/types'
 
 /**
  * Based on the eventListeners property of the provided item, bind the listeners to the associated element property
@@ -11,7 +12,7 @@ import bindListeners from './bindListeners'
  * assigned
  * @returns {DomItem}
  */
-const bindAllListeners = item => {
+const bindAllListeners = (item: DomItem): DomItem => {
   for (const child of item.children) {
     bindAllListeners(child)
   }

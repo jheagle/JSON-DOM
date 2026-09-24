@@ -1,6 +1,7 @@
 import 'core-js/stable'
 import bindElementListeners from './bindElementListeners'
 import siFunciona from 'si-funciona'
+import type { DomItem } from '../../domItem/types'
 
 /**
  * Based on the eventListeners property of the provided item, bind the
@@ -11,7 +12,7 @@ import siFunciona from 'si-funciona'
  * element
  * @returns {DomItem}
  */
-const bindListeners = item =>
+const bindListeners = (item: DomItem): DomItem =>
   (!siFunciona.emptyObject(item.eventListeners) && item.element)
     ? bindElementListeners(item)
     : item

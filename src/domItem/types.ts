@@ -25,7 +25,7 @@ export type EmptyParent = Record<string, never>
  */
 export type DomItemProperties = {
   /** Generated: the listeners which are attached to the element, by event name. */
-  activeListeners?: Record<EventName, Record<number, EventResponder>>
+  activeListeners?: Record<EventName, Record<number, EventResponder[]>>
   attributes: Attributes
   children: DomItem[]
   /** The real node this item is mirrored onto, or null while there is none. */

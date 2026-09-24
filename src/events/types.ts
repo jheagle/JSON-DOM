@@ -42,6 +42,8 @@ export type ListenerDescriptor = {
   listenerOptions?: ListenerOptions
   /** Whether this listener has been applied to the element. */
   listenerActive?: boolean
+  /** Set while the listener is active: the responder which attaches it to the element and can detach it again. */
+  activeResponder?: EventResponder | null
 }
 
 /** All the listeners of one event type. */
@@ -57,3 +59,8 @@ export type EventResponder = {
 
 /** Bit flags for each of the listener options. */
 export type OptionsTemplate = Record<string, number>
+
+/** What json-dom needs from an element to attach a listener, including the very old ways of doing it. */
+export type ListenerTarget = EventTarget & {
+  attachEvent?: (eventName: string, handler: EventHandler) => void
+}
