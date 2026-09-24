@@ -1,5 +1,6 @@
 import 'core-js/stable'
 import updateElement from './updateElement'
+import type { DomElement, DomItem } from '../domItem/types'
 
 /**
  * Update all the childNodes for this domItem element to mach domItem children.
@@ -8,7 +9,7 @@ import updateElement from './updateElement'
  * @param {DomItem} domItem
  * @returns {DomItem}
  */
-const updateChildNodes = domItem => {
+const updateChildNodes = (domItem: DomItem): DomItem => {
   if (!domItem.element) {
     domItem = updateElement(domItem)
   }
@@ -16,7 +17,8 @@ const updateChildNodes = domItem => {
     domItem.children = []
     return domItem
   }
-  const previousChildNodes = Array.from(domItem.element.childNodes)
+  const element = domItem.element as Node
+  const previousChildNodes = Array.from(element.childNodes)
   domItem.children
     .map((child, index) => {
       const existing = previousChildNodes.find(childNode => childNode === child.element)
@@ -25,23 +27,23 @@ const updateChildNodes = domItem => {
         childNode = updateElement(child).element
       }
       if (!previousChildNodes[index]) {
-        domItem.element.appendChild(childNode)
+        element.appendChild(childNode as Node)
         return childNode
       }
       if (childNode !== previousChildNodes[index]) {
-        domItem.element.replaceChild(childNode, previousChildNodes[index])
+        element.replaceChild(childNode as Node, previousChildNodes[index])
       }
       return childNode
     })
     .forEach((childNode, index) => {
-      domItem.children[index].element = childNode
+      domItem.children[index].element = childNode as DomElement
     })
-  if (domItem.element.childNodes.length > domItem.children.length) {
+  if (element.childNodes.length > domItem.children.length) {
     const maxLength = domItem.children.length
-    let nodeToRemove = domItem.element.childNodes[maxLength]
+    let nodeToRemove = element.childNodes[maxLength]
     while (nodeToRemove) {
-      domItem.element.removeChild(nodeToRemove)
-      nodeToRemove = domItem.element.childNodes[maxLength]
+      element.removeChild(nodeToRemove)
+      nodeToRemove = element.childNodes[maxLength]
     }
   }
   return domItem

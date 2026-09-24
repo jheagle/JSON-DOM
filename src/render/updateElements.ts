@@ -1,6 +1,7 @@
 import 'core-js/stable'
 import updateChildNodes from './updateChildNodes'
 import updateElement from './updateElement'
+import type { DomItem } from '../domItem/types'
 
 /**
  * Generate HTML element data for each object in the matrix
@@ -11,7 +12,7 @@ import updateElement from './updateElement'
  * applied
  * @returns {DomItem}
  */
-const updateElements = config => {
+const updateElements = (config: DomItem): DomItem => {
   if (config.nodeName === '#document') {
     for (const child of config.children) {
       updateElements(child)

@@ -5,6 +5,7 @@ import domItemChanges from '../diff/domItemChanges'
 import siFunciona from 'si-funciona'
 import generateElement from './generateElement'
 import updateChildNodes from './updateChildNodes'
+import type { DomItem } from '../domItem/types'
 
 /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties.
@@ -20,24 +21,27 @@ import updateChildNodes from './updateChildNodes'
  * element
  * @returns {DomItem}
  */
-const updateElement = domItem => {
+const updateElement = (domItem: DomItem): DomItem => {
   if (!domItem.element) {
     return updateChildNodes(generateElement(deactivateListeners(domItem)))
   }
   const changes = domItemChanges(domItem)
+  // From here on the item has an element (an element which is missing was generated above)
+  const element = domItem.element as HTMLElement
+  const properties = element as unknown as Record<string, unknown>
   if (changes.removed.nodeName || changes.added.nodeName) {
     // if the nodeName has changed then remove the element and create a new one
-    domItem.element.remove()
+    element.remove()
     return updateChildNodes(generateElement(deactivateListeners(domItem)))
   }
   for (const dotKey in changes.removed) {
     const value = changes.removed[dotKey]
     if (!dotKey.includes('.')) {
-      if (dotKey in domItem.element) {
-        delete domItem.element[dotKey]
+      if (dotKey in element) {
+        delete properties[dotKey]
         continue
       }
-      domItem.element.removeAttribute(dotKey)
+      element.removeAttribute(dotKey)
       continue
     }
     const baseKey = siFunciona.strBefore(dotKey, '.')
@@ -45,32 +49,32 @@ const updateElement = domItem => {
       throw new Error('Unhandled dotKey: ' + dotKey)
     }
     if (baseKey === 'class') {
-      domItem.element.classList.remove(value)
+      element.classList.remove(value)
       continue
     }
-    domItem.element.style.removeProperty(siFunciona.strAfter(dotKey, '.'))
+    element.style.removeProperty(siFunciona.strAfter(dotKey, '.'))
   }
   for (const dotKey in changes.added) {
     const value = changes.added[dotKey]
     if (dotKey === 'className') {
-      domItem.element.className = value
+      element.className = value
       continue
     }
     if (dotKey === 'style') {
       // Update all styles based on incoming style object
       // setProperty wants CSS names (background-color), but the style object is written in camelCase (backgroundColor)
       for (const style in value) {
-        domItem.element.style.setProperty(siFunciona.kabobCase(style), value[style])
+        element.style.setProperty(siFunciona.kabobCase(style), value[style])
       }
       continue
     }
     if (!dotKey.includes('.')) {
-      if (dotKey in domItem.element && dotKey !== 'form') {
+      if (dotKey in element && dotKey !== 'form') {
         // Some things can be assigned directly, but 'form' attribute cannot
-        domItem.element[dotKey] = value
+        properties[dotKey] = value
         continue
       }
-      domItem.element.setAttribute(dotKey, value)
+      element.setAttribute(dotKey, value)
       continue
     }
     const baseKey = siFunciona.strBefore(dotKey, '.')
@@ -82,10 +86,10 @@ const updateElement = domItem => {
       continue
     }
     if (baseKey === 'class') {
-      domItem.element.classList.add(value)
+      element.classList.add(value)
       continue
     }
-    domItem.element.style.setProperty(siFunciona.strAfter(dotKey, '.'), value)
+    element.style.setProperty(siFunciona.strAfter(dotKey, '.'), value)
   }
   return bindListeners(domItem)
 }

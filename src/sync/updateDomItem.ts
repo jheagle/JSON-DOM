@@ -1,6 +1,7 @@
 import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import elementChanges from '../diff/elementChanges'
+import type { DomItem } from '../domItem/types'
 
 /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
@@ -10,7 +11,7 @@ import elementChanges from '../diff/elementChanges'
  * element
  * @returns {DomItem}
  */
-const updateDomItem = config => {
+const updateDomItem = (config: DomItem): DomItem => {
   if (!config.element) {
     // if element is not a valid element then return the config without changes
     return config
@@ -19,22 +20,22 @@ const updateDomItem = config => {
   for (const dotKey in changes.removed) {
     const attributeKey = siFunciona.strAfter(dotKey, '.')
     if (siFunciona.strBefore(attributeKey, '.') === 'className') {
-      const classList = config.attributes.className.split(' ')
+      const classList = (config.attributes.className as string).split(' ')
       classList.splice(siFunciona.strAfterLast(attributeKey, '.'), 1)
       config.attributes.className = classList.join(' ')
       continue
     }
-    siFunciona.dotUnset(config, dotKey)
+    siFunciona.dotUnset(config as unknown as Record<string, unknown>, dotKey)
   }
   for (const dotKey in changes.added) {
     const attributeKey = siFunciona.strAfter(dotKey, '.')
     if (siFunciona.strBefore(attributeKey, '.') === 'className') {
-      const classList = config.attributes.className.split(' ')
+      const classList = (config.attributes.className as string).split(' ')
       classList.push(changes.added[dotKey])
       config.attributes.className = classList.join(' ')
       continue
     }
-    siFunciona.dotSet(config, dotKey, changes.added[dotKey])
+    siFunciona.dotSet(config as unknown as Record<string, unknown>, dotKey, changes.added[dotKey])
   }
   return config
 }

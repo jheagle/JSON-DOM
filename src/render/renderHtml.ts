@@ -3,6 +3,7 @@ import appendChild from '../domItem/tree/appendChild'
 import documentItem from '../domItem/objects/documentItem'
 import setParentItemReferences from '../domItem/tree/setParentItemReferences'
 import updateElements from './updateElements'
+import type { DomItem } from '../domItem/types'
 
 /**
  * This is a shortcut for syncing a Virtual DOM (DomItem tree) item onto the real HTML DOM: builds the real elements
@@ -15,14 +16,11 @@ import updateElements from './updateElements'
  * document body, so passing nothing keeps working exactly as before
  * @returns {DomItem}
  */
-const renderHtml = (item = null, parent = documentItem.body) => {
-  let itemToRender = item
-  if (item === null) {
-    itemToRender = documentItem
-  }
+const renderHtml = (item: DomItem | null = null, parent: DomItem = documentItem.body): DomItem => {
+  let itemToRender: DomItem = item === null ? documentItem : item
   if (itemToRender.parentItem === null) {
     // excluding when documentItem was passed in, append the item to parent
-    itemToRender = appendChild(parent, item)
+    itemToRender = appendChild(parent, item as DomItem)
   }
   // Render the elements and return either to original reference, or updated documentItem (whichever is available)
   const updatedItem = updateElements(setParentItemReferences(itemToRender))
