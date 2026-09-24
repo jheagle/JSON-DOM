@@ -1,5 +1,6 @@
 import 'core-js/stable'
 import siFunciona from 'si-funciona'
+import type { ChangeList, ChangeType, DotNotated } from './types'
 
 /**
  * @typedef {Function} appendChanges
@@ -13,8 +14,8 @@ import siFunciona from 'si-funciona'
  * @param {ChangeList} changeList
  * @returns {appendChanges}
  */
-const appendChangesTo = changeList =>
-  (changeType, changes) => {
+const appendChangesTo = (changeList: Pick<ChangeList, 'removed' | 'added'>): ChangeList['appendChanges'] =>
+  (changeType: ChangeType, changes: DotNotated): DotNotated => {
     if (!['added', 'removed'].includes(changeType)) {
       throw Error(`Method appendChanges change type must be 'added' or 'removed'; ${changeType} given.`)
     }
@@ -39,11 +40,11 @@ const appendChangesTo = changeList =>
  * @param {DotNotatedObject} [changeList.added={}]
  * @returns {ChangeList}
  */
-const createChangeList = ({ removed = {}, added = {} } = {}) => {
+const createChangeList = ({ removed = {}, added = {} }: Partial<Pick<ChangeList, 'removed' | 'added'>> = {}): ChangeList => {
   const changeList = {
     removed: Object.assign({}, removed),
     added: Object.assign({}, added)
-  }
+  } as ChangeList
   changeList.appendChanges = appendChangesTo(changeList)
   return changeList
 }

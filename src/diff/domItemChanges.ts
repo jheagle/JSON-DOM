@@ -2,6 +2,9 @@ import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import elementHasAttribute from './elementHasAttribute'
 import createChangeList from './createChangeList'
+import type { DomItem, StyleValues } from '../domItem/types'
+import type { compareArrayResult, compareArrayResultMap } from 'si-funciona/dist/helpers/arrays/compareArrays'
+import type { AttributeComparison, ChangeList, DotNotated } from './types'
 
 /**
  * @typedef {module:objectHelpers~mapCallback} testAttributeChange
@@ -18,29 +21,30 @@ import createChangeList from './createChangeList'
  * @param {Node|HTMLElement} element
  * @returns {testAttributeChange}
  */
-const checkAttribute = element =>
-  (attr, key) => {
+const checkAttribute = (element: HTMLElement | null) =>
+  (attr: unknown, key: string): AttributeComparison => {
     if (typeof attr === 'object') {
+      const styles = attr as StyleValues
+      const elementStyle = (): StyleValues => element!.style as unknown as StyleValues
       const styleDiff = elementHasAttribute(element, key, attr)
-      const firstStyleDiff = styleDiff[0]
-      if (styleDiff.length === 1 && firstStyleDiff.result[0] === 0 && element.style[firstStyleDiff.value] === attr[firstStyleDiff.value]) {
+      if (Array.isArray(styleDiff) && styleDiff.length === 1 && styleDiff[0].result[0] === 0 && elementStyle()[styleDiff[0].value] === styles[styleDiff[0].value]) {
         return 0
       }
       // Check new, removed, or changed styles
       return siFunciona.filterObject(
-        styleDiff,
-        arrayDiff => (arrayDiff.result[0] !== 0 || element.style[arrayDiff.value] !== attr[arrayDiff.value])
-      )
+        styleDiff as compareArrayResultMap,
+        (arrayDiff: compareArrayResult) => (arrayDiff.result[0] !== 0 || elementStyle()[arrayDiff.value] !== styles[arrayDiff.value])
+      ) as AttributeComparison
     }
     if (key === 'class') {
       const classDiff = elementHasAttribute(element, key, attr)
-      if (classDiff.length === 1 && classDiff[0].result[0] === 0) {
+      if (Array.isArray(classDiff) && classDiff.length === 1 && classDiff[0].result[0] === 0) {
         return 0
       }
       return siFunciona.filterObject(
-        classDiff,
-        arrayDiff => arrayDiff.result[0] !== 0
-      )
+        classDiff as compareArrayResultMap,
+        (arrayDiff: compareArrayResult) => arrayDiff.result[0] !== 0
+      ) as AttributeComparison
     }
     return elementHasAttribute(element, key, attr)
   }
@@ -52,12 +56,12 @@ const checkAttribute = element =>
  * @param {Object.<string, *>} attributesToSet
  * @returns {Object.<string, *>}
  */
-const kabobCaseAttributes = attributesToSet => siFunciona.reduceObject(
+const kabobCaseAttributes = (attributesToSet: Record<string, any>): Record<string, any> => siFunciona.reduceObject(
   attributesToSet,
-  (attributes, value, name) => {
-    let attrValue = attributesToSet[name] ?? value
+  (attributes: Record<string, any>, value: unknown, name: string) => {
+    let attrValue: unknown = attributesToSet[name] ?? value
     if (siFunciona.isObject(attrValue)) {
-      attrValue = kabobCaseAttributes(attrValue)
+      attrValue = kabobCaseAttributes(attrValue as Record<string, any>)
     }
     const kabobKey = name === 'className' ? 'class' : siFunciona.kabobCase(name)
     attributes[kabobKey] = attrValue
@@ -74,7 +78,7 @@ const kabobCaseAttributes = attributesToSet => siFunciona.reduceObject(
  * @param {DomItem} domItem - The DomItem having changes to be applied to its element
  * @returns {ChangeList}
  */
-const domItemChanges = domItem => {
+const domItemChanges = (domItem: DomItem): ChangeList => {
   const changeList = createChangeList()
   if (!domItem.element) {
     changeList.added.nodeName = domItem.nodeName.toLowerCase()
@@ -102,11 +106,11 @@ const domItemChanges = domItem => {
 
   const diffMap = siFunciona.mapObject(
     domItemAttributes,
-    (attr, key) => checkAttribute(domItem.element)(attr, key)
+    (attr: unknown, key: string) => checkAttribute(domItem.element as HTMLElement | null)(attr, key)
   )
   return siFunciona.reduceObject(
     diffMap,
-    (changed, result, key) => {
+    (changed: ChangeList, result: AttributeComparison, key: string) => {
       const isArray = Array.isArray(result)
       if (!isArray && !result) {
         // Skip if the attribute is not changed (false and not an array)
@@ -128,7 +132,7 @@ const domItemChanges = domItem => {
       }
       if (key === 'class') {
         changed.removed = result.reduce(
-          (removed, results) => {
+          (removed: DotNotated, results: compareArrayResult) => {
             if (results.result[0] === -1) {
               removed[`class.${results.keys[1]}`] = results.value
             }
@@ -137,7 +141,7 @@ const domItemChanges = domItem => {
           changed.removed
         )
         changed.added = result.reduce(
-          (added, results) => {
+          (added: DotNotated, results: compareArrayResult) => {
             if (results.result[0] === 1) {
               added[`class.${results.keys[0]}`] = results.value
             }
@@ -147,27 +151,28 @@ const domItemChanges = domItem => {
         )
         return changed
       }
+      const elementStyle = (): StyleValues => (domItem.element as HTMLElement).style as unknown as StyleValues
       changed.removed = result.reduce(
-        (removed, results) => {
+        (removed: DotNotated, results: compareArrayResult) => {
           if (!domItem.element) {
             return removed
           }
           if (results.result[0] === -1) {
-            removed[`style.${results.value}`] = domItem.element.style[results.value]
+            removed[`style.${results.value}`] = elementStyle()[results.value]
           }
-          if (results.result[0] === 0 && domItem.element.style[results.value] !== domItemAttributes.style[results.value]) {
-            removed[`style.${results.value}`] = domItem.element.style[results.value]
+          if (results.result[0] === 0 && elementStyle()[results.value] !== domItemAttributes.style[results.value]) {
+            removed[`style.${results.value}`] = elementStyle()[results.value]
           }
           return removed
         },
         changed.removed
       )
       changed.added = result.reduce(
-        (added, results) => {
+        (added: DotNotated, results: compareArrayResult) => {
           if (results.result[0] === 1) {
             added[`style.${results.value}`] = domItemAttributes.style[results.value]
           }
-          if (results.result[0] === 0 && domItem.element.style[results.value] !== domItemAttributes.style[results.value]) {
+          if (results.result[0] === 0 && elementStyle()[results.value] !== domItemAttributes.style[results.value]) {
             added[`style.${results.value}`] = domItemAttributes.style[results.value]
           }
           return added

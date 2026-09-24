@@ -1,6 +1,8 @@
 import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import getAssignedStyles from './getAssignedStyles'
+import type { DomItem, StyleValues } from '../domItem/types'
+import type { AttributeComparison } from './types'
 
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
@@ -10,7 +12,7 @@ import getAssignedStyles from './getAssignedStyles'
  * @param {Object.<string, string>} attr
  * @returns {int|Object.<string, number>}
  */
-const checkStyles = (domItem, attr = {}) => {
+const checkStyles = (domItem: DomItem, attr: StyleValues = {}): AttributeComparison => {
   const assignedStyles = domItem.attributes.style ?? {}
   if (siFunciona.emptyObject(assignedStyles)) {
     return 1
@@ -29,7 +31,7 @@ const checkStyles = (domItem, attr = {}) => {
  * @param {string} attr
  * @returns {int|Object.<string, number>}
  */
-const checkClasses = (domItem, attr = '') => {
+const checkClasses = (domItem: DomItem, attr: string = ''): AttributeComparison => {
   const assignedClasses = domItem.attributes.className ?? ''
   if (!assignedClasses.length) {
     return 1
@@ -50,12 +52,12 @@ const checkClasses = (domItem, attr = '') => {
  * @param {string|Object} attr - The expected value of the attribute to compare against
  * @returns {int|Object.<string, number>}
  */
-const domItemHasAttribute = (domItem, key, attr) => {
+const domItemHasAttribute = (domItem: DomItem, key: string, attr: unknown): AttributeComparison => {
   if (key === 'style') {
-    return checkStyles(domItem, attr)
+    return checkStyles(domItem, attr as StyleValues)
   }
   if (key === 'className') {
-    return checkClasses(domItem, attr)
+    return checkClasses(domItem, attr as string)
   }
   const camelKey = siFunciona.camelCase(key)
   if (typeof domItem.attributes[camelKey] === 'undefined') {

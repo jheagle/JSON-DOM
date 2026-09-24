@@ -1,6 +1,8 @@
 import 'core-js/stable'
 import getAssignedStyles from './getAssignedStyles'
 import siFunciona from 'si-funciona'
+import type { StyleValues } from '../domItem/types'
+import type { AttributeComparison } from './types'
 
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
@@ -10,7 +12,7 @@ import siFunciona from 'si-funciona'
  * @param {string|Object<string, string>} attr
  * @returns {int|Object.<string, number>}
  */
-const checkStyles = (element, attr = {}) => {
+const checkStyles = (element: HTMLElement, attr: StyleValues = {}): AttributeComparison => {
   const assignedStyles = getAssignedStyles(element.style) ?? {}
   if (siFunciona.emptyObject(assignedStyles)) {
     return 1
@@ -29,7 +31,7 @@ const checkStyles = (element, attr = {}) => {
  * @param {string} attr
  * @returns {int|Object.<string, number>}
  */
-const checkClasses = (element, attr = '') => {
+const checkClasses = (element: HTMLElement, attr: string | object = ''): AttributeComparison => {
   if (typeof attr !== 'string') {
     // Somehow an empty object got in here one time
     attr = ''
@@ -54,15 +56,15 @@ const checkClasses = (element, attr = '') => {
  * @param {string|Object.<string, string>} attr - The expected value of the attribute to compare against
  * @returns {int|Object.<string, number>}
  */
-const elementHasAttribute = (element, key, attr) => {
+const elementHasAttribute = (element: HTMLElement | null | undefined, key: string, attr: unknown): AttributeComparison => {
   if (!element) {
     return 1
   }
   if (key === 'style') {
-    return checkStyles(element, attr)
+    return checkStyles(element, attr as StyleValues)
   }
   if (key === 'class') {
-    return checkClasses(element, attr)
+    return checkClasses(element, attr as string | object)
   }
   const kabobKey = siFunciona.kabobCase(key)
   if (!element.hasAttribute(kabobKey)) {

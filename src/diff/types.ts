@@ -1,3 +1,5 @@
+import type { compareArrayResultMap } from 'si-funciona/dist/helpers/arrays/compareArrays'
+
 /** An object whose keys are dot notated paths (attributes.style.color) and whose values are what is at that path. */
 export type DotNotated = Record<string, any>
 
@@ -11,3 +13,9 @@ export type ChangeList = {
   /** Merge more changes into the removed or added list, and return the merged list. */
   appendChanges: (changeType: ChangeType, changes: DotNotated) => DotNotated
 }
+
+/**
+ * The outcome of comparing one attribute: 0 when it is the same, 1 when it is missing or different, or - for the
+ * multi-part attributes (style, class) - the list of what each part of it looks like (see compareArrays).
+ */
+export type AttributeComparison = 0 | 1 | compareArrayResultMap
