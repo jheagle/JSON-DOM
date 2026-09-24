@@ -2463,8 +2463,9 @@
         }
         if (dotKey === 'style') {
           // Update all styles based on incoming style object
+          // setProperty wants CSS names (background-color), but the style object is written in camelCase (backgroundColor)
           for (const style in value) {
-            domItem.element.style.setProperty(style, value[style])
+            domItem.element.style.setProperty(_siFunciona.default.kabobCase(style), value[style])
           }
           continue
         }
