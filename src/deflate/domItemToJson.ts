@@ -1,10 +1,11 @@
 import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import removeEmptyProperties from './removeEmptyProperties'
+import type { DomItem } from '../domItem/types'
 
 const useExclusions = (function makeExclusions () {
-  let jsonExclusions = []
-  return (key, value) => {
+  let jsonExclusions: string[] = []
+  return (key: string, value: any) => {
     if (key === 'jsonExclusions') {
       jsonExclusions = value
       return value
@@ -26,8 +27,8 @@ const useExclusions = (function makeExclusions () {
  * @param {int} [options.relevancyRange=1000]
  * @returns {string}
  */
-const domItemToJson = (item, { mapLimit = 100, relevancyRange = 1000 } = {}) => JSON.stringify(
-  removeEmptyProperties(siFunciona.cloneObject(item, { mapLimit, relevancyRange }), [
+const domItemToJson = (item: DomItem, { mapLimit = 100, relevancyRange = 1000 }: { mapLimit?: number, relevancyRange?: number } = {}): string => JSON.stringify(
+  removeEmptyProperties(siFunciona.cloneObject(item, { mapLimit, relevancyRange }) as DomItem, [
     'activeListeners',
     'element',
     'parentItem',
