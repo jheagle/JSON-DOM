@@ -71,6 +71,35 @@ describe('updateElement', () => {
     expect(updated.element.style.color).toBe('white')
   })
 
+  test('applies every style, including camelCase ones with several words, to an element which has no style yet', () => {
+    const element = document.createElement('div')
+    expect(element.getAttribute('style')).toBeNull()
+    const item = createDomItem({
+      attributes: {
+        style: {
+          backgroundColor: 'red',
+          borderTopColor: 'blue',
+          width: '35px',
+          color: 'white'
+        }
+      },
+      element
+    })
+    const updated = updateElement(item)
+    expect(updated.element.style.backgroundColor).toBe('red')
+    expect(updated.element.style.borderTopColor).toBe('blue')
+    expect(updated.element.style.width).toBe('35px')
+    expect(updated.element.style.color).toBe('white')
+  })
+
+  test('a single multi-word style added later to an element which has no style is applied', () => {
+    const item = updateElement(createDomItem({ attributes: { className: 'cell' } }))
+    expect(item.element.getAttribute('style')).toBeNull()
+    item.attributes.style = { backgroundColor: 'red' }
+    updateElement(item)
+    expect(item.element.style.backgroundColor).toBe('red')
+  })
+
   test('reattaches existing children when a standalone call regenerates the element for a nodeName change', () => {
     const oldElement = document.createElement('span')
     const childElement = document.createElement('em')
