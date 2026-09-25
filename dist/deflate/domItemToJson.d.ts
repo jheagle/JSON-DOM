@@ -1,5 +1,5 @@
 import 'core-js/stable';
-import type { DomItem } from '../domItem/types';
+import type { CoreItem } from '../domItem/types';
 /**
  * Convert DOM Item to JSON string.
  * @function
@@ -10,7 +10,7 @@ import type { DomItem } from '../domItem/types';
  * @param {int} [options.relevancyRange=1000]
  * @returns {string}
  */
-declare const domItemToJson: (item: DomItem, { mapLimit, relevancyRange }?: {
+declare const domItemToJson: (item: CoreItem, { mapLimit, relevancyRange }?: {
     mapLimit?: number;
     relevancyRange?: number;
 }) => string;

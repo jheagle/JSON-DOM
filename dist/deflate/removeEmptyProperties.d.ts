@@ -1,5 +1,5 @@
 import 'core-js/stable';
-import type { DomItem } from '../domItem/types';
+import type { CoreItem } from '../domItem/types';
 /**
  * Remove all empty properties to reduce total size of the object.
  * @function
@@ -8,5 +8,5 @@ import type { DomItem } from '../domItem/types';
  * @param {Array} propertiesToDelete - Optional array of additional property names to remove.
  * @returns {DomItem}
  */
-declare const removeEmptyProperties: (item: DomItem, propertiesToDelete?: string[]) => DomItem;
+declare const removeEmptyProperties: (item: CoreItem, propertiesToDelete?: string[]) => CoreItem;
 export default removeEmptyProperties;

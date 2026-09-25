@@ -20,11 +20,24 @@ listeners to items in it.
 </dd>
 </dl>
 
+## Constants
+
+<dl>
+<dt><a href="#definitions">definitions</a></dt>
+<dd><p>What each trait is at runtime, by name. render is the one json-dom brings; other libraries add theirs with
+defineTrait.</p>
+</dd>
+</dl>
+
 ## Functions
 
 <dl>
 <dt><a href="#capturing">capturing()</a></dt>
 <dd><p>Whether the options ask for the capture phase.</p>
+</dd>
+<dt><a href="#getNonSerializableKeys">getNonSerializableKeys(item)</a> ⇒ <code>Array.&lt;string&gt;</code></dt>
+<dd><p>The properties an item has only because of its traits, and which do not belong in json (the element of the render
+trait, for one).</p>
 </dd>
 <dt><a href="#appendChangesTo">appendChangesTo(changeList)</a> ⇒ <code>appendChanges</code></dt>
 <dd><p>Initialize the appendChanges method with the changeList, return the appendChanges method.</p>
@@ -599,12 +612,31 @@ A numeric value used as position in a binary number having any numeric value 2^n
 Object containing available Option names and the Flag value associated with each.
 
 **Kind**: inner typedef of [<code>optionFlags</code>](#module_optionFlags)  
+<a name="definitions"></a>
+
+## definitions
+What each trait is at runtime, by name. render is the one json-dom brings; other libraries add theirs with
+defineTrait.
+
+**Kind**: global constant  
 <a name="capturing"></a>
 
 ## capturing()
 Whether the options ask for the capture phase.
 
 **Kind**: global function  
+<a name="getNonSerializableKeys"></a>
+
+## getNonSerializableKeys(item) ⇒ <code>Array.&lt;string&gt;</code>
+The properties an item has only because of its traits, and which do not belong in json (the element of the render
+trait, for one).
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | <code>CoreItem</code> | The item to look at. |
+
 <a name="appendChangesTo"></a>
 
 ## appendChangesTo(changeList) ⇒ <code>appendChanges</code>
