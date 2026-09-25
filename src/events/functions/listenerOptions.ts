@@ -1,6 +1,12 @@
 import 'core-js/stable'
 import type { ListenerOptions } from '../types'
 
+/** The options which will be used, and a flag remembering whether the browser understands an options object. */
+type ListenerOptionsSupport = {
+  (options?: ListenerOptions | null): ListenerOptions | null
+  supportsOptions?: boolean
+}
+
 /**
  * Provide compatibility for using the options parameter of addEventListener
  * @function
@@ -8,12 +14,6 @@ import type { ListenerOptions } from '../types'
  * @param {EventListenerOptions} options - An object or boolean with the listener options
  * @returns {boolean}
  */
-/** The options which will be used, and a flag remembering whether the browser understands an options object. */
-type ListenerOptionsSupport = {
-  (options?: ListenerOptions | null): ListenerOptions | null
-  supportsOptions?: boolean
-}
-
 const listenerOptions: ListenerOptionsSupport = (options) => {
   if (typeof listenerOptions.supportsOptions === 'undefined') {
     // Check if supportsOptions has been defined. This is a compatibility checking flag.

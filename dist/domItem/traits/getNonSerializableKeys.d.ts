@@ -5,6 +5,7 @@ import type { CoreItem } from '../types';
  * trait, for one).
  * @param {CoreItem} item - The item to look at.
  * @returns {Array<string>}
+ * @private
  */
 declare const getNonSerializableKeys: (item: CoreItem) => string[];
 export default getNonSerializableKeys;

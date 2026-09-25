@@ -15,6 +15,14 @@ const si_funciona_1 = __importDefault(require('si-funciona'))
 const getListenerOptions_1 = __importDefault(require('../objects/options/getListenerOptions'))
 const optionsToNumber_1 = __importDefault(require('../objects/options/optionsToNumber'))
 /**
+ * Whether the options ask for the capture phase.
+ * @private
+ */
+const capturing = options => {
+  const template = (0, getListenerOptions_1.default)()
+  return ((0, optionsToNumber_1.default)(template, options) & template.capture) !== 0
+}
+/**
  * Search a DOM item's eventListeners for a specific event listener, matched by listener function, custom args, and
  * whether it listens in the capture phase. Returns its index and the matching descriptor as a tuple.
  *
@@ -34,11 +42,6 @@ const optionsToNumber_1 = __importDefault(require('../objects/options/optionsToN
  * @returns {Array.<(number|EventListener|undefined)>} A 2-element [index, matchingListener] tuple. If no match is
  * found, index is -1 and matchingListener is undefined.
  */
-/** Whether the options ask for the capture phase. */
-const capturing = options => {
-  const template = (0, getListenerOptions_1.default)()
-  return ((0, optionsToNumber_1.default)(template, options) & template.capture) !== 0
-}
 const findEventListener = (eventName, listenerFunction, customArgs, options, item) => {
   customArgs = customArgs ?? null
   if (!si_funciona_1.default.isObject(item.eventListeners)) {

@@ -36,4 +36,15 @@ describe('createCoreItem', () => {
     expect(parent.children).toEqual([child])
     expect(child.parentItem).toBe(parent)
   })
+
+  test('completes plain children all the way down, and leaves child items alone', () => {
+    const grandchild = { nodeName: 'li' }
+    const made = createCoreItem({ nodeName: 'em' })
+    const child = { nodeName: 'ul', children: [grandchild] }
+    const parent = createCoreItem({ children: [child, made] })
+    expect(child.has).toEqual({})
+    expect(grandchild.has).toEqual({})
+    expect(typeof grandchild.appendChild).toBe('function')
+    expect(parent.children[1]).toBe(made)
+  })
 })

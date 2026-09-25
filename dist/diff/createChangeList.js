@@ -23,6 +23,7 @@ const si_funciona_1 = __importDefault(require('si-funciona'))
  * Initialize the appendChanges method with the changeList, return the appendChanges method.
  * @param {ChangeList} changeList
  * @returns {appendChanges}
+ * @private
  */
 const appendChangesTo = changeList => (changeType, changes) => {
   if (!['added', 'removed'].includes(changeType)) {

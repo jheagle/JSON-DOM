@@ -129,4 +129,19 @@ describe('updateElement', () => {
     const updated = updateElement(item)
     expect(updated.element.nodeValue).toBe('post-test')
   })
+
+  test('sets innerHTML from the attributes of a complete item, and updates it later', () => {
+    const item = createDomItem({ nodeName: 'span', attributes: { innerHTML: '<b>first</b>' } })
+    updateElement(item)
+    expect(item.element.outerHTML).toBe('<span><b>first</b></span>')
+    item.attributes.innerHTML = '<i>second</i>'
+    updateElement(item)
+    expect(item.element.outerHTML).toBe('<span><i>second</i></span>')
+  })
+
+  test('still sets an attribute which is not a property of the element by its kabob-case name', () => {
+    const item = createDomItem({ nodeName: 'span', attributes: { dataUserId: '7' } })
+    updateElement(item)
+    expect(item.element.getAttribute('data-user-id')).toBe('7')
+  })
 })

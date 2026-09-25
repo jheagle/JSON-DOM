@@ -6,6 +6,15 @@ import getListenerOptions from '../objects/options/getListenerOptions'
 import optionsToNumber from '../objects/options/optionsToNumber'
 
 /**
+ * Whether the options ask for the capture phase.
+ * @private
+ */
+const capturing = (options: ListenerOptions | null | undefined): boolean => {
+  const template = getListenerOptions()
+  return (optionsToNumber(template, options) & template.capture) !== 0
+}
+
+/**
  * Search a DOM item's eventListeners for a specific event listener, matched by listener function, custom args, and
  * whether it listens in the capture phase. Returns its index and the matching descriptor as a tuple.
  *
@@ -25,12 +34,6 @@ import optionsToNumber from '../objects/options/optionsToNumber'
  * @returns {Array.<(number|EventListener|undefined)>} A 2-element [index, matchingListener] tuple. If no match is
  * found, index is -1 and matchingListener is undefined.
  */
-/** Whether the options ask for the capture phase. */
-const capturing = (options: ListenerOptions | null | undefined): boolean => {
-  const template = getListenerOptions()
-  return (optionsToNumber(template, options) & template.capture) !== 0
-}
-
 const findEventListener = (eventName: EventName, listenerFunction: string | ListenerFunction, customArgs: object | null | undefined, options: ListenerOptions | null | undefined, item: DomItem): [number, ListenerDescriptor | undefined] => {
   customArgs = customArgs ?? null
   if (!siFunciona.isObject(item.eventListeners)) {
