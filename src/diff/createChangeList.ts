@@ -13,6 +13,7 @@ import type { ChangeList, ChangeType, DotNotated } from './types'
  * Initialize the appendChanges method with the changeList, return the appendChanges method.
  * @param {ChangeList} changeList
  * @returns {appendChanges}
+ * @private
  */
 const appendChangesTo = (changeList: Pick<ChangeList, 'removed' | 'added'>): ChangeList['appendChanges'] =>
   (changeType: ChangeType, changes: DotNotated): DotNotated => {

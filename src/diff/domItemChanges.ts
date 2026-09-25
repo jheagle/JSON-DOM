@@ -71,6 +71,15 @@ const kabobCaseAttributes = (attributesToSet: Record<string, any>): Record<strin
 )
 
 /**
+ * Find the name an attribute was given on the item from its kabob-case name: innerHTML is compared as inner-html, and
+ * camelCase cannot turn that back into innerHTML.
+ * @private
+ */
+const attributeName = (attributes: Record<string, unknown>, kabobKey: string): string => Object.keys(attributes).find(
+  name => (name === 'className' ? 'class' : siFunciona.kabobCase(name)) === kabobKey
+) ?? siFunciona.camelCase(kabobKey)
+
+/**
  * Given a domGeneral.DomItem as domItem, this function will return the changes to be applied
  * to the stored element property.
  * @function
@@ -78,14 +87,6 @@ const kabobCaseAttributes = (attributesToSet: Record<string, any>): Record<strin
  * @param {DomItem} domItem - The DomItem having changes to be applied to its element
  * @returns {ChangeList}
  */
-/**
- * Find the name an attribute was given on the item from its kabob-case name: innerHTML is compared as inner-html, and
- * camelCase cannot turn that back into innerHTML.
- */
-const attributeName = (attributes: Record<string, unknown>, kabobKey: string): string => Object.keys(attributes).find(
-  name => (name === 'className' ? 'class' : siFunciona.kabobCase(name)) === kabobKey
-) ?? siFunciona.camelCase(kabobKey)
-
 const domItemChanges = (domItem: DomItem): ChangeList => {
   const changeList = createChangeList()
   if (!domItem.element) {

@@ -1,3 +1,11 @@
+/**
+ * @file Core Virtual DOM (DomItem tree) management: building items, the traits they carry, and finding and changing
+ * items in a tree.
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @version 1.0.0
+ * @module domGeneral
+ * @memberOf module:jsonDom
+ */
 import 'core-js/stable'
 import addDomItemProperties from './objects/addDomItemProperties'
 import appendChild from './tree/appendChild'

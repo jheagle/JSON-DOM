@@ -7,6 +7,7 @@ import type { CoreItem } from '../types'
  * trait, for one).
  * @param {CoreItem} item - The item to look at.
  * @returns {Array<string>}
+ * @private
  */
 const getNonSerializableKeys = (item: CoreItem): string[] => Object.keys(item.has ?? {}).flatMap(trait => {
   const definition = definitions.get(trait)

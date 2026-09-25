@@ -16,7 +16,17 @@ import type { DomItem, DomItemConfig } from '../types'
  */
 
 /**
+ * What the render trait puts on an item.
+ * @typedef {Object} RenderProperties
+ * @memberOf module:domGeneral
+ * @property {(Object|HTMLElement|null)} element - The real node the item is mirrored onto, null while there is none
+ * @property {Object.<module:domEvents~EventName, Object.<number, eventHandler>>} [activeListeners] - Generated: the
+ * listeners which are attached to the element
+ */
+
+/**
  * A plain child is an object which is not an item yet (an item always has a has map).
+ * @private
  */
 const isPlainChild = (child: DomItemConfig): boolean => typeof child === 'object' && child !== null && !child.has
 

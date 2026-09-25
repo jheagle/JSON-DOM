@@ -7,6 +7,7 @@ import getNonSerializableKeys from '../domItem/traits/getNonSerializableKeys'
  * Check if the value is an empty object / array, or if it is null or undefined.
  * @param {*} propertyValue
  * @returns {boolean}
+ * @private
  */
 const isEmpty = (propertyValue: unknown): boolean => siFunciona.emptyObject(propertyValue as object) || propertyValue === null || typeof propertyValue === 'undefined'
 
