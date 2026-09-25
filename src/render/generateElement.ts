@@ -10,14 +10,15 @@ import type { DomItem } from '../domItem/types'
  * @param {string|null} data
  * @returns {Text|Comment|HTMLElement}
  */
-const makeElementType = (nodeName: string, data: string | null = null): Text | Comment | HTMLElement => {
+const makeElementType = (nodeName: string, data: string | null = null, is?: string): Text | Comment | HTMLElement => {
   switch (nodeName) {
     case '#text':
       return document.createTextNode(data as string)
     case '#comment':
       return document.createComment(data as string)
     default:
-      return document.createElement(nodeName)
+      // A customized built-in element (<button is="fancy-button">) has to be given its name when it is created
+      return is ? document.createElement(nodeName, { is }) : document.createElement(nodeName)
   }
 }
 
@@ -29,7 +30,7 @@ const makeElementType = (nodeName: string, data: string | null = null): Text | C
  * @return {DomItem}
  */
 const generateElement = (domItem: DomItem): DomItem => {
-  domItem.element = makeElementType(domItem.nodeName, domItem.nodeValue)
+  domItem.element = makeElementType(domItem.nodeName, domItem.nodeValue, typeof domItem.attributes.is === 'string' ? domItem.attributes.is : undefined)
   return updateElement(domItem)
 }
 

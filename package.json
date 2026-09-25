@@ -20,6 +20,7 @@
     "readme": "gulp readme",
     "resolutions": "npx npm-force-resolutions",
     "test": "gulp testFull",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.type-tests.json",
     "test:quick": "gulp testQuick",
     "watch": "gulp watchFull",
     "watch:test": "gulp watchTest"

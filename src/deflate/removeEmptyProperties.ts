@@ -1,6 +1,7 @@
 import 'core-js/stable'
 import siFunciona from 'si-funciona'
-import type { DomItem } from '../domItem/types'
+import type { CoreItem } from '../domItem/types'
+import getNonSerializableKeys from '../domItem/traits/getNonSerializableKeys'
 
 /**
  * Check if the value is an empty object / array, or if it is null or undefined.
@@ -17,14 +18,16 @@ const isEmpty = (propertyValue: unknown): boolean => siFunciona.emptyObject(prop
  * @param {Array} propertiesToDelete - Optional array of additional property names to remove.
  * @returns {DomItem}
  */
-const removeEmptyProperties = (item: DomItem, propertiesToDelete: string[] = []): DomItem => {
+const removeEmptyProperties = (item: CoreItem, propertiesToDelete: string[] = []): CoreItem => {
   item.children.forEach(child => {
     removeEmptyProperties(child, propertiesToDelete)
   })
   const properties = item as Record<string, unknown>
+  // What the item's traits only have where the item lives (an element, ...) is not json either
+  const toDelete = propertiesToDelete.concat(getNonSerializableKeys(item))
   siFunciona.objectKeys(item).forEach((property: string) => {
     const propertyValue = properties[property]
-    if (isEmpty(propertyValue) || propertiesToDelete.includes(property)) {
+    if (isEmpty(propertyValue) || toDelete.includes(property)) {
       delete properties[property]
     }
   })
