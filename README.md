@@ -23,6 +23,9 @@ listeners to items in it.
 ## Functions
 
 <dl>
+<dt><a href="#capturing">capturing()</a></dt>
+<dd><p>Whether the options ask for the capture phase.</p>
+</dd>
 <dt><a href="#appendChangesTo">appendChangesTo(changeList)</a> ⇒ <code>appendChanges</code></dt>
 <dd><p>Initialize the appendChanges method with the changeList, return the appendChanges method.</p>
 </dd>
@@ -70,7 +73,6 @@ Setting up and handling events for items in a Virtual DOM (DomItem tree)
     * [.makeEventHandler(listener, item, [...args])](#module_domEvents.makeEventHandler) ⇒ <code>eventHandler</code>
     * [.fullRemoveEventListener(eventName, listener, [name], [customArgs], [options], item)](#module_domEvents.fullRemoveEventListener) ⇒ <code>DomItem</code>
     * [.fullAddEventListener(eventName, listener, [name], [customArgs], [options], item)](#module_domEvents.fullAddEventListener) ⇒ <code>DomItem</code>
-    * [.findEventListener(eventName, listenerFunction, [customArgs], [options], item)](#module_domEvents.findEventListener) ⇒ <code>Array.&lt;(number\|EventListener\|undefined)&gt;</code>
     * [.deactivateListeners(item)](#module_domEvents.deactivateListeners) ⇒ <code>DomItem</code>
     * [.deactivateListener(eventName, eventListener, item)](#module_domEvents.deactivateListener) ⇒ <code>module:domGeneral~DomItem</code>
     * [.bindListeners(item)](#module_domEvents.bindListeners) ⇒ <code>DomItem</code>
@@ -281,27 +283,6 @@ be curried directly into the pipe below without an argument-reordering wrapper.
 | [customArgs] | <code>Object</code> \| <code>null</code> | <code></code> | Additional args passed through to the listener when called. |
 | [options] | <code>EventListenerOptions</code> | <code>false</code> | Options to be used when the listener is attached to the element. |
 | item | <code>DomItem</code> |  | The DomItem which will receive the event listener. |
-
-<a name="module_domEvents.findEventListener"></a>
-
-### domEvents.findEventListener(eventName, listenerFunction, [customArgs], [options], item) ⇒ <code>Array.&lt;(number\|EventListener\|undefined)&gt;</code>
-Search a DOM item's eventListeners for a specific event listener, matched by listener function, custom args, and
-options. Returns its index and the matching descriptor as a tuple.
-
-item is the last parameter (instead of customArgs/options having literal defaults) so this can be curried and
-piped directly - see [fullAddEventListener](fullAddEventListener) for an example of the pattern.
-
-**Kind**: static method of [<code>domEvents</code>](#module_domEvents)  
-**Returns**: <code>Array.&lt;(number\|EventListener\|undefined)&gt;</code> - A 2-element [index, matchingListener] tuple. If no match is
-found, index is -1 and matchingListener is undefined.  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| eventName | <code>EventName</code> |  | The name of the trigger event the listener was registered under. |
-| listenerFunction | <code>module:domEvents~listenerFunction</code> |  | The listener function to match against. |
-| [customArgs] | <code>Object</code> \| <code>null</code> | <code></code> | The custom args the listener was registered with. |
-| [options] | <code>module:domEvents~EventListenerOptions</code> | <code>false</code> | Accepted for symmetry with addEventListener; a listener is matched on its function and its arguments only, whatever options it was registered with. |
-| item | <code>module:domGeneral~DomItem</code> |  | The DomItem whose eventListeners will be searched. |
 
 <a name="module_domEvents.deactivateListeners"></a>
 
@@ -618,6 +599,12 @@ A numeric value used as position in a binary number having any numeric value 2^n
 Object containing available Option names and the Flag value associated with each.
 
 **Kind**: inner typedef of [<code>optionFlags</code>](#module_optionFlags)  
+<a name="capturing"></a>
+
+## capturing()
+Whether the options ask for the capture phase.
+
+**Kind**: global function  
 <a name="appendChangesTo"></a>
 
 ## appendChangesTo(changeList) ⇒ <code>appendChanges</code>

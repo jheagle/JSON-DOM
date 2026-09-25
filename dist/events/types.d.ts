@@ -16,7 +16,7 @@ export type OptionsObject = {
 };
 /** The options given with a listener: an options object, or just the useCapture boolean. */
 export type ListenerOptions = OptionsObject | UseCapture;
-/** A Event which also remembers whether stopImmediatePropagation() was called on it. */
+/** An Event which also remembers whether stopImmediatePropagation() was called on it. */
 export type EventProxy = Event & {
     immediatePropagationStopped: boolean;
 };

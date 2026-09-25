@@ -44,6 +44,21 @@ describe('removeEventListener', () => {
     expect(clickListeners[0].listenerFunc).toBe(func0)
     expect(clickListeners[1].listenerFunc).toBe(func2)
   })
+  test('removes only the listener whose capture flag matches, when the same function is registered both ways', () => {
+    const func = () => true
+    const item = createDomItem()
+    item.eventListeners = {
+      click: [
+        createEventListener({ listenerFunc: func, listenerOptions: { capture: true } }),
+        createEventListener({ listenerFunc: func })
+      ]
+    }
+    removeEventListener(eventName, func, null, { capture: true }, item)
+    expect(item.eventListeners[eventName].length).toBe(1)
+    expect(item.eventListeners[eventName][0].listenerOptions).toBe(false)
+    removeEventListener(eventName, func, null, false, item)
+    expect(item.eventListeners[eventName].length).toBe(0)
+  })
   test('will remove string function', () => {
     const item = makeTestEventListeners()
     const func0 = item.eventListeners[eventName][0].listenerFunc
