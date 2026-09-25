@@ -17,10 +17,7 @@ const activateListener_1 = __importDefault(require('./activateListener'))
 const applyActiveListeners_1 = __importDefault(require('./applyActiveListeners'))
 /**
  * Receive a DomItem with eventListeners and apply the event listeners onto the Dom element.
- * @function
- * @memberOf module:domEvents
- * @param {DomItem} item - The DomItem which has eventListeners to apply to its element
- * @returns {DomItem}
+ * @param item - The DomItem which has eventListeners to apply to its element
  */
 const bindElementListeners = item => {
   for (const eventName in item.eventListeners) {

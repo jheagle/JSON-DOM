@@ -17,10 +17,7 @@ require('core-js/stable')
 const createDomItem_1 = __importDefault(require('../domItem/objects/createDomItem'))
 /**
  * Update all the children for this domItem to match the domItem element childNodes.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem
- * @returns {DomItem}
+ * @param domItem
  */
 const updateChildren = domItem => {
   if (!domItem.element) {

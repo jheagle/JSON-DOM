@@ -30,13 +30,10 @@ const useExclusions = (function makeExclusions () {
 }())
 /**
  * Convert DOM Item to JSON string.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} item
- * @param {Object} [options={}]
- * @param {int} [options.mapLimit=100]
- * @param {int} [options.relevancyRange=1000]
- * @returns {string}
+ * @param item
+ * @param options
+ * @param options.mapLimit
+ * @param options.relevancyRange
  */
 const domItemToJson = (item, {
   mapLimit = 100,

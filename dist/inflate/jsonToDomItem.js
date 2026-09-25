@@ -15,10 +15,7 @@ const setParentItemReferences_1 = __importDefault(require('../domItem/tree/setPa
 const addDomItemProperties_1 = __importDefault(require('../domItem/objects/addDomItemProperties'))
 /**
  * Convert DOM Item to JSON string.
- * @function
- * @memberOf module:domGeneral
- * @param {string} jsonString
- * @returns {DomItem}
+ * @param jsonString
  */
 const jsonToDomItem = jsonString => {
   const parsedJson = (0, setParentItemReferences_1.default)((0, addDomItemProperties_1.default)(JSON.parse(jsonString)))

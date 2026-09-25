@@ -7,10 +7,7 @@ type ListenerOptionsSupport = {
 };
 /**
  * Provide compatibility for using the options parameter of addEventListener
- * @function
- * @memberOf module:domEvents
- * @param {EventListenerOptions} options - An object or boolean with the listener options
- * @returns {boolean}
+ * @param options - An object or boolean with the listener options
  */
 declare const listenerOptions: ListenerOptionsSupport;
 export default listenerOptions;

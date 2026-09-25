@@ -15,12 +15,10 @@ const definitions_1 = __importDefault(require('./definitions'))
 /**
  * Give an item a trait: the trait's defaults and the given data are put on the item (the same object, not a copy), and
  * it is added to the item's has map.
- * @function
- * @memberOf module:domGeneral
- * @param {CoreItem} item - The item which gains the trait.
- * @param {string} trait - The name of the trait.
- * @param {Object} data - The data the trait puts on the item.
- * @returns {CoreItem} The same item, now with the trait.
+ * @param item - The item which gains the trait.
+ * @param trait - The name of the trait.
+ * @param data - The data the trait puts on the item.
+ * @returns The same item, now with the trait.
  */
 const withTrait = (item, trait, data) => {
   Object.assign(item, definitions_1.default.get(trait)?.defaults?.(), data)

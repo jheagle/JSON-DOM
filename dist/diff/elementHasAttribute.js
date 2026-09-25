@@ -17,11 +17,8 @@ const getAssignedStyles_1 = __importDefault(require('./getAssignedStyles'))
 const si_funciona_1 = __importDefault(require('si-funciona'))
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
- * @function
- * @memberOf module:domGeneral
- * @param {HTMLElement} element
- * @param {string|Object<string, string>} attr
- * @returns {int|Object.<string, number>}
+ * @param element
+ * @param attr
  */
 const checkStyles = (element, attr = {}) => {
   const assignedStyles = (0, getAssignedStyles_1.default)(element.style) ?? {}
@@ -32,11 +29,8 @@ const checkStyles = (element, attr = {}) => {
 }
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
- * @function
- * @memberOf module:domGeneral
- * @param {HTMLElement} element
- * @param {string} attr
- * @returns {int|Object.<string, number>}
+ * @param element
+ * @param attr
  */
 const checkClasses = (element, attr = '') => {
   if (typeof attr !== 'string') {
@@ -52,12 +46,9 @@ const checkClasses = (element, attr = '') => {
 /**
  * Check if the provided Element has the provided attributes.
  * Returns a boolean, or an array of 1 / 0 / -1 based on the comparison status.
- * @function
- * @memberOf module:domGeneral
- * @param {HTMLElement} element - Receive the element to be assessed
- * @param {string} key - The attribute name to search for
- * @param {string|Object.<string, string>} attr - The expected value of the attribute to compare against
- * @returns {int|Object.<string, number>}
+ * @param element - Receive the element to be assessed
+ * @param key - The attribute name to search for
+ * @param attr - The expected value of the attribute to compare against
  */
 const elementHasAttribute = (element, key, attr) => {
   if (!element) {

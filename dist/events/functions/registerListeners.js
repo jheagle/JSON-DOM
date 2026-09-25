@@ -15,12 +15,9 @@ const si_funciona_1 = __importDefault(require('si-funciona'))
 const documentItem_1 = __importDefault(require('../../domItem/objects/documentItem'))
 /**
  * Register multiple listeners from an array of functions.
- * @function
- * @memberOf module:domEvents
- * @param {Array.<listenerFunction|function>} listeners - An array of functions to be
+ * @param listeners - An array of functions to be
  * used as the registered event listeners.
- * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which has eventActions property.
- * @returns {DomItemRoot|Object}
+ * @param parent - The parent DomItem which is DomItemRoot which has eventActions property.
  */
 const registerListeners = (listeners, parent = documentItem_1.default) => {
   si_funciona_1.default.mergeObjectsMutable(parent.eventActions, listeners)

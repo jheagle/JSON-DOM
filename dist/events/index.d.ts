@@ -1,9 +1,5 @@
 /**
- * @file Setting up and handling events for items in a Virtual DOM (DomItem tree)
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module domEvents
- * @memberOf module:jsonDom
+ * Setting up and handling events for items in a Virtual DOM (DomItem tree)
  */
 import 'core-js/stable';
 declare const _default: {

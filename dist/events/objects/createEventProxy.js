@@ -5,17 +5,8 @@ Object.defineProperty(exports, '__esModule', {
 })
 require('core-js/stable')
 /**
- * A wrapped Event which provides additional utilities.
- * @typedef {Event} EventProxy
- * @memberOf module:domEvents
- * @property {boolean} immediatePropagationStopped
- */
-/**
  * Return a modified version of the event.
- * @function
- * @memberOf module:domEvents
- * @param {Event} event
- * @returns {EventProxy}
+ * @param event
  */
 const createEventProxy = event => new Proxy(Object.defineProperty(event, 'immediatePropagationStopped', {
   enumerable: true,

@@ -2,10 +2,7 @@ import 'core-js/stable';
 import type { DomItem } from '../domItem/types';
 /**
  * Convert DOM Item to JSON string.
- * @function
- * @memberOf module:domGeneral
- * @param {string} jsonString
- * @returns {DomItem}
+ * @param jsonString
  */
 declare const jsonToDomItem: (jsonString: string) => DomItem;
 export default jsonToDomItem;

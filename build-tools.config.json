@@ -2,8 +2,11 @@
   "browser": {
     "name": "jsonDom"
   },
-  "readme": {
-    "from": "dist/**/!(*.min).js"
+  "docs": {
+    "enabled": true,
+    "from": "src",
+    "index": "MAIN.md",
+    "to": "docs"
   },
   "typescript": {
     "config": "tsconfig.json",

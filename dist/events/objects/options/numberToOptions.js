@@ -14,11 +14,8 @@ require('core-js/stable')
 const si_funciona_1 = __importDefault(require('si-funciona'))
 /**
  * Take an integer representation of the listener options and convert them to the listener options object.
- * @function
- * @memberOf module:optionFlags
- * @param {OptionsTemplate} optionsTemplate
- * @param {int} binaryOptions
- * @returns {EventListenerOptions}
+ * @param optionsTemplate
+ * @param binaryOptions
  */
 const numberToOptions = (optionsTemplate, binaryOptions) => si_funciona_1.default.mapObject(optionsTemplate, flag => !!(binaryOptions & flag))
 exports.default = numberToOptions

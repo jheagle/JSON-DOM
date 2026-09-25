@@ -6,11 +6,8 @@ Object.defineProperty(exports, '__esModule', {
 require('core-js/stable')
 /**
  * Reverse of appendHtml, remove a DomItem and have the associated element removed.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} parent - The parent of the items
- * @param {DomItem} child - The DomItem with HTMLElement to be removed
- * @returns {Array.<DomItem>}
+ * @param parent - The parent of the items
+ * @param child - The DomItem with HTMLElement to be removed
  */
 const removeChild = (parent, child) => {
   parent.element.removeChild(child.element)

@@ -15,11 +15,8 @@ const si_funciona_1 = __importDefault(require('si-funciona'))
 const elementChanges_1 = __importDefault(require('../diff/elementChanges'))
 /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} config - The DomItem having config changes to be applied to its
+ * @param config - The DomItem having config changes to be applied to its
  * element
- * @returns {DomItem}
  */
 const updateDomItem = config => {
   if (!config.element) {

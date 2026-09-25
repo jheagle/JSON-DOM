@@ -17,18 +17,8 @@ const si_funciona_1 = __importDefault(require('si-funciona'))
 const domItemHasAttribute_1 = __importDefault(require('./domItemHasAttribute'))
 const createChangeList_1 = __importDefault(require('./createChangeList'))
 /**
- * @typedef {module:objectHelpers~mapCallback} testAttributeChange
- * @memberOf module:domGeneral
- * @param {*} attr - The current property being processed in the object.
- * @param {string} key - The property name of the current property being processed in the object.
- * @return {int} - -1: removed, 0: unchanged, 1: added.
- */
-/**
  * Given some config, provide a function to testing attribute and key existence in that config.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem
- * @returns {testAttributeChange}
+ * @param domItem
  */
 const checkAttribute = domItem => (attr, key) => {
   if (key === 'className') {
@@ -51,10 +41,7 @@ const checkAttribute = domItem => (attr, key) => {
 }
 /**
  * Updates all the keys to be camelCase
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem
- * @returns {Object.<string, *>}
+ * @param domItem
  */
 const camelCaseAttributes = domItem => domItem.element
   ? si_funciona_1.default.reduceObject(domItem.element.attributes, (attributes, attr) => {
@@ -73,11 +60,8 @@ const camelCaseAttributes = domItem => domItem.element
 /**
  * Given a domGeneral.DomItem as config, this function will return the changes from the element
  * to be applied to the domItem.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem - The DomItem having the element which changes to be applied to the config
+ * @param domItem - The DomItem having the element which changes to be applied to the config
  * element
- * @returns {ChangeList}
  */
 const elementChanges = domItem => {
   const changeList = (0, createChangeList_1.default)()

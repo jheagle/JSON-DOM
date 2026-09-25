@@ -15,12 +15,9 @@ const si_funciona_1 = __importDefault(require('si-funciona'))
 const getParentsFromAttribute_1 = __importDefault(require('./getParentsFromAttribute'))
 /**
  * Helper for getting all domGeneral.DomItems starting at child and having specified className attribute
- * @function
- * @memberOf module:domGeneral
- * @param {*} className - The className to search for
- * @param {DomItem} item - The DomItem which may have parent items matching the
+ * @param className - The className to search for
+ * @param item - The DomItem which may have parent items matching the
  * attribute criteria
- * @returns {Array}
  */
 const getParentsByClass = si_funciona_1.default.curry(getParentsFromAttribute_1.default)('className')
 exports.default = getParentsByClass

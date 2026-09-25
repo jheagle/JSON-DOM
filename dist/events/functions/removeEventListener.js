@@ -20,14 +20,12 @@ const deactivateListener_1 = __importDefault(require('./deactivateListener'))
  *
  * item is the last parameter (instead of customArgs/options having literal defaults) so this can be curried and
  * piped directly - see {@link fullAddEventListener} for an example of the pattern.
- * @function
- * @memberOf module:domEvents
- * @param {EventName} eventName - The name of the trigger event the listener was registered under.
- * @param {module:domEvents~listenerFunction} listenerFunction - The listener function to match against.
- * @param {Object|null} [customArgs=null] - The custom args the listener was registered with.
- * @param {module:domEvents~EventListenerOptions} [options=false] - The options the listener was registered with.
- * @param {module:domGeneral~DomItem} item - The DomItem to remove the listener from.
- * @returns {module:domGeneral~DomItem} The same DomItem, with the matching listener removed if one was found.
+ * @param eventName - The name of the trigger event the listener was registered under.
+ * @param listenerFunction - The listener function to match against.
+ * @param customArgs - The custom args the listener was registered with.
+ * @param options - The options the listener was registered with.
+ * @param item - The DomItem to remove the listener from.
+ * @returns The same DomItem, with the matching listener removed if one was found.
  */
 const removeEventListener = (eventName, listenerFunction, customArgs, options, item) => {
   const [listenerIndex, foundListener] = (0, findEventListener_1.default)(eventName, listenerFunction, customArgs, options, item)
