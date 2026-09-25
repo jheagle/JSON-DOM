@@ -24,4 +24,18 @@ describe('generateElement', () => {
     expect(nodeCreated.element).toBeInstanceOf(Comment)
     expect(nodeCreated.element.nodeValue).toBe(nodeCreated.nodeValue)
   })
+
+  test('gives a customized built-in element its name when it is created (the native is attribute)', () => {
+    class FancyButton extends HTMLButtonElement {}
+    customElements.define('fancy-button', FancyButton, { extends: 'button' })
+    const item = generateElement(createDomItem({ nodeName: 'button', attributes: { is: 'fancy-button' } }))
+    expect(item.element).toBeInstanceOf(FancyButton)
+    expect(item.element.getAttribute('is')).toBe('fancy-button')
+  })
+
+  test('an item without is creates the plain element', () => {
+    const item = generateElement(createDomItem({ nodeName: 'button' }))
+    expect(item.element.constructor).toBe(HTMLButtonElement)
+    expect(item.element.hasAttribute('is')).toBe(false)
+  })
 })

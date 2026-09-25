@@ -15,6 +15,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 require('core-js/stable')
 const si_funciona_1 = __importDefault(require('si-funciona'))
+const getNonSerializableKeys_1 = __importDefault(require('../domItem/traits/getNonSerializableKeys'))
 /**
  * Check if the value is an empty object / array, or if it is null or undefined.
  * @param {*} propertyValue
@@ -34,9 +35,11 @@ const removeEmptyProperties = (item, propertiesToDelete = []) => {
     removeEmptyProperties(child, propertiesToDelete)
   })
   const properties = item
+  // What the item's traits only have where the item lives (an element, ...) is not json either
+  const toDelete = propertiesToDelete.concat((0, getNonSerializableKeys_1.default)(item))
   si_funciona_1.default.objectKeys(item).forEach(property => {
     const propertyValue = properties[property]
-    if (isEmpty(propertyValue) || propertiesToDelete.includes(property)) {
+    if (isEmpty(propertyValue) || toDelete.includes(property)) {
       delete properties[property]
     }
   })

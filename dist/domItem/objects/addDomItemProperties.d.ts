@@ -7,5 +7,5 @@ import type { DomItem, DomItemConfig } from '../types';
  * @param {Object} item - The object that will be formatted as a DomItem.
  * @returns {DomItem}
  */
-declare const addDomItemProperties: <Custom extends object = {}>(item: DomItemConfig<Custom>) => DomItem<Custom>;
+declare const addDomItemProperties: (item: DomItemConfig) => DomItem;
 export default addDomItemProperties;

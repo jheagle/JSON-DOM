@@ -9,7 +9,7 @@
     "json",
     "state management"
   ],
-  "version": "1.3.0",
+  "version": "1.4.0",
   "bugs": {
     "url": "https://github.com/jheagle/json-dom/issues"
   },
@@ -20,6 +20,7 @@
     "readme": "gulp readme",
     "resolutions": "npx npm-force-resolutions",
     "test": "gulp testFull",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.type-tests.json",
     "test:quick": "gulp testQuick",
     "watch": "gulp watchFull",
     "watch:test": "gulp watchTest"

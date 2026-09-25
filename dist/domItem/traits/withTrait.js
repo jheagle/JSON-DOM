@@ -1,0 +1,32 @@
+'use strict'
+
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
+Object.defineProperty(exports, '__esModule', {
+  value: true
+})
+require('core-js/stable')
+const definitions_1 = __importDefault(require('./definitions'))
+/**
+ * Give an item a trait: the trait's defaults and the given data are put on the item (the same object, not a copy), and
+ * it is added to the item's has map.
+ * @function
+ * @memberOf module:domGeneral
+ * @param {CoreItem} item - The item which gains the trait.
+ * @param {string} trait - The name of the trait.
+ * @param {Object} data - The data the trait puts on the item.
+ * @returns {CoreItem} The same item, now with the trait.
+ */
+const withTrait = (item, trait, data) => {
+  Object.assign(item, definitions_1.default.get(trait)?.defaults?.(), data)
+  item.has = Object.assign(item.has ?? {}, {
+    [trait]: true
+  })
+  return item
+}
+exports.default = withTrait

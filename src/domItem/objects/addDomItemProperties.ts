@@ -9,9 +9,9 @@ import type { DomItem, DomItemConfig } from '../types'
  * @param {Object} item - The object that will be formatted as a DomItem.
  * @returns {DomItem}
  */
-const addDomItemProperties = <Custom extends object = {}>(item: DomItemConfig<Custom>): DomItem<Custom> => {
+const addDomItemProperties = (item: DomItemConfig): DomItem => {
   if (typeof item.children !== 'undefined') {
-    item.children.forEach(child => {
+    item.children.forEach((child: DomItemConfig) => {
       addDomItemProperties(child)
     })
   }

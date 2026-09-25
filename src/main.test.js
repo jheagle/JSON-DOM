@@ -3,7 +3,8 @@
  */
 import jsonDom from './main'
 
-// The names other projects (matrix-dom, battleship, ...) call. Moving a function between folders must never change these.
+// The names other projects (matrix-dom, battleship, ...) call. Moving a function between folders must never change
+// these; adding one is a deliberate change to this list.
 const publicApi = [
   'activateListener',
   'addDomItemProperties',
@@ -15,12 +16,14 @@ const publicApi = [
   'bindElementListeners',
   'bindListeners',
   'createChangeList',
+  'createCoreItem',
   'createDomItem',
   'createEventListener',
   'createEventProxy',
   'createEventResponder',
   'deactivateListener',
   'deactivateListeners',
+  'defineTrait',
   'documentDomItem',
   'documentItem',
   'domItemChanges',
@@ -43,8 +46,12 @@ const publicApi = [
   'getParentsByTagName',
   'getParentsFromAttribute',
   'getTopParentItem',
+  'getTraitDefinition',
+  'hasTrait',
+  'hasTraits',
   'initChildren',
   'initRoot',
+  'isDomItem',
   'jsonToDomItem',
   'listenerOptions',
   'makeEventHandler',
@@ -64,11 +71,12 @@ const publicApi = [
   'updateDomItem',
   'updateDomItems',
   'updateElement',
-  'updateElements'
+  'updateElements',
+  'withTrait'
 ]
 
 describe('jsonDom public API', () => {
-  test('has exactly the functions and objects it had before the folders were regrouped', () => {
+  test('has exactly these functions and objects', () => {
     expect(Object.keys(jsonDom).sort()).toEqual(publicApi)
   })
 

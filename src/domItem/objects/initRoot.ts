@@ -1,6 +1,6 @@
 import 'core-js/stable'
 import createDomItem from './createDomItem'
-import type { DomItem, DomItemRoot, RootProperties } from '../types'
+import type { DomItem, DomItemRoot } from '../types'
 import type { ListenerFunction } from '../../events/types'
 
 /**
@@ -27,7 +27,7 @@ import type { ListenerFunction } from '../../events/types'
  * @param {Object.<string, listenerFunction>} listeners - An object of all event listeners to be registered in the Dom
  * @returns {DomItemRoot|DomItem}
  */
-const initRoot = (children: DomItem[] = [{} as DomItem, {} as DomItem], listeners: Record<string, ListenerFunction> = {}): DomItemRoot => createDomItem<RootProperties>({
+const initRoot = (children: DomItem[] = [{} as DomItem, {} as DomItem], listeners: Record<string, ListenerFunction> = {}): DomItemRoot => createDomItem({
   nodeName: '#document',
   nodeValue: null,
   attributes: {},
@@ -38,6 +38,6 @@ const initRoot = (children: DomItem[] = [{} as DomItem, {} as DomItem], listener
   parentItem: {},
   head: children[0],
   body: children[1]
-})
+}) as DomItemRoot
 
 export default initRoot
