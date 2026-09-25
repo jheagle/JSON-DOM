@@ -1,11 +1,11 @@
 /**
  * @jest-environment jsdom
  */
-import createDomItem from '../domItem/objects/createDomItem.js'
-import renderHtml from './renderHtml.js'
-import documentItem from '../domItem/objects/documentItem.js'
-import documentDomItem from '../domItem/objects/documentDomItem.js'
-import fullAddEventListener from '../events/functions/fullAddEventListener.js'
+import createDomItem from '../domItem/objects/createDomItem'
+import renderHtml from './renderHtml'
+import documentItem from '../domItem/objects/documentItem'
+import documentDomItem from '../domItem/objects/documentDomItem'
+import fullAddEventListener from '../events/functions/fullAddEventListener'
 
 describe('renderHtml', () => {
   test('returns with new element when none previously set', () => {

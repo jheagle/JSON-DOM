@@ -1,10 +1,10 @@
 /**
  * @jest-environment jsdom
  */
-import removeEventListener from './removeEventListener.js'
-import activateListener from './activateListener.js'
-import createDomItem from '../../domItem/objects/createDomItem.js'
-import createEventListener from '../objects/createEventListener.js'
+import removeEventListener from './removeEventListener'
+import activateListener from './activateListener'
+import createDomItem from '../../domItem/objects/createDomItem'
+import createEventListener from '../objects/createEventListener'
 
 describe('removeEventListener', () => {
   const eventName = 'click'
@@ -43,6 +43,21 @@ describe('removeEventListener', () => {
     expect(clickListeners.length).toBe(2)
     expect(clickListeners[0].listenerFunc).toBe(func0)
     expect(clickListeners[1].listenerFunc).toBe(func2)
+  })
+  test('removes only the listener whose capture flag matches, when the same function is registered both ways', () => {
+    const func = () => true
+    const item = createDomItem()
+    item.eventListeners = {
+      click: [
+        createEventListener({ listenerFunc: func, listenerOptions: { capture: true } }),
+        createEventListener({ listenerFunc: func })
+      ]
+    }
+    removeEventListener(eventName, func, null, { capture: true }, item)
+    expect(item.eventListeners[eventName].length).toBe(1)
+    expect(item.eventListeners[eventName][0].listenerOptions).toBe(false)
+    removeEventListener(eventName, func, null, false, item)
+    expect(item.eventListeners[eventName].length).toBe(0)
   })
   test('will remove string function', () => {
     const item = makeTestEventListeners()

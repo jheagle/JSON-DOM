@@ -3,7 +3,6 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
 /**
  * Reverse of appendHtml, remove a DomItem and have the associated element removed.
@@ -17,4 +16,4 @@ const removeChild = (parent, child) => {
   parent.element.removeChild(child.element)
   return parent.children.splice(parent.children.indexOf(child), 1)
 }
-const _default = exports.default = removeChild
+exports.default = removeChild

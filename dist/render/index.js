@@ -1,20 +1,25 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _generateElement = _interopRequireDefault(require('./generateElement.js'))
-const _renderHtml = _interopRequireDefault(require('./renderHtml.js'))
-const _updateChildNodes = _interopRequireDefault(require('./updateChildNodes.js'))
-const _updateElement = _interopRequireDefault(require('./updateElement.js'))
-const _updateElements = _interopRequireDefault(require('./updateElements.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-const _default = exports.default = {
-  generateElement: _generateElement.default,
-  renderHtml: _renderHtml.default,
-  updateChildNodes: _updateChildNodes.default,
-  updateElement: _updateElement.default,
-  updateElements: _updateElements.default
+const generateElement_1 = __importDefault(require('./generateElement'))
+const renderHtml_1 = __importDefault(require('./renderHtml'))
+const updateChildNodes_1 = __importDefault(require('./updateChildNodes'))
+const updateElement_1 = __importDefault(require('./updateElement'))
+const updateElements_1 = __importDefault(require('./updateElements'))
+exports.default = {
+  generateElement: generateElement_1.default,
+  renderHtml: renderHtml_1.default,
+  updateChildNodes: updateChildNodes_1.default,
+  updateElement: updateElement_1.default,
+  updateElements: updateElements_1.default
 }

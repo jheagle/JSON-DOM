@@ -1,8 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import createDomItem from '../domItem/objects/createDomItem.js'
-import removeEmptyProperties from './removeEmptyProperties.js'
+import createDomItem from '../domItem/objects/createDomItem'
+import removeEmptyProperties from './removeEmptyProperties'
 
 describe('removeEmptyProperties', () => {
   test('can remove empty properties', () => {

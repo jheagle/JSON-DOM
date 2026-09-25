@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import elementHasAttribute from './elementHasAttribute.js'
+import elementHasAttribute from './elementHasAttribute'
 
 describe('elementHasAttribute', () => {
   test('will detect when an attribute is set with value', () => {

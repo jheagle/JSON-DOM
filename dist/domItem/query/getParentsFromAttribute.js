@@ -1,12 +1,18 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const documentItem_1 = __importDefault(require('../objects/documentItem'))
+const si_funciona_1 = __importDefault(require('si-funciona'))
 /**
  * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
  * This function will check all the children starting from item, and scan the attributes
@@ -20,13 +26,17 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * attribute criteria
  * @returns {Array}
  */
-const getParentsFromAttribute = (attr, value, item = _documentItem.default.body) => {
+const getParentsFromAttribute = (attr, value, item = documentItem_1.default.body) => {
   if (item.parentItem === null) {
     if (item.nodeName === '#document') {
       throw new Error('Root parent item must be an empty object, null reference found.')
     }
     throw new Error('Detached child, missing parentItem reference. Use empty object if this is the root item.')
   }
-  return Object.keys(item.parentItem).length ? (item.parentItem.attributes[attr] || item[attr] || false) === value ? getParentsFromAttribute(attr, value, item.parentItem).concat([item.parentItem]) : getParentsFromAttribute(attr, value, item.parentItem) : []
+  if (si_funciona_1.default.emptyObject(item.parentItem)) {
+    return []
+  }
+  const parent = item.parentItem
+  return (parent.attributes[attr] || item[attr] || false) === value ? getParentsFromAttribute(attr, value, parent).concat([parent]) : getParentsFromAttribute(attr, value, parent)
 }
-const _default = exports.default = getParentsFromAttribute
+exports.default = getParentsFromAttribute

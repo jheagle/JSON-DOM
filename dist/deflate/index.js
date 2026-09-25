@@ -1,14 +1,19 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _domItemToJson = _interopRequireDefault(require('./domItemToJson.js'))
-const _removeEmptyProperties = _interopRequireDefault(require('./removeEmptyProperties.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-const _default = exports.default = {
-  domItemToJson: _domItemToJson.default,
-  removeEmptyProperties: _removeEmptyProperties.default
+const domItemToJson_1 = __importDefault(require('./domItemToJson'))
+const removeEmptyProperties_1 = __importDefault(require('./removeEmptyProperties'))
+exports.default = {
+  domItemToJson: domItemToJson_1.default,
+  removeEmptyProperties: removeEmptyProperties_1.default
 }

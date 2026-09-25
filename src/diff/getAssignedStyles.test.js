@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import getAssignedStyles from './getAssignedStyles.js'
+import getAssignedStyles from './getAssignedStyles'
 
 describe('getAssignedStyles', () => {
   test('will build object of all styles', () => {

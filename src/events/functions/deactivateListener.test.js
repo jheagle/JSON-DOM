@@ -1,12 +1,12 @@
 /**
  * @jest-environment jsdom
  */
-import activateListener from './activateListener.js'
-import deactivateListener from './deactivateListener.js'
-import applyActiveListeners from './applyActiveListeners.js'
-import createDomItem from '../../domItem/objects/createDomItem.js'
-import optionsToNumber from '../objects/options/optionsToNumber.js'
-import getListenerOptions from '../objects/options/getListenerOptions.js'
+import activateListener from './activateListener'
+import deactivateListener from './deactivateListener'
+import applyActiveListeners from './applyActiveListeners'
+import createDomItem from '../../domItem/objects/createDomItem'
+import optionsToNumber from '../objects/options/optionsToNumber'
+import getListenerOptions from '../objects/options/getListenerOptions'
 import siFunciona from 'si-funciona'
 
 describe('deactivateListener', () => {

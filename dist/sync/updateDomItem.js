@@ -1,13 +1,18 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _siFunciona = _interopRequireDefault(require('si-funciona'))
-const _elementChanges = _interopRequireDefault(require('../diff/elementChanges.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const si_funciona_1 = __importDefault(require('si-funciona'))
+const elementChanges_1 = __importDefault(require('../diff/elementChanges'))
 /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
  * @function
@@ -21,27 +26,27 @@ const updateDomItem = config => {
     // if element is not a valid element then return the config without changes
     return config
   }
-  const changes = (0, _elementChanges.default)(config)
+  const changes = (0, elementChanges_1.default)(config)
   for (const dotKey in changes.removed) {
-    const attributeKey = _siFunciona.default.strAfter(dotKey, '.')
-    if (_siFunciona.default.strBefore(attributeKey, '.') === 'className') {
+    const attributeKey = si_funciona_1.default.strAfter(dotKey, '.')
+    if (si_funciona_1.default.strBefore(attributeKey, '.') === 'className') {
       const classList = config.attributes.className.split(' ')
-      classList.splice(_siFunciona.default.strAfterLast(attributeKey, '.'), 1)
+      classList.splice(si_funciona_1.default.strAfterLast(attributeKey, '.'), 1)
       config.attributes.className = classList.join(' ')
       continue
     }
-    _siFunciona.default.dotUnset(config, dotKey)
+    si_funciona_1.default.dotUnset(config, dotKey)
   }
   for (const dotKey in changes.added) {
-    const attributeKey = _siFunciona.default.strAfter(dotKey, '.')
-    if (_siFunciona.default.strBefore(attributeKey, '.') === 'className') {
+    const attributeKey = si_funciona_1.default.strAfter(dotKey, '.')
+    if (si_funciona_1.default.strBefore(attributeKey, '.') === 'className') {
       const classList = config.attributes.className.split(' ')
       classList.push(changes.added[dotKey])
       config.attributes.className = classList.join(' ')
       continue
     }
-    _siFunciona.default.dotSet(config, dotKey, changes.added[dotKey])
+    si_funciona_1.default.dotSet(config, dotKey, changes.added[dotKey])
   }
   return config
 }
-const _default = exports.default = updateDomItem
+exports.default = updateDomItem

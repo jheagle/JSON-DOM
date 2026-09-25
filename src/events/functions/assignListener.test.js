@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import assignListener from './assignListener.js'
+import assignListener from './assignListener'
 
 describe('assignListener', () => {
   test('will apply an event listener to an element', () => {

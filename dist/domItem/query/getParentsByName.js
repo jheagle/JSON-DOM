@@ -1,13 +1,18 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _siFunciona = _interopRequireDefault(require('si-funciona'))
-const _getParentsFromAttribute = _interopRequireDefault(require('./getParentsFromAttribute.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const si_funciona_1 = __importDefault(require('si-funciona'))
+const getParentsFromAttribute_1 = __importDefault(require('./getParentsFromAttribute'))
 /**
  * Helper for getting all domGeneral.DomItems starting at child and having specified name attribute
  * @function
@@ -17,5 +22,5 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * attribute criteria
  * @returns {Array}
  */
-const getParentsByName = _siFunciona.default.curry(_getParentsFromAttribute.default)('name')
-const _default = exports.default = getParentsByName
+const getParentsByName = si_funciona_1.default.curry(getParentsFromAttribute_1.default)('name')
+exports.default = getParentsByName

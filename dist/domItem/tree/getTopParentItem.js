@@ -3,7 +3,6 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
 /**
  * Get the upper parentItem for the provided child. (usually this is a documentItem reference)
@@ -22,4 +21,4 @@ const getTopParentItem = item => {
   }
   return Object.keys(item.parentItem).length ? getTopParentItem(item.parentItem) : item
 }
-const _default = exports.default = getTopParentItem
+exports.default = getTopParentItem

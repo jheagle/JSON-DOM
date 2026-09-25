@@ -1,12 +1,17 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _createEventListener = _interopRequireDefault(require('../objects/createEventListener'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const createEventListener_1 = __importDefault(require('../objects/createEventListener'))
 /**
  * Create an EventListener descriptor and push it onto a DomItem's eventListeners for the given event name.
  * Does not attach anything to the real element - see {@link bindListeners} or {@link fullAddEventListener} for that.
@@ -41,11 +46,11 @@ const addEventListener = (eventName, listenerFunction, customArgs, options, item
     item.eventListeners[eventName] = []
   }
   // check if the listener already exists and don't add if it does
-  item.eventListeners[eventName].push((0, _createEventListener.default)({
+  item.eventListeners[eventName].push((0, createEventListener_1.default)({
     listenerFunc: listenerFunction,
     listenerArgs: customArgs,
     listenerOptions: options
   }))
   return item
 }
-const _default = exports.default = addEventListener
+exports.default = addEventListener

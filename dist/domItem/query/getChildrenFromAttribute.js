@@ -1,14 +1,19 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _documentItem = _interopRequireDefault(require('../objects/documentItem.js'))
-const _gatherChildItems = _interopRequireDefault(require('./gatherChildItems.js'))
-const _getChildTest = _interopRequireDefault(require('./getChildTest.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const documentItem_1 = __importDefault(require('../objects/documentItem'))
+const gatherChildItems_1 = __importDefault(require('./gatherChildItems'))
+const getChildTest_1 = __importDefault(require('./getChildTest'))
 /**
  * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
  * This function will check all the children starting from item, and scan the attributes
@@ -22,5 +27,5 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * criteria
  * @returns {Array.<DomItem>}
  */
-const getChildrenFromAttribute = (attr, value, item = _documentItem.default.body) => (0, _gatherChildItems.default)(item, (0, _getChildTest.default)(attr, value))
-const _default = exports.default = getChildrenFromAttribute
+const getChildrenFromAttribute = (attr, value, item = documentItem_1.default.body) => (0, gatherChildItems_1.default)(item, (0, getChildTest_1.default)(attr, value))
+exports.default = getChildrenFromAttribute

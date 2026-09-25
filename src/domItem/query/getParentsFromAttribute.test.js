@@ -1,8 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import createDomItem from '../objects/createDomItem.js'
-import getParentsFromAttribute from './getParentsFromAttribute.js'
+import createDomItem from '../objects/createDomItem'
+import getParentsFromAttribute from './getParentsFromAttribute'
 
 describe('getParentsFromAttribute', () => {
   test('will find the parent nodes with a specific attribute', () => {

@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import domItemHasAttribute from './domItemHasAttribute.js'
+import domItemHasAttribute from './domItemHasAttribute'
 import createDomItem from '../domItem/objects/createDomItem'
 
 describe('domItemHasAttribute', () => {

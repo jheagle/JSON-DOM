@@ -3,7 +3,6 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
 /**
  * Based on available flags, either proceed to process the listener or skip.
@@ -11,7 +10,6 @@ require('core-js/stable')
  * @memberOf module:domEvents
  * @param {EventProxy} event - The event object passed to the listener
  */
-
 /**
  * Prepare a listener to be used before assigning to an element.
  * @function
@@ -29,4 +27,4 @@ const makeEventHandler = (listener, item, ...args) => {
     return listener(event, item, ...args)
   }
 }
-const _default = exports.default = makeEventHandler
+exports.default = makeEventHandler

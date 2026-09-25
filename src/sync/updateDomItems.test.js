@@ -2,9 +2,9 @@
  * @jest-environment jsdom
  */
 import 'core-js/stable'
-import createDomItem from '../domItem/objects/createDomItem.js'
-import updateDomItems from './updateDomItems.js'
-import documentDomItem from '../domItem/objects/documentDomItem.js'
+import createDomItem from '../domItem/objects/createDomItem'
+import updateDomItems from './updateDomItems'
+import documentDomItem from '../domItem/objects/documentDomItem'
 
 describe('updateDomItems', () => {
   test('returns domItem without children when no element is set', () => {

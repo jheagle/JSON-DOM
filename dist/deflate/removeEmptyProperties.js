@@ -1,22 +1,26 @@
 'use strict'
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-})
-exports.default = void 0
 require('core-js/modules/es.array.includes.js')
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.for-each.js')
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
+Object.defineProperty(exports, '__esModule', {
+  value: true
+})
 require('core-js/stable')
-const _siFunciona = _interopRequireDefault(require('si-funciona'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const si_funciona_1 = __importDefault(require('si-funciona'))
 /**
  * Check if the value is an empty object / array, or if it is null or undefined.
  * @param {*} propertyValue
  * @returns {boolean}
  */
-const isEmpty = propertyValue => _siFunciona.default.emptyObject(propertyValue) || propertyValue === null || typeof propertyValue === 'undefined'
-
+const isEmpty = propertyValue => si_funciona_1.default.emptyObject(propertyValue) || propertyValue === null || typeof propertyValue === 'undefined'
 /**
  * Remove all empty properties to reduce total size of the object.
  * @function
@@ -29,12 +33,13 @@ const removeEmptyProperties = (item, propertiesToDelete = []) => {
   item.children.forEach(child => {
     removeEmptyProperties(child, propertiesToDelete)
   })
-  _siFunciona.default.objectKeys(item).forEach(property => {
-    const propertyValue = item[property]
+  const properties = item
+  si_funciona_1.default.objectKeys(item).forEach(property => {
+    const propertyValue = properties[property]
     if (isEmpty(propertyValue) || propertiesToDelete.includes(property)) {
-      delete item[property]
+      delete properties[property]
     }
   })
   return item
 }
-const _default = exports.default = removeEmptyProperties
+exports.default = removeEmptyProperties

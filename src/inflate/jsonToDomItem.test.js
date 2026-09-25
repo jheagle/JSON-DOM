@@ -1,11 +1,11 @@
 /**
  * @jest-environment jsdom
  */
-import createDomItem from '../domItem/objects/createDomItem.js'
-import domItemToJson from '../deflate/domItemToJson.js'
-import jsonToDomItem from './jsonToDomItem.js'
-import generateElement from '../render/generateElement.js'
-import updateElements from '../render/updateElements.js'
+import createDomItem from '../domItem/objects/createDomItem'
+import domItemToJson from '../deflate/domItemToJson'
+import jsonToDomItem from './jsonToDomItem'
+import generateElement from '../render/generateElement'
+import updateElements from '../render/updateElements'
 
 describe('jsonToDomItem', () => {
   test('will convert JSON to domItem and re-add circular references', () => {

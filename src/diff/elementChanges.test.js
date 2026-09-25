@@ -1,8 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import elementChanges from './elementChanges.js'
-import createDomItem from '../domItem/objects/createDomItem.js'
+import elementChanges from './elementChanges'
+import createDomItem from '../domItem/objects/createDomItem'
 import siFunciona from 'si-funciona'
 
 describe('elementChanges', () => {

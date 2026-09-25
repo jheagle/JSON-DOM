@@ -1,9 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-import createDomItem from '../domItem/objects/createDomItem.js'
-import domItemToJson from './domItemToJson.js'
-import generateElement from '../render/generateElement.js'
+import createDomItem from '../domItem/objects/createDomItem'
+import domItemToJson from './domItemToJson'
+import generateElement from '../render/generateElement'
 
 describe('domItemToJson', () => {
   test('will convert domItem to JSON skipping circular and elements', () => {

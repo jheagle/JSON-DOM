@@ -1,13 +1,18 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _setParentItemReferences = _interopRequireDefault(require('../domItem/tree/setParentItemReferences.js'))
-const _addDomItemProperties = _interopRequireDefault(require('../domItem/objects/addDomItemProperties.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const setParentItemReferences_1 = __importDefault(require('../domItem/tree/setParentItemReferences'))
+const addDomItemProperties_1 = __importDefault(require('../domItem/objects/addDomItemProperties'))
 /**
  * Convert DOM Item to JSON string.
  * @function
@@ -16,12 +21,13 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @returns {DomItem}
  */
 const jsonToDomItem = jsonString => {
-  const parsedJson = (0, _setParentItemReferences.default)((0, _addDomItemProperties.default)(JSON.parse(jsonString)))
+  const parsedJson = (0, setParentItemReferences_1.default)((0, addDomItemProperties_1.default)(JSON.parse(jsonString)))
   if (parsedJson.nodeName === '#document') {
-    parsedJson.element = document
-    parsedJson.head = parsedJson.children[0]
-    parsedJson.body = parsedJson.children[1]
+    const root = parsedJson
+    root.element = document
+    root.head = root.children[0]
+    root.body = root.children[1]
   }
   return parsedJson
 }
-const _default = exports.default = jsonToDomItem
+exports.default = jsonToDomItem

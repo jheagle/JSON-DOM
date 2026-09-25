@@ -1,12 +1,17 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _createDomItem = _interopRequireDefault(require('./createDomItem.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const createDomItem_1 = __importDefault(require('./createDomItem'))
 /**
  * DomItemRoot defines the structure for the root node of json-dom's Virtual DOM (DomItem tree) - the #document
  * equivalent, from which every other DomItem in the tree descends.
@@ -22,7 +27,6 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @property {DomItemHead} head - A specific reference to head item
  * @property {DomItemBody} body - A specific reference to body item
  */
-
 /**
  * Initiate the Root for DocumentItem. This is primary a helper for {@link documentDomItem}.
  * @function
@@ -31,7 +35,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @param {Object.<string, listenerFunction>} listeners - An object of all event listeners to be registered in the Dom
  * @returns {DomItemRoot|DomItem}
  */
-const initRoot = (children = [{}, {}], listeners = {}) => (0, _createDomItem.default)({
+const initRoot = (children = [{}, {}], listeners = {}) => (0, createDomItem_1.default)({
   nodeName: '#document',
   nodeValue: null,
   attributes: {},
@@ -43,4 +47,4 @@ const initRoot = (children = [{}, {}], listeners = {}) => (0, _createDomItem.def
   head: children[0],
   body: children[1]
 })
-const _default = exports.default = initRoot
+exports.default = initRoot

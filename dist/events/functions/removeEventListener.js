@@ -1,13 +1,18 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _findEventListener = _interopRequireDefault(require('./findEventListener.js'))
-const _deactivateListener = _interopRequireDefault(require('./deactivateListener.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const findEventListener_1 = __importDefault(require('./findEventListener'))
+const deactivateListener_1 = __importDefault(require('./deactivateListener'))
 /**
  * Find and remove an event listener from a DomItem: detaches it from the element first (via
  * {@link deactivateListener}) if it was active, then splices its descriptor out of eventListeners. A no-op if no
@@ -25,15 +30,15 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @returns {module:domGeneral~DomItem} The same DomItem, with the matching listener removed if one was found.
  */
 const removeEventListener = (eventName, listenerFunction, customArgs, options, item) => {
-  const [listenerIndex, foundListener] = (0, _findEventListener.default)(eventName, listenerFunction, customArgs, options, item)
+  const [listenerIndex, foundListener] = (0, findEventListener_1.default)(eventName, listenerFunction, customArgs, options, item)
   if (listenerIndex < 0 || typeof foundListener === 'undefined') {
     // listener not found
     return item
   }
   if (foundListener.listenerActive === true) {
-    item = (0, _deactivateListener.default)(eventName, foundListener, item)
+    item = (0, deactivateListener_1.default)(eventName, foundListener, item)
   }
   item.eventListeners[eventName].splice(listenerIndex, 1)
   return item
 }
-const _default = exports.default = removeEventListener
+exports.default = removeEventListener

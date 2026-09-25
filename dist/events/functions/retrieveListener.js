@@ -1,13 +1,18 @@
 'use strict'
 
+require('core-js/modules/es.array.includes.js')
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
-require('core-js/modules/es.array.includes.js')
 require('core-js/stable')
-const _documentItem = _interopRequireDefault(require('../../domItem/objects/documentItem.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const documentItem_1 = __importDefault(require('../../domItem/objects/documentItem'))
 /**
  * Based on the provided function / listener name, retrieve the associated function from the root domEvents.DomItem.
  * If a raw function is passed instead of a registered name, it is returned as-is - see {@link EventListener}'s
@@ -19,7 +24,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
  * @returns {listenerFunction|function|Object}
  */
-const retrieveListener = (listenerName, parent = _documentItem.default) => {
+const retrieveListener = (listenerName, parent = documentItem_1.default) => {
   if (typeof listenerName === 'function') {
     return listenerName
   }
@@ -28,4 +33,4 @@ const retrieveListener = (listenerName, parent = _documentItem.default) => {
   }
   return parent.eventActions[listenerName]
 }
-const _default = exports.default = retrieveListener
+exports.default = retrieveListener

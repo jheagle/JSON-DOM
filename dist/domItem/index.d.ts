@@ -1,0 +1,23 @@
+import 'core-js/stable';
+declare const _default: {
+    addDomItemProperties: <Custom extends object = {}>(item: import("./types").DomItemConfig<Custom>) => import("./types").DomItem<Custom>;
+    appendChild: (parent: import("./types").DomItem, child: import("./types").DomItem) => import("./types").DomItem;
+    createDomItem: <Custom extends object = {}>(item?: import("./types").DomItemConfig<Custom>) => import("./types").DomItem<Custom>;
+    documentDomItem: (listeners?: Record<string, import("../events/types").ListenerFunction>, rootItem?: import("./types").DomItemRoot) => import("./types").DomItemRoot;
+    documentItem: import("./types").DomItemRoot;
+    gatherChildItems: (item: import("./types").DomItem, test: import("./types").ChildTest) => import("./types").DomItem[];
+    getChildrenByClass: (value: string, item?: import("./types").DomItem) => import("./types").DomItem[];
+    getChildrenByName: (value: string, item?: import("./types").DomItem) => import("./types").DomItem[];
+    getChildrenFromAttribute: (attr: string, value: unknown, item?: import("./types").DomItem) => import("./types").DomItem[];
+    getChildTest: (attr: string, value: unknown) => import("./types").ChildTest;
+    getParentsByClass: (value: string, item?: import("./types").DomItem) => import("./types").DomItem[];
+    getParentsByName: (value: string, item?: import("./types").DomItem) => import("./types").DomItem[];
+    getParentsByTagName: (value: string, item?: import("./types").DomItem) => import("./types").DomItem[];
+    getParentsFromAttribute: (attr: string, value: unknown, item?: import("./types").DomItem) => import("./types").DomItem[];
+    getTopParentItem: (item: import("./types").DomItem) => import("./types").DomItemRoot;
+    initChildren: () => import("./types").DomItem[];
+    initRoot: (children?: import("./types").DomItem[], listeners?: Record<string, import("../events/types").ListenerFunction>) => import("./types").DomItemRoot;
+    removeChild: (parent: import("./types").DomItem, child: import("./types").DomItem) => import("./types").DomItem[];
+    setParentItemReferences: (item: import("./types").DomItem) => import("./types").DomItem;
+};
+export default _default;

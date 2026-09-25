@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import documentDomItem from './documentDomItem.js'
+import documentDomItem from './documentDomItem'
 
 describe('documentDomItem', () => {
   test('creates a document DOM item', () => {

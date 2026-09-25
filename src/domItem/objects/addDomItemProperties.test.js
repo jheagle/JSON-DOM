@@ -1,4 +1,4 @@
-import addDomItemProperties from './addDomItemProperties.js'
+import addDomItemProperties from './addDomItemProperties'
 
 describe('addDomItemProperties', () => {
   test('will add all missing properties to be a valid DomItem', () => {

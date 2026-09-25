@@ -1,16 +1,21 @@
 'use strict'
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-})
-exports.default = void 0
 require('core-js/modules/esnext.iterator.constructor.js')
 require('core-js/modules/esnext.iterator.find.js')
 require('core-js/modules/esnext.iterator.for-each.js')
 require('core-js/modules/esnext.iterator.map.js')
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
+Object.defineProperty(exports, '__esModule', {
+  value: true
+})
 require('core-js/stable')
-const _updateElement = _interopRequireDefault(require('./updateElement.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const updateElement_1 = __importDefault(require('./updateElement'))
 /**
  * Update all the childNodes for this domItem element to mach domItem children.
  * @function
@@ -20,38 +25,39 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  */
 const updateChildNodes = domItem => {
   if (!domItem.element) {
-    domItem = (0, _updateElement.default)(domItem)
+    domItem = (0, updateElement_1.default)(domItem)
   }
   if (!domItem.children || !domItem.children.length) {
     domItem.children = []
     return domItem
   }
-  const previousChildNodes = Array.from(domItem.element.childNodes)
+  const element = domItem.element
+  const previousChildNodes = Array.from(element.childNodes)
   domItem.children.map((child, index) => {
     const existing = previousChildNodes.find(childNode => childNode === child.element)
     let childNode = existing ?? child.element
     if (!childNode) {
-      childNode = (0, _updateElement.default)(child).element
+      childNode = (0, updateElement_1.default)(child).element
     }
     if (!previousChildNodes[index]) {
-      domItem.element.appendChild(childNode)
+      element.appendChild(childNode)
       return childNode
     }
     if (childNode !== previousChildNodes[index]) {
-      domItem.element.replaceChild(childNode, previousChildNodes[index])
+      element.replaceChild(childNode, previousChildNodes[index])
     }
     return childNode
   }).forEach((childNode, index) => {
     domItem.children[index].element = childNode
   })
-  if (domItem.element.childNodes.length > domItem.children.length) {
+  if (element.childNodes.length > domItem.children.length) {
     const maxLength = domItem.children.length
-    let nodeToRemove = domItem.element.childNodes[maxLength]
+    let nodeToRemove = element.childNodes[maxLength]
     while (nodeToRemove) {
-      domItem.element.removeChild(nodeToRemove)
-      nodeToRemove = domItem.element.childNodes[maxLength]
+      element.removeChild(nodeToRemove)
+      nodeToRemove = element.childNodes[maxLength]
     }
   }
   return domItem
 }
-const _default = exports.default = updateChildNodes
+exports.default = updateChildNodes

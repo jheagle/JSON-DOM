@@ -1,11 +1,10 @@
 'use strict'
 
+require('core-js/modules/esnext.iterator.constructor.js')
+require('core-js/modules/esnext.iterator.reduce.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.reduce.js')
 require('core-js/stable')
 /**
  * To be used with gatherChildItems which will start at item and recurse over all child items, this test
@@ -17,7 +16,6 @@ require('core-js/stable')
  * the test
  * @returns {Array.<DomItem>}
  */
-
 /**
  * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
  * This function will check all the children starting from and including item, and run the test function on each
@@ -31,4 +29,4 @@ require('core-js/stable')
  * @returns {Array.<DomItem>}
  */
 const gatherChildItems = (item, test) => test(item, item.children.reduce((a, b) => a.concat(gatherChildItems(b, test)), []))
-const _default = exports.default = gatherChildItems
+exports.default = gatherChildItems

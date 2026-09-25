@@ -1,14 +1,18 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _documentDomItem = _interopRequireDefault(require('./documentDomItem.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const documentDomItem_1 = __importDefault(require('./documentDomItem'))
 let existingItem = null
-
 /**
  * The shared root DomItem of the Virtual DOM (DomItem tree) for this environment's real document.
  * @member documentItem
@@ -17,8 +21,8 @@ let existingItem = null
  */
 const documentItem = (() => {
   if (existingItem === null) {
-    existingItem = (0, _documentDomItem.default)()
+    existingItem = (0, documentDomItem_1.default)()
   }
   return existingItem
 })()
-const _default = exports.default = documentItem
+exports.default = documentItem

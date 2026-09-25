@@ -1,16 +1,21 @@
 'use strict'
 
+require('core-js/modules/esnext.iterator.constructor.js')
+require('core-js/modules/esnext.iterator.reduce.js')
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.reduce.js')
 require('core-js/stable')
-const _siFunciona = _interopRequireDefault(require('si-funciona'))
-const _elementHasAttribute = _interopRequireDefault(require('./elementHasAttribute.js'))
-const _createChangeList = _interopRequireDefault(require('./createChangeList.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const si_funciona_1 = __importDefault(require('si-funciona'))
+const elementHasAttribute_1 = __importDefault(require('./elementHasAttribute'))
+const createChangeList_1 = __importDefault(require('./createChangeList'))
 /**
  * @typedef {module:objectHelpers~mapCallback} testAttributeChange
  * @memberOf module:domGeneral
@@ -18,7 +23,6 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @param {string} key - The property name of the current property being processed in the object.
  * @return {int} - -1: removed, 0: unchanged, 1: added.
  */
-
 /**
  * Given some config, provide a function to testing attribute and key existence in that config.
  * @function
@@ -28,24 +32,24 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  */
 const checkAttribute = element => (attr, key) => {
   if (typeof attr === 'object') {
-    const styleDiff = (0, _elementHasAttribute.default)(element, key, attr)
-    const firstStyleDiff = styleDiff[0]
-    if (styleDiff.length === 1 && firstStyleDiff.result[0] === 0 && element.style[firstStyleDiff.value] === attr[firstStyleDiff.value]) {
+    const styles = attr
+    const elementStyle = () => element.style
+    const styleDiff = (0, elementHasAttribute_1.default)(element, key, attr)
+    if (Array.isArray(styleDiff) && styleDiff.length === 1 && styleDiff[0].result[0] === 0 && elementStyle()[styleDiff[0].value] === styles[styleDiff[0].value]) {
       return 0
     }
     // Check new, removed, or changed styles
-    return _siFunciona.default.filterObject(styleDiff, arrayDiff => arrayDiff.result[0] !== 0 || element.style[arrayDiff.value] !== attr[arrayDiff.value])
+    return si_funciona_1.default.filterObject(styleDiff, arrayDiff => arrayDiff.result[0] !== 0 || elementStyle()[arrayDiff.value] !== styles[arrayDiff.value])
   }
   if (key === 'class') {
-    const classDiff = (0, _elementHasAttribute.default)(element, key, attr)
-    if (classDiff.length === 1 && classDiff[0].result[0] === 0) {
+    const classDiff = (0, elementHasAttribute_1.default)(element, key, attr)
+    if (Array.isArray(classDiff) && classDiff.length === 1 && classDiff[0].result[0] === 0) {
       return 0
     }
-    return _siFunciona.default.filterObject(classDiff, arrayDiff => arrayDiff.result[0] !== 0)
+    return si_funciona_1.default.filterObject(classDiff, arrayDiff => arrayDiff.result[0] !== 0)
   }
-  return (0, _elementHasAttribute.default)(element, key, attr)
+  return (0, elementHasAttribute_1.default)(element, key, attr)
 }
-
 /**
  * Updates all the keys to be kabob-case
  * @function
@@ -53,16 +57,15 @@ const checkAttribute = element => (attr, key) => {
  * @param {Object.<string, *>} attributesToSet
  * @returns {Object.<string, *>}
  */
-const kabobCaseAttributes = attributesToSet => _siFunciona.default.reduceObject(attributesToSet, (attributes, value, name) => {
+const kabobCaseAttributes = attributesToSet => si_funciona_1.default.reduceObject(attributesToSet, (attributes, value, name) => {
   let attrValue = attributesToSet[name] ?? value
-  if (_siFunciona.default.isObject(attrValue)) {
+  if (si_funciona_1.default.isObject(attrValue)) {
     attrValue = kabobCaseAttributes(attrValue)
   }
-  const kabobKey = name === 'className' ? 'class' : _siFunciona.default.kabobCase(name)
+  const kabobKey = name === 'className' ? 'class' : si_funciona_1.default.kabobCase(name)
   attributes[kabobKey] = attrValue
   return attributes
 }, {})
-
 /**
  * Given a domGeneral.DomItem as domItem, this function will return the changes to be applied
  * to the stored element property.
@@ -72,7 +75,7 @@ const kabobCaseAttributes = attributesToSet => _siFunciona.default.reduceObject(
  * @returns {ChangeList}
  */
 const domItemChanges = domItem => {
-  const changeList = (0, _createChangeList.default)()
+  const changeList = (0, createChangeList_1.default)()
   if (!domItem.element) {
     changeList.added.nodeName = domItem.nodeName.toLowerCase()
   }
@@ -82,8 +85,8 @@ const domItemChanges = domItem => {
     changeList.added.nodeName = domItem.nodeName.toLowerCase()
   }
   if (domItem.nodeValue !== null) {
-    if (!_siFunciona.default.emptyObject(domItem.attributes)) {
-      changeList.added = changeList.appendChanges('added', _siFunciona.default.dotNotate(domItem.attributes))
+    if (!si_funciona_1.default.emptyObject(domItem.attributes)) {
+      changeList.added = changeList.appendChanges('added', si_funciona_1.default.dotNotate(domItem.attributes))
     }
     if (!domItem.element) {
       changeList.added.nodeValue = domItem.nodeValue
@@ -96,8 +99,8 @@ const domItemChanges = domItem => {
     return changeList
   }
   const domItemAttributes = kabobCaseAttributes(domItem.attributes)
-  const diffMap = _siFunciona.default.mapObject(domItemAttributes, (attr, key) => checkAttribute(domItem.element)(attr, key))
-  return _siFunciona.default.reduceObject(diffMap, (changed, result, key) => {
+  const diffMap = si_funciona_1.default.mapObject(domItemAttributes, (attr, key) => checkAttribute(domItem.element)(attr, key))
+  return si_funciona_1.default.reduceObject(diffMap, (changed, result, key) => {
     const isArray = Array.isArray(result)
     if (!isArray && !result) {
       // Skip if the attribute is not changed (false and not an array)
@@ -110,7 +113,7 @@ const domItemChanges = domItem => {
     }
     if (!isArray) {
       // Not an array, simply set the attribute as added
-      changed.added[key] = domItem.attributes[_siFunciona.default.camelCase(key)]
+      changed.added[key] = domItem.attributes[si_funciona_1.default.camelCase(key)]
       return changed
     }
     if (key !== 'class' && key !== 'style') {
@@ -132,15 +135,16 @@ const domItemChanges = domItem => {
       }, changed.added)
       return changed
     }
+    const elementStyle = () => domItem.element.style
     changed.removed = result.reduce((removed, results) => {
       if (!domItem.element) {
         return removed
       }
       if (results.result[0] === -1) {
-        removed[`style.${results.value}`] = domItem.element.style[results.value]
+        removed[`style.${results.value}`] = elementStyle()[results.value]
       }
-      if (results.result[0] === 0 && domItem.element.style[results.value] !== domItemAttributes.style[results.value]) {
-        removed[`style.${results.value}`] = domItem.element.style[results.value]
+      if (results.result[0] === 0 && elementStyle()[results.value] !== domItemAttributes.style[results.value]) {
+        removed[`style.${results.value}`] = elementStyle()[results.value]
       }
       return removed
     }, changed.removed)
@@ -148,7 +152,7 @@ const domItemChanges = domItem => {
       if (results.result[0] === 1) {
         added[`style.${results.value}`] = domItemAttributes.style[results.value]
       }
-      if (results.result[0] === 0 && domItem.element.style[results.value] !== domItemAttributes.style[results.value]) {
+      if (results.result[0] === 0 && elementStyle()[results.value] !== domItemAttributes.style[results.value]) {
         added[`style.${results.value}`] = domItemAttributes.style[results.value]
       }
       return added
@@ -156,4 +160,4 @@ const domItemChanges = domItem => {
     return changed
   }, changeList)
 }
-const _default = exports.default = domItemChanges
+exports.default = domItemChanges

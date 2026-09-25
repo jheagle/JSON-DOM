@@ -1,19 +1,23 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _listenerOptions = _interopRequireDefault(require('./listenerOptions.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const listenerOptions_1 = __importDefault(require('./listenerOptions'))
 /**
  * Document attachEvent support for older browsers.
  * @typedef {EventTarget} MicrosoftHtmlObject
  * @memberOf module:domEvents
  * @property {Function} attachEvent
  */
-
 /**
  * Provide compatibility for assigning listeners.
  * @function
@@ -30,14 +34,15 @@ const assignListener = (trigger, elem, fn, options = false) => {
   // Attaching a listener may be done differently based on the browser support
   if (elem.addEventListener) {
     // Latest support is provided from addEventListener with the options parameter varying slightly
-    elem.addEventListener(trigger, fn, (0, _listenerOptions.default)(options))
+    elem.addEventListener(trigger, fn, (0, listenerOptions_1.default)(options))
   } else if (elem.attachEvent) {
     // Older browsers, especially Internet Explorer
     elem.attachEvent(`on${trigger}`, fn)
   } else {
     // General support for adding a new function onto the element which can be called to trigger the function
+    ;
     elem[`on${trigger}`] = fn
   }
   return fn
 }
-const _default = exports.default = assignListener
+exports.default = assignListener

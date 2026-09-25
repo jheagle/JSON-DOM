@@ -1,11 +1,10 @@
 'use strict'
 
+require('core-js/modules/esnext.iterator.constructor.js')
+require('core-js/modules/esnext.iterator.for-each.js')
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.for-each.js')
 require('core-js/stable')
 /**
  * Set all the listeners for this DOMItem to be inactive.
@@ -23,4 +22,4 @@ const deactivateListeners = item => {
   delete item.activeListeners
   return item
 }
-const _default = exports.default = deactivateListeners
+exports.default = deactivateListeners

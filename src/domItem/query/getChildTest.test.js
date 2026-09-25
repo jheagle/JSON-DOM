@@ -1,8 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import createDomItem from '../objects/createDomItem.js'
-import getChildTest from './getChildTest.js'
+import createDomItem from '../objects/createDomItem'
+import getChildTest from './getChildTest'
 
 describe('getChildTest', () => {
   test('will find the child node with a specific attribute', () => {

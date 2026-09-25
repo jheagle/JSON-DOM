@@ -1,12 +1,17 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _siFunciona = _interopRequireDefault(require('si-funciona'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const si_funciona_1 = __importDefault(require('si-funciona'))
 /**
  * Take the given options and convert them (using binary) to an integer. Given listener options, each one is assigned a
  * bitwise position. The resulting binary number represents any possible combination of the available flags set.
@@ -20,6 +25,6 @@ const optionsToNumber = (optionsTemplate, listenerOptions) => {
   if (!listenerOptions) {
     return 0
   }
-  return _siFunciona.default.reduceObject(optionsTemplate, (binaryOptions, flag, name) => listenerOptions[name] ? binaryOptions | flag : binaryOptions, 0)
+  return si_funciona_1.default.reduceObject(optionsTemplate, (binaryOptions, flag, name) => listenerOptions[name] ? binaryOptions | flag : binaryOptions, 0)
 }
-const _default = exports.default = optionsToNumber
+exports.default = optionsToNumber

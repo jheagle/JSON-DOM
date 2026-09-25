@@ -1,12 +1,17 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _removeEventListener = _interopRequireDefault(require('./removeEventListener.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const removeEventListener_1 = __importDefault(require('./removeEventListener'))
 /**
  * Find and remove a listener that was registered by name (e.g. via {@link fullAddEventListener}) - the counterpart
  * to fullAddEventListener. Resolves name the same way fullAddEventListener defaults it, so a caller only needs the
@@ -28,7 +33,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @returns {DomItem} The same DomItem, with the matching listener removed if one was found.
  */
 const fullRemoveEventListener = (eventName, listener, name, customArgs, options, item) => {
-  name = name ?? listener.name
-  return (0, _removeEventListener.default)(eventName, name, customArgs, options, item)
+  const listenerName = name ?? listener.name
+  return (0, removeEventListener_1.default)(eventName, listenerName, customArgs, options, item)
 }
-const _default = exports.default = fullRemoveEventListener
+exports.default = fullRemoveEventListener

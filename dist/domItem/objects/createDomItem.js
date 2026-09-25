@@ -1,14 +1,19 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
-exports.default = void 0
 require('core-js/stable')
-const _siFunciona = _interopRequireDefault(require('si-funciona'))
-const _appendChild = _interopRequireDefault(require('../tree/appendChild.js'))
-const _removeChild = _interopRequireDefault(require('../tree/removeChild.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+const si_funciona_1 = __importDefault(require('si-funciona'))
+const appendChild_1 = __importDefault(require('../tree/appendChild'))
+const removeChild_1 = __importDefault(require('../tree/removeChild'))
 /**
  * DomItem defines the structure for a single node in json-dom's Virtual DOM (DomItem tree) - a plain object
  * representation of one HTML element, mirrored onto a real element via {@link updateElement}/{@link renderHtml}.
@@ -31,7 +36,6 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @property {Function} removeChild - Attach a child to this DOM Item
  * @property {string} [is] - Optional property to define the type of object for custom elements.
  */
-
 /**
  * This is the basic Object for representing a node in json-dom's Virtual DOM (DomItem tree). All incoming
  * attributes will be merged to the specified format.
@@ -41,7 +45,7 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * @returns {DomItem}
  */
 const createDomItem = (item = {}) => {
-  const newDomItem = _siFunciona.default.reduceObject({
+  const newDomItem = si_funciona_1.default.reduceObject({
     attributes: {},
     children: [],
     element: null,
@@ -57,8 +61,8 @@ const createDomItem = (item = {}) => {
     }
     return domItem
   }, item)
-  newDomItem.appendChild = _siFunciona.default.curry(_appendChild.default)(newDomItem)
-  newDomItem.removeChild = _siFunciona.default.curry(_removeChild.default)(newDomItem)
+  newDomItem.appendChild = si_funciona_1.default.curry(appendChild_1.default)(newDomItem)
+  newDomItem.removeChild = si_funciona_1.default.curry(removeChild_1.default)(newDomItem)
   return newDomItem
 }
-const _default = exports.default = createDomItem
+exports.default = createDomItem
