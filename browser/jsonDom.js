@@ -93,6 +93,7 @@
  * Check if the value is an empty object / array, or if it is null or undefined.
  * @param {*} propertyValue
  * @returns {boolean}
+ * @private
  */
     const isEmpty = propertyValue => si_funciona_1.default.emptyObject(propertyValue) || propertyValue === null || typeof propertyValue === 'undefined'
     /**
@@ -146,6 +147,7 @@
  * Initialize the appendChanges method with the changeList, return the appendChanges method.
  * @param {ChangeList} changeList
  * @returns {appendChanges}
+ * @private
  */
     const appendChangesTo = changeList => (changeType, changes) => {
       if (!['added', 'removed'].includes(changeType)) {
@@ -187,6 +189,7 @@
     'use strict'
 
     require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.find.js')
     require('core-js/modules/esnext.iterator.reduce.js')
     const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
       return mod && mod.__esModule
@@ -253,6 +256,12 @@
       return attributes
     }, {})
     /**
+ * Find the name an attribute was given on the item from its kabob-case name: innerHTML is compared as inner-html, and
+ * camelCase cannot turn that back into innerHTML.
+ * @private
+ */
+    const attributeName = (attributes, kabobKey) => Object.keys(attributes).find(name => (name === 'className' ? 'class' : si_funciona_1.default.kabobCase(name)) === kabobKey) ?? si_funciona_1.default.camelCase(kabobKey)
+    /**
  * Given a domGeneral.DomItem as domItem, this function will return the changes to be applied
  * to the stored element property.
  * @function
@@ -299,7 +308,10 @@
         }
         if (!isArray) {
           // Not an array, simply set the attribute as added
-          changed.added[key] = domItem.attributes[si_funciona_1.default.camelCase(key)]
+          const name = attributeName(domItem.attributes, key)
+          // A property of the element (innerHTML) is set by its own name, anything else as an attribute (aria-label)
+          const element = domItem.element
+          changed.added[element && name in element && name !== 'form' ? name : key] = domItem.attributes[name]
           return changed
         }
         if (key !== 'class' && key !== 'style') {
@@ -347,7 +359,7 @@
       }, changeList)
     }
     exports.default = domItemChanges
-  }, { './createChangeList': 4, './elementHasAttribute': 8, 'core-js/modules/esnext.iterator.constructor.js': 695, 'core-js/modules/esnext.iterator.reduce.js': 702, 'core-js/stable': 762, 'si-funciona': 842 }],
+  }, { './createChangeList': 4, './elementHasAttribute': 8, 'core-js/modules/esnext.iterator.constructor.js': 695, 'core-js/modules/esnext.iterator.find.js': 698, 'core-js/modules/esnext.iterator.reduce.js': 702, 'core-js/stable': 762, 'si-funciona': 842 }],
   6: [function (require, module, exports) {
     'use strict'
 
@@ -749,6 +761,14 @@
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
+    /**
+ * @file Core Virtual DOM (DomItem tree) management: building items, the traits they carry, and finding and changing
+ * items in a tree.
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @version 1.0.0
+ * @module domGeneral
+ * @memberOf module:jsonDom
+ */
     require('core-js/stable')
     const addDomItemProperties_1 = __importDefault(require('./objects/addDomItemProperties'))
     const appendChild_1 = __importDefault(require('./tree/appendChild'))
@@ -842,6 +862,8 @@
   13: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.for-each.js')
     const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
       return mod && mod.__esModule
         ? mod
@@ -876,14 +898,43 @@
  * @property {Function} removeChild - Detach a child from this item
  */
     /**
+ * The traits an item has: a map of trait name to true. What each trait puts on an item is described by TraitRegistry.
+ * @typedef {Object.<string, true>} HasMap
+ * @memberOf module:domGeneral
+ */
+    /**
+ * The traits an item can have, and the data each one puts on it. json-dom has one, render (see {@link RenderProperties});
+ * other libraries add theirs by declaration merging, prefixed by their package (`matrix.row`), and describe them at
+ * runtime with {@link defineTrait}. In TypeScript, `hasTrait(item, 'matrix.row')` then narrows the item to what the
+ * trait adds.
+ * @typedef {Object.<string, Object>} TraitRegistry
+ * @memberOf module:domGeneral
+ */
+    /**
+ * What can be given to build an item: any of its properties (the children may be plain objects as well, they are
+ * completed too), plus any custom data. Whatever is left out gets its default.
+ * @typedef {Object} DomItemConfig
+ * @memberOf module:domGeneral
+ * @property {Array.<DomItemConfig>} [children] - Plain children are completed, items are left alone
+ * @property {(Object|HTMLElement|null)} [element] - An existing element to keep
+ */
+    /**
  * Create the generic item, without the render trait. Every property which is not given gets its default. The given
- * object is completed and returned (it is not copied).
+ * object is completed and returned (it is not copied). Children which are plain objects are completed the same way, all
+ * the way down; a child which already has a has map is taken to be complete and is left alone.
  * @function
  * @memberOf module:domGeneral
  * @param {Object} [item={}] - Item-like object to be formatted as a CoreItem
  * @returns {CoreItem}
  */
     const createCoreItem = (item = {}) => {
+      if (Array.isArray(item.children)) {
+        item.children.forEach(child => {
+          if (typeof child === 'object' && child !== null && !child.has) {
+            createCoreItem(child)
+          }
+        })
+      }
       const newItem = si_funciona_1.default.reduceObject({
         attributes: {},
         children: [],
@@ -905,10 +956,12 @@
       return newItem
     }
     exports.default = createCoreItem
-  }, { '../tree/appendChild': 36, '../tree/removeChild': 38, 'core-js/stable': 762, 'si-funciona': 842 }],
+  }, { '../tree/appendChild': 36, '../tree/removeChild': 38, 'core-js/modules/esnext.iterator.constructor.js': 695, 'core-js/modules/esnext.iterator.for-each.js': 700, 'core-js/stable': 762, 'si-funciona': 842 }],
   14: [function (require, module, exports) {
     'use strict'
 
+    require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.for-each.js')
     const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
       return mod && mod.__esModule
         ? mod
@@ -934,19 +987,42 @@
  * null)
  */
     /**
+ * What the render trait puts on an item.
+ * @typedef {Object} RenderProperties
+ * @memberOf module:domGeneral
+ * @property {(Object|HTMLElement|null)} element - The real node the item is mirrored onto, null while there is none
+ * @property {Object.<module:domEvents~EventName, Object.<number, eventHandler>>} [activeListeners] - Generated: the
+ * listeners which are attached to the element
+ */
+    /**
+ * A plain child is an object which is not an item yet (an item always has a has map).
+ * @private
+ */
+    const isPlainChild = child => typeof child === 'object' && child !== null && !child.has
+    /**
  * This is the basic Object for representing a node in json-dom's Virtual DOM (DomItem tree): a generic item (see
  * {@link createCoreItem}) with the render trait. All incoming attributes will be merged to the specified format, and the
- * given object is completed and returned (it is not copied).
+ * given object is completed and returned (it is not copied). Children which are plain objects are completed the same way,
+ * all the way down; a child which already has a has map is already an item, and is left alone.
  * @function
  * @memberOf module:domGeneral
  * @param {Object} [item={}] - DomItem-like object to be formatted as DomItem
  * @returns {DomItem}
  */
-    const createDomItem = (item = {}) => (0, withTrait_1.default)((0, createCoreItem_1.default)(item), 'render', {
-      element: item.element ?? null
-    })
+    const createDomItem = (item = {}) => {
+      if (Array.isArray(item.children)) {
+        item.children.forEach(child => {
+          if (isPlainChild(child)) {
+            createDomItem(child)
+          }
+        })
+      }
+      return (0, withTrait_1.default)((0, createCoreItem_1.default)(item), 'render', {
+        element: item.element ?? null
+      })
+    }
     exports.default = createDomItem
-  }, { '../traits/withTrait': 35, './createCoreItem': 13, 'core-js/stable': 762 }],
+  }, { '../traits/withTrait': 35, './createCoreItem': 13, 'core-js/modules/esnext.iterator.constructor.js': 695, 'core-js/modules/esnext.iterator.for-each.js': 700, 'core-js/stable': 762 }],
   15: [function (require, module, exports) {
     'use strict'
 
@@ -1422,6 +1498,15 @@
     require('core-js/stable')
     const definitions_1 = __importDefault(require('./definitions'))
     /**
+ * What a trait is at runtime.
+ * @typedef {Object} TraitDefinition
+ * @memberOf module:domGeneral
+ * @property {Array.<string>} keys - The properties the trait puts on an item
+ * @property {boolean} [serializable=true] - False for properties which only make sense where the item lives (an
+ * element): they are left out of json
+ * @property {Function} [defaults] - Returns the data a new item gets when it is given the trait
+ */
+    /**
  * Describe a trait so json-dom knows what it is at runtime: the properties it puts on an item (so they can be left out
  * of json when they only make sense where the item lives), and the defaults a new item gets. Types are added
  * separately, by merging into TraitRegistry.
@@ -1491,6 +1576,7 @@
  * trait, for one).
  * @param {CoreItem} item - The item to look at.
  * @returns {Array<string>}
+ * @private
  */
     const getNonSerializableKeys = item => Object.keys(item.has ?? {}).flatMap(trait => {
       const definition = definitions_1.default.get(trait)
@@ -2152,6 +2238,14 @@
     const getListenerOptions_1 = __importDefault(require('../objects/options/getListenerOptions'))
     const optionsToNumber_1 = __importDefault(require('../objects/options/optionsToNumber'))
     /**
+ * Whether the options ask for the capture phase.
+ * @private
+ */
+    const capturing = options => {
+      const template = (0, getListenerOptions_1.default)()
+      return ((0, optionsToNumber_1.default)(template, options) & template.capture) !== 0
+    }
+    /**
  * Search a DOM item's eventListeners for a specific event listener, matched by listener function, custom args, and
  * whether it listens in the capture phase. Returns its index and the matching descriptor as a tuple.
  *
@@ -2171,11 +2265,6 @@
  * @returns {Array.<(number|EventListener|undefined)>} A 2-element [index, matchingListener] tuple. If no match is
  * found, index is -1 and matchingListener is undefined.
  */
-    /** Whether the options ask for the capture phase. */
-    const capturing = options => {
-      const template = (0, getListenerOptions_1.default)()
-      return ((0, optionsToNumber_1.default)(template, options) & template.capture) !== 0
-    }
     const findEventListener = (eventName, listenerFunction, customArgs, options, item) => {
       customArgs = customArgs ?? null
       if (!si_funciona_1.default.isObject(item.eventListeners)) {
@@ -2294,6 +2383,13 @@
       value: true
     })
     require('core-js/stable')
+    /**
+ * Provide compatibility for using the options parameter of addEventListener
+ * @function
+ * @memberOf module:domEvents
+ * @param {EventListenerOptions} options - An object or boolean with the listener options
+ * @returns {boolean}
+ */
     const listenerOptions = options => {
       if (typeof listenerOptions.supportsOptions === 'undefined') {
         // Check if supportsOptions has been defined. This is a compatibility checking flag.

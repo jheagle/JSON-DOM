@@ -19,6 +19,7 @@ const definitions_1 = __importDefault(require('./definitions'))
  * trait, for one).
  * @param {CoreItem} item - The item to look at.
  * @returns {Array<string>}
+ * @private
  */
 const getNonSerializableKeys = item => Object.keys(item.has ?? {}).flatMap(trait => {
   const definition = definitions_1.default.get(trait)

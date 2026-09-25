@@ -10,6 +10,14 @@ const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
+/**
+ * @file Core Virtual DOM (DomItem tree) management: building items, the traits they carry, and finding and changing
+ * items in a tree.
+ * @author Joshua Heagle <joshuaheagle@gmail.com>
+ * @version 1.0.0
+ * @module domGeneral
+ * @memberOf module:jsonDom
+ */
 require('core-js/stable')
 const addDomItemProperties_1 = __importDefault(require('./objects/addDomItemProperties'))
 const appendChild_1 = __importDefault(require('./tree/appendChild'))

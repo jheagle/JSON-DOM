@@ -20,6 +20,7 @@ const getNonSerializableKeys_1 = __importDefault(require('../domItem/traits/getN
  * Check if the value is an empty object / array, or if it is null or undefined.
  * @param {*} propertyValue
  * @returns {boolean}
+ * @private
  */
 const isEmpty = propertyValue => si_funciona_1.default.emptyObject(propertyValue) || propertyValue === null || typeof propertyValue === 'undefined'
 /**

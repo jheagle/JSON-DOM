@@ -1,6 +1,7 @@
 'use strict'
 
 require('core-js/modules/esnext.iterator.constructor.js')
+require('core-js/modules/esnext.iterator.find.js')
 require('core-js/modules/esnext.iterator.reduce.js')
 const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
   return mod && mod.__esModule
@@ -67,6 +68,12 @@ const kabobCaseAttributes = attributesToSet => si_funciona_1.default.reduceObjec
   return attributes
 }, {})
 /**
+ * Find the name an attribute was given on the item from its kabob-case name: innerHTML is compared as inner-html, and
+ * camelCase cannot turn that back into innerHTML.
+ * @private
+ */
+const attributeName = (attributes, kabobKey) => Object.keys(attributes).find(name => (name === 'className' ? 'class' : si_funciona_1.default.kabobCase(name)) === kabobKey) ?? si_funciona_1.default.camelCase(kabobKey)
+/**
  * Given a domGeneral.DomItem as domItem, this function will return the changes to be applied
  * to the stored element property.
  * @function
@@ -113,7 +120,10 @@ const domItemChanges = domItem => {
     }
     if (!isArray) {
       // Not an array, simply set the attribute as added
-      changed.added[key] = domItem.attributes[si_funciona_1.default.camelCase(key)]
+      const name = attributeName(domItem.attributes, key)
+      // A property of the element (innerHTML) is set by its own name, anything else as an attribute (aria-label)
+      const element = domItem.element
+      changed.added[element && name in element && name !== 'form' ? name : key] = domItem.attributes[name]
       return changed
     }
     if (key !== 'class' && key !== 'style') {
