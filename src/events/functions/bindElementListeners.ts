@@ -5,10 +5,7 @@ import type { DomItem } from '../../domItem/types'
 
 /**
  * Receive a DomItem with eventListeners and apply the event listeners onto the Dom element.
- * @function
- * @memberOf module:domEvents
- * @param {DomItem} item - The DomItem which has eventListeners to apply to its element
- * @returns {DomItem}
+ * @param item - The DomItem which has eventListeners to apply to its element
  */
 const bindElementListeners = (item: DomItem): DomItem => {
   for (const eventName in item.eventListeners) {

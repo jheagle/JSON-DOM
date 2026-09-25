@@ -13,15 +13,13 @@ import type { EventName, ListenerFunction, ListenerOptions } from '../types'
  *
  * Does not remove the function from the root DomItem's eventActions registry, since that name may still be shared
  * by other DomItems - see {@link registerListener}.
- * @function
- * @memberOf module:domEvents
- * @param {EventName} eventName - The name of the trigger event (e.g. 'click').
- * @param {listenerFunction|function} listener - The same function originally passed to fullAddEventListener.
- * @param {string} [name=listener.name] - The name the listener was registered under in eventActions.
- * @param {Object|null} [customArgs=null] - The custom args the listener was registered with.
- * @param {EventListenerOptions} [options=false] - The options the listener was registered with.
- * @param {DomItem} item - The DomItem to remove the listener from.
- * @returns {DomItem} The same DomItem, with the matching listener removed if one was found.
+ * @param eventName - The name of the trigger event (e.g. 'click').
+ * @param listener - The same function originally passed to fullAddEventListener.
+ * @param name - The name the listener was registered under in eventActions.
+ * @param customArgs - The custom args the listener was registered with.
+ * @param options - The options the listener was registered with.
+ * @param item - The DomItem to remove the listener from.
+ * @returns The same DomItem, with the matching listener removed if one was found.
  */
 const fullRemoveEventListener = (eventName: EventName, listener: ListenerFunction, name: string | null | undefined, customArgs: object | null | undefined, options: ListenerOptions | null | undefined, item: DomItem): DomItem => {
   const listenerName = name ?? listener.name

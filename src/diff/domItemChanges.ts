@@ -7,19 +7,8 @@ import type { compareArrayResult, compareArrayResultMap } from 'si-funciona/dist
 import type { AttributeComparison, ChangeList, DotNotated } from './types'
 
 /**
- * @typedef {module:objectHelpers~mapCallback} testAttributeChange
- * @memberOf module:domGeneral
- * @param {*} attr - The current property being processed in the object.
- * @param {string} key - The property name of the current property being processed in the object.
- * @return {int} - -1: removed, 0: unchanged, 1: added.
- */
-
-/**
  * Given some config, provide a function to testing attribute and key existence in that config.
- * @function
- * @memberOf module:domGeneral
- * @param {Node|HTMLElement} element
- * @returns {testAttributeChange}
+ * @param element
  */
 const checkAttribute = (element: HTMLElement | null) =>
   (attr: unknown, key: string): AttributeComparison => {
@@ -51,10 +40,7 @@ const checkAttribute = (element: HTMLElement | null) =>
 
 /**
  * Updates all the keys to be kabob-case
- * @function
- * @memberOf module:domGeneral
- * @param {Object.<string, *>} attributesToSet
- * @returns {Object.<string, *>}
+ * @param attributesToSet
  */
 const kabobCaseAttributes = (attributesToSet: Record<string, any>): Record<string, any> => siFunciona.reduceObject(
   attributesToSet,
@@ -82,10 +68,7 @@ const attributeName = (attributes: Record<string, unknown>, kabobKey: string): s
 /**
  * Given a domGeneral.DomItem as domItem, this function will return the changes to be applied
  * to the stored element property.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem - The DomItem having changes to be applied to its element
- * @returns {ChangeList}
+ * @param domItem - The DomItem having changes to be applied to its element
  */
 const domItemChanges = (domItem: DomItem): ChangeList => {
   const changeList = createChangeList()

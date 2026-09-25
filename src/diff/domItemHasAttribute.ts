@@ -6,11 +6,8 @@ import type { AttributeComparison } from './types'
 
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem
- * @param {Object.<string, string>} attr
- * @returns {int|Object.<string, number>}
+ * @param domItem
+ * @param attr
  */
 const checkStyles = (domItem: DomItem, attr: StyleValues = {}): AttributeComparison => {
   const assignedStyles = domItem.attributes.style ?? {}
@@ -25,11 +22,8 @@ const checkStyles = (domItem: DomItem, attr: StyleValues = {}): AttributeCompari
 
 /**
  * For attributes which are objects or multipart strings -1 = remove attribute, 0 = no change, 1 = add attribute
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem
- * @param {string} attr
- * @returns {int|Object.<string, number>}
+ * @param domItem
+ * @param attr
  */
 const checkClasses = (domItem: DomItem, attr: string = ''): AttributeComparison => {
   const assignedClasses = domItem.attributes.className ?? ''
@@ -45,12 +39,9 @@ const checkClasses = (domItem: DomItem, attr: string = ''): AttributeComparison 
 /**
  * Check if the provided DomItem has the provided attributes.
  * Returns a boolean, or an array of 1 / 0 / -1 based on the comparison status.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem - Receive the DomItem to be assessed
- * @param {string} key - The attribute name to search for
- * @param {string|Object} attr - The expected value of the attribute to compare against
- * @returns {int|Object.<string, number>}
+ * @param domItem - Receive the DomItem to be assessed
+ * @param key - The attribute name to search for
+ * @param attr - The expected value of the attribute to compare against
  */
 const domItemHasAttribute = (domItem: DomItem, key: string, attr: unknown): AttributeComparison => {
   if (key === 'style') {

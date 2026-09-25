@@ -5,10 +5,7 @@ import type { DomItem, DomItemRoot } from '../domItem/types'
 
 /**
  * Convert DOM Item to JSON string.
- * @function
- * @memberOf module:domGeneral
- * @param {string} jsonString
- * @returns {DomItem}
+ * @param jsonString
  */
 const jsonToDomItem = (jsonString: string): DomItem => {
   const parsedJson = setParentItemReferences(
