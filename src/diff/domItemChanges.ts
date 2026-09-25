@@ -78,6 +78,14 @@ const kabobCaseAttributes = (attributesToSet: Record<string, any>): Record<strin
  * @param {DomItem} domItem - The DomItem having changes to be applied to its element
  * @returns {ChangeList}
  */
+/**
+ * Find the name an attribute was given on the item from its kabob-case name: innerHTML is compared as inner-html, and
+ * camelCase cannot turn that back into innerHTML.
+ */
+const attributeName = (attributes: Record<string, unknown>, kabobKey: string): string => Object.keys(attributes).find(
+  name => (name === 'className' ? 'class' : siFunciona.kabobCase(name)) === kabobKey
+) ?? siFunciona.camelCase(kabobKey)
+
 const domItemChanges = (domItem: DomItem): ChangeList => {
   const changeList = createChangeList()
   if (!domItem.element) {
@@ -123,7 +131,10 @@ const domItemChanges = (domItem: DomItem): ChangeList => {
       }
       if (!isArray) {
         // Not an array, simply set the attribute as added
-        changed.added[key] = domItem.attributes[siFunciona.camelCase(key)]
+        const name = attributeName(domItem.attributes, key)
+        // A property of the element (innerHTML) is set by its own name, anything else as an attribute (aria-label)
+        const element = domItem.element as HTMLElement | null
+        changed.added[element && name in element && name !== 'form' ? name : key] = domItem.attributes[name]
         return changed
       }
       if (key !== 'class' && key !== 'style') {

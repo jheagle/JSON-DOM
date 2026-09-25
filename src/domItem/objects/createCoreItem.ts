@@ -26,13 +26,21 @@ import type { CoreItem, DomItemConfig } from '../types'
 
 /**
  * Create the generic item, without the render trait. Every property which is not given gets its default. The given
- * object is completed and returned (it is not copied).
+ * object is completed and returned (it is not copied). Children which are plain objects are completed the same way, all
+ * the way down; a child which already has a has map is taken to be complete and is left alone.
  * @function
  * @memberOf module:domGeneral
  * @param {Object} [item={}] - Item-like object to be formatted as a CoreItem
  * @returns {CoreItem}
  */
 const createCoreItem = (item: DomItemConfig = {}): CoreItem => {
+  if (Array.isArray(item.children)) {
+    item.children.forEach((child: DomItemConfig) => {
+      if (typeof child === 'object' && child !== null && !child.has) {
+        createCoreItem(child)
+      }
+    })
+  }
   const newItem = siFunciona.reduceObject(
     {
       attributes: {},
