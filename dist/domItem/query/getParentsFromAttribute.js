@@ -12,6 +12,7 @@ Object.defineProperty(exports, '__esModule', {
 })
 require('core-js/stable')
 const documentItem_1 = __importDefault(require('../objects/documentItem'))
+const si_funciona_1 = __importDefault(require('si-funciona'))
 /**
  * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
  * This function will check all the children starting from item, and scan the attributes
@@ -32,7 +33,7 @@ const getParentsFromAttribute = (attr, value, item = documentItem_1.default.body
     }
     throw new Error('Detached child, missing parentItem reference. Use empty object if this is the root item.')
   }
-  if (!Object.keys(item.parentItem).length) {
+  if (si_funciona_1.default.emptyObject(item.parentItem)) {
     return []
   }
   const parent = item.parentItem

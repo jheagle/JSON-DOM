@@ -1322,6 +1322,7 @@
     })
     require('core-js/stable')
     const documentItem_1 = __importDefault(require('../objects/documentItem'))
+    const si_funciona_1 = __importDefault(require('si-funciona'))
     /**
  * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
  * This function will check all the children starting from item, and scan the attributes
@@ -1342,14 +1343,14 @@
         }
         throw new Error('Detached child, missing parentItem reference. Use empty object if this is the root item.')
       }
-      if (!Object.keys(item.parentItem).length) {
+      if (si_funciona_1.default.emptyObject(item.parentItem)) {
         return []
       }
       const parent = item.parentItem
       return (parent.attributes[attr] || item[attr] || false) === value ? getParentsFromAttribute(attr, value, parent).concat([parent]) : getParentsFromAttribute(attr, value, parent)
     }
     exports.default = getParentsFromAttribute
-  }, { '../objects/documentItem': 15, 'core-js/stable': 752 }],
+  }, { '../objects/documentItem': 15, 'core-js/stable': 752, 'si-funciona': 832 }],
   27: [function (require, module, exports) {
     'use strict'
 
@@ -27505,16 +27506,7 @@
       const makeQueuedRunnable = (resolve, reject, fn, ...args) => {
         const generator = (function * () {
           const item = yield
-          if (typeof item.fn !== 'function') {
-            return reject(item)
-          }
-          try {
-            return resolve(item.fn(...item.args))
-          } catch (error) {
-            // A function which throws rejects its own promise (as one which returns a rejected promise does), instead of
-            // throwing out of whichever function happened to finish just before it and starting the next item.
-            return reject(error)
-          }
+          return typeof item.fn === 'function' ? resolve(item.fn(...item.args)) : reject(item)
         }())
         // Prepare the generator to be used on the subsequent call
         generator.next()
@@ -27537,17 +27529,6 @@
         return result
       }
       /**
-   * When a queued function throws (or returns a promise which rejects), carry on with the rest of the queue and pass the
-   * error on to whoever queued it - otherwise the queue would stay marked as running and never start another function.
-   * @param {*} error
-   * @throws {*} The same error
-   */
-      const postFailedRun = error => {
-        isRunning = false
-        runNextItem()
-        throw error
-      }
-      /**
    * When ready, runs the next queued runnable generator.
    * @returns {IteratorYieldResult|null}
    */
@@ -27562,7 +27543,7 @@
             new Promise((resolve, reject) => {
               toRun = makeQueuedRunnable(resolve, reject, toRun)
               runNextItem()
-            }).then(postRun, postFailedRun)
+            }).then(postRun)
           }
           if ('success' in toRun) {
             // Some run responses return an object with 'success' property.
@@ -27593,7 +27574,7 @@
       const pushAnother = (fn, ...args) => new Promise((resolve, reject) => {
         queue.enqueue(makeQueuedRunnable(resolve, reject, fn, ...args))
         runNextItem()
-      }).then(postRun, postFailedRun)
+      }).then(postRun)
       if (Array.isArray(queue)) {
         const queueArray = queue
         queue = (0, _makeBasicQueue.default)()
@@ -27911,19 +27892,13 @@
     })
     exports.default = void 0
     /**
- * Create a single random integer from a set of `range` possible values, starting at the optional offset.
- * With no offset the result is 0 to range - 1 (so range is the number of possible values, the same as an array length
- * when choosing an index). The distance between the result numbers can be adjusted with interval.
- * @example
- * randomInteger(1) // always 0 (one possible value)
- * randomInteger(2) // 0 or 1
- * randomInteger(3, 1, 5) // 5, 10 or 15
- * items[randomInteger(items.length)] // a random valid index
+ * Create a single random integer within provide range. And with optional offset,
+ * The distance between the result numbers can be adjusted with interval.
  * @memberOf module:numberHelpers
- * @param {number} range - The number of possible values (0-99 would be 100 for range)
- * @param {number} [offset=0] - Choose the starting number (1-10 would be 1 for offset, 10 for range)
+ * @param {number} range - Choose the breadth of the random number (0-100 would be 100 for range)
+ * @param {number} [offset=0] - Choose the starting number (1-10 would be 1 for offset, 9 for range)
  * @param {number} [interval=1] - Choose the distance between numbers (5, 10, 15 would be 5 for interval, 1 for
- * offset, 3 for range)
+ * offset, 2 for range)
  * @returns {number}
  */
     const randomInteger = (range, offset = 0, interval = 1) => (Math.floor(Math.random() * range) + offset) * interval
@@ -27937,14 +27912,13 @@
     })
     exports.default = void 0
     /**
- * Create a single random number from offset up to (but never including) offset + range. With optional offset,
- * the distance between the result numbers can be adjusted with interval. Matches randomInteger, which gives the
- * whole numbers of the same span.
+ * Create a single random number within provided range. And with optional offset,
+ * The distance between the result numbers can be adjusted with interval.
  * @memberOf module:numberHelpers
- * @param {number} range - Choose the breadth of the random number (0 up to, but not including, 100 would be 100 for range)
- * @param {number} [offset=0] - Choose the starting number (1 up to, but not including, 10 would be 1 for offset, 9 for range)
- * @param {number} [interval=1] - Choose the multiplier applied to the result (~5, ~10, ~15 would be 5 for interval,
- * 1 for offset, 2 for range)
+ * @param {number} range - Choose the breadth of the random number (0-100 would be 100 for range)
+ * @param {number} [offset=0] - Choose the starting number (1-10 would be 1 for offset, 9 for range)
+ * @param {number} [interval=1] - Choose the distance between numbers (~5, ~10, ~15 would be 5 for interval, 1 for
+ * offset, 2 for range)
  * @returns {number}
  */
     const randomNumber = (range, offset = 0, interval = 1) => (Math.random() * range + offset) * interval
@@ -28170,12 +28144,14 @@
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * Clone objects for manipulation without data corruption, returns a copy of the provided object.
+ * NOTE: Use the mapLimit and relevancyRange to resolve "too much recursion" when the object is large and is known to
+ * have circular references. A high mapLimit may lead to heavy memory usage and slow performance.
  * @memberOf module:objectHelpers
  * @param {Object} object - The original object that is being cloned
  * @param {Object} [options={}]
- * @param {number} [options.mapLimit=100] - Deprecated and ignored (circular references are handled without trimming).
+ * @param {number} [options.mapLimit=100] - Size of temporary reference array used in memory before assessing relevancy.
  * @param {number} [options.depthLimit=-1] - Control how many nested levels deep will be used, -1 = no limit, >-1 = nth level limited.
- * @param {number} [options.relevancyRange=1000] - Deprecated and ignored: see mapLimit.
+ * @param {number} [options.relevancyRange=1000] - Total reference map length subtract this range, any relevancy less than that amount at time of evaluation will be removed.
  * @returns {Object}
  */
     const cloneObject = (object, {
@@ -28715,89 +28691,91 @@
     })
     exports.default = void 0
     require('core-js/modules/esnext.iterator.constructor.js')
+    require('core-js/modules/esnext.iterator.find.js')
     require('core-js/modules/esnext.iterator.map.js')
     require('core-js/modules/esnext.iterator.reduce.js')
-    require('core-js/modules/esnext.map.delete-all.js')
-    require('core-js/modules/esnext.map.every.js')
-    require('core-js/modules/esnext.map.filter.js')
-    require('core-js/modules/esnext.map.find.js')
-    require('core-js/modules/esnext.map.find-key.js')
-    require('core-js/modules/esnext.map.includes.js')
-    require('core-js/modules/esnext.map.key-of.js')
-    require('core-js/modules/esnext.map.map-keys.js')
-    require('core-js/modules/esnext.map.map-values.js')
-    require('core-js/modules/esnext.map.merge.js')
-    require('core-js/modules/esnext.map.reduce.js')
-    require('core-js/modules/esnext.map.some.js')
-    require('core-js/modules/esnext.map.update.js')
     const _isCloneable = _interopRequireDefault(require('./isCloneable'))
     const _reduceObject = _interopRequireDefault(require('./reduceObject'))
+    const _relevancyFilter = _interopRequireDefault(require('../functions/relevancyFilter'))
     const _setValue = _interopRequireDefault(require('./setValue'))
     function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
     /**
  * Perform a deep merge of objects. This will return a function that will combine all objects and sub-objects.
  * Objects having the same attributes will overwrite from last object to first.
- * Every call of the returned function keeps its own record of the objects it has already visited (so circular
- * references are followed only once, and an object which is referenced in several places is merged once), and nothing
- * is remembered between calls: the results of separate calls never share state or go stale.
+ * NOTE: Use the mapLimit and relevancyRange to resolve "too much recursion" when the object is large and is known to
+ * have circular references. A high mapLimit may lead to heavy memory usage and slow performance.
  * @memberOf module:objectHelpers
  * @param {Object} [options={}]
- * @param {number} [options.mapLimit=100] - Deprecated and ignored: the record of visited objects is now scoped to a
- * single call, so it does not need trimming.
+ * @param {number} [options.mapLimit=100] - Size of temporary reference array used in memory before assessing relevancy.
  * @param {number} [options.depthLimit=-1] - Control how many nested levels deep will be used, -1 = no limit, >-1 = nth level limited.
- * @param {number} [options.relevancyRange=1000] - Deprecated and ignored: see mapLimit.
- * @param {Iterable|array} [options.map=[]] - A predetermined list of references (source and the object it should
- * resolve to) which every call starts from. It is only read, never added to.
+ * @param {number} [options.relevancyRange=1000] - Total reference map length subtract this range, any relevancy less than that amount at time of evaluation will be removed.
+ * @param {Iterable|array} [options.map=[]] - A predetermined list of references gathered (to be passed to itself during recursion).
  * @param {boolean} [options.useClone=false]
  * @returns {module:objectHelpers~mergeObjectsCallback|mergeObjectsCallback}
  */
     const mergeObjectsBase = ({
+      mapLimit = 100,
       depthLimit = -1,
+      relevancyRange = 1000,
       map = [],
       useClone = false
-    } = {}) => {
-      const merge = (visited, depth, objects) => {
-        const firstObject = useClone ? Array.isArray(objects[0]) ? [] : {} : objects.shift()
-        if (objects.length < 1) {
-          return firstObject
-        }
-        if (depth === 0) {
-          return firstObject
-        }
-        return objects.reduce((newObj, arg) => {
-          if (!arg) {
-            return newObj
-          }
-          if (!visited.has(arg)) {
-            visited.set(arg, newObj)
-          }
-          return (0, _reduceObject.default)(arg, (returnObj, value, key) => {
-            if ((0, _isCloneable.default)(value)) {
-              if (visited.has(value)) {
-                return (0, _setValue.default)(key, visited.get(value), returnObj)
-              }
-              let objectValue = newObj[key]
-              if (!(0, _isCloneable.default)(objectValue) || !objectValue) {
-                if (!useClone) {
-                  // Merging by reference: the source object is used as it is, there is nothing to merge it into.
-                  visited.set(value, value)
-                  return (0, _setValue.default)(key, value, returnObj)
-                }
-                objectValue = Array.isArray(value) ? [] : {}
-              }
-              return (0, _setValue.default)(key, merge(visited, depth - 1, [objectValue, value]), returnObj)
-            }
-            return (0, _setValue.default)(key, value, returnObj)
-          }, newObj)
-        }, firstObject || {})
+    } = {}) => (...objects) => {
+      const firstObject = useClone ? Array.isArray(objects[0]) ? [] : {} : objects.shift()
+      if (objects.length < 1) {
+        return firstObject
       }
-      return (...objects) => merge(new Map(map.map(({
-        source,
-        object
-      }) => [source, object])), depthLimit, objects)
+      if (depthLimit === 0) {
+        return firstObject
+      }
+      return objects.reduce((newObj, arg) => {
+        if (!arg) {
+          return newObj
+        }
+        map.push({
+          source: arg,
+          object: newObj,
+          relevance: map.length
+        })
+        map = (0, _relevancyFilter.default)(map, {
+          mapLimit,
+          relevancyRange
+        })
+        return (0, _reduceObject.default)(arg, (returnObj, value, key) => {
+          if ((0, _isCloneable.default)(value)) {
+            let objectValue = newObj[key]
+            const exists = map.find(existing => existing.source === value)
+            if (exists) {
+              exists.relevance = map.length + 1
+              return (0, _setValue.default)(key, exists.object, returnObj)
+            }
+            if (!(0, _isCloneable.default)(objectValue) || !objectValue) {
+              objectValue = useClone ? Array.isArray(value) ? [] : {} : value
+            }
+            if ((0, _isCloneable.default)(objectValue)) {
+              return (0, _setValue.default)(key, mergeObjectsBase({
+                mapLimit,
+                depthLimit: depthLimit - 1,
+                relevancyRange,
+                map,
+                useClone
+              })(objectValue, value), returnObj)
+            }
+            map.push({
+              source: value,
+              object: objectValue,
+              relevance: map.length
+            })
+            map = (0, _relevancyFilter.default)(map, {
+              mapLimit,
+              relevancyRange
+            })
+          }
+          return (0, _setValue.default)(key, value, returnObj)
+        }, newObj)
+      }, firstObject || {})
     }
     const _default = exports.default = mergeObjectsBase
-  }, { './isCloneable': 805, './reduceObject': 815, './setValue': 817, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.map.js': 691, 'core-js/modules/esnext.iterator.reduce.js': 692, 'core-js/modules/esnext.map.delete-all.js': 694, 'core-js/modules/esnext.map.every.js': 695, 'core-js/modules/esnext.map.filter.js': 696, 'core-js/modules/esnext.map.find-key.js': 697, 'core-js/modules/esnext.map.find.js': 698, 'core-js/modules/esnext.map.includes.js': 699, 'core-js/modules/esnext.map.key-of.js': 700, 'core-js/modules/esnext.map.map-keys.js': 701, 'core-js/modules/esnext.map.map-values.js': 702, 'core-js/modules/esnext.map.merge.js': 703, 'core-js/modules/esnext.map.reduce.js': 704, 'core-js/modules/esnext.map.some.js': 705, 'core-js/modules/esnext.map.update.js': 706 }],
+  }, { '../functions/relevancyFilter': 785, './isCloneable': 805, './reduceObject': 815, './setValue': 817, 'core-js/modules/esnext.iterator.constructor.js': 686, 'core-js/modules/esnext.iterator.find.js': 689, 'core-js/modules/esnext.iterator.map.js': 691, 'core-js/modules/esnext.iterator.reduce.js': 692 }],
   812: [function (require, module, exports) {
     'use strict'
 

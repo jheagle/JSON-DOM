@@ -1,5 +1,6 @@
 import 'core-js/stable'
 import documentItem from '../objects/documentItem'
+import siFunciona from 'si-funciona'
 import type { DomItem } from '../types'
 
 /**
@@ -22,7 +23,7 @@ const getParentsFromAttribute = (attr: string, value: unknown, item: DomItem = d
     }
     throw new Error('Detached child, missing parentItem reference. Use empty object if this is the root item.')
   }
-  if (!Object.keys(item.parentItem).length) {
+  if (siFunciona.emptyObject(item.parentItem)) {
     return []
   }
   const parent = item.parentItem as DomItem
