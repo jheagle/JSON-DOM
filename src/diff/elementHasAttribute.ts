@@ -6,11 +6,8 @@ import type { AttributeComparison } from './types'
 
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
- * @function
- * @memberOf module:domGeneral
- * @param {HTMLElement} element
- * @param {string|Object<string, string>} attr
- * @returns {int|Object.<string, number>}
+ * @param element
+ * @param attr
  */
 const checkStyles = (element: HTMLElement, attr: StyleValues = {}): AttributeComparison => {
   const assignedStyles = getAssignedStyles(element.style) ?? {}
@@ -25,11 +22,8 @@ const checkStyles = (element: HTMLElement, attr: StyleValues = {}): AttributeCom
 
 /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
- * @function
- * @memberOf module:domGeneral
- * @param {HTMLElement} element
- * @param {string} attr
- * @returns {int|Object.<string, number>}
+ * @param element
+ * @param attr
  */
 const checkClasses = (element: HTMLElement, attr: string | object = ''): AttributeComparison => {
   if (typeof attr !== 'string') {
@@ -49,12 +43,9 @@ const checkClasses = (element: HTMLElement, attr: string | object = ''): Attribu
 /**
  * Check if the provided Element has the provided attributes.
  * Returns a boolean, or an array of 1 / 0 / -1 based on the comparison status.
- * @function
- * @memberOf module:domGeneral
- * @param {HTMLElement} element - Receive the element to be assessed
- * @param {string} key - The attribute name to search for
- * @param {string|Object.<string, string>} attr - The expected value of the attribute to compare against
- * @returns {int|Object.<string, number>}
+ * @param element - Receive the element to be assessed
+ * @param key - The attribute name to search for
+ * @param attr - The expected value of the attribute to compare against
  */
 const elementHasAttribute = (element: HTMLElement | null | undefined, key: string, attr: unknown): AttributeComparison => {
   if (!element) {

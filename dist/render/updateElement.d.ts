@@ -8,11 +8,8 @@ import type { DomItem } from '../domItem/types';
  * domItem's direct children onto that element via {@link updateChildNodes}, so a bare call never orphans an
  * existing child subtree. The plain attribute/style patch path below doesn't touch domItem.element itself, so it
  * doesn't need to.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem - The DomItem having domItem changes to be applied to its
+ * @param domItem - The DomItem having domItem changes to be applied to its
  * element
- * @returns {DomItem}
  */
 declare const updateElement: (domItem: DomItem) => DomItem;
 export default updateElement;

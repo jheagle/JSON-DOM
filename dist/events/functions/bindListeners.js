@@ -16,11 +16,8 @@ const si_funciona_1 = __importDefault(require('si-funciona'))
 /**
  * Based on the eventListeners property of the provided item, bind the
  * listeners to the associated element property for the provided domEvents.DomItem.
- * @function
- * @memberOf module:domEvents
- * @param {DomItem} item - The DomItem which may have eventListeners to apply to its
+ * @param item - The DomItem which may have eventListeners to apply to its
  * element
- * @returns {DomItem}
  */
 const bindListeners = item => !si_funciona_1.default.emptyObject(item.eventListeners) && item.element ? (0, bindElementListeners_1.default)(item) : item
 exports.default = bindListeners

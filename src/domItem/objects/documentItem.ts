@@ -6,9 +6,6 @@ let existingItem: DomItemRoot | null = null
 
 /**
  * The shared root DomItem of the Virtual DOM (DomItem tree) for this environment's real document.
- * @member documentItem
- * @memberOf module:domGeneral
- * @type {DomItemRoot}
  */
 const documentItem: DomItemRoot = (() => {
   if (existingItem === null) {

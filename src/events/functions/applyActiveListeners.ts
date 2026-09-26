@@ -9,11 +9,8 @@ import type { EventName, EventResponder, ListenerTarget } from '../types'
 
 /**
  * Apply each active event listener for event type to the DOM Item's element.
- * @function
- * @memberOf module:domEvents
- * @param {EventName} eventName
- * @param {DomItem} item
- * @return {DomItem}
+ * @param eventName
+ * @param item
  */
 const applyActiveListeners = (eventName: EventName, item: DomItem): DomItem => {
   const listenerOptions = getListenerOptions()

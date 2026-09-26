@@ -3,10 +3,7 @@ import type { DomItem } from '../../domItem/types'
 
 /**
  * Set all the listeners for this DOMItem to be inactive.
- * @function
- * @memberOf module:domEvents
- * @param {DomItem} item - The DomItem which will have its eventListeners updated.
- * @returns {DomItem}
+ * @param item - The DomItem which will have its eventListeners updated.
  */
 const deactivateListeners = (item: DomItem): DomItem => {
   for (const eventName in item.eventListeners) {

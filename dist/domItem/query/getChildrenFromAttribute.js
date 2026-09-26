@@ -19,13 +19,10 @@ const getChildTest_1 = __importDefault(require('./getChildTest'))
  * This function will check all the children starting from item, and scan the attributes
  * property for matches. The returned array contains children matching from all levels.
  * WARNING: This calls a recursive function.
- * @function
- * @memberOf module:domGeneral
- * @param {string} attr - Provide the attribute name to be searched
- * @param {*} value - The attribute value to be compared
- * @param {DomItem} item - The DomItem which may have child items matching the attribute
+ * @param attr - Provide the attribute name to be searched
+ * @param value - The attribute value to be compared
+ * @param item - The DomItem which may have child items matching the attribute
  * criteria
- * @returns {Array.<DomItem>}
  */
 const getChildrenFromAttribute = (attr, value, item = documentItem_1.default.body) => (0, gatherChildItems_1.default)(item, (0, getChildTest_1.default)(attr, value))
 exports.default = getChildrenFromAttribute

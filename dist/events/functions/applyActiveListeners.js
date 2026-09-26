@@ -20,11 +20,8 @@ const assignListener_1 = __importDefault(require('./assignListener'))
 const createEventProxy_1 = __importDefault(require('../objects/createEventProxy'))
 /**
  * Apply each active event listener for event type to the DOM Item's element.
- * @function
- * @memberOf module:domEvents
- * @param {EventName} eventName
- * @param {DomItem} item
- * @return {DomItem}
+ * @param eventName
+ * @param item
  */
 const applyActiveListeners = (eventName, item) => {
   const listenerOptions = (0, getListenerOptions_1.default)()

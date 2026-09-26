@@ -14,11 +14,8 @@ require('core-js/stable')
 const updateElement_1 = __importDefault(require('./updateElement'))
 /**
  * Create a new DOM Node based on name and data.
- * @function
- * @memberOf module:domGeneral
- * @param {string} nodeName
- * @param {string|null} data
- * @returns {Text|Comment|HTMLElement}
+ * @param nodeName
+ * @param data
  */
 const makeElementType = (nodeName, data = null, is) => {
   switch (nodeName) {
@@ -37,10 +34,7 @@ const makeElementType = (nodeName, data = null, is) => {
 }
 /**
  * Create an HTML element based on the provided attributes and return the element as an Object.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem - The DomItem requiring matching HTML element property
- * @return {DomItem}
+ * @param domItem - The DomItem requiring matching HTML element property
  */
 const generateElement = domItem => {
   domItem.element = makeElementType(domItem.nodeName, domItem.nodeValue, typeof domItem.attributes.is === 'string' ? domItem.attributes.is : undefined)

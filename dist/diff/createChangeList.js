@@ -14,15 +14,8 @@ Object.defineProperty(exports, '__esModule', {
 require('core-js/stable')
 const si_funciona_1 = __importDefault(require('si-funciona'))
 /**
- * @typedef {Function} appendChanges
- * @memberOf module:domGeneral
- * @param {string} changeType - Either 'removed' or 'added'
- * @param {DotNotatedObject} changes - The changes to append to existing type
- */
-/**
  * Initialize the appendChanges method with the changeList, return the appendChanges method.
- * @param {ChangeList} changeList
- * @returns {appendChanges}
+ * @param changeList
  * @private
  */
 const appendChangesTo = changeList => (changeType, changes) => {
@@ -32,21 +25,10 @@ const appendChangesTo = changeList => (changeType, changes) => {
   return si_funciona_1.default.mergeObjects(changeList[changeType], changes)
 }
 /**
- * Represent changes / a diff of an object, including removed, added, and changed properties.
- * @typedef {Object.<string, DotNotatedObject>} ChangeList
- * @memberOf module:domGeneral
- * @property {DotNotatedObject} removed
- * @property {DotNotatedObject} added
- * @property {appendChanges} appendChanges
- */
-/**
  * Create the change list template.
- * @function
- * @memberOf module:domGeneral
- * @param {ChangeList} changeList
- * @param {DotNotatedObject} [changeList.removed={}]
- * @param {DotNotatedObject} [changeList.added={}]
- * @returns {ChangeList}
+ * @param changeList
+ * @param changeList.removed
+ * @param changeList.added
  */
 const createChangeList = ({
   removed = {},

@@ -16,10 +16,7 @@ require('core-js/stable')
 const createDomItem_1 = __importDefault(require('./createDomItem'))
 /**
  * Ensure all basic properties of the DomItem are present.
- * @function
- * @memberOf module:domGeneral
- * @param {Object} item - The object that will be formatted as a DomItem.
- * @returns {DomItem}
+ * @param item - The object that will be formatted as a DomItem.
  */
 const addDomItemProperties = item => {
   if (typeof item.children !== 'undefined') {

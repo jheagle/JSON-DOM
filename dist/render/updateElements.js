@@ -18,11 +18,8 @@ const updateElement_1 = __importDefault(require('./updateElement'))
 /**
  * Generate HTML element data for each object in the matrix
  * WARNING: This is a recursive function.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} config - The DomItem having child DomItems with config changes to be
+ * @param config - The DomItem having child DomItems with config changes to be
  * applied
- * @returns {DomItem}
  */
 const updateElements = config => {
   if (config.nodeName === '#document') {

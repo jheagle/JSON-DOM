@@ -20,13 +20,10 @@ const updateDomItems_1 = __importDefault(require('../../sync/updateDomItems'))
 /**
  * Return the root DomItem of a Virtual DOM (DomItem tree) for the document. The rootItem argument is a system
  * variable and not necessary to implement.
- * @function
- * @memberOf module:domGeneral
- * @param {Object.<string, listenerFunction>} listeners - An object of all event
+ * @param listeners - An object of all event
  * listeners to be registered in the Dom
- * @param {DomItemRoot|DomItem} [rootItem] - This is a
+ * @param rootItem - This is a
  * reference to DomItemRoot which will be defaulted with {@link initRoot}
- * @returns {DomItemRoot|DomItem}
  */
 const documentDomItem = (listeners = {}, rootItem = (0, initRoot_1.default)((0, initChildren_1.default)(), listeners)) => {
   rootItem.children = rootItem.children.map(child => (0, createDomItem_1.default)(child))

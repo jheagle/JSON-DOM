@@ -8,13 +8,10 @@ import type { DomItem } from '../types'
  * This function will check all the children starting from item, and scan the attributes
  * property for matches. The return array contains children matching from all levels.
  * WARNING: This is a recursive function.
- * @function
- * @memberOf module:domGeneral
- * @param {string} attr - Provide the attribute name to be searched
- * @param {*} value - The attribute value to be compared
- * @param {DomItem} item - The DomItem which may have parent items matching the
+ * @param attr - Provide the attribute name to be searched
+ * @param value - The attribute value to be compared
+ * @param item - The DomItem which may have parent items matching the
  * attribute criteria
- * @returns {Array}
  */
 const getParentsFromAttribute = (attr: string, value: unknown, item: DomItem = documentItem.body): DomItem[] => {
   if (item.parentItem === null) {

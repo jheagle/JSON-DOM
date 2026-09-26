@@ -32,13 +32,10 @@
     }())
     /**
  * Convert DOM Item to JSON string.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} item
- * @param {Object} [options={}]
- * @param {int} [options.mapLimit=100]
- * @param {int} [options.relevancyRange=1000]
- * @returns {string}
+ * @param item
+ * @param options
+ * @param options.mapLimit
+ * @param options.relevancyRange
  */
     const domItemToJson = (item, {
       mapLimit = 100,
@@ -91,18 +88,14 @@
     const getNonSerializableKeys_1 = __importDefault(require('../domItem/traits/getNonSerializableKeys'))
     /**
  * Check if the value is an empty object / array, or if it is null or undefined.
- * @param {*} propertyValue
- * @returns {boolean}
+ * @param propertyValue
  * @private
  */
     const isEmpty = propertyValue => si_funciona_1.default.emptyObject(propertyValue) || propertyValue === null || typeof propertyValue === 'undefined'
     /**
  * Remove all empty properties to reduce total size of the object.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} item - The DomItem with properties to check for empty.
- * @param {Array} propertiesToDelete - Optional array of additional property names to remove.
- * @returns {DomItem}
+ * @param item - The DomItem with properties to check for empty.
+ * @param propertiesToDelete - Optional array of additional property names to remove.
  */
     const removeEmptyProperties = (item, propertiesToDelete = []) => {
       item.children.forEach(child => {
@@ -138,15 +131,8 @@
     require('core-js/stable')
     const si_funciona_1 = __importDefault(require('si-funciona'))
     /**
- * @typedef {Function} appendChanges
- * @memberOf module:domGeneral
- * @param {string} changeType - Either 'removed' or 'added'
- * @param {DotNotatedObject} changes - The changes to append to existing type
- */
-    /**
  * Initialize the appendChanges method with the changeList, return the appendChanges method.
- * @param {ChangeList} changeList
- * @returns {appendChanges}
+ * @param changeList
  * @private
  */
     const appendChangesTo = changeList => (changeType, changes) => {
@@ -156,21 +142,10 @@
       return si_funciona_1.default.mergeObjects(changeList[changeType], changes)
     }
     /**
- * Represent changes / a diff of an object, including removed, added, and changed properties.
- * @typedef {Object.<string, DotNotatedObject>} ChangeList
- * @memberOf module:domGeneral
- * @property {DotNotatedObject} removed
- * @property {DotNotatedObject} added
- * @property {appendChanges} appendChanges
- */
-    /**
  * Create the change list template.
- * @function
- * @memberOf module:domGeneral
- * @param {ChangeList} changeList
- * @param {DotNotatedObject} [changeList.removed={}]
- * @param {DotNotatedObject} [changeList.added={}]
- * @returns {ChangeList}
+ * @param changeList
+ * @param changeList.removed
+ * @param changeList.added
  */
     const createChangeList = ({
       removed = {},
@@ -206,18 +181,8 @@
     const elementHasAttribute_1 = __importDefault(require('./elementHasAttribute'))
     const createChangeList_1 = __importDefault(require('./createChangeList'))
     /**
- * @typedef {module:objectHelpers~mapCallback} testAttributeChange
- * @memberOf module:domGeneral
- * @param {*} attr - The current property being processed in the object.
- * @param {string} key - The property name of the current property being processed in the object.
- * @return {int} - -1: removed, 0: unchanged, 1: added.
- */
-    /**
  * Given some config, provide a function to testing attribute and key existence in that config.
- * @function
- * @memberOf module:domGeneral
- * @param {Node|HTMLElement} element
- * @returns {testAttributeChange}
+ * @param element
  */
     const checkAttribute = element => (attr, key) => {
       if (typeof attr === 'object') {
@@ -241,10 +206,7 @@
     }
     /**
  * Updates all the keys to be kabob-case
- * @function
- * @memberOf module:domGeneral
- * @param {Object.<string, *>} attributesToSet
- * @returns {Object.<string, *>}
+ * @param attributesToSet
  */
     const kabobCaseAttributes = attributesToSet => si_funciona_1.default.reduceObject(attributesToSet, (attributes, value, name) => {
       let attrValue = attributesToSet[name] ?? value
@@ -264,10 +226,7 @@
     /**
  * Given a domGeneral.DomItem as domItem, this function will return the changes to be applied
  * to the stored element property.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem - The DomItem having changes to be applied to its element
- * @returns {ChangeList}
+ * @param domItem - The DomItem having changes to be applied to its element
  */
     const domItemChanges = domItem => {
       const changeList = (0, createChangeList_1.default)()
@@ -380,11 +339,8 @@
     const getAssignedStyles_1 = __importDefault(require('./getAssignedStyles'))
     /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem
- * @param {Object.<string, string>} attr
- * @returns {int|Object.<string, number>}
+ * @param domItem
+ * @param attr
  */
     const checkStyles = (domItem, attr = {}) => {
       const assignedStyles = domItem.attributes.style ?? {}
@@ -395,11 +351,8 @@
     }
     /**
  * For attributes which are objects or multipart strings -1 = remove attribute, 0 = no change, 1 = add attribute
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem
- * @param {string} attr
- * @returns {int|Object.<string, number>}
+ * @param domItem
+ * @param attr
  */
     const checkClasses = (domItem, attr = '') => {
       const assignedClasses = domItem.attributes.className ?? ''
@@ -411,12 +364,9 @@
     /**
  * Check if the provided DomItem has the provided attributes.
  * Returns a boolean, or an array of 1 / 0 / -1 based on the comparison status.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem - Receive the DomItem to be assessed
- * @param {string} key - The attribute name to search for
- * @param {string|Object} attr - The expected value of the attribute to compare against
- * @returns {int|Object.<string, number>}
+ * @param domItem - Receive the DomItem to be assessed
+ * @param key - The attribute name to search for
+ * @param attr - The expected value of the attribute to compare against
  */
     const domItemHasAttribute = (domItem, key, attr) => {
       if (key === 'style') {
@@ -456,18 +406,8 @@
     const domItemHasAttribute_1 = __importDefault(require('./domItemHasAttribute'))
     const createChangeList_1 = __importDefault(require('./createChangeList'))
     /**
- * @typedef {module:objectHelpers~mapCallback} testAttributeChange
- * @memberOf module:domGeneral
- * @param {*} attr - The current property being processed in the object.
- * @param {string} key - The property name of the current property being processed in the object.
- * @return {int} - -1: removed, 0: unchanged, 1: added.
- */
-    /**
  * Given some config, provide a function to testing attribute and key existence in that config.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem
- * @returns {testAttributeChange}
+ * @param domItem
  */
     const checkAttribute = domItem => (attr, key) => {
       if (key === 'className') {
@@ -490,10 +430,7 @@
     }
     /**
  * Updates all the keys to be camelCase
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem
- * @returns {Object.<string, *>}
+ * @param domItem
  */
     const camelCaseAttributes = domItem => domItem.element
       ? si_funciona_1.default.reduceObject(domItem.element.attributes, (attributes, attr) => {
@@ -512,11 +449,8 @@
     /**
  * Given a domGeneral.DomItem as config, this function will return the changes from the element
  * to be applied to the domItem.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem - The DomItem having the element which changes to be applied to the config
+ * @param domItem - The DomItem having the element which changes to be applied to the config
  * element
- * @returns {ChangeList}
  */
     const elementChanges = domItem => {
       const changeList = (0, createChangeList_1.default)()
@@ -629,11 +563,8 @@
     const si_funciona_1 = __importDefault(require('si-funciona'))
     /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
- * @function
- * @memberOf module:domGeneral
- * @param {HTMLElement} element
- * @param {string|Object<string, string>} attr
- * @returns {int|Object.<string, number>}
+ * @param element
+ * @param attr
  */
     const checkStyles = (element, attr = {}) => {
       const assignedStyles = (0, getAssignedStyles_1.default)(element.style) ?? {}
@@ -644,11 +575,8 @@
     }
     /**
  * For attributes which are objects or multi-part strings -1 = remove attribute, 0 = no change, 1 = add attribute
- * @function
- * @memberOf module:domGeneral
- * @param {HTMLElement} element
- * @param {string} attr
- * @returns {int|Object.<string, number>}
+ * @param element
+ * @param attr
  */
     const checkClasses = (element, attr = '') => {
       if (typeof attr !== 'string') {
@@ -664,12 +592,9 @@
     /**
  * Check if the provided Element has the provided attributes.
  * Returns a boolean, or an array of 1 / 0 / -1 based on the comparison status.
- * @function
- * @memberOf module:domGeneral
- * @param {HTMLElement} element - Receive the element to be assessed
- * @param {string} key - The attribute name to search for
- * @param {string|Object.<string, string>} attr - The expected value of the attribute to compare against
- * @returns {int|Object.<string, number>}
+ * @param element - Receive the element to be assessed
+ * @param key - The attribute name to search for
+ * @param attr - The expected value of the attribute to compare against
  */
     const elementHasAttribute = (element, key, attr) => {
       if (!element) {
@@ -711,10 +636,7 @@
  * Get all the styles which have been assigned to this element. Assigned styles are indicated as numeric-key
  * properties with a value indicating the string-key property which has been assigned. The string-key properties
  * have the assigned values.
- * @function
- * @memberOf module:domGeneral
- * @param {Object.<style, style>|CSSProperties} elementStyles
- * @returns {object}
+ * @param elementStyles
  */
     const getAssignedStyles = elementStyles => si_funciona_1.default.reduceObject(elementStyles, (styles, attr, key) => Number.isNaN(Number(key)) ? styles : si_funciona_1.default.setValue(attr, elementStyles[attr], styles), {})
     exports.default = getAssignedStyles
@@ -762,12 +684,8 @@
       value: true
     })
     /**
- * @file Core Virtual DOM (DomItem tree) management: building items, the traits they carry, and finding and changing
+ * Core Virtual DOM (DomItem tree) management: building items, the traits they carry, and finding and changing
  * items in a tree.
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module domGeneral
- * @memberOf module:jsonDom
  */
     require('core-js/stable')
     const addDomItemProperties_1 = __importDefault(require('./objects/addDomItemProperties'))
@@ -844,10 +762,7 @@
     const createDomItem_1 = __importDefault(require('./createDomItem'))
     /**
  * Ensure all basic properties of the DomItem are present.
- * @function
- * @memberOf module:domGeneral
- * @param {Object} item - The object that will be formatted as a DomItem.
- * @returns {DomItem}
+ * @param item - The object that will be formatted as a DomItem.
  */
     const addDomItemProperties = item => {
       if (typeof item.children !== 'undefined') {
@@ -879,53 +794,10 @@
     const appendChild_1 = __importDefault(require('../tree/appendChild'))
     const removeChild_1 = __importDefault(require('../tree/removeChild'))
     /**
- * CoreItem is the generic item of json-dom's Virtual DOM: one node of a tree with its attributes, its children, the
- * listeners it wants and a has map of the traits it carries. It knows nothing about a real element: that is what the
- * render trait adds (see {@link createDomItem}). A back-end item which is never rendered is a CoreItem.
- * @typedef {Object} CoreItem
- * @memberOf module:domGeneral
- * @property {Object.<string, string|Object>} attributes - All potential HTML element attributes can be defined here
- * (including the defaulted style object, and the native custom element name in `is`)
- * @property {Array.<CoreItem>} children - A reference to an array of child objects
- * @property {Object.<module:domEvents~EventName, module:domEvents~EventListeners>} eventListeners - An object holding all events to be registered for the
- * associated element
- * @property {Object.<string, true>} has - The traits this item has, by name
- * @property {Array} jsonExclusions - array of properties to exclude
- * @property {string} nodeName - This is any document node name
- * @property {?string} nodeValue - Is a string of text, null for HTML elements
- * @property {CoreItem|Object|null} parentItem - A reference to the parent of this object
- * @property {Function} appendChild - Attach a child to this item
- * @property {Function} removeChild - Detach a child from this item
- */
-    /**
- * The traits an item has: a map of trait name to true. What each trait puts on an item is described by TraitRegistry.
- * @typedef {Object.<string, true>} HasMap
- * @memberOf module:domGeneral
- */
-    /**
- * The traits an item can have, and the data each one puts on it. json-dom has one, render (see {@link RenderProperties});
- * other libraries add theirs by declaration merging, prefixed by their package (`matrix.row`), and describe them at
- * runtime with {@link defineTrait}. In TypeScript, `hasTrait(item, 'matrix.row')` then narrows the item to what the
- * trait adds.
- * @typedef {Object.<string, Object>} TraitRegistry
- * @memberOf module:domGeneral
- */
-    /**
- * What can be given to build an item: any of its properties (the children may be plain objects as well, they are
- * completed too), plus any custom data. Whatever is left out gets its default.
- * @typedef {Object} DomItemConfig
- * @memberOf module:domGeneral
- * @property {Array.<DomItemConfig>} [children] - Plain children are completed, items are left alone
- * @property {(Object|HTMLElement|null)} [element] - An existing element to keep
- */
-    /**
  * Create the generic item, without the render trait. Every property which is not given gets its default. The given
  * object is completed and returned (it is not copied). Children which are plain objects are completed the same way, all
  * the way down; a child which already has a has map is taken to be complete and is left alone.
- * @function
- * @memberOf module:domGeneral
- * @param {Object} [item={}] - Item-like object to be formatted as a CoreItem
- * @returns {CoreItem}
+ * @param item - Item-like object to be formatted as a CoreItem
  */
     const createCoreItem = (item = {}) => {
       if (Array.isArray(item.children)) {
@@ -976,25 +848,6 @@
     const createCoreItem_1 = __importDefault(require('./createCoreItem'))
     const withTrait_1 = __importDefault(require('../traits/withTrait'))
     /**
- * DomItem is a CoreItem with the render trait: a plain object representation of one HTML element, mirrored onto a real
- * element via {@link updateElement}/{@link renderHtml}. On top of the CoreItem properties it has the element and the
- * listeners which are attached to it.
- * @typedef {CoreItem} DomItem
- * @memberOf module:domGeneral
- * @property {Object.<module:domEvents~EventName, Object.<number, eventHandler>>} activeListeners - Generated property storing assigned
- * listeners.
- * @property {(Object|HTMLElement|null)} element - A reference to an existing HTML element will be stored here (default
- * null)
- */
-    /**
- * What the render trait puts on an item.
- * @typedef {Object} RenderProperties
- * @memberOf module:domGeneral
- * @property {(Object|HTMLElement|null)} element - The real node the item is mirrored onto, null while there is none
- * @property {Object.<module:domEvents~EventName, Object.<number, eventHandler>>} [activeListeners] - Generated: the
- * listeners which are attached to the element
- */
-    /**
  * A plain child is an object which is not an item yet (an item always has a has map).
  * @private
  */
@@ -1004,10 +857,7 @@
  * {@link createCoreItem}) with the render trait. All incoming attributes will be merged to the specified format, and the
  * given object is completed and returned (it is not copied). Children which are plain objects are completed the same way,
  * all the way down; a child which already has a has map is already an item, and is left alone.
- * @function
- * @memberOf module:domGeneral
- * @param {Object} [item={}] - DomItem-like object to be formatted as DomItem
- * @returns {DomItem}
+ * @param item - DomItem-like object to be formatted as DomItem
  */
     const createDomItem = (item = {}) => {
       if (Array.isArray(item.children)) {
@@ -1046,13 +896,10 @@
     /**
  * Return the root DomItem of a Virtual DOM (DomItem tree) for the document. The rootItem argument is a system
  * variable and not necessary to implement.
- * @function
- * @memberOf module:domGeneral
- * @param {Object.<string, listenerFunction>} listeners - An object of all event
+ * @param listeners - An object of all event
  * listeners to be registered in the Dom
- * @param {DomItemRoot|DomItem} [rootItem] - This is a
+ * @param rootItem - This is a
  * reference to DomItemRoot which will be defaulted with {@link initRoot}
- * @returns {DomItemRoot|DomItem}
  */
     const documentDomItem = (listeners = {}, rootItem = (0, initRoot_1.default)((0, initChildren_1.default)(), listeners)) => {
       rootItem.children = rootItem.children.map(child => (0, createDomItem_1.default)(child))
@@ -1084,9 +931,6 @@
     let existingItem = null
     /**
  * The shared root DomItem of the Virtual DOM (DomItem tree) for this environment's real document.
- * @member documentItem
- * @memberOf module:domGeneral
- * @type {DomItemRoot}
  */
     const documentItem = (() => {
       if (existingItem === null) {
@@ -1113,26 +957,7 @@
     const createDomItem_1 = __importDefault(require('./createDomItem'))
     const onBodyLoad_1 = __importDefault(require('si-funciona/dist/helpers/functions/onBodyLoad'))
     /**
- * DomItemHead defines the structure for a single element in the Dom
- * @typedef {DomItem} DomItemHead
- * @property {string} [nodeName=head] - This is set to the string head referring to the HTML element of the same name
- * @property {Object.<string, string|Object>} attributes - All potential HTML element attributes can be defined here
- * @property {HTMLHeadElement} element - A reference to the HTML head element
- * @property {Array.<DomItem>} children - A reference to an array of child objects
- */
-    /**
- * DomItemBody defines the structure for a single element in the Dom
- * @typedef {DomItem} DomItemBody
- * @property {string} [nodeName=body] - This is set to the string body referring to the HTML element of the same name
- * @property {Object.<string, string|Object>} attributes - All potential HTML element attributes can be defined here
- * @property {HTMLBodyElement} element - A reference to the HTML body element
- * @property {Array.<DomItem>} children - A reference to an array of child objects
- */
-    /**
  * Initiate the children of Root / DocumentItem. This is a helper for {@link documentDomItem}.
- * @function
- * @memberOf module:domGeneral
- * @returns {Array.<DomItemHead|DomItemBody>}
  */
     const initChildren = () => {
       const head = document.head
@@ -1177,27 +1002,9 @@
     require('core-js/stable')
     const createDomItem_1 = __importDefault(require('./createDomItem'))
     /**
- * DomItemRoot defines the structure for the root node of json-dom's Virtual DOM (DomItem tree) - the #document
- * equivalent, from which every other DomItem in the tree descends.
- * @typedef {DomItem} DomItemRoot
- * @memberOf module:domGeneral
- * @property {string} [nodeName='#document'] - This is set to the string html referring to the HTML element of the same name
- * @property {null} [nodeValue] - Must be null
- * @property {Object} attributes - Empty object as attributes placeholder
- * @property {HTMLDocument} element - A reference to the entire Document
- * @property {Object.<string, listenerFunction>} eventActions - Registered event actions (listenerFunctions), keyed by name
- * @property {Object.<module:domEvents~EventName, module:domEvents~EventListeners>} eventListeners - all registered listeners stored as listener name and function pairs
- * @property {Array.<DomItemHead|DomItemBody>} children - Two references: for head and body
- * @property {DomItemHead} head - A specific reference to head item
- * @property {DomItemBody} body - A specific reference to body item
- */
-    /**
  * Initiate the Root for DocumentItem. This is primary a helper for {@link documentDomItem}.
- * @function
- * @memberOf module:domGeneral
- * @param {Array.<DomItemHead|DomItemBody>} children - Provide an array of Head and Body (usually via {@link initChildren})
- * @param {Object.<string, listenerFunction>} listeners - An object of all event listeners to be registered in the Dom
- * @returns {DomItemRoot|DomItem}
+ * @param children - Provide an array of Head and Body (usually via {@link initChildren})
+ * @param listeners - An object of all event listeners to be registered in the Dom
  */
     const initRoot = (children = [{}, {}], listeners = {}) => (0, createDomItem_1.default)({
       nodeName: '#document',
@@ -1223,26 +1030,13 @@
     })
     require('core-js/stable')
     /**
- * To be used with gatherChildItems which will start at item and recurse over all child items, this test
- * will then choose which child items will be returned as the result of the test.
- * @callback module:domGeneral~testChildItem
- * @memberOf module:domGeneral
- * @param {DomItem|Object} item - The DomItem is the child being tested
- * @param {Array.<DomItem>} gatheredResults - All of the child items gathered based on
- * the test
- * @returns {Array.<DomItem>}
- */
-    /**
  * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
  * This function will check all the children starting from and including item, and run the test function on each
  * child encountered. The return array contains children returned from the test from all levels.
  * WARNING: This is a recursive function.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} item - The DomItem which may have child items matching the attribute
+ * @param item - The DomItem which may have child items matching the attribute
  * criteria
- * @param {module:domGeneral~testChildItem} test - Assess each child, and return the ones which qualify
- * @returns {Array.<DomItem>}
+ * @param test - Assess each child, and return the ones which qualify
  */
     const gatherChildItems = (item, test) => test(item, item.children.reduce((a, b) => a.concat(gatherChildItems(b, test)), []))
     exports.default = gatherChildItems
@@ -1256,11 +1050,8 @@
     require('core-js/stable')
     /**
  * Retrieve the {@link module:domGeneral~testChildItem} function by providing an attribute and value to check.
- * @function
- * @memberOf module:domGeneral
- * @param {string} attr - Provide the attribute name to be searched
- * @param {*} value - The attribute value to be compared
- * @returns {module:domGeneral~testChildItem}
+ * @param attr - Provide the attribute name to be searched
+ * @param value - The attribute value to be compared
  */
     const getChildTest = (attr, value) => (item, gatheredResults) => item.attributes[attr] && item.attributes[attr] === value ? gatheredResults.concat([item]) : gatheredResults
     exports.default = getChildTest
@@ -1283,12 +1074,9 @@
     const getChildrenFromAttribute_1 = __importDefault(require('./getChildrenFromAttribute'))
     /**
  * Helper for getting all domGeneral.DomItems starting at parent and having specified className attribute
- * @function
- * @memberOf module:domGeneral
- * @param {*} className - The className searched for
- * @param {DomItem} item - The DomItem which may have child items matching the attribute
+ * @param className - The className searched for
+ * @param item - The DomItem which may have child items matching the attribute
  * criteria
- * @returns {Array.<DomItem>}
  */
     const getChildrenByClass = si_funciona_1.default.curry(getChildrenFromAttribute_1.default)('className')
     exports.default = getChildrenByClass
@@ -1311,12 +1099,9 @@
     const getChildrenFromAttribute_1 = __importDefault(require('./getChildrenFromAttribute'))
     /**
  * Helper for getting all domGeneral.DomItems starting at parent and having specified name attribute
- * @function
- * @memberOf module:domGeneral
- * @param {*} name - The name searched for
- * @param {DomItem} item - The DomItem which may have child items matching the attribute
+ * @param name - The name searched for
+ * @param item - The DomItem which may have child items matching the attribute
  * criteria
- * @returns {Array.<DomItem>}
  */
     const getChildrenByName = si_funciona_1.default.curry(getChildrenFromAttribute_1.default)('name')
     exports.default = getChildrenByName
@@ -1343,13 +1128,10 @@
  * This function will check all the children starting from item, and scan the attributes
  * property for matches. The returned array contains children matching from all levels.
  * WARNING: This calls a recursive function.
- * @function
- * @memberOf module:domGeneral
- * @param {string} attr - Provide the attribute name to be searched
- * @param {*} value - The attribute value to be compared
- * @param {DomItem} item - The DomItem which may have child items matching the attribute
+ * @param attr - Provide the attribute name to be searched
+ * @param value - The attribute value to be compared
+ * @param item - The DomItem which may have child items matching the attribute
  * criteria
- * @returns {Array.<DomItem>}
  */
     const getChildrenFromAttribute = (attr, value, item = documentItem_1.default.body) => (0, gatherChildItems_1.default)(item, (0, getChildTest_1.default)(attr, value))
     exports.default = getChildrenFromAttribute
@@ -1372,12 +1154,9 @@
     const getParentsFromAttribute_1 = __importDefault(require('./getParentsFromAttribute'))
     /**
  * Helper for getting all domGeneral.DomItems starting at child and having specified className attribute
- * @function
- * @memberOf module:domGeneral
- * @param {*} className - The className to search for
- * @param {DomItem} item - The DomItem which may have parent items matching the
+ * @param className - The className to search for
+ * @param item - The DomItem which may have parent items matching the
  * attribute criteria
- * @returns {Array}
  */
     const getParentsByClass = si_funciona_1.default.curry(getParentsFromAttribute_1.default)('className')
     exports.default = getParentsByClass
@@ -1400,12 +1179,9 @@
     const getParentsFromAttribute_1 = __importDefault(require('./getParentsFromAttribute'))
     /**
  * Helper for getting all domGeneral.DomItems starting at child and having specified name attribute
- * @function
- * @memberOf module:domGeneral
- * @param {*} name - The name to search for
- * @param {DomItem} item - The DomItem which may have parent items matching the
+ * @param name - The name to search for
+ * @param item - The DomItem which may have parent items matching the
  * attribute criteria
- * @returns {Array}
  */
     const getParentsByName = si_funciona_1.default.curry(getParentsFromAttribute_1.default)('name')
     exports.default = getParentsByName
@@ -1428,12 +1204,9 @@
     const getParentsFromAttribute_1 = __importDefault(require('./getParentsFromAttribute'))
     /**
  * Helper for getting all domGeneral.DomItems starting at child and having specified nodeName
- * @function
- * @memberOf module:domGeneral
- * @param {*} nodeName - The nodeName to search for
- * @param {DomItem} item - The DomItem which may have parent items matching the
+ * @param nodeName - The nodeName to search for
+ * @param item - The DomItem which may have parent items matching the
  * attribute criteria
- * @returns {Array}
  */
     const getParentsByTagName = si_funciona_1.default.curry(getParentsFromAttribute_1.default)('nodeName')
     exports.default = getParentsByTagName
@@ -1459,13 +1232,10 @@
  * This function will check all the children starting from item, and scan the attributes
  * property for matches. The return array contains children matching from all levels.
  * WARNING: This is a recursive function.
- * @function
- * @memberOf module:domGeneral
- * @param {string} attr - Provide the attribute name to be searched
- * @param {*} value - The attribute value to be compared
- * @param {DomItem} item - The DomItem which may have parent items matching the
+ * @param attr - Provide the attribute name to be searched
+ * @param value - The attribute value to be compared
+ * @param item - The DomItem which may have parent items matching the
  * attribute criteria
- * @returns {Array}
  */
     const getParentsFromAttribute = (attr, value, item = documentItem_1.default.body) => {
       if (item.parentItem === null) {
@@ -1498,23 +1268,11 @@
     require('core-js/stable')
     const definitions_1 = __importDefault(require('./definitions'))
     /**
- * What a trait is at runtime.
- * @typedef {Object} TraitDefinition
- * @memberOf module:domGeneral
- * @property {Array.<string>} keys - The properties the trait puts on an item
- * @property {boolean} [serializable=true] - False for properties which only make sense where the item lives (an
- * element): they are left out of json
- * @property {Function} [defaults] - Returns the data a new item gets when it is given the trait
- */
-    /**
  * Describe a trait so json-dom knows what it is at runtime: the properties it puts on an item (so they can be left out
  * of json when they only make sense where the item lives), and the defaults a new item gets. Types are added
  * separately, by merging into TraitRegistry.
- * @function
- * @memberOf module:domGeneral
- * @param {string} name - The name of the trait, prefixed by the package which defines it: matrix.row
- * @param {TraitDefinition} definition - The properties the trait puts on an item, whether they are serializable and the defaults.
- * @returns {TraitDefinition}
+ * @param name - The name of the trait, prefixed by the package which defines it: matrix.row
+ * @param definition - The properties the trait puts on an item, whether they are serializable and the defaults.
  */
     const defineTrait = (name, definition) => {
       definitions_1.default.set(name, definition)
@@ -1574,8 +1332,7 @@
     /**
  * The properties an item has only because of its traits, and which do not belong in json (the element of the render
  * trait, for one).
- * @param {CoreItem} item - The item to look at.
- * @returns {Array<string>}
+ * @param item - The item to look at.
  * @private
  */
     const getNonSerializableKeys = item => Object.keys(item.has ?? {}).flatMap(trait => {
@@ -1601,10 +1358,7 @@
     const definitions_1 = __importDefault(require('./definitions'))
     /**
  * The runtime definition of a trait, if it was defined.
- * @function
- * @memberOf module:domGeneral
- * @param {string} name - The name of the trait.
- * @returns {TraitDefinition|undefined}
+ * @param name - The name of the trait.
  */
     const getTraitDefinition = name => definitions_1.default.get(name)
     exports.default = getTraitDefinition
@@ -1618,11 +1372,8 @@
     require('core-js/stable')
     /**
  * Whether an item has a trait. It is also a type guard: after the check the trait's data is typed on the item.
- * @function
- * @memberOf module:domGeneral
- * @param {CoreItem} item - The item to check.
- * @param {string} trait - The name of the trait.
- * @returns {boolean}
+ * @param item - The item to check.
+ * @param trait - The name of the trait.
  */
     const hasTrait = (item, trait) => (item.has ?? {})[trait] === true
     exports.default = hasTrait
@@ -1639,11 +1390,8 @@
     /**
  * Whether an item has all of these traits. It is also a type guard: after the check the data of every one of the traits
  * is typed on the item.
- * @function
- * @memberOf module:domGeneral
- * @param {CoreItem} item - The item to check.
- * @param {...string} traits - The names of the traits.
- * @returns {boolean}
+ * @param item - The item to check.
+ * @param traits - The names of the traits.
  */
     const hasTraits = (item, ...traits) => traits.every(trait => (item.has ?? {})[trait] === true)
     exports.default = hasTraits
@@ -1668,10 +1416,7 @@
     /**
  * Whether an item, and every item below it, has the render trait: the tree json-dom's render and sync functions work
  * on. hasTrait only checks the one item, so use this where a tree comes from somewhere else. It is also a type guard.
- * @function
- * @memberOf module:domGeneral
- * @param {CoreItem} item - The item at the top of the tree to check.
- * @returns {boolean}
+ * @param item - The item at the top of the tree to check.
  */
     const isDomItem = item => (0, hasTrait_1.default)(item, 'render') && item.children.every(isDomItem)
     exports.default = isDomItem
@@ -1694,12 +1439,10 @@
     /**
  * Give an item a trait: the trait's defaults and the given data are put on the item (the same object, not a copy), and
  * it is added to the item's has map.
- * @function
- * @memberOf module:domGeneral
- * @param {CoreItem} item - The item which gains the trait.
- * @param {string} trait - The name of the trait.
- * @param {Object} data - The data the trait puts on the item.
- * @returns {CoreItem} The same item, now with the trait.
+ * @param item - The item which gains the trait.
+ * @param trait - The name of the trait.
+ * @param data - The data the trait puts on the item.
+ * @returns The same item, now with the trait.
  */
     const withTrait = (item, trait, data) => {
       Object.assign(item, definitions_1.default.get(trait)?.defaults?.(), data)
@@ -1719,11 +1462,8 @@
     require('core-js/stable')
     /**
  * Append a child to the end of given parent's children list.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} parent - The parent that will receive the child.
- * @param {DomItem} child - The new child to attach to the parent.
- * @returns {DomItem}
+ * @param parent - The parent that will receive the child.
+ * @param child - The new child to attach to the parent.
  */
     const appendChild = (parent, child) => {
       parent.children.push(child)
@@ -1742,10 +1482,7 @@
     /**
  * Get the upper parentItem for the provided child. (usually this is a documentItem reference)
  * WARNING: This is a recursive function.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} item - The DomItem which we want the highest parent item of
- * @returns {DomItemRoot}
+ * @param item - The DomItem which we want the highest parent item of
  */
     const getTopParentItem = item => {
       if (item.parentItem === null) {
@@ -1767,11 +1504,8 @@
     require('core-js/stable')
     /**
  * Reverse of appendHtml, remove a DomItem and have the associated element removed.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} parent - The parent of the items
- * @param {DomItem} child - The DomItem with HTMLElement to be removed
- * @returns {Array.<DomItem>}
+ * @param parent - The parent of the items
+ * @param child - The DomItem with HTMLElement to be removed
  */
     const removeChild = (parent, child) => {
       parent.element.removeChild(child.element)
@@ -1790,10 +1524,7 @@
     require('core-js/stable')
     /**
  * For each child of this item, set the parentItem references.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} item - The DomItem to have parent references applied.
- * @returns {DomItem}
+ * @param item - The DomItem to have parent references applied.
  */
     const setParentItemReferences = item => {
       if (!item.children || !item.children.length) {
@@ -1830,12 +1561,9 @@
     const retrieveListener_1 = __importDefault(require('./retrieveListener'))
     /**
  * Activate listener by pushing it to activeListeners.
- * @function
- * @memberOf module:domEvents
- * @param {EventName} eventName
- * @param {EventListener} eventListener
- * @param {DomItem} item
- * @returns {DomItem}
+ * @param eventName
+ * @param eventListener
+ * @param item
  */
     const activateListener = (eventName, eventListener, item) => {
       const listenerOptions = (0, getListenerOptions_1.default)()
@@ -1883,16 +1611,14 @@
  * Prefer calling this through {@link fullAddEventListener} with a registered name (see {@link registerListener}).
  * Passing a raw function directly here works, but logs a console warning - see {@link EventListener}'s
  * listenerFunc property for what that discretionary path gives up.
- * @function
- * @memberOf module:domEvents
- * @param {EventName} eventName - The name of the trigger event (e.g. 'click').
- * @param {string|module:domEvents~listenerFunction} listenerFunction - Preferably a name registered via
+ * @param eventName - The name of the trigger event (e.g. 'click').
+ * @param listenerFunction - Preferably a name registered via
  * {@link registerListener}; a raw listener function is also accepted, at the caller's discretion.
- * @param {Object|null} [customArgs=null] - Additional args passed through to the listener when called.
- * @param {module:domEvents~EventListenerOptions} [options=false] - Options to be used when the listener is attached
+ * @param customArgs - Additional args passed through to the listener when called.
+ * @param options - Options to be used when the listener is attached
  * to the element.
- * @param {module:domGeneral~DomItem} item - The DomItem which will receive the event listener.
- * @returns {module:domGeneral~DomItem} The same DomItem, with the new EventListener descriptor appended.
+ * @param item - The DomItem which will receive the event listener.
+ * @returns The same DomItem, with the new EventListener descriptor appended.
  */
     const addEventListener = (eventName, listenerFunction, customArgs, options, item) => {
       customArgs = customArgs ?? null
@@ -1939,11 +1665,8 @@
     const createEventProxy_1 = __importDefault(require('../objects/createEventProxy'))
     /**
  * Apply each active event listener for event type to the DOM Item's element.
- * @function
- * @memberOf module:domEvents
- * @param {EventName} eventName
- * @param {DomItem} item
- * @return {DomItem}
+ * @param eventName
+ * @param item
  */
     const applyActiveListeners = (eventName, item) => {
       const listenerOptions = (0, getListenerOptions_1.default)()
@@ -1993,22 +1716,13 @@
     require('core-js/stable')
     const listenerOptions_1 = __importDefault(require('./listenerOptions'))
     /**
- * Document attachEvent support for older browsers.
- * @typedef {EventTarget} MicrosoftHtmlObject
- * @memberOf module:domEvents
- * @property {Function} attachEvent
- */
-    /**
  * Provide compatibility for assigning listeners.
- * @function
- * @memberOf module:domEvents
- * @param {string} trigger - The name of the event which will trigger the listenerFunction on the element. (keyof HTMLElementEventMap)
- * @param {EventTarget|MicrosoftHtmlObject} elem - An element to append the listener onto
- * @param {EventListenerOrEventListenerObject|null} fn - The function which will be invoked when the
+ * @param trigger - The name of the event which will trigger the listenerFunction on the element. (keyof HTMLElementEventMap)
+ * @param elem - An element to append the listener onto
+ * @param fn - The function which will be invoked when the
  * event is triggered
- * @param {EventListenerOptions|boolean} options - Additional options to how the event will be
+ * @param options - Additional options to how the event will be
  * fired
- * @returns {listenerFunction|Function}
  */
     const assignListener = (trigger, elem, fn, options = false) => {
       // Attaching a listener may be done differently based on the browser support
@@ -2046,11 +1760,8 @@
  * Based on the eventListeners property of the provided item, bind the listeners to the associated element property
  * for each item in the domEvents.DomItem structure.
  * WARNING: This is a recursive function.
- * @function
- * @memberOf module:domEvents
- * @param {DomItem} item - The DomItem with an associated HTMLElement to have a listener
+ * @param item - The DomItem with an associated HTMLElement to have a listener
  * assigned
- * @returns {DomItem}
  */
     const bindAllListeners = item => {
       for (const child of item.children) {
@@ -2080,10 +1791,7 @@
     const applyActiveListeners_1 = __importDefault(require('./applyActiveListeners'))
     /**
  * Receive a DomItem with eventListeners and apply the event listeners onto the Dom element.
- * @function
- * @memberOf module:domEvents
- * @param {DomItem} item - The DomItem which has eventListeners to apply to its element
- * @returns {DomItem}
+ * @param item - The DomItem which has eventListeners to apply to its element
  */
     const bindElementListeners = item => {
       for (const eventName in item.eventListeners) {
@@ -2120,11 +1828,8 @@
     /**
  * Based on the eventListeners property of the provided item, bind the
  * listeners to the associated element property for the provided domEvents.DomItem.
- * @function
- * @memberOf module:domEvents
- * @param {DomItem} item - The DomItem which may have eventListeners to apply to its
+ * @param item - The DomItem which may have eventListeners to apply to its
  * element
- * @returns {DomItem}
  */
     const bindListeners = item => !si_funciona_1.default.emptyObject(item.eventListeners) && item.element ? (0, bindElementListeners_1.default)(item) : item
     exports.default = bindListeners
@@ -2151,13 +1856,11 @@
     /**
  * Deactivate a single listener: detach it from the element (if it was actually attached) and remove it from
  * activeListeners, without disturbing any other listener sharing the same options bucket.
- * @function
- * @memberOf module:domEvents
- * @param {EventName} eventName - The name of the trigger event the listener was activated under.
- * @param {EventListener} eventListener - The EventListener descriptor to deactivate, as found via
+ * @param eventName - The name of the trigger event the listener was activated under.
+ * @param eventListener - The EventListener descriptor to deactivate, as found via
  * {@link findEventListener} or returned from {@link activateListener}.
- * @param {module:domGeneral~DomItem} item - The DomItem the listener is attached to.
- * @returns {module:domGeneral~DomItem} The same DomItem, with this listener detached and marked inactive.
+ * @param item - The DomItem the listener is attached to.
+ * @returns The same DomItem, with this listener detached and marked inactive.
  */
     const deactivateListener = (eventName, eventListener, item) => {
       const eventOptions = si_funciona_1.default.dotGet(item, `activeListeners.${eventName}`)
@@ -2204,10 +1907,7 @@
     require('core-js/stable')
     /**
  * Set all the listeners for this DOMItem to be inactive.
- * @function
- * @memberOf module:domEvents
- * @param {DomItem} item - The DomItem which will have its eventListeners updated.
- * @returns {DomItem}
+ * @param item - The DomItem which will have its eventListeners updated.
  */
     const deactivateListeners = item => {
       for (const eventName in item.eventListeners) {
@@ -2254,15 +1954,13 @@
  *
  * item is the last parameter (instead of customArgs/options having literal defaults) so this can be curried and
  * piped directly - see {@link fullAddEventListener} for an example of the pattern.
- * @function
- * @memberOf module:domEvents
- * @param {EventName} eventName - The name of the trigger event the listener was registered under.
- * @param {module:domEvents~listenerFunction} listenerFunction - The listener function to match against.
- * @param {Object|null} [customArgs=null] - The custom args the listener was registered with.
- * @param {module:domEvents~EventListenerOptions} [options=false] - The options the listener was registered with; only
+ * @param eventName - The name of the trigger event the listener was registered under.
+ * @param listenerFunction - The listener function to match against.
+ * @param customArgs - The custom args the listener was registered with.
+ * @param options - The options the listener was registered with; only
  * the capture flag is compared.
- * @param {module:domGeneral~DomItem} item - The DomItem whose eventListeners will be searched.
- * @returns {Array.<(number|EventListener|undefined)>} A 2-element [index, matchingListener] tuple. If no match is
+ * @param item - The DomItem whose eventListeners will be searched.
+ * @returns A 2-element [index, matchingListener] tuple. If no match is
  * found, index is -1 and matchingListener is undefined.
  */
     const findEventListener = (eventName, listenerFunction, customArgs, options, item) => {
@@ -2314,15 +2012,12 @@
  *
  * item is the last parameter (instead of name/customArgs/options having literal defaults) so addEventListener can
  * be curried directly into the pipe below without an argument-reordering wrapper.
- * @function
- * @memberOf module:domEvents
- * @param {EventName} eventName - The name of the trigger event (e.g. 'click').
- * @param {listenerFunction|function} listener - The function to be called when the event is triggered.
- * @param {string} [name=listener.name] - The name the listener will be registered under in eventActions.
- * @param {Object|null} [customArgs=null] - Additional args passed through to the listener when called.
- * @param {EventListenerOptions} [options=false] - Options to be used when the listener is attached to the element.
- * @param {DomItem} item - The DomItem which will receive the event listener.
- * @returns {DomItem}
+ * @param eventName - The name of the trigger event (e.g. 'click').
+ * @param listener - The function to be called when the event is triggered.
+ * @param name - The name the listener will be registered under in eventActions.
+ * @param customArgs - Additional args passed through to the listener when called.
+ * @param options - Options to be used when the listener is attached to the element.
+ * @param item - The DomItem which will receive the event listener.
  */
     const fullAddEventListener = (eventName, listener, name, customArgs, options, item) => {
       const listenerName = name ?? listener.name
@@ -2360,15 +2055,13 @@
  *
  * Does not remove the function from the root DomItem's eventActions registry, since that name may still be shared
  * by other DomItems - see {@link registerListener}.
- * @function
- * @memberOf module:domEvents
- * @param {EventName} eventName - The name of the trigger event (e.g. 'click').
- * @param {listenerFunction|function} listener - The same function originally passed to fullAddEventListener.
- * @param {string} [name=listener.name] - The name the listener was registered under in eventActions.
- * @param {Object|null} [customArgs=null] - The custom args the listener was registered with.
- * @param {EventListenerOptions} [options=false] - The options the listener was registered with.
- * @param {DomItem} item - The DomItem to remove the listener from.
- * @returns {DomItem} The same DomItem, with the matching listener removed if one was found.
+ * @param eventName - The name of the trigger event (e.g. 'click').
+ * @param listener - The same function originally passed to fullAddEventListener.
+ * @param name - The name the listener was registered under in eventActions.
+ * @param customArgs - The custom args the listener was registered with.
+ * @param options - The options the listener was registered with.
+ * @param item - The DomItem to remove the listener from.
+ * @returns The same DomItem, with the matching listener removed if one was found.
  */
     const fullRemoveEventListener = (eventName, listener, name, customArgs, options, item) => {
       const listenerName = name ?? listener.name
@@ -2385,10 +2078,7 @@
     require('core-js/stable')
     /**
  * Provide compatibility for using the options parameter of addEventListener
- * @function
- * @memberOf module:domEvents
- * @param {EventListenerOptions} options - An object or boolean with the listener options
- * @returns {boolean}
+ * @param options - An object or boolean with the listener options
  */
     const listenerOptions = options => {
       if (typeof listenerOptions.supportsOptions === 'undefined') {
@@ -2418,19 +2108,10 @@
     })
     require('core-js/stable')
     /**
- * Based on available flags, either proceed to process the listener or skip.
- * @typedef {Function} eventHandler
- * @memberOf module:domEvents
- * @param {EventProxy} event - The event object passed to the listener
- */
-    /**
  * Prepare a listener to be used before assigning to an element.
- * @function
- * @memberOf module:domEvents
- * @param {listenerFunction} listener
- * @param {DomItem} item
- * @param {...*} [args]
- * @returns {eventHandler}
+ * @param listener
+ * @param item
+ * @param args
  */
     const makeEventHandler = (listener, item, ...args) => {
       return event => {
@@ -2459,13 +2140,10 @@
     const documentItem_1 = __importDefault(require('../../domItem/objects/documentItem'))
     /**
  * Register a single listener function as part of the root domEvents.DomItem.
- * @function
- * @memberOf module:domEvents
- * @param {listenerFunction|function} listener - Provide a function which will be called
+ * @param listener - Provide a function which will be called
  * when a Dom event is triggered.
- * @param {string} [name] - The name of the listener to be used.
- * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
- * @returns {Object.<string, listenerFunction>}
+ * @param name - The name of the listener to be used.
+ * @param parent - The parent DomItem which is DomItemRoot which stores eventListeners property.
  */
     const registerListener = (listener, name = listener.name, parent = documentItem_1.default) => Object.assign(parent.eventActions, {
       [name]: listener
@@ -2490,12 +2168,9 @@
     const documentItem_1 = __importDefault(require('../../domItem/objects/documentItem'))
     /**
  * Register multiple listeners from an array of functions.
- * @function
- * @memberOf module:domEvents
- * @param {Array.<listenerFunction|function>} listeners - An array of functions to be
+ * @param listeners - An array of functions to be
  * used as the registered event listeners.
- * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which has eventActions property.
- * @returns {DomItemRoot|Object}
+ * @param parent - The parent DomItem which is DomItemRoot which has eventActions property.
  */
     const registerListeners = (listeners, parent = documentItem_1.default) => {
       si_funciona_1.default.mergeObjectsMutable(parent.eventActions, listeners)
@@ -2526,14 +2201,12 @@
  *
  * item is the last parameter (instead of customArgs/options having literal defaults) so this can be curried and
  * piped directly - see {@link fullAddEventListener} for an example of the pattern.
- * @function
- * @memberOf module:domEvents
- * @param {EventName} eventName - The name of the trigger event the listener was registered under.
- * @param {module:domEvents~listenerFunction} listenerFunction - The listener function to match against.
- * @param {Object|null} [customArgs=null] - The custom args the listener was registered with.
- * @param {module:domEvents~EventListenerOptions} [options=false] - The options the listener was registered with.
- * @param {module:domGeneral~DomItem} item - The DomItem to remove the listener from.
- * @returns {module:domGeneral~DomItem} The same DomItem, with the matching listener removed if one was found.
+ * @param eventName - The name of the trigger event the listener was registered under.
+ * @param listenerFunction - The listener function to match against.
+ * @param customArgs - The custom args the listener was registered with.
+ * @param options - The options the listener was registered with.
+ * @param item - The DomItem to remove the listener from.
+ * @returns The same DomItem, with the matching listener removed if one was found.
  */
     const removeEventListener = (eventName, listenerFunction, customArgs, options, item) => {
       const [listenerIndex, foundListener] = (0, findEventListener_1.default)(eventName, listenerFunction, customArgs, options, item)
@@ -2569,12 +2242,9 @@
  * Based on the provided function / listener name, retrieve the associated function from the root domEvents.DomItem.
  * If a raw function is passed instead of a registered name, it is returned as-is - see {@link EventListener}'s
  * listenerFunc property for the tradeoffs of that discretionary path.
- * @function
- * @memberOf module:domEvents
- * @param {string|listenerFunction} listenerName - The name of one of the registered listener functions, or an
+ * @param listenerName - The name of one of the registered listener functions, or an
  * already-resolved listener function.
- * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
- * @returns {listenerFunction|function|Object}
+ * @param parent - The parent DomItem which is DomItemRoot which stores eventListeners property.
  */
     const retrieveListener = (listenerName, parent = documentItem_1.default) => {
       if (typeof listenerName === 'function') {
@@ -2611,11 +2281,9 @@
  * Detach every active listener for one event type from a DomItem's element, regardless of which EventListener
  * descriptor each one belongs to, and clear that event's activeListeners bucket. Unlike {@link deactivateListener},
  * this does not update the listenerActive/activeResponder state on the individual descriptors.
- * @function
- * @memberOf module:domEvents
- * @param {EventName} eventName - The name of the trigger event whose active listeners will be revoked.
- * @param {module:domGeneral~DomItem} item - The DomItem to revoke active listeners from.
- * @return {module:domGeneral~DomItem} The same DomItem, with all active listeners for this event detached.
+ * @param eventName - The name of the trigger event whose active listeners will be revoked.
+ * @param item - The DomItem to revoke active listeners from.
+ * @returns The same DomItem, with all active listeners for this event detached.
  */
     const revokeActiveListeners = (eventName, item) => {
       const listenerOptions = (0, getListenerOptions_1.default)()
@@ -2666,15 +2334,12 @@
     const listenerOptions_1 = __importDefault(require('./listenerOptions'))
     /**
  * Provide compatibility for unassigning listeners.
- * @function
- * @memberOf module:domEvents
- * @param {string} trigger - The name of the event which will trigger the listenerFunction on the element. (keyof HTMLElementEventMap)
- * @param {EventTarget|MicrosoftHtmlObject} elem - An element to append the listener onto
- * @param {EventListenerOrEventListenerObject|null} fn - The function which will be invoked when the
+ * @param trigger - The name of the event which will trigger the listenerFunction on the element. (keyof HTMLElementEventMap)
+ * @param elem - An element to append the listener onto
+ * @param fn - The function which will be invoked when the
  * event is triggered
- * @param {EventListenerOptions|boolean} options - Additional options to how the event will be
+ * @param options - Additional options to how the event will be
  * fired
- * @returns {listenerFunction|Function}
  */
     const unassignListener = (trigger, elem, fn, options = false) => {
       // Removing a listener may be done differently based on the browser support
@@ -2700,11 +2365,7 @@
       value: true
     })
     /**
- * @file Setting up and handling events for items in a Virtual DOM (DomItem tree)
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module domEvents
- * @memberOf module:jsonDom
+ * Setting up and handling events for items in a Virtual DOM (DomItem tree)
  */
     require('core-js/stable')
     const activateListener_1 = __importDefault(require('./functions/activateListener'))
@@ -2766,75 +2427,14 @@
     })
     require('core-js/stable')
     /**
- * This is the standard definition of a listenerFunction to be used
- * @callback listenerFunction
- * @memberOf module:domEvents
- * @param {Event|EventProxy} e - The event object passed to the listener
- * @param {DomItem} target - The element which triggered the event
- * @param {...*} [args] - Optional args as required by the listener
- */
-    /**
- * A Boolean indicating whether events of this type will be dispatched to the registered listerFunction before being
- * dispatched to any EventTarget beneath it in the Dom tree.
- * @typedef {boolean} UseCapture
- * @memberOf module:domEvents
- */
-    /**
- * OptionsObject defines the structure for the options to be passed to addEventListener
- * @typedef {Object} OptionsObject
- * @memberOf module:domEvents
- * @property {boolean} capture - Indicate that events of this type will be dispatched to the registered
- * listenerFunction before being dispatched to any EventTarget beneath it in the Dom tree.
- * @property {boolean} once - Indicate that the listenerFunction should be invoked at most once after being added. If
- * 'true', the listenerFunction would be automatically removed when invoked.
- * @property {boolean} passive - Indicate that, if 'true', indicates that the listenerFunction will never call
- * preventDefault(). If preventDefault() is called, the user agent will do nothing with it.
- * @property {boolean} signal - The listener will be removed when the given AbortSignal object's abort() method is
- * called. If not specified, no AbortSignal is associated with the listener.
- */
-    /**
- * EventListenerOptions is either a boolean as UseCapture or an Object as OptionsObject
- * @typedef {OptionsObject|UseCapture} EventListenerOptions
- * @memberOf module:domEvents
- */
-    /**
- * An EventListener Object to be appended to the element within the DomItem
- * @typedef {Object} EventListener
- * @memberOf module:domEvents
- * @property {string|listenerFunction} listenerFunc - Prefer a string name registered via {@link registerListener}
- * (or {@link fullAddEventListener}, which does this for you) and resolved from the root DomItem's eventActions at
- * activation time. This is the only form compatible with the rest of the module: it can be shared by name across
- * multiple DomItems, and survives {@link domItemToJson} (which serializes the DomItem to JSON - a raw function
- * cannot be represented there, and JSON.stringify silently drops it with no warning).
- *
- * A raw {@link listenerFunction} may be attached directly instead (e.g. via {@link addEventListener}), entirely at
- * the caller's discretion for one-off listeners that don't need those features. addEventListener logs a console
- * warning when this path is used, as a reminder of the tradeoff.
- * @property {Object} [listenerArgs=null] - Additional args required for the listener function
- * @property {EventListenerOptions} [listenerOptions=false] - Provides support for options parameter of addEventListener, or false for default
- * @property {boolean} [listenerActive=false] - Indicate whether this listener has been applied to the element.
- */
-    /**
- * One or more listeners assigned to the same event.
- * @typedef {Array.<EventListener>} EventListeners
- * @memberOf module:domEvents
- */
-    /**
- * The name of the trigger used to fire the event.
- * @typedef {string} EventName
- * @memberOf module:domEvents
- */
-    /**
  * Prepare an eventListener object to attach to a DOMItem
- * @function
- * @memberOf module:domEvents
- * @param {Object} [listenerProperties={}]
- * @param {string|listenerFunction} listenerProperties.listenerFunc - The function or name (string) of the listener
+ * @param listenerProperties
+ * @param listenerProperties.listenerFunc - The function or name (string) of the listener
  * action - see {@link EventListener}'s listenerFunc property for when to use which.
- * @param {Object|null} [listenerProperties.listenerArgs=null] - Additional parameters to apply to the function
- * @param {EventListenerOptions} [listenerProperties.listenerOptions=false] - The listener options to apply to the element
- * @param {boolean} [listenerProperties.listenerActive=false] - Flag for listener applied to element
- * @returns {EventListener} An EventListener descriptor ready to be pushed onto a DomItem's eventListeners
+ * @param listenerProperties.listenerArgs - Additional parameters to apply to the function
+ * @param listenerProperties.listenerOptions - The listener options to apply to the element
+ * @param listenerProperties.listenerActive - Flag for listener applied to element
+ * @returns An EventListener descriptor ready to be pushed onto a DomItem's eventListeners
  */
     const createEventListener = ({
       listenerFunc,
@@ -2857,17 +2457,8 @@
     })
     require('core-js/stable')
     /**
- * A wrapped Event which provides additional utilities.
- * @typedef {Event} EventProxy
- * @memberOf module:domEvents
- * @property {boolean} immediatePropagationStopped
- */
-    /**
  * Return a modified version of the event.
- * @function
- * @memberOf module:domEvents
- * @param {Event} event
- * @returns {EventProxy}
+ * @param event
  */
     const createEventProxy = event => new Proxy(Object.defineProperty(event, 'immediatePropagationStopped', {
       enumerable: true,
@@ -2894,21 +2485,9 @@
     })
     require('core-js/stable')
     /**
- * Track an event handler and optional abort signal.
- * @typedef {Object} EventResponder
- * @memberOf module:domEvents
- * @property {eventHandler} handler
- * @property {AbortController|null} abort
- * @property {eventHandler|null} assignedHandler - The exact function reference passed to the element's
- * addEventListener, set once applied. Required to later detach this exact listener via removeEventListener.
- */
-    /**
  * Store the handler function and associated abort controller instance if available to be used when events are triggered.
- * @function
- * @memberOf module:domEvents
- * @param {eventHandler} eventHandler - The eventHandler wrapped function to be called for the event.
- * @param {AbortController|boolean|null} [abort=null] - Assign an AbortSignal provided or create one (if true), otherwise null.
- * @return {EventResponder}
+ * @param eventHandler - The eventHandler wrapped function to be called for the event.
+ * @param abort - Assign an AbortSignal provided or create one (if true), otherwise null.
  */
     const createEventResponder = (eventHandler, abort = null) => {
       if (abort === true) {
@@ -2939,33 +2518,12 @@
       value: true
     })
     /**
- * @file Be able to use Flags (Options) in a well-formed way.
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module optionFlags
- * @memberOf module:domEvents
+ * Be able to use Flags (Options) in a well-formed way.
  */
     require('core-js/stable')
     const getListenerOptions_1 = __importDefault(require('./options/getListenerOptions'))
     const numberToOptions_1 = __importDefault(require('./options/numberToOptions'))
     const optionsToNumber_1 = __importDefault(require('./options/optionsToNumber'))
-    /**
- * A boolean value used to alter functionality.
- * @typedef {boolean} Option
- * @memberOf module:domEvents
- */
-    /**
- * A set of named options within an object, or simply a singular Option.
- * @typedef {Object.<string, Option>|Option} Options
- */
-    /**
- * A numeric value used as position in a binary number having any numeric value 2^n.
- * @typedef {int} Flag
- */
-    /**
- * Object containing available Option names and the Flag value associated with each.
- * @typedef {Object.<string, Flag>} OptionsTemplate
- */
     exports.default = {
       getListenerOptions: getListenerOptions_1.default,
       numberToOptions: numberToOptions_1.default,
@@ -2985,9 +2543,6 @@
     const SIGNAL = 8
     /**
  * Retrieve the OptionsTemplate for EventListenerOptions.
- * @function
- * @memberOf module:optionFlags
- * @returns {OptionsTemplate}
  */
     const getListenerOptions = () => ({
       capture: CAPTURE,
@@ -3014,11 +2569,8 @@
     const si_funciona_1 = __importDefault(require('si-funciona'))
     /**
  * Take an integer representation of the listener options and convert them to the listener options object.
- * @function
- * @memberOf module:optionFlags
- * @param {OptionsTemplate} optionsTemplate
- * @param {int} binaryOptions
- * @returns {EventListenerOptions}
+ * @param optionsTemplate
+ * @param binaryOptions
  */
     const numberToOptions = (optionsTemplate, binaryOptions) => si_funciona_1.default.mapObject(optionsTemplate, flag => !!(binaryOptions & flag))
     exports.default = numberToOptions
@@ -3041,11 +2593,8 @@
     /**
  * Take the given options and convert them (using binary) to an integer. Given listener options, each one is assigned a
  * bitwise position. The resulting binary number represents any possible combination of the available flags set.
- * @function
- * @memberOf module:optionFlags
- * @param {OptionsTemplate} optionsTemplate
- * @param {Options|Option} listenerOptions
- * @returns {int}
+ * @param optionsTemplate
+ * @param listenerOptions
  */
     const optionsToNumber = (optionsTemplate, listenerOptions) => {
       if (!listenerOptions) {
@@ -3092,10 +2641,7 @@
     const addDomItemProperties_1 = __importDefault(require('../domItem/objects/addDomItemProperties'))
     /**
  * Convert DOM Item to JSON string.
- * @function
- * @memberOf module:domGeneral
- * @param {string} jsonString
- * @returns {DomItem}
+ * @param jsonString
  */
     const jsonToDomItem = jsonString => {
       const parsedJson = (0, setParentItemReferences_1.default)((0, addDomItemProperties_1.default)(JSON.parse(jsonString)))
@@ -3114,10 +2660,6 @@
 
     /**
  * All of the JSON DOM system functions for building and syncing a Virtual DOM (DomItem tree) to the real HTML DOM.
- * @file
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module jsonDom
  */
     const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
       return mod && mod.__esModule
@@ -3159,11 +2701,8 @@
     const updateElement_1 = __importDefault(require('./updateElement'))
     /**
  * Create a new DOM Node based on name and data.
- * @function
- * @memberOf module:domGeneral
- * @param {string} nodeName
- * @param {string|null} data
- * @returns {Text|Comment|HTMLElement}
+ * @param nodeName
+ * @param data
  */
     const makeElementType = (nodeName, data = null, is) => {
       switch (nodeName) {
@@ -3182,10 +2721,7 @@
     }
     /**
  * Create an HTML element based on the provided attributes and return the element as an Object.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem - The DomItem requiring matching HTML element property
- * @return {DomItem}
+ * @param domItem - The DomItem requiring matching HTML element property
  */
     const generateElement = domItem => {
       domItem.element = makeElementType(domItem.nodeName, domItem.nodeValue, typeof domItem.attributes.is === 'string' ? domItem.attributes.is : undefined)
@@ -3242,12 +2778,9 @@
  * This is a shortcut for syncing a Virtual DOM (DomItem tree) item onto the real HTML DOM: builds the real elements
  * for it and its descendants, appends them to parent (the document body by default), and binds their associated
  * listeners.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem|null} item - The DomItem that we want to render the element for
- * @param {DomItem} [parent] - Where to append item, when it does not already have a parent - defaults to the
+ * @param item - The DomItem that we want to render the element for
+ * @param parent - Where to append item, when it does not already have a parent - defaults to the
  * document body, so passing nothing keeps working exactly as before
- * @returns {DomItem}
  */
     const renderHtml = (item = null, parent = documentItem_1.default.body) => {
       let itemToRender = item === null ? documentItem_1.default : item
@@ -3282,10 +2815,7 @@
     const updateElement_1 = __importDefault(require('./updateElement'))
     /**
  * Update all the childNodes for this domItem element to mach domItem children.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem
- * @returns {DomItem}
+ * @param domItem
  */
     const updateChildNodes = domItem => {
       if (!domItem.element) {
@@ -3355,11 +2885,8 @@
  * domItem's direct children onto that element via {@link updateChildNodes}, so a bare call never orphans an
  * existing child subtree. The plain attribute/style patch path below doesn't touch domItem.element itself, so it
  * doesn't need to.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem - The DomItem having domItem changes to be applied to its
+ * @param domItem - The DomItem having domItem changes to be applied to its
  * element
- * @returns {DomItem}
  */
     const updateElement = domItem => {
       if (!domItem.element) {
@@ -3456,11 +2983,8 @@
     /**
  * Generate HTML element data for each object in the matrix
  * WARNING: This is a recursive function.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} config - The DomItem having child DomItems with config changes to be
+ * @param config - The DomItem having child DomItems with config changes to be
  * applied
- * @returns {DomItem}
  */
     const updateElements = config => {
       if (config.nodeName === '#document') {
@@ -3518,10 +3042,7 @@
     const createDomItem_1 = __importDefault(require('../domItem/objects/createDomItem'))
     /**
  * Update all the children for this domItem to match the domItem element childNodes.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem
- * @returns {DomItem}
+ * @param domItem
  */
     const updateChildren = domItem => {
       if (!domItem.element) {
@@ -3562,11 +3083,8 @@
     const elementChanges_1 = __importDefault(require('../diff/elementChanges'))
     /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} config - The DomItem having config changes to be applied to its
+ * @param config - The DomItem having config changes to be applied to its
  * element
- * @returns {DomItem}
  */
     const updateDomItem = config => {
       if (!config.element) {
@@ -3619,11 +3137,8 @@
     /**
  * Generate HTML element data for each object in the matrix
  * WARNING: This is a recursive function.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} config - The DomItem having child DomItems with config changes to be
+ * @param config - The DomItem having child DomItems with config changes to be
  * applied
- * @returns {DomItem}
  */
     const updateDomItems = config => {
       if (config.nodeName === '#document') {

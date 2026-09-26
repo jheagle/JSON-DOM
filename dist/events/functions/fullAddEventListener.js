@@ -26,15 +26,12 @@ const bindListeners_1 = __importDefault(require('./bindListeners'))
  *
  * item is the last parameter (instead of name/customArgs/options having literal defaults) so addEventListener can
  * be curried directly into the pipe below without an argument-reordering wrapper.
- * @function
- * @memberOf module:domEvents
- * @param {EventName} eventName - The name of the trigger event (e.g. 'click').
- * @param {listenerFunction|function} listener - The function to be called when the event is triggered.
- * @param {string} [name=listener.name] - The name the listener will be registered under in eventActions.
- * @param {Object|null} [customArgs=null] - Additional args passed through to the listener when called.
- * @param {EventListenerOptions} [options=false] - Options to be used when the listener is attached to the element.
- * @param {DomItem} item - The DomItem which will receive the event listener.
- * @returns {DomItem}
+ * @param eventName - The name of the trigger event (e.g. 'click').
+ * @param listener - The function to be called when the event is triggered.
+ * @param name - The name the listener will be registered under in eventActions.
+ * @param customArgs - Additional args passed through to the listener when called.
+ * @param options - Options to be used when the listener is attached to the element.
+ * @param item - The DomItem which will receive the event listener.
  */
 const fullAddEventListener = (eventName, listener, name, customArgs, options, item) => {
   const listenerName = name ?? listener.name

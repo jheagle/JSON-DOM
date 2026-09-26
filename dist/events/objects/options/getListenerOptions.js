@@ -10,9 +10,6 @@ const PASSIVE = 4
 const SIGNAL = 8
 /**
  * Retrieve the OptionsTemplate for EventListenerOptions.
- * @function
- * @memberOf module:optionFlags
- * @returns {OptionsTemplate}
  */
 const getListenerOptions = () => ({
   capture: CAPTURE,

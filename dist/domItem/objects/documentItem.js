@@ -15,9 +15,6 @@ const documentDomItem_1 = __importDefault(require('./documentDomItem'))
 let existingItem = null
 /**
  * The shared root DomItem of the Virtual DOM (DomItem tree) for this environment's real document.
- * @member documentItem
- * @memberOf module:domGeneral
- * @type {DomItemRoot}
  */
 const documentItem = (() => {
   if (existingItem === null) {

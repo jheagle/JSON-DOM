@@ -4,10 +4,7 @@ import type { DomItem, DomItemConfig } from '../types'
 
 /**
  * Ensure all basic properties of the DomItem are present.
- * @function
- * @memberOf module:domGeneral
- * @param {Object} item - The object that will be formatted as a DomItem.
- * @returns {DomItem}
+ * @param item - The object that will be formatted as a DomItem.
  */
 const addDomItemProperties = (item: DomItemConfig): DomItem => {
   if (typeof item.children !== 'undefined') {

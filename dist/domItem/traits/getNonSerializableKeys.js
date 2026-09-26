@@ -17,8 +17,7 @@ const definitions_1 = __importDefault(require('./definitions'))
 /**
  * The properties an item has only because of its traits, and which do not belong in json (the element of the render
  * trait, for one).
- * @param {CoreItem} item - The item to look at.
- * @returns {Array<string>}
+ * @param item - The item to look at.
  * @private
  */
 const getNonSerializableKeys = item => Object.keys(item.has ?? {}).flatMap(trait => {

@@ -7,19 +7,8 @@ import type { compareArrayResult, compareArrayResultMap } from 'si-funciona/dist
 import type { AttributeComparison, ChangeList, DotNotated } from './types'
 
 /**
- * @typedef {module:objectHelpers~mapCallback} testAttributeChange
- * @memberOf module:domGeneral
- * @param {*} attr - The current property being processed in the object.
- * @param {string} key - The property name of the current property being processed in the object.
- * @return {int} - -1: removed, 0: unchanged, 1: added.
- */
-
-/**
  * Given some config, provide a function to testing attribute and key existence in that config.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem
- * @returns {testAttributeChange}
+ * @param domItem
  */
 const checkAttribute = (domItem: DomItem) =>
   (attr: unknown, key: string): AttributeComparison => {
@@ -50,10 +39,7 @@ const checkAttribute = (domItem: DomItem) =>
 
 /**
  * Updates all the keys to be camelCase
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem
- * @returns {Object.<string, *>}
+ * @param domItem
  */
 const camelCaseAttributes = (domItem: DomItem): Record<string, any> => domItem.element
   ? siFunciona.reduceObject(
@@ -77,11 +63,8 @@ const camelCaseAttributes = (domItem: DomItem): Record<string, any> => domItem.e
 /**
  * Given a domGeneral.DomItem as config, this function will return the changes from the element
  * to be applied to the domItem.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem - The DomItem having the element which changes to be applied to the config
+ * @param domItem - The DomItem having the element which changes to be applied to the config
  * element
- * @returns {ChangeList}
  */
 const elementChanges = (domItem: DomItem): ChangeList => {
   const changeList = createChangeList()

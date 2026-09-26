@@ -1,10 +1,6 @@
 /**
- * @file Core Virtual DOM (DomItem tree) management: building items, the traits they carry, and finding and changing
+ * Core Virtual DOM (DomItem tree) management: building items, the traits they carry, and finding and changing
  * items in a tree.
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module domGeneral
- * @memberOf module:jsonDom
  */
 import 'core-js/stable';
 declare const _default: {
@@ -16,13 +12,13 @@ declare const _default: {
     documentDomItem: (listeners?: Record<string, import("../events/types").ListenerFunction>, rootItem?: import("./types").DomItemRoot) => import("./types").DomItemRoot;
     documentItem: import("./types").DomItemRoot;
     gatherChildItems: (item: import("./types").DomItem, test: import("./types").ChildTest) => import("./types").DomItem[];
-    getChildrenByClass: (value: string, item?: import("./types").DomItem) => import("./types").DomItem[];
-    getChildrenByName: (value: string, item?: import("./types").DomItem) => import("./types").DomItem[];
+    getChildrenByClass: (className: string, item?: import("./types").DomItem) => import("./types").DomItem[];
+    getChildrenByName: (name: string, item?: import("./types").DomItem) => import("./types").DomItem[];
     getChildrenFromAttribute: (attr: string, value: unknown, item?: import("./types").DomItem) => import("./types").DomItem[];
     getChildTest: (attr: string, value: unknown) => import("./types").ChildTest;
-    getParentsByClass: (value: string, item?: import("./types").DomItem) => import("./types").DomItem[];
-    getParentsByName: (value: string, item?: import("./types").DomItem) => import("./types").DomItem[];
-    getParentsByTagName: (value: string, item?: import("./types").DomItem) => import("./types").DomItem[];
+    getParentsByClass: (className: string, item?: import("./types").DomItem) => import("./types").DomItem[];
+    getParentsByName: (name: string, item?: import("./types").DomItem) => import("./types").DomItem[];
+    getParentsByTagName: (nodeName: string, item?: import("./types").DomItem) => import("./types").DomItem[];
     getParentsFromAttribute: (attr: string, value: unknown, item?: import("./types").DomItem) => import("./types").DomItem[];
     getTopParentItem: (item: import("./types").DomItem) => import("./types").DomItemRoot;
     getTraitDefinition: (name: string) => import("./types").TraitDefinition | undefined;

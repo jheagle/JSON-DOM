@@ -19,12 +19,9 @@ const optionsToNumber_1 = __importDefault(require('../objects/options/optionsToN
 const retrieveListener_1 = __importDefault(require('./retrieveListener'))
 /**
  * Activate listener by pushing it to activeListeners.
- * @function
- * @memberOf module:domEvents
- * @param {EventName} eventName
- * @param {EventListener} eventListener
- * @param {DomItem} item
- * @returns {DomItem}
+ * @param eventName
+ * @param eventListener
+ * @param item
  */
 const activateListener = (eventName, eventListener, item) => {
   const listenerOptions = (0, getListenerOptions_1.default)()

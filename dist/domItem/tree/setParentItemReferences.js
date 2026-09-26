@@ -8,10 +8,7 @@ Object.defineProperty(exports, '__esModule', {
 require('core-js/stable')
 /**
  * For each child of this item, set the parentItem references.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} item - The DomItem to have parent references applied.
- * @returns {DomItem}
+ * @param item - The DomItem to have parent references applied.
  */
 const setParentItemReferences = item => {
   if (!item.children || !item.children.length) {

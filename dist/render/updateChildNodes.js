@@ -18,10 +18,7 @@ require('core-js/stable')
 const updateElement_1 = __importDefault(require('./updateElement'))
 /**
  * Update all the childNodes for this domItem element to mach domItem children.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem
- * @returns {DomItem}
+ * @param domItem
  */
 const updateChildNodes = domItem => {
   if (!domItem.element) {

@@ -9,19 +9,18 @@
     "json",
     "state management"
   ],
-  "version": "1.5.0",
+  "version": "1.5.1",
   "bugs": {
     "url": "https://github.com/jheagle/json-dom/issues"
   },
   "scripts": {
     "build": "gulp build",
     "dev": "gulp",
-    "htmldocs": "jsdoc -R MAIN.md -c ./.jsdoc.conf.js -d docs",
-    "readme": "gulp readme",
+    "docs": "gulp docs",
     "resolutions": "npx npm-force-resolutions",
     "test": "gulp testFull",
-    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.type-tests.json",
     "test:quick": "gulp testQuick",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.type-tests.json",
     "watch": "gulp watchFull",
     "watch:test": "gulp watchTest"
   },
@@ -33,10 +32,10 @@
     "@babel/plugin-transform-modules-commonjs": "^7.29.7",
     "@babel/preset-env": "^7.29.7",
     "gulp": "^5.0.1",
-    "js-build-tools": "^5.2.0",
-    "jsdoc": "^4.0.5",
+    "js-build-tools": "^5.3.1",
     "standard": "^17.1.2",
-    "test-filesystem": "^1.5.1"
+    "test-filesystem": "^1.5.1",
+    "typedoc": "^0.28.20"
   },
   "resolutions": {},
   "repository": "github:jheagle/json-dom",

@@ -14,13 +14,10 @@ require('core-js/stable')
 const documentItem_1 = __importDefault(require('../../domItem/objects/documentItem'))
 /**
  * Register a single listener function as part of the root domEvents.DomItem.
- * @function
- * @memberOf module:domEvents
- * @param {listenerFunction|function} listener - Provide a function which will be called
+ * @param listener - Provide a function which will be called
  * when a Dom event is triggered.
- * @param {string} [name] - The name of the listener to be used.
- * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
- * @returns {Object.<string, listenerFunction>}
+ * @param name - The name of the listener to be used.
+ * @param parent - The parent DomItem which is DomItemRoot which stores eventListeners property.
  */
 const registerListener = (listener, name = listener.name, parent = documentItem_1.default) => Object.assign(parent.eventActions, {
   [name]: listener

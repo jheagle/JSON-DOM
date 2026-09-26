@@ -2,13 +2,10 @@ import 'core-js/stable';
 import type { CoreItem } from '../domItem/types';
 /**
  * Convert DOM Item to JSON string.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} item
- * @param {Object} [options={}]
- * @param {int} [options.mapLimit=100]
- * @param {int} [options.relevancyRange=1000]
- * @returns {string}
+ * @param item
+ * @param options
+ * @param options.mapLimit
+ * @param options.relevancyRange
  */
 declare const domItemToJson: (item: CoreItem, { mapLimit, relevancyRange }?: {
     mapLimit?: number;

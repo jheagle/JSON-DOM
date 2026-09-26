@@ -4,10 +4,7 @@ import type { DomElement, DomItem } from '../domItem/types'
 
 /**
  * Update all the children for this domItem to match the domItem element childNodes.
- * @function
- * @memberOf module:domGeneral
- * @param {DomItem} domItem
- * @returns {DomItem}
+ * @param domItem
  */
 const updateChildren = (domItem: DomItem): DomItem => {
   if (!domItem.element) {
