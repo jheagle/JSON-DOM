@@ -46,6 +46,22 @@ describe('renderHtml', () => {
     expect(documentItem.body.children.length).toBe(singletonChildrenBefore)
   })
 
+  // The real scenario this covers: dropping json-dom content into a page which already has real, hand-authored
+  // HTML (see updateDomItems for capturing that content into items first) - a header/menu that needs to render
+  // BEFORE the existing content, not after it.
+  test('an index inserts item among an already-rendered parent\'s existing children, at that position', () => {
+    const parent = createDomItem({ nodeName: 'body' })
+    const existingFirst = renderHtml(createDomItem({ nodeName: 'main' }), parent)
+    const existingSecond = renderHtml(createDomItem({ nodeName: 'footer' }), parent)
+
+    const header = createDomItem({ nodeName: 'header' })
+    const updated = renderHtml(header, parent, 0)
+
+    expect(parent.children).toEqual([header, existingFirst, existingSecond])
+    expect(updated.parentItem).toBe(parent)
+    expect(Array.from(parent.element.children).map(el => el.nodeName.toLowerCase())).toEqual(['header', 'main', 'footer'])
+  })
+
   test('a listener survives a nodeName-driven re-render through the real pipeline, and children stay attached', () => {
     const clickFn = jest.fn()
     const childClickFn = jest.fn()
