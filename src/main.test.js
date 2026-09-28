@@ -51,6 +51,7 @@ const publicApi = [
   'hasTraits',
   'initChildren',
   'initRoot',
+  'insertChild',
   'isDomItem',
   'jsonToDomItem',
   'listenerOptions',

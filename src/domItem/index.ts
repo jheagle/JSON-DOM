@@ -25,6 +25,7 @@ import hasTrait from './traits/hasTrait'
 import hasTraits from './traits/hasTraits'
 import initChildren from './objects/initChildren'
 import initRoot from './objects/initRoot'
+import insertChild from './tree/insertChild'
 import isDomItem from './traits/isDomItem'
 import removeChild from './tree/removeChild'
 import setParentItemReferences from './tree/setParentItemReferences'
@@ -53,6 +54,7 @@ export default {
   hasTraits,
   initChildren,
   initRoot,
+  insertChild,
   isDomItem,
   removeChild,
   setParentItemReferences,

@@ -26,6 +26,7 @@ declare const _default: {
     hasTraits: <Trait extends import("./types").TraitName>(item: import("./types").CoreItem, ...traits: Trait[]) => item is import("./types").CoreItem & import("./types").WithTraits<Trait>;
     initChildren: () => import("./types").DomItem[];
     initRoot: (children?: import("./types").DomItem[], listeners?: Record<string, import("../events/types").ListenerFunction>) => import("./types").DomItemRoot;
+    insertChild: (parent: import("./types").DomItem, child: import("./types").DomItem, index: number) => import("./types").DomItem;
     isDomItem: (item: import("./types").CoreItem) => item is import("./types").DomItem;
     removeChild: (parent: import("./types").DomItem, child: import("./types").DomItem) => import("./types").DomItem[];
     setParentItemReferences: (item: import("./types").DomItem) => import("./types").DomItem;

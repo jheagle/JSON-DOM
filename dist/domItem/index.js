@@ -37,6 +37,7 @@ const hasTrait_1 = __importDefault(require('./traits/hasTrait'))
 const hasTraits_1 = __importDefault(require('./traits/hasTraits'))
 const initChildren_1 = __importDefault(require('./objects/initChildren'))
 const initRoot_1 = __importDefault(require('./objects/initRoot'))
+const insertChild_1 = __importDefault(require('./tree/insertChild'))
 const isDomItem_1 = __importDefault(require('./traits/isDomItem'))
 const removeChild_1 = __importDefault(require('./tree/removeChild'))
 const setParentItemReferences_1 = __importDefault(require('./tree/setParentItemReferences'))
@@ -64,6 +65,7 @@ exports.default = {
   hasTraits: hasTraits_1.default,
   initChildren: initChildren_1.default,
   initRoot: initRoot_1.default,
+  insertChild: insertChild_1.default,
   isDomItem: isDomItem_1.default,
   removeChild: removeChild_1.default,
   setParentItemReferences: setParentItemReferences_1.default,
