@@ -1,4 +1,5 @@
 import 'core-js/stable'
+import siFunciona from 'si-funciona'
 import type { DomItem, ItemPath } from '../types'
 
 /**
@@ -11,7 +12,7 @@ const getItemPath = (item: DomItem): ItemPath => {
   if (item.parentItem === null) {
     throw new Error('Detached child, missing parentItem reference. Use empty object if this is the root item.')
   }
-  if (!Object.keys(item.parentItem).length) {
+  if (siFunciona.emptyObject(item.parentItem)) {
     return []
   }
   const parent = item.parentItem as DomItem

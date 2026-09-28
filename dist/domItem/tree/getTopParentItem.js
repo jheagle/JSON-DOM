@@ -1,9 +1,17 @@
 'use strict'
 
+const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule
+    ? mod
+    : {
+        default: mod
+      }
+}
 Object.defineProperty(exports, '__esModule', {
   value: true
 })
 require('core-js/stable')
+const si_funciona_1 = __importDefault(require('si-funciona'))
 /**
  * Get the upper parentItem for the provided child. (usually this is a documentItem reference)
  * WARNING: This is a recursive function.
@@ -16,6 +24,6 @@ const getTopParentItem = item => {
     }
     throw new Error('Detached child, missing parentItem reference. Use empty object if this is the root item.')
   }
-  return Object.keys(item.parentItem).length ? getTopParentItem(item.parentItem) : item
+  return si_funciona_1.default.emptyObject(item.parentItem) ? item : getTopParentItem(item.parentItem)
 }
 exports.default = getTopParentItem

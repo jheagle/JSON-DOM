@@ -1537,10 +1537,18 @@
   39: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
     require('core-js/stable')
+    const si_funciona_1 = __importDefault(require('si-funciona'))
     /**
  * The path from the root to an item: the index of the item among its parent's children, at each level from the top
  * down. An empty array means the item is the root itself.
@@ -1551,21 +1559,29 @@
       if (item.parentItem === null) {
         throw new Error('Detached child, missing parentItem reference. Use empty object if this is the root item.')
       }
-      if (!Object.keys(item.parentItem).length) {
+      if (si_funciona_1.default.emptyObject(item.parentItem)) {
         return []
       }
       const parent = item.parentItem
       return [...getItemPath(parent), parent.children.indexOf(item)]
     }
     exports.default = getItemPath
-  }, { 'core-js/stable': 768 }],
+  }, { 'core-js/stable': 768, 'si-funciona': 848 }],
   40: [function (require, module, exports) {
     'use strict'
 
+    const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+      return mod && mod.__esModule
+        ? mod
+        : {
+            default: mod
+          }
+    }
     Object.defineProperty(exports, '__esModule', {
       value: true
     })
     require('core-js/stable')
+    const si_funciona_1 = __importDefault(require('si-funciona'))
     /**
  * Get the upper parentItem for the provided child. (usually this is a documentItem reference)
  * WARNING: This is a recursive function.
@@ -1578,10 +1594,10 @@
         }
         throw new Error('Detached child, missing parentItem reference. Use empty object if this is the root item.')
       }
-      return Object.keys(item.parentItem).length ? getTopParentItem(item.parentItem) : item
+      return si_funciona_1.default.emptyObject(item.parentItem) ? item : getTopParentItem(item.parentItem)
     }
     exports.default = getTopParentItem
-  }, { 'core-js/stable': 768 }],
+  }, { 'core-js/stable': 768, 'si-funciona': 848 }],
   41: [function (require, module, exports) {
     'use strict'
 
