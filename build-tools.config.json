@@ -6,7 +6,7 @@
     "enabled": true,
     "from": "src",
     "index": "MAIN.md",
-    "to": "docs"
+    "to": "../joshuaheagle.local/projects/json-dom/docs"
   },
   "typescript": {
     "config": "tsconfig.json",
