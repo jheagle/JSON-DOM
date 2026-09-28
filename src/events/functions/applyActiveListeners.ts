@@ -33,7 +33,7 @@ const applyActiveListeners = (eventName: EventName, item: DomItem): DomItem => {
       const finalOptions = usesSignal
         ? Object.assign({}, optionsToUse, { signal: (eventResponder.abort as AbortController).signal })
         : optionsToUse
-      eventResponder.assignedHandler = (e) => eventResponder.handler(createEventProxy(e as Event))
+      eventResponder.assignedHandler = (e) => eventResponder.handler(createEventProxy(e as Event, item))
       assignListener(eventName, item.element as unknown as ListenerTarget, eventResponder.assignedHandler, finalOptions)
     })
   })

@@ -16,11 +16,13 @@ import fullAddEventListener from './functions/fullAddEventListener'
 import fullRemoveEventListener from './functions/fullRemoveEventListener'
 import listenerOptions from './functions/listenerOptions'
 import makeEventHandler from './functions/makeEventHandler'
+import makeForwardingListener from './functions/makeForwardingListener'
 import registerListener from './functions/registerListener'
 import registerListeners from './functions/registerListeners'
 import removeEventListener from './functions/removeEventListener'
 import retrieveListener from './functions/retrieveListener'
 import revokeActiveListeners from './functions/revokeActiveListeners'
+import setForwardEvents from './functions/setForwardEvents'
 import unassignListener from './functions/unassignListener'
 import createEventListener from './objects/createEventListener'
 import createEventProxy from './objects/createEventProxy'
@@ -42,11 +44,13 @@ export default {
   fullRemoveEventListener,
   listenerOptions,
   makeEventHandler,
+  makeForwardingListener,
   registerListener,
   registerListeners,
   removeEventListener,
   retrieveListener,
   revokeActiveListeners,
+  setForwardEvents,
   unassignListener,
   createEventListener,
   createEventProxy,

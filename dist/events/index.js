@@ -28,11 +28,13 @@ const fullAddEventListener_1 = __importDefault(require('./functions/fullAddEvent
 const fullRemoveEventListener_1 = __importDefault(require('./functions/fullRemoveEventListener'))
 const listenerOptions_1 = __importDefault(require('./functions/listenerOptions'))
 const makeEventHandler_1 = __importDefault(require('./functions/makeEventHandler'))
+const makeForwardingListener_1 = __importDefault(require('./functions/makeForwardingListener'))
 const registerListener_1 = __importDefault(require('./functions/registerListener'))
 const registerListeners_1 = __importDefault(require('./functions/registerListeners'))
 const removeEventListener_1 = __importDefault(require('./functions/removeEventListener'))
 const retrieveListener_1 = __importDefault(require('./functions/retrieveListener'))
 const revokeActiveListeners_1 = __importDefault(require('./functions/revokeActiveListeners'))
+const setForwardEvents_1 = __importDefault(require('./functions/setForwardEvents'))
 const unassignListener_1 = __importDefault(require('./functions/unassignListener'))
 const createEventListener_1 = __importDefault(require('./objects/createEventListener'))
 const createEventProxy_1 = __importDefault(require('./objects/createEventProxy'))
@@ -53,11 +55,13 @@ exports.default = {
   fullRemoveEventListener: fullRemoveEventListener_1.default,
   listenerOptions: listenerOptions_1.default,
   makeEventHandler: makeEventHandler_1.default,
+  makeForwardingListener: makeForwardingListener_1.default,
   registerListener: registerListener_1.default,
   registerListeners: registerListeners_1.default,
   removeEventListener: removeEventListener_1.default,
   retrieveListener: retrieveListener_1.default,
   revokeActiveListeners: revokeActiveListeners_1.default,
+  setForwardEvents: setForwardEvents_1.default,
   unassignListener: unassignListener_1.default,
   createEventListener: createEventListener_1.default,
   createEventProxy: createEventProxy_1.default,

@@ -39,4 +39,13 @@ describe('retrieveListener', () => {
       'Undefined listener function on this DomItemRoot: missingFn'
     )
   })
+
+  test('when forwardEvents is set, resolves any name to a forwarder instead of throwing or looking it up in eventActions', () => {
+    const transport = jest.fn()
+    const parent = createDomItem({ nodeName: '#document', element: document, eventActions: {}, forwardEvents: transport, parentItem: {} })
+    const forwarder = retrieveListener('notRegisteredAnywhere', parent)
+    expect(typeof forwarder).toBe('function')
+    forwarder(new Event('click'), parent)
+    expect(transport).toHaveBeenCalledWith(expect.objectContaining({ listenerFunc: 'notRegisteredAnywhere', eventType: 'click', itemPath: [] }))
+  })
 })

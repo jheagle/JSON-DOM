@@ -1,4 +1,4 @@
-import type { DomItem } from '../domItem/types'
+import type { DomItem, ItemPath } from '../domItem/types'
 
 /** The name of a DOM event: click, submit, keydown, ... */
 export type EventName = string
@@ -21,8 +21,17 @@ export type OptionsObject = {
 /** The options given with a listener: an options object, or just the useCapture boolean. */
 export type ListenerOptions = OptionsObject | UseCapture
 
-/** An Event which also remembers whether stopImmediatePropagation() was called on it. */
-export type EventProxy = Event & { immediatePropagationStopped: boolean }
+/** An Event which also remembers whether stopImmediatePropagation() was called on it, and carries the DomItems
+ * target/currentTarget correspond to. */
+export type EventProxy = Event & {
+  immediatePropagationStopped: boolean
+  /** The DomItem whose element matches the real event's target, searched for within currentDomItemTarget's own
+   * subtree (an event's target is always itself or a descendant of the item a listener is attached to - that is
+   * what bubbling means). Null when none is found. */
+  domItemTarget: DomItem | null
+  /** The DomItem the listener is attached to (the real event's currentTarget). */
+  currentDomItemTarget: DomItem
+}
 
 /**
  * A function which handles an event on a DomItem. It receives the event, the DomItem which owns the listener and any
@@ -48,6 +57,22 @@ export type ListenerDescriptor = {
 
 /** All the listeners of one event type. */
 export type EventListeners = ListenerDescriptor[]
+
+/** What a forwarded event is packaged as in render-only mode. See retrieveListener, makeForwardingListener. */
+export type ForwardedEvent = {
+  /** The path (from getItemPath) to the item the event fired on (domItemTarget, falling back to the item the
+   * listener is attached to when no domItemTarget was found). */
+  itemPath: ItemPath
+  /** The type of event which fired (event.type). */
+  eventType: EventName
+  /** The registered name of the listener which would have run locally. */
+  listenerFunc: string
+  /** The custom args the listener was registered with. */
+  data: unknown[]
+}
+
+/** Where a forwarded event's envelope is sent, in render-only mode. Set on the root item with setForwardEvents. */
+export type ForwardEventsFunction = (envelope: ForwardedEvent) => unknown
 
 /** An event handler and the way to detach it again: the handler as attached, and an optional AbortController. */
 export type EventResponder = {

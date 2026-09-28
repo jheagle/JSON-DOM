@@ -1,15 +1,31 @@
 import 'core-js/stable'
+import getItemByElement from '../../domItem/query/getItemByElement'
+import type { DomItem } from '../../domItem/types'
 import type { EventProxy } from '../types'
 
 /**
- * Return a modified version of the event.
+ * Return a modified version of the event: adds domItemTarget and currentDomItemTarget, next to the real DOM's own
+ * target and currentTarget.
  * @param event
+ * @param item - The DomItem the listener is attached to (this event's currentTarget).
  */
-const createEventProxy = (event: Event): EventProxy => new Proxy(
-  Object.defineProperty(event, 'immediatePropagationStopped', {
-    enumerable: true,
-    value: false,
-    writable: true
+const createEventProxy = (event: Event, item: DomItem): EventProxy => new Proxy(
+  Object.defineProperties(event, {
+    immediatePropagationStopped: {
+      enumerable: true,
+      value: false,
+      writable: true
+    },
+    currentDomItemTarget: {
+      enumerable: true,
+      value: item,
+      writable: true
+    },
+    domItemTarget: {
+      enumerable: true,
+      value: getItemByElement(item, event.target),
+      writable: true
+    }
   }) as EventProxy,
   {
     get (thisEvent: EventProxy, prop: string | symbol) {
