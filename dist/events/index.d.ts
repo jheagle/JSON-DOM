@@ -20,14 +20,16 @@ declare const _default: {
         supportsOptions?: boolean;
     };
     makeEventHandler: (listener: import("./types").ListenerFunction, item: import("../domItem/types").DomItem, ...args: unknown[]) => import("./types").EventHandler;
+    makeForwardingListener: (listenerName: string, transport: import("./types").ForwardEventsFunction) => import("./types").ListenerFunction;
     registerListener: (listener: import("./types").ListenerFunction, name?: string, parent?: import("../domItem/types").DomItemRoot) => Record<string, import("./types").ListenerFunction>;
     registerListeners: (listeners: import("./types").ListenerFunction[] | Record<string, import("./types").ListenerFunction>, parent?: import("../domItem/types").DomItemRoot) => import("../domItem/types").DomItemRoot;
     removeEventListener: (eventName: import("./types").EventName, listenerFunction: string | import("./types").ListenerFunction, customArgs: object | null | undefined, options: import("./types").ListenerOptions | null | undefined, item: import("../domItem/types").DomItem) => import("../domItem/types").DomItem;
     retrieveListener: (listenerName: string | import("./types").ListenerFunction, parent?: import("../domItem/types").DomItemRoot) => import("./types").ListenerFunction;
     revokeActiveListeners: (eventName: import("./types").EventName, item: import("../domItem/types").DomItem) => import("../domItem/types").DomItem;
+    setForwardEvents: (transport: import("./types").ForwardEventsFunction, parent?: import("../domItem/types").DomItemRoot) => import("../domItem/types").DomItemRoot;
     unassignListener: (trigger: string, elem: import("./types").ListenerTarget, fn: import("./types").EventHandler, options?: import("./types").ListenerOptions) => import("./types").EventHandler;
     createEventListener: ({ listenerFunc, listenerArgs, listenerOptions, listenerActive }?: Partial<import("./types").ListenerDescriptor>) => import("./types").ListenerDescriptor;
-    createEventProxy: (event: Event) => import("./types").EventProxy;
+    createEventProxy: (event: Event, item: import("../domItem/types").DomItem) => import("./types").EventProxy;
     createEventResponder: (eventHandler: import("./types").EventHandler, abort?: AbortController | boolean | null) => import("./types").EventResponder;
     options: {
         getListenerOptions: () => import("./types").OptionsTemplate;

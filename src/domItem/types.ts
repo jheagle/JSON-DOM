@@ -1,4 +1,4 @@
-import type { EventListeners, EventName, EventResponder, ListenerFunction } from '../events/types'
+import type { EventListeners, EventName, EventResponder, ForwardEventsFunction, ListenerFunction } from '../events/types'
 
 /** CSS property names (written in camelCase, like element.style) and their values. */
 export type StyleValues = { [property: string]: string }
@@ -17,6 +17,10 @@ export type Attributes = {
 
 /** A real node which a DomItem is mirrored onto. */
 export type DomElement = HTMLElement | Text | Comment | Document
+
+/** The path from the root to an item: each level's index among its parent's children, top-down. An empty array
+ * means the item is the root itself. See getItemPath, getItemByPath. */
+export type ItemPath = number[]
 
 /** The parent of the root DomItem is an empty object (a null parent means the item is detached). */
 export type EmptyParent = Record<string, never>
@@ -107,6 +111,9 @@ export type DomItemConfig = Partial<Omit<CoreProperties, 'appendChild' | 'remove
 export type RootProperties = {
   /** Registered listener functions, by name. */
   eventActions: Record<string, ListenerFunction>
+  /** Set with setForwardEvents to switch into render-only mode: every listener name resolves to a forwarder which
+   * sends this function an envelope instead of running local logic. See retrieveListener. */
+  forwardEvents?: ForwardEventsFunction
   head: DomItem
   body: DomItem
 }

@@ -27,6 +27,9 @@ const getChildrenByClass_1 = __importDefault(require('./query/getChildrenByClass
 const getChildrenByName_1 = __importDefault(require('./query/getChildrenByName'))
 const getChildrenFromAttribute_1 = __importDefault(require('./query/getChildrenFromAttribute'))
 const getChildTest_1 = __importDefault(require('./query/getChildTest'))
+const getItemByElement_1 = __importDefault(require('./query/getItemByElement'))
+const getItemByPath_1 = __importDefault(require('./tree/getItemByPath'))
+const getItemPath_1 = __importDefault(require('./tree/getItemPath'))
 const getParentsByClass_1 = __importDefault(require('./query/getParentsByClass'))
 const getParentsByName_1 = __importDefault(require('./query/getParentsByName'))
 const getParentsByTagName_1 = __importDefault(require('./query/getParentsByTagName'))
@@ -55,6 +58,9 @@ exports.default = {
   getChildrenByName: getChildrenByName_1.default,
   getChildrenFromAttribute: getChildrenFromAttribute_1.default,
   getChildTest: getChildTest_1.default,
+  getItemByElement: getItemByElement_1.default,
+  getItemByPath: getItemByPath_1.default,
+  getItemPath: getItemPath_1.default,
   getParentsByClass: getParentsByClass_1.default,
   getParentsByName: getParentsByName_1.default,
   getParentsByTagName: getParentsByTagName_1.default,

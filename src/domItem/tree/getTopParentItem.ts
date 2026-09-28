@@ -1,4 +1,5 @@
 import 'core-js/stable'
+import siFunciona from 'si-funciona'
 import type { DomItem, DomItemRoot } from '../types'
 
 /**
@@ -13,9 +14,9 @@ const getTopParentItem = (item: DomItem): DomItemRoot => {
     }
     throw new Error('Detached child, missing parentItem reference. Use empty object if this is the root item.')
   }
-  return Object.keys(item.parentItem).length
-    ? getTopParentItem(item.parentItem as DomItem)
-    : item as DomItemRoot
+  return siFunciona.emptyObject(item.parentItem)
+    ? item as DomItemRoot
+    : getTopParentItem(item.parentItem as DomItem)
 }
 
 export default getTopParentItem

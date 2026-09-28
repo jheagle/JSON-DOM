@@ -47,7 +47,7 @@ const applyActiveListeners = (eventName, item) => {
           signal: eventResponder.abort.signal
         })
         : optionsToUse
-      eventResponder.assignedHandler = e => eventResponder.handler((0, createEventProxy_1.default)(e));
+      eventResponder.assignedHandler = e => eventResponder.handler((0, createEventProxy_1.default)(e, item));
       (0, assignListener_1.default)(eventName, item.element, eventResponder.assignedHandler, finalOptions)
     })
   })
