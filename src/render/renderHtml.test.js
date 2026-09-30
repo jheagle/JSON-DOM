@@ -6,6 +6,7 @@ import renderHtml from './renderHtml'
 import documentItem from '../domItem/objects/documentItem'
 import documentDomItem from '../domItem/objects/documentDomItem'
 import fullAddEventListener from '../events/functions/fullAddEventListener'
+import updateDomItems from '../sync/updateDomItems'
 
 describe('renderHtml', () => {
   test('returns with new element when none previously set', () => {
@@ -60,6 +61,30 @@ describe('renderHtml', () => {
     expect(parent.children).toEqual([header, existingFirst, existingSecond])
     expect(updated.parentItem).toBe(parent)
     expect(Array.from(parent.element.children).map(el => el.nodeName.toLowerCase())).toEqual(['header', 'main', 'footer'])
+  })
+
+  // The real bug this covers: a page with hand-authored HTML that some *other* script (outside json-dom entirely,
+  // e.g. a plugin doing its own direct DOM manipulation) sets an inline style on directly. Capturing that HTML into
+  // items via updateDomItems, then inserting a new item ahead of it, must not touch that untracked style -
+  // renderHtml used to walk and re-sync parent's whole existing subtree as a side effect of positioning the new
+  // item, reverting anything about existing siblings that json-dom's own items never knew about.
+  test('inserting an item does not revert an untracked style on an already-rendered sibling', () => {
+    const parent = createDomItem({ nodeName: 'body' })
+    parent.element = document.createElement('body')
+
+    const existingReal = document.createElement('h4')
+    existingReal.textContent = 'Some title'
+    parent.element.appendChild(existingReal)
+    // Something outside json-dom (a third-party script) sets this directly on the real element - json-dom's own
+    // items are never told about it.
+    existingReal.style.display = 'none'
+
+    updateDomItems(parent)
+
+    const header = createDomItem({ nodeName: 'header' })
+    renderHtml(header, parent, 0)
+
+    expect(existingReal.getAttribute('style')).toBe('display: none;')
   })
 
   test('a listener survives a nodeName-driven re-render through the real pipeline, and children stay attached', () => {
