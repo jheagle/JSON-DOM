@@ -2,6 +2,7 @@ import 'core-js/stable'
 import documentItem from '../domItem/objects/documentItem'
 import insertChild from '../domItem/tree/insertChild'
 import setParentItemReferences from '../domItem/tree/setParentItemReferences'
+import updateChildNodes from './updateChildNodes'
 import updateElements from './updateElements'
 import type { DomItem } from '../domItem/types'
 
@@ -19,10 +20,14 @@ import type { DomItem } from '../domItem/types'
  * since it is invisible to parent.children.
  */
 const renderHtml = (item: DomItem | null = null, parent: DomItem = documentItem.body, index: number = parent.children.length): DomItem => {
-  let itemToRender: DomItem = item === null ? documentItem : item
+  const itemToRender: DomItem = item === null ? documentItem : item
   if (itemToRender.parentItem === null) {
-    // excluding when documentItem was passed in, insert the item into parent
-    itemToRender = insertChild(parent, item as DomItem, index)
+    // excluding when documentItem was passed in, insert the item into parent, and place its real element among
+    // parent's real children - scoped to just this positioning, not a resync of parent's whole existing subtree
+    // (updateElements(parent) would walk every sibling's attributes too, reverting anything about them - like a
+    // style change some other, unrelated script made directly on the real DOM - that parent's items don't track)
+    insertChild(parent, item as DomItem, index)
+    updateChildNodes(parent)
   }
   // Render the elements and return either to original reference, or updated documentItem (whichever is available)
   const updatedItem = updateElements(setParentItemReferences(itemToRender))
