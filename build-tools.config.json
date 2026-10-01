@@ -1,6 +1,12 @@
 {
   "browser": {
-    "name": "jsonDom"
+    "name": "jsonDom",
+    "bundles": [
+      {
+        "name": "jsonDomRenderOnly",
+        "main": "dist/renderOnly"
+      }
+    ]
   },
   "docs": {
     "enabled": true,

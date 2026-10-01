@@ -9,7 +9,7 @@
     "json",
     "state management"
   ],
-  "version": "1.7.0",
+  "version": "1.8.0",
   "bugs": {
     "url": "https://github.com/jheagle/json-dom/issues"
   },
@@ -32,7 +32,7 @@
     "@babel/plugin-transform-modules-commonjs": "^7.29.7",
     "@babel/preset-env": "^7.29.7",
     "gulp": "^5.0.1",
-    "js-build-tools": "^5.3.2",
+    "js-build-tools": "^5.5.0",
     "standard": "^17.1.2",
     "test-filesystem": "^1.5.1",
     "typedoc": "^0.28.20"

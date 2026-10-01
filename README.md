@@ -14,12 +14,14 @@ json-dom is not published to npm, install it from GitHub:
 npm install github:jheagle/JSON-DOM
 ```
 
-It is written in TypeScript and ships its types. In a browser, use `browser/jsonDom.min.js` (it defines `jsonDom`).
+It is written in TypeScript and ships its types. In a browser, use `browser/jsonDom.min.js` (it defines `jsonDom`) -
+or, for a build that renders JSON to HTML and forwards fired events elsewhere instead of running local listener
+functions, `browser/jsonDomRenderOnly.min.js` (it defines `jsonDomRenderOnly`; see `setForwardEvents`).
 
 ## Example
 
 ```js
-const { createDomItem, documentDomItem, renderHtml, updateElement, domItemToJson, jsonToDomItem } = require('json-dom').default
+const { createDomItem, documentDomItem, renderHtml, updateElement, domItemToJson, jsonToDomItem } = require('json-dom')
 
 // Named listeners are registered once on the document item, and items refer to them by name
 const documentItem = documentDomItem({
