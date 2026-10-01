@@ -3,4 +3,4 @@
  */
 import 'core-js/stable';
 declare const jsonDom: any;
-export default jsonDom;
+export = jsonDom;

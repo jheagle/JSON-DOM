@@ -33,7 +33,7 @@ Each module of the documentation is a folder of the source:
 ## Example
 
 ```js
-const { createDomItem, documentDomItem, renderHtml, updateElement, domItemToJson, jsonToDomItem } = require('json-dom').default
+const { createDomItem, documentDomItem, renderHtml, updateElement, domItemToJson, jsonToDomItem } = require('json-dom')
 
 // Named listeners are registered once on the document item, and items refer to them by name
 const documentItem = documentDomItem({
