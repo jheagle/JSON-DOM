@@ -2972,7 +2972,9 @@
             element.classList.remove(value)
             continue
           }
-          element.style.removeProperty(si_funciona_1.default.strAfter(dotKey, '.'))
+          // The key is usually already kebab-case here (domItemChanges normalizes it), but not always - see the fix
+          // notes on the matching line below. kabobCase on an already-kebab string is a harmless no-op.
+          element.style.removeProperty(si_funciona_1.default.kabobCase(si_funciona_1.default.strAfter(dotKey, '.')))
         }
         for (const dotKey in changes.added) {
           const value = changes.added[dotKey]
@@ -3009,7 +3011,11 @@
             element.classList.add(value)
             continue
           }
-          element.style.setProperty(si_funciona_1.default.strAfter(dotKey, '.'), value)
+          // domItemChanges is expected to hand this key through already kebab-cased, but a style property which was
+          // already assigned on the element (changed, not newly added) can come back through as its original camelCase
+          // form; CSSOM silently ignores setProperty with an invalid (camelCase) name, so the style is dropped with no
+          // error. kabobCase here is a harmless no-op when the key is already kebab, and a real fix when it is not.
+          element.style.setProperty(si_funciona_1.default.kabobCase(si_funciona_1.default.strAfter(dotKey, '.')), value)
         }
         return (0, bindListeners_1.default)(domItem)
       }
