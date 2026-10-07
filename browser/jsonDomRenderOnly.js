@@ -1062,6 +1062,7 @@
     22: [function (require, module, exports) {
       'use strict'
 
+      require('core-js/modules/es.array.includes.js')
       const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
         return mod && mod.__esModule
           ? mod
@@ -1073,17 +1074,33 @@
         value: true
       })
       require('core-js/stable')
+      const documentItem_1 = __importDefault(require('../objects/documentItem'))
       const si_funciona_1 = __importDefault(require('si-funciona'))
-      const getParentsFromAttribute_1 = __importDefault(require('./getParentsFromAttribute'))
       /**
- * Helper for getting all domGeneral.DomItems starting at child and having specified className attribute
- * @param className - The className to search for
- * @param item - The DomItem which may have parent items matching the
- * attribute criteria
+ * Helper for getting all domGeneral.DomItems going up from item's parent, each one carrying the given class, among
+ * possibly several space-separated classes on that item - the same membership check as the real DOM's
+ * classList.contains, not an exact match of the whole className attribute string (which getParentsFromAttribute
+ * does, and which would miss a parent that also carries other classes).
+ * WARNING: This is a recursive function.
+ * @param className - The one class being searched for
+ * @param item - The DomItem which may have parent items carrying the class
  */
-      const getParentsByClass = si_funciona_1.default.curry(getParentsFromAttribute_1.default)('className')
+      const getParentsByClass = (className, item = documentItem_1.default.body) => {
+        if (item.parentItem === null) {
+          if (item.nodeName === '#document') {
+            throw new Error('Root parent item must be an empty object, null reference found.')
+          }
+          throw new Error('Detached child, missing parentItem reference. Use empty object if this is the root item.')
+        }
+        if (si_funciona_1.default.emptyObject(item.parentItem)) {
+          return []
+        }
+        const parent = item.parentItem
+        const carriesClass = (parent.attributes.className ?? '').split(' ').includes(className)
+        return carriesClass ? getParentsByClass(className, parent).concat([parent]) : getParentsByClass(className, parent)
+      }
       exports.default = getParentsByClass
-    }, { './getParentsFromAttribute': 25, 'core-js/stable': 763, 'si-funciona': 843 }],
+    }, { '../objects/documentItem': 13, 'core-js/modules/es.array.includes.js': 404, 'core-js/stable': 763, 'si-funciona': 843 }],
     23: [function (require, module, exports) {
       'use strict'
 

@@ -15,4 +15,28 @@ describe('getParentsByClass', () => {
     expect(redParents.length).toBe(1)
     expect(redParents[0].attributes.className).toBe('red')
   })
+
+  test('finds a parent which carries the class among several, not only an exact single-class match', () => {
+    const divParent = createDomItem({ nodeName: 'div', parentItem: {}, attributes: { className: 'player attacker' } })
+    const spanItem = createDomItem({ nodeName: 'span' })
+    divParent.appendChild(spanItem)
+    const found = getParentsByClass('player', spanItem)
+    expect(found).toHaveLength(1)
+    expect(found[0].attributes.className).toBe('player attacker')
+  })
+
+  test('does not match a class name which is only a substring of another class', () => {
+    const divParent = createDomItem({ nodeName: 'div', parentItem: {}, attributes: { className: 'form-group' } })
+    const spanItem = createDomItem({ nodeName: 'span' })
+    divParent.appendChild(spanItem)
+    expect(getParentsByClass('form', spanItem)).toHaveLength(0)
+    expect(getParentsByClass('group', spanItem)).toHaveLength(0)
+  })
+
+  test('a parent with no className at all is never matched', () => {
+    const divParent = createDomItem({ nodeName: 'div', parentItem: {} })
+    const spanItem = createDomItem({ nodeName: 'span' })
+    divParent.appendChild(spanItem)
+    expect(getParentsByClass('red', spanItem)).toHaveLength(0)
+  })
 })
