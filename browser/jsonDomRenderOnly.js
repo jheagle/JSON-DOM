@@ -2852,7 +2852,10 @@
  * since it is invisible to parent.children.
  */
       const renderHtml = (item = null, parent = documentItem_1.default.body, index = parent.children.length) => {
-        const itemToRender = item === null ? documentItem_1.default : item
+        const itemToRender = item === null ? documentItem_1.default : item;
+        // Every descendant needs its parentItem chain in place before anything below tries to walk up it (a listener
+        // being bound looks up its root via getTopParentItem) - set it first, rather than after rendering the subtree.
+        (0, setParentItemReferences_1.default)(itemToRender)
         if (itemToRender.parentItem === null) {
         // excluding when documentItem was passed in, insert the item into parent, and place its real element among
         // parent's real children - scoped to just this positioning, not a resync of parent's whole existing subtree
@@ -2862,7 +2865,7 @@
           (0, updateChildNodes_1.default)(parent)
         }
         // Render the elements and return either to original reference, or updated documentItem (whichever is available)
-        const updatedItem = (0, updateElements_1.default)((0, setParentItemReferences_1.default)(itemToRender))
+        const updatedItem = (0, updateElements_1.default)(itemToRender)
         return item ?? updatedItem
       }
       exports.default = renderHtml

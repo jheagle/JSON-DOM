@@ -21,6 +21,9 @@ import type { DomItem } from '../domItem/types'
  */
 const renderHtml = (item: DomItem | null = null, parent: DomItem = documentItem.body, index: number = parent.children.length): DomItem => {
   const itemToRender: DomItem = item === null ? documentItem : item
+  // Every descendant needs its parentItem chain in place before anything below tries to walk up it (a listener
+  // being bound looks up its root via getTopParentItem) - set it first, rather than after rendering the subtree.
+  setParentItemReferences(itemToRender)
   if (itemToRender.parentItem === null) {
     // excluding when documentItem was passed in, insert the item into parent, and place its real element among
     // parent's real children - scoped to just this positioning, not a resync of parent's whole existing subtree
@@ -30,7 +33,7 @@ const renderHtml = (item: DomItem | null = null, parent: DomItem = documentItem.
     updateChildNodes(parent)
   }
   // Render the elements and return either to original reference, or updated documentItem (whichever is available)
-  const updatedItem = updateElements(setParentItemReferences(itemToRender))
+  const updatedItem = updateElements(itemToRender)
   return item ?? updatedItem
 }
 

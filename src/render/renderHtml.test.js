@@ -120,4 +120,22 @@ describe('renderHtml', () => {
     expect(childClickFn).toHaveBeenCalledTimes(2)
     expect(clickFn).toHaveBeenCalledTimes(3)
   })
+
+  // The real bug this covers: a listener several levels deep in a freshly-built, never-before-rendered tree failed
+  // to bind, because binding a listener looks up its root via getTopParentItem, which walks the parentItem chain -
+  // and renderHtml used to set that chain (setParentItemReferences) only after already rendering and binding
+  // listeners for the whole subtree, not before. Threw "Detached child, missing parentItem reference" on every
+  // nested listener in a fresh tree (battleship's own menu, hit on every test that rendered it).
+  test('a listener several levels deep in a fresh tree binds without throwing', () => {
+    const ownDocument = documentDomItem({ onClick: () => 'ran' })
+    const button = createDomItem({
+      nodeName: 'button',
+      eventListeners: { click: [{ listenerFunc: 'onClick', listenerArgs: {}, listenerOptions: false }] }
+    })
+    const middle = createDomItem({ nodeName: 'div', children: [button] })
+    const top = createDomItem({ nodeName: 'div', children: [middle] })
+    expect(() => renderHtml(top, ownDocument.body)).not.toThrow()
+    expect(top.element.contains(button.element)).toBe(true)
+    expect(button.activeListeners.click).toBeDefined()
+  })
 })
