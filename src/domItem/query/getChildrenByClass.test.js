@@ -17,4 +17,36 @@ describe('getChildrenByClass', () => {
     expect(redSpans.length).toBe(1)
     expect(redSpans[0].attributes.className).toBe('red')
   })
+
+  test('finds a child which carries the class among several, not only an exact single-class match', () => {
+    const divItem = createDomItem({
+      nodeName: 'div',
+      children: [
+        createDomItem({ nodeName: 'span', attributes: { className: 'form-group human-group' } }),
+        createDomItem({ nodeName: 'span', attributes: { className: 'blue' } })
+      ]
+    })
+    const found = getChildrenByClass('human-group', divItem)
+    expect(found).toHaveLength(1)
+    expect(found[0].attributes.className).toBe('form-group human-group')
+  })
+
+  test('does not match a class name which is only a substring of another class', () => {
+    const divItem = createDomItem({
+      nodeName: 'div',
+      children: [
+        createDomItem({ nodeName: 'span', attributes: { className: 'form-group' } })
+      ]
+    })
+    expect(getChildrenByClass('form', divItem)).toHaveLength(0)
+    expect(getChildrenByClass('group', divItem)).toHaveLength(0)
+  })
+
+  test('a child with no className at all is never matched', () => {
+    const divItem = createDomItem({
+      nodeName: 'div',
+      children: [createDomItem({ nodeName: 'span' })]
+    })
+    expect(getChildrenByClass('red', divItem)).toHaveLength(0)
+  })
 })

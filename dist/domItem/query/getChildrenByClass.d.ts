@@ -1,10 +1,12 @@
 import 'core-js/stable';
 import type { DomItem } from '../types';
 /**
- * Helper for getting all domGeneral.DomItems starting at parent and having specified className attribute
- * @param className - The className searched for
- * @param item - The DomItem which may have child items matching the attribute
- * criteria
+ * Helper for getting all domGeneral.DomItems starting at item and carrying the given class, among possibly several
+ * space-separated classes on that item - the same membership check as the real DOM's classList.contains, not an
+ * exact match of the whole className attribute string (which getChildrenFromAttribute does, and which would miss
+ * an item that also carries other classes).
+ * @param className - The one class being searched for
+ * @param item - The DomItem which may have child items carrying the class
  */
 declare const getChildrenByClass: (className: string, item?: DomItem) => DomItem[];
 export default getChildrenByClass;
