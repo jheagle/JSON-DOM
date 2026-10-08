@@ -59,6 +59,13 @@ export type ForwardedEvent = {
     listenerFunc: string;
     /** The custom args the listener was registered with. */
     data: unknown[];
+    /** Live state read directly off the real event's target when present - a listener which reads e.g.
+     * (event.target as HTMLInputElement).checked needs this replayed onto the real target on the receiving end
+     * (see receiveForwardedEvent), since the two ends' elements are otherwise independent objects. */
+    targetState?: {
+        checked?: boolean;
+        value?: string;
+    };
 };
 /** Where a forwarded event's envelope is sent, in render-only mode. Set on the root item with setForwardEvents. */
 export type ForwardEventsFunction = (envelope: ForwardedEvent) => unknown;
