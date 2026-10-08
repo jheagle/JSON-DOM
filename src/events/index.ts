@@ -17,6 +17,7 @@ import fullRemoveEventListener from './functions/fullRemoveEventListener'
 import listenerOptions from './functions/listenerOptions'
 import makeEventHandler from './functions/makeEventHandler'
 import makeForwardingListener from './functions/makeForwardingListener'
+import receiveForwardedEvent from './functions/receiveForwardedEvent'
 import registerListener from './functions/registerListener'
 import registerListeners from './functions/registerListeners'
 import removeEventListener from './functions/removeEventListener'
@@ -45,6 +46,7 @@ export default {
   listenerOptions,
   makeEventHandler,
   makeForwardingListener,
+  receiveForwardedEvent,
   registerListener,
   registerListeners,
   removeEventListener,

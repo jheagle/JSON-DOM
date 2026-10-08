@@ -36,4 +36,31 @@ describe('makeForwardingListener', () => {
     const forwarder = makeForwardingListener('clickFn', () => 'transported')
     expect(forwarder(new Event('click'), root)).toBe('transported')
   })
+
+  test('captures a checkbox\'s checked state as targetState, for a listener that reads it off the real event', () => {
+    const item = createDomItem({ nodeName: 'input', parentItem: {} })
+    const transport = jest.fn()
+    const forwarder = makeForwardingListener('checkFn', transport)
+    const checkbox = { type: 'change', target: { tagName: 'INPUT', type: 'checkbox', checked: true } }
+    forwarder(checkbox, item)
+    expect(transport).toHaveBeenCalledWith(expect.objectContaining({ targetState: { checked: true } }))
+  })
+
+  test('captures a text input\'s value as targetState', () => {
+    const item = createDomItem({ nodeName: 'input', parentItem: {} })
+    const transport = jest.fn()
+    const forwarder = makeForwardingListener('changeFn', transport)
+    const input = { type: 'change', target: { tagName: 'INPUT', type: 'text', value: 'hello' } }
+    forwarder(input, item)
+    expect(transport).toHaveBeenCalledWith(expect.objectContaining({ targetState: { value: 'hello' } }))
+  })
+
+  test('omits targetState for a target that is not a form control, such as a button', () => {
+    const item = createDomItem({ nodeName: 'button', parentItem: {} })
+    const transport = jest.fn()
+    const forwarder = makeForwardingListener('clickFn', transport)
+    const button = { type: 'click', target: { tagName: 'BUTTON', value: '' } }
+    forwarder(button, item)
+    expect(transport.mock.calls[0][0].targetState).toBeUndefined()
+  })
 })
