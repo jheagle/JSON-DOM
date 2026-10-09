@@ -16,6 +16,7 @@ import getChildrenByName from './query/getChildrenByName'
 import getChildrenFromAttribute from './query/getChildrenFromAttribute'
 import getChildTest from './query/getChildTest'
 import getItemByElement from './query/getItemByElement'
+import { getItemById } from './tree/itemIdIndex'
 import getItemByPath from './tree/getItemByPath'
 import getItemPath from './tree/getItemPath'
 import getParentsByClass from './query/getParentsByClass'
@@ -48,6 +49,7 @@ export default {
   getChildrenFromAttribute,
   getChildTest,
   getItemByElement,
+  getItemById,
   getItemByPath,
   getItemPath,
   getParentsByClass,

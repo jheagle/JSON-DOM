@@ -33,10 +33,11 @@ describe('render-only event forwarding (end to end)', () => {
     parentItem.children[0].element.click()
     expect(transport).toHaveBeenCalledTimes(1)
     expect(transport).toHaveBeenCalledWith({
-      itemPath: [0, 0],
+      itemId: childItem.id,
       eventType: 'click',
       listenerFunc: 'clickFn',
-      data: [{ custom: 'arg' }]
+      data: [{ custom: 'arg' }],
+      targetState: undefined
     })
   })
 })

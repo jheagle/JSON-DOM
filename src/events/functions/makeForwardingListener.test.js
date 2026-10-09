@@ -11,7 +11,7 @@ describe('makeForwardingListener', () => {
     const forwarder = makeForwardingListener('clickFn', transport)
     forwarder(new Event('click'), item, 'extra', 42)
     expect(transport).toHaveBeenCalledWith({
-      itemPath: [0],
+      itemId: item.id,
       eventType: 'click',
       listenerFunc: 'clickFn',
       data: ['extra', 42]
@@ -28,7 +28,7 @@ describe('makeForwardingListener', () => {
     const forwarder = makeForwardingListener('clickFn', transport)
     const eventWithTarget = Object.assign(new Event('click'), { domItemTarget: child })
     forwarder(eventWithTarget, parent)
-    expect(transport).toHaveBeenCalledWith(expect.objectContaining({ itemPath: [0, 0] }))
+    expect(transport).toHaveBeenCalledWith(expect.objectContaining({ itemId: child.id }))
   })
 
   test('returns whatever the transport returns', () => {

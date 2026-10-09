@@ -4,6 +4,7 @@
 import bindAllListeners from './bindAllListeners'
 import createDomItem from '../../domItem/objects/createDomItem'
 import receiveForwardedEvent from './receiveForwardedEvent'
+import { registerItemIds } from '../../domItem/tree/itemIdIndex'
 
 describe('receiveForwardedEvent (end to end)', () => {
   test('dispatches a real event on the resolved item, running its real, already-bound listener', () => {
@@ -26,8 +27,9 @@ describe('receiveForwardedEvent (end to end)', () => {
     parent.parentItem = root
     button.parentItem = parent
     bindAllListeners(parent)
+    registerItemIds(root)
 
-    receiveForwardedEvent(root, { itemPath: [0, 0], eventType: 'click', listenerFunc: 'clickFn', data: [] })
+    receiveForwardedEvent(root, { itemId: button.id, eventType: 'click', listenerFunc: 'clickFn', data: [] })
 
     expect(clickFn).toHaveBeenCalledTimes(1)
     const [event, target, customArg] = clickFn.mock.calls[0]
@@ -52,8 +54,9 @@ describe('receiveForwardedEvent (end to end)', () => {
     })
     checkbox.parentItem = root
     bindAllListeners(checkbox)
+    registerItemIds(root)
 
-    receiveForwardedEvent(root, { itemPath: [0], eventType: 'change', listenerFunc: 'checkFn', data: [], targetState: { checked: true } })
+    receiveForwardedEvent(root, { itemId: checkbox.id, eventType: 'change', listenerFunc: 'checkFn', data: [], targetState: { checked: true } })
 
     expect(checkbox.element.checked).toBe(true)
     expect(checkFn).toHaveBeenCalledWith(true)
@@ -63,7 +66,52 @@ describe('receiveForwardedEvent (end to end)', () => {
     const item = createDomItem({ nodeName: 'div' })
     const root = createDomItem({ nodeName: '#document', element: document, eventActions: {}, children: [item], parentItem: {} })
     item.parentItem = root
+    registerItemIds(root)
 
-    expect(() => receiveForwardedEvent(root, { itemPath: [0], eventType: 'click', listenerFunc: 'whatever', data: [] })).toThrow(/no element/i)
+    expect(() => receiveForwardedEvent(root, { itemId: item.id, eventType: 'click', listenerFunc: 'whatever', data: [] })).toThrow(/no element/i)
+  })
+
+  test('throws when the id does not resolve to any item in this tree', () => {
+    const root = createDomItem({ nodeName: '#document', element: document, eventActions: {}, children: [], parentItem: {} })
+    registerItemIds(root)
+
+    expect(() => receiveForwardedEvent(root, { itemId: -1, eventType: 'click', listenerFunc: 'whatever', data: [] })).toThrow(/no item with id/i)
+  })
+
+  test('never dispatches when a validator rejects the resolved item', () => {
+    const clickFn = jest.fn()
+    const button = createDomItem({
+      nodeName: 'button',
+      element: document.createElement('button'),
+      eventListeners: { click: [{ listenerFunc: 'clickFn' }] }
+    })
+    const root = createDomItem({ nodeName: '#document', element: document, eventActions: { clickFn }, children: [button], parentItem: {} })
+    button.parentItem = root
+    bindAllListeners(button)
+    registerItemIds(root)
+
+    receiveForwardedEvent(root, { itemId: button.id, eventType: 'click', listenerFunc: 'clickFn', data: [] }, () => false)
+
+    expect(clickFn).not.toHaveBeenCalled()
+  })
+
+  test('dispatches as normal when a validator accepts the resolved item', () => {
+    const clickFn = jest.fn()
+    const button = createDomItem({
+      nodeName: 'button',
+      element: document.createElement('button'),
+      eventListeners: { click: [{ listenerFunc: 'clickFn' }] }
+    })
+    const root = createDomItem({ nodeName: '#document', element: document, eventActions: { clickFn }, children: [button], parentItem: {} })
+    button.parentItem = root
+    bindAllListeners(button)
+    registerItemIds(root)
+
+    const envelope = { itemId: button.id, eventType: 'click', listenerFunc: 'clickFn', data: [] }
+    const validator = jest.fn().mockReturnValue(true)
+    receiveForwardedEvent(root, envelope, validator)
+
+    expect(validator).toHaveBeenCalledWith(button, envelope)
+    expect(clickFn).toHaveBeenCalledTimes(1)
   })
 })

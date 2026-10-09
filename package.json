@@ -25,6 +25,7 @@
     "watch:test": "gulp watchTest"
   },
   "dependencies": {
+    "collect-your-stuff": "^2.2.0",
     "si-funciona": "^2.7.1"
   },
   "devDependencies": {

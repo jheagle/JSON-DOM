@@ -1,4 +1,5 @@
 import 'core-js/stable'
+import { unregisterItemIds } from './itemIdIndex'
 import type { DomItem } from '../types'
 
 /**
@@ -7,6 +8,8 @@ import type { DomItem } from '../types'
  * @param child - The DomItem with HTMLElement to be removed
  */
 const removeChild = (parent: DomItem, child: DomItem): DomItem[] => {
+  // Before detaching: child's own parentItem chain (still pointing at parent) is what resolves its root.
+  unregisterItemIds(child)
   parent.element!.removeChild(child.element!)
   return parent.children.splice(parent.children.indexOf(child), 1)
 }

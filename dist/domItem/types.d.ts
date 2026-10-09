@@ -59,6 +59,10 @@ export type CoreProperties = {
     eventListeners: Record<EventName, EventListeners>;
     /** The traits this item has (see TraitRegistry). */
     has: HasMap;
+    /** Assigned once at creation (see createCoreItem) and never reassigned, including across a clone or a JSON
+     * round-trip: the stable identity getItemById resolves by, independent of the item's current position in
+     * the tree (which a client's own tree may not match exactly - see ForwardedEvent's itemId). */
+    id: number;
     /** Property names to leave out when converting to json. */
     jsonExclusions: string[];
     /** Any document node name: a tag name, #text, #comment or #document. */

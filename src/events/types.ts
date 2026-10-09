@@ -1,4 +1,4 @@
-import type { DomItem, ItemPath } from '../domItem/types'
+import type { DomItem } from '../domItem/types'
 
 /** The name of a DOM event: click, submit, keydown, ... */
 export type EventName = string
@@ -60,9 +60,12 @@ export type EventListeners = ListenerDescriptor[]
 
 /** What a forwarded event is packaged as in render-only mode. See retrieveListener, makeForwardingListener. */
 export type ForwardedEvent = {
-  /** The path (from getItemPath) to the item the event fired on (domItemTarget, falling back to the item the
-   * listener is attached to when no domItemTarget was found). */
-  itemPath: ItemPath
+  /** The id of the item the event fired on (domItemTarget, falling back to the item the listener is attached
+   * to when no domItemTarget was found) - read directly off that item's own id, not computed. Resolution is a
+   * lookup (getItemById) rather than a tree walk, so it still finds the right item even if the receiving end's
+   * own tree does not match the sending end's shape exactly (see getItemById vs the position-based
+   * getItemPath/getItemByPath this replaced). */
+  itemId: number
   /** The type of event which fired (event.type). */
   eventType: EventName
   /** The registered name of the listener which would have run locally. */

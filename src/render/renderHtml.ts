@@ -1,6 +1,7 @@
 import 'core-js/stable'
 import documentItem from '../domItem/objects/documentItem'
 import insertChild from '../domItem/tree/insertChild'
+import { registerItemIds } from '../domItem/tree/itemIdIndex'
 import setParentItemReferences from '../domItem/tree/setParentItemReferences'
 import updateChildNodes from './updateChildNodes'
 import updateElements from './updateElements'
@@ -32,6 +33,13 @@ const renderHtml = (item: DomItem | null = null, parent: DomItem = documentItem.
     insertChild(parent, item as DomItem, index)
     updateChildNodes(parent)
   }
+  // Register this subtree (root item included) in its own root's id index - unconditionally, since this is
+  // correct and idempotent whichever branch above ran: a freshly-attached subtree needs it for the first time,
+  // an already-attached one being re-rendered just gets its own (unchanged) entries re-set, and the document
+  // root's own very first render (parentItem is {}, not null, so the branch above never runs for it) registers
+  // the root's own already-built initial content. Does nothing at all when itemToRender is rendered into some
+  // arbitrary, never-rooted container rather than a real DomItemRoot - see registerItemIds.
+  registerItemIds(itemToRender)
   // Render the elements and return either to original reference, or updated documentItem (whichever is available)
   const updatedItem = updateElements(itemToRender)
   return item ?? updatedItem
