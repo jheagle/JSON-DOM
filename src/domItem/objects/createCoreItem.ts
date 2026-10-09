@@ -2,11 +2,8 @@ import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import appendChild from '../tree/appendChild'
 import removeChild from '../tree/removeChild'
+import { generateItemId } from '../tree/itemIdIndex'
 import type { CoreItem, DomItemConfig } from '../types'
-
-/** The next id to assign - a plain, process-local counter (not a UUID): cheap to generate/compare/serialize,
- * and nothing ever resolves an id against a different process's tree, so global uniqueness is never needed. */
-let nextItemId = 0
 
 /**
  * Create the generic item, without the render trait. Every property which is not given gets its default. The given
@@ -28,7 +25,7 @@ const createCoreItem = (item: DomItemConfig = {}): CoreItem => {
       children: [],
       eventListeners: {},
       has: {},
-      id: nextItemId++,
+      id: generateItemId(),
       jsonExclusions: [],
       nodeName: 'div',
       nodeValue: null,
