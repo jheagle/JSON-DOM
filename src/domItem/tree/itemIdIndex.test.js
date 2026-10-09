@@ -75,6 +75,38 @@ describe('itemIdIndex', () => {
     expect(getItemById(root, root.id)).toBe(root)
   })
 
+  test('repairs a duplicate id on registration, giving the second item a fresh one instead of silently ' +
+    'losing the first - the shape a generic "build one item, then clone it N times" helper (si-funciona\'s ' +
+    'buildArray) produces, copying whichever id the one template already carries into every copy', () => {
+    const root = createDomItem({ nodeName: '#document', parentItem: {} })
+    const original = createDomItem({ nodeName: 'div' })
+    const duplicate = createDomItem({ nodeName: 'span' })
+    duplicate.id = original.id
+    original.parentItem = root
+    duplicate.parentItem = root
+    root.children = [original, duplicate]
+
+    registerItemIds(root)
+
+    expect(duplicate.id).not.toBe(original.id)
+    expect(getItemById(root, original.id)).toBe(original)
+    expect(getItemById(root, duplicate.id)).toBe(duplicate)
+  })
+
+  test('registering the same item again under the same id is a no-op, not a collision', () => {
+    const root = createDomItem({ nodeName: '#document', parentItem: {} })
+    const child = createDomItem({ nodeName: 'div' })
+    child.parentItem = root
+    root.children = [child]
+    registerItemIds(root)
+    const idBefore = child.id
+
+    registerItemIds(root)
+
+    expect(child.id).toBe(idBefore)
+    expect(getItemById(root, idBefore)).toBe(child)
+  })
+
   test('resolves the right item even when the two trees differ in shape - the bug class position-based ' +
     'getItemByPath could not survive', () => {
     // The server's real tree: body has two children, the item of interest is the second one.

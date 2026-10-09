@@ -804,9 +804,7 @@
       const si_funciona_1 = __importDefault(require('si-funciona'))
       const appendChild_1 = __importDefault(require('../tree/appendChild'))
       const removeChild_1 = __importDefault(require('../tree/removeChild'))
-      /** The next id to assign - a plain, process-local counter (not a UUID): cheap to generate/compare/serialize,
- * and nothing ever resolves an id against a different process's tree, so global uniqueness is never needed. */
-      let nextItemId = 0
+      const itemIdIndex_1 = require('../tree/itemIdIndex')
       /**
  * Create the generic item, without the render trait. Every property which is not given gets its default. The given
  * object is completed and returned (it is not copied). Children which are plain objects are completed the same way, all
@@ -826,7 +824,7 @@
           children: [],
           eventListeners: {},
           has: {},
-          id: nextItemId++,
+          id: (0, itemIdIndex_1.generateItemId)(),
           jsonExclusions: [],
           nodeName: 'div',
           nodeValue: null,
@@ -843,7 +841,7 @@
         return newItem
       }
       exports.default = createCoreItem
-    }, { '../tree/appendChild': 37, '../tree/removeChild': 43, 'core-js/modules/esnext.iterator.constructor.js': 728, 'core-js/modules/esnext.iterator.for-each.js': 733, 'core-js/stable': 795, 'si-funciona': 875 }],
+    }, { '../tree/appendChild': 37, '../tree/itemIdIndex': 42, '../tree/removeChild': 43, 'core-js/modules/esnext.iterator.constructor.js': 728, 'core-js/modules/esnext.iterator.for-each.js': 733, 'core-js/stable': 795, 'si-funciona': 875 }],
     14: [function (require, module, exports) {
       'use strict'
 
@@ -1662,7 +1660,7 @@
       Object.defineProperty(exports, '__esModule', {
         value: true
       })
-      exports.getItemById = exports.unregisterItemIds = exports.registerItemIds = void 0
+      exports.getItemById = exports.unregisterItemIds = exports.registerItemIds = exports.generateItemId = void 0
       require('core-js/stable')
       const si_funciona_1 = __importDefault(require('si-funciona'))
       const collect_your_stuff_1 = require('collect-your-stuff')
@@ -1670,6 +1668,14 @@
  * (the server's real tree and a client's independently-built one) never collide even though both number their
  * items starting from the same small integers. */
       const itemsById = new collect_your_stuff_1.ScopedCollection()
+      /** The next id to assign - a plain, process-local monotonic counter (not a UUID: cheaper to generate/compare/
+ * serialize, and uniqueness only ever needs to hold within one process, since nothing resolves an id against a
+ * different root than the one it came from). Exported for createCoreItem's own first stamp and for this
+ * module's own collision repair below - kept here, not there, since this module must never import back from
+ * createCoreItem (which already imports this one, via removeChild - see unregisterItemIds's own caller). */
+      let nextItemId = 0
+      const generateItemId = () => nextItemId++
+      exports.generateItemId = generateItemId
       /**
  * The real root above item, or null when item's own parentItem chain never reaches one (an item rendered into
  * some arbitrary, never-rooted container - see renderHtml's own tests - is a legitimate thing to build, just
@@ -1692,12 +1698,27 @@
  * Register an item (and, recursively, its whole subtree) in its own root's id index, so getItemById can find
  * it. Call once a subtree's relationship to its parent is settled - see renderHtml, which is the one place
  * that happens for a freshly-attached subtree. Does nothing when item is not under a real root yet (or ever).
+ *
+ * Repairs a collision on the way in: an id is supposed to be unique from the moment createCoreItem stamps it,
+ * but a generic "build one item, then replicate it N times" helper (si-funciona's buildArray, cloning rather
+ * than constructing fresh - the shape matrix-dom's own buildMatrix uses for a grid's rows/columns/tiles) copies
+ * whatever id the one template already carries into every copy right along with everything else, with no way
+ * for json-dom to know that happened before registration. Catching it here, at the one real choke point every
+ * attached item passes through, protects against that pattern (and any other generic cloning this codebase
+ * does not yet know about) without needing every consumer to avoid it. A real reuse of someone else's id
+ * (rather than two different items both starting from zero) is not realistically distinguishable from this, so
+ * the same repair applies regardless of cause - the alternative (leaving the collision in place) silently
+ * breaks resolution for one of the two items, which is worse than quietly handing the second one a fresh id.
  * @param item - The subtree to register, root item included.
  */
       const registerItemIds = item => {
         const root = tryGetRoot(item)
         if (!root) {
           return
+        }
+        const alreadyThere = itemsById.get(root, item.id)
+        if (alreadyThere && alreadyThere !== item) {
+          item.id = (0, exports.generateItemId)()
         }
         itemsById.set(root, item.id, item)
         item.children.forEach(exports.registerItemIds)

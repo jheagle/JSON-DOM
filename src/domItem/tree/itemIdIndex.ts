@@ -8,6 +8,14 @@ import type { DomItem, DomItemRoot } from '../types'
  * items starting from the same small integers. */
 const itemsById = new ScopedCollection<DomItemRoot, number, DomItem>()
 
+/** The next id to assign - a plain, process-local monotonic counter (not a UUID: cheaper to generate/compare/
+ * serialize, and uniqueness only ever needs to hold within one process, since nothing resolves an id against a
+ * different root than the one it came from). Exported for createCoreItem's own first stamp and for this
+ * module's own collision repair below - kept here, not there, since this module must never import back from
+ * createCoreItem (which already imports this one, via removeChild - see unregisterItemIds's own caller). */
+let nextItemId = 0
+export const generateItemId = (): number => nextItemId++
+
 /**
  * The real root above item, or null when item's own parentItem chain never reaches one (an item rendered into
  * some arbitrary, never-rooted container - see renderHtml's own tests - is a legitimate thing to build, just
@@ -31,12 +39,27 @@ const tryGetRoot = (item: DomItem): DomItemRoot | null => {
  * Register an item (and, recursively, its whole subtree) in its own root's id index, so getItemById can find
  * it. Call once a subtree's relationship to its parent is settled - see renderHtml, which is the one place
  * that happens for a freshly-attached subtree. Does nothing when item is not under a real root yet (or ever).
+ *
+ * Repairs a collision on the way in: an id is supposed to be unique from the moment createCoreItem stamps it,
+ * but a generic "build one item, then replicate it N times" helper (si-funciona's buildArray, cloning rather
+ * than constructing fresh - the shape matrix-dom's own buildMatrix uses for a grid's rows/columns/tiles) copies
+ * whatever id the one template already carries into every copy right along with everything else, with no way
+ * for json-dom to know that happened before registration. Catching it here, at the one real choke point every
+ * attached item passes through, protects against that pattern (and any other generic cloning this codebase
+ * does not yet know about) without needing every consumer to avoid it. A real reuse of someone else's id
+ * (rather than two different items both starting from zero) is not realistically distinguishable from this, so
+ * the same repair applies regardless of cause - the alternative (leaving the collision in place) silently
+ * breaks resolution for one of the two items, which is worse than quietly handing the second one a fresh id.
  * @param item - The subtree to register, root item included.
  */
 export const registerItemIds = (item: DomItem): void => {
   const root = tryGetRoot(item)
   if (!root) {
     return
+  }
+  const alreadyThere = itemsById.get(root, item.id)
+  if (alreadyThere && alreadyThere !== item) {
+    item.id = generateItemId()
   }
   itemsById.set(root, item.id, item)
   item.children.forEach(registerItemIds)
