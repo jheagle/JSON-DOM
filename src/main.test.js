@@ -42,6 +42,7 @@ const publicApi = [
   'getChildrenByName',
   'getChildrenFromAttribute',
   'getItemByElement',
+  'getItemById',
   'getItemByPath',
   'getItemPath',
   'getParentsByClass',

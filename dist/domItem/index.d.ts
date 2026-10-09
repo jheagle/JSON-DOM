@@ -17,6 +17,7 @@ declare const _default: {
     getChildrenFromAttribute: (attr: string, value: unknown, item?: import("./types").DomItem) => import("./types").DomItem[];
     getChildTest: (attr: string, value: unknown) => import("./types").ChildTest;
     getItemByElement: (item: import("./types").DomItem, element: EventTarget | null) => import("./types").DomItem | null;
+    getItemById: (root: import("./types").DomItemRoot, id: number) => import("./types").DomItem;
     getItemByPath: (root: import("./types").DomItem, path: import("./types").ItemPath) => import("./types").DomItem;
     getItemPath: (item: import("./types").DomItem) => import("./types").ItemPath;
     getParentsByClass: (className: string, item?: import("./types").DomItem) => import("./types").DomItem[];

@@ -21,7 +21,7 @@ declare const _default: {
     };
     makeEventHandler: (listener: import("./types").ListenerFunction, item: import("../domItem/types").DomItem, ...args: unknown[]) => import("./types").EventHandler;
     makeForwardingListener: (listenerName: string, transport: import("./types").ForwardEventsFunction) => import("./types").ListenerFunction;
-    receiveForwardedEvent: (root: import("../domItem/types").DomItemRoot, envelope: import("./types").ForwardedEvent) => void;
+    receiveForwardedEvent: (root: import("../domItem/types").DomItemRoot, envelope: import("./types").ForwardedEvent, validator?: import("./functions/receiveForwardedEvent").ForwardedEventValidator) => void;
     registerListener: (listener: import("./types").ListenerFunction, name?: string, parent?: import("../domItem/types").DomItemRoot) => Record<string, import("./types").ListenerFunction>;
     registerListeners: (listeners: import("./types").ListenerFunction[] | Record<string, import("./types").ListenerFunction>, parent?: import("../domItem/types").DomItemRoot) => import("../domItem/types").DomItemRoot;
     removeEventListener: (eventName: import("./types").EventName, listenerFunction: string | import("./types").ListenerFunction, customArgs: object | null | undefined, options: import("./types").ListenerOptions | null | undefined, item: import("../domItem/types").DomItem) => import("../domItem/types").DomItem;

@@ -16,6 +16,9 @@ require('core-js/stable')
 const si_funciona_1 = __importDefault(require('si-funciona'))
 const appendChild_1 = __importDefault(require('../tree/appendChild'))
 const removeChild_1 = __importDefault(require('../tree/removeChild'))
+/** The next id to assign - a plain, process-local counter (not a UUID): cheap to generate/compare/serialize,
+ * and nothing ever resolves an id against a different process's tree, so global uniqueness is never needed. */
+let nextItemId = 0
 /**
  * Create the generic item, without the render trait. Every property which is not given gets its default. The given
  * object is completed and returned (it is not copied). Children which are plain objects are completed the same way, all
@@ -35,6 +38,7 @@ const createCoreItem = (item = {}) => {
     children: [],
     eventListeners: {},
     has: {},
+    id: nextItemId++,
     jsonExclusions: [],
     nodeName: 'div',
     nodeValue: null,

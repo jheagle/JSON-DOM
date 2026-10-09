@@ -13,6 +13,7 @@ Object.defineProperty(exports, '__esModule', {
 require('core-js/stable')
 const documentItem_1 = __importDefault(require('../domItem/objects/documentItem'))
 const insertChild_1 = __importDefault(require('../domItem/tree/insertChild'))
+const itemIdIndex_1 = require('../domItem/tree/itemIdIndex')
 const setParentItemReferences_1 = __importDefault(require('../domItem/tree/setParentItemReferences'))
 const updateChildNodes_1 = __importDefault(require('./updateChildNodes'))
 const updateElements_1 = __importDefault(require('./updateElements'))
@@ -42,6 +43,13 @@ const renderHtml = (item = null, parent = documentItem_1.default.body, index = p
     (0, insertChild_1.default)(parent, item, index);
     (0, updateChildNodes_1.default)(parent)
   }
+  // Register this subtree (root item included) in its own root's id index - unconditionally, since this is
+  // correct and idempotent whichever branch above ran: a freshly-attached subtree needs it for the first time,
+  // an already-attached one being re-rendered just gets its own (unchanged) entries re-set, and the document
+  // root's own very first render (parentItem is {}, not null, so the branch above never runs for it) registers
+  // the root's own already-built initial content. Does nothing at all when itemToRender is rendered into some
+  // arbitrary, never-rooted container rather than a real DomItemRoot - see registerItemIds.
+  (0, itemIdIndex_1.registerItemIds)(itemToRender)
   // Render the elements and return either to original reference, or updated documentItem (whichever is available)
   const updatedItem = (0, updateElements_1.default)(itemToRender)
   return item ?? updatedItem

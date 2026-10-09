@@ -46,6 +46,6 @@ describe('retrieveListener', () => {
     const forwarder = retrieveListener('notRegisteredAnywhere', parent)
     expect(typeof forwarder).toBe('function')
     forwarder(new Event('click'), parent)
-    expect(transport).toHaveBeenCalledWith(expect.objectContaining({ listenerFunc: 'notRegisteredAnywhere', eventType: 'click', itemPath: [] }))
+    expect(transport).toHaveBeenCalledWith(expect.objectContaining({ listenerFunc: 'notRegisteredAnywhere', eventType: 'click', itemId: parent.id }))
   })
 })
