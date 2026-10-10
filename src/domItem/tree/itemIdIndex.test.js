@@ -93,6 +93,32 @@ describe('itemIdIndex', () => {
     expect(getItemById(root, duplicate.id)).toBe(duplicate)
   })
 
+  test('a raw plain object with no id at all (never passed through createCoreItem - see ' +
+    'updatePlayerStats.ts\'s own merge-by-reference fallback) gets one assigned on registration', () => {
+    const root = createDomItem({ nodeName: '#document', parentItem: {} })
+    const raw = { nodeName: 'li', attributes: {} }
+    raw.parentItem = root
+    root.children = [raw]
+
+    expect(() => registerItemIds(root)).not.toThrow()
+
+    expect(typeof raw.id).toBe('number')
+    expect(getItemById(root, raw.id)).toBe(raw)
+  })
+
+  test('a raw plain child with no children array and no parentItem at all does not crash registration ' +
+    'or unregistration - undefined is treated the same as detached, not walked into', () => {
+    const root = createDomItem({ nodeName: '#document', parentItem: {} })
+    const container = createDomItem({ nodeName: 'ul' })
+    const raw = { nodeName: 'li', attributes: {} } // no .children, no .parentItem
+    container.parentItem = root
+    container.children = [raw]
+    root.children = [container]
+
+    expect(() => registerItemIds(root)).not.toThrow()
+    expect(() => unregisterItemIds(container)).not.toThrow()
+  })
+
   test('registering the same item again under the same id is a no-op, not a collision', () => {
     const root = createDomItem({ nodeName: '#document', parentItem: {} })
     const child = createDomItem({ nodeName: 'div' })

@@ -17,16 +17,20 @@ let nextItemId = 0
 export const generateItemId = (): number => nextItemId++
 
 /**
- * The real root above item, or null when item's own parentItem chain never reaches one (an item rendered into
- * some arbitrary, never-rooted container - see renderHtml's own tests - is a legitimate thing to build, just
- * not one forwarding could ever target, so it is not an error for it to have no id-index entry). Unlike
- * getTopParentItem, this never throws: it is used purely to decide whether registration applies, not to assert
- * that a real root exists.
+ * The real root above item, or null when item's own parentItem chain never reaches one. That covers two
+ * different, both legitimate cases: an item rendered into some arbitrary, never-rooted container (see
+ * renderHtml's own tests - not one forwarding could ever target, so it is not an error for it to have no
+ * id-index entry), and an item that was never completed as a real DomItem at all - a raw plain config object
+ * merged directly onto an already-rendered tree (si-funciona's mergeObjectsMutable, by reference, "as is",
+ * when the two sides' shapes do not line up index-for-index - see updatePlayerStats.ts) carries no parentItem
+ * property whatsoever, `undefined` rather than this codebase's own usual `null` for "detached". Unlike
+ * getTopParentItem, this never throws: it is used purely to decide whether registration applies, not to
+ * assert that a real root exists.
  * @param item
  */
 const tryGetRoot = (item: DomItem): DomItemRoot | null => {
   let current: DomItem = item
-  while (current.parentItem !== null) {
+  while (current.parentItem != null) {
     if (siFunciona.emptyObject(current.parentItem)) {
       return current as DomItemRoot
     }
@@ -40,16 +44,24 @@ const tryGetRoot = (item: DomItem): DomItemRoot | null => {
  * it. Call once a subtree's relationship to its parent is settled - see renderHtml, which is the one place
  * that happens for a freshly-attached subtree. Does nothing when item is not under a real root yet (or ever).
  *
- * Repairs a collision on the way in: an id is supposed to be unique from the moment createCoreItem stamps it,
- * but a generic "build one item, then replicate it N times" helper (si-funciona's buildArray, cloning rather
- * than constructing fresh - the shape matrix-dom's own buildMatrix uses for a grid's rows/columns/tiles) copies
- * whatever id the one template already carries into every copy right along with everything else, with no way
- * for json-dom to know that happened before registration. Catching it here, at the one real choke point every
- * attached item passes through, protects against that pattern (and any other generic cloning this codebase
- * does not yet know about) without needing every consumer to avoid it. A real reuse of someone else's id
- * (rather than two different items both starting from zero) is not realistically distinguishable from this, so
- * the same repair applies regardless of cause - the alternative (leaving the collision in place) silently
- * breaks resolution for one of the two items, which is worse than quietly handing the second one a fresh id.
+ * Repairs two ways an item can reach this point without the id createCoreItem is supposed to have already
+ * stamped on it, rather than requiring every consumer to avoid either:
+ * - No id at all (`typeof item.id !== 'number'`): a raw plain config object merged directly onto an
+ *   already-rendered tree (si-funciona's mergeObjectsMutable, by reference, "as is", when the two sides'
+ *   shapes do not line up index-for-index - see updatePlayerStats.ts) never passed through createCoreItem at
+ *   all, so it has no id (or parentItem, or has map) whatsoever.
+ * - A collision (the id is already registered to a *different* item within this same root): a generic "build
+ *   one item, then replicate it N times" helper (si-funciona's buildArray, cloning rather than constructing
+ *   fresh - the shape matrix-dom's own buildMatrix uses for a grid's rows/columns/tiles) copies whatever id
+ *   the one template already carries into every copy right along with everything else, with no way for
+ *   json-dom to know that happened before registration.
+ *
+ * Catching both here, at the one real choke point every attached item passes through, protects against these
+ * patterns (and any other generic cloning or raw merging this codebase does not yet know about) without
+ * needing every consumer to avoid them. A real reuse of someone else's id (rather than two different items
+ * both starting unassigned) is not realistically distinguishable from the collision case, so the same repair
+ * applies regardless of cause - the alternative (leaving it in place) silently breaks resolution for one of
+ * the two items, which is worse than quietly handing the second one a fresh id.
  * @param item - The subtree to register, root item included.
  */
 export const registerItemIds = (item: DomItem): void => {
@@ -57,12 +69,12 @@ export const registerItemIds = (item: DomItem): void => {
   if (!root) {
     return
   }
-  const alreadyThere = itemsById.get(root, item.id)
-  if (alreadyThere && alreadyThere !== item) {
+  const alreadyThere = typeof item.id === 'number' ? itemsById.get(root, item.id) : undefined
+  if (typeof item.id !== 'number' || (alreadyThere && alreadyThere !== item)) {
     item.id = generateItemId()
   }
   itemsById.set(root, item.id, item)
-  item.children.forEach(registerItemIds)
+  ;(item.children || []).forEach(registerItemIds)
 }
 
 /**
@@ -77,7 +89,7 @@ export const unregisterItemIds = (item: DomItem): void => {
     return
   }
   itemsById.delete(root, item.id)
-  item.children.forEach(unregisterItemIds)
+  ;(item.children || []).forEach(unregisterItemIds)
 }
 
 /**
