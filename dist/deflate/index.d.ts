@@ -1,8 +1,7 @@
 import 'core-js/stable';
 declare const _default: {
-    domItemToJson: (item: import("../domItem/types").CoreItem, { mapLimit, relevancyRange }?: {
-        mapLimit?: number;
-        relevancyRange?: number;
+    domItemToJson: (item: import("../domItem/types").CoreItem, { propertiesToDelete }?: {
+        propertiesToDelete?: string[];
     }) => string;
     removeEmptyProperties: (item: import("../domItem/types").CoreItem, propertiesToDelete?: string[]) => import("../domItem/types").CoreItem;
 };
