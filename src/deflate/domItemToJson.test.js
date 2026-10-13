@@ -49,6 +49,24 @@ describe('domItemToJson', () => {
     expect(parsedJson.children[0].skippedExclusion).toBe(domItemInstance.skippedExclusion)
   })
 
+  test('will strip per-call propertiesToDelete without mutating the item or affecting other calls', () => {
+    const domItemInstance = generateElement(createDomItem({ nodeName: 'span' }))
+    const parentInstance = generateElement(createDomItem({
+      nodeName: 'div',
+      parentItem: {},
+      children: [domItemInstance]
+    }))
+    domItemInstance.parentItem = parentInstance
+    domItemInstance.secret = 'hidden for this viewer only'
+    parentInstance.secret = 'also hidden for this viewer only'
+    const redactedJson = JSON.parse(domItemToJson(parentInstance, { propertiesToDelete: ['secret'] }))
+    expect(redactedJson.secret).toBeUndefined()
+    expect(redactedJson.children[0].secret).toBeUndefined()
+    const unredactedJson = JSON.parse(domItemToJson(parentInstance))
+    expect(unredactedJson.secret).toBe(parentInstance.secret)
+    expect(unredactedJson.children[0].secret).toBe(domItemInstance.secret)
+  })
+
   test('keeps the has map, so the other side knows which traits the item had', () => {
     const parsed = JSON.parse(domItemToJson(createDomItem({ nodeName: 'div' })))
     expect(parsed.has).toEqual({ render: true })

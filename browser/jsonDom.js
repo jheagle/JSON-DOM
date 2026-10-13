@@ -35,16 +35,14 @@
  * Convert DOM Item to JSON string.
  * @param item
  * @param options
- * @param options.mapLimit
- * @param options.relevancyRange
+ * @param options.propertiesToDelete - Additional property names to strip from every item in the tree for this
+ * call only, alongside the always-stripped internal ones. Unlike `jsonExclusions` (set once on an item itself,
+ * so every caller sees the same exclusions), this is per-call: the same item can be serialized differently for
+ * different callers - for example, a server redacting the same tree once per viewer - without mutating the item.
  */
       const domItemToJson = (item, {
-        mapLimit = 100,
-        relevancyRange = 1000
-      } = {}) => JSON.stringify((0, removeEmptyProperties_1.default)(si_funciona_1.default.cloneObject(item, {
-        mapLimit,
-        relevancyRange
-      }), ['activeListeners', 'element', 'parentItem', 'body', 'head']), useExclusions)
+        propertiesToDelete = []
+      } = {}) => JSON.stringify((0, removeEmptyProperties_1.default)(si_funciona_1.default.cloneObject(item), ['activeListeners', 'element', 'parentItem', 'body', 'head', ...propertiesToDelete]), useExclusions)
       exports.default = domItemToJson
     }, { './removeEmptyProperties': 3, 'core-js/modules/es.array.includes.js': 435, 'core-js/modules/es.json.stringify.js': 502, 'core-js/stable': 795, 'si-funciona': 875 }],
     2: [function (require, module, exports) {
