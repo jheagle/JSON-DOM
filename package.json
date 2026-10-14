@@ -25,8 +25,8 @@
     "watch:test": "gulp watchTest"
   },
   "dependencies": {
-    "collect-your-stuff": "^2.2.0",
-    "si-funciona": "^2.7.1"
+    "collect-your-stuff": "^2.2.1",
+    "si-funciona": "^2.7.3"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
@@ -35,7 +35,7 @@
     "gulp": "^5.0.1",
     "js-build-tools": "^6.1.0",
     "standard": "^17.1.2",
-    "test-filesystem": "^1.5.1",
+    "test-filesystem": "^2.0.0",
     "typedoc": "^0.28.20"
   },
   "resolutions": {},
