@@ -1,9 +1,9 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-require('core-js/stable')
+});
+require("core-js/stable");
 /**
  * Store the handler function and associated abort controller instance if available to be used when events are triggered.
  * @param eventHandler - The eventHandler wrapped function to be called for the event.
@@ -11,15 +11,15 @@ require('core-js/stable')
  */
 const createEventResponder = (eventHandler, abort = null) => {
   if (abort === true) {
-    abort = new AbortController()
+    abort = new AbortController();
   }
   if (abort === false) {
-    abort = null
+    abort = null;
   }
   return Object.assign({}, {
     handler: eventHandler,
     abort,
     assignedHandler: null
-  })
-}
-exports.default = createEventResponder
+  });
+};
+exports.default = createEventResponder;

@@ -1,10 +1,10 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-require('core-js/stable')
-const itemIdIndex_1 = require('../../domItem/tree/itemIdIndex')
+});
+require("core-js/stable");
+const itemIdIndex_1 = require("../../domItem/tree/itemIdIndex");
 /**
  * The receiving end of makeForwardingListener's envelope: resolve the item it was built for, replay any live target
  * state it carried onto that item's real element (see captureTargetState in makeForwardingListener), then dispatch
@@ -19,20 +19,20 @@ const itemIdIndex_1 = require('../../domItem/tree/itemIdIndex')
  * in, instead of every caller re-deriving "resolve first, then check, then dispatch" by hand.
  */
 const receiveForwardedEvent = (root, envelope, validator) => {
-  const resolvedItem = (0, itemIdIndex_1.getItemById)(root, envelope.itemId)
+  const resolvedItem = (0, itemIdIndex_1.getItemById)(root, envelope.itemId);
   if (validator && !validator(resolvedItem, envelope)) {
-    return
+    return;
   }
-  const element = resolvedItem.element
+  const element = resolvedItem.element;
   if (!element) {
-    throw new Error('The resolved item has no element to dispatch the event on.')
+    throw new Error('The resolved item has no element to dispatch the event on.');
   }
   if (envelope.targetState) {
-    Object.assign(element, envelope.targetState)
+    Object.assign(element, envelope.targetState);
   }
   element.dispatchEvent(new Event(envelope.eventType, {
     bubbles: true,
     cancelable: true
-  }))
-}
-exports.default = receiveForwardedEvent
+  }));
+};
+exports.default = receiveForwardedEvent;

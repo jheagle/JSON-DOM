@@ -1,9 +1,9 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-require('core-js/stable')
+});
+require("core-js/stable");
 /**
  * Prepare an eventListener object to attach to a DOMItem
  * @param listenerProperties
@@ -20,9 +20,9 @@ const createEventListener = ({
   listenerOptions = false,
   listenerActive = false
 } = {}) => ({
-  listenerFunc,
+  listenerFunc: listenerFunc,
   listenerArgs,
   listenerOptions,
   listenerActive
-})
-exports.default = createEventListener
+});
+exports.default = createEventListener;

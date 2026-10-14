@@ -1,17 +1,15 @@
-'use strict'
+"use strict";
 
-const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
-  return mod && mod.__esModule
-    ? mod
-    : {
-        default: mod
-      }
-}
-Object.defineProperty(exports, '__esModule', {
+var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-require('core-js/stable')
-const getItemByElement_1 = __importDefault(require('../../domItem/query/getItemByElement'))
+});
+require("core-js/stable");
+const getItemByElement_1 = __importDefault(require("../../domItem/query/getItemByElement"));
 /**
  * Return a modified version of the event: adds domItemTarget and currentDomItemTarget, next to the real DOM's own
  * target and currentTarget.
@@ -35,14 +33,14 @@ const createEventProxy = (event, item) => new Proxy(Object.defineProperties(even
     writable: true
   }
 }), {
-  get (thisEvent, prop) {
+  get(thisEvent, prop) {
     if (prop === 'stopImmediatePropagation') {
-      thisEvent.immediatePropagationStopped = true
+      thisEvent.immediatePropagationStopped = true;
     }
     // Read from the event itself rather than the proxy: Event's methods and accessors rely on internal slots
     // (private fields since Node 24), which throw when `this` is the proxy.
-    const value = Reflect.get(thisEvent, prop)
-    return typeof value === 'function' && prop !== 'constructor' ? value.bind(thisEvent) : value
+    const value = Reflect.get(thisEvent, prop);
+    return typeof value === 'function' && prop !== 'constructor' ? value.bind(thisEvent) : value;
   }
-})
-exports.default = createEventProxy
+});
+exports.default = createEventProxy;
