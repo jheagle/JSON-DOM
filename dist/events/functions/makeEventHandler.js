@@ -1,32 +1,21 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/stable')
-/**
- * Based on available flags, either proceed to process the listener or skip.
- * @typedef {Function} eventHandler
- * @memberOf module:domEvents
- * @param {EventProxy} event - The event object passed to the listener
- */
-
+});
+require("core-js/stable");
 /**
  * Prepare a listener to be used before assigning to an element.
- * @function
- * @memberOf module:domEvents
- * @param {listenerFunction} listener
- * @param {DomItem} item
- * @param {...*} [args]
- * @returns {eventHandler}
+ * @param listener
+ * @param item
+ * @param args
  */
 const makeEventHandler = (listener, item, ...args) => {
   return event => {
     if (!event || event.immediatePropagationStopped) {
-      return event
+      return event;
     }
-    return listener(event, item, ...args)
-  }
-}
-const _default = exports.default = makeEventHandler
+    return listener(event, item, ...args);
+  };
+};
+exports.default = makeEventHandler;

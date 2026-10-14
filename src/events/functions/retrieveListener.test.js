@@ -2,8 +2,8 @@
  * @jest-environment jsdom
  */
 import 'core-js/stable'
-import createDomItem from '../../general/objects/createDomItem.js'
-import retrieveListener from './retrieveListener.js'
+import createDomItem from '../../domItem/objects/createDomItem'
+import retrieveListener from './retrieveListener'
 
 describe('retrieveListener', () => {
   test('will find the specified event listener', () => {
@@ -38,5 +38,14 @@ describe('retrieveListener', () => {
     expect(() => retrieveListener('missingFn', parent)).toThrow(
       'Undefined listener function on this DomItemRoot: missingFn'
     )
+  })
+
+  test('when forwardEvents is set, resolves any name to a forwarder instead of throwing or looking it up in eventActions', () => {
+    const transport = jest.fn()
+    const parent = createDomItem({ nodeName: '#document', element: document, eventActions: {}, forwardEvents: transport, parentItem: {} })
+    const forwarder = retrieveListener('notRegisteredAnywhere', parent)
+    expect(typeof forwarder).toBe('function')
+    forwarder(new Event('click'), parent)
+    expect(transport).toHaveBeenCalledWith(expect.objectContaining({ listenerFunc: 'notRegisteredAnywhere', eventType: 'click', itemId: parent.id }))
   })
 })

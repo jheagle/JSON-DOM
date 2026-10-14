@@ -1,22 +1,20 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-})
-exports.default = void 0
-require('core-js/stable')
-const _index = _interopRequireDefault(require('./events/index.js'))
-const _index2 = _interopRequireDefault(require('./general/index.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
 /**
  * All of the JSON DOM system functions for building and syncing a Virtual DOM (DomItem tree) to the real HTML DOM.
- * @file
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module jsonDom
  */
-
-const jsonDom = Object.assign({}, _index.default, _index2.default)
-const _default = exports.default = jsonDom
-const root = void 0 || typeof window !== 'undefined' ? window : {}
-root.jsonDom = jsonDom
+var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+require("core-js/stable");
+const index_1 = __importDefault(require("./events/index"));
+const index_2 = __importDefault(require("./domItem/index"));
+const index_3 = __importDefault(require("./inflate/index"));
+const index_4 = __importDefault(require("./deflate/index"));
+const index_5 = __importDefault(require("./render/index"));
+const index_6 = __importDefault(require("./sync/index"));
+const index_7 = __importDefault(require("./diff/index"));
+const jsonDom = Object.assign({}, index_1.default, index_2.default, index_3.default, index_4.default, index_5.default, index_6.default, index_7.default);
+module.exports = jsonDom;

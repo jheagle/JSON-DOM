@@ -1,31 +1,37 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/es.array.includes.js");
+var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/es.array.includes.js')
-require('core-js/stable')
-const _documentItem = _interopRequireDefault(require('../../general/objects/documentItem.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+require("core-js/stable");
+const documentItem_1 = __importDefault(require("../../domItem/objects/documentItem"));
+const makeForwardingListener_1 = __importDefault(require("./makeForwardingListener"));
 /**
  * Based on the provided function / listener name, retrieve the associated function from the root domEvents.DomItem.
  * If a raw function is passed instead of a registered name, it is returned as-is - see {@link EventListener}'s
- * listenerFunc property for the tradeoffs of that discretionary path.
- * @function
- * @memberOf module:domEvents
- * @param {string|listenerFunction} listenerName - The name of one of the registered listener functions, or an
+ * listenerFunc property for the tradeoffs of that discretionary path. When the root has forwardEvents set (render-
+ * only mode - see setForwardEvents), every name resolves to a forwarder instead, whether or not it is registered in
+ * eventActions: see makeForwardingListener.
+ * @param listenerName - The name of one of the registered listener functions, or an
  * already-resolved listener function.
- * @param {DomItemRoot|Object} [parent] - The parent DomItem which is DomItemRoot which stores eventListeners property.
- * @returns {listenerFunction|function|Object}
+ * @param parent - The parent DomItem which is DomItemRoot which stores eventListeners property.
  */
-const retrieveListener = (listenerName, parent = _documentItem.default) => {
+const retrieveListener = (listenerName, parent = documentItem_1.default) => {
   if (typeof listenerName === 'function') {
-    return listenerName
+    return listenerName;
+  }
+  if (parent.forwardEvents) {
+    return (0, makeForwardingListener_1.default)(listenerName, parent.forwardEvents);
   }
   if (!Object.keys(parent.eventActions).includes(listenerName)) {
-    throw new Error(`Undefined listener function on this DomItemRoot: ${listenerName}`)
+    throw new Error(`Undefined listener function on this DomItemRoot: ${listenerName}`);
   }
-  return parent.eventActions[listenerName]
-}
-const _default = exports.default = retrieveListener
+  return parent.eventActions[listenerName];
+};
+exports.default = retrieveListener;

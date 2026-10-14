@@ -1,21 +1,21 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/stable')
-const _bindElementListeners = _interopRequireDefault(require('./bindElementListeners.js'))
-const _siFunciona = _interopRequireDefault(require('si-funciona'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+require("core-js/stable");
+const bindElementListeners_1 = __importDefault(require("./bindElementListeners"));
+const si_funciona_1 = __importDefault(require("si-funciona"));
 /**
  * Based on the eventListeners property of the provided item, bind the
  * listeners to the associated element property for the provided domEvents.DomItem.
- * @function
- * @memberOf module:domEvents
- * @param {DomItem} item - The DomItem which may have eventListeners to apply to its
+ * @param item - The DomItem which may have eventListeners to apply to its
  * element
- * @returns {DomItem}
  */
-const bindListeners = item => !_siFunciona.default.emptyObject(item.eventListeners) && item.element ? (0, _bindElementListeners.default)(item) : item
-const _default = exports.default = bindListeners
+const bindListeners = item => !si_funciona_1.default.emptyObject(item.eventListeners) && item.element ? (0, bindElementListeners_1.default)(item) : item;
+exports.default = bindListeners;

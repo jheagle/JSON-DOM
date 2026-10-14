@@ -1,43 +1,43 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/stable')
-const _getTopParentItem = _interopRequireDefault(require('../../general/functions/getTopParentItem.js'))
-const _makeEventHandler = _interopRequireDefault(require('./makeEventHandler.js'))
-const _createEventResponder = _interopRequireDefault(require('../objects/createEventResponder.js'))
-const _getListenerOptions = _interopRequireDefault(require('../objects/options/getListenerOptions.js'))
-const _optionsToNumber = _interopRequireDefault(require('../objects/options/optionsToNumber.js'))
-const _retrieveListener = _interopRequireDefault(require('./retrieveListener.js'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+require("core-js/stable");
+const getTopParentItem_1 = __importDefault(require("../../domItem/tree/getTopParentItem"));
+const makeEventHandler_1 = __importDefault(require("./makeEventHandler"));
+const createEventResponder_1 = __importDefault(require("../objects/createEventResponder"));
+const getListenerOptions_1 = __importDefault(require("../objects/options/getListenerOptions"));
+const optionsToNumber_1 = __importDefault(require("../objects/options/optionsToNumber"));
+const retrieveListener_1 = __importDefault(require("./retrieveListener"));
 /**
  * Activate listener by pushing it to activeListeners.
- * @function
- * @memberOf module:domEvents
- * @param {EventName} eventName
- * @param {EventListener} eventListener
- * @param {DomItem} item
- * @returns {DomItem}
+ * @param eventName
+ * @param eventListener
+ * @param item
  */
 const activateListener = (eventName, eventListener, item) => {
-  const listenerOptions = (0, _getListenerOptions.default)()
+  const listenerOptions = (0, getListenerOptions_1.default)();
   if (typeof item.activeListeners === 'undefined') {
-    item.activeListeners = {}
+    item.activeListeners = {};
   }
   if (!(eventName in item.activeListeners)) {
-    item.activeListeners[eventName] = {}
+    item.activeListeners[eventName] = {};
   }
-  const optionIdentifier = (0, _optionsToNumber.default)(listenerOptions, eventListener.listenerOptions)
+  const optionIdentifier = (0, optionsToNumber_1.default)(listenerOptions, eventListener.listenerOptions);
   if (!(optionIdentifier in item.activeListeners[eventName])) {
-    item.activeListeners[eventName][optionIdentifier] = []
+    item.activeListeners[eventName][optionIdentifier] = [];
   }
-  const listenerFunc = (0, _retrieveListener.default)(eventListener.listenerFunc, (0, _getTopParentItem.default)(item))
-  const eventHandler = (0, _makeEventHandler.default)(listenerFunc, item, eventListener.listenerArgs)
-  const eventResponder = (0, _createEventResponder.default)(eventHandler, !!(optionIdentifier & listenerOptions.signal))
-  item.activeListeners[eventName][optionIdentifier].push(eventResponder)
-  eventListener.activeResponder = eventResponder
-  return item
-}
-const _default = exports.default = activateListener
+  const listenerFunc = (0, retrieveListener_1.default)(eventListener.listenerFunc, (0, getTopParentItem_1.default)(item));
+  const eventHandler = (0, makeEventHandler_1.default)(listenerFunc, item, eventListener.listenerArgs);
+  const eventResponder = (0, createEventResponder_1.default)(eventHandler, !!(optionIdentifier & listenerOptions.signal));
+  item.activeListeners[eventName][optionIdentifier].push(eventResponder);
+  eventListener.activeResponder = eventResponder;
+  return item;
+};
+exports.default = activateListener;

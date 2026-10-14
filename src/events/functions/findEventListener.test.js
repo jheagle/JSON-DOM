@@ -1,6 +1,6 @@
-import findEventListener from './findEventListener.js'
-import createDomItem from '../../general/objects/createDomItem.js'
-import createEventListener from '../objects/createEventListener.js'
+import findEventListener from './findEventListener'
+import createDomItem from '../../domItem/objects/createDomItem'
+import createEventListener from '../objects/createEventListener'
 
 describe('findEventListener', () => {
   const eventName = 'click'
@@ -29,6 +29,36 @@ describe('findEventListener', () => {
     expect(foundIndex).toBe(2)
     expect(foundListener.listenerFunc).toBe(func)
     expect(foundListener.listenerActive).toBeFalsy()
+  })
+  test('tells a capture listener from a non-capture one which has the same function', () => {
+    const func = () => true
+    const item = createDomItem()
+    item.eventListeners = {
+      click: [
+        createEventListener({ listenerFunc: func, listenerOptions: { capture: true } }),
+        createEventListener({ listenerFunc: func })
+      ]
+    }
+    expect(findEventListener(eventName, func, null, { capture: true }, item)[0]).toBe(0)
+    expect(findEventListener(eventName, func, null, false, item)[0]).toBe(1)
+    expect(findEventListener(eventName, func, null, undefined, item)[0]).toBe(1)
+  })
+  test('does not find a capture listener when asked for one which is not capturing, or the other way round', () => {
+    const func = () => true
+    const captureOnly = createDomItem()
+    captureOnly.eventListeners = { click: [createEventListener({ listenerFunc: func, listenerOptions: { capture: true } })] }
+    expect(findEventListener(eventName, func, null, false, captureOnly)).toEqual([-1, undefined])
+    const plainOnly = createDomItem()
+    plainOnly.eventListeners = { click: [createEventListener({ listenerFunc: func })] }
+    expect(findEventListener(eventName, func, null, { capture: true }, plainOnly)).toEqual([-1, undefined])
+  })
+  test('the other options (once, passive) do not change which listener is found', () => {
+    const func = () => true
+    const item = createDomItem()
+    item.eventListeners = { click: [createEventListener({ listenerFunc: func, listenerOptions: { once: true, passive: true } })] }
+    expect(findEventListener(eventName, func, null, false, item)[0]).toBe(0)
+    expect(findEventListener(eventName, func, null, { passive: false }, item)[0]).toBe(0)
+    expect(findEventListener(eventName, func, null, { once: true, capture: false }, item)[0]).toBe(0)
   })
 })
 

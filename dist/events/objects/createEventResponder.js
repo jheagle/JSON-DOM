@@ -1,39 +1,25 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/stable')
-/**
- * Track an event handler and optional abort signal.
- * @typedef {Object} EventResponder
- * @memberOf module:domEvents
- * @property {eventHandler} handler
- * @property {AbortController|null} abort
- * @property {eventHandler|null} assignedHandler - The exact function reference passed to the element's
- * addEventListener, set once applied. Required to later detach this exact listener via removeEventListener.
- */
-
+});
+require("core-js/stable");
 /**
  * Store the handler function and associated abort controller instance if available to be used when events are triggered.
- * @function
- * @memberOf module:domEvents
- * @param {eventHandler} eventHandler - The eventHandler wrapped function to be called for the event.
- * @param {AbortController|boolean|null} [abort=null] - Assign an AbortSignal provided or create one (if true), otherwise null.
- * @return {EventResponder}
+ * @param eventHandler - The eventHandler wrapped function to be called for the event.
+ * @param abort - Assign an AbortSignal provided or create one (if true), otherwise null.
  */
 const createEventResponder = (eventHandler, abort = null) => {
   if (abort === true) {
-    abort = new AbortController()
+    abort = new AbortController();
   }
   if (abort === false) {
-    abort = null
+    abort = null;
   }
   return Object.assign({}, {
     handler: eventHandler,
     abort,
     assignedHandler: null
-  })
-}
-const _default = exports.default = createEventResponder
+  });
+};
+exports.default = createEventResponder;

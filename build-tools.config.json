@@ -1,5 +1,21 @@
 {
   "browser": {
-    "name": "jsonDom"
+    "name": "jsonDom",
+    "bundles": [
+      {
+        "name": "jsonDomRenderOnly",
+        "main": "dist/renderOnly"
+      }
+    ]
+  },
+  "docs": {
+    "enabled": true,
+    "from": "src",
+    "index": "MAIN.md",
+    "to": "../joshuaheagle.local/projects/json-dom/docs"
+  },
+  "typescript": {
+    "config": "tsconfig.json",
+    "enabled": true
   }
 }

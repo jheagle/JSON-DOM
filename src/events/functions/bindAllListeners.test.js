@@ -1,8 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import bindAllListeners from './bindAllListeners.js'
-import createDomItem from '../../general/objects/createDomItem.js'
+import bindAllListeners from './bindAllListeners'
+import createDomItem from '../../domItem/objects/createDomItem'
 
 describe('bindAllListeners', () => {
   test('will set the listeners all domItem elements and child elements', () => {

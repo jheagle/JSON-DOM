@@ -1,26 +1,22 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.for-each.js");
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.for-each.js')
-require('core-js/stable')
+});
+require("core-js/stable");
 /**
  * Set all the listeners for this DOMItem to be inactive.
- * @function
- * @memberOf module:domEvents
- * @param {DomItem} item - The DomItem which will have its eventListeners updated.
- * @returns {DomItem}
+ * @param item - The DomItem which will have its eventListeners updated.
  */
 const deactivateListeners = item => {
   for (const eventName in item.eventListeners) {
     item.eventListeners[eventName].forEach(eventListener => {
-      eventListener.listenerActive = false
-    })
+      eventListener.listenerActive = false;
+    });
   }
-  delete item.activeListeners
-  return item
-}
-const _default = exports.default = deactivateListeners
+  delete item.activeListeners;
+  return item;
+};
+exports.default = deactivateListeners;

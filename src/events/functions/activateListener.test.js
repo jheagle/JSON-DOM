@@ -1,11 +1,11 @@
 /**
  * @jest-environment jsdom
  */
-import activateListener from './activateListener.js'
-import createDomItem from '../../general/objects/createDomItem.js'
-import createEventListener from '../objects/createEventListener.js'
-import optionsToNumber from '../objects/options/optionsToNumber.js'
-import getListenerOptions from '../objects/options/getListenerOptions.js'
+import activateListener from './activateListener'
+import createDomItem from '../../domItem/objects/createDomItem'
+import createEventListener from '../objects/createEventListener'
+import optionsToNumber from '../objects/options/optionsToNumber'
+import getListenerOptions from '../objects/options/getListenerOptions'
 
 describe('activateListener', () => {
   test('Active listeners get added', () => {

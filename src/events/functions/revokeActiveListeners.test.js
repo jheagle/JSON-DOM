@@ -1,10 +1,10 @@
 /**
  * @jest-environment jsdom
  */
-import revokeActiveListeners from './revokeActiveListeners.js'
-import applyActiveListeners from './applyActiveListeners.js'
-import activateListener from './activateListener.js'
-import createDomItem from '../../general/objects/createDomItem.js'
+import revokeActiveListeners from './revokeActiveListeners'
+import applyActiveListeners from './applyActiveListeners'
+import activateListener from './activateListener'
+import createDomItem from '../../domItem/objects/createDomItem'
 
 describe('revokeActiveListeners', () => {
   test('will revoke an active click listener from the element', () => {

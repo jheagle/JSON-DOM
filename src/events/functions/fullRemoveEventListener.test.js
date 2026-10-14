@@ -1,9 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-import fullAddEventListener from './fullAddEventListener.js'
-import fullRemoveEventListener from './fullRemoveEventListener.js'
-import createDomItem from '../../general/objects/createDomItem.js'
+import fullAddEventListener from './fullAddEventListener'
+import fullRemoveEventListener from './fullRemoveEventListener'
+import createDomItem from '../../domItem/objects/createDomItem'
 
 describe('fullRemoveEventListener', () => {
   test('removes a listener added via fullAddEventListener, resolving the same registered name', () => {

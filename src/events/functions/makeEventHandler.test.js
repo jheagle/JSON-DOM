@@ -1,8 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import createDomItem from '../../general/objects/createDomItem.js'
-import makeEventHandler from './makeEventHandler.js'
+import createDomItem from '../../domItem/objects/createDomItem'
+import makeEventHandler from './makeEventHandler'
 
 describe('makeEventHandler', () => {
   test('will create an event handler function', () => {
