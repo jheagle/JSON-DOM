@@ -3232,14 +3232,14 @@ const updateDomItems = config => {
 };
 exports.default = updateDomItems;
 },{"./updateChildren":82,"./updateDomItem":83,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.for-each.js":728,"core-js/stable":790}],85:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.ArrayElement = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.reduce.js')
+});
+exports.ArrayElement = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.reduce.js");
 /**
  * Element represents a node in an Arrayable.
  */
@@ -3248,12 +3248,12 @@ class ArrayElement {
    * Create the new Element instance, provide the data and optionally configure the type of Element.
    * @param data The data to be stored in this element.
    */
-  constructor (data = null) {
+  constructor(data = null) {
     /** The class used to create this instance, so that it can be recognized as valid without an instanceof check. */
-    this.classType = ArrayElement
+    this.classType = ArrayElement;
     /** The data stored in this element. */
-    this.data = null
-    this.data = data
+    this.data = null;
+    this.data = data;
   }
 }
 /**
@@ -3261,51 +3261,50 @@ class ArrayElement {
  * @param element Return a valid ArrayElement instance from given data, or even an already valid one.
  * @param classType Provide the type of IsElement to use.
  */
-exports.ArrayElement = ArrayElement
+exports.ArrayElement = ArrayElement;
 ArrayElement.make = (element, classType = ArrayElement) => {
   if (element === null || typeof element !== 'object') {
     // It is not an object (or it is null), so instantiate the Element with element as the data
-    return new classType(element)
+    return new classType(element);
   }
   if (element.classType) {
     // Already valid Element, return as-is
-    return element
+    return element;
   }
   // Create the new node as the configured #classType
-  return new classType(element)
-}
+  return new classType(element);
+};
 /**
  * Convert an array into Element instances, return the head and tail Elements.
  * @param values Provide an array of data that will be converted to array of elements.
  * @param classType Provide the type of IsElement to use.
  */
 ArrayElement.fromArray = (values = [], classType = ArrayElement) => values.reduce((references, element) => {
-  const newElement = classType.make(element, classType)
+  const newElement = classType.make(element, classType);
   if (!references.head.length) {
     // Initialize the head and tail with the new node
     return {
       head: [newElement],
       tail: newElement
-    }
+    };
   }
   // Only update the tail once head has been set, tail is always the most recent node
-  references.head.push(newElement)
-  references.tail = newElement
-  return references
+  references.head.push(newElement);
+  references.tail = newElement;
+  return references;
 }, {
   head: [],
   tail: null
-})
-
+});
 },{"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.reduce.js":730}],86:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.Arrayable = void 0
-const _ArrayElement = require('./ArrayElement')
-const _ArrayIterator = require('../../recipes/ArrayIterator')
+});
+exports.Arrayable = void 0;
+var _ArrayElement = require("./ArrayElement");
+var _ArrayIterator = require("../../recipes/ArrayIterator");
 /**
  * arrayable list.
  */
@@ -3318,181 +3317,167 @@ class Arrayable {
    * Create the new Arrayable instance, configure the Arrayable class.
    * @param elementClass The class used to wrap given data as elements.
    */
-  constructor (elementClass = _ArrayElement.ArrayElement) {
+  constructor(elementClass = _ArrayElement.ArrayElement) {
     /** The class used to create this instance, so that it can be recognized as valid without an instanceof check. */
-    this.classType = Arrayable
+    this.classType = Arrayable;
     /** The array which stores the elements of this Arrayable. */
-    this.innerList = []
+    this.innerList = [];
     /** Whether the inner list has been initialized (it can only be initialized once). */
-    this.initialized = false
-    this.elementClass = elementClass
+    this.initialized = false;
+    this.elementClass = elementClass;
   }
-
   /**
    * Find the position of an element which must be in this list.
    * @param node The element to find
    * @throws {Error} When the element is not in this list
    */
-  indexOfElement (node) {
-    const index = this.innerList.indexOf(node)
+  indexOfElement(node) {
+    const index = this.innerList.indexOf(node);
     if (index < 0) {
-      throw new Error('The reference element is not in this list.')
+      throw new Error('The reference element is not in this list.');
     }
-    return index
+    return index;
   }
-
   /**
    * Initialize the inner list, should only run once.
    * @param initialList Give the array of elements to start in this Arrayable.
    */
-  initialize (initialList) {
+  initialize(initialList) {
     if (this.initialized) {
-      console.warn('Attempt to initialize non-empty list.')
-      return this
+      console.warn('Attempt to initialize non-empty list.');
+      return this;
     }
-    this.initialized = true
-    this.innerList = initialList
-    return this
+    this.initialized = true;
+    this.innerList = initialList;
+    return this;
   }
-
   /**
    * Retrieve the innerList used (the list itself, not a copy).
    */
-  get list () {
-    return this.innerList
+  get list() {
+    return this.innerList;
   }
-
   /**
    * Retrieve the first Element from the Arrayable
    * @returns The first element, or null when the Arrayable is empty
    */
-  get first () {
-    return this.length ? this.innerList[0] : null
+  get first() {
+    return this.length ? this.innerList[0] : null;
   }
-
   /**
    * Retrieve the last Element from the Arrayable
    * @returns The last element, or null when the Arrayable is empty
    */
-  get last () {
-    return this.length ? this.innerList[this.length - 1] : null
+  get last() {
+    return this.length ? this.innerList[this.length - 1] : null;
   }
-
   /**
    * Return the length of the list.
    */
-  get length () {
-    return this.innerList.length
+  get length() {
+    return this.innerList.length;
   }
-
   /**
    * Insert a new node (or data) after a node.
    * @param node The existing node as reference, or null to insert at the start of the list
    * @param newNode The new node to go after the existing node
    * @throws {Error} When the reference node is not in this list
    */
-  insertAfter (node, newNode) {
+  insertAfter(node, newNode) {
     // With no reference element, the new one goes after nothing: at the start of the list
-    const insertAt = node === null || typeof node === 'undefined' ? -1 : this.indexOfElement(node)
-    this.innerList.splice(insertAt + 1, 0, this.elementClass.make(newNode, this.elementClass))
-    return this
+    const insertAt = node === null || typeof node === 'undefined' ? -1 : this.indexOfElement(node);
+    this.innerList.splice(insertAt + 1, 0, this.elementClass.make(newNode, this.elementClass));
+    return this;
   }
-
   /**
    * Insert a new node (or data) before a node.
    * @param node The existing node as reference, or null to insert at the end of the list
    * @param newNode The new node to go before the existing node
    * @throws {Error} When the reference node is not in this list
    */
-  insertBefore (node, newNode) {
+  insertBefore(node, newNode) {
     // With no reference element, the new one goes before nothing: at the end of the list
-    const insertAt = node === null || typeof node === 'undefined' ? this.length : this.indexOfElement(node)
-    this.innerList.splice(insertAt, 0, this.elementClass.make(newNode, this.elementClass))
-    return this
+    const insertAt = node === null || typeof node === 'undefined' ? this.length : this.indexOfElement(node);
+    this.innerList.splice(insertAt, 0, this.elementClass.make(newNode, this.elementClass));
+    return this;
   }
-
   /**
    * Add a node (or data) after the given (or last) node in the list.
    * @param node The new node to add to the end of the list
    * @param after The existing last node
    */
-  append (node, after = this.last) {
+  append(node, after = this.last) {
     if (after === this.last) {
       // Adding to the end does not need to search for where that is
-      this.innerList.push(this.elementClass.make(node, this.elementClass))
-      return this
+      this.innerList.push(this.elementClass.make(node, this.elementClass));
+      return this;
     }
-    return this.insertAfter(after, node)
+    return this.insertAfter(after, node);
   }
-
   /**
    * Add a node (or data) before the given (or first) node in the list.
    * @param node The new node to add to the start of the list
    * @param before The existing first node
    */
-  prepend (node, before = this.first) {
+  prepend(node, before = this.first) {
     if (before === this.first) {
       // Adding to the start does not need to search for where that is
-      this.innerList.unshift(this.elementClass.make(node, this.elementClass))
-      return this
+      this.innerList.unshift(this.elementClass.make(node, this.elementClass));
+      return this;
     }
-    return this.insertBefore(before, node)
+    return this.insertBefore(before, node);
   }
-
   /**
    * Remove an element from this arrayable.
    * @param node The node we wish to remove (and it will be returned after removal)
    * @returns The removed node, or null when it was not in this list (nothing is removed)
    */
-  remove (node) {
-    const deleteAt = this.innerList.indexOf(node)
+  remove(node) {
+    const deleteAt = this.innerList.indexOf(node);
     if (deleteAt < 0) {
-      return null
+      return null;
     }
-    this.innerList.splice(deleteAt, 1)
-    return node
+    this.innerList.splice(deleteAt, 1);
+    return node;
   }
-
   /**
    * Retrieve an ArrayElement item from this list by numeric index, otherwise return null.
    * @param index The integer number for retrieving a node by position.
    */
-  item (index) {
+  item(index) {
     if (index >= this.length) {
       // index is beyond array limit
-      return null
+      return null;
     }
     if (index >= 0) {
       // use the positive index at nth position from the beginning of the array
-      return this.innerList[index]
+      return this.innerList[index];
     }
-    const calculatedIndex = this.length + index
+    const calculatedIndex = this.length + index;
     if (calculatedIndex < 0) {
       // negative index is beyond array limit (minus direction)
-      return null
+      return null;
     }
     // Return the item at nth position from the end of the array
-    return this.innerList[calculatedIndex]
+    return this.innerList[calculatedIndex];
   }
-
   /**
    * Be able to run forEach on this Arrayable to iterate over the elements.
    * @param callback The function to call for-each element
    * @param thisArg Optional, 'this' reference
    */
-  forEach (callback, thisArg = this) {
+  forEach(callback, thisArg = this) {
     for (let i = 0; i < thisArg.length; ++i) {
-      callback(thisArg.item(i), i, thisArg)
+      callback(thisArg.item(i), i, thisArg);
     }
-    return thisArg
+    return thisArg;
   }
-
   /**
    * Be able to iterate over this class.
    */
-  [Symbol.iterator] () {
-    const index = 0
-    return new _ArrayIterator.ArrayIterator(this.innerList, index)
+  [Symbol.iterator]() {
+    const index = 0;
+    return new _ArrayIterator.ArrayIterator(this.innerList, index);
   }
 }
 /**
@@ -3501,22 +3486,21 @@ class Arrayable {
  * @param elementClass The class to use for each element
  * @param classType Provide the type of IsArrayable to use.
  */
-exports.Arrayable = Arrayable
+exports.Arrayable = Arrayable;
 Arrayable.fromArray = (values = [], elementClass = _ArrayElement.ArrayElement, classType = Arrayable) => {
-  const list = new classType(elementClass)
-  return list.initialize(elementClass.fromArray(values).head)
-}
-
+  const list = new classType(elementClass);
+  return list.initialize(elementClass.fromArray(values).head);
+};
 },{"../../recipes/ArrayIterator":101,"./ArrayElement":85}],87:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.DoubleLinker = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-const _Linker = require('../linked-list/Linker')
+});
+exports.DoubleLinker = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+var _Linker = require("../linked-list/Linker");
 /**
  * DoubleLinker represents a node in a DoublyLinkedList which is chained by next and prev.
  * @extends Linker
@@ -3529,22 +3513,22 @@ class DoubleLinker {
    * @param nodeData.next The reference to the next linker if any
    * @param nodeData.prev The reference to the previous linker if any
    */
-  constructor ({
+  constructor({
     data = null,
     next = null,
     prev = null
   } = {}) {
     /** The class used to create this instance, so that it can be recognized as valid without an instanceof check. */
-    this.classType = DoubleLinker
+    this.classType = DoubleLinker;
     /** The data stored in this linker. */
-    this.data = null
+    this.data = null;
     /** The linker after this one, or null when this is the last. */
-    this.next = null
+    this.next = null;
     /** The linker before this one, or null when this is the first. */
-    this.prev = null
-    this.data = data
-    this.next = next
-    this.prev = prev
+    this.prev = null;
+    this.data = data;
+    this.next = next;
+    this.prev = prev;
   }
 }
 /**
@@ -3552,46 +3536,45 @@ class DoubleLinker {
  * @param linker Return a valid Linker instance from given data, or even an already valid one.
  * @param classType Provide the type of IsDoubleLinker to use.
  */
-exports.DoubleLinker = DoubleLinker
+exports.DoubleLinker = DoubleLinker;
 DoubleLinker.make = (linker, classType = DoubleLinker) => {
-  return _Linker.Linker.make(linker, classType)
-}
+  return _Linker.Linker.make(linker, classType);
+};
 /**
  * Convert an array into DoubleLinker instances, return the head and tail DoubleLinkers.
  * @param values Provide an array of data that will be converted to a chain of linkers.
  * @param classType Provide the type of IsDoubleLinker to use.
  */
 DoubleLinker.fromArray = (values = [], classType = DoubleLinker) => values.reduce((references, linker) => {
-  const newLinker = classType.make(linker, classType)
+  const newLinker = classType.make(linker, classType);
   if (references.head === null) {
     // Initialize the head and tail with the new node
     return {
       head: newLinker,
       tail: newLinker
-    }
+    };
   }
-  newLinker.prev = references.tail
+  newLinker.prev = references.tail;
   // Only update the tail once head has been set, tail is always the most recent node
-  references.tail.next = newLinker
-  references.tail = newLinker
-  return references
+  references.tail.next = newLinker;
+  references.tail = newLinker;
+  return references;
 }, {
   head: null,
   tail: null
-})
-
+});
 },{"../linked-list/Linker":90,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.reduce.js":730}],88:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.DoublyLinkedList = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.for-each.js')
-const _DoubleLinker = require('./DoubleLinker')
-const _DoubleLinkerIterator = require('../../recipes/DoubleLinkerIterator')
-const _LinkedList = require('../linked-list/LinkedList')
+});
+exports.DoublyLinkedList = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.for-each.js");
+var _DoubleLinker = require("./DoubleLinker");
+var _DoubleLinkerIterator = require("../../recipes/DoubleLinkerIterator");
+var _LinkedList = require("../linked-list/LinkedList");
 /**
  * doubly linked list.
  */
@@ -3605,280 +3588,266 @@ class DoublyLinkedList {
    * Create the new DoublyLinkedList instance.
    * @param linkerClass The class used to wrap given data as linkers.
    */
-  constructor (linkerClass = _DoubleLinker.DoubleLinker) {
+  constructor(linkerClass = _DoubleLinker.DoubleLinker) {
     /** The class used to create this instance, so that it can be recognized as valid without an instanceof check. */
-    this.classType = DoublyLinkedList
+    this.classType = DoublyLinkedList;
     /** A linker of the list (null when the list is empty); the head is found by walking back from it. */
-    this.innerList = null
+    this.innerList = null;
     /** Whether the inner list has been initialized (it can only be initialized once). */
-    this.initialized = false
+    this.initialized = false;
     /** The last linker, remembered so that adding to the end does not need to walk the whole list (null when not known yet). */
-    this.tailCache = null
+    this.tailCache = null;
     /** The number of linkers, kept up to date by the list's own methods so that the length does not need to walk the whole list (null when not known yet). */
-    this.countCache = null
-    this.linkerClass = linkerClass
+    this.countCache = null;
+    this.linkerClass = linkerClass;
   }
-
   /**
    * Initialize the inner list, should only run once.
    * @param initialList Give the list of double-linkers to start in this doubly linked-list.
    */
-  initialize (initialList) {
+  initialize(initialList) {
     // Borrowed from LinkedList, which types its return as a LinkedList although it returns whatever list called it
-    return _LinkedList.LinkedList.prototype.initialize.call(this, initialList)
+    return _LinkedList.LinkedList.prototype.initialize.call(this, initialList);
   }
-
   /**
    * Retrieve the innerList used (the list itself, not a copy).
    */
-  get list () {
-    return this.innerList
+  get list() {
+    return this.innerList;
   }
-
   /**
    * Retrieve the first DoubleLinker in the list.
    */
-  get first () {
-    let head = this.innerList
+  get first() {
+    let head = this.innerList;
     if (head === null) {
-      return null
+      return null;
     }
     // innerList is normally the head already, walking back also finds anything linked on before it outside of this list
     while (head.prev !== null) {
-      head = head.prev
+      head = head.prev;
     }
-    this.innerList = head
-    return head
+    this.innerList = head;
+    return head;
   }
-
   /**
    * Retrieve the last DoubleLinker in the list. The end is remembered, so this does not walk the list.
    */
-  get last () {
+  get last() {
     if (this.innerList === null) {
-      return null
+      return null;
     }
-    let tail = this.tailCache !== null ? this.tailCache : this.innerList
+    let tail = this.tailCache !== null ? this.tailCache : this.innerList;
     // The remembered tail is normally the end already, walking on from it also finds anything linked on outside of this list
     while (tail.next !== null) {
-      tail = tail.next
+      tail = tail.next;
     }
-    this.tailCache = tail
-    return tail
+    this.tailCache = tail;
+    return tail;
   }
-
   /**
    * Return the length of the list. It is kept up to date by the list's own methods, so this does not walk the list
    * (call reset() after linkers were changed directly).
    */
-  get length () {
+  get length() {
     if (this.countCache === null) {
-      this.reset()
+      this.reset();
     }
-    return this.countCache
+    return this.countCache;
   }
-
   /**
    * Insert a new node (or data) after a node.
    * @param node The existing node as reference (which must be in this list, this is not checked), or null to insert at the start of the list
    * @param newNode The new node to go after the existing node
    */
-  insertAfter (node, newNode) {
-    newNode = this.linkerClass.make(newNode, this.linkerClass)
+  insertAfter(node, newNode) {
+    newNode = this.linkerClass.make(newNode, this.linkerClass);
     if (node === null || typeof node === 'undefined') {
       // After nothing means at the start of the list
-      const head = this.first
-      newNode.prev = null
-      newNode.next = head
+      const head = this.first;
+      newNode.prev = null;
+      newNode.next = head;
       if (head) {
-        head.prev = newNode
+        head.prev = newNode;
       } else {
-        this.tailCache = newNode
+        this.tailCache = newNode;
       }
-      this.innerList = newNode
+      this.innerList = newNode;
     } else {
       // Ensure the next reference of this node is assigned to the new node
-      newNode.next = node.next
+      newNode.next = node.next;
       // Ensure this node is assigned as the prev reference of the new node
-      newNode.prev = node
+      newNode.prev = node;
       // Then set this node's next reference to the new node
-      node.next = newNode
+      node.next = newNode;
       if (newNode.next) {
         // Update the next reference to ensure circular reference for prev points to the new node
-        newNode.next.prev = newNode
+        newNode.next.prev = newNode;
       } else {
-        this.tailCache = newNode
+        this.tailCache = newNode;
       }
     }
     if (this.countCache !== null) {
-      ++this.countCache
+      ++this.countCache;
     }
-    return this
+    return this;
   }
-
   /**
    * Insert a new node (or data) before a node.
    * @param node The existing node as reference (which must be in this list, this is not checked), or null to insert at the end of the list
    * @param newNode The new node to go before the existing node
    */
-  insertBefore (node, newNode) {
-    newNode = this.linkerClass.make(newNode, this.linkerClass)
+  insertBefore(node, newNode) {
+    newNode = this.linkerClass.make(newNode, this.linkerClass);
     if (node === null || typeof node === 'undefined') {
       // Before nothing means at the end of the list
-      const tail = this.last
-      newNode.next = null
-      newNode.prev = tail
+      const tail = this.last;
+      newNode.next = null;
+      newNode.prev = tail;
       if (tail === null) {
-        this.innerList = newNode
+        this.innerList = newNode;
       } else {
-        tail.next = newNode
+        tail.next = newNode;
       }
-      this.tailCache = newNode
+      this.tailCache = newNode;
     } else {
       // The new node will reference this prev node as prev
-      newNode.prev = node.prev
+      newNode.prev = node.prev;
       // The new node will reference this node as next
-      newNode.next = node
+      newNode.next = node;
       // This prev will reference the new node
-      node.prev = newNode
+      node.prev = newNode;
       if (newNode.prev) {
         // Update the prev reference to ensure circular reference for next points to the new node
-        newNode.prev.next = newNode
+        newNode.prev.next = newNode;
       } else {
-        this.innerList = newNode
+        this.innerList = newNode;
       }
     }
     if (this.countCache !== null) {
-      ++this.countCache
+      ++this.countCache;
     }
-    return this
+    return this;
   }
-
   /**
    * Add a node (or data) after the given (or last) node in the list.
    * @param node The new node to add to the end of the list
    * @param after The existing last node
    */
-  append (node, after = this.last) {
-    return this.insertAfter(after, node)
+  append(node, after = this.last) {
+    return this.insertAfter(after, node);
   }
-
   /**
    * Add a node (or data) before the given (or first) node in the list.
    * @param node The new node to add to the start of the list
    * @param before The existing first node
    */
-  prepend (node, before = this.first) {
-    return this.insertBefore(before, node)
+  prepend(node, before = this.first) {
+    return this.insertBefore(before, node);
   }
-
   /**
    * Remove a linker from this linked list.
    * @param node The node we wish to remove (and it will be returned after removal)
    */
-  remove (node) {
+  remove(node) {
     if (node === null || typeof node === 'undefined') {
-      return null
+      return null;
     }
     if (node.prev) {
       // The previous node will reference this next node
-      node.prev.next = node.next
+      node.prev.next = node.next;
     }
     if (node.next) {
       // The next node will reference this previous node
-      node.next.prev = node.prev
+      node.next.prev = node.prev;
     }
     // The list finds its head by walking from innerList, so it must not keep pointing at the node being removed. For the
     // last remaining node there is nothing to walk to, which would otherwise leave the removed node in the list.
     if (this.innerList === node) {
-      this.innerList = node.next || node.prev || null
+      this.innerList = node.next || node.prev || null;
     }
     if (this.tailCache === node) {
-      this.tailCache = node.prev
+      this.tailCache = node.prev;
     }
     if (this.innerList === null) {
-      this.tailCache = null
+      this.tailCache = null;
     }
     if (this.countCache !== null) {
-      --this.countCache
+      --this.countCache;
     }
-    return node
+    return node;
   }
-
   /**
    * Refresh all references (the head, the end and the length) by walking the list once, and return the head. The list's
    * own methods keep these up to date, so this is only needed after linkers were changed directly.
    */
-  reset () {
+  reset() {
     // Start at the pointer for the list
-    let pointer = this.innerList
+    let pointer = this.innerList;
     if (pointer === null) {
-      this.countCache = 0
-      this.tailCache = null
-      return null
+      this.countCache = 0;
+      this.tailCache = null;
+      return null;
     }
     // Follow references back to the beginning
     while (pointer.prev !== null) {
-      pointer = pointer.prev
+      pointer = pointer.prev;
     }
     // We are pointing to the true head, now count along to the end to find the tail and the length
-    this.innerList = pointer
-    let count = 0
-    let tail = pointer
-    let current = pointer
+    this.innerList = pointer;
+    let count = 0;
+    let tail = pointer;
+    let current = pointer;
     while (current !== null) {
-      ++count
-      tail = current
-      current = current.next
+      ++count;
+      tail = current;
+      current = current.next;
     }
-    this.countCache = count
-    this.tailCache = tail
-    return pointer
+    this.countCache = count;
+    this.tailCache = tail;
+    return pointer;
   }
-
   /**
    * Retrieve a DoubleLinker item from this list by numeric index, otherwise return null.
    * @param index The integer number for retrieving a node by position.
    */
-  item (index) {
+  item(index) {
     if (index >= 0) {
       // For a positive index, start from the beginning of the list until the current item counter equals our index
-      let current = this.first
-      let currentIndex = -1
+      let current = this.first;
+      let currentIndex = -1;
       while (++currentIndex < index && current !== null) {
-        current = current.next
+        current = current.next;
       }
-      return currentIndex === index ? current : null
+      return currentIndex === index ? current : null;
     }
     // For a negative index, get the delta of index and length, then go backwards until we reach that delta
-    let current = this.last
-    let currentIndex = this.length
-    const calculatedIndex = this.length + index
+    let current = this.last;
+    let currentIndex = this.length;
+    const calculatedIndex = this.length + index;
     if (calculatedIndex < 0) {
-      return null
+      return null;
     }
     while (--currentIndex > calculatedIndex && current !== null) {
-      current = current.prev
+      current = current.prev;
     }
-    return currentIndex === calculatedIndex ? current : null
+    return currentIndex === calculatedIndex ? current : null;
   }
-
   /**
    * Be able to run forEach on this DoublyLinkedList to iterate over the DoubleLinker Items.
    * @param callback The function to call for-each double linker
    * @param thisArg Optional, 'this' reference
    * @returns The list which was iterated.
    */
-  forEach (callback, thisArg = this) {
-    return _LinkedList.LinkedList.prototype.forEach.call(this, callback, thisArg)
+  forEach(callback, thisArg = this) {
+    return _LinkedList.LinkedList.prototype.forEach.call(this, callback, thisArg);
   }
-
   /**
    * Be able to iterate over this class.
    */
-  [Symbol.iterator] () {
-    const current = this.first
-    return new _DoubleLinkerIterator.DoubleLinkerIterator(current)
+  [Symbol.iterator]() {
+    const current = this.first;
+    return new _DoubleLinkerIterator.DoubleLinkerIterator(current);
   }
 }
 /**
@@ -3887,21 +3856,20 @@ class DoublyLinkedList {
  * @param linkerClass The class to use for each linker
  * @param classType Provide the type of IsArrayable to use.
  */
-exports.DoublyLinkedList = DoublyLinkedList
+exports.DoublyLinkedList = DoublyLinkedList;
 DoublyLinkedList.fromArray = (values = [], linkerClass = _DoubleLinker.DoubleLinker, classType = DoublyLinkedList) => {
-  return _LinkedList.LinkedList.fromArray(values, linkerClass, classType)
-}
-
+  return _LinkedList.LinkedList.fromArray(values, linkerClass, classType);
+};
 },{"../../recipes/DoubleLinkerIterator":102,"../linked-list/LinkedList":89,"./DoubleLinker":87,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.for-each.js":728}],89:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.LinkedList = void 0
-const _Linker = require('./Linker')
-const _LinkerIterator = require('../../recipes/LinkerIterator')
-const _Arrayable = require('../arrayable/Arrayable')
+});
+exports.LinkedList = void 0;
+var _Linker = require("./Linker");
+var _LinkerIterator = require("../../recipes/LinkerIterator");
+var _Arrayable = require("../arrayable/Arrayable");
 /**
  * LinkedList represents a collection stored as a LinkedList with next references.
  * @extends Arrayable
@@ -3911,258 +3879,244 @@ class LinkedList {
    * Create the new LinkedList instance.
    * @param linkerClass The class used to wrap given data as linkers.
    */
-  constructor (linkerClass = _Linker.Linker) {
+  constructor(linkerClass = _Linker.Linker) {
     /** The class used to create this instance, so that it can be recognized as valid without an instanceof check. */
-    this.classType = LinkedList
+    this.classType = LinkedList;
     /** The first linker of the list (null when the list is empty), from which the whole list is reached. */
-    this.innerList = null
+    this.innerList = null;
     /** Whether the inner list has been initialized (it can only be initialized once). */
-    this.initialized = false
+    this.initialized = false;
     /** The last linker, remembered so that adding to the end does not need to walk the whole list (null when not known yet). */
-    this.tailCache = null
+    this.tailCache = null;
     /** The number of linkers, kept up to date by the list's own methods so that the length does not need to walk the whole list (null when not known yet). */
-    this.countCache = null
-    this.linkerClass = linkerClass
+    this.countCache = null;
+    this.linkerClass = linkerClass;
   }
-
   /**
    * Initialize the inner list, should only run once.
    * @param initialList Give the list of linkers to start in this linked-list.
    */
-  initialize (initialList) {
+  initialize(initialList) {
     // Borrowed from Arrayable, which types its return as an Arrayable although it returns whatever list called it
-    return _Arrayable.Arrayable.prototype.initialize.call(this, initialList)
+    return _Arrayable.Arrayable.prototype.initialize.call(this, initialList);
   }
-
   /**
    * Retrieve the innerList used (the list itself, not a copy).
    */
-  get list () {
-    return this.innerList
+  get list() {
+    return this.innerList;
   }
-
   /**
    * Retrieve the first Linker in the list.
    */
-  get first () {
-    return this.innerList
+  get first() {
+    return this.innerList;
   }
-
   /**
    * Retrieve the last Linker in the list. The end is remembered, so this does not walk the list.
    */
-  get last () {
+  get last() {
     if (this.innerList === null) {
-      return null
+      return null;
     }
-    let tail = this.tailCache !== null ? this.tailCache : this.innerList
+    let tail = this.tailCache !== null ? this.tailCache : this.innerList;
     // The remembered tail is normally the end already, walking on from it also finds anything linked on outside of this list
     while (tail.next !== null) {
-      tail = tail.next
+      tail = tail.next;
     }
-    this.tailCache = tail
-    return tail
+    this.tailCache = tail;
+    return tail;
   }
-
   /**
    * Return the length of the list. It is kept up to date by the list's own methods, so this does not walk the list
    * (call reset() after linkers were changed directly).
    */
-  get length () {
+  get length() {
     if (this.countCache === null) {
-      this.reset()
+      this.reset();
     }
-    return this.countCache
+    return this.countCache;
   }
-
   /**
    * Insert a new node (or data) after a node.
    * @param node The existing node as reference, or null to insert at the start of the list
    * @param newNode The new node to go after the existing node
    */
-  insertAfter (node, newNode) {
-    newNode = this.linkerClass.make(newNode, this.linkerClass)
+  insertAfter(node, newNode) {
+    newNode = this.linkerClass.make(newNode, this.linkerClass);
     if (node === null || typeof node === 'undefined') {
       // After nothing means at the start of the list
-      newNode.next = this.innerList
+      newNode.next = this.innerList;
       if (this.innerList === null) {
-        this.tailCache = newNode
+        this.tailCache = newNode;
       }
-      this.innerList = newNode
+      this.innerList = newNode;
     } else {
-      newNode.next = node.next
-      node.next = newNode
+      newNode.next = node.next;
+      node.next = newNode;
       if (newNode.next === null) {
-        this.tailCache = newNode
+        this.tailCache = newNode;
       }
     }
     if (this.countCache !== null) {
-      ++this.countCache
+      ++this.countCache;
     }
-    return this
+    return this;
   }
-
   /**
    * Insert a new node (or data) before a node.
    * @param node The existing node as reference, or null to insert at the end of the list
    * @param newNode The new node to go before the existing node
    * @throws {Error} When the reference node is not in this list
    */
-  insertBefore (node, newNode) {
-    newNode = this.linkerClass.make(newNode, this.linkerClass)
+  insertBefore(node, newNode) {
+    newNode = this.linkerClass.make(newNode, this.linkerClass);
     if (node === null || typeof node === 'undefined') {
       // Before nothing means at the end of the list
-      const tail = this.last
-      newNode.next = null
+      const tail = this.last;
+      newNode.next = null;
       if (tail === null) {
-        this.innerList = newNode
+        this.innerList = newNode;
       } else {
-        tail.next = newNode
+        tail.next = newNode;
       }
-      this.tailCache = newNode
+      this.tailCache = newNode;
     } else {
-      let prevNode = null
-      let currentNode = this.first
+      let prevNode = null;
+      let currentNode = this.first;
       while (currentNode !== null && currentNode !== node) {
-        prevNode = currentNode
-        currentNode = currentNode.next
+        prevNode = currentNode;
+        currentNode = currentNode.next;
       }
       if (currentNode === null) {
-        throw new Error('The reference node is not in this list.')
+        throw new Error('The reference node is not in this list.');
       }
-      newNode.next = node
+      newNode.next = node;
       if (prevNode) {
-        prevNode.next = newNode
+        prevNode.next = newNode;
       } else {
-        this.innerList = newNode
+        this.innerList = newNode;
       }
     }
     if (this.countCache !== null) {
-      ++this.countCache
+      ++this.countCache;
     }
-    return this
+    return this;
   }
-
   /**
    * Add a node (or data) after the given (or last) node in the list.
    * @param node The new node to add to the end of the list
    * @param after The existing last node
    */
-  append (node, after = this.last) {
-    return this.insertAfter(after, node)
+  append(node, after = this.last) {
+    return this.insertAfter(after, node);
   }
-
   /**
    * Add a node (or data) before the given (or first) node in the list.
    * @param node The new node to add to the start of the list
    * @param before The existing first node
    */
-  prepend (node, before = this.first) {
-    return this.insertBefore(before, node)
+  prepend(node, before = this.first) {
+    return this.insertBefore(before, node);
   }
-
   /**
    * Remove a linker from this linked list.
    * @param node The node we wish to remove (and it will be returned after removal)
    * @returns The removed node, or null when it was not in this list (nothing is removed)
    */
-  remove (node) {
+  remove(node) {
     if (node === null || typeof node === 'undefined') {
-      return null
+      return null;
     }
-    let prevNode = null
-    let currentNode = this.first
+    let prevNode = null;
+    let currentNode = this.first;
     while (currentNode !== null && currentNode !== node) {
-      prevNode = currentNode
-      currentNode = currentNode.next
+      prevNode = currentNode;
+      currentNode = currentNode.next;
     }
     if (currentNode === null) {
       // The node is not in this list, so there is nothing to remove
-      return null
+      return null;
     }
     if (prevNode) {
-      prevNode.next = node.next
+      prevNode.next = node.next;
     } else {
-      this.innerList = node.next
+      this.innerList = node.next;
     }
     if (this.tailCache === node) {
-      this.tailCache = prevNode
+      this.tailCache = prevNode;
     }
     if (this.innerList === null) {
-      this.tailCache = null
+      this.tailCache = null;
     }
     if (this.countCache !== null) {
-      --this.countCache
+      --this.countCache;
     }
-    return node
+    return node;
   }
-
   /**
    * Refresh the remembered end and length of the list by walking it once. The list's own methods keep these up to date,
    * so this is only needed after linkers were changed directly (for example by setting next on a linker).
    * @returns The first linker of the list
    */
-  reset () {
-    let count = 0
-    let tail = null
-    let current = this.innerList
+  reset() {
+    let count = 0;
+    let tail = null;
+    let current = this.innerList;
     while (current !== null) {
-      ++count
-      tail = current
-      current = current.next
+      ++count;
+      tail = current;
+      current = current.next;
     }
-    this.countCache = count
-    this.tailCache = tail
-    return this.innerList
+    this.countCache = count;
+    this.tailCache = tail;
+    return this.innerList;
   }
-
   /**
    * Retrieve a Linker item from this list by numeric index, otherwise return null.
    * @param index The integer number for retrieving a node by position.
    */
-  item (index) {
+  item(index) {
     if (index >= 0) {
-      let current = this.first
-      let currentIndex = -1
+      let current = this.first;
+      let currentIndex = -1;
       while (++currentIndex < index && current !== null) {
-        current = current.next
+        current = current.next;
       }
-      return currentIndex === index ? current : null
+      return currentIndex === index ? current : null;
     }
-    let current = this.first
-    let currentIndex = 0
-    const calculatedIndex = this.length + index
+    let current = this.first;
+    let currentIndex = 0;
+    const calculatedIndex = this.length + index;
     if (calculatedIndex < 0) {
-      return null
+      return null;
     }
     while (currentIndex < calculatedIndex && current !== null) {
-      current = current.next
-      ++currentIndex
+      current = current.next;
+      ++currentIndex;
     }
-    return currentIndex === calculatedIndex ? current : null
+    return currentIndex === calculatedIndex ? current : null;
   }
-
   /**
    * Be able to run forEach on this LinkedList to iterate over the linkers.
    * @param callback The function to call for-each linker
    * @param thisArg Optional, 'this' reference
    */
-  forEach (callback, thisArg = this) {
-    let index = 0
-    let current = thisArg.first
+  forEach(callback, thisArg = this) {
+    let index = 0;
+    let current = thisArg.first;
     while (current !== null) {
-      callback(current, index, thisArg)
-      current = current.next
-      ++index
+      callback(current, index, thisArg);
+      current = current.next;
+      ++index;
     }
-    return thisArg
+    return thisArg;
   }
-
   /**
    * Be able to iterate over this class.
    */
-  [Symbol.iterator] () {
-    return new _LinkerIterator.LinkerIterator(this.first)
+  [Symbol.iterator]() {
+    return new _LinkerIterator.LinkerIterator(this.first);
   }
 }
 /**
@@ -4171,22 +4125,21 @@ class LinkedList {
  * @param linkerClass The class to use for each linker
  * @param classType Provide the type of IsArrayable to use.
  */
-exports.LinkedList = LinkedList
+exports.LinkedList = LinkedList;
 LinkedList.fromArray = (values = [], linkerClass = _Linker.Linker, classType = LinkedList) => {
-  const list = new classType(linkerClass)
-  return list.initialize(linkerClass.fromArray(values).head)
-}
-
+  const list = new classType(linkerClass);
+  return list.initialize(linkerClass.fromArray(values).head);
+};
 },{"../../recipes/LinkerIterator":103,"../arrayable/Arrayable":86,"./Linker":90}],90:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.Linker = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-const _ArrayElement = require('../arrayable/ArrayElement')
+});
+exports.Linker = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+var _ArrayElement = require("../arrayable/ArrayElement");
 /**
  * Linker represents a node in a LinkedList.
  * @extends ArrayElement
@@ -4198,18 +4151,18 @@ class Linker {
    * @param nodeData.data The data to be stored in this linker
    * @param nodeData.next The reference to the next linker if any
    */
-  constructor ({
+  constructor({
     data = null,
     next = null
   } = {}) {
     /** The class used to create this instance, so that it can be recognized as valid without an instanceof check. */
-    this.classType = Linker
+    this.classType = Linker;
     /** The data stored in this linker. */
-    this.data = null
+    this.data = null;
     /** The linker after this one, or null when this is the last. */
-    this.next = null
-    this.data = data
-    this.next = next
+    this.next = null;
+    this.data = data;
+    this.next = next;
   }
 }
 /**
@@ -4217,62 +4170,61 @@ class Linker {
  * @param linker Return a valid Linker instance from given data, or even an already valid one.
  * @param classType Provide the type of IsLinker to use.
  */
-exports.Linker = Linker
+exports.Linker = Linker;
 Linker.make = (linker, classType = Linker) => {
   if (linker === null || typeof linker !== 'object') {
     // It is not an object (or it is null), so instantiate the Linker with element as the data
     return new classType({
       data: linker
-    })
+    });
   }
   if (linker.classType) {
     // Already valid Linker, return as-is
-    return linker
+    return linker;
   }
   if (!('data' in linker)) {
     // Not the settings for a linker (which would have data, even if it is falsy), so it is the data itself
     linker = {
       data: linker
-    }
+    };
   }
   // Create the new node as the configured #classType
-  return _ArrayElement.ArrayElement.make(linker, classType)
-}
+  return _ArrayElement.ArrayElement.make(linker, classType);
+};
 /**
  * Convert an array into Linker instances, return the head and tail Linkers.
  * @param values Provide an array of data that will be converted to a chain of linkers.
  * @param classType Provide the type of IsLinker to use.
  */
 Linker.fromArray = (values = [], classType = Linker) => values.reduce((references, linker) => {
-  const newLinker = classType.make(linker, classType)
+  const newLinker = classType.make(linker, classType);
   if (references.head === null) {
     // Initialize the head and tail with the new node
     return {
       head: newLinker,
       tail: newLinker
-    }
+    };
   }
   // Only update the tail once head has been set, tail is always the most recent node
-  references.tail.next = newLinker
-  references.tail = newLinker
-  return references
+  references.tail.next = newLinker;
+  references.tail = newLinker;
+  return references;
 }, {
   head: null,
   tail: null
-})
-
+});
 },{"../arrayable/ArrayElement":85,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.reduce.js":730}],91:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.LinkedTreeList = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.for-each.js')
-const _TreeLinker = require('./TreeLinker')
-const _TreeLinkerIterator = require('../../recipes/TreeLinkerIterator')
-const _DoublyLinkedList = require('../doubly-linked-list/DoublyLinkedList')
+});
+exports.LinkedTreeList = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.for-each.js");
+var _TreeLinker = require("./TreeLinker");
+var _TreeLinkerIterator = require("../../recipes/TreeLinkerIterator");
+var _DoublyLinkedList = require("../doubly-linked-list/DoublyLinkedList");
 /**
  * doubly linked tree list.
  */
@@ -4282,7 +4234,7 @@ const _DoublyLinkedList = require('../doubly-linked-list/DoublyLinkedList')
  * @param name The accessor to use
  * @param list The list to use it on
  */
-const borrowedGetter = (name, list) => Object.getOwnPropertyDescriptor(_DoublyLinkedList.DoublyLinkedList.prototype, name).get.call(list)
+const borrowedGetter = (name, list) => Object.getOwnPropertyDescriptor(_DoublyLinkedList.DoublyLinkedList.prototype, name).get.call(list);
 /**
  * LinkedTreeList represents a collection stored with a root and spreading in branching (tree) formation.
  * @extends DoublyLinkedList
@@ -4292,237 +4244,218 @@ class LinkedTreeList {
    * Create the new LinkedTreeList instance, configure the list class.
    * @param linkerClass The class used to wrap given data as tree linkers.
    */
-  constructor (linkerClass = _TreeLinker.TreeLinker) {
+  constructor(linkerClass = _TreeLinker.TreeLinker) {
     /** The class used to create this instance, so that it can be recognized as valid without an instanceof check. */
-    this.classType = LinkedTreeList
+    this.classType = LinkedTreeList;
     /** A linker of the list (null when the list is empty); the head is found by walking back from it. */
-    this.innerList = null
+    this.innerList = null;
     /** Whether the inner list has been initialized (it can only be initialized once). */
-    this.initialized = false
+    this.initialized = false;
     /** The last linker, remembered so that adding to the end does not need to walk the whole list (null when not known yet). */
-    this.tailCache = null
+    this.tailCache = null;
     /** The number of linkers, kept up to date by the list's own methods so that the length does not need to walk the whole list (null when not known yet). */
-    this.countCache = null
+    this.countCache = null;
     /** The node these linkers are the children of, remembered so that it is known even while the list is empty (undefined until it is known). */
-    this.ownerNode = undefined
-    this.linkerClass = linkerClass
+    this.ownerNode = undefined;
+    this.linkerClass = linkerClass;
   }
-
   /**
    * Initialize the inner list, should only run once.
    * @param initialList Give the list of tree-linkers to start in this linked-tree-list.
    */
-  initialize (initialList) {
+  initialize(initialList) {
     if (this.initialized) {
-      console.warn('Attempt to initialize LinkedTreeList which is not empty.')
-      return this
+      console.warn('Attempt to initialize LinkedTreeList which is not empty.');
+      return this;
     }
-    this.initialized = true
-    this.innerList = initialList
-    return this
+    this.initialized = true;
+    this.innerList = initialList;
+    return this;
   }
-
   /**
    * Retrieve the innerList used (the list itself, not a copy).
    */
-  get list () {
-    return this.innerList
+  get list() {
+    return this.innerList;
   }
-
   /**
    * Retrieve the first TreeLinker in the list.
    */
-  get first () {
-    return borrowedGetter('first', this)
+  get first() {
+    return borrowedGetter('first', this);
   }
-
   /**
    * Retrieve the last TreeLinker in the list. The end is remembered, so this does not walk the list.
    */
-  get last () {
-    return borrowedGetter('last', this)
+  get last() {
+    return borrowedGetter('last', this);
   }
-
   /**
    * Return the length of the list. It is kept up to date by the list's own methods, so this does not walk the list
    * (call reset() after linkers were changed directly).
    */
-  get length () {
-    return borrowedGetter('length', this)
+  get length() {
+    return borrowedGetter('length', this);
   }
-
   /**
    * Get the parent of this tree list: the node these linkers are the children of (remembered even while the list is
    * empty), or null for the linkers at the top of a tree.
    */
-  get parent () {
+  get parent() {
     if (this.ownerNode !== undefined) {
-      return this.ownerNode
+      return this.ownerNode;
     }
-    const first = this.first
-    return first === null ? null : first.parent
+    const first = this.first;
+    return first === null ? null : first.parent;
   }
-
   /**
    * Set the parent of this tree list: every linker in it gets the node as its parent, and the node gets this list as its
    * children. Linkers added to the list later get this parent too.
    * @param parent The new node to use as the parent for this group of children
    */
-  set parent (parent) {
-    this.ownerNode = parent
-    let current = this.first
+  set parent(parent) {
+    this.ownerNode = parent;
+    let current = this.first;
     while (current !== null) {
-      current.parent = parent
-      current = current.next
+      current.parent = parent;
+      current = current.next;
     }
     if (parent) {
-      parent.children = this
+      parent.children = this;
     }
   }
-
   /**
    * Return the root parent of the entire tree.
    */
-  get rootParent () {
-    let current = this.first
+  get rootParent() {
+    let current = this.first;
     if (!current) {
-      return null
+      return null;
     }
-    let parent = this.first.parent
+    let parent = this.first.parent;
     while (parent !== null) {
-      current = parent
-      parent = current.parent
+      current = parent;
+      parent = current.parent;
     }
-    return current
+    return current;
   }
-
   /**
    * Set the children on a parent item.
    * @param item The TreeLinker node (one of the linkers of this list) that will be the parent of the children
    * @param children The LinkedTreeList which has the child nodes to use, or null to remove the children of the item
    * @throws {Error} When the item is not one of the linkers of this list
    */
-  setChildren (item, children = null) {
+  setChildren(item, children = null) {
     // The item must be one of the linkers of this list (only the siblings are checked, not the whole tree)
-    let isChild = false
+    let isChild = false;
     this.forEach(linker => {
       if (linker === item) {
-        isChild = true
+        isChild = true;
       }
-    })
+    });
     if (!isChild) {
-      throw new Error('The item is not one of the linkers of this list.')
+      throw new Error('The item is not one of the linkers of this list.');
     }
     if (children === null || typeof children === 'undefined') {
-      item.children = null
-      return
+      item.children = null;
+      return;
     }
-    children.parent = item
+    children.parent = item;
   }
-
   /**
    * Make a linker of the given node (or data) and make this list's parent its parent.
    * @param newNode The node (or data) which is being added to this list
    */
-  adopt (newNode) {
-    const linker = this.linkerClass.make(newNode, this.linkerClass)
-    linker.parent = this.parent
-    return linker
+  adopt(newNode) {
+    const linker = this.linkerClass.make(newNode, this.linkerClass);
+    linker.parent = this.parent;
+    return linker;
   }
-
   /**
    * Insert a new node (or data) after a node. The new node gets the parent of this list.
    * @param node The existing node as reference, or null to insert at the start of the list
    * @param newNode The new node to go after the existing node
    */
-  insertAfter (node, newNode) {
-    return _DoublyLinkedList.DoublyLinkedList.prototype.insertAfter.call(this, node, this.adopt(newNode))
+  insertAfter(node, newNode) {
+    return _DoublyLinkedList.DoublyLinkedList.prototype.insertAfter.call(this, node, this.adopt(newNode));
   }
-
   /**
    * Insert a new node (or data) before a node. The new node gets the parent of this list.
    * @param node The existing node as reference, or null to insert at the end of the list
    * @param newNode The new node to go before the existing node
    */
-  insertBefore (node, newNode) {
-    return _DoublyLinkedList.DoublyLinkedList.prototype.insertBefore.call(this, node, this.adopt(newNode))
+  insertBefore(node, newNode) {
+    return _DoublyLinkedList.DoublyLinkedList.prototype.insertBefore.call(this, node, this.adopt(newNode));
   }
-
   /**
    * Add a node (or data) after the given (or last) node in the list.
    * @param node The new node to add to the end of the list
    * @param after The existing last node
    */
-  append (node, after = this.last) {
-    return _DoublyLinkedList.DoublyLinkedList.prototype.append.call(this, node, after)
+  append(node, after = this.last) {
+    return _DoublyLinkedList.DoublyLinkedList.prototype.append.call(this, node, after);
   }
-
   /**
    * Add a node (or data) before the given (or first) node in the list.
    * @param node The new node to add to the start of the list
    * @param before The existing first node
    */
-  prepend (node, before = this.first) {
-    return _DoublyLinkedList.DoublyLinkedList.prototype.prepend.call(this, node, before)
+  prepend(node, before = this.first) {
+    return _DoublyLinkedList.DoublyLinkedList.prototype.prepend.call(this, node, before);
   }
-
   /**
    * Remove a linker from this linked list. The removed node no longer has a parent.
    * @param node The node we wish to remove (and it will be returned after removal)
    * @returns The removed node, or null when there was nothing to remove
    */
-  remove (node) {
-    const owner = this.parent
-    const removed = _DoublyLinkedList.DoublyLinkedList.prototype.remove.call(this, node)
+  remove(node) {
+    const owner = this.parent;
+    const removed = _DoublyLinkedList.DoublyLinkedList.prototype.remove.call(this, node);
     if (removed && removed.parent === owner) {
       // Remember whose children these are (the list may now be empty), the removed node no longer has that parent
-      this.ownerNode = owner
-      removed.parent = null
+      this.ownerNode = owner;
+      removed.parent = null;
     }
-    return removed
+    return removed;
   }
-
   /**
    * Refresh all references (the head, the end and the length) by walking the list once, and return the head. The
    * list's own methods keep these up to date, so this is only needed after linkers were changed directly.
    */
-  reset () {
-    return _DoublyLinkedList.DoublyLinkedList.prototype.reset.call(this)
+  reset() {
+    return _DoublyLinkedList.DoublyLinkedList.prototype.reset.call(this);
   }
-
   /**
    * Retrieve a TreeLinker item from this list by numeric index, otherwise return null.
    * @param index The integer number for retrieving a node by position.
    */
-  item (index) {
-    return _DoublyLinkedList.DoublyLinkedList.prototype.item.call(this, index)
+  item(index) {
+    return _DoublyLinkedList.DoublyLinkedList.prototype.item.call(this, index);
   }
-
   /**
    * Be able to run forEach on this LinkedTreeList to iterate over the TreeLinker Items.
    * @param callback The function to call for-each tree node
    * @param thisArg Optional, 'this' reference
    * @returns The list which was iterated.
    */
-  forEach (callback, thisArg = this) {
-    let index = 0
-    let current = thisArg.first
+  forEach(callback, thisArg = this) {
+    let index = 0;
+    let current = thisArg.first;
     while (current !== null) {
-      callback(current, index, thisArg)
-      current = current.next
-      ++index
+      callback(current, index, thisArg);
+      current = current.next;
+      ++index;
     }
-    return thisArg
+    return thisArg;
   }
-
   /**
    * Be able to iterate over this class: the linkers of this list and everything below them (left-first). It stays within
    * this list (it does not start at, or climb up to, the parents), use the parseTree service to parse a whole tree.
    */
-  [Symbol.iterator] () {
+  [Symbol.iterator]() {
     // The linkers of this list and everything below them, left-first. It stays within this list: it does not start at,
     // or climb up to, the parents (use the parseTree service to parse a whole tree)
-    return new _TreeLinkerIterator.TreeLinkerIterator(this.first, this.parent)
+    return new _TreeLinkerIterator.TreeLinkerIterator(this.first, this.parent);
   }
 }
 /**
@@ -4531,23 +4464,22 @@ class LinkedTreeList {
  * @param linkerClass The class to use for each node
  * @param classType Provide the type of IsArrayable to use.
  */
-exports.LinkedTreeList = LinkedTreeList
+exports.LinkedTreeList = LinkedTreeList;
 LinkedTreeList.fromArray = (values = [], linkerClass = _TreeLinker.TreeLinker, classType = LinkedTreeList) => {
-  const list = new classType(linkerClass)
-  return list.initialize(linkerClass.fromArray(values).head)
-}
-
+  const list = new classType(linkerClass);
+  return list.initialize(linkerClass.fromArray(values).head);
+};
 },{"../../recipes/TreeLinkerIterator":105,"../doubly-linked-list/DoublyLinkedList":88,"./TreeLinker":92,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.for-each.js":728}],92:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.TreeLinker = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.map.js')
-const _DoubleLinker = require('../doubly-linked-list/DoubleLinker')
-const _LinkedTreeList = require('./LinkedTreeList')
+});
+exports.TreeLinker = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.map.js");
+var _DoubleLinker = require("../doubly-linked-list/DoubleLinker");
+var _LinkedTreeList = require("./LinkedTreeList");
 /**
  * TreeLinker represents a node in a LinkedTreeList having a parent (or root) and child nodes.
  * @extends DoubleLinker
@@ -4563,7 +4495,7 @@ class TreeLinker {
    * @param settings.parent The reference to a parent linker if any
    * @param listClass Give the type of list to use for storing the children
    */
-  constructor ({
+  constructor({
     data = null,
     next = null,
     prev = null,
@@ -4572,24 +4504,23 @@ class TreeLinker {
     listClass = _LinkedTreeList.LinkedTreeList
   } = {}) {
     /** The class used to create this instance, so that it can be recognized as valid without an instanceof check. */
-    this.classType = TreeLinker
+    this.classType = TreeLinker;
     /** The data stored in this tree node. */
-    this.data = null
+    this.data = null;
     /** The sibling after this node, or null when this is the last child. */
-    this.next = null
+    this.next = null;
     /** The sibling before this node, or null when this is the first child. */
-    this.prev = null
+    this.prev = null;
     /** The node this node is a child of, or null for a root node. */
-    this.parent = null
+    this.parent = null;
     /** The list of the children of this node, or null when it has none. */
-    this.children = null
-    this.data = data
-    this.next = next
-    this.prev = prev
-    this.parent = parent
-    this.children = this.childrenFromArray(children, listClass)
+    this.children = null;
+    this.data = data;
+    this.next = next;
+    this.prev = prev;
+    this.parent = parent;
+    this.children = this.childrenFromArray(children, listClass);
   }
-
   /**
    * Create the children for this tree from an array. Each child becomes a tree linker with this node as its parent: an
    * existing linker is kept as it is, an object with a data property gives the settings of the linker, and anything
@@ -4597,21 +4528,21 @@ class TreeLinker {
    * @param children Provide an array of data / linker references to be children of this tree node.
    * @param listClass Give the type of list to use for storing the children
    */
-  childrenFromArray (children = null, listClass = _LinkedTreeList.LinkedTreeList) {
+  childrenFromArray(children = null, listClass = _LinkedTreeList.LinkedTreeList) {
     if (children === null) {
-      return null
+      return null;
     }
     // Every child is made into a tree linker (an existing one is kept as it is, and a plain value is the data) and is
     // given this node as its parent
     const nodes = children.map(child => {
-      const linker = this.classType.make(child, this.classType)
-      linker.parent = this
-      return linker
-    })
+      const linker = this.classType.make(child, this.classType);
+      linker.parent = this;
+      return linker;
+    });
     // Creates a linked-tree-list to store the children, which remembers this node as its parent even when it is empty
-    const list = listClass.fromArray(nodes, this.classType)
-    list.parent = this
-    return list
+    const list = listClass.fromArray(nodes, this.classType);
+    list.parent = this;
+    return list;
   }
 }
 /**
@@ -4619,28 +4550,27 @@ class TreeLinker {
  * @param linker Return a valid TreeLinker instance from given data, or even an already valid one.
  * @param classType Provide the type of IsTreeNode to use.
  */
-exports.TreeLinker = TreeLinker
+exports.TreeLinker = TreeLinker;
 TreeLinker.make = (linker, classType = TreeLinker) => {
-  return _DoubleLinker.DoubleLinker.make(linker, classType)
-}
+  return _DoubleLinker.DoubleLinker.make(linker, classType);
+};
 /**
  * Convert an array into DoubleLinker instances, return the head and tail DoubleLinkers.
  * @param values Provide an array of data that will be converted to a chain of tree-linkers.
  * @param classType Provide the type of IsTreeNode to use.
  */
-TreeLinker.fromArray = (values = [], classType = TreeLinker) => _DoubleLinker.DoubleLinker.fromArray(values, classType)
-
+TreeLinker.fromArray = (values = [], classType = TreeLinker) => _DoubleLinker.DoubleLinker.fromArray(values, classType);
 },{"../doubly-linked-list/DoubleLinker":87,"./LinkedTreeList":91,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.map.js":729}],93:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.Queue = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.for-each.js')
-const _LinkedList = require('../linked-list/LinkedList')
-const _Linker = require('../linked-list/Linker')
+});
+exports.Queue = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.for-each.js");
+var _LinkedList = require("../linked-list/LinkedList");
+var _Linker = require("../linked-list/Linker");
 /**
  * queue
  */
@@ -4657,80 +4587,72 @@ class Queue {
    * @param listClass The type of list to create when no queued list is given
    * @param linkerClass The class used to hold each queued item
    */
-  constructor (queuedList = null, listClass = _LinkedList.LinkedList, linkerClass = _Linker.Linker) {
-    this.linkerClass = linkerClass
-    this.queuedList = queuedList === null ? new listClass(linkerClass) : queuedList
+  constructor(queuedList = null, listClass = _LinkedList.LinkedList, linkerClass = _Linker.Linker) {
+    this.linkerClass = linkerClass;
+    this.queuedList = queuedList === null ? new listClass(linkerClass) : queuedList;
   }
-
   /**
    * Take the item from the front of the queue.
    * @returns The item, or null when the queue is empty
    */
-  dequeue () {
-    const front = this.queuedList.first
+  dequeue() {
+    const front = this.queuedList.first;
     if (front === null || typeof front === 'undefined') {
-      return null
+      return null;
     }
-    this.queuedList.remove(front)
-    return front.data
+    this.queuedList.remove(front);
+    return front.data;
   }
-
   /**
    * Check whether the queue has no items.
    */
-  empty () {
-    return this.size() <= 0
+  empty() {
+    return this.size() <= 0;
   }
-
   /**
    * Add an item to the back of the queue.
    * @param data The item to add
    * @returns This queue, so that adding can be chained
    */
-  enqueue (data) {
+  enqueue(data) {
     // The item is wrapped here rather than left to the list, since the list treats objects that look like a linker's
     // settings (they have a data property) as such, and a queue must give back exactly what it was given
     this.queuedList.append(new this.linkerClass({
       data
-    }))
-    return this
+    }));
+    return this;
   }
-
   /**
    * Look at the item at the front of the queue, without removing it.
    * @returns The item, or null when the queue is empty
    */
-  peek () {
-    const front = this.queuedList.first
-    return front === null || typeof front === 'undefined' ? null : front.data
+  peek() {
+    const front = this.queuedList.first;
+    return front === null || typeof front === 'undefined' ? null : front.data;
   }
-
   /**
    * Count the items in the queue.
    */
-  size () {
-    return this.queuedList.length
+  size() {
+    return this.queuedList.length;
   }
-
   /**
    * Iterate over the items from the front of the queue to the back, without removing them.
    */
-  [Symbol.iterator] () {
-    const linkers = this.queuedList[Symbol.iterator]()
+  [Symbol.iterator]() {
+    const linkers = this.queuedList[Symbol.iterator]();
     return {
       next: () => {
-        const result = linkers.next()
-        return result.done
-          ? {
-              done: true,
-              value: undefined
-            }
-          : {
-              done: false,
-              value: result.value.data
-            }
+        const result = linkers.next();
+        return result.done ? {
+          done: true,
+          value: undefined
+        } : {
+          done: false,
+          value: result.value.data
+        };
       }
-    }
+    };
   }
 }
 /**
@@ -4739,21 +4661,20 @@ class Queue {
  * @param listClass The type of list used to store the items
  * @param linkerClass The class used to hold each queued item
  */
-exports.Queue = Queue
+exports.Queue = Queue;
 Queue.fromArray = (values = [], listClass = _LinkedList.LinkedList, linkerClass = _Linker.Linker) => {
-  const queue = new Queue(null, listClass, linkerClass)
-  values.forEach(value => queue.enqueue(value))
-  return queue
-}
-
+  const queue = new Queue(null, listClass, linkerClass);
+  values.forEach(value => queue.enqueue(value));
+  return queue;
+};
 },{"../linked-list/LinkedList":89,"../linked-list/Linker":90,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.for-each.js":728}],94:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.Queueable = void 0
-const _Linker = require('../linked-list/Linker')
+});
+exports.Queueable = void 0;
+var _Linker = require("../linked-list/Linker");
 /**
  * Queueable represents a runnable entry in a queue.
  * @extends Linker
@@ -4766,50 +4687,45 @@ class Queueable {
    * @param queueableData.next The reference to the next queueable if any
    * @param queueableData.ready Indicate if the queueable is ready to run
    */
-  constructor ({
+  constructor({
     task = null,
     next = null,
     ready = false
   } = {}) {
     /** The task (or data) this queueable holds. */
-    this.data = null
+    this.data = null;
     /** The queueable after this one, or null when this is the last. */
-    this.next = null
+    this.next = null;
     /** Whether this queueable has been run to completion. */
-    this.complete = false
+    this.complete = false;
     /** Whether this queueable may run, or a function which answers that when asked. */
-    this.ready = false
+    this.ready = false;
     /** Whether this queueable is running right now. */
-    this.running = false
-    this.classType = Queueable
-    this.data = task
-    this.next = next
-    this.complete = false
-    this.ready = ready
-    this.running = false
+    this.running = false;
+    this.classType = Queueable;
+    this.data = task;
+    this.next = next;
+    this.complete = false;
+    this.ready = ready;
+    this.running = false;
   }
-
   /**
    * Check ready state.
    */
-  get isReady () {
-    return typeof this.ready === 'function' ? this.ready() : this.ready
+  get isReady() {
+    return typeof this.ready === 'function' ? this.ready() : this.ready;
   }
-
   /**
    * Retrieve the data which should be formed as a task.
    */
-  get task () {
+  get task() {
     if (typeof this.data === 'function') {
-      return this.data
+      return this.data;
     }
-    return complete => typeof complete === 'function'
-      ? complete({
-        context: this.data
-      }).context
-      : this.data
+    return complete => typeof complete === 'function' ? complete({
+      context: this.data
+    }).context : this.data;
   }
-
   /**
    * Set this queueable as completed.
    * @param completeResponse The result to report for the task.
@@ -4817,31 +4733,30 @@ class Queueable {
    * @param completeResponse.error Indicate a task was error-free (use false) or give an error message
    * @param completeResponse.context Provide additional data in the response
    */
-  markCompleted ({
+  markCompleted({
     success = true,
     error = false,
     context = null
   } = {}) {
-    this.complete = true
-    this.running = false
+    this.complete = true;
+    this.running = false;
     return {
       success,
       error,
       context
-    }
+    };
   }
-
   /**
    * Intend to run the queued task when it is ready. If ready, mark this task as running and run the task.
    */
-  run () {
+  run() {
     if (!this.isReady) {
       // Not yet ready, return with errors
       return {
         success: false,
         error: 'Task is not ready',
         context: this.data
-      }
+      };
     }
     if (this.running) {
       // Already running, return error since we cannot run again
@@ -4849,11 +4764,11 @@ class Queueable {
         success: false,
         error: 'Queued task is already running, possible missing \'complete\' callback',
         context: this.data
-      }
+      };
     }
-    this.running = true
+    this.running = true;
     // Wrap the task in the markCompleted function, so we can set flags and format the response
-    return this.task(this.markCompleted.bind(this))
+    return this.task(this.markCompleted.bind(this));
   }
 }
 /**
@@ -4861,44 +4776,43 @@ class Queueable {
  * @param queueable Return a valid Queueable instance from given data, or even an already valid one.
  * @param classType Provide the type of IsLinker to use.
  */
-exports.Queueable = Queueable
+exports.Queueable = Queueable;
 Queueable.make = (queueable, classType = Queueable) => {
   if (queueable === null || typeof queueable !== 'object') {
     // It is not an object (or it is null), so instantiate the Queueable with an element as the data
     return new classType({
       task: queueable,
       ready: true
-    })
+    });
   }
   if (queueable.classType) {
     // Already valid Queueable, return as-is
-    return queueable
+    return queueable;
   }
   if (!('task' in queueable)) {
     queueable = {
       task: queueable,
       ready: true
-    }
+    };
   }
   // Create the new node as the configured #classType
-  return new classType(queueable)
-}
+  return new classType(queueable);
+};
 /**
  * Convert an array into Queueable instances, return the head and tail Queueables.
  * @param values Provide an array of data that will be converted to a chain of queueable linkers.
  * @param classType Provide the type of IsLinker to use.
  */
-Queueable.fromArray = (values = [], classType = Queueable) => _Linker.Linker.fromArray(values, classType)
-
+Queueable.fromArray = (values = [], classType = Queueable) => _Linker.Linker.fromArray(values, classType);
 },{"../linked-list/Linker":90}],95:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.TaskQueue = void 0
-const _Queueable = require('./Queueable')
-const _LinkedList = require('../linked-list/LinkedList')
+});
+exports.TaskQueue = void 0;
+var _Queueable = require("./Queueable");
+var _LinkedList = require("../linked-list/LinkedList");
 /**
  * task queue
  */
@@ -4915,32 +4829,31 @@ class TaskQueue {
    * @param listClass The type of list to create when no queued list is given.
    * @param queueableClass The class used to wrap queued items.
    */
-  constructor (queuedList = null, listClass = _LinkedList.LinkedList, queueableClass = _Queueable.Queueable) {
-    this.listClass = listClass
-    this.queueableClass = queueableClass
+  constructor(queuedList = null, listClass = _LinkedList.LinkedList, queueableClass = _Queueable.Queueable) {
+    this.listClass = listClass;
+    this.queueableClass = queueableClass;
     if (queuedList === null) {
-      queuedList = new listClass(queueableClass)
+      queuedList = new listClass(queueableClass);
     }
-    this.queuedList = queuedList
+    this.queuedList = queuedList;
   }
-
   /**
    * Take a queued task from the front of the queue and run it if ready. A task which is not ready yet is kept in the
    * queue (never dropped), a task which is still running is reported as blocking and left to finish on its own, and
    * completed tasks are discarded.
    */
-  dequeue () {
-    let next = this.remove()
+  dequeue() {
+    let next = this.remove();
     // Tasks which already completed are discarded when they reach the front of the queue
     while (next && next.complete) {
-      next = this.remove()
+      next = this.remove();
     }
     if (!next) {
       return {
         success: 'No more queueable tasks in the queue',
         error: false,
         context: this.queuedList
-      }
+      };
     }
     if (next.running) {
       // The unfinished task reports back through its own complete callback, so it is not kept in the queue
@@ -4948,63 +4861,58 @@ class TaskQueue {
         success: false,
         error: 'The queue has been blocked by an unfinished task.',
         context: next
-      }
+      };
     }
     if (!next.isReady) {
       // Keep the task (at the back, so the next dequeue can try the other tasks) rather than losing it
-      this.enqueue(next)
+      this.enqueue(next);
       // We could go check the next in queue here but if we end up in a state where nothing is ready it would infinite loop
       // Also, we want the loop handled externally
       return {
         success: false,
         error: 'Unable to find ready task.',
         context: next
-      }
+      };
     }
     if (!this.empty()) {
       // Place back in queue to be checked once again next time, only if the queue will not be empty
-      this.enqueue(next)
+      this.enqueue(next);
     }
-    return next.run.call(next)
+    return next.run.call(next);
   }
-
   /**
    * Return true if the queue is empty (there are no tasks in the queue list)
    */
-  empty () {
-    return this.size() <= 0
+  empty() {
+    return this.size() <= 0;
   }
-
   /**
    * Add a queued task to the end of the queue
    * @param queueable Add a new queueable to the end of the queue
    */
-  enqueue (queueable) {
-    this.queuedList.append(queueable)
+  enqueue(queueable) {
+    this.queuedList.append(queueable);
   }
-
   /**
    * Take a look at the next queued task
    */
-  peek () {
-    return this.queuedList.first
+  peek() {
+    return this.queuedList.first;
   }
-
   /**
    * Remove the next queued item and return it.
    */
-  remove () {
+  remove() {
     if (this.empty()) {
-      return null
+      return null;
     }
-    return this.queuedList.remove(this.queuedList.first)
+    return this.queuedList.remove(this.queuedList.first);
   }
-
   /**
    * Get the length of the current queue.
    */
-  size () {
-    return this.queuedList.length
+  size() {
+    return this.queuedList.length;
   }
 }
 /**
@@ -5013,34 +4921,33 @@ class TaskQueue {
  * @param queueableClass The class to use for each queueable
  * @param listClass The class to use to manage the queueables
  */
-exports.TaskQueue = TaskQueue
+exports.TaskQueue = TaskQueue;
 TaskQueue.fromArray = (values = [], queueableClass = _Queueable.Queueable, listClass = _LinkedList.LinkedList) => {
-  const list = new listClass(queueableClass)
-  list.initialize(queueableClass.fromArray(values, queueableClass).head)
-  return new TaskQueue(list, listClass, queueableClass)
-}
-
+  const list = new listClass(queueableClass);
+  list.initialize(queueableClass.fromArray(values, queueableClass).head);
+  return new TaskQueue(list, listClass, queueableClass);
+};
 },{"../linked-list/LinkedList":89,"./Queueable":94}],96:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.ScopedCollection = void 0
-require('core-js/modules/esnext.map.delete-all.js')
-require('core-js/modules/esnext.map.every.js')
-require('core-js/modules/esnext.map.filter.js')
-require('core-js/modules/esnext.map.find.js')
-require('core-js/modules/esnext.map.find-key.js')
-require('core-js/modules/esnext.map.includes.js')
-require('core-js/modules/esnext.map.key-of.js')
-require('core-js/modules/esnext.map.map-keys.js')
-require('core-js/modules/esnext.map.map-values.js')
-require('core-js/modules/esnext.map.merge.js')
-require('core-js/modules/esnext.map.reduce.js')
-require('core-js/modules/esnext.map.some.js')
-require('core-js/modules/esnext.map.update.js')
-require('core-js/modules/esnext.weak-map.delete-all.js')
+});
+exports.ScopedCollection = void 0;
+require("core-js/modules/esnext.map.delete-all.js");
+require("core-js/modules/esnext.map.every.js");
+require("core-js/modules/esnext.map.filter.js");
+require("core-js/modules/esnext.map.find.js");
+require("core-js/modules/esnext.map.find-key.js");
+require("core-js/modules/esnext.map.includes.js");
+require("core-js/modules/esnext.map.key-of.js");
+require("core-js/modules/esnext.map.map-keys.js");
+require("core-js/modules/esnext.map.map-values.js");
+require("core-js/modules/esnext.map.merge.js");
+require("core-js/modules/esnext.map.reduce.js");
+require("core-js/modules/esnext.map.some.js");
+require("core-js/modules/esnext.map.update.js");
+require("core-js/modules/esnext.weak-map.delete-all.js");
 /**
  * A keyed collection, partitioned by an arbitrary scope object: values are stored and looked up by key, with a
  * separate key space per scope. Scopes are held by a WeakMap, so a scope that nothing else references any more
@@ -5048,42 +4955,38 @@ require('core-js/modules/esnext.weak-map.delete-all.js')
  * tree's root, a session) without that something needing to hold the state itself.
  */
 class ScopedCollection {
-  constructor () {
-    this.scopes = new WeakMap()
+  constructor() {
+    this.scopes = new WeakMap();
   }
-
   /**
    * Remove a key from a scope's key space.
    * @param scope The scope to remove the key from
    * @param key The key to remove
    * @returns Whether a value was actually removed
    */
-  delete (scope, key) {
-    const keyedValues = this.scopes.get(scope)
-    return typeof keyedValues === 'undefined' ? false : keyedValues.delete(key)
+  delete(scope, key) {
+    const keyedValues = this.scopes.get(scope);
+    return typeof keyedValues === 'undefined' ? false : keyedValues.delete(key);
   }
-
   /**
    * Look up a value by key within a scope.
    * @param scope The scope to look within
    * @param key The key to look up
    * @returns The value, or undefined when the scope or key is not present
    */
-  get (scope, key) {
-    let _a
-    return (_a = this.scopes.get(scope)) === null || _a === void 0 ? void 0 : _a.get(key)
+  get(scope, key) {
+    var _a;
+    return (_a = this.scopes.get(scope)) === null || _a === void 0 ? void 0 : _a.get(key);
   }
-
   /**
    * Check whether a key exists within a scope.
    * @param scope The scope to look within
    * @param key The key to check
    */
-  has (scope, key) {
-    let _a, _b
-    return (_b = (_a = this.scopes.get(scope)) === null || _a === void 0 ? void 0 : _a.has(key)) !== null && _b !== void 0 ? _b : false
+  has(scope, key) {
+    var _a, _b;
+    return (_b = (_a = this.scopes.get(scope)) === null || _a === void 0 ? void 0 : _a.has(key)) !== null && _b !== void 0 ? _b : false;
   }
-
   /**
    * Store a value under a key within a scope.
    * @param scope The scope to store the key within
@@ -5091,29 +4994,28 @@ class ScopedCollection {
    * @param value The value to store
    * @returns This collection, so that setting can be chained
    */
-  set (scope, key, value) {
-    let keyedValues = this.scopes.get(scope)
+  set(scope, key, value) {
+    let keyedValues = this.scopes.get(scope);
     if (typeof keyedValues === 'undefined') {
-      keyedValues = new Map()
-      this.scopes.set(scope, keyedValues)
+      keyedValues = new Map();
+      this.scopes.set(scope, keyedValues);
     }
-    keyedValues.set(key, value)
-    return this
+    keyedValues.set(key, value);
+    return this;
   }
 }
-exports.ScopedCollection = ScopedCollection
-
+exports.ScopedCollection = ScopedCollection;
 },{"core-js/modules/esnext.map.delete-all.js":732,"core-js/modules/esnext.map.every.js":733,"core-js/modules/esnext.map.filter.js":734,"core-js/modules/esnext.map.find-key.js":735,"core-js/modules/esnext.map.find.js":736,"core-js/modules/esnext.map.includes.js":737,"core-js/modules/esnext.map.key-of.js":738,"core-js/modules/esnext.map.map-keys.js":739,"core-js/modules/esnext.map.map-values.js":740,"core-js/modules/esnext.map.merge.js":741,"core-js/modules/esnext.map.reduce.js":742,"core-js/modules/esnext.map.some.js":743,"core-js/modules/esnext.map.update.js":744,"core-js/modules/esnext.weak-map.delete-all.js":761}],97:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.Stack = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.for-each.js')
-const _LinkedList = require('../linked-list/LinkedList')
-const _Linker = require('../linked-list/Linker')
+});
+exports.Stack = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.for-each.js");
+var _LinkedList = require("../linked-list/LinkedList");
+var _Linker = require("../linked-list/Linker");
 /**
  * stack.
  */
@@ -5130,88 +5032,79 @@ class Stack {
    * @param listClass The type of list to create when no stacked list is given
    * @param linkerClass The class used to hold each stacked item
    */
-  constructor (stackedList = null, listClass = _LinkedList.LinkedList, linkerClass = _Linker.Linker) {
-    this.linkerClass = linkerClass
-    this.stackedList = stackedList === null ? new listClass(linkerClass) : stackedList
+  constructor(stackedList = null, listClass = _LinkedList.LinkedList, linkerClass = _Linker.Linker) {
+    this.linkerClass = linkerClass;
+    this.stackedList = stackedList === null ? new listClass(linkerClass) : stackedList;
   }
-
   /**
    * Check whether the stack has no items.
    */
-  empty () {
-    return this.size() <= 0
+  empty() {
+    return this.size() <= 0;
   }
-
   /**
    * Look at the item on the top of the stack, without removing it.
    * @returns The item, or null when the stack is empty
    */
-  peek () {
-    const top = this.stackedList.first
-    return top === null || typeof top === 'undefined' ? null : top.data
+  peek() {
+    const top = this.stackedList.first;
+    return top === null || typeof top === 'undefined' ? null : top.data;
   }
-
   /**
    * Take the item from the top of the stack.
    * @returns The item, or null when the stack is empty
    */
-  pop () {
-    const top = this.stackedList.first
+  pop() {
+    const top = this.stackedList.first;
     if (top === null || typeof top === 'undefined') {
-      return null
+      return null;
     }
-    this.stackedList.remove(top)
-    return top.data
+    this.stackedList.remove(top);
+    return top.data;
   }
-
   /**
    * Add an item to the top of the stack.
    * @param data The item to add
    * @returns This stack, so that adding can be chained
    */
-  push (data) {
+  push(data) {
     // The item is wrapped here rather than left to the list, since the list treats objects that look like a linker's
     // settings (they have a data property) as such, and a stack must give back exactly what it was given
     this.stackedList.prepend(new this.linkerClass({
       data
-    }))
-    return this
+    }));
+    return this;
   }
-
   /**
    * Count the items in the stack.
    */
-  size () {
-    return this.stackedList.length
+  size() {
+    return this.stackedList.length;
   }
-
   /**
    * The item on the top of the stack (the same as peek).
    * @returns The item, or null when the stack is empty
    */
-  top () {
-    return this.peek()
+  top() {
+    return this.peek();
   }
-
   /**
    * Iterate over the items from the top of the stack to the bottom, without removing them.
    */
-  [Symbol.iterator] () {
-    const linkers = this.stackedList[Symbol.iterator]()
+  [Symbol.iterator]() {
+    const linkers = this.stackedList[Symbol.iterator]();
     return {
       next: () => {
-        const result = linkers.next()
-        return result.done
-          ? {
-              done: true,
-              value: undefined
-            }
-          : {
-              done: false,
-              value: result.value.data
-            }
+        const result = linkers.next();
+        return result.done ? {
+          done: true,
+          value: undefined
+        } : {
+          done: false,
+          value: result.value.data
+        };
       }
-    }
+    };
   }
 }
 /**
@@ -5220,21 +5113,20 @@ class Stack {
  * @param listClass The type of list used to store the items
  * @param linkerClass The class used to hold each stacked item
  */
-exports.Stack = Stack
+exports.Stack = Stack;
 Stack.fromArray = (values = [], listClass = _LinkedList.LinkedList, linkerClass = _Linker.Linker) => {
-  const stack = new Stack(null, listClass, linkerClass)
-  values.forEach(value => stack.push(value))
-  return stack
-}
-
+  const stack = new Stack(null, listClass, linkerClass);
+  values.forEach(value => stack.push(value));
+  return stack;
+};
 },{"../linked-list/LinkedList":89,"../linked-list/Linker":90,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.for-each.js":728}],98:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.Stackable = void 0
-const _Linker = require('../linked-list/Linker')
+});
+exports.Stackable = void 0;
+var _Linker = require("../linked-list/Linker");
 /**
  * Stackable represents a runnable entry in stack.
  * @extends Linker
@@ -5247,35 +5139,33 @@ class Stackable {
    * @param stackData.next The reference to the next stackable if any
    * @param stackData.ready Indicate if the stackable is ready to run
    */
-  constructor ({
+  constructor({
     task = null,
     next = null,
     ready = false
   } = {}) {
     /** The task (or data) this stackable holds. */
-    this.data = null
+    this.data = null;
     /** The stackable below this one, or null when this is the bottom. */
-    this.next = null
-    this.classType = Stackable
-    this.data = task
-    this.next = next
+    this.next = null;
+    this.classType = Stackable;
+    this.data = task;
+    this.next = next;
   }
-
   /**
    * Retrieve the data which should be formed as a task.
    */
-  get task () {
+  get task() {
     if (typeof this.data === 'function') {
-      return this.data
+      return this.data;
     }
-    return () => this.data
+    return () => this.data;
   }
-
   /**
    * Run the stacked task.
    */
-  run () {
-    return this.task()
+  run() {
+    return this.task();
   }
 }
 /**
@@ -5283,42 +5173,41 @@ class Stackable {
  * @param stackable Return a valid Stackable instance from given data, or even an already valid one.
  * @param classType Provide the type of IsLinker to use.
  */
-exports.Stackable = Stackable
+exports.Stackable = Stackable;
 Stackable.make = (stackable, classType = Stackable) => {
   if (stackable === null || typeof stackable !== 'object') {
     // It is not an object (or it is null), so instantiate the Stackable with stackable as the data
     return new classType({
       task: stackable
-    })
+    });
   }
   if (stackable.classType) {
     // Already valid Stackable, return as-is
-    return stackable
+    return stackable;
   }
   if (!('task' in stackable)) {
     stackable = {
       task: stackable
-    }
+    };
   }
   // Create the new node as the configured stackableClass
-  return new classType(stackable)
-}
+  return new classType(stackable);
+};
 /**
  * Convert an array into Stackable instances, return the head and tail Stackables.
  * @param values Provide an array of data that will be converted to a chain of stackable linkers.
  * @param classType Provide the type of IsLinker to use.
  */
-Stackable.fromArray = (values = [], classType = Stackable) => _Linker.Linker.fromArray(values, classType)
-
+Stackable.fromArray = (values = [], classType = Stackable) => _Linker.Linker.fromArray(values, classType);
 },{"../linked-list/Linker":90}],99:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.TaskStack = void 0
-const _Stackable = require('./Stackable')
-const _LinkedList = require('../linked-list/LinkedList')
+});
+exports.TaskStack = void 0;
+var _Stackable = require("./Stackable");
+var _LinkedList = require("../linked-list/LinkedList");
 /**
  * task stack.
  */
@@ -5334,67 +5223,61 @@ class TaskStack {
    * @param listClass The type of list to create when no stacked list is given.
    * @param stackableClass The class used to wrap stacked items.
    */
-  constructor (stackedList = null, listClass = _LinkedList.LinkedList, stackableClass = _Stackable.Stackable) {
-    this.listClass = listClass
-    this.stackableClass = stackableClass
+  constructor(stackedList = null, listClass = _LinkedList.LinkedList, stackableClass = _Stackable.Stackable) {
+    this.listClass = listClass;
+    this.stackableClass = stackableClass;
     if (stackedList === null) {
-      stackedList = new listClass(stackableClass)
+      stackedList = new listClass(stackableClass);
     }
-    this.stackedList = stackedList
+    this.stackedList = stackedList;
   }
-
   /**
    * Return true if the stack is empty (there are no tasks in the stacked list)
    */
-  empty () {
-    return this.size() <= 0
+  empty() {
+    return this.size() <= 0;
   }
-
   /**
    * Take a look at the next stacked task
    */
-  top () {
-    return this.stackedList.first
+  top() {
+    return this.stackedList.first;
   }
-
   /**
    * Remove the next stacked task and return it.
    */
-  pop () {
-    const next = this.remove()
+  pop() {
+    const next = this.remove();
     if (!next) {
       return {
         success: 'No more stackable tasks in the stack',
         error: false,
         context: this.stackedList
-      }
+      };
     }
-    return next.run()
+    return next.run();
   }
-
   /**
    * Push a stackable task to the top of the stack.
    * @param stackable Add a new stackable to the top of the stack
    */
-  push (stackable) {
-    this.stackedList.prepend(stackable)
+  push(stackable) {
+    this.stackedList.prepend(stackable);
   }
-
   /**
    * Remove the next stacked task and return it.
    */
-  remove () {
+  remove() {
     if (this.empty()) {
-      return null
+      return null;
     }
-    return this.stackedList.remove(this.stackedList.first)
+    return this.stackedList.remove(this.stackedList.first);
   }
-
   /**
    * Get the size of the current stack.
    */
-  size () {
-    return this.stackedList.length
+  size() {
+    return this.stackedList.length;
   }
 }
 /**
@@ -5403,139 +5286,138 @@ class TaskStack {
  * @param stackableClass The class to use for each stackable
  * @param listClass The class to use to manage the stackables
  */
-exports.TaskStack = TaskStack
+exports.TaskStack = TaskStack;
 TaskStack.fromArray = (values = [], stackableClass = _Stackable.Stackable, listClass = _LinkedList.LinkedList) => {
-  const list = new listClass(stackableClass)
-  list.initialize(stackableClass.fromArray(values, stackableClass).head)
-  return new TaskStack(list, listClass, stackableClass)
-}
-
+  const list = new listClass(stackableClass);
+  list.initialize(stackableClass.fromArray(values, stackableClass).head);
+  return new TaskStack(list, listClass, stackableClass);
+};
 },{"../linked-list/LinkedList":89,"./Stackable":98}],100:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-Object.defineProperty(exports, 'ArrayElement', {
+});
+Object.defineProperty(exports, "ArrayElement", {
   enumerable: true,
   get: function () {
-    return _ArrayElement.ArrayElement
+    return _ArrayElement.ArrayElement;
   }
-})
-Object.defineProperty(exports, 'Arrayable', {
+});
+Object.defineProperty(exports, "Arrayable", {
   enumerable: true,
   get: function () {
-    return _Arrayable.Arrayable
+    return _Arrayable.Arrayable;
   }
-})
-Object.defineProperty(exports, 'DoubleLinker', {
+});
+Object.defineProperty(exports, "DoubleLinker", {
   enumerable: true,
   get: function () {
-    return _DoubleLinker.DoubleLinker
+    return _DoubleLinker.DoubleLinker;
   }
-})
-Object.defineProperty(exports, 'DoublyLinkedList', {
+});
+Object.defineProperty(exports, "DoublyLinkedList", {
   enumerable: true,
   get: function () {
-    return _DoublyLinkedList.DoublyLinkedList
+    return _DoublyLinkedList.DoublyLinkedList;
   }
-})
-Object.defineProperty(exports, 'LinkedList', {
+});
+Object.defineProperty(exports, "LinkedList", {
   enumerable: true,
   get: function () {
-    return _LinkedList.LinkedList
+    return _LinkedList.LinkedList;
   }
-})
-Object.defineProperty(exports, 'LinkedTreeList', {
+});
+Object.defineProperty(exports, "LinkedTreeList", {
   enumerable: true,
   get: function () {
-    return _LinkedTreeList.LinkedTreeList
+    return _LinkedTreeList.LinkedTreeList;
   }
-})
-Object.defineProperty(exports, 'Linker', {
+});
+Object.defineProperty(exports, "Linker", {
   enumerable: true,
   get: function () {
-    return _Linker.Linker
+    return _Linker.Linker;
   }
-})
-Object.defineProperty(exports, 'Queue', {
+});
+Object.defineProperty(exports, "Queue", {
   enumerable: true,
   get: function () {
-    return _Queue.Queue
+    return _Queue.Queue;
   }
-})
-Object.defineProperty(exports, 'Queueable', {
+});
+Object.defineProperty(exports, "Queueable", {
   enumerable: true,
   get: function () {
-    return _Queueable.Queueable
+    return _Queueable.Queueable;
   }
-})
-Object.defineProperty(exports, 'ScopedCollection', {
+});
+Object.defineProperty(exports, "ScopedCollection", {
   enumerable: true,
   get: function () {
-    return _ScopedCollection.ScopedCollection
+    return _ScopedCollection.ScopedCollection;
   }
-})
-Object.defineProperty(exports, 'Stack', {
+});
+Object.defineProperty(exports, "Stack", {
   enumerable: true,
   get: function () {
-    return _Stack.Stack
+    return _Stack.Stack;
   }
-})
-Object.defineProperty(exports, 'Stackable', {
+});
+Object.defineProperty(exports, "Stackable", {
   enumerable: true,
   get: function () {
-    return _Stackable.Stackable
+    return _Stackable.Stackable;
   }
-})
-Object.defineProperty(exports, 'TaskQueue', {
+});
+Object.defineProperty(exports, "TaskQueue", {
   enumerable: true,
   get: function () {
-    return _TaskQueue.TaskQueue
+    return _TaskQueue.TaskQueue;
   }
-})
-Object.defineProperty(exports, 'TaskStack', {
+});
+Object.defineProperty(exports, "TaskStack", {
   enumerable: true,
   get: function () {
-    return _TaskStack.TaskStack
+    return _TaskStack.TaskStack;
   }
-})
-Object.defineProperty(exports, 'TreeLinker', {
+});
+Object.defineProperty(exports, "TreeLinker", {
   enumerable: true,
   get: function () {
-    return _TreeLinker.TreeLinker
+    return _TreeLinker.TreeLinker;
   }
-})
-exports.default = void 0
-Object.defineProperty(exports, 'recipes', {
+});
+exports.default = void 0;
+Object.defineProperty(exports, "recipes", {
   enumerable: true,
   get: function () {
-    return _recipes.recipes
+    return _recipes.recipes;
   }
-})
-Object.defineProperty(exports, 'services', {
+});
+Object.defineProperty(exports, "services", {
   enumerable: true,
   get: function () {
-    return _services.services
+    return _services.services;
   }
-})
-var _ArrayElement = require('./collections/arrayable/ArrayElement')
-var _Arrayable = require('./collections/arrayable/Arrayable')
-var _DoubleLinker = require('./collections/doubly-linked-list/DoubleLinker')
-var _DoublyLinkedList = require('./collections/doubly-linked-list/DoublyLinkedList')
-var _Linker = require('./collections/linked-list/Linker')
-var _LinkedList = require('./collections/linked-list/LinkedList')
-var _TreeLinker = require('./collections/linked-tree-list/TreeLinker')
-var _LinkedTreeList = require('./collections/linked-tree-list/LinkedTreeList')
-var _Queueable = require('./collections/queue/Queueable')
-var _Queue = require('./collections/queue/Queue')
-var _TaskQueue = require('./collections/queue/TaskQueue')
-var _ScopedCollection = require('./collections/scoped-collection/ScopedCollection')
-var _Stackable = require('./collections/stack/Stackable')
-var _Stack = require('./collections/stack/Stack')
-var _TaskStack = require('./collections/stack/TaskStack')
-var _recipes = require('./recipes/recipes')
-var _services = require('./services/services')
+});
+var _ArrayElement = require("./collections/arrayable/ArrayElement");
+var _Arrayable = require("./collections/arrayable/Arrayable");
+var _DoubleLinker = require("./collections/doubly-linked-list/DoubleLinker");
+var _DoublyLinkedList = require("./collections/doubly-linked-list/DoublyLinkedList");
+var _Linker = require("./collections/linked-list/Linker");
+var _LinkedList = require("./collections/linked-list/LinkedList");
+var _TreeLinker = require("./collections/linked-tree-list/TreeLinker");
+var _LinkedTreeList = require("./collections/linked-tree-list/LinkedTreeList");
+var _Queueable = require("./collections/queue/Queueable");
+var _Queue = require("./collections/queue/Queue");
+var _TaskQueue = require("./collections/queue/TaskQueue");
+var _ScopedCollection = require("./collections/scoped-collection/ScopedCollection");
+var _Stackable = require("./collections/stack/Stackable");
+var _Stack = require("./collections/stack/Stack");
+var _TaskStack = require("./collections/stack/TaskStack");
+var _recipes = require("./recipes/recipes");
+var _services = require("./services/services");
 /**
  * All of the collections available.
  */
@@ -5571,23 +5453,22 @@ const collectYourStuff = {
   TaskStack: _TaskStack.TaskStack,
   recipes: _recipes.recipes,
   services: _services.services
-}
-const _default = exports.default = collectYourStuff
+};
+var _default = exports.default = collectYourStuff;
 if (void 0) {
   // @ts-ignore
-  (void 0).collectYourStuff = collectYourStuff
+  (void 0).collectYourStuff = collectYourStuff;
 } else if (typeof window !== 'undefined') {
   // @ts-ignore
-  window.collectYourStuff = collectYourStuff
+  window.collectYourStuff = collectYourStuff;
 }
-
 },{"./collections/arrayable/ArrayElement":85,"./collections/arrayable/Arrayable":86,"./collections/doubly-linked-list/DoubleLinker":87,"./collections/doubly-linked-list/DoublyLinkedList":88,"./collections/linked-list/LinkedList":89,"./collections/linked-list/Linker":90,"./collections/linked-tree-list/LinkedTreeList":91,"./collections/linked-tree-list/TreeLinker":92,"./collections/queue/Queue":93,"./collections/queue/Queueable":94,"./collections/queue/TaskQueue":95,"./collections/scoped-collection/ScopedCollection":96,"./collections/stack/Stack":97,"./collections/stack/Stackable":98,"./collections/stack/TaskStack":99,"./recipes/recipes":106,"./services/services":109}],101:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.ArrayIterator = void 0
+});
+exports.ArrayIterator = void 0;
 /**
  * Class ArrayIterator returns the next value when using elements of array type list.
  */
@@ -5597,38 +5478,36 @@ class ArrayIterator {
    * @param innerList The elements to iterate over.
    * @param index The position to start from.
    */
-  constructor (innerList, index = 0) {
-    this.innerList = innerList
-    this.index = index
+  constructor(innerList, index = 0) {
+    this.innerList = innerList;
+    this.index = index;
   }
-
   /**
    * Get the next element, moving the iterator forward.
    * @param value Not used, present to match the Iterator interface.
    * @returns The next element, or done when there are no more.
    */
-  next (value) {
+  next(value) {
     if (this.index < this.innerList.length) {
       return {
         value: this.innerList[this.index++],
         done: false
-      }
+      };
     }
     return {
       value: undefined,
       done: true
-    }
+    };
   }
 }
-exports.ArrayIterator = ArrayIterator
-
+exports.ArrayIterator = ArrayIterator;
 },{}],102:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.DoubleLinkerIterator = void 0
+});
+exports.DoubleLinkerIterator = void 0;
 /**
  * Class DoubleLinkerIterator returns the next value when using linkers of linked type lists.
  */
@@ -5637,33 +5516,31 @@ class DoubleLinkerIterator {
    * Create an iterator starting at the given item.
    * @param current The item to start from.
    */
-  constructor (current) {
-    this.current = current
+  constructor(current) {
+    this.current = current;
   }
-
   /**
    * Get the current item and move on to the following one.
    * @param value Not used, present to match the Iterator interface.
    * @returns The current item, or done when there are no more.
    */
-  next (value) {
+  next(value) {
     const result = {
       value: this.current,
       done: !this.current
-    }
-    this.current = this.current ? this.current.next : null
-    return result
+    };
+    this.current = this.current ? this.current.next : null;
+    return result;
   }
 }
-exports.DoubleLinkerIterator = DoubleLinkerIterator
-
+exports.DoubleLinkerIterator = DoubleLinkerIterator;
 },{}],103:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.LinkerIterator = void 0
+});
+exports.LinkerIterator = void 0;
 /**
  * Class LinkerIterator returns the next value when using linkers of linked type lists.
  */
@@ -5672,33 +5549,31 @@ class LinkerIterator {
    * Create an iterator starting at the given item.
    * @param current The item to start from.
    */
-  constructor (current) {
-    this.current = current
+  constructor(current) {
+    this.current = current;
   }
-
   /**
    * Get the current item and move on to the following one.
    * @param value Not used, present to match the Iterator interface.
    * @returns The current item, or done when there are no more.
    */
-  next (value) {
+  next(value) {
     const result = {
       value: this.current,
       done: !this.current
-    }
-    this.current = this.current ? this.current.next : null
-    return result
+    };
+    this.current = this.current ? this.current.next : null;
+    return result;
   }
 }
-exports.LinkerIterator = LinkerIterator
-
+exports.LinkerIterator = LinkerIterator;
 },{}],104:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.Runnable = void 0
+});
+exports.Runnable = void 0;
 /**
  * Runnable class recipe.
  */
@@ -5710,61 +5585,57 @@ class Runnable {
    * Instantiate a Runnable class.
    * @param data The task (a function) or the data which the task returns.
    */
-  constructor (data = null) {
+  constructor(data = null) {
     /** The task (or data) this runnable holds. */
-    this.data = null
-    this.data = data
+    this.data = null;
+    this.data = data;
   }
-
   /**
    * Retrieve the data which should be formed as a task.
    */
-  get task () {
+  get task() {
     if (typeof this.data === 'function') {
-      return this.data
+      return this.data;
     }
-    return () => this.data
+    return () => this.data;
   }
-
   /**
    * Run the runnable task.
    */
-  run () {
-    return this.task()
+  run() {
+    return this.task();
   }
-
   /**
    * Check if a given thing is Runnable
    * @memberof Runnable
    * @param thing The value to check, or nothing to check whether this class is Runnable.
    */
-  static isRunnable (thing) {
+  static isRunnable(thing) {
     if (typeof thing === 'undefined') {
       // No argument past, this class is runnable
-      return this instanceof Runnable
+      return this instanceof Runnable;
     }
     if (typeof thing !== 'object') {
       // It is not even an object, so cannot be a class instance
-      return false
+      return false;
     }
     if (typeof thing.task !== 'function') {
       // It does not have a task getter that returns a function
-      return false
+      return false;
     }
     // Finally, it has a runnable 'run' method. This method should return the result of running the task.
-    return typeof thing.run === 'function'
+    return typeof thing.run === 'function';
   }
 }
-exports.Runnable = Runnable
-
+exports.Runnable = Runnable;
 },{}],105:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.TreeLinkerIterator = void 0
-const _parseTreeNext = require('../services/parseTreeNext')
+});
+exports.TreeLinkerIterator = void 0;
+var _parseTreeNext = require("../services/parseTreeNext");
 /**
  * Class TreeLinkerIterator returns the next value taking a left-first approach down a tree.
  */
@@ -5774,36 +5645,34 @@ class TreeLinkerIterator {
    * @param current The item to start from.
    * @param boundaryParent The parent of the nodes to stay within (null for the top of a tree), the whole tree when not given.
    */
-  constructor (current, boundaryParent) {
-    this.current = current
-    this.boundaryParent = boundaryParent
+  constructor(current, boundaryParent) {
+    this.current = current;
+    this.boundaryParent = boundaryParent;
   }
-
   /**
    * Get the current item and move on to the following one (left-first, down each branch).
    * @param value Not used, present to match the Iterator interface.
    * @returns The current item, or done when there are no more.
    */
-  next (value) {
+  next(value) {
     const result = {
       value: this.current,
       done: !this.current
-    }
-    this.current = (0, _parseTreeNext.parseTreeNext)(this.current, this.boundaryParent)
-    return result
+    };
+    this.current = (0, _parseTreeNext.parseTreeNext)(this.current, this.boundaryParent);
+    return result;
   }
 }
-exports.TreeLinkerIterator = TreeLinkerIterator
-
+exports.TreeLinkerIterator = TreeLinkerIterator;
 },{"../services/parseTreeNext":108}],106:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.recipes = void 0
-const _ArrayIterator = require('./ArrayIterator')
-const _Runnable = require('./Runnable')
+});
+exports.recipes = void 0;
+var _ArrayIterator = require("./ArrayIterator");
+var _Runnable = require("./Runnable");
 /**
  * sample classes which follow a pattern (have certain members or methods).
  */
@@ -5814,40 +5683,38 @@ const _Runnable = require('./Runnable')
 const recipes = exports.recipes = {
   ArrayIterator: _ArrayIterator.ArrayIterator,
   Runnable: _Runnable.Runnable
-}
-
+};
 },{"./ArrayIterator":101,"./Runnable":104}],107:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.parseTree = void 0
-const _parseTreeNext = require('./parseTreeNext')
+});
+exports.parseTree = void 0;
+var _parseTreeNext = require("./parseTreeNext");
 /**
  * Loop over all the nodes in a tree starting from left and apply a callback for each
  * @param tree
  * @param callback
  */
 const parseTree = (tree, callback) => {
-  let index = 0
-  let current = tree.rootParent
+  let index = 0;
+  let current = tree.rootParent;
   while (current !== null) {
-    callback(current, index, tree)
-    current = (0, _parseTreeNext.parseTreeNext)(current)
-    ++index
+    callback(current, index, tree);
+    current = (0, _parseTreeNext.parseTreeNext)(current);
+    ++index;
   }
-  return tree
-}
-exports.parseTree = parseTree
-
+  return tree;
+};
+exports.parseTree = parseTree;
 },{"./parseTreeNext":108}],108:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.parseTreeNext = void 0
+});
+exports.parseTreeNext = void 0;
 /**
  * Be able to parse over every node in a tree.
  * 1. Start at root (get root parent)
@@ -5864,35 +5731,34 @@ exports.parseTreeNext = void 0
  */
 const parseTreeNext = (treeNode, boundaryParent) => {
   if (!treeNode) {
-    return null
+    return null;
   }
   if (treeNode.children && treeNode.children.length) {
-    return treeNode.children.first
+    return treeNode.children.first;
   }
   if (treeNode.next) {
-    return treeNode.next
+    return treeNode.next;
   }
   // Nothing more below or beside this node, so go back up until there is a node which has a next (or the boundary)
-  let parent = treeNode.parent
+  let parent = treeNode.parent;
   while (parent && parent !== boundaryParent) {
     if (parent.next) {
-      return parent.next
+      return parent.next;
     }
-    parent = parent.parent
+    parent = parent.parent;
   }
-  return null
-}
-exports.parseTreeNext = parseTreeNext
-
+  return null;
+};
+exports.parseTreeNext = parseTreeNext;
 },{}],109:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.services = void 0
-const _parseTree = require('./parseTree')
-const _parseTreeNext = require('./parseTreeNext')
+});
+exports.services = void 0;
+var _parseTree = require("./parseTree");
+var _parseTreeNext = require("./parseTreeNext");
 /**
  * some useful resources when working with collections.
  */
@@ -5903,8 +5769,7 @@ const _parseTreeNext = require('./parseTreeNext')
 const services = exports.services = {
   parseTree: _parseTree.parseTree,
   parseTreeNext: _parseTreeNext.parseTreeNext
-}
-
+};
 },{"./parseTree":107,"./parseTreeNext":108}],110:[function(require,module,exports){
 'use strict';
 var isCallable = require('../internals/is-callable');
@@ -28605,72 +28470,67 @@ try {
 }
 
 },{}],792:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-Object.defineProperty(exports, 'BasicQueue', {
+});
+Object.defineProperty(exports, "BasicQueue", {
   enumerable: true,
   get: function () {
-    return _BasicQueue.default
+    return _BasicQueue.default;
   }
-})
-Object.defineProperty(exports, 'addUniqueToArray', {
+});
+Object.defineProperty(exports, "addUniqueToArray", {
   enumerable: true,
   get: function () {
-    return _addUniqueToArray.default
+    return _addUniqueToArray.default;
   }
-})
-Object.defineProperty(exports, 'buildArray', {
+});
+Object.defineProperty(exports, "buildArray", {
   enumerable: true,
   get: function () {
-    return _buildArray.default
+    return _buildArray.default;
   }
-})
-Object.defineProperty(exports, 'buildArrayOfReferences', {
+});
+Object.defineProperty(exports, "buildArrayOfReferences", {
   enumerable: true,
   get: function () {
-    return _buildArrayOfReferences.default
+    return _buildArrayOfReferences.default;
   }
-})
-Object.defineProperty(exports, 'compareArrays', {
+});
+Object.defineProperty(exports, "compareArrays", {
   enumerable: true,
   get: function () {
-    return _compareArrays.default
+    return _compareArrays.default;
   }
-})
-exports.default = void 0
-Object.defineProperty(exports, 'mergeArrays', {
+});
+exports.default = void 0;
+Object.defineProperty(exports, "mergeArrays", {
   enumerable: true,
   get: function () {
-    return _mergeArrays.default
+    return _mergeArrays.default;
   }
-})
-Object.defineProperty(exports, 'uniqueArray', {
+});
+Object.defineProperty(exports, "uniqueArray", {
   enumerable: true,
   get: function () {
-    return _uniqueArray.default
+    return _uniqueArray.default;
   }
-})
-var _addUniqueToArray = _interopRequireDefault(require('./arrays/addUniqueToArray'))
-var _BasicQueue = _interopRequireDefault(require('./arrays/BasicQueue'))
-var _buildArray = _interopRequireDefault(require('./arrays/buildArray'))
-var _buildArrayOfReferences = _interopRequireDefault(require('./arrays/buildArrayOfReferences'))
-var _compareArrays = _interopRequireDefault(require('./arrays/compareArrays'))
-var _mergeArrays = _interopRequireDefault(require('./arrays/mergeArrays'))
-var _uniqueArray = _interopRequireDefault(require('./arrays/uniqueArray'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+var _addUniqueToArray = _interopRequireDefault(require("./arrays/addUniqueToArray"));
+var _BasicQueue = _interopRequireDefault(require("./arrays/BasicQueue"));
+var _buildArray = _interopRequireDefault(require("./arrays/buildArray"));
+var _buildArrayOfReferences = _interopRequireDefault(require("./arrays/buildArrayOfReferences"));
+var _compareArrays = _interopRequireDefault(require("./arrays/compareArrays"));
+var _mergeArrays = _interopRequireDefault(require("./arrays/mergeArrays"));
+var _uniqueArray = _interopRequireDefault(require("./arrays/uniqueArray"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Utilities for building, merging, deduplicating and comparing arrays, plus a basic FIFO queue (BasicQueue) for
  * use with functionHelpers' queueManager/queueTimeout.
- * @file
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module arrayHelpers
- * @memberOf module:siFunciona
  */
-const _default = exports.default = {
+var _default = exports.default = {
   addUniqueToArray: _addUniqueToArray.default,
   BasicQueue: _BasicQueue.default,
   buildArray: _buildArray.default,
@@ -28678,155 +28538,133 @@ const _default = exports.default = {
   compareArrays: _compareArrays.default,
   mergeArrays: _mergeArrays.default,
   uniqueArray: _uniqueArray.default
-}
-
+};
 },{"./arrays/BasicQueue":793,"./arrays/addUniqueToArray":794,"./arrays/buildArray":795,"./arrays/buildArrayOfReferences":796,"./arrays/compareArrays":797,"./arrays/mergeArrays":798,"./arrays/uniqueArray":799}],793:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Class BasicQueue is a functional example of a queue to be used with queueManager.
- * @memberOf module:arrayHelpers
  */
 class BasicQueue {
   /**
-   * @param {Array} [innerList=[]] - Items to pre-populate the queue with, in order.
+   * @param innerList - Items to pre-populate the queue with, in order.
    */
-  constructor (innerList = []) {
-    this.innerList = innerList
+  constructor(innerList = []) {
+    this.innerList = innerList;
   }
-
   /**
    * Remove and return the next item in the queue
-   * @returns {queuedItem|*}
    */
-  dequeue () {
-    return this.innerList.shift()
+  dequeue() {
+    return this.innerList.shift();
   }
-
   /**
    * Check if the queue is empty
-   * @returns {boolean}
    */
-  empty () {
-    return !this.size()
+  empty() {
+    return !this.size();
   }
-
   /**
    * Add an item to the end of the queue
-   * @param {queuedItem|*} data
-   * @returns {BasicQueue}
+   * @param data
    */
-  enqueue (data) {
-    this.innerList.push(data)
-    return this
+  enqueue(data) {
+    this.innerList.push(data);
+    return this;
   }
-
   /**
    * Retrieve the next item from the queue
-   * @returns {queuedItem|*}
    */
-  peek () {
-    return this.empty() ? null : this.innerList[0]
+  peek() {
+    return this.empty() ? null : this.innerList[0];
   }
-
   /**
    * Get the quantity of items in the queue
-   * @returns {number}
    */
-  size () {
-    return this.innerList.length
+  size() {
+    return this.innerList.length;
   }
 }
-const _default = exports.default = BasicQueue
-
+var _default = exports.default = BasicQueue;
 },{}],794:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/es.array.includes.js')
+});
+exports.default = void 0;
+require("core-js/modules/es.array.includes.js");
 /**
  * Having an array and a potential new array element, check if the element is in the array, if not append to array.
- * @memberOf module:arrayHelpers
- * @param {*} item - An potential array element, possibly a DomItem
- * @param {Array} array - An array where an element may be appended.
- * @returns {Array}
+ * @param item - An potential array element, possibly a DomItem
+ * @param array - An array where an element may be appended.
  */
-const addUniqueToArray = (item, array) => !array.includes(item) ? array.concat([item]) : array
-const _default = exports.default = addUniqueToArray
-
+const addUniqueToArray = (item, array) => !array.includes(item) ? array.concat([item]) : array;
+var _default = exports.default = addUniqueToArray;
 },{"core-js/modules/es.array.includes.js":431}],795:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-const _cloneObject = _interopRequireDefault(require('../objects/cloneObject'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+var _cloneObject = _interopRequireDefault(require("../objects/cloneObject"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Leverage buildArrayBase to generate an array filled with a copy of the provided item.
  * The length defines how long the array should be.
- * @memberOf module:arrayHelpers
- * @param {*} item - The item to be used for each array element
- * @param {number} length - The desired length of the array
- * @returns {Array.<*>}
+ * @param item - The item to be used for each array element
+ * @param length - The desired length of the array
  */
 const buildArray = (item, length) => {
-  const arr = []
+  const arr = [];
   while (arr.length < length) {
-    const cloned = (0, _cloneObject.default)(item)
-    arr.push(cloned)
+    const cloned = (0, _cloneObject.default)(item);
+    arr.push(cloned);
   }
-  return arr
-}
-const _default = exports.default = buildArray
-
+  return arr;
+};
+var _default = exports.default = buildArray;
 },{"../objects/cloneObject":836}],796:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Leverage buildArrayBase to generate an array filled with references to the provided item.
  * The length defines how long the array should be.
- * @memberOf module:arrayHelpers
- * @param {*} item - The item to be used for each array element
- * @param {number} length - The desired length of the array
- * @returns {Array.<*>}
+ * @param item - The item to be used for each array element
+ * @param length - The desired length of the array
  */
 const buildArrayOfReferences = (item, length) => {
-  const arr = []
+  const arr = [];
   while (arr.length < length) {
-    arr.push(item)
+    arr.push(item);
   }
-  return arr
-}
-const _default = exports.default = buildArrayOfReferences
-
+  return arr;
+};
+var _default = exports.default = buildArrayOfReferences;
 },{}],797:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.every.js')
-require('core-js/modules/esnext.iterator.map.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-const _isObject = _interopRequireDefault(require('../objects/isObject'))
-const _mergeArrays = _interopRequireDefault(require('./mergeArrays'))
-const _objectKeys = _interopRequireDefault(require('../objects/objectKeys'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.every.js");
+require("core-js/modules/esnext.iterator.map.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+var _isObject = _interopRequireDefault(require("../objects/isObject"));
+var _mergeArrays = _interopRequireDefault(require("./mergeArrays"));
+var _objectKeys = _interopRequireDefault(require("../objects/objectKeys"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Compare two Arrays and return the Object where the value for each property is as follows:
  * -1 to indicate val1 is less than val2
@@ -28880,169 +28718,160 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  *   }
  * ]
  *
- * @memberOf module:arrayHelpers
- * @param {...Array} arrays - The arrays to compare
- * @returns {Array.<module:arrayHelpers~compareArrayResult>}
+ * @param arrays - The arrays to compare
  */
 const compareArrays = (...arrays) => (0, _mergeArrays.default)(...arrays).reduce((results, attr) => {
-  const attrType = typeof attr
-  const useArray = Array.isArray(attr)
+  const attrType = typeof attr;
+  const useArray = Array.isArray(attr);
   const keys = arrays.map(array => array.reduce((results, current, key) => {
-    const currentType = typeof current
+    const currentType = typeof current;
     if (attrType !== currentType) {
-      return results
+      return results;
     }
     if (!(0, _isObject.default)(attr)) {
-      return current === attr ? [...results, key] : results
+      return current === attr ? [...results, key] : results;
     }
     if (useArray !== Array.isArray(current)) {
-      return results
+      return results;
     }
-    const compareKeys = useArray ? compareArrays(attr, current) : compareArrays((0, _objectKeys.default)(attr), (0, _objectKeys.default)(current))
-    return compareKeys.every(compare => compare.result.every(result => result === 0)) ? [...results, key] : results
-  }, []))
-  const arrayResults = keys.map(array => array.length ? 1 : -1)
+    const compareKeys = useArray ? compareArrays(attr, current) : compareArrays((0, _objectKeys.default)(attr), (0, _objectKeys.default)(current));
+    return compareKeys.every(compare => compare.result.every(result => result === 0)) ? [...results, key] : results;
+  }, []));
+  const arrayResults = keys.map(array => array.length ? 1 : -1);
   return [...results, {
     value: attr,
     keys,
     result: arrayResults.every(result => result === 1) ? arrayResults.map(result => 0) : arrayResults
-  }]
-}, [])
-const _default = exports.default = compareArrays
-
+  }];
+}, []);
+var _default = exports.default = compareArrays;
 },{"../objects/isObject":846,"../objects/objectKeys":851,"./mergeArrays":798,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.every.js":725,"core-js/modules/esnext.iterator.map.js":729,"core-js/modules/esnext.iterator.reduce.js":730}],798:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/es.array.includes.js')
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.filter.js')
-require('core-js/modules/esnext.iterator.map.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-const _uniqueArray = _interopRequireDefault(require('./uniqueArray'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/es.array.includes.js");
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.filter.js");
+require("core-js/modules/esnext.iterator.map.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+var _uniqueArray = _interopRequireDefault(require("./uniqueArray"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Take multiple arrays and then filter all these into one unique array.
- * @memberOf module:arrayHelpers
- * @param {...Array} arrays - Provide multiple arrays to create one unique array
- * @returns {Array}
+ * @param arrays - Provide multiple arrays to create one unique array
  */
-const mergeArrays = (...arrays) => arrays.map(_uniqueArray.default).reduce((merged, arr) => [...merged, ...arr.filter(attr => !merged.includes(attr))], [])
-const _default = exports.default = mergeArrays
-
+const mergeArrays = (...arrays) => arrays.map(_uniqueArray.default).reduce((merged, arr) => [...merged, ...arr.filter(attr => !merged.includes(attr))], []);
+var _default = exports.default = mergeArrays;
 },{"./uniqueArray":799,"core-js/modules/es.array.includes.js":431,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.filter.js":726,"core-js/modules/esnext.iterator.map.js":729,"core-js/modules/esnext.iterator.reduce.js":730}],799:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.filter.js')
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.filter.js");
 /**
  * Remove duplicate values from an array. uniqueArray
- * @memberOf module:arrayHelpers
- * @param {Array} array - The array to make unique
- * @returns {Array}
+ * @param array - The array to make unique
  */
-const uniqueArray = array => array.filter((item, index) => array.indexOf(item) === index)
-const _default = exports.default = uniqueArray
-
+const uniqueArray = array => array.filter((item, index) => array.indexOf(item) === index);
+var _default = exports.default = uniqueArray;
 },{"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.filter.js":726}],800:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-Object.defineProperty(exports, 'assignDescriptor', {
+});
+Object.defineProperty(exports, "assignDescriptor", {
   enumerable: true,
   get: function () {
-    return _assignDescriptor.default
+    return _assignDescriptor.default;
   }
-})
-Object.defineProperty(exports, 'assignDescriptorDetail', {
+});
+Object.defineProperty(exports, "assignDescriptorDetail", {
   enumerable: true,
   get: function () {
-    return _assignDescriptorDetail.default
+    return _assignDescriptorDetail.default;
   }
-})
-Object.defineProperty(exports, 'checkClearValues', {
+});
+Object.defineProperty(exports, "checkClearValues", {
   enumerable: true,
   get: function () {
-    return _checkClearValues.default
+    return _checkClearValues.default;
   }
-})
-Object.defineProperty(exports, 'checkDescriptorComplete', {
+});
+Object.defineProperty(exports, "checkDescriptorComplete", {
   enumerable: true,
   get: function () {
-    return _checkDescriptorComplete.default
+    return _checkDescriptorComplete.default;
   }
-})
-Object.defineProperty(exports, 'cloneDescriptor', {
+});
+Object.defineProperty(exports, "cloneDescriptor", {
   enumerable: true,
   get: function () {
-    return _cloneDescriptor.default
+    return _cloneDescriptor.default;
   }
-})
-Object.defineProperty(exports, 'cloneDescriptorDetail', {
+});
+Object.defineProperty(exports, "cloneDescriptorDetail", {
   enumerable: true,
   get: function () {
-    return _cloneDescriptorDetail.default
+    return _cloneDescriptorDetail.default;
   }
-})
-Object.defineProperty(exports, 'compareDescriptor', {
+});
+Object.defineProperty(exports, "compareDescriptor", {
   enumerable: true,
   get: function () {
-    return _compareDescriptor.default
+    return _compareDescriptor.default;
   }
-})
-exports.default = void 0
-Object.defineProperty(exports, 'describeObject', {
+});
+exports.default = void 0;
+Object.defineProperty(exports, "describeObject", {
   enumerable: true,
   get: function () {
-    return _describeObject.default
+    return _describeObject.default;
   }
-})
-Object.defineProperty(exports, 'describeObjectDetail', {
+});
+Object.defineProperty(exports, "describeObjectDetail", {
   enumerable: true,
   get: function () {
-    return _describeObjectDetail.default
+    return _describeObjectDetail.default;
   }
-})
-Object.defineProperty(exports, 'describeObjectMap', {
+});
+Object.defineProperty(exports, "describeObjectMap", {
   enumerable: true,
   get: function () {
-    return _describeObjectMap.default
+    return _describeObjectMap.default;
   }
-})
-Object.defineProperty(exports, 'nextReference', {
+});
+Object.defineProperty(exports, "nextReference", {
   enumerable: true,
   get: function () {
-    return _nextReference.default
+    return _nextReference.default;
   }
-})
-Object.defineProperty(exports, 'sameDescriptor', {
+});
+Object.defineProperty(exports, "sameDescriptor", {
   enumerable: true,
   get: function () {
-    return _sameDescriptor.default
+    return _sameDescriptor.default;
   }
-})
-var _assignDescriptor = _interopRequireDefault(require('./descriptors/assignDescriptor'))
-var _assignDescriptorDetail = _interopRequireDefault(require('./descriptors/assignDescriptorDetail'))
-var _checkClearValues = _interopRequireDefault(require('./descriptors/checkClearValues'))
-var _checkDescriptorComplete = _interopRequireDefault(require('./descriptors/checkDescriptorComplete'))
-var _cloneDescriptor = _interopRequireDefault(require('./descriptors/cloneDescriptor'))
-var _cloneDescriptorDetail = _interopRequireDefault(require('./descriptors/cloneDescriptorDetail'))
-var _compareDescriptor = _interopRequireDefault(require('./descriptors/compareDescriptor'))
-var _describeObject = _interopRequireDefault(require('./descriptors/describeObject'))
-var _describeObjectMap = _interopRequireDefault(require('./descriptors/describeObjectMap'))
-var _describeObjectDetail = _interopRequireDefault(require('./descriptors/describeObjectDetail'))
-var _nextReference = _interopRequireDefault(require('./descriptors/nextReference'))
-var _sameDescriptor = _interopRequireDefault(require('./descriptors/sameDescriptor'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+var _assignDescriptor = _interopRequireDefault(require("./descriptors/assignDescriptor"));
+var _assignDescriptorDetail = _interopRequireDefault(require("./descriptors/assignDescriptorDetail"));
+var _checkClearValues = _interopRequireDefault(require("./descriptors/checkClearValues"));
+var _checkDescriptorComplete = _interopRequireDefault(require("./descriptors/checkDescriptorComplete"));
+var _cloneDescriptor = _interopRequireDefault(require("./descriptors/cloneDescriptor"));
+var _cloneDescriptorDetail = _interopRequireDefault(require("./descriptors/cloneDescriptorDetail"));
+var _compareDescriptor = _interopRequireDefault(require("./descriptors/compareDescriptor"));
+var _describeObject = _interopRequireDefault(require("./descriptors/describeObject"));
+var _describeObjectMap = _interopRequireDefault(require("./descriptors/describeObjectMap"));
+var _describeObjectDetail = _interopRequireDefault(require("./descriptors/describeObjectDetail"));
+var _nextReference = _interopRequireDefault(require("./descriptors/nextReference"));
+var _sameDescriptor = _interopRequireDefault(require("./descriptors/sameDescriptor"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * A "descriptor" is a flat, serializable snapshot of an object or array's shape: for each property, its type(s),
  * whether it's nullable, and - if the property's own value is itself an object/array - a reference to that nested
@@ -29061,13 +28890,8 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * anywhere you need to check that two objects genuinely match without caring whether they're literally the same
  * instance. A descriptor also doubles as a flat, structured summary of an object's shape, which can be handy for
  * discussion or assessment purposes (e.g. describing what an object looks like without dumping the whole thing).
- * @file
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module objectDescriptors
- * @memberOf module:siFunciona
  */
-const _default = exports.default = {
+var _default = exports.default = {
   assignDescriptor: _assignDescriptor.default,
   assignDescriptorDetail: _assignDescriptorDetail.default,
   checkClearValues: _checkClearValues.default,
@@ -29080,265 +28904,248 @@ const _default = exports.default = {
   describeObjectDetail: _describeObjectDetail.default,
   nextReference: _nextReference.default,
   sameDescriptor: _sameDescriptor.default
-}
-
+};
 },{"./descriptors/assignDescriptor":801,"./descriptors/assignDescriptorDetail":802,"./descriptors/checkClearValues":803,"./descriptors/checkDescriptorComplete":804,"./descriptors/cloneDescriptor":805,"./descriptors/cloneDescriptorDetail":806,"./descriptors/compareDescriptor":807,"./descriptors/describeObject":808,"./descriptors/describeObjectDetail":809,"./descriptors/describeObjectMap":810,"./descriptors/nextReference":811,"./descriptors/sameDescriptor":812}],801:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.every.js')
-require('core-js/modules/esnext.iterator.filter.js')
-require('core-js/modules/esnext.iterator.find.js')
-require('core-js/modules/esnext.iterator.for-each.js')
-require('core-js/modules/esnext.iterator.map.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-const _assignDescriptorDetail = _interopRequireDefault(require('./assignDescriptorDetail'))
-const _cloneDescriptor = _interopRequireDefault(require('./cloneDescriptor'))
-const _compareArrays = _interopRequireDefault(require('../arrays/compareArrays'))
-const _uniqueArray = _interopRequireDefault(require('../arrays/uniqueArray'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.every.js");
+require("core-js/modules/esnext.iterator.filter.js");
+require("core-js/modules/esnext.iterator.find.js");
+require("core-js/modules/esnext.iterator.for-each.js");
+require("core-js/modules/esnext.iterator.map.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+var _assignDescriptorDetail = _interopRequireDefault(require("./assignDescriptorDetail"));
+var _cloneDescriptor = _interopRequireDefault(require("./cloneDescriptor"));
+var _compareArrays = _interopRequireDefault(require("../arrays/compareArrays"));
+var _uniqueArray = _interopRequireDefault(require("../arrays/uniqueArray"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Apply one or more descriptors to an existing descriptor so that they represent a merged version of the descriptors.
  * Used to widen a descriptor as more differently-shaped objects are described into it (e.g. array elements of
  * different types), rather than replacing it outright.
- * @memberOf module:objectDescriptors
- * @param {module:objectDescriptors~descriptor} originalMap - The base descriptor to merge onto (not mutated - a
+ * @param originalMap - The base descriptor to merge onto (not mutated - a
  * clone is merged and returned).
- * @param  {...module:objectDescriptors~descriptor} descriptors - One or more further descriptors to merge in.
- * @returns {module:objectDescriptors~descriptor} A new descriptor representing the merge of all of the above.
+ * @param  descriptors - One or more further descriptors to merge in.
+ * @returns A new descriptor representing the merge of all of the above.
  */
 const assignDescriptor = (originalMap, ...descriptors) => descriptors.reduce((assignedDescriptor, descriptor) => {
-  const detailsDiff = (0, _compareArrays.default)(assignedDescriptor.keys, descriptor.keys)
+  const detailsDiff = (0, _compareArrays.default)(assignedDescriptor.keys, descriptor.keys);
   detailsDiff.forEach(diff => {
-    const existingDetail = assignedDescriptor.details.find(detail => detail.key === diff.value)
-    const newDetail = descriptor.details.find(detail => detail.key === diff.value)
+    const existingDetail = assignedDescriptor.details.find(detail => detail.key === diff.value);
+    const newDetail = descriptor.details.find(detail => detail.key === diff.value);
     if (diff.result.every(result => result === 0)) {
-      assignedDescriptor.details[existingDetail.index] = (0, _assignDescriptorDetail.default)(existingDetail, newDetail)
-      return assignedDescriptor
+      assignedDescriptor.details[existingDetail.index] = (0, _assignDescriptorDetail.default)(existingDetail, newDetail);
+      return assignedDescriptor;
     }
-    const useDetail = diff.result[0] > 0 ? existingDetail : newDetail
+    const useDetail = diff.result[0] > 0 ? existingDetail : newDetail;
     if (!useDetail) {
-      assignedDescriptor.details[existingDetail.index].optional = true
-      return assignedDescriptor
+      assignedDescriptor.details[existingDetail.index].optional = true;
+      return assignedDescriptor;
     }
-    const useIndex = diff.result[0] > 0 ? useDetail.index : assignedDescriptor.length
+    const useIndex = diff.result[0] > 0 ? useDetail.index : assignedDescriptor.length;
     assignedDescriptor.details[useIndex] = Object.assign({}, useDetail, {
       index: useIndex,
       optional: true
-    })
-    assignedDescriptor.length = assignedDescriptor.length < assignedDescriptor.details.length ? assignedDescriptor.details.length : assignedDescriptor.length
-    return assignedDescriptor
-  })
-  assignedDescriptor.keys = (0, _uniqueArray.default)(assignedDescriptor.details.map(detail => detail.key))
-  assignedDescriptor.references = (0, _uniqueArray.default)(assignedDescriptor.details.filter(detail => detail.isReference).map(detail => detail.index))
-  assignedDescriptor.isArray = assignedDescriptor.length ? assignedDescriptor.details.every(detail => typeof detail.key === 'number') : assignedDescriptor.isArray
-  assignedDescriptor.complete = !assignedDescriptor.references.length || assignedDescriptor.complete || descriptor.complete
-  return assignedDescriptor
-}, (0, _cloneDescriptor.default)(originalMap))
-const _default = exports.default = assignDescriptor
-
+    });
+    assignedDescriptor.length = assignedDescriptor.length < assignedDescriptor.details.length ? assignedDescriptor.details.length : assignedDescriptor.length;
+    return assignedDescriptor;
+  });
+  assignedDescriptor.keys = (0, _uniqueArray.default)(assignedDescriptor.details.map(detail => detail.key));
+  assignedDescriptor.references = (0, _uniqueArray.default)(assignedDescriptor.details.filter(detail => detail.isReference).map(detail => detail.index));
+  assignedDescriptor.isArray = assignedDescriptor.length ? assignedDescriptor.details.every(detail => typeof detail.key === 'number') : assignedDescriptor.isArray;
+  assignedDescriptor.complete = !assignedDescriptor.references.length || assignedDescriptor.complete || descriptor.complete;
+  return assignedDescriptor;
+}, (0, _cloneDescriptor.default)(originalMap));
+var _default = exports.default = assignDescriptor;
 },{"../arrays/compareArrays":797,"../arrays/uniqueArray":799,"./assignDescriptorDetail":802,"./cloneDescriptor":805,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.every.js":725,"core-js/modules/esnext.iterator.filter.js":726,"core-js/modules/esnext.iterator.find.js":727,"core-js/modules/esnext.iterator.for-each.js":728,"core-js/modules/esnext.iterator.map.js":729,"core-js/modules/esnext.iterator.reduce.js":730}],802:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-const _cloneDescriptorDetail = _interopRequireDefault(require('./cloneDescriptorDetail'))
-const _uniqueArray = _interopRequireDefault(require('../arrays/uniqueArray'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+var _cloneDescriptorDetail = _interopRequireDefault(require("./cloneDescriptorDetail"));
+var _uniqueArray = _interopRequireDefault(require("../arrays/uniqueArray"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Assign properties from other details onto an existing detail, widening it (e.g. combining `type`/`value` arrays,
  * OR-ing boolean flags like `nullable`/`optional`) rather than overwriting it - the per-property counterpart to
  * {@link module:objectDescriptors.assignDescriptor}.
- * @memberOf module:objectDescriptors
- * @param {module:objectDescriptors~descriptorDetail} originalDetail - The base detail to merge onto (not mutated -
+ * @param originalDetail - The base detail to merge onto (not mutated -
  * a clone is merged and returned).
- * @param  {...module:objectDescriptors~descriptorDetail} details - One or more further details to merge in.
- * @returns {module:objectDescriptors~descriptorDetail} A new detail representing the merge of all of the above.
+ * @param  details - One or more further details to merge in.
+ * @returns A new detail representing the merge of all of the above.
  */
 const assignDescriptorDetail = (originalDetail, ...details) => details.reduce((existingDetail, newDetail) => {
-  existingDetail.type = (0, _uniqueArray.default)([...existingDetail.type, ...newDetail.type])
-  existingDetail.value = (0, _uniqueArray.default)([...existingDetail.value, ...newDetail.value])
-  existingDetail.nullable = existingDetail.nullable || newDetail.nullable
-  existingDetail.optional = existingDetail.optional || newDetail.optional
-  existingDetail.circular = existingDetail.circular || newDetail.circular
-  existingDetail.isReference = existingDetail.isReference || newDetail.isReference
-  existingDetail.isInstance = existingDetail.isInstance || newDetail.isInstance
-  existingDetail.arrayReference = [existingDetail.arrayReference, newDetail.arrayReference].find(ref => typeof ref === 'number')
-  existingDetail.objectReference = [existingDetail.objectReference, newDetail.objectReference].find(ref => typeof ref === 'number')
-  existingDetail.arrayReference = typeof existingDetail.arrayReference === 'undefined' ? null : existingDetail.arrayReference
-  existingDetail.objectReference = typeof existingDetail.objectReference === 'undefined' ? null : existingDetail.objectReference
-  return existingDetail
-}, (0, _cloneDescriptorDetail.default)(originalDetail))
-const _default = exports.default = assignDescriptorDetail
-
+  existingDetail.type = (0, _uniqueArray.default)([...existingDetail.type, ...newDetail.type]);
+  existingDetail.value = (0, _uniqueArray.default)([...existingDetail.value, ...newDetail.value]);
+  existingDetail.nullable = existingDetail.nullable || newDetail.nullable;
+  existingDetail.optional = existingDetail.optional || newDetail.optional;
+  existingDetail.circular = existingDetail.circular || newDetail.circular;
+  existingDetail.isReference = existingDetail.isReference || newDetail.isReference;
+  existingDetail.isInstance = existingDetail.isInstance || newDetail.isInstance;
+  existingDetail.arrayReference = [existingDetail.arrayReference, newDetail.arrayReference].find(ref => typeof ref === 'number');
+  existingDetail.objectReference = [existingDetail.objectReference, newDetail.objectReference].find(ref => typeof ref === 'number');
+  existingDetail.arrayReference = typeof existingDetail.arrayReference === 'undefined' ? null : existingDetail.arrayReference;
+  existingDetail.objectReference = typeof existingDetail.objectReference === 'undefined' ? null : existingDetail.objectReference;
+  return existingDetail;
+}, (0, _cloneDescriptorDetail.default)(originalDetail));
+var _default = exports.default = assignDescriptorDetail;
 },{"../arrays/uniqueArray":799,"./cloneDescriptorDetail":806,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.reduce.js":730}],803:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.map.js')
-const _setValue = _interopRequireDefault(require('../objects/setValue'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.map.js");
+var _setValue = _interopRequireDefault(require("../objects/setValue"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Once a descriptor is complete (all its references have been resolved), its details' actual `value` arrays are no
  * longer needed to build the descriptor further - clear them to save memory, unless `keepValues` says otherwise.
- * @memberOf module:objectDescriptors
- * @param {module:objectDescriptors~descriptor} descriptor - The descriptor to check.
- * @param {boolean} [keepValues=false] - Set true to keep the values even once the descriptor is complete.
- * @returns {module:objectDescriptors~descriptor} The same descriptor, with `details[].value` cleared if applicable.
+ * @param descriptor - The descriptor to check.
+ * @param keepValues - Set true to keep the values even once the descriptor is complete.
+ * @returns The same descriptor, with `details[].value` cleared if applicable.
  */
-const checkClearValues = (descriptor, keepValues = false) => (0, _setValue.default)('details', descriptor.complete && !keepValues ? descriptor.details.map(detail => (0, _setValue.default)('value', [], detail)) : descriptor.details, descriptor)
-const _default = exports.default = checkClearValues
-
+const checkClearValues = (descriptor, keepValues = false) => (0, _setValue.default)('details', descriptor.complete && !keepValues ? descriptor.details.map(detail => (0, _setValue.default)('value', [], detail)) : descriptor.details, descriptor);
+var _default = exports.default = checkClearValues;
 },{"../objects/setValue":855,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.map.js":729}],804:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.every.js')
-const _setValue = _interopRequireDefault(require('../objects/setValue'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.every.js");
+var _setValue = _interopRequireDefault(require("../objects/setValue"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Check if every property this descriptor references (i.e. every nested object/array it points to) has actually
  * had its own descriptor built yet, and set the descriptor's `complete` flag to true if so.
- * @memberOf module:objectDescriptors
- * @param {module:objectDescriptors~descriptor} descriptor - The descriptor to check.
- * @returns {module:objectDescriptors~descriptor} The same descriptor, with `complete` updated.
+ * @param descriptor - The descriptor to check.
+ * @returns The same descriptor, with `complete` updated.
  */
-const checkDescriptorComplete = descriptor => (0, _setValue.default)('complete', descriptor.references.every(refId => [descriptor.details[refId].arrayReference, descriptor.details[refId].objectReference].some(ref => typeof ref === 'number')), descriptor)
-const _default = exports.default = checkDescriptorComplete
-
+const checkDescriptorComplete = descriptor => (0, _setValue.default)('complete', descriptor.references.every(refId => [descriptor.details[refId].arrayReference, descriptor.details[refId].objectReference].some(ref => typeof ref === 'number')), descriptor);
+var _default = exports.default = checkDescriptorComplete;
 },{"../objects/setValue":855,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.every.js":725}],805:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.map.js')
-const _cloneDescriptorDetail = _interopRequireDefault(require('./cloneDescriptorDetail'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.map.js");
+var _cloneDescriptorDetail = _interopRequireDefault(require("./cloneDescriptorDetail"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Make a copy of an object descriptor so that the original will not be mutated.
- * @memberOf module:objectDescriptors
- * @param {module:objectDescriptors~descriptor} originalMap - The descriptor to copy.
- * @returns {module:objectDescriptors~descriptor} A new, independent copy.
+ * @param originalMap - The descriptor to copy.
+ * @returns A new, independent copy.
  */
 const cloneDescriptor = originalMap => {
-  const copyMap = {}
+  const copyMap = {};
   // @ts-ignore
-  copyMap.index = originalMap.index || 0
+  copyMap['index'] = originalMap.index || 0;
   // @ts-ignore
-  copyMap.details = originalMap.details.map(_cloneDescriptorDetail.default)
+  copyMap['details'] = originalMap.details.map(_cloneDescriptorDetail.default);
   // @ts-ignore
-  copyMap.length = originalMap.length
+  copyMap['length'] = originalMap.length;
   // @ts-ignore
-  copyMap.keys = originalMap.keys.map(key => key)
+  copyMap['keys'] = originalMap.keys.map(key => key);
   // @ts-ignore
-  copyMap.references = originalMap.references.map(reference => reference)
+  copyMap['references'] = originalMap.references.map(reference => reference);
   // @ts-ignore
-  copyMap.isArray = originalMap.isArray
+  copyMap['isArray'] = originalMap.isArray;
   // @ts-ignore
-  copyMap.complete = originalMap.complete
-  return copyMap
-}
-const _default = exports.default = cloneDescriptor
-
+  copyMap['complete'] = originalMap.complete;
+  return copyMap;
+};
+var _default = exports.default = cloneDescriptor;
 },{"./cloneDescriptorDetail":806,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.map.js":729}],806:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.for-each.js')
-require('core-js/modules/esnext.iterator.map.js')
-const _objectKeys = _interopRequireDefault(require('../objects/objectKeys'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.for-each.js");
+require("core-js/modules/esnext.iterator.map.js");
+var _objectKeys = _interopRequireDefault(require("../objects/objectKeys"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Get a new copy of an existing descriptor detail so that the original will not be mutated.
- * @memberOf module:objectDescriptors
- * @param {module:objectDescriptors~descriptorDetail} originalDetail - The detail to copy.
- * @returns {module:objectDescriptors~descriptorDetail} A new, independent copy.
+ * @param originalDetail - The detail to copy.
+ * @returns A new, independent copy.
  */
 const cloneDescriptorDetail = originalDetail => {
   const copyDetail = {};
   (0, _objectKeys.default)(originalDetail).forEach(key => {
     // @ts-ignore
-    copyDetail[key] = Array.isArray(originalDetail[key]) ? originalDetail[key].map(value => value) : originalDetail[key]
-  })
-  return copyDetail
-}
-const _default = exports.default = cloneDescriptorDetail
-
+    copyDetail[key] = Array.isArray(originalDetail[key]) ? originalDetail[key].map(value => value) : originalDetail[key];
+  });
+  return copyDetail;
+};
+var _default = exports.default = cloneDescriptorDetail;
 },{"../objects/objectKeys":851,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.for-each.js":728,"core-js/modules/esnext.iterator.map.js":729}],807:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/es.array.includes.js')
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.every.js')
-require('core-js/modules/esnext.iterator.find.js')
-require('core-js/modules/esnext.iterator.some.js')
+});
+exports.default = void 0;
+require("core-js/modules/es.array.includes.js");
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.every.js");
+require("core-js/modules/esnext.iterator.find.js");
+require("core-js/modules/esnext.iterator.some.js");
 /**
  * Check if two descriptors are the same or similar, in that the smaller one's keys are all present in the larger
  * one and their types line up - used to detect when a newly-described value actually matches a descriptor already
  * in the map, so it can be pointed at instead of creating a duplicate.
- * @memberOf module:objectDescriptors
- * @param {module:objectDescriptors~descriptor} descriptor1 - The first descriptor to compare.
- * @param {module:objectDescriptors~descriptor} descriptor2 - The second descriptor to compare.
- * @returns {boolean} True if the descriptors describe a compatible shape.
+ * @param descriptor1 - The first descriptor to compare.
+ * @param descriptor2 - The second descriptor to compare.
+ * @returns True if the descriptors describe a compatible shape.
  */
 const compareDescriptor = (descriptor1, descriptor2) => {
   if (descriptor1.isArray !== descriptor2.isArray) {
-    return false
+    return false;
   }
   if (descriptor1.length === 0 || descriptor2.length === 0) {
-    return descriptor1.length === descriptor2.length
+    return descriptor1.length === descriptor2.length;
   }
-  const smallerDescriptor = descriptor1.length <= descriptor2.length ? descriptor1 : descriptor2
-  const largerDescriptor = descriptor2.length >= descriptor1.length ? descriptor2 : descriptor1
-  return smallerDescriptor.keys.every(key => largerDescriptor.keys.includes(key)) ? smallerDescriptor.details.every(detail => detail.type.some(type => largerDescriptor.details.find(foundDetail => foundDetail.key === detail.key).type.includes(type))) : false
-}
-const _default = exports.default = compareDescriptor
-
+  const smallerDescriptor = descriptor1.length <= descriptor2.length ? descriptor1 : descriptor2;
+  const largerDescriptor = descriptor2.length >= descriptor1.length ? descriptor2 : descriptor1;
+  return smallerDescriptor.keys.every(key => largerDescriptor.keys.includes(key)) ? smallerDescriptor.details.every(detail => detail.type.some(type => largerDescriptor.details.find(foundDetail => foundDetail.key === detail.key).type.includes(type))) : false;
+};
+var _default = exports.default = compareDescriptor;
 },{"core-js/modules/es.array.includes.js":431,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.every.js":725,"core-js/modules/esnext.iterator.find.js":727,"core-js/modules/esnext.iterator.some.js":731}],808:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-const _assignDescriptorDetail = _interopRequireDefault(require('./assignDescriptorDetail'))
-const _describeObjectDetail = _interopRequireDefault(require('./describeObjectDetail'))
-const _objectKeys = _interopRequireDefault(require('../objects/objectKeys'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+var _assignDescriptorDetail = _interopRequireDefault(require("./assignDescriptorDetail"));
+var _describeObjectDetail = _interopRequireDefault(require("./describeObjectDetail"));
+var _objectKeys = _interopRequireDefault(require("../objects/objectKeys"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Trace a single object or array (not its nested objects/arrays - see
  * {@link module:objectDescriptors.describeObjectMap} for that) and return the descriptor which defines its own
  * structure and attributes.
- * @memberOf module:objectDescriptors
- * @param {Object|Array} object - The object or array to describe.
- * @returns {module:objectDescriptors~descriptor}
+ * @param object - The object or array to describe.
  */
 const describeObject = object => {
   const descriptor = {
@@ -29349,55 +29156,52 @@ const describeObject = object => {
     references: [],
     isArray: false,
     complete: false
-  }
-  const keys = (0, _objectKeys.default)(object)
+  };
+  const keys = (0, _objectKeys.default)(object);
   for (let i = 0; i < keys.length; ++i) {
-    const key = keys[i]
+    const key = keys[i];
     // @ts-ignore
-    const newDetail = (0, _describeObjectDetail.default)(object[key], key, descriptor.length++)
+    const newDetail = (0, _describeObjectDetail.default)(object[key], key, descriptor.length++);
     if (typeof key === 'number' && descriptor.details.length) {
-      descriptor.details[0] = (0, _assignDescriptorDetail.default)(descriptor.details[0], newDetail)
-      descriptor.keys = [0]
+      descriptor.details[0] = (0, _assignDescriptorDetail.default)(descriptor.details[0], newDetail);
+      descriptor.keys = [0];
       if (newDetail.isReference) {
-        descriptor.references = [0]
+        descriptor.references = [0];
       }
-      continue
+      continue;
     }
-    descriptor.details.push(newDetail)
-    descriptor.keys.push(newDetail.key)
+    descriptor.details.push(newDetail);
+    descriptor.keys.push(newDetail.key);
     if (newDetail.isReference) {
-      descriptor.references.push(newDetail.index)
+      descriptor.references.push(newDetail.index);
     }
   }
-  descriptor.isArray = Array.isArray(object)
-  descriptor.complete = !descriptor.references.length
-  return descriptor
-}
-const _default = exports.default = describeObject
-
+  descriptor.isArray = Array.isArray(object);
+  descriptor.complete = !descriptor.references.length;
+  return descriptor;
+};
+var _default = exports.default = describeObject;
 },{"../objects/objectKeys":851,"./assignDescriptorDetail":802,"./describeObjectDetail":809}],809:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-const _emptyObject = _interopRequireDefault(require('../objects/emptyObject'))
-const _isCloneable = _interopRequireDefault(require('../objects/isCloneable'))
-const _isInstanceObject = _interopRequireDefault(require('../objects/isInstanceObject'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+var _emptyObject = _interopRequireDefault(require("../objects/emptyObject"));
+var _isCloneable = _interopRequireDefault(require("../objects/isCloneable"));
+var _isInstanceObject = _interopRequireDefault(require("../objects/isInstanceObject"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Trace a single property's value and produce the descriptorDetail describing it (type, nullability, whether it
  * references a nested object/array, etc.) - the per-property building block used by
  * {@link module:objectDescriptors.describeObject}.
- * @memberOf module:objectDescriptors
- * @param {*} value - The property's value to describe.
- * @param {string|number} [key=0] - The property name (or array index) this value belongs to.
- * @param {number} [index=0] - This detail's intended position within its parent descriptor's `details` array.
- * @returns {module:objectDescriptors~descriptorDetail}
+ * @param value - The property's value to describe.
+ * @param key - The property name (or array index) this value belongs to.
+ * @param index - This detail's intended position within its parent descriptor's `details` array.
  */
 const describeObjectDetail = (value, key = 0, index = 0) => {
-  const type = typeof value
+  const type = typeof value;
   return {
     index,
     key,
@@ -29410,28 +29214,27 @@ const describeObjectDetail = (value, key = 0, index = 0) => {
     isInstance: (0, _isInstanceObject.default)(value),
     arrayReference: null,
     objectReference: null
-  }
-}
-const _default = exports.default = describeObjectDetail
-
+  };
+};
+var _default = exports.default = describeObjectDetail;
 },{"../objects/emptyObject":841,"../objects/isCloneable":843,"../objects/isInstanceObject":845}],810:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.find.js')
-require('core-js/modules/esnext.iterator.for-each.js')
-const _assignDescriptor = _interopRequireDefault(require('./assignDescriptor'))
-const _checkClearValues = _interopRequireDefault(require('./checkClearValues'))
-const _checkDescriptorComplete = _interopRequireDefault(require('./checkDescriptorComplete'))
-const _compareDescriptor = _interopRequireDefault(require('./compareDescriptor'))
-const _describeObject = _interopRequireDefault(require('./describeObject'))
-const _nextReference = _interopRequireDefault(require('./nextReference'))
-const _sameDescriptor = _interopRequireDefault(require('./sameDescriptor'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.find.js");
+require("core-js/modules/esnext.iterator.for-each.js");
+var _assignDescriptor = _interopRequireDefault(require("./assignDescriptor"));
+var _checkClearValues = _interopRequireDefault(require("./checkClearValues"));
+var _checkDescriptorComplete = _interopRequireDefault(require("./checkDescriptorComplete"));
+var _compareDescriptor = _interopRequireDefault(require("./compareDescriptor"));
+var _describeObject = _interopRequireDefault(require("./describeObject"));
+var _nextReference = _interopRequireDefault(require("./nextReference"));
+var _sameDescriptor = _interopRequireDefault(require("./sameDescriptor"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Trace out the entire object including nested objects, producing a flat descriptorMap - see the
  * {@link module:objectDescriptors} module description for what a descriptor represents and why it's flat. This is
@@ -29447,231 +29250,218 @@ function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: 
  * // descriptorMap[1], which separately describes that nested array. descriptorMap[1]'s own `length` (2) reflects
  * // the array's actual length, but `keys` has only one entry (0) since both elements share the same type
  * // ('string') and are described together by a single, representative descriptorDetail.
- * @memberOf module:objectDescriptors
- * @param {Object|Array} object - The real object or array to describe.
- * @param {Object} [options={}]
- * @param {number} [options.mapLimit=1000000000] - Stop describing further nested references once the map reaches
+ * @param object - The real object or array to describe.
+ * @param options
+ * @param options.mapLimit - Stop describing further nested references once the map reaches
  * this many descriptors - a safety limit for extremely large or deeply-referenced structures.
- * @param {number} [options.depthLimit=-1] - How many levels of nested objects/arrays to describe; `-1` means no
+ * @param options.depthLimit - How many levels of nested objects/arrays to describe; `-1` means no
  * limit, `0` describes only the top level, etc.
- * @param {boolean} [options.keepValues=false] - By default, each detail's actual values are cleared once its
+ * @param options.keepValues - By default, each detail's actual values are cleared once its
  * descriptor is complete (to save memory) - set true to keep them.
- * @returns {module:objectDescriptors~descriptorMap}
  */
 const describeObjectMap = (object, {
   mapLimit = 1000000000,
   depthLimit = -1,
   keepValues = false
 } = {}) => {
-  const descriptorMap = [(0, _describeObject.default)(object)]
-  descriptorMap[0].index = 0
+  const descriptorMap = [(0, _describeObject.default)(object)];
+  descriptorMap[0].index = 0;
   const describeReferences = (descriptor, currentDetail, limit = -1, returnCallback = returnMap => returnMap) => {
-    let index = descriptorMap.length
-    const nextRef = currentDetail ? (0, _nextReference.default)(descriptor, currentDetail.index) : undefined
-    const nextDetail = typeof nextRef !== 'undefined' ? descriptor.details[nextRef] : null
+    let index = descriptorMap.length;
+    const nextRef = currentDetail ? (0, _nextReference.default)(descriptor, currentDetail.index) : undefined;
+    const nextDetail = typeof nextRef !== 'undefined' ? descriptor.details[nextRef] : null;
     if (currentDetail) {
-      const vals = descriptor.isArray ? currentDetail.value : [currentDetail.value[currentDetail.value.length - 1]]
+      const vals = descriptor.isArray ? currentDetail.value : [currentDetail.value[currentDetail.value.length - 1]];
       vals.forEach(val => {
-        let _a, _b
-        const tempDescriptor = (0, _describeObject.default)(val)
-        const existingDescriptorIndex = descriptorMap.findIndex(existingDescriptor => (0, _compareDescriptor.default)(tempDescriptor, existingDescriptor))
+        const tempDescriptor = (0, _describeObject.default)(val);
+        const existingDescriptorIndex = descriptorMap.findIndex(existingDescriptor => (0, _compareDescriptor.default)(tempDescriptor, existingDescriptor));
         if (existingDescriptorIndex >= 0) {
-          index = existingDescriptorIndex
+          index = existingDescriptorIndex;
           if (tempDescriptor.length && (0, _sameDescriptor.default)(tempDescriptor, descriptorMap[existingDescriptorIndex])) {
-            currentDetail.circular = true
-            descriptor.details[currentDetail.index] = currentDetail
+            currentDetail.circular = true;
+            descriptor.details[currentDetail.index] = currentDetail;
           }
         }
         if (index >= mapLimit) {
-          return descriptorMap
+          return descriptorMap;
         }
         if (limit === 0) {
-          return descriptorMap
+          return descriptorMap;
         }
         if (tempDescriptor.isArray) {
-          index = (_a = currentDetail.arrayReference) !== null && _a !== void 0 ? _a : index
-          descriptor.details[currentDetail.index].arrayReference = index
+          index = currentDetail.arrayReference ?? index;
+          descriptor.details[currentDetail.index].arrayReference = index;
         } else {
-          index = (_b = currentDetail.objectReference) !== null && _b !== void 0 ? _b : index
-          descriptor.details[currentDetail.index].objectReference = index
+          index = currentDetail.objectReference ?? index;
+          descriptor.details[currentDetail.index].objectReference = index;
         }
-        tempDescriptor.index = index
+        tempDescriptor.index = index;
         if (existingDescriptorIndex < 0) {
-          descriptorMap[index] = descriptorMap[index] ? (0, _assignDescriptor.default)(descriptorMap[index], tempDescriptor) : tempDescriptor
+          descriptorMap[index] = descriptorMap[index] ? (0, _assignDescriptor.default)(descriptorMap[index], tempDescriptor) : tempDescriptor;
         }
-        descriptorMap[descriptor.index] = (0, _assignDescriptor.default)(descriptorMap[descriptor.index], descriptor)
-        currentDetail = descriptorMap[descriptor.index].details.find(detail => detail.key === currentDetail.key)
+        descriptorMap[descriptor.index] = (0, _assignDescriptor.default)(descriptorMap[descriptor.index], descriptor);
+        currentDetail = descriptorMap[descriptor.index].details.find(detail => detail.key === currentDetail.key);
         if (!currentDetail.circular) {
-          const newReference = (0, _nextReference.default)(tempDescriptor, -1)
-          const newDetail = typeof newReference !== 'undefined' ? tempDescriptor.details[newReference] : null
-          return describeReferences(tempDescriptor, newDetail, --limit, returnMap => describeReferences(descriptor, nextDetail, --limit))
+          const newReference = (0, _nextReference.default)(tempDescriptor, -1);
+          const newDetail = typeof newReference !== 'undefined' ? tempDescriptor.details[newReference] : null;
+          return describeReferences(tempDescriptor, newDetail, --limit, returnMap => describeReferences(descriptor, nextDetail, --limit));
         }
-      })
+      });
     }
-    descriptorMap[descriptor.index] = (0, _assignDescriptor.default)(descriptorMap[descriptor.index], (0, _checkDescriptorComplete.default)(descriptor))
-    descriptorMap[descriptor.index] = (0, _checkClearValues.default)(descriptorMap[descriptor.index], keepValues)
-    return nextDetail ? describeReferences(descriptor, nextDetail, --limit) : returnCallback(descriptorMap)
-  }
-  const descriptor = descriptorMap[0]
-  const currentReference = (0, _nextReference.default)(descriptor, -1)
+    descriptorMap[descriptor.index] = (0, _assignDescriptor.default)(descriptorMap[descriptor.index], (0, _checkDescriptorComplete.default)(descriptor));
+    descriptorMap[descriptor.index] = (0, _checkClearValues.default)(descriptorMap[descriptor.index], keepValues);
+    return nextDetail ? describeReferences(descriptor, nextDetail, --limit) : returnCallback(descriptorMap);
+  };
+  const descriptor = descriptorMap[0];
+  const currentReference = (0, _nextReference.default)(descriptor, -1);
   if (typeof currentReference === 'undefined') {
-    descriptorMap[0] = (0, _assignDescriptor.default)(descriptorMap[0], (0, _checkDescriptorComplete.default)(descriptor))
-    descriptorMap[0] = (0, _checkClearValues.default)(descriptorMap[0], keepValues)
-    return descriptorMap
+    descriptorMap[0] = (0, _assignDescriptor.default)(descriptorMap[0], (0, _checkDescriptorComplete.default)(descriptor));
+    descriptorMap[0] = (0, _checkClearValues.default)(descriptorMap[0], keepValues);
+    return descriptorMap;
   }
-  return describeReferences(descriptor, descriptor.details[currentReference], depthLimit)
-}
-const _default = exports.default = describeObjectMap
-
+  return describeReferences(descriptor, descriptor.details[currentReference], depthLimit);
+};
+var _default = exports.default = describeObjectMap;
 },{"./assignDescriptor":801,"./checkClearValues":803,"./checkDescriptorComplete":804,"./compareDescriptor":807,"./describeObject":808,"./nextReference":811,"./sameDescriptor":812,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.find.js":727,"core-js/modules/esnext.iterator.for-each.js":728}],811:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.find.js')
-const _objectKeys = _interopRequireDefault(require('../objects/objectKeys'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.find.js");
+var _objectKeys = _interopRequireDefault(require("../objects/objectKeys"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Find the index (within `descriptor.details`) of the next referenced property - after `currentReference` - whose
  * own nested object/array still needs its descriptor built. Used to walk through a descriptor's references one at
  * a time while building out a descriptorMap.
- * @memberOf module:objectDescriptors
- * @param {module:objectDescriptors~descriptor} descriptor - The descriptor whose references to search.
- * @param {number} currentReference - The `details` index already processed - search continues after this one.
- * @returns {number|undefined} The next detail index to process, or `undefined` if none remain.
+ * @param descriptor - The descriptor whose references to search.
+ * @param currentReference - The `details` index already processed - search continues after this one.
+ * @returns The next detail index to process, or `undefined` if none remain.
  */
 const nextReference = (descriptor, currentReference) => descriptor.references.find(nextRef => {
   if (nextRef <= currentReference) {
-    return false
+    return false;
   }
-  const val = descriptor.details[nextRef].value[descriptor.details[nextRef].value.length - 1]
+  const val = descriptor.details[nextRef].value[descriptor.details[nextRef].value.length - 1];
   if (typeof val !== 'object' || val === null || typeof val === 'undefined' || descriptor.details[nextRef].circular || descriptor.details[nextRef].isInstance) {
-    return false
+    return false;
   }
-  return !!(0, _objectKeys.default)(val).length
-})
-const _default = exports.default = nextReference
-
+  return !!(0, _objectKeys.default)(val).length;
+});
+var _default = exports.default = nextReference;
 },{"../objects/objectKeys":851,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.find.js":727}],812:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/es.array.includes.js')
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.every.js')
-require('core-js/modules/esnext.iterator.some.js')
+});
+exports.default = void 0;
+require("core-js/modules/es.array.includes.js");
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.every.js");
+require("core-js/modules/esnext.iterator.some.js");
 /**
  * Check if two descriptors describe the exact same underlying values (not just compatible types, like
  * {@link module:objectDescriptors.compareDescriptor} does) - used to detect genuine circular references, where a
  * nested value's descriptor turns out to be identical to one of its own ancestors.
- * @memberOf module:objectDescriptors
- * @param {module:objectDescriptors~descriptor} descriptor1 - The first descriptor to compare.
- * @param {module:objectDescriptors~descriptor} descriptor2 - The second descriptor to compare.
- * @returns {boolean} True if every detail's values match at the same position.
+ * @param descriptor1 - The first descriptor to compare.
+ * @param descriptor2 - The second descriptor to compare.
+ * @returns True if every detail's values match at the same position.
  */
-const sameDescriptor = (descriptor1, descriptor2) => descriptor1.details.every((detail, index) => detail.value.some(dVal => descriptor2.details[index].value.includes(dVal)))
-const _default = exports.default = sameDescriptor
-
+const sameDescriptor = (descriptor1, descriptor2) => descriptor1.details.every((detail, index) => detail.value.some(dVal => descriptor2.details[index].value.includes(dVal)));
+var _default = exports.default = sameDescriptor;
 },{"core-js/modules/es.array.includes.js":431,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.every.js":725,"core-js/modules/esnext.iterator.some.js":731}],813:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-Object.defineProperty(exports, 'callWithParams', {
+});
+Object.defineProperty(exports, "callWithParams", {
   enumerable: true,
   get: function () {
-    return _callWithParams.default
+    return _callWithParams.default;
   }
-})
-Object.defineProperty(exports, 'curry', {
+});
+Object.defineProperty(exports, "curry", {
   enumerable: true,
   get: function () {
-    return _curry.default
+    return _curry.default;
   }
-})
-exports.default = void 0
-Object.defineProperty(exports, 'delay', {
+});
+exports.default = void 0;
+Object.defineProperty(exports, "delay", {
   enumerable: true,
   get: function () {
-    return _delay.default
+    return _delay.default;
   }
-})
-Object.defineProperty(exports, 'makeBasicQueue', {
+});
+Object.defineProperty(exports, "makeBasicQueue", {
   enumerable: true,
   get: function () {
-    return _makeBasicQueue.default
+    return _makeBasicQueue.default;
   }
-})
-Object.defineProperty(exports, 'onBodyLoad', {
+});
+Object.defineProperty(exports, "onBodyLoad", {
   enumerable: true,
   get: function () {
-    return _onBodyLoad.default
+    return _onBodyLoad.default;
   }
-})
-Object.defineProperty(exports, 'pipe', {
+});
+Object.defineProperty(exports, "pipe", {
   enumerable: true,
   get: function () {
-    return _pipe.default
+    return _pipe.default;
   }
-})
-Object.defineProperty(exports, 'preloadParams', {
+});
+Object.defineProperty(exports, "preloadParams", {
   enumerable: true,
   get: function () {
-    return _preloadParams.default
+    return _preloadParams.default;
   }
-})
-Object.defineProperty(exports, 'queueManager', {
+});
+Object.defineProperty(exports, "queueManager", {
   enumerable: true,
   get: function () {
-    return _queueManager.default
+    return _queueManager.default;
   }
-})
-Object.defineProperty(exports, 'queueTimeout', {
+});
+Object.defineProperty(exports, "queueTimeout", {
   enumerable: true,
   get: function () {
-    return _queueTimeout.default
+    return _queueTimeout.default;
   }
-})
-Object.defineProperty(exports, 'relevancyFilter', {
+});
+Object.defineProperty(exports, "relevancyFilter", {
   enumerable: true,
   get: function () {
-    return _relevancyFilter.default
+    return _relevancyFilter.default;
   }
-})
-Object.defineProperty(exports, 'trace', {
+});
+Object.defineProperty(exports, "trace", {
   enumerable: true,
   get: function () {
-    return _trace.default
+    return _trace.default;
   }
-})
-var _callWithParams = _interopRequireDefault(require('./functions/callWithParams'))
-var _curry = _interopRequireDefault(require('./functions/curry'))
-var _delay = _interopRequireDefault(require('./functions/delay'))
-var _makeBasicQueue = _interopRequireDefault(require('./functions/makeBasicQueue'))
-var _onBodyLoad = _interopRequireDefault(require('./functions/onBodyLoad'))
-var _pipe = _interopRequireDefault(require('./functions/pipe'))
-var _preloadParams = _interopRequireDefault(require('./functions/preloadParams'))
-var _queueManager = _interopRequireDefault(require('./functions/queueManager'))
-var _queueTimeout = _interopRequireDefault(require('./functions/queueTimeout'))
-var _relevancyFilter = _interopRequireDefault(require('./functions/relevancyFilter'))
-var _trace = _interopRequireDefault(require('./functions/trace'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+var _callWithParams = _interopRequireDefault(require("./functions/callWithParams"));
+var _curry = _interopRequireDefault(require("./functions/curry"));
+var _delay = _interopRequireDefault(require("./functions/delay"));
+var _makeBasicQueue = _interopRequireDefault(require("./functions/makeBasicQueue"));
+var _onBodyLoad = _interopRequireDefault(require("./functions/onBodyLoad"));
+var _pipe = _interopRequireDefault(require("./functions/pipe"));
+var _preloadParams = _interopRequireDefault(require("./functions/preloadParams"));
+var _queueManager = _interopRequireDefault(require("./functions/queueManager"));
+var _queueTimeout = _interopRequireDefault(require("./functions/queueTimeout"));
+var _relevancyFilter = _interopRequireDefault(require("./functions/relevancyFilter"));
+var _trace = _interopRequireDefault(require("./functions/trace"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Manage how functions are called with these utilities.
- * @file
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module functionHelpers
- * @memberOf module:siFunciona
  */
-const _default = exports.default = {
+var _default = exports.default = {
   callWithParams: _callWithParams.default,
   curry: _curry.default,
   delay: _delay.default,
@@ -29683,525 +29473,454 @@ const _default = exports.default = {
   queueTimeout: _queueTimeout.default,
   relevancyFilter: _relevancyFilter.default,
   trace: _trace.default
-}
-
+};
 },{"./functions/callWithParams":814,"./functions/curry":815,"./functions/delay":816,"./functions/makeBasicQueue":817,"./functions/onBodyLoad":818,"./functions/pipe":819,"./functions/preloadParams":820,"./functions/queueManager":821,"./functions/queueTimeout":822,"./functions/relevancyFilter":823,"./functions/trace":824}],814:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Given a function, call with the correct number of parameters from an array of possible parameters.
- * @memberOf module:functionHelpers
- * @param {Function} fn - The function to be called
- * @param {Array} params - Array of possible function parameters
- * @param {number} [minimum=2] - Minimum number of parameters to use in the function
- * @returns {*}
+ * @param fn - The function to be called
+ * @param params - Array of possible function parameters
+ * @param minimum - Minimum number of parameters to use in the function
  */
-const callWithParams = (fn, params = [], minimum = 2) => fn(...params.slice(0, fn.length || minimum))
-const _default = exports.default = callWithParams
-
+const callWithParams = (fn, params = [], minimum = 2) => fn(...params.slice(0, fn.length || minimum));
+var _default = exports.default = callWithParams;
 },{}],815:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Return a curried version of the passed function.
  * The returned function expects the same number of arguments minus the ones provided.
  * fn is the name of the function being curried.
- * @memberOf module:functionHelpers
- * @param {Function} fn - Receives a function to be curried
- * @returns {Function|*}
+ * @param fn - Receives a function to be curried
  */
-const curry = fn => (...args) => args.length >= fn.length ? fn(...args) : (...a) => curry(fn)(...[...args, ...a])
-const _default = exports.default = curry
-
+const curry = fn => (...args) => args.length >= fn.length ? fn(...args) : (...a) => curry(fn)(...[...args, ...a]);
+var _default = exports.default = curry;
 },{}],816:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('regenerator-runtime/runtime')
+});
+exports.default = void 0;
+require("regenerator-runtime/runtime");
 /**
  * Provide a timeout which returns a promise.
- * @memberOf module:functionHelpers
- * @param {number} time - Delay in milliseconds
- * @returns {module:functionHelpers~delayHandler}
+ * @param time - Delay in milliseconds
  */
 const delay = (time = 0) => {
-  let cancel = () => undefined
+  let cancel = () => undefined;
   return {
     resolver: new Promise((resolve, reject) => {
       if (isNaN(time)) {
-        reject(new Error(`Invalid delay: ${time}`))
+        reject(new Error(`Invalid delay: ${time}`));
       } else {
-        const timeoutId = setTimeout(resolve, time, `Delayed for: ${time}`)
+        const timeoutId = setTimeout(resolve, time, `Delayed for: ${time}`);
         cancel = () => {
-          clearTimeout(timeoutId)
-          reject(new Error(`Cancelled delay: ${time}`))
-        }
+          clearTimeout(timeoutId);
+          reject(new Error(`Cancelled delay: ${time}`));
+        };
       }
     }),
     cancel
-  }
-}
-const _default = exports.default = delay
-
+  };
+};
+var _default = exports.default = delay;
 },{"regenerator-runtime/runtime":791}],817:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-const _BasicQueue = _interopRequireDefault(require('../arrays/BasicQueue'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+var _BasicQueue = _interopRequireDefault(require("../arrays/BasicQueue"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Create an instance of a basic queue.
- * @memberOf module:functionHelpers
- * @param {Array} [initialQueue=[]] - Items to pre-populate the queue with, in order.
- * @returns {IsQueue}
+ * @param initialQueue - Items to pre-populate the queue with, in order.
  */
 const makeBasicQueue = (initialQueue = []) => {
-  return new _BasicQueue.default(initialQueue)
-}
-const _default = exports.default = makeBasicQueue
-
+  return new _BasicQueue.default(initialQueue);
+};
+var _default = exports.default = makeBasicQueue;
 },{"../arrays/BasicQueue":793}],818:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-const _queueManager = _interopRequireDefault(require('./queueManager'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
-const __awaiter = void 0 && (void 0).__awaiter || function (thisArg, _arguments, P, generator) {
-  function adopt (value) {
-    return value instanceof P
-      ? value
-      : new P(function (resolve) {
-        resolve(value)
-      })
-  }
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled (value) {
-      try {
-        step(generator.next(value))
-      } catch (e) {
-        reject(e)
-      }
-    }
-    function rejected (value) {
-      try {
-        step(generator.throw(value))
-      } catch (e) {
-        reject(e)
-      }
-    }
-    function step (result) {
-      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected)
-    }
-    step((generator = generator.apply(thisArg, _arguments || [])).next())
-  })
-}
-const queue = []
-const manager = (0, _queueManager.default)()
-manager.start()
-let observer = null
-const doReset = () => observer = null
-const initializeObserver = () => __awaiter(void 0, void 0, void 0, function * () {
+});
+exports.default = void 0;
+var _queueManager = _interopRequireDefault(require("./queueManager"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+const queue = [];
+const manager = (0, _queueManager.default)();
+manager.start();
+let observer = null;
+const doReset = () => observer = null;
+const initializeObserver = async () => {
   observer = new MutationObserver(() => {
     if (document.body) {
       while (queue.length) {
-        manager.push(queue.shift())
+        manager.push(queue.shift());
       }
-      observer.disconnect()
-      doReset()
+      observer.disconnect();
+      doReset();
     }
-  })
+  });
   observer.observe(document.documentElement, {
     childList: true
-  })
-  return observer
-})
+  });
+  return observer;
+};
 /**
  * Prepare functions to be called once the body is available.
- * @memberOf module:functionHelpers
- * @param {Function} callback
- * @param {boolean} [reset=false]
- * @returns {Array.<Function>}
+ * @param callback
+ * @param reset
  */
 const onBodyLoad = (callback, reset = false) => {
   if (reset) {
-    doReset()
+    doReset();
   }
-  queue.push(callback)
+  queue.push(callback);
   if (observer === null) {
-    initializeObserver()
+    initializeObserver();
   }
-  return queue
-}
-const _default = exports.default = onBodyLoad
-
+  return queue;
+};
+var _default = exports.default = onBodyLoad;
 },{"./queueManager":821}],819:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.reduce.js')
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.reduce.js");
 /**
  * Take one or more function with a single parameter and return value.
  * Pass a parameter and the value will be transformed by each function then returned.
- * @memberOf module:functionHelpers
- * @param {...Function} fns - Takes a series of functions having the same parameter
- * @returns {*}
+ * @param fns - Takes a series of functions having the same parameter
  */
-const pipe = (...fns) => x => fns.reduce((y, f) => f(y), x)
-const _default = exports.default = pipe
-
+const pipe = (...fns) => x => fns.reduce((y, f) => f(y), x);
+var _default = exports.default = pipe;
 },{"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.reduce.js":730}],820:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Provide an array of parameters to be used with a function, allow the function to be called later
  * with the missing parameter.
- * @memberOf module:functionHelpers
- * @param {Function} fn - The function to be called
- * @param {Array} params - The parameters to preload
- * @param {number} [unassignedParam=0] - Position of missing parameter (zero indexed)
- * @returns {module:functionHelpers~callWithMissing}
+ * @param fn - The function to be called
+ * @param params - The parameters to preload
+ * @param unassignedParam - Position of missing parameter (zero indexed)
  */
 const preloadParams = (fn, params = [], unassignedParam = 0) => missing => {
-  params.splice(unassignedParam, 0, missing)
-  return fn(...params)
-}
-const _default = exports.default = preloadParams
-
+  params.splice(unassignedParam, 0, missing);
+  return fn(...params);
+};
+var _default = exports.default = preloadParams;
 },{}],821:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.for-each.js')
-require('regenerator-runtime/runtime')
-const _makeBasicQueue = _interopRequireDefault(require('./makeBasicQueue'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.for-each.js");
+require("regenerator-runtime/runtime");
+var _makeBasicQueue = _interopRequireDefault(require("./makeBasicQueue"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Manage functions to run sequentially.
- * @memberOf module:functionHelpers
- * @param {IsQueue|Array} [queue=null] - The queue to manage. Pass a plain array to have it converted into a
+ * @param queue - The queue to manage. Pass a plain array to have it converted into a
  * {@link module:arrayHelpers.BasicQueue} automatically, or a custom queue implementing `IsQueue`; omit it (or pass
  * `null`) to have one created for you.
- * @returns {module:functionHelpers~queueManagerHandle}
  */
 const queueManager = (queue = null) => {
-  let isRunning = false
-  let isPaused = true
+  let isRunning = false;
+  let isPaused = true;
   /**
    * Convert a function to a queueable object.
-   * @param {Promise.resolve} resolve
-   * @param {Promise.reject} reject
-   * @param {Function} fn
-   * @param {...*} args
-   * @returns {queuedRunnable}
+   * @param resolve
+   * @param reject
+   * @param fn
+   * @param args
    */
   const makeQueuedRunnable = (resolve, reject, fn, ...args) => {
-    const generator = (function * () {
-      const item = yield
+    const generator = function* () {
+      const item = yield;
       if (typeof item.fn !== 'function') {
-        return reject(item)
+        return reject(item);
       }
       try {
-        return resolve(item.fn(...item.args))
+        return resolve(item.fn(...item.args));
       } catch (error) {
         // A function which throws rejects its own promise (as one which returns a rejected promise does), instead of
         // throwing out of whichever function happened to finish just before it and starting the next item.
-        return reject(error)
+        return reject(error);
       }
-    }())
+    }();
     // Prepare the generator to be used on the subsequent call
-    generator.next()
+    generator.next();
     return {
       item: {
         fn,
         args
       },
       generator
-    }
-  }
+    };
+  };
   /**
    * After an item is run, THEN run this function to reset isRunning
-   * @param {*} result
-   * @returns {*}
+   * @param result
    */
   const postRun = result => {
-    isRunning = false
-    runNextItem()
-    return result
-  }
+    isRunning = false;
+    runNextItem();
+    return result;
+  };
   /**
    * When a queued function throws (or returns a promise which rejects), carry on with the rest of the queue and pass the
    * error on to whoever queued it - otherwise the queue would stay marked as running and never start another function.
-   * @param {*} error
+   * @param error
    * @throws {*} The same error
    */
   const postFailedRun = error => {
-    isRunning = false
-    runNextItem()
-    throw error
-  }
+    isRunning = false;
+    runNextItem();
+    throw error;
+  };
   /**
    * When ready, runs the next queued runnable generator.
-   * @returns {IteratorYieldResult|null}
    */
   const runNextItem = () => {
     if (!isPaused && !queue.empty() && !isRunning) {
-      isRunning = true
-      let toRun = queue.dequeue()
+      isRunning = true;
+      let toRun = queue.dequeue();
       if (typeof toRun === 'undefined' || toRun === null) {
-        return null
+        return null;
       }
       if (typeof toRun === 'function') {
         new Promise((resolve, reject) => {
-          toRun = makeQueuedRunnable(resolve, reject, toRun)
-          runNextItem()
-        }).then(postRun, postFailedRun)
+          toRun = makeQueuedRunnable(resolve, reject, toRun);
+          runNextItem();
+        }).then(postRun, postFailedRun);
       }
       if ('success' in toRun) {
         // Some run responses return an object with 'success' property.
-        console.info(toRun.success)
-        return null
+        console.info(toRun.success);
+        return null;
       }
       if (!toRun.generator || 'error' in toRun) {
         // Some run responses return an object with an 'error' property
-        let errorMessage = 'Verify queued function implements "done()" state.'
+        let errorMessage = 'Verify queued function implements "done()" state.';
         if ('error' in toRun && toRun.error) {
-          errorMessage = `[${toRun.error}]: ${errorMessage}`
+          errorMessage = `[${toRun.error}]: ${errorMessage}`;
         }
-        throw new Error(errorMessage)
+        throw new Error(errorMessage);
       }
       if (toRun.generator && toRun.item) {
         // Ensure the returned result has both the generator and the item to be valid
-        return toRun.generator.next(toRun.item)
+        return toRun.generator.next(toRun.item);
       }
     }
-    return null
-  }
+    return null;
+  };
   /**
    * Add a function into the queue to be run when ready.
-   * @param {Function} fn - The function to run when ready
-   * @param {...*} args - Optional arguments to apply when the function is ready to be run
+   * @param fn - The function to run when ready
+   * @param args - Optional arguments to apply when the function is ready to be run
    * @returns Promise
    */
   const pushAnother = (fn, ...args) => new Promise((resolve, reject) => {
-    queue.enqueue(makeQueuedRunnable(resolve, reject, fn, ...args))
-    runNextItem()
-  }).then(postRun, postFailedRun)
+    queue.enqueue(makeQueuedRunnable(resolve, reject, fn, ...args));
+    runNextItem();
+  }).then(postRun, postFailedRun);
   if (Array.isArray(queue)) {
-    const queueArray = queue
-    queue = (0, _makeBasicQueue.default)()
-    queueArray.forEach(queued => pushAnother(queued))
+    const queueArray = queue;
+    queue = (0, _makeBasicQueue.default)();
+    queueArray.forEach(queued => pushAnother(queued));
   }
   if (queue === null) {
-    queue = (0, _makeBasicQueue.default)()
+    queue = (0, _makeBasicQueue.default)();
   }
-  runNextItem()
+  runNextItem();
   return {
     start: () => {
-      isPaused = false
-      runNextItem()
+      isPaused = false;
+      runNextItem();
     },
     pause: () => {
-      isPaused = true
+      isPaused = true;
     },
     push: pushAnother
-  }
-}
-const _default = exports.default = queueManager
-
+  };
+};
+var _default = exports.default = queueManager;
 },{"./makeBasicQueue":817,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.for-each.js":728,"regenerator-runtime/runtime":791}],822:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('regenerator-runtime/runtime')
-const _delay = _interopRequireDefault(require('./delay'))
-const _queueManager = _interopRequireDefault(require('./queueManager'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("regenerator-runtime/runtime");
+var _delay = _interopRequireDefault(require("./delay"));
+var _queueManager = _interopRequireDefault(require("./queueManager"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Manage functions to run sequentially with delays.
- * @memberOf module:functionHelpers
- * @param {module:functionHelpers~queueManagerHandle} [queueManagerHandle=null]
- * @returns {module:functionHelpers~queueTimeoutHandle}
+ * @param queueManagerHandle
  */
 const queueTimeout = (queueManagerHandle = null) => {
-  const manager = queueManagerHandle || (0, _queueManager.default)()
-  manager.start()
-  return (fn, time = 0, ...args) => manager.push(() => (0, _delay.default)(time).resolver.then(() => fn(...args)))
-}
-const _default = exports.default = queueTimeout
-
+  const manager = queueManagerHandle || (0, _queueManager.default)();
+  manager.start();
+  return (fn, time = 0, ...args) => manager.push(() => (0, _delay.default)(time).resolver.then(() => fn(...args)));
+};
+var _default = exports.default = queueTimeout;
 },{"./delay":816,"./queueManager":821,"regenerator-runtime/runtime":791}],823:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.filter.js')
-require('core-js/modules/esnext.iterator.map.js')
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.filter.js");
+require("core-js/modules/esnext.iterator.map.js");
 /**
  * Remove elements out of relevance range and update the max relevance.
- * @memberOf module:functionHelpers
- * @param {relevanceMap} map
- * @param {Object} [options={}]
- * @param {number} [options.mapLimit=1000] - Only filter once the map exceeds this many entries.
- * @param {number} [options.relevancyRange=100] - How many of the most-recent relevance values to keep.
- * @returns {relevanceMap}
+ * @param map
+ * @param options
+ * @param options.mapLimit - Only filter once the map exceeds this many entries.
+ * @param options.relevancyRange - How many of the most-recent relevance values to keep.
  */
 const relevancyFilter = (map, {
   mapLimit = 1000,
   relevancyRange = 100
 } = {}) => {
   if (map.length <= mapLimit) {
-    return map
+    return map;
   }
-  const minRelevance = map.length - relevancyRange
-  const filtered = map.filter(reference => reference.relevance >= minRelevance)
+  const minRelevance = map.length - relevancyRange;
+  const filtered = map.filter(reference => reference.relevance >= minRelevance);
   return filtered.map(reference => {
-    reference.relevance = reference.relevance > filtered.length ? filtered.length : reference.relevance
-    return reference
-  })
-}
-const _default = exports.default = relevancyFilter
-
+    reference.relevance = reference.relevance > filtered.length ? filtered.length : reference.relevance;
+    return reference;
+  });
+};
+var _default = exports.default = relevancyFilter;
 },{"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.filter.js":726,"core-js/modules/esnext.iterator.map.js":729}],824:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('regenerator-runtime/runtime')
-const _cloneObject = _interopRequireDefault(require('../objects/cloneObject'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("regenerator-runtime/runtime");
+var _cloneObject = _interopRequireDefault(require("../objects/cloneObject"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Output the value with label to the console and return the value to not interrupt the code - useful for
  * inspecting a value mid-pipe/mid-chain without altering the result.
- * @memberOf module:functionHelpers
- * @param {string} label - Pass an identifying label of the value being output.
- * @param {boolean} [useClone=true] - Determines if the logged data should be a clone of the original to preserve
+ * @param label - Pass an identifying label of the value being output.
+ * @param useClone - Determines if the logged data should be a clone of the original to preserve
  * its state at the time of logging (rather than a live reference that may show later mutations).
- * @returns {function(*=)}
  */
 const trace = (label, useClone = true) => value => {
   // noinspection JSForgottenDebugStatementInspection
-  console.info(`${label}: `, useClone ? (0, _cloneObject.default)(value) : value)
-  return value
-}
-const _default = exports.default = trace
-
+  console.info(`${label}: `, useClone ? (0, _cloneObject.default)(value) : value);
+  return value;
+};
+var _default = exports.default = trace;
 },{"../objects/cloneObject":836,"regenerator-runtime/runtime":791}],825:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-Object.defineProperty(exports, 'absoluteMax', {
+});
+Object.defineProperty(exports, "absoluteMax", {
   enumerable: true,
   get: function () {
-    return _absoluteMax.default
+    return _absoluteMax.default;
   }
-})
-Object.defineProperty(exports, 'absoluteMin', {
+});
+Object.defineProperty(exports, "absoluteMin", {
   enumerable: true,
   get: function () {
-    return _absoluteMin.default
+    return _absoluteMin.default;
   }
-})
-Object.defineProperty(exports, 'compare', {
+});
+Object.defineProperty(exports, "compare", {
   enumerable: true,
   get: function () {
-    return _compare.default
+    return _compare.default;
   }
-})
-exports.default = void 0
-Object.defineProperty(exports, 'greatestCommonDivisor', {
+});
+exports.default = void 0;
+Object.defineProperty(exports, "greatestCommonDivisor", {
   enumerable: true,
   get: function () {
-    return _greatestCommonDivisor.default
+    return _greatestCommonDivisor.default;
   }
-})
-Object.defineProperty(exports, 'leastCommonMultiple', {
+});
+Object.defineProperty(exports, "leastCommonMultiple", {
   enumerable: true,
   get: function () {
-    return _leastCommonMultiple.default
+    return _leastCommonMultiple.default;
   }
-})
-Object.defineProperty(exports, 'lowestCommonDenominator', {
+});
+Object.defineProperty(exports, "lowestCommonDenominator", {
   enumerable: true,
   get: function () {
-    return _lowestCommonDenominator.default
+    return _lowestCommonDenominator.default;
   }
-})
-Object.defineProperty(exports, 'randomInteger', {
+});
+Object.defineProperty(exports, "randomInteger", {
   enumerable: true,
   get: function () {
-    return _randomInteger.default
+    return _randomInteger.default;
   }
-})
-Object.defineProperty(exports, 'randomNumber', {
+});
+Object.defineProperty(exports, "randomNumber", {
   enumerable: true,
   get: function () {
-    return _randomNumber.default
+    return _randomNumber.default;
   }
-})
-Object.defineProperty(exports, 'simplestRatio', {
+});
+Object.defineProperty(exports, "simplestRatio", {
   enumerable: true,
   get: function () {
-    return _simplestRatio.default
+    return _simplestRatio.default;
   }
-})
-var _absoluteMax = _interopRequireDefault(require('./numbers/absoluteMax'))
-var _absoluteMin = _interopRequireDefault(require('./numbers/absoluteMin'))
-var _compare = _interopRequireDefault(require('./numbers/compare'))
-var _greatestCommonDivisor = _interopRequireDefault(require('./numbers/greatestCommonDivisor'))
-var _leastCommonMultiple = _interopRequireDefault(require('./numbers/leastCommonMultiple'))
-var _lowestCommonDenominator = _interopRequireDefault(require('./numbers/lowestCommonDenominator'))
-var _randomInteger = _interopRequireDefault(require('./numbers/randomInteger'))
-var _randomNumber = _interopRequireDefault(require('./numbers/randomNumber'))
-var _simplestRatio = _interopRequireDefault(require('./numbers/simplestRatio'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+var _absoluteMax = _interopRequireDefault(require("./numbers/absoluteMax"));
+var _absoluteMin = _interopRequireDefault(require("./numbers/absoluteMin"));
+var _compare = _interopRequireDefault(require("./numbers/compare"));
+var _greatestCommonDivisor = _interopRequireDefault(require("./numbers/greatestCommonDivisor"));
+var _leastCommonMultiple = _interopRequireDefault(require("./numbers/leastCommonMultiple"));
+var _lowestCommonDenominator = _interopRequireDefault(require("./numbers/lowestCommonDenominator"));
+var _randomInteger = _interopRequireDefault(require("./numbers/randomInteger"));
+var _randomNumber = _interopRequireDefault(require("./numbers/randomNumber"));
+var _simplestRatio = _interopRequireDefault(require("./numbers/simplestRatio"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Some number comparators and random number generators.
- * @file
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module numberHelpers
- * @memberOf module:siFunciona
  */
-const _default = exports.default = {
+var _default = exports.default = {
   absoluteMax: _absoluteMax.default,
   absoluteMin: _absoluteMin.default,
   compare: _compare.default,
@@ -30211,126 +29930,107 @@ const _default = exports.default = {
   randomInteger: _randomInteger.default,
   randomNumber: _randomNumber.default,
   simplestRatio: _simplestRatio.default
-}
-
+};
 },{"./numbers/absoluteMax":826,"./numbers/absoluteMin":827,"./numbers/compare":828,"./numbers/greatestCommonDivisor":829,"./numbers/leastCommonMultiple":830,"./numbers/lowestCommonDenominator":831,"./numbers/randomInteger":832,"./numbers/randomNumber":833,"./numbers/simplestRatio":834}],826:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Helper for returning the absolute max value
- * @memberOf module:numberHelpers
- * @param {number} num1 - A number to compare
- * @param {number} num2 - Another number to be compared against
- * @returns {number}
+ * @param num1 - A number to compare
+ * @param num2 - Another number to be compared against
  */
-const absoluteMax = (num1, num2) => Math.abs(num1) > Math.abs(num2) ? num1 : num2
-const _default = exports.default = absoluteMax
-
+const absoluteMax = (num1, num2) => Math.abs(num1) > Math.abs(num2) ? num1 : num2;
+var _default = exports.default = absoluteMax;
 },{}],827:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Helper for returning the absolute min value
- * @memberOf module:numberHelpers
- * @param {number} num1 - A number to compare
- * @param {number} num2 - Another number to be compared against
- * @returns {number}
+ * @param num1 - A number to compare
+ * @param num2 - Another number to be compared against
  */
-const absoluteMin = (num1, num2) => Math.abs(num1) < Math.abs(num2) ? num1 : num2
-const _default = exports.default = absoluteMin
-
+const absoluteMin = (num1, num2) => Math.abs(num1) < Math.abs(num2) ? num1 : num2;
+var _default = exports.default = absoluteMin;
 },{}],828:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Compare two numbers and return:
  * -1 to indicate val1 is less than val2
  * 0 to indicate both values are the equal
  * 1 to indicate val1 is greater than val2
- * @memberOf module:numberHelpers
- * @param {number} val1 - The first number to compare
- * @param {number} val2 - The second number to compare
- * @returns {number}
+ * @param val1 - The first number to compare
+ * @param val2 - The second number to compare
  */
-const compare = (val1, val2) => val1 === val2 ? 0 : val1 > val2 ? 1 : -1
-const _default = exports.default = compare
-
+const compare = (val1, val2) => val1 === val2 ? 0 : val1 > val2 ? 1 : -1;
+var _default = exports.default = compare;
 },{}],829:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Return the highest number that can be divided into both numbers.
- * @memberOf module:numberHelpers
- * @param {number} num1 - First number to assess
- * @param {number} num2 - Second number to compare for common divisor
- * @returns {number}
+ * @param num1 - First number to assess
+ * @param num2 - Second number to compare for common divisor
  */
-const greatestCommonDivisor = (num1, num2) => num2 === 0 ? num1 : greatestCommonDivisor(num2, num1 % num2)
-const _default = exports.default = greatestCommonDivisor
-
+const greatestCommonDivisor = (num1, num2) => num2 === 0 ? num1 : greatestCommonDivisor(num2, num1 % num2);
+var _default = exports.default = greatestCommonDivisor;
 },{}],830:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-const _greatestCommonDivisor = _interopRequireDefault(require('./greatestCommonDivisor'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+var _greatestCommonDivisor = _interopRequireDefault(require("./greatestCommonDivisor"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Helper for calculating the multiplier that would make each number relative to each other.
- * @memberOf module:numberHelpers
- * @param {number} num1 - A number to compare
- * @param {number} num2 - Another number to be compared against
- * @returns {number}
+ * @param num1 - A number to compare
+ * @param num2 - Another number to be compared against
  */
-const leastCommonMultiple = (num1, num2) => num1 === 0 || num2 === 0 ? 0 : num1 * num2 / (0, _greatestCommonDivisor.default)(num1, num2)
-const _default = exports.default = leastCommonMultiple
-
+const leastCommonMultiple = (num1, num2) => num1 === 0 || num2 === 0 ? 0 : num1 * num2 / (0, _greatestCommonDivisor.default)(num1, num2);
+var _default = exports.default = leastCommonMultiple;
 },{"./greatestCommonDivisor":829}],831:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-const _leastCommonMultiple = _interopRequireDefault(require('./leastCommonMultiple'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+var _leastCommonMultiple = _interopRequireDefault(require("./leastCommonMultiple"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Find the smallest number that all the given numbers divide into evenly, by reducing them pairwise with
  * leastCommonMultiple.
- * @memberOf module:numberHelpers
- * @param {...number} numbers - Two or more numbers to find the lowest common denominator of.
- * @returns {number}
+ * @param numbers - Two or more numbers to find the lowest common denominator of.
  */
-const lowestCommonDenominator = (...numbers) => numbers.reduce((num1, num2) => (0, _leastCommonMultiple.default)(num1, num2), 1)
-const _default = exports.default = lowestCommonDenominator
-
+const lowestCommonDenominator = (...numbers) => numbers.reduce((num1, num2) => (0, _leastCommonMultiple.default)(num1, num2), 1);
+var _default = exports.default = lowestCommonDenominator;
 },{"./leastCommonMultiple":830,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.reduce.js":730}],832:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Create a single random integer from a set of `range` possible values, starting at the optional offset.
  * With no offset the result is 0 to range - 1 (so range is the number of possible values, the same as an array length
@@ -30340,224 +30040,210 @@ exports.default = void 0
  * randomInteger(2) // 0 or 1
  * randomInteger(3, 1, 5) // 5, 10 or 15
  * items[randomInteger(items.length)] // a random valid index
- * @memberOf module:numberHelpers
- * @param {number} range - The number of possible values (0-99 would be 100 for range)
- * @param {number} [offset=0] - Choose the starting number (1-10 would be 1 for offset, 10 for range)
- * @param {number} [interval=1] - Choose the distance between numbers (5, 10, 15 would be 5 for interval, 1 for
+ * @param range - The number of possible values (0-99 would be 100 for range)
+ * @param offset - Choose the starting number (1-10 would be 1 for offset, 10 for range)
+ * @param interval - Choose the distance between numbers (5, 10, 15 would be 5 for interval, 1 for
  * offset, 3 for range)
- * @returns {number}
  */
-const randomInteger = (range, offset = 0, interval = 1) => (Math.floor(Math.random() * range) + offset) * interval
-const _default = exports.default = randomInteger
-
+const randomInteger = (range, offset = 0, interval = 1) => (Math.floor(Math.random() * range) + offset) * interval;
+var _default = exports.default = randomInteger;
 },{}],833:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Create a single random number from offset up to (but never including) offset + range. With optional offset,
  * the distance between the result numbers can be adjusted with interval. Matches randomInteger, which gives the
  * whole numbers of the same span.
- * @memberOf module:numberHelpers
- * @param {number} range - Choose the breadth of the random number (0 up to, but not including, 100 would be 100 for range)
- * @param {number} [offset=0] - Choose the starting number (1 up to, but not including, 10 would be 1 for offset, 9 for range)
- * @param {number} [interval=1] - Choose the multiplier applied to the result (~5, ~10, ~15 would be 5 for interval,
+ * @param range - Choose the breadth of the random number (0 up to, but not including, 100 would be 100 for range)
+ * @param offset - Choose the starting number (1 up to, but not including, 10 would be 1 for offset, 9 for range)
+ * @param interval - Choose the multiplier applied to the result (~5, ~10, ~15 would be 5 for interval,
  * 1 for offset, 2 for range)
- * @returns {number}
  */
-const randomNumber = (range, offset = 0, interval = 1) => (Math.random() * range + offset) * interval
-const _default = exports.default = randomNumber
-
+const randomNumber = (range, offset = 0, interval = 1) => (Math.random() * range + offset) * interval;
+var _default = exports.default = randomNumber;
 },{}],834:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.map.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-const _greatestCommonDivisor = _interopRequireDefault(require('./greatestCommonDivisor'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.map.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+var _greatestCommonDivisor = _interopRequireDefault(require("./greatestCommonDivisor"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Reduce several numbers to their simplest form / ratio
- * @memberOf module:numberHelpers
- * @param {...number} numbers - Array of numbers to simplify
- * @returns {Array.<number>}
+ * @param numbers - Array of numbers to simplify
  */
 const simplestRatio = (...numbers) => {
   if (numbers.length === 0) {
-    return []
+    return [];
   }
-  let commonDivisor = numbers.reduce((num1, num2) => (0, _greatestCommonDivisor.default)(num1, num2), 0)
+  let commonDivisor = numbers.reduce((num1, num2) => (0, _greatestCommonDivisor.default)(num1, num2), 0);
   // Set to positive so that when we divide the numbers they retain their +/-
-  commonDivisor = Math.abs(commonDivisor)
+  commonDivisor = Math.abs(commonDivisor);
   // Simplify the numbers, handle zero
-  return numbers.map(num => commonDivisor === 0 ? 0 : num / commonDivisor)
-}
-const _default = exports.default = simplestRatio
-
+  return numbers.map(num => commonDivisor === 0 ? 0 : num / commonDivisor);
+};
+var _default = exports.default = simplestRatio;
 },{"./greatestCommonDivisor":829,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.map.js":729,"core-js/modules/esnext.iterator.reduce.js":730}],835:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-Object.defineProperty(exports, 'cloneObject', {
+});
+Object.defineProperty(exports, "cloneObject", {
   enumerable: true,
   get: function () {
-    return _cloneObject.default
+    return _cloneObject.default;
   }
-})
-exports.default = void 0
-Object.defineProperty(exports, 'dotGet', {
+});
+exports.default = void 0;
+Object.defineProperty(exports, "dotGet", {
   enumerable: true,
   get: function () {
-    return _dotGet.default
+    return _dotGet.default;
   }
-})
-Object.defineProperty(exports, 'dotNotate', {
+});
+Object.defineProperty(exports, "dotNotate", {
   enumerable: true,
   get: function () {
-    return _dotNotate.default
+    return _dotNotate.default;
   }
-})
-Object.defineProperty(exports, 'dotSet', {
+});
+Object.defineProperty(exports, "dotSet", {
   enumerable: true,
   get: function () {
-    return _dotSet.default
+    return _dotSet.default;
   }
-})
-Object.defineProperty(exports, 'dotUnset', {
+});
+Object.defineProperty(exports, "dotUnset", {
   enumerable: true,
   get: function () {
-    return _dotUnset.default
+    return _dotUnset.default;
   }
-})
-Object.defineProperty(exports, 'emptyObject', {
+});
+Object.defineProperty(exports, "emptyObject", {
   enumerable: true,
   get: function () {
-    return _emptyObject.default
+    return _emptyObject.default;
   }
-})
-Object.defineProperty(exports, 'filterObject', {
+});
+Object.defineProperty(exports, "filterObject", {
   enumerable: true,
   get: function () {
-    return _filterObject.default
+    return _filterObject.default;
   }
-})
-Object.defineProperty(exports, 'isCloneable', {
+});
+Object.defineProperty(exports, "isCloneable", {
   enumerable: true,
   get: function () {
-    return _isCloneable.default
+    return _isCloneable.default;
   }
-})
-Object.defineProperty(exports, 'isEqual', {
+});
+Object.defineProperty(exports, "isEqual", {
   enumerable: true,
   get: function () {
-    return _isEqual.default
+    return _isEqual.default;
   }
-})
-Object.defineProperty(exports, 'isInstanceObject', {
+});
+Object.defineProperty(exports, "isInstanceObject", {
   enumerable: true,
   get: function () {
-    return _isInstanceObject.default
+    return _isInstanceObject.default;
   }
-})
-Object.defineProperty(exports, 'isObject', {
+});
+Object.defineProperty(exports, "isObject", {
   enumerable: true,
   get: function () {
-    return _isObject.default
+    return _isObject.default;
   }
-})
-Object.defineProperty(exports, 'mapObject', {
+});
+Object.defineProperty(exports, "mapObject", {
   enumerable: true,
   get: function () {
-    return _mapObject.default
+    return _mapObject.default;
   }
-})
-Object.defineProperty(exports, 'mergeObjects', {
+});
+Object.defineProperty(exports, "mergeObjects", {
   enumerable: true,
   get: function () {
-    return _mergeObjects.default
+    return _mergeObjects.default;
   }
-})
-Object.defineProperty(exports, 'mergeObjectsBase', {
+});
+Object.defineProperty(exports, "mergeObjectsBase", {
   enumerable: true,
   get: function () {
-    return _mergeObjectsBase.default
+    return _mergeObjectsBase.default;
   }
-})
-Object.defineProperty(exports, 'mergeObjectsMutable', {
+});
+Object.defineProperty(exports, "mergeObjectsMutable", {
   enumerable: true,
   get: function () {
-    return _mergeObjectsMutable.default
+    return _mergeObjectsMutable.default;
   }
-})
-Object.defineProperty(exports, 'objectKeys', {
+});
+Object.defineProperty(exports, "objectKeys", {
   enumerable: true,
   get: function () {
-    return _objectKeys.default
+    return _objectKeys.default;
   }
-})
-Object.defineProperty(exports, 'objectValues', {
+});
+Object.defineProperty(exports, "objectValues", {
   enumerable: true,
   get: function () {
-    return _objectValues.default
+    return _objectValues.default;
   }
-})
-Object.defineProperty(exports, 'reduceObject', {
+});
+Object.defineProperty(exports, "reduceObject", {
   enumerable: true,
   get: function () {
-    return _reduceObject.default
+    return _reduceObject.default;
   }
-})
-Object.defineProperty(exports, 'setAndReturnValue', {
+});
+Object.defineProperty(exports, "setAndReturnValue", {
   enumerable: true,
   get: function () {
-    return _setAndReturnValue.default
+    return _setAndReturnValue.default;
   }
-})
-Object.defineProperty(exports, 'setValue', {
+});
+Object.defineProperty(exports, "setValue", {
   enumerable: true,
   get: function () {
-    return _setValue.default
+    return _setValue.default;
   }
-})
-var _cloneObject = _interopRequireDefault(require('./objects/cloneObject'))
-var _dotGet = _interopRequireDefault(require('./objects/dotGet'))
-var _dotNotate = _interopRequireDefault(require('./objects/dotNotate'))
-var _dotSet = _interopRequireDefault(require('./objects/dotSet'))
-var _dotUnset = _interopRequireDefault(require('./objects/dotUnset'))
-var _emptyObject = _interopRequireDefault(require('./objects/emptyObject'))
-var _filterObject = _interopRequireDefault(require('./objects/filterObject'))
-var _isCloneable = _interopRequireDefault(require('./objects/isCloneable'))
-var _isEqual = _interopRequireDefault(require('./objects/isEqual'))
-var _isInstanceObject = _interopRequireDefault(require('./objects/isInstanceObject'))
-var _isObject = _interopRequireDefault(require('./objects/isObject'))
-var _mapObject = _interopRequireDefault(require('./objects/mapObject'))
-var _mergeObjects = _interopRequireDefault(require('./objects/mergeObjects'))
-var _mergeObjectsBase = _interopRequireDefault(require('./objects/mergeObjectsBase'))
-var _mergeObjectsMutable = _interopRequireDefault(require('./objects/mergeObjectsMutable'))
-var _objectKeys = _interopRequireDefault(require('./objects/objectKeys'))
-var _objectValues = _interopRequireDefault(require('./objects/objectValues'))
-var _reduceObject = _interopRequireDefault(require('./objects/reduceObject'))
-var _setAndReturnValue = _interopRequireDefault(require('./objects/setAndReturnValue'))
-var _setValue = _interopRequireDefault(require('./objects/setValue'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+var _cloneObject = _interopRequireDefault(require("./objects/cloneObject"));
+var _dotGet = _interopRequireDefault(require("./objects/dotGet"));
+var _dotNotate = _interopRequireDefault(require("./objects/dotNotate"));
+var _dotSet = _interopRequireDefault(require("./objects/dotSet"));
+var _dotUnset = _interopRequireDefault(require("./objects/dotUnset"));
+var _emptyObject = _interopRequireDefault(require("./objects/emptyObject"));
+var _filterObject = _interopRequireDefault(require("./objects/filterObject"));
+var _isCloneable = _interopRequireDefault(require("./objects/isCloneable"));
+var _isEqual = _interopRequireDefault(require("./objects/isEqual"));
+var _isInstanceObject = _interopRequireDefault(require("./objects/isInstanceObject"));
+var _isObject = _interopRequireDefault(require("./objects/isObject"));
+var _mapObject = _interopRequireDefault(require("./objects/mapObject"));
+var _mergeObjects = _interopRequireDefault(require("./objects/mergeObjects"));
+var _mergeObjectsBase = _interopRequireDefault(require("./objects/mergeObjectsBase"));
+var _mergeObjectsMutable = _interopRequireDefault(require("./objects/mergeObjectsMutable"));
+var _objectKeys = _interopRequireDefault(require("./objects/objectKeys"));
+var _objectValues = _interopRequireDefault(require("./objects/objectValues"));
+var _reduceObject = _interopRequireDefault(require("./objects/reduceObject"));
+var _setAndReturnValue = _interopRequireDefault(require("./objects/setAndReturnValue"));
+var _setValue = _interopRequireDefault(require("./objects/setValue"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Simplify working with object by providing array-like parsing. Also, provides cloning and merging along with accessors that always have a return value for optimal nesting.
- * @file
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module objectHelpers
- * @memberOf module:siFunciona
  */
-const _default = exports.default = {
+var _default = exports.default = {
   cloneObject: _cloneObject.default,
   dotGet: _dotGet.default,
   dotNotate: _dotNotate.default,
@@ -30578,26 +30264,23 @@ const _default = exports.default = {
   reduceObject: _reduceObject.default,
   setAndReturnValue: _setAndReturnValue.default,
   setValue: _setValue.default
-}
-
+};
 },{"./objects/cloneObject":836,"./objects/dotGet":837,"./objects/dotNotate":838,"./objects/dotSet":839,"./objects/dotUnset":840,"./objects/emptyObject":841,"./objects/filterObject":842,"./objects/isCloneable":843,"./objects/isEqual":844,"./objects/isInstanceObject":845,"./objects/isObject":846,"./objects/mapObject":847,"./objects/mergeObjects":848,"./objects/mergeObjectsBase":849,"./objects/mergeObjectsMutable":850,"./objects/objectKeys":851,"./objects/objectValues":852,"./objects/reduceObject":853,"./objects/setAndReturnValue":854,"./objects/setValue":855}],836:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-const _mergeObjectsBase = _interopRequireDefault(require('./mergeObjectsBase'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+var _mergeObjectsBase = _interopRequireDefault(require("./mergeObjectsBase"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Clone objects for manipulation without data corruption, returns a copy of the provided object.
- * @memberOf module:objectHelpers
- * @param {Object} object - The original object that is being cloned
- * @param {Object} [options={}]
- * @param {number} [options.mapLimit=100] - Deprecated and ignored (circular references are handled without trimming).
- * @param {number} [options.depthLimit=-1] - Control how many nested levels deep will be used, -1 = no limit, >-1 = nth level limited.
- * @param {number} [options.relevancyRange=1000] - Deprecated and ignored: see mapLimit.
- * @returns {Object}
+ * @param object - The original object that is being cloned
+ * @param options
+ * @param options.mapLimit - Deprecated and ignored (circular references are handled without trimming).
+ * @param options.depthLimit - Control how many nested levels deep will be used, -1 = no limit, >-1 = nth level limited.
+ * @param options.relevancyRange - Deprecated and ignored: see mapLimit.
  */
 const cloneObject = (object, {
   mapLimit = 100,
@@ -30608,417 +30291,393 @@ const cloneObject = (object, {
   depthLimit,
   relevancyRange,
   useClone: true
-})(object)
-const _default = exports.default = cloneObject
-
+})(object);
+var _default = exports.default = cloneObject;
 },{"./mergeObjectsBase":849}],837:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-const _isObject = _interopRequireDefault(require('./isObject'))
-const _strAfter = _interopRequireDefault(require('../strings/strAfter'))
-const _strBefore = _interopRequireDefault(require('../strings/strBefore'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+var _isObject = _interopRequireDefault(require("./isObject"));
+var _strAfter = _interopRequireDefault(require("../strings/strAfter"));
+var _strBefore = _interopRequireDefault(require("../strings/strBefore"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Get a nested property value from an object.
- * @memberOf module:objectHelpers
- * @param {Object} arrayObject - The array or object to get the property from
- * @param {string} dotNotation - The path to the property
- * @param {string|null} [defaultValue=null] - The default value to return if the property is not found
- * @returns {*} The value of the property
+ * @param arrayObject - The array or object to get the property from
+ * @param dotNotation - The path to the property
+ * @param defaultValue - The default value to return if the property is not found
+ * @returns The value of the property
  */
 const dotGet = (arrayObject, dotNotation, defaultValue = null) => {
-  let _a
-  let key = (0, _strBefore.default)(dotNotation, '.')
-  const lastKey = !key
+  let key = (0, _strBefore.default)(dotNotation, '.');
+  const lastKey = !key;
   if (lastKey) {
-    key = dotNotation
+    key = dotNotation;
   }
   if (key === '*') {
-    const result = []
+    const result = [];
     for (const wildKey in arrayObject) {
       // @ts-ignore
-      const wildValue = arrayObject[wildKey]
+      const wildValue = arrayObject[wildKey];
       if (lastKey) {
         // @ts-ignore
-        result[wildKey] = wildValue
-        continue
+        result[wildKey] = wildValue;
+        continue;
       }
       if (!(0, _isObject.default)(wildValue)) {
-        continue
+        continue;
       }
       // @ts-ignore
-      result[wildKey] = dotGet(wildValue, (0, _strAfter.default)(dotNotation, '.'), defaultValue)
+      result[wildKey] = dotGet(wildValue, (0, _strAfter.default)(dotNotation, '.'), defaultValue);
     }
-    return result
+    return result;
   }
   if (lastKey) {
     // @ts-ignore
-    return (_a = arrayObject[dotNotation]) !== null && _a !== void 0 ? _a : defaultValue
+    return arrayObject[dotNotation] ?? defaultValue;
   }
   // @ts-ignore
   if (typeof arrayObject[key] === 'undefined') {
-    return defaultValue
+    return defaultValue;
   }
   // @ts-ignore
-  const next = arrayObject[key]
+  const next = arrayObject[key];
   if (!(0, _isObject.default)(next)) {
-    return defaultValue
+    return defaultValue;
   }
-  return dotGet(next, (0, _strAfter.default)(dotNotation, '.'), defaultValue)
-}
-const _default = exports.default = dotGet
-
+  return dotGet(next, (0, _strAfter.default)(dotNotation, '.'), defaultValue);
+};
+var _default = exports.default = dotGet;
 },{"../strings/strAfter":863,"../strings/strBefore":865,"./isObject":846}],838:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.map.js')
-const _isObject = _interopRequireDefault(require('./isObject'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.map.js");
+var _emptyObject = _interopRequireDefault(require("./emptyObject"));
+var _isObject = _interopRequireDefault(require("./isObject"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Convert an array of keys into a regex, return a function to test if incoming keys match.
  * @inner
- * @memberOf module:objectHelpers
- * @param {Array.<DotNotationString>} [retainObjects=[]] - An array of keys to retain as objects
- * @returns {Function} The dot-notated array
+ * @param retainObjects - An array of keys to retain as objects
+ * @returns The dot-notated array
  */
 const handleRetainObjects = (retainObjects = []) => {
   if (!retainObjects.length) {
     /**
      * Bypass the test function if there are no retainObjects.
-     * @returns {false}
      */
-    return (currentKey, value, results) => false
+    return (currentKey, value, results) => false;
   }
-  retainObjects = retainObjects.map(key => key.replace('\.', '\\.'))
-  const retainRegex = new RegExp(`(${retainObjects.join('|')})$`)
+  retainObjects = retainObjects.map(key => key.replace('\.', '\\.'));
+  const retainRegex = new RegExp(`(${retainObjects.join('|')})$`);
   /**
    * Test if a key should be retained as an object.
-   * @param {string} currentKey - The key to test
-   * @param {*} value - The value of the key
-   * @param {Object} results - The results object to add to
-   * @returns {boolean}
+   * @param currentKey - The key to test
+   * @param value - The value of the key
+   * @param results - The results object to add to
    */
   return (currentKey, value, results) => {
     if (!currentKey.match(retainRegex)) {
-      return false
+      return false;
     }
     // @ts-ignore
-    results[currentKey] = value
-    return true
-  }
-}
+    results[currentKey] = value;
+    return true;
+  };
+};
 /**
  * The underlying logic function for converting arrays to dot-notation.
  * @inner
- * @memberOf module:objectHelpers
- * @param {Object} arrayObject - The array or object to dot-notate
- * @param {Function} didRetain - The test function to see if a key should be retained
- * @param {DotNotationString} [prepend=''] - The path for the property being processed
- * @param {DotNotatedObject} [results={}] - The final array to return
- * @returns {DotNotatedObject} The dot-notated object
+ * @param arrayObject - The array or object to dot-notate
+ * @param didRetain - The test function to see if a key should be retained
+ * @param prepend - The path for the property being processed
+ * @param results - The final array to return
+ * @returns The dot-notated object
  */
 const performDotNotate = (arrayObject, didRetain, prepend = '', results = {}) => {
   // @ts-ignore
   for (const key in arrayObject) {
     // @ts-ignore
-    const value = arrayObject[key]
-    const currentKey = `${prepend}${key}`
+    const value = arrayObject[key];
+    const currentKey = `${prepend}${key}`;
     if (didRetain(currentKey, value, results)) {
-      continue
+      continue;
     }
-    if ((0, _isObject.default)(value)) {
-      performDotNotate(value, didRetain, `${currentKey}.`, results)
-      continue
+    // An empty object/array has no keys to flatten into - recursing into one would silently drop currentKey
+    // from the result entirely, rather than keeping it as the empty value it actually is. Treat it as a leaf.
+    if ((0, _isObject.default)(value) && !(0, _emptyObject.default)(value)) {
+      performDotNotate(value, didRetain, `${currentKey}.`, results);
+      continue;
     }
-    results[currentKey] = value
+    results[currentKey] = value;
   }
-  return results
-}
+  return results;
+};
 /**
  * Convert an array or object to a single dimensional associative array with dot notation.
- * @memberOf module:objectHelpers
- * @param {Object} arrayObject - The array or object to dot-notate
- * @param {Array.<DotNotationString>} [retainObjects=[]] - An array of keys to retain as objects
- * @returns {DotNotatedObject} The dot-notated object
+ * @param arrayObject - The array or object to dot-notate
+ * @param retainObjects - An array of keys to retain as objects
+ * @returns The dot-notated object
  */
-const dotNotate = (arrayObject, retainObjects = []) => performDotNotate(arrayObject, handleRetainObjects(retainObjects))
-const _default = exports.default = dotNotate
+const dotNotate = (arrayObject, retainObjects = []) => performDotNotate(arrayObject, handleRetainObjects(retainObjects));
+var _default = exports.default = dotNotate;
+},{"./emptyObject":841,"./isObject":846,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.map.js":729}],839:[function(require,module,exports){
+"use strict";
 
-},{"./isObject":846,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.map.js":729}],839:[function(require,module,exports){
-'use strict'
-
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-const _isObject = _interopRequireDefault(require('./isObject'))
-const _strAfter = _interopRequireDefault(require('../strings/strAfter'))
-const _strBefore = _interopRequireDefault(require('../strings/strBefore'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+var _isObject = _interopRequireDefault(require("./isObject"));
+var _strAfter = _interopRequireDefault(require("../strings/strAfter"));
+var _strBefore = _interopRequireDefault(require("../strings/strBefore"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Set a nested property value an object.
- * @memberOf module:objectHelpers
- * @param {Object} arrayObject - The array or object to set the property on
- * @param {string} dotNotation - The path for the property
- * @param {*} value - The default value to return if the property is not found
- * @returns {Object} The modified object
+ * @param arrayObject - The array or object to set the property on
+ * @param dotNotation - The path for the property
+ * @param value - The default value to return if the property is not found
+ * @returns The modified object
  */
 const dotSet = (arrayObject, dotNotation, value = null) => {
-  let _a
-  let key = (0, _strBefore.default)(dotNotation, '.')
-  const lastKey = !key
+  let key = (0, _strBefore.default)(dotNotation, '.');
+  const lastKey = !key;
   if (lastKey) {
-    key = dotNotation
+    key = dotNotation;
   }
   if (key === '*') {
     for (const wildKey in arrayObject) {
       if (lastKey) {
         // @ts-ignore
-        arrayObject[wildKey] = value
-        continue
+        arrayObject[wildKey] = value;
+        continue;
       }
       // @ts-ignore
       if (!(0, _isObject.default)(arrayObject[wildKey])) {
-        continue
+        continue;
       }
       // @ts-ignore
-      dotSet(arrayObject[wildKey], (0, _strAfter.default)(dotNotation, '.'), value)
+      dotSet(arrayObject[wildKey], (0, _strAfter.default)(dotNotation, '.'), value);
     }
-    return arrayObject
+    return arrayObject;
   }
   if (lastKey) {
     // @ts-ignore
-    arrayObject[dotNotation] = value
-    return arrayObject
+    arrayObject[dotNotation] = value;
+    return arrayObject;
   }
   // @ts-ignore
-  const next = (_a = arrayObject[key]) !== null && _a !== void 0 ? _a : []
+  const next = arrayObject[key] ?? [];
   // @ts-ignore
-  arrayObject[key] = dotSet(next, (0, _strAfter.default)(dotNotation, '.'), value)
-  return arrayObject
-}
-const _default = exports.default = dotSet
-
+  arrayObject[key] = dotSet(next, (0, _strAfter.default)(dotNotation, '.'), value);
+  return arrayObject;
+};
+var _default = exports.default = dotSet;
 },{"../strings/strAfter":863,"../strings/strBefore":865,"./isObject":846}],840:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-const _isObject = _interopRequireDefault(require('./isObject'))
-const _strAfter = _interopRequireDefault(require('../strings/strAfter'))
-const _strBefore = _interopRequireDefault(require('../strings/strBefore'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+var _isObject = _interopRequireDefault(require("./isObject"));
+var _strAfter = _interopRequireDefault(require("../strings/strAfter"));
+var _strBefore = _interopRequireDefault(require("../strings/strBefore"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Unset a nested property value an object.
- * @memberOf module:objectHelpers
- * @param {Object} arrayObject - The array or object to set the property on
- * @param {string} dotNotation - The path for the property
- * @returns {Object} The modified object
+ * @param arrayObject - The array or object to set the property on
+ * @param dotNotation - The path for the property
+ * @returns The modified object
  */
 const dotUnset = (arrayObject, dotNotation) => {
-  let _a
-  let key = (0, _strBefore.default)(dotNotation, '.')
-  const lastKey = !key
+  let key = (0, _strBefore.default)(dotNotation, '.');
+  const lastKey = !key;
   if (lastKey) {
-    key = dotNotation
+    key = dotNotation;
   }
   if (key === '*') {
     for (const wildKey in arrayObject) {
       if (lastKey) {
         // @ts-ignore
-        delete arrayObject[wildKey]
-        continue
+        delete arrayObject[wildKey];
+        continue;
       }
       // @ts-ignore
       if (!(0, _isObject.default)(arrayObject[wildKey])) {
-        continue
+        continue;
       }
       // @ts-ignore
-      dotUnset(arrayObject[wildKey], (0, _strAfter.default)(dotNotation, '.'))
+      dotUnset(arrayObject[wildKey], (0, _strAfter.default)(dotNotation, '.'));
     }
-    return arrayObject
+    return arrayObject;
   }
   if (lastKey) {
     // @ts-ignore
-    delete arrayObject[dotNotation]
-    return arrayObject
+    delete arrayObject[dotNotation];
+    return arrayObject;
   }
   // @ts-ignore
-  const next = (_a = arrayObject[key]) !== null && _a !== void 0 ? _a : []
+  const next = arrayObject[key] ?? [];
   // @ts-ignore
-  arrayObject[key] = dotUnset(next, (0, _strAfter.default)(dotNotation, '.'))
-  return arrayObject
-}
-const _default = exports.default = dotUnset
-
+  arrayObject[key] = dotUnset(next, (0, _strAfter.default)(dotNotation, '.'));
+  return arrayObject;
+};
+var _default = exports.default = dotUnset;
 },{"../strings/strAfter":863,"../strings/strBefore":865,"./isObject":846}],841:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-const _isObject = _interopRequireDefault(require('./isObject'))
-const _objectKeys = _interopRequireDefault(require('./objectKeys'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+var _isObject = _interopRequireDefault(require("./isObject"));
+var _objectKeys = _interopRequireDefault(require("./objectKeys"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Helper function for testing if the item is an Object or Array that does not have any properties
- * @memberOf module:objectHelpers
- * @param {Object|Array} item - Object or Array to test
- * @returns {boolean}
+ * @param item - Object or Array to test
  */
-const emptyObject = item => (typeof item === 'function' || (0, _isObject.default)(item)) && !(0, _objectKeys.default)(item).length
-const _default = exports.default = emptyObject
-
+const emptyObject = item => (typeof item === 'function' || (0, _isObject.default)(item)) && !(0, _objectKeys.default)(item).length;
+var _default = exports.default = emptyObject;
 },{"./isObject":846,"./objectKeys":851}],842:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.filter.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-const _callWithParams = _interopRequireDefault(require('../functions/callWithParams'))
-const _objectKeys = _interopRequireDefault(require('./objectKeys'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.filter.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+var _callWithParams = _interopRequireDefault(require("../functions/callWithParams"));
+var _objectKeys = _interopRequireDefault(require("./objectKeys"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * This function is intended to replicate behaviour of the Array.filter() function but for Objects.
  * If an array is passed in instead then it will perform standard filter(). It is recommended to
  * always use the standard filter() function when it is known that the object is actually an array.
- * @memberOf module:objectHelpers
- * @param {Object|Array} obj - The Object (or Array) to be filtered
- * @param {module:objectHelpers~filterCallback|Function} fn - The function to be processed for each filtered property
- * @param {Object|Array} [thisArg] - Optional. Value to use as this when executing callback.
- * @returns {Object|Array}
+ * @param obj - The Object (or Array) to be filtered
+ * @param fn - The function to be processed for each filtered property
+ * @param thisArg - Optional. Value to use as this when executing callback.
  */
-const filterObject = (obj, fn, thisArg = undefined) => Array.isArray(obj)
-  ? obj.filter(fn, thisArg)
-  : (0, _objectKeys.default)(obj, true).reduce((newObj, curr) => {
-      if ((0, _callWithParams.default)(fn.bind(thisArg), [obj[curr], curr, obj], 2)) {
-        newObj[curr] = obj[curr]
-      } else {
-        delete newObj[curr]
-      }
-      return newObj
-    }, {})
-const _default = exports.default = filterObject
-
+const filterObject = (obj, fn, thisArg = undefined) => Array.isArray(obj) ? obj.filter(fn, thisArg) : (0, _objectKeys.default)(obj, true).reduce((newObj, curr) => {
+  if ((0, _callWithParams.default)(fn.bind(thisArg), [obj[curr], curr, obj], 2)) {
+    newObj[curr] = obj[curr];
+  } else {
+    delete newObj[curr];
+  }
+  return newObj;
+}, {});
+var _default = exports.default = filterObject;
 },{"../functions/callWithParams":814,"./objectKeys":851,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.filter.js":726,"core-js/modules/esnext.iterator.reduce.js":730}],843:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-const _isInstanceObject = _interopRequireDefault(require('./isInstanceObject'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+var _isInstanceObject = _interopRequireDefault(require("./isInstanceObject"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Determine if the value is a reference instance
- * @memberOf module:objectHelpers
- * @param {Array|Object|*} value
- * @returns {boolean}
+ * @param value
  */
-const isCloneable = value => typeof value === 'object' && value !== null && !(0, _isInstanceObject.default)(value)
-const _default = exports.default = isCloneable
-
+const isCloneable = value => typeof value === 'object' && value !== null && !(0, _isInstanceObject.default)(value);
+var _default = exports.default = isCloneable;
 },{"./isInstanceObject":845}],844:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/es.regexp.flags.js')
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.every.js')
-require('core-js/modules/esnext.iterator.some.js')
-require('core-js/modules/esnext.map.delete-all.js')
-require('core-js/modules/esnext.map.every.js')
-require('core-js/modules/esnext.map.filter.js')
-require('core-js/modules/esnext.map.find.js')
-require('core-js/modules/esnext.map.find-key.js')
-require('core-js/modules/esnext.map.includes.js')
-require('core-js/modules/esnext.map.key-of.js')
-require('core-js/modules/esnext.map.map-keys.js')
-require('core-js/modules/esnext.map.map-values.js')
-require('core-js/modules/esnext.map.merge.js')
-require('core-js/modules/esnext.map.reduce.js')
-require('core-js/modules/esnext.map.some.js')
-require('core-js/modules/esnext.map.update.js')
-require('core-js/modules/esnext.set.add-all.js')
-require('core-js/modules/esnext.set.delete-all.js')
-require('core-js/modules/esnext.set.difference.js')
-require('core-js/modules/esnext.set.every.js')
-require('core-js/modules/esnext.set.filter.js')
-require('core-js/modules/esnext.set.find.js')
-require('core-js/modules/esnext.set.intersection.js')
-require('core-js/modules/esnext.set.is-disjoint-from.js')
-require('core-js/modules/esnext.set.is-subset-of.js')
-require('core-js/modules/esnext.set.is-superset-of.js')
-require('core-js/modules/esnext.set.join.js')
-require('core-js/modules/esnext.set.map.js')
-require('core-js/modules/esnext.set.reduce.js')
-require('core-js/modules/esnext.set.some.js')
-require('core-js/modules/esnext.set.symmetric-difference.js')
-require('core-js/modules/esnext.set.union.js')
-require('core-js/modules/esnext.weak-map.delete-all.js')
-require('core-js/modules/esnext.weak-set.add-all.js')
-require('core-js/modules/esnext.weak-set.delete-all.js')
-const sameValueZero = (first, second) => first === second || first !== first && second !== second
+});
+exports.default = void 0;
+require("core-js/modules/es.regexp.flags.js");
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.every.js");
+require("core-js/modules/esnext.iterator.some.js");
+require("core-js/modules/esnext.map.delete-all.js");
+require("core-js/modules/esnext.map.every.js");
+require("core-js/modules/esnext.map.filter.js");
+require("core-js/modules/esnext.map.find.js");
+require("core-js/modules/esnext.map.find-key.js");
+require("core-js/modules/esnext.map.includes.js");
+require("core-js/modules/esnext.map.key-of.js");
+require("core-js/modules/esnext.map.map-keys.js");
+require("core-js/modules/esnext.map.map-values.js");
+require("core-js/modules/esnext.map.merge.js");
+require("core-js/modules/esnext.map.reduce.js");
+require("core-js/modules/esnext.map.some.js");
+require("core-js/modules/esnext.map.update.js");
+require("core-js/modules/esnext.set.add-all.js");
+require("core-js/modules/esnext.set.delete-all.js");
+require("core-js/modules/esnext.set.difference.js");
+require("core-js/modules/esnext.set.every.js");
+require("core-js/modules/esnext.set.filter.js");
+require("core-js/modules/esnext.set.find.js");
+require("core-js/modules/esnext.set.intersection.js");
+require("core-js/modules/esnext.set.is-disjoint-from.js");
+require("core-js/modules/esnext.set.is-subset-of.js");
+require("core-js/modules/esnext.set.is-superset-of.js");
+require("core-js/modules/esnext.set.join.js");
+require("core-js/modules/esnext.set.map.js");
+require("core-js/modules/esnext.set.reduce.js");
+require("core-js/modules/esnext.set.some.js");
+require("core-js/modules/esnext.set.symmetric-difference.js");
+require("core-js/modules/esnext.set.union.js");
+require("core-js/modules/esnext.weak-map.delete-all.js");
+require("core-js/modules/esnext.weak-set.add-all.js");
+require("core-js/modules/esnext.weak-set.delete-all.js");
+const sameValueZero = (first, second) => first === second || first !== first && second !== second;
 const compare = (first, second, seen) => {
   if (sameValueZero(first, second)) {
-    return true
+    return true;
   }
   if (typeof first !== 'object' || typeof second !== 'object' || first === null || second === null) {
     // Different primitives, or a function (which is only equal to itself), or an object against a primitive
-    return false
+    return false;
   }
   if (Object.getPrototypeOf(first) !== Object.getPrototypeOf(second)) {
-    return false
+    return false;
   }
   // A pair which is already being compared further up is not a difference (this is what makes circular references work)
-  const comparing = seen.get(first)
+  const comparing = seen.get(first);
   if (comparing && comparing.has(second)) {
-    return true
+    return true;
   }
   if (comparing) {
-    comparing.add(second)
+    comparing.add(second);
   } else {
-    seen.set(first, new WeakSet([second]))
+    seen.set(first, new WeakSet([second]));
   }
   if (first instanceof Date) {
-    return first.getTime() === second.getTime()
+    return first.getTime() === second.getTime();
   }
   if (first instanceof RegExp) {
-    return first.source === second.source && first.flags === second.flags
+    return first.source === second.source && first.flags === second.flags;
   }
   if (first instanceof Map) {
-    return first.size === second.size && Array.from(first.entries()).every(([key, value]) => second.has(key) && compare(value, second.get(key), seen))
+    return first.size === second.size && Array.from(first.entries()).every(([key, value]) => second.has(key) && compare(value, second.get(key), seen));
   }
   if (first instanceof Set) {
-    const others = Array.from(second.values())
-    return first.size === second.size && Array.from(first.values()).every(value => others.some(other => compare(value, other, seen)))
+    const others = Array.from(second.values());
+    return first.size === second.size && Array.from(first.values()).every(value => others.some(other => compare(value, other, seen)));
   }
   if (Array.isArray(first) && first.length !== second.length) {
-    return false
+    return false;
   }
-  const firstKeys = Object.keys(first)
-  const secondKeys = Object.keys(second)
-  return firstKeys.length === secondKeys.length && firstKeys.every(key => Object.prototype.hasOwnProperty.call(second, key) && compare(first[key], second[key], seen))
-}
+  const firstKeys = Object.keys(first);
+  const secondKeys = Object.keys(second);
+  return firstKeys.length === secondKeys.length && firstKeys.every(key => Object.prototype.hasOwnProperty.call(second, key) && compare(first[key], second[key], seen));
+};
 /**
  * Check whether two values are equal by value, however they are stored: two separately made arrays or objects with the
  * same contents are equal, while two references only need to be the same when the value is a function.
@@ -31028,149 +30687,133 @@ const compare = (first, second, seen) => {
  * equal values, the order of the properties does not matter
  * - Dates, regular expressions, Maps and Sets are compared by what they hold
  * - Circular references are handled: a pair of objects which is already being compared is taken to be equal
- * @memberOf module:objectHelpers
- * @param {*} first - The first value.
- * @param {*} second - The second value.
- * @returns {boolean} True when the values are equal.
+ * @param first - The first value.
+ * @param second - The second value.
+ * @returns True when the values are equal.
  */
-const isEqual = (first, second) => compare(first, second, new WeakMap())
-const _default = exports.default = isEqual
-
+const isEqual = (first, second) => compare(first, second, new WeakMap());
+var _default = exports.default = isEqual;
 },{"core-js/modules/es.regexp.flags.js":599,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.every.js":725,"core-js/modules/esnext.iterator.some.js":731,"core-js/modules/esnext.map.delete-all.js":732,"core-js/modules/esnext.map.every.js":733,"core-js/modules/esnext.map.filter.js":734,"core-js/modules/esnext.map.find-key.js":735,"core-js/modules/esnext.map.find.js":736,"core-js/modules/esnext.map.includes.js":737,"core-js/modules/esnext.map.key-of.js":738,"core-js/modules/esnext.map.map-keys.js":739,"core-js/modules/esnext.map.map-values.js":740,"core-js/modules/esnext.map.merge.js":741,"core-js/modules/esnext.map.reduce.js":742,"core-js/modules/esnext.map.some.js":743,"core-js/modules/esnext.map.update.js":744,"core-js/modules/esnext.set.add-all.js":745,"core-js/modules/esnext.set.delete-all.js":746,"core-js/modules/esnext.set.difference.js":747,"core-js/modules/esnext.set.every.js":748,"core-js/modules/esnext.set.filter.js":749,"core-js/modules/esnext.set.find.js":750,"core-js/modules/esnext.set.intersection.js":751,"core-js/modules/esnext.set.is-disjoint-from.js":752,"core-js/modules/esnext.set.is-subset-of.js":753,"core-js/modules/esnext.set.is-superset-of.js":754,"core-js/modules/esnext.set.join.js":755,"core-js/modules/esnext.set.map.js":756,"core-js/modules/esnext.set.reduce.js":757,"core-js/modules/esnext.set.some.js":758,"core-js/modules/esnext.set.symmetric-difference.js":759,"core-js/modules/esnext.set.union.js":760,"core-js/modules/esnext.weak-map.delete-all.js":761,"core-js/modules/esnext.weak-set.add-all.js":762,"core-js/modules/esnext.weak-set.delete-all.js":763}],845:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/es.array.includes.js')
-const _isObject = _interopRequireDefault(require('./isObject'))
-const _objectKeys = _interopRequireDefault(require('./objectKeys'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/es.array.includes.js");
+var _isObject = _interopRequireDefault(require("./isObject"));
+var _objectKeys = _interopRequireDefault(require("./objectKeys"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Check if the current object has inherited properties.
- * @memberOf module:objectHelpers
- * @param {Object|Array} object
- * @returns {boolean}
+ * @param object
  */
 const isInstanceObject = object => {
   if (typeof object !== 'function' && !(0, _isObject.default)(object)) {
-    return false
+    return false;
   }
   if (!['Array', 'Function', 'Object'].includes(object.constructor.name)) {
-    return true
+    return true;
   }
-  return object.constructor.name !== 'Array' && (0, _objectKeys.default)(object, true).length > (0, _objectKeys.default)(object).length
-}
-const _default = exports.default = isInstanceObject
-
+  return object.constructor.name !== 'Array' && (0, _objectKeys.default)(object, true).length > (0, _objectKeys.default)(object).length;
+};
+var _default = exports.default = isInstanceObject;
 },{"./isObject":846,"./objectKeys":851,"core-js/modules/es.array.includes.js":431}],846:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Check if the provided thing is an object / array.
- * @memberOf module:objectHelpers
- * @param {*} object
- * @returns {boolean}
+ * @param object
  */
-const isObject = object => typeof object === 'object' && object !== null
-const _default = exports.default = isObject
-
+const isObject = object => typeof object === 'object' && object !== null;
+var _default = exports.default = isObject;
 },{}],847:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.map.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-const _callWithParams = _interopRequireDefault(require('../functions/callWithParams'))
-const _objectKeys = _interopRequireDefault(require('./objectKeys'))
-const _setValue = _interopRequireDefault(require('./setValue'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.map.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+var _callWithParams = _interopRequireDefault(require("../functions/callWithParams"));
+var _objectKeys = _interopRequireDefault(require("./objectKeys"));
+var _setValue = _interopRequireDefault(require("./setValue"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * This function is intended to replicate behaviour of the Array.map() function but for Objects.
  * If an array is passed in instead then it will perform standard map(). It is recommended to
  * always use the standard map() function when it is known that the object is actually an array.
- * @memberOf module:objectHelpers
- * @param {Object|Array} obj - The Object (or Array) to be mapped
- * @param {module:objectHelpers~mapCallback|Function} fn - The function to be processed for each mapped property
- * @param {Object|Array} [thisArg] - Optional. Value to use as this when executing callback.
- * @returns {Object|Array}
+ * @param obj - The Object (or Array) to be mapped
+ * @param fn - The function to be processed for each mapped property
+ * @param thisArg - Optional. Value to use as this when executing callback.
  */
-const mapObject = (obj, fn, thisArg = undefined) => Array.isArray(obj) ? obj.map(fn, thisArg) : (0, _objectKeys.default)(obj, true).reduce((newObj, curr) => (0, _setValue.default)(curr, (0, _callWithParams.default)(fn.bind(thisArg), [obj[curr], curr, obj], 2), newObj), {})
-const _default = exports.default = mapObject
-
+const mapObject = (obj, fn, thisArg = undefined) => Array.isArray(obj) ? obj.map(fn, thisArg) : (0, _objectKeys.default)(obj, true).reduce((newObj, curr) => (0, _setValue.default)(curr, (0, _callWithParams.default)(fn.bind(thisArg), [obj[curr], curr, obj], 2), newObj), {});
+var _default = exports.default = mapObject;
 },{"../functions/callWithParams":814,"./objectKeys":851,"./setValue":855,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.map.js":729,"core-js/modules/esnext.iterator.reduce.js":730}],848:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-const _mergeObjectsBase = _interopRequireDefault(require('./mergeObjectsBase'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+var _mergeObjectsBase = _interopRequireDefault(require("./mergeObjectsBase"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Uses mergeObjectsBase deep merge objects and arrays, merge by value.
- * @memberOf module:objectHelpers
  * @see {@link module:objectHelpers~mergeObjectsCallback}
- * @param {...Object} objects - Provide a list of objects which will be merged starting from the end up into the first
- * @returns {*}
+ * @param objects - Provide a list of objects which will be merged starting from the end up into the first
  */
 const mergeObjects = (0, _mergeObjectsBase.default)({
   useClone: true
-})
-const _default = exports.default = mergeObjects
-
+});
+var _default = exports.default = mergeObjects;
 },{"./mergeObjectsBase":849}],849:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.map.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-require('core-js/modules/esnext.map.delete-all.js')
-require('core-js/modules/esnext.map.every.js')
-require('core-js/modules/esnext.map.filter.js')
-require('core-js/modules/esnext.map.find.js')
-require('core-js/modules/esnext.map.find-key.js')
-require('core-js/modules/esnext.map.includes.js')
-require('core-js/modules/esnext.map.key-of.js')
-require('core-js/modules/esnext.map.map-keys.js')
-require('core-js/modules/esnext.map.map-values.js')
-require('core-js/modules/esnext.map.merge.js')
-require('core-js/modules/esnext.map.reduce.js')
-require('core-js/modules/esnext.map.some.js')
-require('core-js/modules/esnext.map.update.js')
-const _isCloneable = _interopRequireDefault(require('./isCloneable'))
-const _reduceObject = _interopRequireDefault(require('./reduceObject'))
-const _setValue = _interopRequireDefault(require('./setValue'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.map.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+require("core-js/modules/esnext.map.delete-all.js");
+require("core-js/modules/esnext.map.every.js");
+require("core-js/modules/esnext.map.filter.js");
+require("core-js/modules/esnext.map.find.js");
+require("core-js/modules/esnext.map.find-key.js");
+require("core-js/modules/esnext.map.includes.js");
+require("core-js/modules/esnext.map.key-of.js");
+require("core-js/modules/esnext.map.map-keys.js");
+require("core-js/modules/esnext.map.map-values.js");
+require("core-js/modules/esnext.map.merge.js");
+require("core-js/modules/esnext.map.reduce.js");
+require("core-js/modules/esnext.map.some.js");
+require("core-js/modules/esnext.map.update.js");
+var _isCloneable = _interopRequireDefault(require("./isCloneable"));
+var _reduceObject = _interopRequireDefault(require("./reduceObject"));
+var _setValue = _interopRequireDefault(require("./setValue"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Perform a deep merge of objects. This will return a function that will combine all objects and sub-objects.
  * Objects having the same attributes will overwrite from last object to first.
  * Every call of the returned function keeps its own record of the objects it has already visited (so circular
  * references are followed only once, and an object which is referenced in several places is merged once), and nothing
  * is remembered between calls: the results of separate calls never share state or go stale.
- * @memberOf module:objectHelpers
- * @param {Object} [options={}]
- * @param {number} [options.mapLimit=100] - Deprecated and ignored: the record of visited objects is now scoped to a
+ * @param options
+ * @param options.mapLimit - Deprecated and ignored: the record of visited objects is now scoped to a
  * single call, so it does not need trimming.
- * @param {number} [options.depthLimit=-1] - Control how many nested levels deep will be used, -1 = no limit, >-1 = nth level limited.
- * @param {number} [options.relevancyRange=1000] - Deprecated and ignored: see mapLimit.
- * @param {Iterable|array} [options.map=[]] - A predetermined list of references (source and the object it should
+ * @param options.depthLimit - Control how many nested levels deep will be used, -1 = no limit, >-1 = nth level limited.
+ * @param options.relevancyRange - Deprecated and ignored: see mapLimit.
+ * @param options.map] - A predetermined list of references (source and the object it should
  * resolve to) which every call starts from. It is only read, never added to.
- * @param {boolean} [options.useClone=false]
- * @returns {module:objectHelpers~mergeObjectsCallback|mergeObjectsCallback}
+ * @param options.useClone
  */
 const mergeObjectsBase = ({
   depthLimit = -1,
@@ -31178,308 +30821,284 @@ const mergeObjectsBase = ({
   useClone = false
 } = {}) => {
   const merge = (visited, depth, objects) => {
-    const firstObject = useClone ? Array.isArray(objects[0]) ? [] : {} : objects.shift()
+    const firstObject = useClone ? Array.isArray(objects[0]) ? [] : {} : objects.shift();
     if (objects.length < 1) {
-      return firstObject
+      return firstObject;
     }
     if (depth === 0) {
-      return firstObject
+      return firstObject;
     }
     return objects.reduce((newObj, arg) => {
       if (!arg) {
-        return newObj
+        return newObj;
       }
       if (!visited.has(arg)) {
-        visited.set(arg, newObj)
+        visited.set(arg, newObj);
       }
       return (0, _reduceObject.default)(arg, (returnObj, value, key) => {
         if ((0, _isCloneable.default)(value)) {
           if (visited.has(value)) {
-            return (0, _setValue.default)(key, visited.get(value), returnObj)
+            return (0, _setValue.default)(key, visited.get(value), returnObj);
           }
-          let objectValue = newObj[key]
+          let objectValue = newObj[key];
           if (!(0, _isCloneable.default)(objectValue) || !objectValue) {
             if (!useClone) {
               // Merging by reference: the source object is used as it is, there is nothing to merge it into.
-              visited.set(value, value)
-              return (0, _setValue.default)(key, value, returnObj)
+              visited.set(value, value);
+              return (0, _setValue.default)(key, value, returnObj);
             }
-            objectValue = Array.isArray(value) ? [] : {}
+            objectValue = Array.isArray(value) ? [] : {};
           }
-          return (0, _setValue.default)(key, merge(visited, depth - 1, [objectValue, value]), returnObj)
+          return (0, _setValue.default)(key, merge(visited, depth - 1, [objectValue, value]), returnObj);
         }
-        return (0, _setValue.default)(key, value, returnObj)
-      }, newObj)
-    }, firstObject || {})
-  }
+        return (0, _setValue.default)(key, value, returnObj);
+      }, newObj);
+    }, firstObject || {});
+  };
   return (...objects) => merge(new Map(map.map(({
     source,
     object
-  }) => [source, object])), depthLimit, objects)
-}
-const _default = exports.default = mergeObjectsBase
-
+  }) => [source, object])), depthLimit, objects);
+};
+var _default = exports.default = mergeObjectsBase;
 },{"./isCloneable":843,"./reduceObject":853,"./setValue":855,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.map.js":729,"core-js/modules/esnext.iterator.reduce.js":730,"core-js/modules/esnext.map.delete-all.js":732,"core-js/modules/esnext.map.every.js":733,"core-js/modules/esnext.map.filter.js":734,"core-js/modules/esnext.map.find-key.js":735,"core-js/modules/esnext.map.find.js":736,"core-js/modules/esnext.map.includes.js":737,"core-js/modules/esnext.map.key-of.js":738,"core-js/modules/esnext.map.map-keys.js":739,"core-js/modules/esnext.map.map-values.js":740,"core-js/modules/esnext.map.merge.js":741,"core-js/modules/esnext.map.reduce.js":742,"core-js/modules/esnext.map.some.js":743,"core-js/modules/esnext.map.update.js":744}],850:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-const _mergeObjectsBase = _interopRequireDefault(require('./mergeObjectsBase'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+var _mergeObjectsBase = _interopRequireDefault(require("./mergeObjectsBase"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Uses mergeObjectsBase deep merge objects and arrays, merge by reference.
- * @memberOf module:objectHelpers
  * @see {@link module:objectHelpers~mergeObjectsCallback}
- * @param {...Object} objects - Provide a list of objects which will be merged starting from the end up into the first
- * @returns {*}
+ * @param objects - Provide a list of objects which will be merged starting from the end up into the first
  */
-const mergeObjectsMutable = (0, _mergeObjectsBase.default)()
-const _default = exports.default = mergeObjectsMutable
-
+const mergeObjectsMutable = (0, _mergeObjectsBase.default)();
+var _default = exports.default = mergeObjectsMutable;
 },{"./mergeObjectsBase":849}],851:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-const _isObject = _interopRequireDefault(require('./isObject'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+var _isObject = _interopRequireDefault(require("./isObject"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Get an array of keys from any object or array. Will return empty array when invalid or there are no keys.
  * Optional flag will include the inherited keys from prototype chain when set.
- * @memberOf module:objectHelpers
- * @param {Object|Array} object
- * @param {boolean} [includeInherited=false]
- * @returns {Array.<string|number>}
+ * @param object
+ * @param includeInherited
  */
 const objectKeys = (object, includeInherited = false) => {
   if (typeof object !== 'function' && !(0, _isObject.default)(object)) {
-    return []
+    return [];
   }
   if (includeInherited) {
-    const propNames = Object.getOwnPropertyNames(object)
+    const propNames = Object.getOwnPropertyNames(object);
     if (propNames.length) {
-      return propNames
+      return propNames;
     }
   }
-  const keys = []
+  const keys = [];
   for (const key in object) {
     if (includeInherited || Object.prototype.hasOwnProperty.call(object, key)) {
       if (Array.isArray(object)) {
-        keys.push(parseInt(key))
-        continue
+        keys.push(parseInt(key));
+        continue;
       }
-      keys.push(key)
+      keys.push(key);
     }
   }
-  return keys
-}
-const _default = exports.default = objectKeys
-
+  return keys;
+};
+var _default = exports.default = objectKeys;
 },{"./isObject":846}],852:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.map.js')
-const _objectKeys = _interopRequireDefault(require('./objectKeys'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.map.js");
+var _objectKeys = _interopRequireDefault(require("./objectKeys"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Get an array of values from any object or array. Will return empty array when invalid or there are no values.
  * Optional flag will include the inherited values from prototype chain when set.
- * @memberOf module:objectHelpers
- * @param {Object|Array} object
- * @param {boolean} [includeInherited=false]
- * @returns {Array}
+ * @param object
+ * @param includeInherited
  */
-const objectValues = (object, includeInherited = false) => (0, _objectKeys.default)(object, includeInherited).map(key => object[key])
-const _default = exports.default = objectValues
-
+const objectValues = (object, includeInherited = false) => (0, _objectKeys.default)(object, includeInherited).map(key => object[key]);
+var _default = exports.default = objectValues;
 },{"./objectKeys":851,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.map.js":729}],853:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-const _callWithParams = _interopRequireDefault(require('../functions/callWithParams'))
-const _objectKeys = _interopRequireDefault(require('./objectKeys'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+var _callWithParams = _interopRequireDefault(require("../functions/callWithParams"));
+var _objectKeys = _interopRequireDefault(require("./objectKeys"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * This function is intended to replicate behaviour of the Array.reduce() function but for Objects.
  * If an array is passed in instead then it will perform standard reduce(). It is recommended to
  * always use the standard reduce() function when it is known that the object is actually an array.
- * @memberOf module:objectHelpers
- * @param {Object|Array} obj - The Object (or Array) to be filtered
- * @param {module:objectHelpers~reduceCallback|Function|reduceCallback} fn - The function to be processed for each filtered property
- * @param {Object|Array} [initialValue] - Optional. Value to use as the first argument to the first call of the
+ * @param obj - The Object (or Array) to be filtered
+ * @param fn - The function to be processed for each filtered property
+ * @param initialValue - Optional. Value to use as the first argument to the first call of the
  * callback. If no initial value is supplied, the first element in the array will be used. Calling reduce on an empty
  * array without an initial value is an error.
- * @returns {*}
  */
-const reduceObject = (obj, fn, initialValue = obj[(0, _objectKeys.default)(obj)[0]] || obj[0]) => Array.isArray(obj) ? obj.reduce(fn, initialValue) : (0, _objectKeys.default)(obj, true).reduce((newObj, curr) => (0, _callWithParams.default)(fn, [newObj, obj[curr], curr, obj], 2), initialValue)
-const _default = exports.default = reduceObject
-
+const reduceObject = (obj, fn, initialValue = obj[(0, _objectKeys.default)(obj)[0]] || obj[0]) => Array.isArray(obj) ? obj.reduce(fn, initialValue) : (0, _objectKeys.default)(obj, true).reduce((newObj, curr) => (0, _callWithParams.default)(fn, [newObj, obj[curr], curr, obj], 2), initialValue);
+var _default = exports.default = reduceObject;
 },{"../functions/callWithParams":814,"./objectKeys":851,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.reduce.js":730}],854:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Set a value on an item, then return the value
- * @memberOf module:objectHelpers
- * @param {Object|Array} item - An object or array to be updated
- * @param {string|number} key - The key on the item which will have its value set
- * @param {*} value - Any value to be applied to the key
- * @returns {*}
+ * @param item - An object or array to be updated
+ * @param key - The key on the item which will have its value set
+ * @param value - Any value to be applied to the key
  */
 const setAndReturnValue = (item, key, value) => {
-  item[key] = value
-  return value
-}
-const _default = exports.default = setAndReturnValue
-
+  item[key] = value;
+  return value;
+};
+var _default = exports.default = setAndReturnValue;
 },{}],855:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Set a value on an item, then return the item.
  * NOTE: Argument order designed for usage with pipe
- * @memberOf module:objectHelpers
- * @param {string|number} key - The key on the item which will have its value set
- * @param {*} value - Any value to be applied to the key
- * @param {Object|Array} item - An object or array to be updated
- * @returns {Object|Array}
+ * @param key - The key on the item which will have its value set
+ * @param value - Any value to be applied to the key
+ * @param item - An object or array to be updated
  */
 const setValue = (key, value, item) => {
   // @ts-ignore
-  item[key] = value
-  return item
-}
-const _default = exports.default = setValue
-
+  item[key] = value;
+  return item;
+};
+var _default = exports.default = setValue;
 },{}],856:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-Object.defineProperty(exports, 'camelCase', {
+});
+Object.defineProperty(exports, "camelCase", {
   enumerable: true,
   get: function () {
-    return _camelCase.default
+    return _camelCase.default;
   }
-})
-exports.default = void 0
-Object.defineProperty(exports, 'kabobCase', {
+});
+exports.default = void 0;
+Object.defineProperty(exports, "kabobCase", {
   enumerable: true,
   get: function () {
-    return _kabobCase.default
+    return _kabobCase.default;
   }
-})
-Object.defineProperty(exports, 'makeFilepath', {
+});
+Object.defineProperty(exports, "makeFilepath", {
   enumerable: true,
   get: function () {
-    return _makeFilepath.default
+    return _makeFilepath.default;
   }
-})
-Object.defineProperty(exports, 'makeRelativePath', {
+});
+Object.defineProperty(exports, "makeRelativePath", {
   enumerable: true,
   get: function () {
-    return _makeRelativePath.default
+    return _makeRelativePath.default;
   }
-})
-Object.defineProperty(exports, 'regexEscape', {
+});
+Object.defineProperty(exports, "regexEscape", {
   enumerable: true,
   get: function () {
-    return _regexEscape.default
+    return _regexEscape.default;
   }
-})
-Object.defineProperty(exports, 'snakeCase', {
+});
+Object.defineProperty(exports, "snakeCase", {
   enumerable: true,
   get: function () {
-    return _snakeCase.default
+    return _snakeCase.default;
   }
-})
-Object.defineProperty(exports, 'strAfter', {
+});
+Object.defineProperty(exports, "strAfter", {
   enumerable: true,
   get: function () {
-    return _strAfter.default
+    return _strAfter.default;
   }
-})
-Object.defineProperty(exports, 'strAfterLast', {
+});
+Object.defineProperty(exports, "strAfterLast", {
   enumerable: true,
   get: function () {
-    return _strAfterLast.default
+    return _strAfterLast.default;
   }
-})
-Object.defineProperty(exports, 'strBefore', {
+});
+Object.defineProperty(exports, "strBefore", {
   enumerable: true,
   get: function () {
-    return _strBefore.default
+    return _strBefore.default;
   }
-})
-Object.defineProperty(exports, 'strBeforeLast', {
+});
+Object.defineProperty(exports, "strBeforeLast", {
   enumerable: true,
   get: function () {
-    return _strBeforeLast.default
+    return _strBeforeLast.default;
   }
-})
-Object.defineProperty(exports, 'titleCase', {
+});
+Object.defineProperty(exports, "titleCase", {
   enumerable: true,
   get: function () {
-    return _titleCase.default
+    return _titleCase.default;
   }
-})
-Object.defineProperty(exports, 'ucFirst', {
+});
+Object.defineProperty(exports, "ucFirst", {
   enumerable: true,
   get: function () {
-    return _ucFirst.default
+    return _ucFirst.default;
   }
-})
-Object.defineProperty(exports, 'words', {
+});
+Object.defineProperty(exports, "words", {
   enumerable: true,
   get: function () {
-    return _words.default
+    return _words.default;
   }
-})
-var _camelCase = _interopRequireDefault(require('./strings/camelCase'))
-var _kabobCase = _interopRequireDefault(require('./strings/kabobCase'))
-var _makeFilepath = _interopRequireDefault(require('./strings/makeFilepath'))
-var _makeRelativePath = _interopRequireDefault(require('./strings/makeRelativePath'))
-var _regexEscape = _interopRequireDefault(require('./strings/regexEscape'))
-var _snakeCase = _interopRequireDefault(require('./strings/snakeCase'))
-var _strAfter = _interopRequireDefault(require('./strings/strAfter'))
-var _strAfterLast = _interopRequireDefault(require('./strings/strAfterLast'))
-var _strBefore = _interopRequireDefault(require('./strings/strBefore'))
-var _strBeforeLast = _interopRequireDefault(require('./strings/strBeforeLast'))
-var _titleCase = _interopRequireDefault(require('./strings/titleCase'))
-var _ucFirst = _interopRequireDefault(require('./strings/ucFirst'))
-var _words = _interopRequireDefault(require('./strings/words'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+var _camelCase = _interopRequireDefault(require("./strings/camelCase"));
+var _kabobCase = _interopRequireDefault(require("./strings/kabobCase"));
+var _makeFilepath = _interopRequireDefault(require("./strings/makeFilepath"));
+var _makeRelativePath = _interopRequireDefault(require("./strings/makeRelativePath"));
+var _regexEscape = _interopRequireDefault(require("./strings/regexEscape"));
+var _snakeCase = _interopRequireDefault(require("./strings/snakeCase"));
+var _strAfter = _interopRequireDefault(require("./strings/strAfter"));
+var _strAfterLast = _interopRequireDefault(require("./strings/strAfterLast"));
+var _strBefore = _interopRequireDefault(require("./strings/strBefore"));
+var _strBeforeLast = _interopRequireDefault(require("./strings/strBeforeLast"));
+var _titleCase = _interopRequireDefault(require("./strings/titleCase"));
+var _ucFirst = _interopRequireDefault(require("./strings/ucFirst"));
+var _words = _interopRequireDefault(require("./strings/words"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Manage how strings are manipulated with these utilities.
- * @file
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module stringHelpers
- * @memberOf module:siFunciona
  */
-const _default = exports.default = {
+var _default = exports.default = {
   camelCase: _camelCase.default,
   kabobCase: _kabobCase.default,
   makeFilepath: _makeFilepath.default,
@@ -31493,420 +31112,380 @@ const _default = exports.default = {
   titleCase: _titleCase.default,
   ucFirst: _ucFirst.default,
   words: _words.default
-}
-
+};
 },{"./strings/camelCase":857,"./strings/kabobCase":858,"./strings/makeFilepath":859,"./strings/makeRelativePath":860,"./strings/regexEscape":861,"./strings/snakeCase":862,"./strings/strAfter":863,"./strings/strAfterLast":864,"./strings/strBefore":865,"./strings/strBeforeLast":866,"./strings/titleCase":867,"./strings/ucFirst":868,"./strings/words":869}],857:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-const _ucFirst = _interopRequireDefault(require('./ucFirst'))
-const _words = _interopRequireDefault(require('./words'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+var _ucFirst = _interopRequireDefault(require("./ucFirst"));
+var _words = _interopRequireDefault(require("./words"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Given a string in kebab-case, snake_case or 'Sentence case', convert to camelCase.
- * @memberOf module:stringHelpers
- * @param {string} str - The string to convert.
- * @returns {string}
+ * @param str - The string to convert.
  */
-const camelCase = str => (0, _words.default)(str).reduce((camel, part) => camel ? camel.concat((0, _ucFirst.default)(part)) : part.toLowerCase(), '')
-const _default = exports.default = camelCase
-
+const camelCase = str => (0, _words.default)(str).reduce((camel, part) => camel ? camel.concat((0, _ucFirst.default)(part)) : part.toLowerCase(), '');
+var _default = exports.default = camelCase;
 },{"./ucFirst":868,"./words":869,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.reduce.js":730}],858:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-const _words = _interopRequireDefault(require('./words'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+var _words = _interopRequireDefault(require("./words"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Given a string in snake_case, camelCase or 'Sentence case', convert to kabob-case.
- * @memberOf module:stringHelpers
- * @param {string} str - The string to convert.
- * @returns {string}
+ * @param str - The string to convert.
  */
-const kabobCase = str => (0, _words.default)(str).reduce((kabob, part) => kabob ? kabob.concat('-' + part.toLowerCase()) : part.toLowerCase(), '')
-const _default = exports.default = kabobCase
-
+const kabobCase = str => (0, _words.default)(str).reduce((kabob, part) => kabob ? kabob.concat('-' + part.toLowerCase()) : part.toLowerCase(), '');
+var _default = exports.default = kabobCase;
 },{"./words":869,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.reduce.js":730}],859:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.makeFilepath = exports.default = void 0
-const _strBeforeLast = _interopRequireDefault(require('./strBeforeLast'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.makeFilepath = exports.default = void 0;
+var _strBeforeLast = _interopRequireDefault(require("./strBeforeLast"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Format the given path so that it does not have trailing slashes and also correctly appends a path.
- * @memberOf module:stringHelpers
- * @param {string} root - The base path to start from.
- * @param {string} [append=''] - A path to append to `root` - may itself use `./` or `../` segments.
- * @returns {string}
+ * @param root - The base path to start from.
+ * @param append - A path to append to `root` - may itself use `./` or `../` segments.
  */
 const makeFilepath = (root, append = '') => {
   if (root.startsWith('./')) {
-    root = root.slice(2)
+    root = root.slice(2);
   }
   if (root.startsWith('/')) {
-    root = root.slice(1)
+    root = root.slice(1);
   }
   if (root.endsWith('/')) {
-    root = root.slice(0, -1)
+    root = root.slice(0, -1);
   }
   if (append.startsWith('/')) {
-    append = append.slice(1)
+    append = append.slice(1);
   }
   if (append.startsWith('./')) {
-    append = append.slice(2)
+    append = append.slice(2);
   }
   if (append.startsWith('../')) {
     if (!root) {
-      return append.endsWith('/') ? append.slice(0, -1) : append
+      return append.endsWith('/') ? append.slice(0, -1) : append;
     }
-    append = append.slice(3)
-    root = (0, _strBeforeLast.default)(root, '/')
-    return makeFilepath(root, append)
+    append = append.slice(3);
+    root = (0, _strBeforeLast.default)(root, '/');
+    return makeFilepath(root, append);
   }
   if (append.endsWith('/')) {
-    append = append.slice(0, -1)
+    append = append.slice(0, -1);
   }
   if (!root) {
-    return append
+    return append;
   }
-  return append ? `${root}/${append}` : root
-}
-exports.makeFilepath = makeFilepath
-const _default = exports.default = makeFilepath
-
+  return append ? `${root}/${append}` : root;
+};
+exports.makeFilepath = makeFilepath;
+var _default = exports.default = makeFilepath;
 },{"./strBeforeLast":866}],860:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.makeRelativePath = exports.default = void 0
-const _strBefore = _interopRequireDefault(require('./strBefore'))
-const _strAfter = _interopRequireDefault(require('./strAfter'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.makeRelativePath = exports.default = void 0;
+var _strBefore = _interopRequireDefault(require("./strBefore"));
+var _strAfter = _interopRequireDefault(require("./strAfter"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Compare two file paths and simplify them to a relative path.
- * @memberOf module:stringHelpers
- * @param {string} fromFile - The path of the file the resulting relative path will be used from.
- * @param {string} toFile - The path of the file being referenced.
- * @return {string} `toFile` expressed relative to `fromFile`.
+ * @param fromFile - The path of the file the resulting relative path will be used from.
+ * @param toFile - The path of the file being referenced.
+ * @returns `toFile` expressed relative to `fromFile`.
  */
 const makeRelativePath = (fromFile, toFile) => {
-  let relativePath = toFile
-  let nextPart = fromFile
-  let firstPart = (0, _strBefore.default)(nextPart, '/')
-  let hasMatches = false
+  let relativePath = toFile;
+  let nextPart = fromFile;
+  let firstPart = (0, _strBefore.default)(nextPart, '/');
+  let hasMatches = false;
   while (firstPart && relativePath.startsWith(firstPart)) {
-    relativePath = (0, _strAfter.default)(relativePath, `${firstPart}/`)
-    nextPart = (0, _strAfter.default)(nextPart, `${firstPart}/`)
-    firstPart = (0, _strBefore.default)(nextPart, '/')
-    hasMatches = true
+    relativePath = (0, _strAfter.default)(relativePath, `${firstPart}/`);
+    nextPart = (0, _strAfter.default)(nextPart, `${firstPart}/`);
+    firstPart = (0, _strBefore.default)(nextPart, '/');
+    hasMatches = true;
   }
   if (!hasMatches) {
     // No similar base paths, use the path as-is
-    return relativePath
+    return relativePath;
   }
-  let relativePrefix = ''
-  const nextParts = nextPart.split('/')
+  let relativePrefix = '';
+  const nextParts = nextPart.split('/');
   if (nextParts.length < 2) {
-    relativePrefix = './'
+    relativePrefix = './';
   }
   for (let i = 1; i < nextParts.length; ++i) {
-    relativePrefix += '../'
+    relativePrefix += '../';
   }
-  return relativePrefix + relativePath
-}
-exports.makeRelativePath = makeRelativePath
-const _default = exports.default = makeRelativePath
-
+  return relativePrefix + relativePath;
+};
+exports.makeRelativePath = makeRelativePath;
+var _default = exports.default = makeRelativePath;
 },{"./strAfter":863,"./strBefore":865}],861:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.regexEscape = exports.default = void 0
+});
+exports.regexEscape = exports.default = void 0;
 /**
  * Take a string and escape the regex characters.
- * @memberOf module:stringHelpers
- * @param {string} str - The string to escape, so it can be used literally inside a `RegExp`.
- * @returns {string}
+ * @param str - The string to escape, so it can be used literally inside a `RegExp`.
  */
-const regexEscape = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-exports.regexEscape = regexEscape
-const _default = exports.default = regexEscape
-
+const regexEscape = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+exports.regexEscape = regexEscape;
+var _default = exports.default = regexEscape;
 },{}],862:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-const _words = _interopRequireDefault(require('./words'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+var _words = _interopRequireDefault(require("./words"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Given a string in kebab-case, camelCase or 'Sentence case', convert to snake_case.
- * @memberOf module:stringHelpers
- * @param {string} str - The string to convert.
- * @returns {string}
+ * @param str - The string to convert.
  */
-const snakeCase = str => (0, _words.default)(str).reduce((snake, part) => snake ? snake.concat('_' + part.toLowerCase()) : part.toLowerCase(), '')
-const _default = exports.default = snakeCase
-
+const snakeCase = str => (0, _words.default)(str).reduce((snake, part) => snake ? snake.concat('_' + part.toLowerCase()) : part.toLowerCase(), '');
+var _default = exports.default = snakeCase;
 },{"./words":869,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.reduce.js":730}],863:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Retrieve the string part after the search match.
- * @memberOf module:stringHelpers
- * @param {string} str - The string to search within.
- * @param {string} search - The substring to search for.
- * @returns {string} The portion of `str` after the first occurrence of `search`, or `''` if not found.
+ * @param str - The string to search within.
+ * @param search - The substring to search for.
+ * @returns The portion of `str` after the first occurrence of `search`, or `''` if not found.
  */
 const strAfter = (str, search) => {
-  const index = str.indexOf(search)
-  return index === -1 ? '' : str.substring(index + search.length)
-}
-const _default = exports.default = strAfter
-
+  const index = str.indexOf(search);
+  return index === -1 ? '' : str.substring(index + search.length);
+};
+var _default = exports.default = strAfter;
 },{}],864:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Retrieve the string part after the last search match.
- * @memberOf module:stringHelpers
- * @param {string} str - The string to search within.
- * @param {string} search - The substring to search for.
- * @returns {string} The portion of `str` after the last occurrence of `search`, or `''` if not found.
+ * @param str - The string to search within.
+ * @param search - The substring to search for.
+ * @returns The portion of `str` after the last occurrence of `search`, or `''` if not found.
  */
 const strAfterLast = (str, search) => {
-  const index = str.lastIndexOf(search)
-  return index === -1 ? '' : str.substring(index + search.length)
-}
-const _default = exports.default = strAfterLast
-
+  const index = str.lastIndexOf(search);
+  return index === -1 ? '' : str.substring(index + search.length);
+};
+var _default = exports.default = strAfterLast;
 },{}],865:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Retrieve the string part before the search match.
- * @memberOf module:stringHelpers
- * @param {string} str - The string to search within.
- * @param {string} search - The substring to search for.
- * @returns {string} The portion of `str` before the first occurrence of `search`, or `''` if not found.
+ * @param str - The string to search within.
+ * @param search - The substring to search for.
+ * @returns The portion of `str` before the first occurrence of `search`, or `''` if not found.
  */
 const strBefore = (str, search) => {
-  const index = str.indexOf(search)
-  return index === -1 ? '' : str.slice(0, index)
-}
-const _default = exports.default = strBefore
-
+  const index = str.indexOf(search);
+  return index === -1 ? '' : str.slice(0, index);
+};
+var _default = exports.default = strBefore;
 },{}],866:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Retrieve the string part before the last search match.
- * @memberOf module:stringHelpers
- * @param {string} str - The string to search within.
- * @param {string} search - The substring to search for.
- * @returns {string} The portion of `str` before the last occurrence of `search`, or `''` if not found.
+ * @param str - The string to search within.
+ * @param search - The substring to search for.
+ * @returns The portion of `str` before the last occurrence of `search`, or `''` if not found.
  */
 const strBeforeLast = (str, search) => {
-  const index = str.lastIndexOf(search)
-  return index === -1 ? '' : str.substring(0, index)
-}
-const _default = exports.default = strBeforeLast
-
+  const index = str.lastIndexOf(search);
+  return index === -1 ? '' : str.substring(0, index);
+};
+var _default = exports.default = strBeforeLast;
 },{}],867:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-const _ucFirst = _interopRequireDefault(require('./ucFirst'))
-const _words = _interopRequireDefault(require('./words'))
-function _interopRequireDefault (e) { return e && e.__esModule ? e : { default: e } }
+});
+exports.default = void 0;
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+var _ucFirst = _interopRequireDefault(require("./ucFirst"));
+var _words = _interopRequireDefault(require("./words"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Given a string in kebab-case, snake_case, camelCase or 'Sentence case', convert to 'Title Case'.
- * @memberOf module:stringHelpers
- * @param {string} str - The string to convert.
- * @returns {string}
+ * @param str - The string to convert.
  */
-const titleCase = str => (0, _words.default)(str).reduce((title, part) => title ? title.concat(' ' + (0, _ucFirst.default)(part)) : (0, _ucFirst.default)(part), '')
-const _default = exports.default = titleCase
-
+const titleCase = str => (0, _words.default)(str).reduce((title, part) => title ? title.concat(' ' + (0, _ucFirst.default)(part)) : (0, _ucFirst.default)(part), '');
+var _default = exports.default = titleCase;
 },{"./ucFirst":868,"./words":869,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.reduce.js":730}],868:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Given a string, make the first character uppercase and the rest lowercase.
- * @memberOf module:stringHelpers
- * @param {string} str - The string to convert.
- * @returns {string}
+ * @param str - The string to convert.
  */
-const ucFirst = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
-const _default = exports.default = ucFirst
-
+const ucFirst = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+var _default = exports.default = ucFirst;
 },{}],869:[function(require,module,exports){
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.default = void 0
+});
+exports.default = void 0;
 /**
  * Split a string into sets of numbers or letters - the shared tokenizer behind camelCase/kabobCase/snakeCase/
  * titleCase, so each can rebuild the string in its own casing style.
- * @memberOf module:stringHelpers
- * @param {string} str - The string to split.
- * @returns {Array.<string>}
+ * @param str - The string to split.
  */
-const words = str => str.match(/\d+|[A-Z]?[a-z]+|[A-Za-z]+/g)
-const _default = exports.default = words
-
+const words = str => str.match(/\d+|[A-Z]?[a-z]+|[A-Za-z]+/g);
+var _default = exports.default = words;
 },{}],870:[function(require,module,exports){
-'use strict'
+"use strict";
 
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.for-each.js')
-require('core-js/modules/esnext.weak-map.delete-all.js')
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.for-each.js");
+require("core-js/modules/esnext.weak-map.delete-all.js");
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-const _exportNames = {}
-exports.default = void 0
-const _arrays = _interopRequireWildcard(require('./helpers/arrays'))
+});
+var _exportNames = {};
+exports.default = void 0;
+var _arrays = _interopRequireWildcard(require("./helpers/arrays"));
 Object.keys(_arrays).forEach(function (key) {
-  if (key === 'default' || key === '__esModule') return
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return
-  if (key in exports && exports[key] === _arrays[key]) return
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _arrays[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
-      return _arrays[key]
+      return _arrays[key];
     }
-  })
-})
-const _descriptors = _interopRequireWildcard(require('./helpers/descriptors'))
+  });
+});
+var _descriptors = _interopRequireWildcard(require("./helpers/descriptors"));
 Object.keys(_descriptors).forEach(function (key) {
-  if (key === 'default' || key === '__esModule') return
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return
-  if (key in exports && exports[key] === _descriptors[key]) return
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _descriptors[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
-      return _descriptors[key]
+      return _descriptors[key];
     }
-  })
-})
-const _functions = _interopRequireWildcard(require('./helpers/functions'))
+  });
+});
+var _functions = _interopRequireWildcard(require("./helpers/functions"));
 Object.keys(_functions).forEach(function (key) {
-  if (key === 'default' || key === '__esModule') return
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return
-  if (key in exports && exports[key] === _functions[key]) return
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _functions[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
-      return _functions[key]
+      return _functions[key];
     }
-  })
-})
-const _numbers = _interopRequireWildcard(require('./helpers/numbers'))
+  });
+});
+var _numbers = _interopRequireWildcard(require("./helpers/numbers"));
 Object.keys(_numbers).forEach(function (key) {
-  if (key === 'default' || key === '__esModule') return
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return
-  if (key in exports && exports[key] === _numbers[key]) return
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _numbers[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
-      return _numbers[key]
+      return _numbers[key];
     }
-  })
-})
-const _objects = _interopRequireWildcard(require('./helpers/objects'))
+  });
+});
+var _objects = _interopRequireWildcard(require("./helpers/objects"));
 Object.keys(_objects).forEach(function (key) {
-  if (key === 'default' || key === '__esModule') return
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return
-  if (key in exports && exports[key] === _objects[key]) return
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _objects[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
-      return _objects[key]
+      return _objects[key];
     }
-  })
-})
-const _strings = _interopRequireWildcard(require('./helpers/strings'))
+  });
+});
+var _strings = _interopRequireWildcard(require("./helpers/strings"));
 Object.keys(_strings).forEach(function (key) {
-  if (key === 'default' || key === '__esModule') return
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return
-  if (key in exports && exports[key] === _strings[key]) return
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _strings[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
-      return _strings[key]
+      return _strings[key];
     }
-  })
-})
-function _interopRequireWildcard (e, t) { if (typeof WeakMap === 'function') var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function (e, t) { if (!t && e && e.__esModule) return e; let o; let i; const f = { __proto__: null, default: e }; if (e === null || typeof e !== 'object' && typeof e !== 'function') return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f) } for (const t in e) t !== 'default' && {}.hasOwnProperty.call(e, t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, t)) && (i.get || i.set) ? o(f, t, i) : f[t] = e[t]); return f })(e, t) }
+  });
+});
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function (e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const t in e) "default" !== t && {}.hasOwnProperty.call(e, t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, t)) && (i.get || i.set) ? o(f, t, i) : f[t] = e[t]); return f; })(e, t); }
 /**
  * All the siFunciona system functions for stringing together functions and simplifying logic.
- * @file
- * @author Joshua Heagle <joshuaheagle@gmail.com>
- * @version 1.0.0
- * @module siFunciona
  */
 
 // Every function is available by name (import { curry } from 'si-funciona', require('si-funciona').curry) ...
 
 // ... and all together on the default export (import siFunciona from 'si-funciona', require('si-funciona').default)
-const siFunciona = Object.assign({}, _arrays.default, _descriptors.default, _functions.default, _numbers.default, _objects.default, _strings.default)
-const _default = exports.default = siFunciona
+const siFunciona = Object.assign({}, _arrays.default, _descriptors.default, _functions.default, _numbers.default, _objects.default, _strings.default);
+var _default = exports.default = siFunciona;
 if (void 0) {
   // @ts-ignore
-  (void 0).siFunciona = siFunciona
+  (void 0)['siFunciona'] = siFunciona;
 } else if (typeof window !== 'undefined') {
   // @ts-ignore
-  window.siFunciona = siFunciona
+  window['siFunciona'] = siFunciona;
 }
-
 },{"./helpers/arrays":792,"./helpers/descriptors":800,"./helpers/functions":813,"./helpers/numbers":825,"./helpers/objects":835,"./helpers/strings":856,"core-js/modules/esnext.iterator.constructor.js":724,"core-js/modules/esnext.iterator.for-each.js":728,"core-js/modules/esnext.weak-map.delete-all.js":761}]},{},[80])(80)
 });
