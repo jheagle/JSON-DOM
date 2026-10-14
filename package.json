@@ -9,7 +9,7 @@
     "json",
     "state management"
   ],
-  "version": "1.8.0",
+  "version": "1.8.1",
   "bugs": {
     "url": "https://github.com/jheagle/json-dom/issues"
   },
