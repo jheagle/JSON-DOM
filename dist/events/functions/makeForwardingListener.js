@@ -1,12 +1,12 @@
-'use strict'
+"use strict";
 
-require('core-js/modules/es.array.includes.js')
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/es.array.includes.js");
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-require('core-js/stable')
+});
+require("core-js/stable");
 /** Form-control elements whose state a listener might read directly off the event target. */
-const FORM_CONTROL_TAGS = ['INPUT', 'SELECT', 'TEXTAREA']
+const FORM_CONTROL_TAGS = ['INPUT', 'SELECT', 'TEXTAREA'];
 /**
  * Whatever live state a listener commonly reads directly off the real event's target - a checkbox's checked, an
  * input's value - captured here since the receiving end's corresponding element is otherwise an independent object
@@ -16,18 +16,16 @@ const FORM_CONTROL_TAGS = ['INPUT', 'SELECT', 'TEXTAREA']
  * @param target
  */
 const captureTargetState = target => {
-  const element = target
+  const element = target;
   if (!element || !FORM_CONTROL_TAGS.includes(element.tagName)) {
-    return undefined
+    return undefined;
   }
-  return element.type === 'checkbox' || element.type === 'radio'
-    ? {
-        checked: element.checked
-      }
-    : {
-        value: element.value
-      }
-}
+  return element.type === 'checkbox' || element.type === 'radio' ? {
+    checked: element.checked
+  } : {
+    value: element.value
+  };
+};
 /**
  * Build the listener function used in render-only mode: instead of running real logic locally, it packages the
  * event as a plain envelope (the id of the item it fired on, the event type, the registered listener name, any
@@ -42,5 +40,5 @@ const makeForwardingListener = (listenerName, transport) => (event, item, ...arg
   listenerFunc: listenerName,
   data: args,
   targetState: captureTargetState(event.target)
-})
-exports.default = makeForwardingListener
+});
+exports.default = makeForwardingListener;

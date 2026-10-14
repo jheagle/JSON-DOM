@@ -1,46 +1,44 @@
-'use strict'
+"use strict";
 
-const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
-  return mod && mod.__esModule
-    ? mod
-    : {
-        default: mod
-      }
-}
-Object.defineProperty(exports, '__esModule', {
+var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
+});
 /**
  * Setting up and handling events for items in a Virtual DOM (DomItem tree)
  */
-require('core-js/stable')
-const activateListener_1 = __importDefault(require('./functions/activateListener'))
-const addEventListener_1 = __importDefault(require('./functions/addEventListener'))
-const applyActiveListeners_1 = __importDefault(require('./functions/applyActiveListeners'))
-const assignListener_1 = __importDefault(require('./functions/assignListener'))
-const bindAllListeners_1 = __importDefault(require('./functions/bindAllListeners'))
-const bindElementListeners_1 = __importDefault(require('./functions/bindElementListeners'))
-const bindListeners_1 = __importDefault(require('./functions/bindListeners'))
-const deactivateListener_1 = __importDefault(require('./functions/deactivateListener'))
-const deactivateListeners_1 = __importDefault(require('./functions/deactivateListeners'))
-const findEventListener_1 = __importDefault(require('./functions/findEventListener'))
-const fullAddEventListener_1 = __importDefault(require('./functions/fullAddEventListener'))
-const fullRemoveEventListener_1 = __importDefault(require('./functions/fullRemoveEventListener'))
-const listenerOptions_1 = __importDefault(require('./functions/listenerOptions'))
-const makeEventHandler_1 = __importDefault(require('./functions/makeEventHandler'))
-const makeForwardingListener_1 = __importDefault(require('./functions/makeForwardingListener'))
-const receiveForwardedEvent_1 = __importDefault(require('./functions/receiveForwardedEvent'))
-const registerListener_1 = __importDefault(require('./functions/registerListener'))
-const registerListeners_1 = __importDefault(require('./functions/registerListeners'))
-const removeEventListener_1 = __importDefault(require('./functions/removeEventListener'))
-const retrieveListener_1 = __importDefault(require('./functions/retrieveListener'))
-const revokeActiveListeners_1 = __importDefault(require('./functions/revokeActiveListeners'))
-const setForwardEvents_1 = __importDefault(require('./functions/setForwardEvents'))
-const unassignListener_1 = __importDefault(require('./functions/unassignListener'))
-const createEventListener_1 = __importDefault(require('./objects/createEventListener'))
-const createEventProxy_1 = __importDefault(require('./objects/createEventProxy'))
-const createEventResponder_1 = __importDefault(require('./objects/createEventResponder'))
-const options_1 = __importDefault(require('./objects/options'))
+require("core-js/stable");
+const activateListener_1 = __importDefault(require("./functions/activateListener"));
+const addEventListener_1 = __importDefault(require("./functions/addEventListener"));
+const applyActiveListeners_1 = __importDefault(require("./functions/applyActiveListeners"));
+const assignListener_1 = __importDefault(require("./functions/assignListener"));
+const bindAllListeners_1 = __importDefault(require("./functions/bindAllListeners"));
+const bindElementListeners_1 = __importDefault(require("./functions/bindElementListeners"));
+const bindListeners_1 = __importDefault(require("./functions/bindListeners"));
+const deactivateListener_1 = __importDefault(require("./functions/deactivateListener"));
+const deactivateListeners_1 = __importDefault(require("./functions/deactivateListeners"));
+const findEventListener_1 = __importDefault(require("./functions/findEventListener"));
+const fullAddEventListener_1 = __importDefault(require("./functions/fullAddEventListener"));
+const fullRemoveEventListener_1 = __importDefault(require("./functions/fullRemoveEventListener"));
+const listenerOptions_1 = __importDefault(require("./functions/listenerOptions"));
+const makeEventHandler_1 = __importDefault(require("./functions/makeEventHandler"));
+const makeForwardingListener_1 = __importDefault(require("./functions/makeForwardingListener"));
+const receiveForwardedEvent_1 = __importDefault(require("./functions/receiveForwardedEvent"));
+const registerListener_1 = __importDefault(require("./functions/registerListener"));
+const registerListeners_1 = __importDefault(require("./functions/registerListeners"));
+const removeEventListener_1 = __importDefault(require("./functions/removeEventListener"));
+const retrieveListener_1 = __importDefault(require("./functions/retrieveListener"));
+const revokeActiveListeners_1 = __importDefault(require("./functions/revokeActiveListeners"));
+const setForwardEvents_1 = __importDefault(require("./functions/setForwardEvents"));
+const unassignListener_1 = __importDefault(require("./functions/unassignListener"));
+const createEventListener_1 = __importDefault(require("./objects/createEventListener"));
+const createEventProxy_1 = __importDefault(require("./objects/createEventProxy"));
+const createEventResponder_1 = __importDefault(require("./objects/createEventResponder"));
+const options_1 = __importDefault(require("./objects/options"));
 exports.default = {
   activateListener: activateListener_1.default,
   addEventListener: addEventListener_1.default,
@@ -69,4 +67,4 @@ exports.default = {
   createEventProxy: createEventProxy_1.default,
   createEventResponder: createEventResponder_1.default,
   options: options_1.default
-}
+};

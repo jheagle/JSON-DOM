@@ -1,22 +1,20 @@
-'use strict'
+"use strict";
 
-const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
-  return mod && mod.__esModule
-    ? mod
-    : {
-        default: mod
-      }
-}
-Object.defineProperty(exports, '__esModule', {
+var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-require('core-js/stable')
-const curry_1 = __importDefault(require('si-funciona/dist/helpers/functions/curry'))
-const pipe_1 = __importDefault(require('si-funciona/dist/helpers/functions/pipe'))
-const getTopParentItem_1 = __importDefault(require('../../domItem/tree/getTopParentItem'))
-const registerListener_1 = __importDefault(require('./registerListener'))
-const addEventListener_1 = __importDefault(require('./addEventListener'))
-const bindListeners_1 = __importDefault(require('./bindListeners'))
+});
+require("core-js/stable");
+const curry_1 = __importDefault(require("si-funciona/dist/helpers/functions/curry"));
+const pipe_1 = __importDefault(require("si-funciona/dist/helpers/functions/pipe"));
+const getTopParentItem_1 = __importDefault(require("../../domItem/tree/getTopParentItem"));
+const registerListener_1 = __importDefault(require("./registerListener"));
+const addEventListener_1 = __importDefault(require("./addEventListener"));
+const bindListeners_1 = __importDefault(require("./bindListeners"));
 /**
  * Register the listener function, attach it as a descriptor on the item, then bind it onto the
  * real element - the full setup sequence for a single event listener, in order:
@@ -34,12 +32,12 @@ const bindListeners_1 = __importDefault(require('./bindListeners'))
  * @param item - The DomItem which will receive the event listener.
  */
 const fullAddEventListener = (eventName, listener, name, customArgs, options, item) => {
-  const listenerName = name ?? listener.name
-  customArgs = customArgs ?? null
-  options = options ?? false
+  const listenerName = name ?? listener.name;
+  customArgs = customArgs ?? null;
+  options = options ?? false;
   return (0, pipe_1.default)(currentItem => {
-    (0, registerListener_1.default)(listener, listenerName, (0, getTopParentItem_1.default)(currentItem))
-    return currentItem
-  }, (0, curry_1.default)(addEventListener_1.default)(eventName, listenerName, customArgs, options), bindListeners_1.default)(item)
-}
-exports.default = fullAddEventListener
+    (0, registerListener_1.default)(listener, listenerName, (0, getTopParentItem_1.default)(currentItem));
+    return currentItem;
+  }, (0, curry_1.default)(addEventListener_1.default)(eventName, listenerName, customArgs, options), bindListeners_1.default)(item);
+};
+exports.default = fullAddEventListener;

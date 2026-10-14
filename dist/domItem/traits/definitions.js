@@ -1,21 +1,21 @@
-'use strict'
+"use strict";
 
-require('core-js/modules/esnext.map.delete-all.js')
-require('core-js/modules/esnext.map.every.js')
-require('core-js/modules/esnext.map.filter.js')
-require('core-js/modules/esnext.map.find.js')
-require('core-js/modules/esnext.map.find-key.js')
-require('core-js/modules/esnext.map.includes.js')
-require('core-js/modules/esnext.map.key-of.js')
-require('core-js/modules/esnext.map.map-keys.js')
-require('core-js/modules/esnext.map.map-values.js')
-require('core-js/modules/esnext.map.merge.js')
-require('core-js/modules/esnext.map.reduce.js')
-require('core-js/modules/esnext.map.some.js')
-require('core-js/modules/esnext.map.update.js')
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/esnext.map.delete-all.js");
+require("core-js/modules/esnext.map.every.js");
+require("core-js/modules/esnext.map.filter.js");
+require("core-js/modules/esnext.map.find.js");
+require("core-js/modules/esnext.map.find-key.js");
+require("core-js/modules/esnext.map.includes.js");
+require("core-js/modules/esnext.map.key-of.js");
+require("core-js/modules/esnext.map.map-keys.js");
+require("core-js/modules/esnext.map.map-values.js");
+require("core-js/modules/esnext.map.merge.js");
+require("core-js/modules/esnext.map.reduce.js");
+require("core-js/modules/esnext.map.some.js");
+require("core-js/modules/esnext.map.update.js");
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
+});
 /**
  * What each trait is at runtime, by name. render is the one json-dom brings; other libraries add theirs with
  * defineTrait.
@@ -26,5 +26,5 @@ const definitions = new Map([['render', {
   defaults: () => ({
     element: null
   })
-}]])
-exports.default = definitions
+}]]);
+exports.default = definitions;

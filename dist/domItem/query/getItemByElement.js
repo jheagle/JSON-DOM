@@ -1,9 +1,9 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-require('core-js/stable')
+});
+require("core-js/stable");
 /**
  * Find the item (item itself, or one of its descendants) whose element is the one given, or null when none match.
  * Only searches item and its own subtree: an event's target is always the item a listener is attached to, or one of
@@ -14,14 +14,14 @@ require('core-js/stable')
  */
 const getItemByElement = (item, element) => {
   if (item.element === element) {
-    return item
+    return item;
   }
   for (const child of item.children) {
-    const found = getItemByElement(child, element)
+    const found = getItemByElement(child, element);
     if (found) {
-      return found
+      return found;
     }
   }
-  return null
-}
-exports.default = getItemByElement
+  return null;
+};
+exports.default = getItemByElement;

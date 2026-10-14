@@ -1,11 +1,11 @@
-'use strict'
+"use strict";
 
-require('core-js/modules/esnext.iterator.constructor.js')
-require('core-js/modules/esnext.iterator.reduce.js')
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/esnext.iterator.constructor.js");
+require("core-js/modules/esnext.iterator.reduce.js");
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-require('core-js/stable')
+});
+require("core-js/stable");
 /**
  * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
  * This function will check all the children starting from and including item, and run the test function on each
@@ -15,5 +15,5 @@ require('core-js/stable')
  * criteria
  * @param test - Assess each child, and return the ones which qualify
  */
-const gatherChildItems = (item, test) => test(item, item.children.reduce((a, b) => a.concat(gatherChildItems(b, test)), []))
-exports.default = gatherChildItems
+const gatherChildItems = (item, test) => test(item, item.children.reduce((a, b) => a.concat(gatherChildItems(b, test)), []));
+exports.default = gatherChildItems;

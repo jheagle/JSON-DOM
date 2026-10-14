@@ -1,19 +1,17 @@
-'use strict'
+"use strict";
 
-require('core-js/modules/es.array.includes.js')
-const __importDefault = void 0 && (void 0).__importDefault || function (mod) {
-  return mod && mod.__esModule
-    ? mod
-    : {
-        default: mod
-      }
-}
-Object.defineProperty(exports, '__esModule', {
+require("core-js/modules/es.array.includes.js");
+var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-require('core-js/stable')
-const documentItem_1 = __importDefault(require('../../domItem/objects/documentItem'))
-const makeForwardingListener_1 = __importDefault(require('./makeForwardingListener'))
+});
+require("core-js/stable");
+const documentItem_1 = __importDefault(require("../../domItem/objects/documentItem"));
+const makeForwardingListener_1 = __importDefault(require("./makeForwardingListener"));
 /**
  * Based on the provided function / listener name, retrieve the associated function from the root domEvents.DomItem.
  * If a raw function is passed instead of a registered name, it is returned as-is - see {@link EventListener}'s
@@ -26,14 +24,14 @@ const makeForwardingListener_1 = __importDefault(require('./makeForwardingListen
  */
 const retrieveListener = (listenerName, parent = documentItem_1.default) => {
   if (typeof listenerName === 'function') {
-    return listenerName
+    return listenerName;
   }
   if (parent.forwardEvents) {
-    return (0, makeForwardingListener_1.default)(listenerName, parent.forwardEvents)
+    return (0, makeForwardingListener_1.default)(listenerName, parent.forwardEvents);
   }
   if (!Object.keys(parent.eventActions).includes(listenerName)) {
-    throw new Error(`Undefined listener function on this DomItemRoot: ${listenerName}`)
+    throw new Error(`Undefined listener function on this DomItemRoot: ${listenerName}`);
   }
-  return parent.eventActions[listenerName]
-}
-exports.default = retrieveListener
+  return parent.eventActions[listenerName];
+};
+exports.default = retrieveListener;
