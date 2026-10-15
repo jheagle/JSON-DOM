@@ -8,6 +8,12 @@
       }
     ]
   },
+  "copyFiles": [
+    {
+      "from": "browser/*.js",
+      "to": "../joshuaheagle.local/projects/json-dom/browser"
+    }
+  ],
   "docs": {
     "enabled": true,
     "from": "src",
