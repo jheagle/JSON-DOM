@@ -1,1 +1,6 @@
 * text=auto eol=lf
+
+# Built output is committed for GitHub installs but is generated:
+# collapse it in PR diffs and leave it out of language stats.
+dist/** linguist-generated=true
+browser/** linguist-generated=true
