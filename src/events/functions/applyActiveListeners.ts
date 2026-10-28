@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import getListenerOptions from '../objects/options/getListenerOptions'
 import numberToOptions from '../objects/options/numberToOptions'

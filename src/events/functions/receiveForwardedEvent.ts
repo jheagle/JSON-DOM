@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import { getItemById } from '../../domItem/tree/itemIdIndex'
 import type { DomItem, DomItemRoot } from '../../domItem/types'
 import type { ForwardedEvent } from '../types'

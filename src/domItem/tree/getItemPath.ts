@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import type { DomItem, ItemPath } from '../types'
 

@@ -1,7 +1,6 @@
 /**
  * Setting up and handling events for items in a Virtual DOM (DomItem tree)
  */
-import 'core-js/stable'
 import activateListener from './functions/activateListener'
 import addEventListener from './functions/addEventListener'
 import applyActiveListeners from './functions/applyActiveListeners'

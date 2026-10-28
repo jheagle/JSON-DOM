@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import domItemToJson from './domItemToJson'
 import removeEmptyProperties from './removeEmptyProperties'
 

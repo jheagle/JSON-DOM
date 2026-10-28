@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import removeEmptyProperties from './removeEmptyProperties'
 import type { CoreItem } from '../domItem/types'

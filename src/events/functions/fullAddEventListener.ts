@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import curry from 'si-funciona/dist/helpers/functions/curry'
 import pipe from 'si-funciona/dist/helpers/functions/pipe'
 import getTopParentItem from '../../domItem/tree/getTopParentItem'

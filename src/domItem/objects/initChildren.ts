@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import createDomItem from './createDomItem'
 import onBodyLoad from 'si-funciona/dist/helpers/functions/onBodyLoad'
 import type { DomItem } from '../types'

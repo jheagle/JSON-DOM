@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import definitions from './definitions'
 import type { TraitDefinition } from '../types'
 

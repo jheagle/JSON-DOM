@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import elementHasAttribute from './elementHasAttribute'
 import createChangeList from './createChangeList'

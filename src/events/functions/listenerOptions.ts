@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import type { ListenerOptions } from '../types'
 
 /** The options which will be used, and a flag remembering whether the browser understands an options object. */

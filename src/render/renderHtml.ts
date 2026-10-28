@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import documentItem from '../domItem/objects/documentItem'
 import insertChild from '../domItem/tree/insertChild'
 import { registerItemIds } from '../domItem/tree/itemIdIndex'

@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import createDomItem from './createDomItem'
 import initChildren from './initChildren'
 import initRoot from './initRoot'

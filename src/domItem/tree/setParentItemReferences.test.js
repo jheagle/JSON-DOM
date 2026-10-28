@@ -1,7 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-import 'core-js/stable'
 import setParentItemReferences from './setParentItemReferences'
 
 describe('setParentItemReferences', () => {

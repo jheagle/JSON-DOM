@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import activateListener from './activateListener'
 import applyActiveListeners from './applyActiveListeners'
 import type { DomItem } from '../../domItem/types'

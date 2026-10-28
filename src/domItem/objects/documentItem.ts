@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import documentDomItem from './documentDomItem'
 import type { DomItemRoot } from '../types'
 

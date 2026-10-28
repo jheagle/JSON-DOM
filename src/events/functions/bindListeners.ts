@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import bindElementListeners from './bindElementListeners'
 import siFunciona from 'si-funciona'
 import type { DomItem } from '../../domItem/types'

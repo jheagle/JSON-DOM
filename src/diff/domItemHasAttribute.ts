@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import getAssignedStyles from './getAssignedStyles'
 import type { DomItem, StyleValues } from '../domItem/types'

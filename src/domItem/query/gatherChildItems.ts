@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import type { ChildTest, DomItem } from '../types'
 
 /**

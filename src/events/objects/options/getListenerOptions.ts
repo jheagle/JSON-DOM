@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import type { OptionsTemplate } from '../../types'
 
 const CAPTURE = 1

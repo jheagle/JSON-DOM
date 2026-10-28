@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import documentItem from '../../domItem/objects/documentItem'
 import type { DomItemRoot } from '../../domItem/types'
 import type { ListenerFunction } from '../types'

@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import createDomItem from '../domItem/objects/createDomItem'
 import type { DomElement, DomItem } from '../domItem/types'
 

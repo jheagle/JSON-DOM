@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import documentItem from '../objects/documentItem'
 import gatherChildItems from './gatherChildItems'
 import type { DomItem } from '../types'

@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import createChangeList from './createChangeList'
 import domItemChanges from './domItemChanges'
 import domItemHasAttribute from './domItemHasAttribute'

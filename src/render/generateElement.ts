@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import updateElement from './updateElement'
 import type { DomItem } from '../domItem/types'
 

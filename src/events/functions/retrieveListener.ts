@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import documentItem from '../../domItem/objects/documentItem'
 import makeForwardingListener from './makeForwardingListener'
 import type { DomItemRoot } from '../../domItem/types'

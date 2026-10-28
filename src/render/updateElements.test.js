@@ -1,7 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-import 'core-js/stable'
 import createDomItem from '../domItem/objects/createDomItem'
 import updateElements from './updateElements'
 import documentDomItem from '../domItem/objects/documentDomItem'

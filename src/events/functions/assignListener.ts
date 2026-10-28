@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import listenerOptions from './listenerOptions'
 import type { EventHandler, ListenerOptions, ListenerTarget } from '../types'
 
