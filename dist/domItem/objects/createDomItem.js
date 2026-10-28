@@ -10,7 +10,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const createCoreItem_1 = __importDefault(require("./createCoreItem"));
 const withTrait_1 = __importDefault(require("../traits/withTrait"));
 /**

@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 /**
  * Find the item (item itself, or one of its descendants) whose element is the one given, or null when none match.
  * Only searches item and its own subtree: an event's target is always the item a listener is attached to, or one of

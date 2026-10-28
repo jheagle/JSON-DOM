@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", {
  * Core Virtual DOM (DomItem tree) management: building items, the traits they carry, and finding and changing
  * items in a tree.
  */
-require("core-js/stable");
 const addDomItemProperties_1 = __importDefault(require("./objects/addDomItemProperties"));
 const appendChild_1 = __importDefault(require("./tree/appendChild"));
 const createCoreItem_1 = __importDefault(require("./objects/createCoreItem"));

@@ -8,7 +8,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const documentItem_1 = __importDefault(require("../../domItem/objects/documentItem"));
 /**
  * Switch the root item into render-only mode: every registered listener name resolves to a forwarder instead of a

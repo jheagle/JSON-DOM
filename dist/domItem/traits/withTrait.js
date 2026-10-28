@@ -8,7 +8,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const definitions_1 = __importDefault(require("./definitions"));
 /**
  * Give an item a trait: the trait's defaults and the given data are put on the item (the same object, not a copy), and

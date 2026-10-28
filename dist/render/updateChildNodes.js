@@ -12,7 +12,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const updateElement_1 = __importDefault(require("./updateElement"));
 /**
  * Update all the childNodes for this domItem element to mach domItem children.

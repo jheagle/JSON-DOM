@@ -5,6 +5,5 @@
  * needs to go the other way (DOM back to JSON) either, so this excludes deflate, the one part of
  * the full build with no other internal code path depending on it.
  */
-import 'core-js/stable';
 declare const jsonDomRenderOnly: any;
 export = jsonDomRenderOnly;

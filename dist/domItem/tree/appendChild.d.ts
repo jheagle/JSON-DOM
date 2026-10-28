@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem } from '../types';
 /**
  * Append a child to the end of given parent's children list.

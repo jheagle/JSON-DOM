@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 /**
  * Store the handler function and associated abort controller instance if available to be used when events are triggered.
  * @param eventHandler - The eventHandler wrapped function to be called for the event.

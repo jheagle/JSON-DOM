@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem } from '../domItem/types';
 /**
  * This is a shortcut for syncing a Virtual DOM (DomItem tree) item onto the real HTML DOM: builds the real elements

@@ -10,7 +10,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const hasTrait_1 = __importDefault(require("./hasTrait"));
 /**
  * Whether an item, and every item below it, has the render trait: the tree json-dom's render and sync functions work

@@ -8,7 +8,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const definitions_1 = __importDefault(require("./definitions"));
 /**
  * Describe a trait so json-dom knows what it is at runtime: the properties it puts on an item (so they can be left out

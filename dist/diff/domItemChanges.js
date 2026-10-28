@@ -11,7 +11,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const si_funciona_1 = __importDefault(require("si-funciona"));
 const elementHasAttribute_1 = __importDefault(require("./elementHasAttribute"));
 const createChangeList_1 = __importDefault(require("./createChangeList"));

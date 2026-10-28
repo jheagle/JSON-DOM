@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { ForwardEventsFunction, ListenerFunction } from '../types';
 /**
  * Build the listener function used in render-only mode: instead of running real logic locally, it packages the

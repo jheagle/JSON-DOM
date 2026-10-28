@@ -5,7 +5,6 @@ require("core-js/modules/esnext.iterator.for-each.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 /**
  * For each child of this item, set the parentItem references.
  * @param item - The DomItem to have parent references applied.

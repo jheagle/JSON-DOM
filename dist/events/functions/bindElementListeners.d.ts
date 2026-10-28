@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem } from '../../domItem/types';
 /**
  * Receive a DomItem with eventListeners and apply the event listeners onto the Dom element.

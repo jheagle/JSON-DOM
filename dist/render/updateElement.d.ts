@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem } from '../domItem/types';
 /**
  * Update a single objects.DomItem element with the provided attributes / style / elementProperties.

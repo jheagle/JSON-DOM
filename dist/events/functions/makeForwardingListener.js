@@ -4,7 +4,6 @@ require("core-js/modules/es.array.includes.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 /** Form-control elements whose state a listener might read directly off the event target. */
 const FORM_CONTROL_TAGS = ['INPUT', 'SELECT', 'TEXTAREA'];
 /**

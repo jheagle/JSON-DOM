@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem } from '../types';
 /**
  * Insert a child into a parent's children list at a given position (like appendChild, but positioned). Appending is

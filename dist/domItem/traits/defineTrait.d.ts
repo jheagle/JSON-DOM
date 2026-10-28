@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { TraitDefinition } from '../types';
 /**
  * Describe a trait so json-dom knows what it is at runtime: the properties it puts on an item (so they can be left out

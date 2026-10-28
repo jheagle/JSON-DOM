@@ -1,7 +1,3 @@
-/**
- * Setting up and handling events for items in a Virtual DOM (DomItem tree)
- */
-import 'core-js/stable';
 declare const _default: {
     activateListener: (eventName: import("./types").EventName, eventListener: import("./types").ListenerDescriptor, item: import("../domItem/types").DomItem) => import("../domItem/types").DomItem;
     addEventListener: (eventName: import("./types").EventName, listenerFunction: string | import("./types").ListenerFunction, customArgs: object | null | undefined, options: import("./types").ListenerOptions | null | undefined, item: import("../domItem/types").DomItem) => import("../domItem/types").DomItem;

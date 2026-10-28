@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { CoreItem, DomItemConfig } from '../types';
 /**
  * Create the generic item, without the render trait. Every property which is not given gets its default. The given

@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { CoreItem, DomItem } from '../types';
 /**
  * Whether an item, and every item below it, has the render trait: the tree json-dom's render and sync functions work

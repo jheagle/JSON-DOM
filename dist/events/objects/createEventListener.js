@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 /**
  * Prepare an eventListener object to attach to a DOMItem
  * @param listenerProperties

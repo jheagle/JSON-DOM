@@ -8,7 +8,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const setParentItemReferences_1 = __importDefault(require("../domItem/tree/setParentItemReferences"));
 const addDomItemProperties_1 = __importDefault(require("../domItem/objects/addDomItemProperties"));
 /**

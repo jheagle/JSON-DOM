@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem, DomItemConfig } from '../types';
 /**
  * This is the basic Object for representing a node in json-dom's Virtual DOM (DomItem tree): a generic item (see

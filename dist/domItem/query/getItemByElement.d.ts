@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem } from '../types';
 /**
  * Find the item (item itself, or one of its descendants) whose element is the one given, or null when none match.

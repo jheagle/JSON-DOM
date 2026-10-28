@@ -12,7 +12,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
     "default": mod
   };
 };
-require("core-js/stable");
 const index_1 = __importDefault(require("./events/index"));
 const index_2 = __importDefault(require("./domItem/index"));
 const index_3 = __importDefault(require("./inflate/index"));

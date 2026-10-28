@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { StyleValues } from '../domItem/types';
 /**
  * Get all the styles which have been assigned to this element. Assigned styles are indicated as numeric-key

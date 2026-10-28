@@ -11,7 +11,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const createDomItem_1 = __importDefault(require("../domItem/objects/createDomItem"));
 /**
  * Update all the children for this domItem to match the domItem element childNodes.

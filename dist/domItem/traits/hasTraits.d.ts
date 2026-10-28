@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { CoreItem, TraitName, WithTraits } from '../types';
 /**
  * Whether an item has all of these traits. It is also a type guard: after the check the data of every one of the traits

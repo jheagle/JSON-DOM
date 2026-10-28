@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem, DomItemRoot } from '../types';
 export declare const generateItemId: () => number;
 /**
