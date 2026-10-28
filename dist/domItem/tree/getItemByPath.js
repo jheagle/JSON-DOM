@@ -5,7 +5,6 @@ require("core-js/modules/esnext.iterator.reduce.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 /**
  * Resolve a path (as built by getItemPath) back to the item it points at, starting from the root. Throws when the
  * path no longer matches the tree's current shape - exactly like a stale reference to a real DOM element would, a

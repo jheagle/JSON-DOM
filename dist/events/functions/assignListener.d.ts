@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { EventHandler, ListenerOptions, ListenerTarget } from '../types';
 /**
  * Provide compatibility for assigning listeners.

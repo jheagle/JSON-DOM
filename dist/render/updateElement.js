@@ -9,7 +9,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const bindListeners_1 = __importDefault(require("../events/functions/bindListeners"));
 const deactivateListeners_1 = __importDefault(require("../events/functions/deactivateListeners"));
 const domItemChanges_1 = __importDefault(require("../diff/domItemChanges"));

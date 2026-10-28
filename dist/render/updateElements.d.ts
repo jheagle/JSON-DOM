@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem } from '../domItem/types';
 /**
  * Generate HTML element data for each object in the matrix

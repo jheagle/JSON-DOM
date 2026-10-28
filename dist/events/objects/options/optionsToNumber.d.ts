@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { ListenerOptions, OptionsTemplate } from '../../types';
 /**
  * Take the given options and convert them (using binary) to an integer. Given listener options, each one is assigned a

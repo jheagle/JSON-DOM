@@ -1,8 +1,3 @@
-/**
- * Core Virtual DOM (DomItem tree) management: building items, the traits they carry, and finding and changing
- * items in a tree.
- */
-import 'core-js/stable';
 declare const _default: {
     addDomItemProperties: (item: import("./types").DomItemConfig) => import("./types").DomItem;
     appendChild: (parent: import("./types").DomItem, child: import("./types").DomItem) => import("./types").DomItem;

@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 /**
  * Provide compatibility for using the options parameter of addEventListener
  * @param options - An object or boolean with the listener options

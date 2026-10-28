@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const itemIdIndex_1 = require("../../domItem/tree/itemIdIndex");
 /**
  * The receiving end of makeForwardingListener's envelope: resolve the item it was built for, replay any live target

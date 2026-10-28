@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { ChildTest } from '../types';
 /**
  * Retrieve the {@link module:domGeneral~testChildItem} function by providing an attribute and value to check.

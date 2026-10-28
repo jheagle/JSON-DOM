@@ -11,7 +11,6 @@ Object.defineProperty(exports, "__esModule", {
 /**
  * Setting up and handling events for items in a Virtual DOM (DomItem tree)
  */
-require("core-js/stable");
 const activateListener_1 = __importDefault(require("./functions/activateListener"));
 const addEventListener_1 = __importDefault(require("./functions/addEventListener"));
 const applyActiveListeners_1 = __importDefault(require("./functions/applyActiveListeners"));

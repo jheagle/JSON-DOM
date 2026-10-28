@@ -8,7 +8,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const bindListeners_1 = __importDefault(require("./bindListeners"));
 /**
  * Based on the eventListeners property of the provided item, bind the listeners to the associated element property

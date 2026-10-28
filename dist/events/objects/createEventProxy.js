@@ -8,7 +8,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const getItemByElement_1 = __importDefault(require("../../domItem/query/getItemByElement"));
 /**
  * Return a modified version of the event: adds domItemTarget and currentDomItemTarget, next to the real DOM's own

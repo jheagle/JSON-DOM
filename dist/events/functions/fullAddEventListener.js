@@ -8,7 +8,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const curry_1 = __importDefault(require("si-funciona/dist/helpers/functions/curry"));
 const pipe_1 = __importDefault(require("si-funciona/dist/helpers/functions/pipe"));
 const getTopParentItem_1 = __importDefault(require("../../domItem/tree/getTopParentItem"));

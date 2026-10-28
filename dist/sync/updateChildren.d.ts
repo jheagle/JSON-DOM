@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem } from '../domItem/types';
 /**
  * Update all the children for this domItem to match the domItem element childNodes.

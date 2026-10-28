@@ -11,7 +11,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getItemById = exports.unregisterItemIds = exports.registerItemIds = exports.generateItemId = void 0;
-require("core-js/stable");
 const si_funciona_1 = __importDefault(require("si-funciona"));
 const collect_your_stuff_1 = require("collect-your-stuff");
 /** One lookup index per json-dom process: every root's own ids live in their own scope, so two unrelated trees

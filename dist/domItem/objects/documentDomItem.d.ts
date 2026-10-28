@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItemRoot } from '../types';
 import type { ListenerFunction } from '../../events/types';
 /**

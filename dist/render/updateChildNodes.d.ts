@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem } from '../domItem/types';
 /**
  * Update all the childNodes for this domItem element to mach domItem children.

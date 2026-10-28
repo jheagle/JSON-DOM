@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem, ItemPath } from '../types';
 /**
  * Resolve a path (as built by getItemPath) back to the item it points at, starting from the root. Throws when the

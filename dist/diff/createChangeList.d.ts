@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { ChangeList } from './types';
 /**
  * Create the change list template.

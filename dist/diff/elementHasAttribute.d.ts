@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { AttributeComparison } from './types';
 /**
  * Check if the provided Element has the provided attributes.

@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem } from '../domItem/types';
 /**
  * Convert DOM Item to JSON string.

@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem } from '../../domItem/types';
 /**
  * Set all the listeners for this DOMItem to be inactive.

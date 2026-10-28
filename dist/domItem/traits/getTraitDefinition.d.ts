@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { TraitDefinition } from '../types';
 /**
  * The runtime definition of a trait, if it was defined.

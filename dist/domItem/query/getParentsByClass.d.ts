@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem } from '../types';
 /**
  * Helper for getting all domGeneral.DomItems going up from item's parent, each one carrying the given class, among

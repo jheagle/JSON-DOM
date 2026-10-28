@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem, DomItemConfig } from '../types';
 /**
  * Ensure all basic properties of the DomItem are present.

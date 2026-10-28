@@ -1,4 +1,3 @@
-import 'core-js/stable';
 declare const _default: {
     createChangeList: ({ removed, added }?: Partial<Pick<import("./types").ChangeList, "removed" | "added">>) => import("./types").ChangeList;
     domItemChanges: (domItem: import("../domItem/types").DomItem) => import("./types").ChangeList;

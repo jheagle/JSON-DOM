@@ -8,7 +8,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const updateElement_1 = __importDefault(require("./updateElement"));
 /**
  * Create a new DOM Node based on name and data.

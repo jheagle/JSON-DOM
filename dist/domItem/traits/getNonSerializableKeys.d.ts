@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { CoreItem } from '../types';
 /**
  * The properties an item has only because of its traits, and which do not belong in json (the element of the render

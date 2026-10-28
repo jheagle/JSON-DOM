@@ -8,7 +8,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const removeEventListener_1 = __importDefault(require("./removeEventListener"));
 /**
  * Find and remove a listener that was registered by name (e.g. via {@link fullAddEventListener}) - the counterpart

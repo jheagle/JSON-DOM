@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 /**
  * Insert a child into a parent's children list at a given position (like appendChild, but positioned). Appending is
  * insertChild at the end: `appendChild(parent, child)` is `insertChild(parent, child, parent.children.length)`.

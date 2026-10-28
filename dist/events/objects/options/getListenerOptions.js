@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const CAPTURE = 1;
 const ONCE = 2;
 const PASSIVE = 4;

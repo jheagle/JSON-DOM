@@ -8,7 +8,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const documentItem_1 = __importDefault(require("../domItem/objects/documentItem"));
 const insertChild_1 = __importDefault(require("../domItem/tree/insertChild"));
 const itemIdIndex_1 = require("../domItem/tree/itemIdIndex");

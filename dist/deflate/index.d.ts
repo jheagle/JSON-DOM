@@ -1,4 +1,3 @@
-import 'core-js/stable';
 declare const _default: {
     domItemToJson: (item: import("../domItem/types").CoreItem, { propertiesToDelete }?: {
         propertiesToDelete?: string[];

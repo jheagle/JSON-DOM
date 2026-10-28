@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { CoreItem, TraitName, TraitRegistry, WithTraits } from '../types';
 /**
  * Give an item a trait: the trait's defaults and the given data are put on the item (the same object, not a copy), and

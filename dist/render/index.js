@@ -8,7 +8,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const generateElement_1 = __importDefault(require("./generateElement"));
 const renderHtml_1 = __importDefault(require("./renderHtml"));
 const updateChildNodes_1 = __importDefault(require("./updateChildNodes"));

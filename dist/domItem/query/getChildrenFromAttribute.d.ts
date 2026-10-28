@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem } from '../types';
 /**
  * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.

@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem } from '../../domItem/types';
 /**
  * Based on the eventListeners property of the provided item, bind the

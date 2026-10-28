@@ -11,7 +11,6 @@ Object.defineProperty(exports, "__esModule", {
 /**
  * Be able to use Flags (Options) in a well-formed way.
  */
-require("core-js/stable");
 const getListenerOptions_1 = __importDefault(require("./options/getListenerOptions"));
 const numberToOptions_1 = __importDefault(require("./options/numberToOptions"));
 const optionsToNumber_1 = __importDefault(require("./options/optionsToNumber"));

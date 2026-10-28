@@ -10,7 +10,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const createDomItem_1 = __importDefault(require("./createDomItem"));
 /**
  * Ensure all basic properties of the DomItem are present.

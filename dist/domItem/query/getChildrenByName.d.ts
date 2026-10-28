@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem } from '../types';
 /**
  * Helper for getting all domGeneral.DomItems starting at parent and having specified name attribute

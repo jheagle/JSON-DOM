@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { DomItem, ItemPath } from '../types';
 /**
  * The path from the root to an item: the index of the item among its parent's children, at each level from the top

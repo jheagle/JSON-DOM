@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 /**
  * Append a child to the end of given parent's children list.
  * @param parent - The parent that will receive the child.

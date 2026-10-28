@@ -5,7 +5,6 @@ require("core-js/modules/esnext.iterator.reduce.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 /**
  * A selector function for retrieving existing child domGeneral.DomItems from the given parent item.
  * This function will check all the children starting from and including item, and run the test function on each

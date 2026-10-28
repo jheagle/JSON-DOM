@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-require("core-js/stable");
 const itemIdIndex_1 = require("./itemIdIndex");
 /**
  * Reverse of appendHtml, remove a DomItem and have the associated element removed.

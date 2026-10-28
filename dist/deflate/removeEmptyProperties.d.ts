@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { CoreItem } from '../domItem/types';
 /**
  * Remove all empty properties to reduce total size of the object.

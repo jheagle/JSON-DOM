@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import type { ListenerDescriptor } from '../types';
 /**
  * Prepare an eventListener object to attach to a DOMItem
