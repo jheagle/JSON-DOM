@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import { ScopedCollection } from 'collect-your-stuff'
 import type { DomItem, DomItemRoot } from '../types'

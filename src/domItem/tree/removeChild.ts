@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import { unregisterItemIds } from './itemIdIndex'
 import type { DomItem } from '../types'
 

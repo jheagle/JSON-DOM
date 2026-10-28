@@ -2,7 +2,6 @@
  * Core Virtual DOM (DomItem tree) management: building items, the traits they carry, and finding and changing
  * items in a tree.
  */
-import 'core-js/stable'
 import addDomItemProperties from './objects/addDomItemProperties'
 import appendChild from './tree/appendChild'
 import createCoreItem from './objects/createCoreItem'

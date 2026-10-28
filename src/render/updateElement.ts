@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import bindListeners from '../events/functions/bindListeners'
 import deactivateListeners from '../events/functions/deactivateListeners'
 import domItemChanges from '../diff/domItemChanges'

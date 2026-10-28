@@ -6,7 +6,6 @@
  * the full build with no other internal code path depending on it.
  */
 
-import 'core-js/stable'
 import events from './events/index'
 import domItem from './domItem/index'
 import inflate from './inflate/index'

@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import getTopParentItem from '../../domItem/tree/getTopParentItem'
 import makeEventHandler from './makeEventHandler'
 import createEventResponder from '../objects/createEventResponder'

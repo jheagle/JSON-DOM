@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import getItemByElement from '../../domItem/query/getItemByElement'
 import type { DomItem } from '../../domItem/types'
 import type { EventProxy } from '../types'

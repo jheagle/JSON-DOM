@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import type { DomItem, ItemPath } from '../types'
 
 /**

@@ -2,7 +2,6 @@
  * All of the JSON DOM system functions for building and syncing a Virtual DOM (DomItem tree) to the real HTML DOM.
  */
 
-import 'core-js/stable'
 import events from './events/index'
 import domItem from './domItem/index'
 import inflate from './inflate/index'

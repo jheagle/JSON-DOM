@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import removeEventListener from './removeEventListener'
 import type { DomItem } from '../../domItem/types'
 import type { EventName, ListenerFunction, ListenerOptions } from '../types'

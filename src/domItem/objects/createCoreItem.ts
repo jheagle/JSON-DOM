@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import appendChild from '../tree/appendChild'
 import removeChild from '../tree/removeChild'

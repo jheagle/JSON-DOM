@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import hasTrait from './hasTrait'
 import type { CoreItem, DomItem } from '../types'
 

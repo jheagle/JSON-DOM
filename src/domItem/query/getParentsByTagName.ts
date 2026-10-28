@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import getParentsFromAttribute from './getParentsFromAttribute'
 import type { DomItem } from '../types'

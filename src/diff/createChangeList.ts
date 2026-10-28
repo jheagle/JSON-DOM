@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import type { ChangeList, ChangeType, DotNotated } from './types'
 

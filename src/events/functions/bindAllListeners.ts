@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import bindListeners from './bindListeners'
 import type { DomItem } from '../../domItem/types'
 

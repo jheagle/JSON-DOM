@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import type { ChildTest } from '../types'
 
 /**

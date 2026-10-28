@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import siFunciona from 'si-funciona'
 import elementChanges from '../diff/elementChanges'
 import type { DomItem } from '../domItem/types'

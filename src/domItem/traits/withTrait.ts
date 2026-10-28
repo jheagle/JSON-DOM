@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import definitions from './definitions'
 import type { CoreItem, TraitName, TraitRegistry, WithTraits } from '../types'
 

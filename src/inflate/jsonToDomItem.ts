@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import setParentItemReferences from '../domItem/tree/setParentItemReferences'
 import addDomItemProperties from '../domItem/objects/addDomItemProperties'
 import type { DomItem, DomItemRoot } from '../domItem/types'

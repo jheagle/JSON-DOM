@@ -1,4 +1,3 @@
-import 'core-js/stable'
 import generateElement from './generateElement'
 import renderHtml from './renderHtml'
 import updateChildNodes from './updateChildNodes'
