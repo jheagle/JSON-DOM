@@ -30,14 +30,14 @@
   },
   "dependencies": {
     "collect-your-stuff": "^2.2.1",
-    "si-funciona": "^2.7.3"
+    "si-funciona": "^2.10.0"
   },
   "devDependencies": {
     "@babel/core": "^8.1.0",
     "@babel/plugin-transform-modules-commonjs": "^8.0.1",
     "@babel/preset-env": "^8.0.7",
     "gulp": "^5.0.1",
-    "js-build-tools": "^8.0.0",
+    "js-build-tools": "^8.2.0",
     "release-it": "^21.1.2",
     "standard": "^17.1.2",
     "test-filesystem": "^2.0.0",

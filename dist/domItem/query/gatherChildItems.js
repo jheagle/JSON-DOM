@@ -1,7 +1,5 @@
 "use strict";
 
-require("core-js/modules/esnext.iterator.constructor.js");
-require("core-js/modules/esnext.iterator.reduce.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });

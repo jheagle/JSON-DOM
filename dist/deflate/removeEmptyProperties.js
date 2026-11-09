@@ -1,8 +1,6 @@
 "use strict";
 
 require("core-js/modules/es.array.includes.js");
-require("core-js/modules/esnext.iterator.constructor.js");
-require("core-js/modules/esnext.iterator.for-each.js");
 var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
