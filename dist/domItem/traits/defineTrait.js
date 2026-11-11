@@ -1,5 +1,8 @@
 "use strict";
 
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -10,7 +13,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 const definitions_1 = __importDefault(require("./definitions"));
 /**
- * Describe a trait so json-dom knows what it is at runtime: the properties it puts on an item (so they can be left out
+ * Describe a trait so treeloom knows what it is at runtime: the properties it puts on an item (so they can be left out
  * of json when they only make sense where the item lives), and the defaults a new item gets. Types are added
  * separately, by merging into TraitRegistry.
  * @param name - The name of the trait, prefixed by the package which defines it: matrix.row

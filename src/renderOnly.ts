@@ -3,7 +3,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 /**
- * The render-only subset of json-dom: build and sync a Virtual DOM (DomItem tree) to the real
+ * The render-only subset of treeloom: build and sync a Virtual DOM (DomItem tree) to the real
  * HTML DOM, and forward fired events elsewhere (see events/objects/setForwardEvents) instead of
  * running local business logic - a consumer that never needs to run that logic locally never
  * needs to go the other way (DOM back to JSON) either, so this excludes deflate, the one part of
@@ -17,7 +17,7 @@ import render from './render/index'
 import sync from './sync/index'
 import diff from './diff/index'
 
-const jsonDomRenderOnly = Object.assign(
+const treeloomRenderOnly = Object.assign(
   {},
   events,
   domItem,
@@ -28,4 +28,4 @@ const jsonDomRenderOnly = Object.assign(
 )
 
 // export = , not export default - see main.ts's own note on why.
-export = jsonDomRenderOnly
+export = treeloomRenderOnly

@@ -1,27 +1,27 @@
-# JSON-DOM
+# treeloom
 
 State management with JSON.
 
-json-dom represents a document as a **Virtual DOM**: a tree of plain objects (the **DomItem tree**) which mirrors the
-real HTML DOM. You build and change the tree; json-dom keeps the real elements in step with it, and can turn the tree
+treeloom represents a document as a **Virtual DOM**: a tree of plain objects (the **DomItem tree**) which mirrors the
+real HTML DOM. You build and change the tree; treeloom keeps the real elements in step with it, and can turn the tree
 into JSON and back.
 
 ## Install
 
-json-dom is not published to npm, install it from GitHub:
+treeloom is not published to npm, install it from GitHub:
 
 ```shell
-npm install github:jheagle/JSON-DOM
+npm install github:jheagle/treeloom
 ```
 
-It is written in TypeScript and ships its types. In a browser, use `browser/jsonDom.min.js` (it defines `jsonDom`) -
+It is written in TypeScript and ships its types. In a browser, use `browser/treeloom.min.js` (it defines `treeloom`) -
 or, for a build that renders JSON to HTML and forwards fired events elsewhere instead of running local listener
-functions, `browser/jsonDomRenderOnly.min.js` (it defines `jsonDomRenderOnly`; see `setForwardEvents`).
+functions, `browser/treeloomRenderOnly.min.js` (it defines `treeloomRenderOnly`; see `setForwardEvents`).
 
 ## Example
 
 ```js
-const { createDomItem, documentDomItem, renderHtml, updateElement, domItemToJson, jsonToDomItem } = require('json-dom')
+const { createDomItem, documentDomItem, renderHtml, updateElement, domItemToJson, jsonToDomItem } = require('treeloom')
 
 // Named listeners are registered once on the document item, and items refer to them by name
 const documentItem = documentDomItem({

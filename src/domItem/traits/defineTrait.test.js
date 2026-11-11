@@ -25,7 +25,7 @@ describe('defineTrait / getTraitDefinition', () => {
     expect(getTraitDefinition('test.never-defined')).toBeUndefined()
   })
 
-  test('json-dom brings the render trait: an element and its listeners, which are not json', () => {
+  test('treeloom brings the render trait: an element and its listeners, which are not json', () => {
     const render = getTraitDefinition('render')
     expect(render.keys).toEqual(['element', 'activeListeners'])
     expect(render.serializable).toBe(false)

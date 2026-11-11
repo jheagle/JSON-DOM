@@ -3,7 +3,7 @@ import type { DomItem } from '../domItem/types';
 export type EventName = string;
 /** The old boolean form of the options argument of addEventListener. */
 export type UseCapture = boolean;
-/** The listener options which json-dom understands (each one is a flag, see {@link OptionsTemplate}). */
+/** The listener options which treeloom understands (each one is a flag, see {@link OptionsTemplate}). */
 export type OptionsObject = {
     /** Events of this type are dispatched to the listener before any other target beneath it. */
     capture?: boolean;
@@ -81,7 +81,7 @@ export type EventResponder = {
 };
 /** Bit flags for each of the listener options. */
 export type OptionsTemplate = Record<string, number>;
-/** What json-dom needs from an element to attach a listener, including the very old ways of doing it. */
+/** What treeloom needs from an element to attach a listener, including the very old ways of doing it. */
 export type ListenerTarget = EventTarget & {
     attachEvent?: (eventName: string, handler: EventHandler) => void;
 };

@@ -5,8 +5,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-// Reproduces the real website scenario (index.html): a page with hand-authored HTML, never touched by json-dom,
-// into which a json-dom-built header needs to be inserted as the FIRST child - proving the fix (insertChild +
+// Reproduces the real website scenario (index.html): a page with hand-authored HTML, never touched by treeloom,
+// into which a treeloom-built header needs to be inserted as the FIRST child - proving the fix (insertChild +
 // renderHtml's index) replaces that flow's four manual calls with two, keeps parentItem set, and never touches the
 // hand-authored content that updateDomItems captured.
 import createDomItem from '../domItem/objects/createDomItem'
@@ -14,7 +14,7 @@ import documentItem from '../domItem/objects/documentItem'
 import renderHtml from './renderHtml'
 import updateDomItems from '../sync/updateDomItems'
 
-describe('inserting json-dom content into an already-rendered, hand-authored page', () => {
+describe('inserting treeloom content into an already-rendered, hand-authored page', () => {
   test('the existing HTML is captured and preserved, and the new item lands at the given position', () => {
     document.body.innerHTML = '<div id="main"><h1>Hello</h1></div><section id="intro"></section>'
 

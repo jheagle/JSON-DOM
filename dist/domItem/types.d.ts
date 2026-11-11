@@ -21,10 +21,10 @@ export type ItemPath = number[];
 /** The parent of the root DomItem is an empty object (a null parent means the item is detached). */
 export type EmptyParent = Record<string, never>;
 /**
- * The traits an item can have, and the data each one puts on it. json-dom has one - render - and other libraries
+ * The traits an item can have, and the data each one puts on it. treeloom has one - render - and other libraries
  * add theirs by declaration merging:
  *
- *     declare module 'json-dom/dist/domItem/types' {
+ *     declare module 'treeloom/dist/domItem/types' {
  *       interface TraitRegistry { 'matrix.row': { axis: 'y' } }
  *     }
  */
@@ -84,7 +84,7 @@ export type CoreItem = CoreProperties & {
     parentItem: CoreItem | EmptyParent | null;
 };
 /**
- * An item with the render trait: the item json-dom mirrors onto a real element (render) and reads back from one
+ * An item with the render trait: the item treeloom mirrors onto a real element (render) and reads back from one
  * (sync). Its children have the render trait too.
  */
 export type DomItem = CoreProperties & WithTraits<'render'> & {

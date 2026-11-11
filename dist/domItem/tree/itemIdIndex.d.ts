@@ -15,7 +15,7 @@ export declare const generateItemId: () => number;
  *   one item, then replicate it N times" helper (si-funciona's buildArray, cloning rather than constructing
  *   fresh - the shape matrix-dom's own buildMatrix uses for a grid's rows/columns/tiles) copies whatever id
  *   the one template already carries into every copy right along with everything else, with no way for
- *   json-dom to know that happened before registration.
+ *   treeloom to know that happened before registration.
  *
  * Catching both here, at the one real choke point every attached item passes through, protects against these
  * patterns (and any other generic cloning or raw merging this codebase does not yet know about) without
