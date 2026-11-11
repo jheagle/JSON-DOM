@@ -1,6 +1,9 @@
 /**
  * @jest-environment jsdom
  */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 // Reproduces the real website scenario (index.html): a page with hand-authored HTML, never touched by json-dom,
 // into which a json-dom-built header needs to be inserted as the FIRST child - proving the fix (insertChild +

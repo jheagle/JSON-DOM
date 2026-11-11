@@ -67,3 +67,7 @@ npm run typecheck # the types, and the type tests
 npm run build     # dist/, browser/ and docs/
 npm run docs      # only the documentation
 ```
+
+## License
+
+[Mozilla Public License 2.0](https://mozilla.org/MPL/2.0/) (MPL-2.0), see [LICENSE](LICENSE). In short: changes to this library's own files are shared under the same license; apps that use it can be licensed however you like.

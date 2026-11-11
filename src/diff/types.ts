@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 import type { compareArrayResultMap } from 'si-funciona/dist/helpers/arrays/compareArrays'
 
 /** An object whose keys are dot notated paths (attributes.style.color) and whose values are what is at that path. */

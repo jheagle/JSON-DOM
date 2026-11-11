@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 /**
  * Core Virtual DOM (DomItem tree) management: building items, the traits they carry, and finding and changing
  * items in a tree.
