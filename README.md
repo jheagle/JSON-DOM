@@ -8,10 +8,10 @@ into JSON and back.
 
 ## Install
 
-treeloom is not published to npm, install it from GitHub:
+Install it from npm:
 
 ```shell
-npm install github:jheagle/treeloom
+npm install treeloom
 ```
 
 It is written in TypeScript and ships its types. In a browser, use `browser/treeloom.min.js` (it defines `treeloom`) -
