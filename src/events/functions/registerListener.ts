@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import documentItem from '../../domItem/objects/documentItem'
+import getDocumentItem from '../../domItem/objects/documentItem'
 import type { DomItemRoot } from '../../domItem/types'
 import type { ListenerFunction } from '../types'
 
@@ -13,7 +13,7 @@ import type { ListenerFunction } from '../types'
  * @param name - The name of the listener to be used.
  * @param parent - The parent DomItem which is DomItemRoot which stores eventListeners property.
  */
-const registerListener = (listener: ListenerFunction, name: string = listener.name, parent: DomItemRoot = documentItem): Record<string, ListenerFunction> => Object.assign(
+const registerListener = (listener: ListenerFunction, name: string = listener.name, parent: DomItemRoot = getDocumentItem()): Record<string, ListenerFunction> => Object.assign(
   parent.eventActions,
   { [name]: listener }
 )

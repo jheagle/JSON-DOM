@@ -53,7 +53,7 @@ exports.default = {
   createDomItem: createDomItem_1.default,
   defineTrait: defineTrait_1.default,
   documentDomItem: documentDomItem_1.default,
-  documentItem: documentItem_1.default,
+  getDocumentItem: documentItem_1.default,
   gatherChildItems: gatherChildItems_1.default,
   getChildrenByClass: getChildrenByClass_1.default,
   getChildrenByName: getChildrenByName_1.default,

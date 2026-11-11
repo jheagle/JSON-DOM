@@ -17,9 +17,11 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
  */
 const index_1 = __importDefault(require("./events/index"));
 const index_2 = __importDefault(require("./domItem/index"));
+const documentItem_1 = require("./domItem/objects/documentItem");
 const index_3 = __importDefault(require("./inflate/index"));
 const index_4 = __importDefault(require("./render/index"));
 const index_5 = __importDefault(require("./sync/index"));
 const index_6 = __importDefault(require("./diff/index"));
-const treeloomRenderOnly = Object.assign({}, index_1.default, index_2.default, index_3.default, index_4.default, index_5.default, index_6.default);
+// documentItem is a getter (see withDocumentItem), so loading treeloom never touches a real document
+const treeloomRenderOnly = (0, documentItem_1.withDocumentItem)(Object.assign({}, index_1.default, index_2.default, index_3.default, index_4.default, index_5.default, index_6.default));
 module.exports = treeloomRenderOnly;

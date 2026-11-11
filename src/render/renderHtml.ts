@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import documentItem from '../domItem/objects/documentItem'
+import getDocumentItem from '../domItem/objects/documentItem'
 import insertChild from '../domItem/tree/insertChild'
 import { registerItemIds } from '../domItem/tree/itemIdIndex'
 import setParentItemReferences from '../domItem/tree/setParentItemReferences'
@@ -23,8 +23,8 @@ import type { DomItem } from '../domItem/types'
  * DOM into items. Skipping that step and inserting anyway will make the next render remove the untracked content,
  * since it is invisible to parent.children.
  */
-const renderHtml = (item: DomItem | null = null, parent: DomItem = documentItem.body, index: number = parent.children.length): DomItem => {
-  const itemToRender: DomItem = item === null ? documentItem : item
+const renderHtml = (item: DomItem | null = null, parent: DomItem = getDocumentItem().body, index: number = parent.children.length): DomItem => {
+  const itemToRender: DomItem = item === null ? getDocumentItem() : item
   // Every descendant needs its parentItem chain in place before anything below tries to walk up it (a listener
   // being bound looks up its root via getTopParentItem) - set it first, rather than after rendering the subtree.
   setParentItemReferences(itemToRender)

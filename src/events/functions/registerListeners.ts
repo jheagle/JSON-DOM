@@ -3,7 +3,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import siFunciona from 'si-funciona'
-import documentItem from '../../domItem/objects/documentItem'
+import getDocumentItem from '../../domItem/objects/documentItem'
 import type { DomItemRoot } from '../../domItem/types'
 import type { ListenerFunction } from '../types'
 
@@ -13,7 +13,7 @@ import type { ListenerFunction } from '../types'
  * used as the registered event listeners.
  * @param parent - The parent DomItem which is DomItemRoot which has eventActions property.
  */
-const registerListeners = (listeners: ListenerFunction[] | Record<string, ListenerFunction>, parent: DomItemRoot = documentItem): DomItemRoot => {
+const registerListeners = (listeners: ListenerFunction[] | Record<string, ListenerFunction>, parent: DomItemRoot = getDocumentItem()): DomItemRoot => {
   siFunciona.mergeObjectsMutable(parent.eventActions, listeners)
   return parent
 }

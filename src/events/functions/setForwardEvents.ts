@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import documentItem from '../../domItem/objects/documentItem'
+import getDocumentItem from '../../domItem/objects/documentItem'
 import type { DomItemRoot } from '../../domItem/types'
 import type { ForwardEventsFunction } from '../types'
 
@@ -13,7 +13,7 @@ import type { ForwardEventsFunction } from '../types'
  * @param transport - Called with the envelope of each forwarded event.
  * @param parent - The parent DomItem which is DomItemRoot to switch into render-only mode.
  */
-const setForwardEvents = (transport: ForwardEventsFunction, parent: DomItemRoot = documentItem): DomItemRoot => {
+const setForwardEvents = (transport: ForwardEventsFunction, parent: DomItemRoot = getDocumentItem()): DomItemRoot => {
   parent.forwardEvents = transport
   return parent
 }

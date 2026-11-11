@@ -10,9 +10,12 @@
 // renderHtml's index) replaces that flow's four manual calls with two, keeps parentItem set, and never touches the
 // hand-authored content that updateDomItems captured.
 import createDomItem from '../domItem/objects/createDomItem'
-import documentItem from '../domItem/objects/documentItem'
+import getDocumentItem from '../domItem/objects/documentItem'
 import renderHtml from './renderHtml'
 import updateDomItems from '../sync/updateDomItems'
+
+// The shared root, built on first use
+const documentItem = getDocumentItem()
 
 describe('inserting treeloom content into an already-rendered, hand-authored page', () => {
   test('the existing HTML is captured and preserved, and the new item lands at the given position', () => {

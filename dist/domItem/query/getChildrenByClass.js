@@ -22,5 +22,5 @@ const gatherChildItems_1 = __importDefault(require("./gatherChildItems"));
  * @param className - The one class being searched for
  * @param item - The DomItem which may have child items carrying the class
  */
-const getChildrenByClass = (className, item = documentItem_1.default.body) => (0, gatherChildItems_1.default)(item, (child, gatheredResults) => (child.attributes.className ?? '').split(' ').includes(className) ? gatheredResults.concat([child]) : gatheredResults);
+const getChildrenByClass = (className, item = (0, documentItem_1.default)().body) => (0, gatherChildItems_1.default)(item, (child, gatheredResults) => (child.attributes.className ?? '').split(' ').includes(className) ? gatheredResults.concat([child]) : gatheredResults);
 exports.default = getChildrenByClass;

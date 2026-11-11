@@ -24,7 +24,7 @@ const makeForwardingListener_1 = __importDefault(require("./makeForwardingListen
  * already-resolved listener function.
  * @param parent - The parent DomItem which is DomItemRoot which stores eventListeners property.
  */
-const retrieveListener = (listenerName, parent = documentItem_1.default) => {
+const retrieveListener = (listenerName, parent = (0, documentItem_1.default)()) => {
   if (typeof listenerName === 'function') {
     return listenerName;
   }

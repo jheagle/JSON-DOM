@@ -45,6 +45,7 @@ const publicApi = [
   'getChildrenByClass',
   'getChildrenByName',
   'getChildrenFromAttribute',
+  'getDocumentItem',
   'getItemByElement',
   'getItemById',
   'getItemByPath',

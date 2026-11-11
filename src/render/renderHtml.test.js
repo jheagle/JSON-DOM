@@ -7,10 +7,13 @@
 
 import createDomItem from '../domItem/objects/createDomItem'
 import renderHtml from './renderHtml'
-import documentItem from '../domItem/objects/documentItem'
+import getDocumentItem from '../domItem/objects/documentItem'
 import documentDomItem from '../domItem/objects/documentDomItem'
 import fullAddEventListener from '../events/functions/fullAddEventListener'
 import updateDomItems from '../sync/updateDomItems'
+
+// The shared root, built on first use
+const documentItem = getDocumentItem()
 
 describe('renderHtml', () => {
   test('returns with new element when none previously set', () => {
