@@ -24,5 +24,5 @@ const getChildTest_1 = __importDefault(require("./getChildTest"));
  * @param item - The DomItem which may have child items matching the attribute
  * criteria
  */
-const getChildrenFromAttribute = (attr, value, item = documentItem_1.default.body) => (0, gatherChildItems_1.default)(item, (0, getChildTest_1.default)(attr, value));
+const getChildrenFromAttribute = (attr, value, item = (0, documentItem_1.default)().body) => (0, gatherChildItems_1.default)(item, (0, getChildTest_1.default)(attr, value));
 exports.default = getChildrenFromAttribute;

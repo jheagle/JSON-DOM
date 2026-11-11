@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import documentItem from '../objects/documentItem'
+import getDocumentItem from '../objects/documentItem'
 import siFunciona from 'si-funciona'
 import type { DomItem } from '../types'
 
@@ -15,7 +15,7 @@ import type { DomItem } from '../types'
  * @param className - The one class being searched for
  * @param item - The DomItem which may have parent items carrying the class
  */
-const getParentsByClass = (className: string, item: DomItem = documentItem.body): DomItem[] => {
+const getParentsByClass = (className: string, item: DomItem = getDocumentItem().body): DomItem[] => {
   if (item.parentItem === null) {
     if (item.nodeName === '#document') {
       throw new Error('Root parent item must be an empty object, null reference found.')

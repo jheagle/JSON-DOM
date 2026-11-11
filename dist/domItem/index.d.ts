@@ -5,7 +5,7 @@ declare const _default: {
     createDomItem: (item?: import("./types").DomItemConfig) => import("./types").DomItem;
     defineTrait: (name: string, definition: import("./types").TraitDefinition) => import("./types").TraitDefinition;
     documentDomItem: (listeners?: Record<string, import("../events/types").ListenerFunction>, rootItem?: import("./types").DomItemRoot) => import("./types").DomItemRoot;
-    documentItem: import("./types").DomItemRoot;
+    getDocumentItem: () => import("./types").DomItemRoot;
     gatherChildItems: (item: import("./types").DomItem, test: import("./types").ChildTest) => import("./types").DomItem[];
     getChildrenByClass: (className: string, item?: import("./types").DomItem) => import("./types").DomItem[];
     getChildrenByName: (name: string, item?: import("./types").DomItem) => import("./types").DomItem[];

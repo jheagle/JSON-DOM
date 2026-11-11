@@ -12,12 +12,14 @@
 
 import events from './events/index'
 import domItem from './domItem/index'
+import { withDocumentItem } from './domItem/objects/documentItem'
 import inflate from './inflate/index'
 import render from './render/index'
 import sync from './sync/index'
 import diff from './diff/index'
 
-const treeloomRenderOnly = Object.assign(
+// documentItem is a getter (see withDocumentItem), so loading treeloom never touches a real document
+const treeloomRenderOnly = withDocumentItem(Object.assign(
   {},
   events,
   domItem,
@@ -25,7 +27,7 @@ const treeloomRenderOnly = Object.assign(
   render,
   sync,
   diff
-)
+))
 
 // export = , not export default - see main.ts's own note on why.
 export = treeloomRenderOnly

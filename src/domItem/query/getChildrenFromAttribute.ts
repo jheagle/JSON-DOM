@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import documentItem from '../objects/documentItem'
+import getDocumentItem from '../objects/documentItem'
 import gatherChildItems from './gatherChildItems'
 import getChildTest from './getChildTest'
 import type { DomItem } from '../types'
@@ -17,7 +17,7 @@ import type { DomItem } from '../types'
  * @param item - The DomItem which may have child items matching the attribute
  * criteria
  */
-const getChildrenFromAttribute = (attr: string, value: unknown, item: DomItem = documentItem.body): DomItem[] =>
+const getChildrenFromAttribute = (attr: string, value: unknown, item: DomItem = getDocumentItem().body): DomItem[] =>
   gatherChildItems(
     item,
     getChildTest(attr, value)

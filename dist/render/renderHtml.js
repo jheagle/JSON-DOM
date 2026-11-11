@@ -30,8 +30,8 @@ const updateElements_1 = __importDefault(require("./updateElements"));
  * DOM into items. Skipping that step and inserting anyway will make the next render remove the untracked content,
  * since it is invisible to parent.children.
  */
-const renderHtml = (item = null, parent = documentItem_1.default.body, index = parent.children.length) => {
-  const itemToRender = item === null ? documentItem_1.default : item;
+const renderHtml = (item = null, parent = (0, documentItem_1.default)().body, index = parent.children.length) => {
+  const itemToRender = item === null ? (0, documentItem_1.default)() : item;
   // Every descendant needs its parentItem chain in place before anything below tries to walk up it (a listener
   // being bound looks up its root via getTopParentItem) - set it first, rather than after rendering the subtree.
   (0, setParentItemReferences_1.default)(itemToRender);

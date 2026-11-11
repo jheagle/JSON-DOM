@@ -8558,15 +8558,21 @@ var treeloom = (() => {
       Object.defineProperty(exports, "__esModule", {
         value: true
       });
+      exports.withDocumentItem = void 0;
       var documentDomItem_1 = __importDefault(require_documentDomItem());
       var existingItem = null;
-      var documentItem = (() => {
+      var getDocumentItem = () => {
         if (existingItem === null) {
           existingItem = (0, documentDomItem_1.default)();
         }
         return existingItem;
-      })();
-      exports.default = documentItem;
+      };
+      var withDocumentItem = (api) => Object.defineProperty(api, "documentItem", {
+        enumerable: true,
+        get: getDocumentItem
+      });
+      exports.withDocumentItem = withDocumentItem;
+      exports.default = getDocumentItem;
     }
   });
 
@@ -8618,7 +8624,7 @@ var treeloom = (() => {
       });
       var documentItem_1 = __importDefault(require_documentItem());
       var makeForwardingListener_1 = __importDefault(require_makeForwardingListener());
-      var retrieveListener = (listenerName, parent = documentItem_1.default) => {
+      var retrieveListener = (listenerName, parent = (0, documentItem_1.default)()) => {
         if (typeof listenerName === "function") {
           return listenerName;
         }
@@ -9156,7 +9162,7 @@ var treeloom = (() => {
         value: true
       });
       var documentItem_1 = __importDefault(require_documentItem());
-      var registerListener = (listener, name = listener.name, parent = documentItem_1.default) => Object.assign(parent.eventActions, {
+      var registerListener = (listener, name = listener.name, parent = (0, documentItem_1.default)()) => Object.assign(parent.eventActions, {
         [name]: listener
       });
       exports.default = registerListener;
@@ -9292,7 +9298,7 @@ var treeloom = (() => {
       });
       var si_funciona_1 = __importDefault(require_main());
       var documentItem_1 = __importDefault(require_documentItem());
-      var registerListeners = (listeners, parent = documentItem_1.default) => {
+      var registerListeners = (listeners, parent = (0, documentItem_1.default)()) => {
         si_funciona_1.default.mergeObjectsMutable(parent.eventActions, listeners);
         return parent;
       };
@@ -9361,7 +9367,7 @@ var treeloom = (() => {
         value: true
       });
       var documentItem_1 = __importDefault(require_documentItem());
-      var setForwardEvents = (transport, parent = documentItem_1.default) => {
+      var setForwardEvents = (transport, parent = (0, documentItem_1.default)()) => {
         parent.forwardEvents = transport;
         return parent;
       };
@@ -9542,7 +9548,7 @@ var treeloom = (() => {
       });
       var documentItem_1 = __importDefault(require_documentItem());
       var gatherChildItems_1 = __importDefault(require_gatherChildItems());
-      var getChildrenByClass = (className, item = documentItem_1.default.body) => (0, gatherChildItems_1.default)(item, (child, gatheredResults) => (child.attributes.className ?? "").split(" ").includes(className) ? gatheredResults.concat([child]) : gatheredResults);
+      var getChildrenByClass = (className, item = (0, documentItem_1.default)().body) => (0, gatherChildItems_1.default)(item, (child, gatheredResults) => (child.attributes.className ?? "").split(" ").includes(className) ? gatheredResults.concat([child]) : gatheredResults);
       exports.default = getChildrenByClass;
     }
   });
@@ -9576,7 +9582,7 @@ var treeloom = (() => {
       var documentItem_1 = __importDefault(require_documentItem());
       var gatherChildItems_1 = __importDefault(require_gatherChildItems());
       var getChildTest_1 = __importDefault(require_getChildTest());
-      var getChildrenFromAttribute = (attr, value, item = documentItem_1.default.body) => (0, gatherChildItems_1.default)(item, (0, getChildTest_1.default)(attr, value));
+      var getChildrenFromAttribute = (attr, value, item = (0, documentItem_1.default)().body) => (0, gatherChildItems_1.default)(item, (0, getChildTest_1.default)(attr, value));
       exports.default = getChildrenFromAttribute;
     }
   });
@@ -9664,7 +9670,7 @@ var treeloom = (() => {
       });
       var documentItem_1 = __importDefault(require_documentItem());
       var si_funciona_1 = __importDefault(require_main());
-      var getParentsByClass = (className, item = documentItem_1.default.body) => {
+      var getParentsByClass = (className, item = (0, documentItem_1.default)().body) => {
         if (item.parentItem === null) {
           if (item.nodeName === "#document") {
             throw new Error("Root parent item must be an empty object, null reference found.");
@@ -9697,7 +9703,7 @@ var treeloom = (() => {
       });
       var documentItem_1 = __importDefault(require_documentItem());
       var si_funciona_1 = __importDefault(require_main());
-      var getParentsFromAttribute = (attr, value, item = documentItem_1.default.body) => {
+      var getParentsFromAttribute = (attr, value, item = (0, documentItem_1.default)().body) => {
         if (item.parentItem === null) {
           if (item.nodeName === "#document") {
             throw new Error("Root parent item must be an empty object, null reference found.");
@@ -9909,7 +9915,7 @@ var treeloom = (() => {
         createDomItem: createDomItem_1.default,
         defineTrait: defineTrait_1.default,
         documentDomItem: documentDomItem_1.default,
-        documentItem: documentItem_1.default,
+        getDocumentItem: documentItem_1.default,
         gatherChildItems: gatherChildItems_1.default,
         getChildrenByClass: getChildrenByClass_1.default,
         getChildrenByName: getChildrenByName_1.default,
@@ -10877,8 +10883,8 @@ var treeloom = (() => {
       var setParentItemReferences_1 = __importDefault(require_setParentItemReferences());
       var updateChildNodes_1 = __importDefault(require_updateChildNodes());
       var updateElements_1 = __importDefault(require_updateElements());
-      var renderHtml = (item = null, parent = documentItem_1.default.body, index = parent.children.length) => {
-        const itemToRender = item === null ? documentItem_1.default : item;
+      var renderHtml = (item = null, parent = (0, documentItem_1.default)().body, index = parent.children.length) => {
+        const itemToRender = item === null ? (0, documentItem_1.default)() : item;
         (0, setParentItemReferences_1.default)(itemToRender);
         if (itemToRender.parentItem === null) {
           (0, insertChild_1.default)(parent, item, index);
@@ -10985,12 +10991,13 @@ var treeloom = (() => {
       };
       var index_1 = __importDefault(require_events());
       var index_2 = __importDefault(require_domItem());
+      var documentItem_1 = require_documentItem();
       var index_3 = __importDefault(require_inflate());
       var index_4 = __importDefault(require_deflate());
       var index_5 = __importDefault(require_render());
       var index_6 = __importDefault(require_sync());
       var index_7 = __importDefault(require_diff());
-      var treeloom = Object.assign({}, index_1.default, index_2.default, index_3.default, index_4.default, index_5.default, index_6.default, index_7.default);
+      var treeloom = (0, documentItem_1.withDocumentItem)(Object.assign({}, index_1.default, index_2.default, index_3.default, index_4.default, index_5.default, index_6.default, index_7.default));
       module.exports = treeloom;
     }
   });

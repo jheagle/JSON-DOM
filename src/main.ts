@@ -8,13 +8,15 @@
 
 import events from './events/index'
 import domItem from './domItem/index'
+import { withDocumentItem } from './domItem/objects/documentItem'
 import inflate from './inflate/index'
 import deflate from './deflate/index'
 import render from './render/index'
 import sync from './sync/index'
 import diff from './diff/index'
 
-const treeloom = Object.assign(
+// documentItem is a getter (see withDocumentItem), so loading treeloom never touches a real document
+const treeloom = withDocumentItem(Object.assign(
   {},
   events,
   domItem,
@@ -23,7 +25,7 @@ const treeloom = Object.assign(
   render,
   sync,
   diff
-)
+))
 
 // `export =` (not `export default`) so the compiled module.exports IS treeloom directly, not
 // { default: treeloom } - browserify's standalone UMD wrapper exposes a bundle's module.exports

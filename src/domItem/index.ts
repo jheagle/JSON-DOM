@@ -12,7 +12,7 @@ import createCoreItem from './objects/createCoreItem'
 import createDomItem from './objects/createDomItem'
 import defineTrait from './traits/defineTrait'
 import documentDomItem from './objects/documentDomItem'
-import documentItem from './objects/documentItem'
+import getDocumentItem from './objects/documentItem'
 import gatherChildItems from './query/gatherChildItems'
 import getChildrenByClass from './query/getChildrenByClass'
 import getChildrenByName from './query/getChildrenByName'
@@ -45,7 +45,7 @@ export default {
   createDomItem,
   defineTrait,
   documentDomItem,
-  documentItem,
+  getDocumentItem,
   gatherChildItems,
   getChildrenByClass,
   getChildrenByName,

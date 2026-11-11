@@ -19,7 +19,7 @@ const documentItem_1 = __importDefault(require("../../domItem/objects/documentIt
  * @param transport - Called with the envelope of each forwarded event.
  * @param parent - The parent DomItem which is DomItemRoot to switch into render-only mode.
  */
-const setForwardEvents = (transport, parent = documentItem_1.default) => {
+const setForwardEvents = (transport, parent = (0, documentItem_1.default)()) => {
   parent.forwardEvents = transport;
   return parent;
 };

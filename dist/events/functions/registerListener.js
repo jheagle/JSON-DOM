@@ -19,7 +19,7 @@ const documentItem_1 = __importDefault(require("../../domItem/objects/documentIt
  * @param name - The name of the listener to be used.
  * @param parent - The parent DomItem which is DomItemRoot which stores eventListeners property.
  */
-const registerListener = (listener, name = listener.name, parent = documentItem_1.default) => Object.assign(parent.eventActions, {
+const registerListener = (listener, name = listener.name, parent = (0, documentItem_1.default)()) => Object.assign(parent.eventActions, {
   [name]: listener
 });
 exports.default = registerListener;

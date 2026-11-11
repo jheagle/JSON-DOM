@@ -23,7 +23,7 @@ const si_funciona_1 = __importDefault(require("si-funciona"));
  * @param item - The DomItem which may have parent items matching the
  * attribute criteria
  */
-const getParentsFromAttribute = (attr, value, item = documentItem_1.default.body) => {
+const getParentsFromAttribute = (attr, value, item = (0, documentItem_1.default)().body) => {
   if (item.parentItem === null) {
     if (item.nodeName === '#document') {
       throw new Error('Root parent item must be an empty object, null reference found.');

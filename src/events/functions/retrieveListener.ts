@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import documentItem from '../../domItem/objects/documentItem'
+import getDocumentItem from '../../domItem/objects/documentItem'
 import makeForwardingListener from './makeForwardingListener'
 import type { DomItemRoot } from '../../domItem/types'
 import type { ListenerFunction } from '../types'
@@ -17,7 +17,7 @@ import type { ListenerFunction } from '../types'
  * already-resolved listener function.
  * @param parent - The parent DomItem which is DomItemRoot which stores eventListeners property.
  */
-const retrieveListener = (listenerName: string | ListenerFunction, parent: DomItemRoot = documentItem): ListenerFunction => {
+const retrieveListener = (listenerName: string | ListenerFunction, parent: DomItemRoot = getDocumentItem()): ListenerFunction => {
   if (typeof listenerName === 'function') {
     return listenerName
   }

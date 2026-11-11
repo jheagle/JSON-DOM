@@ -23,7 +23,7 @@ const si_funciona_1 = __importDefault(require("si-funciona"));
  * @param className - The one class being searched for
  * @param item - The DomItem which may have parent items carrying the class
  */
-const getParentsByClass = (className, item = documentItem_1.default.body) => {
+const getParentsByClass = (className, item = (0, documentItem_1.default)().body) => {
   if (item.parentItem === null) {
     if (item.nodeName === '#document') {
       throw new Error('Root parent item must be an empty object, null reference found.');

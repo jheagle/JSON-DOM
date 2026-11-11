@@ -19,7 +19,7 @@ const documentItem_1 = __importDefault(require("../../domItem/objects/documentIt
  * used as the registered event listeners.
  * @param parent - The parent DomItem which is DomItemRoot which has eventActions property.
  */
-const registerListeners = (listeners, parent = documentItem_1.default) => {
+const registerListeners = (listeners, parent = (0, documentItem_1.default)()) => {
   si_funciona_1.default.mergeObjectsMutable(parent.eventActions, listeners);
   return parent;
 };

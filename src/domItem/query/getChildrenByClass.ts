@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import documentItem from '../objects/documentItem'
+import getDocumentItem from '../objects/documentItem'
 import gatherChildItems from './gatherChildItems'
 import type { DomItem } from '../types'
 
@@ -14,7 +14,7 @@ import type { DomItem } from '../types'
  * @param className - The one class being searched for
  * @param item - The DomItem which may have child items carrying the class
  */
-const getChildrenByClass = (className: string, item: DomItem = documentItem.body): DomItem[] => gatherChildItems(
+const getChildrenByClass = (className: string, item: DomItem = getDocumentItem().body): DomItem[] => gatherChildItems(
   item,
   (child, gatheredResults) => ((child.attributes.className as string | undefined) ?? '').split(' ').includes(className)
     ? gatheredResults.concat([child])

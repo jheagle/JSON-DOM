@@ -10,8 +10,11 @@ import createDomItem from '../../domItem/objects/createDomItem'
 import activateListener from './activateListener'
 import createEventListener from '../objects/createEventListener'
 import registerListener from './registerListener'
-import documentItem from '../../domItem/objects/documentItem'
+import getDocumentItem from '../../domItem/objects/documentItem'
 import generateElement from '../../render/generateElement'
+
+// The shared root, built on first use
+const documentItem = getDocumentItem()
 
 describe('applyActiveListeners', () => {
   test('will apply a click listener to the element', () => {
