@@ -1,5 +1,5 @@
 "use strict";
-var jsonDomRenderOnly = (() => {
+var treeloom = (() => {
   var __getOwnPropNames = Object.getOwnPropertyNames;
   var __esm = (fn, res, err) => function __init() {
     if (err) throw err[0];
@@ -9987,6 +9987,481 @@ var jsonDomRenderOnly = (() => {
     }
   });
 
+  // node_modules/core-js/internals/is-array.js
+  var require_is_array = __commonJS({
+    "node_modules/core-js/internals/is-array.js"(exports, module) {
+      "use strict";
+      init_process();
+      var classof = require_classof_raw();
+      module.exports = Array.isArray || function isArray(argument) {
+        return classof(argument) === "Array";
+      };
+    }
+  });
+
+  // node_modules/core-js/internals/is-raw-json.js
+  var require_is_raw_json = __commonJS({
+    "node_modules/core-js/internals/is-raw-json.js"(exports, module) {
+      "use strict";
+      init_process();
+      var isObject = require_is_object();
+      var getInternalState = require_internal_state().get;
+      module.exports = function isRawJSON(O) {
+        if (!isObject(O)) return false;
+        var state = getInternalState(O);
+        return !!state && state.type === "RawJSON";
+      };
+    }
+  });
+
+  // node_modules/core-js/internals/this-number-value.js
+  var require_this_number_value = __commonJS({
+    "node_modules/core-js/internals/this-number-value.js"(exports, module) {
+      "use strict";
+      init_process();
+      var uncurryThis = require_function_uncurry_this();
+      module.exports = uncurryThis(1.1.valueOf);
+    }
+  });
+
+  // node_modules/core-js/internals/to-string-tag-support.js
+  var require_to_string_tag_support = __commonJS({
+    "node_modules/core-js/internals/to-string-tag-support.js"(exports, module) {
+      "use strict";
+      init_process();
+      var wellKnownSymbol = require_well_known_symbol();
+      var TO_STRING_TAG = wellKnownSymbol("toStringTag");
+      var test = {};
+      test[TO_STRING_TAG] = "z";
+      module.exports = String(test) === "[object z]";
+    }
+  });
+
+  // node_modules/core-js/internals/classof.js
+  var require_classof = __commonJS({
+    "node_modules/core-js/internals/classof.js"(exports, module) {
+      "use strict";
+      init_process();
+      var TO_STRING_TAG_SUPPORT = require_to_string_tag_support();
+      var isCallable = require_is_callable();
+      var classofRaw = require_classof_raw();
+      var wellKnownSymbol = require_well_known_symbol();
+      var TO_STRING_TAG = wellKnownSymbol("toStringTag");
+      var $Object = Object;
+      var CORRECT_ARGUMENTS = classofRaw(/* @__PURE__ */ (function() {
+        return arguments;
+      })()) === "Arguments";
+      var tryGet = function(it, key) {
+        try {
+          return it[key];
+        } catch (error) {
+        }
+      };
+      module.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function(it) {
+        var O, tag, result;
+        return it === void 0 ? "Undefined" : it === null ? "Null" : typeof (tag = tryGet(O = $Object(it), TO_STRING_TAG)) == "string" ? tag : CORRECT_ARGUMENTS ? classofRaw(O) : (result = classofRaw(O)) === "Object" && isCallable(O.callee) ? "Arguments" : result;
+      };
+    }
+  });
+
+  // node_modules/core-js/internals/to-string.js
+  var require_to_string = __commonJS({
+    "node_modules/core-js/internals/to-string.js"(exports, module) {
+      "use strict";
+      init_process();
+      var classof = require_classof();
+      var $String = String;
+      module.exports = function(argument) {
+        if (classof(argument) === "Symbol") throw new TypeError("Cannot convert a Symbol value to a string");
+        return $String(argument);
+      };
+    }
+  });
+
+  // node_modules/core-js/internals/parse-json-string.js
+  var require_parse_json_string = __commonJS({
+    "node_modules/core-js/internals/parse-json-string.js"(exports, module) {
+      "use strict";
+      init_process();
+      var uncurryThis = require_function_uncurry_this();
+      var hasOwn = require_has_own_property();
+      var $SyntaxError = SyntaxError;
+      var $parseInt = parseInt;
+      var fromCharCode = String.fromCharCode;
+      var at = uncurryThis("".charAt);
+      var slice = uncurryThis("".slice);
+      var exec = uncurryThis(/./.exec);
+      var codePoints = {
+        '\\"': '"',
+        "\\\\": "\\",
+        "\\/": "/",
+        "\\b": "\b",
+        "\\f": "\f",
+        "\\n": "\n",
+        "\\r": "\r",
+        "\\t": "	"
+      };
+      var IS_4_HEX_DIGITS = /^[\da-f]{4}$/i;
+      var IS_C0_CONTROL_CODE = /^[\u0000-\u001F]$/;
+      module.exports = function(source, i) {
+        var unterminated = true;
+        var value = "";
+        while (i < source.length) {
+          var chr = at(source, i);
+          if (chr === "\\") {
+            var twoChars = slice(source, i, i + 2);
+            if (hasOwn(codePoints, twoChars)) {
+              value += codePoints[twoChars];
+              i += 2;
+            } else if (twoChars === "\\u") {
+              i += 2;
+              var fourHexDigits = slice(source, i, i + 4);
+              if (!exec(IS_4_HEX_DIGITS, fourHexDigits)) throw new $SyntaxError("Bad Unicode escape at: " + i);
+              value += fromCharCode($parseInt(fourHexDigits, 16));
+              i += 4;
+            } else throw new $SyntaxError('Unknown escape sequence: "' + twoChars + '"');
+          } else if (chr === '"') {
+            unterminated = false;
+            i++;
+            break;
+          } else {
+            if (exec(IS_C0_CONTROL_CODE, chr)) throw new $SyntaxError("Bad control character in string literal at: " + i);
+            value += chr;
+            i++;
+          }
+        }
+        if (unterminated) throw new $SyntaxError("Unterminated string at: " + i);
+        return { value, end: i };
+      };
+    }
+  });
+
+  // node_modules/core-js/internals/native-raw-json.js
+  var require_native_raw_json = __commonJS({
+    "node_modules/core-js/internals/native-raw-json.js"(exports, module) {
+      "use strict";
+      init_process();
+      var fails = require_fails();
+      module.exports = !fails(function() {
+        var unsafeInt = "9007199254740993";
+        var raw = JSON.rawJSON(unsafeInt);
+        return !JSON.isRawJSON(raw) || JSON.stringify(raw) !== unsafeInt;
+      });
+    }
+  });
+
+  // node_modules/core-js/modules/es.json.stringify.js
+  var require_es_json_stringify = __commonJS({
+    "node_modules/core-js/modules/es.json.stringify.js"() {
+      "use strict";
+      init_process();
+      var $ = require_export();
+      var getBuiltIn = require_get_built_in();
+      var call = require_function_call();
+      var uncurryThis = require_function_uncurry_this();
+      var fails = require_fails();
+      var isArray = require_is_array();
+      var isCallable = require_is_callable();
+      var isObject = require_is_object();
+      var create = require_object_create();
+      var isRawJSON = require_is_raw_json();
+      var isSymbol = require_is_symbol();
+      var classof = require_classof_raw();
+      var thisNumberValue = require_this_number_value();
+      var includes = require_array_includes().includes;
+      var hasOwn = require_has_own_property();
+      var toString = require_to_string();
+      var parseJSONString = require_parse_json_string();
+      var uid = require_uid();
+      var NATIVE_SYMBOL = require_symbol_constructor_detection();
+      var NATIVE_RAW_JSON = require_native_raw_json();
+      var $String = String;
+      var $TypeError = TypeError;
+      var $stringify = getBuiltIn("JSON", "stringify");
+      var $BigInt = getBuiltIn("BigInt");
+      var stringValueOf = uncurryThis("".valueOf);
+      var booleanValueOf = uncurryThis(true.valueOf);
+      var bigIntValueOf = $BigInt && uncurryThis($BigInt.prototype.valueOf);
+      var exec = uncurryThis(/./.exec);
+      var charAt = uncurryThis("".charAt);
+      var charCodeAt = uncurryThis("".charCodeAt);
+      var replace = uncurryThis("".replace);
+      var slice = uncurryThis("".slice);
+      var push = uncurryThis([].push);
+      var pop = uncurryThis([].pop);
+      var numberToString = uncurryThis(1.1.toString);
+      var surrogates = /[\uD800-\uDFFF]/g;
+      var leadingSurrogates = /^[\uD800-\uDBFF]$/;
+      var trailingSurrogates = /^[\uDC00-\uDFFF]$/;
+      var digits = /^\d+$/;
+      var RAW_MARK = uid();
+      var KEY_MARK = uid();
+      var END_MARK = uid();
+      var RAW_MARK_LENGTH = RAW_MARK.length;
+      var KEY_MARK_LENGTH = KEY_MARK.length;
+      var WRONG_SYMBOLS_CONVERSION = !NATIVE_SYMBOL || fails(function() {
+        var symbol = getBuiltIn("Symbol")("stringify detection");
+        return $stringify([symbol]) !== "[null]" || $stringify({ a: symbol }) !== "{}" || $stringify(Object(symbol)) !== "{}";
+      });
+      var ILL_FORMED_UNICODE = fails(function() {
+        return $stringify("\uDF06\uD834") !== '"\\udf06\\ud834"' || $stringify("\uDEAD") !== '"\\udead"';
+      });
+      var isRawJSONValue = NATIVE_RAW_JSON ? getBuiltIn("JSON", "isRawJSON") : isRawJSON;
+      var stringifyWithProperSymbolsConversion = WRONG_SYMBOLS_CONVERSION ? function(it, replacer, space) {
+        return $stringify(it, function(key, value) {
+          var replaced = call(replacer, this, key, value);
+          if (!isSymbol(replaced)) return replaced;
+        }, space);
+      } : $stringify;
+      var fixIllFormedJSON = function(match, offset, string) {
+        var prev = charAt(string, offset - 1);
+        var next = charAt(string, offset + 1);
+        if (exec(leadingSurrogates, match) && !exec(trailingSurrogates, next) || exec(trailingSurrogates, match) && !exec(leadingSurrogates, prev)) {
+          return "\\u" + numberToString(charCodeAt(match, 0), 16);
+        }
+        return match;
+      };
+      var getPropertyList = function(replacer) {
+        if (!isArray(replacer)) return;
+        var rawLength = replacer.length;
+        var propertyList = [];
+        var addedKeys = create(null);
+        for (var i = 0; i < rawLength; i++) {
+          var element = replacer[i];
+          var key;
+          if (typeof element == "string") key = element;
+          else if (typeof element == "number" || classof(element) === "Number" || classof(element) === "String") key = toString(element);
+          else continue;
+          if (!hasOwn(addedKeys, key)) {
+            addedKeys[key] = true;
+            push(propertyList, key);
+          }
+        }
+        return propertyList;
+      };
+      var hasInternalSlot = function(valueOf, it) {
+        try {
+          valueOf(it);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      };
+      var isBoxedPrimitive = function(it) {
+        var kind = classof(it);
+        return kind === "Number" && hasInternalSlot(thisNumberValue, it) || kind === "String" && hasInternalSlot(stringValueOf, it) || kind === "Boolean" && hasInternalSlot(booleanValueOf, it) || !!bigIntValueOf && kind === "BigInt" && hasInternalSlot(bigIntValueOf, it);
+      };
+      var isSerializedAsObject = function(it) {
+        if (!isObject(it) || isCallable(it) || isArray(it)) return false;
+        try {
+          return !isBoxedPrimitive(it);
+        } catch (error) {
+          return true;
+        }
+      };
+      var createElementHolder = function(holder, key) {
+        return {
+          toJSON: function() {
+            var element = holder[key];
+            if (isObject(element) || typeof element == "bigint") {
+              var elementToJSON = element.toJSON;
+              if (isCallable(elementToJSON)) element = call(elementToJSON, element, key);
+            }
+            return element;
+          }
+        };
+      };
+      var getKeyPrefix = function(propertyList) {
+        for (var i = 0, length = propertyList.length; i < length; i++) {
+          if (exec(digits, propertyList[i])) return KEY_MARK;
+        }
+        return "";
+      };
+      var createOrderedObject = function(value, propertyList, keyPrefix) {
+        var ordered = create(null);
+        for (var i = 0, length = propertyList.length; i < length; i++) {
+          var key = propertyList[i];
+          ordered[keyPrefix + key] = createElementHolder(value, key);
+        }
+        ordered[END_MARK] = null;
+        return ordered;
+      };
+      if ($stringify) $({ target: "JSON", stat: true, arity: 3, forced: WRONG_SYMBOLS_CONVERSION || ILL_FORMED_UNICODE || !NATIVE_RAW_JSON }, {
+        stringify: function stringify(text, replacer, space) {
+          var replacerFunction = isCallable(replacer) ? replacer : void 0;
+          var propertyList = replacerFunction ? void 0 : getPropertyList(replacer);
+          var keyPrefix = propertyList && getKeyPrefix(propertyList);
+          var rawStrings = [];
+          var openObjects = [];
+          var parentOrdered = [];
+          var currentOrdered;
+          var marked = false;
+          var root = true;
+          var json = stringifyWithProperSymbolsConversion(text, function(key, value) {
+            key = $String(key);
+            if (propertyList) {
+              if (key === END_MARK) {
+                pop(openObjects);
+                currentOrdered = pop(parentOrdered);
+                return;
+              }
+              if (root) root = false;
+              else if (this !== currentOrdered && !isArray(this) && !includes(propertyList, key)) return;
+            } else if (replacerFunction) value = call(replacerFunction, this, key, value);
+            if (isRawJSONValue(value)) {
+              if (NATIVE_RAW_JSON) return value;
+              marked = true;
+              return RAW_MARK + (push(rawStrings, value.rawJSON) - 1);
+            }
+            if (propertyList && isSerializedAsObject(value)) {
+              if (includes(openObjects, value)) throw new $TypeError("Converting circular structure to JSON");
+              var ordered = createOrderedObject(value, propertyList, keyPrefix);
+              push(openObjects, value);
+              push(parentOrdered, currentOrdered);
+              currentOrdered = ordered;
+              if (keyPrefix) marked = true;
+              return ordered;
+            }
+            return value;
+          }, space);
+          if (typeof json != "string") return json;
+          if (ILL_FORMED_UNICODE) json = replace(json, surrogates, fixIllFormedJSON);
+          if (!marked) return json;
+          var result = "";
+          var length = json.length;
+          for (var i = 0; i < length; i++) {
+            var chr = charAt(json, i);
+            if (chr === '"') {
+              var end = parseJSONString(json, ++i).end - 1;
+              var string = slice(json, i, end);
+              if (slice(string, 0, RAW_MARK_LENGTH) === RAW_MARK) result += rawStrings[slice(string, RAW_MARK_LENGTH)];
+              else if (slice(string, 0, KEY_MARK_LENGTH) === KEY_MARK) result += '"' + slice(string, KEY_MARK_LENGTH) + '"';
+              else result += '"' + string + '"';
+              i = end;
+            } else result += chr;
+          }
+          return result;
+        }
+      });
+    }
+  });
+
+  // dist/domItem/traits/getNonSerializableKeys.js
+  var require_getNonSerializableKeys = __commonJS({
+    "dist/domItem/traits/getNonSerializableKeys.js"(exports) {
+      "use strict";
+      init_process();
+      var __importDefault = function(mod) {
+        return mod && mod.__esModule ? mod : {
+          "default": mod
+        };
+      };
+      Object.defineProperty(exports, "__esModule", {
+        value: true
+      });
+      var definitions_1 = __importDefault(require_definitions());
+      var getNonSerializableKeys = (item) => Object.keys(item.has ?? {}).flatMap((trait) => {
+        const definition = definitions_1.default.get(trait);
+        return definition && definition.serializable === false ? definition.keys : [];
+      });
+      exports.default = getNonSerializableKeys;
+    }
+  });
+
+  // dist/deflate/removeEmptyProperties.js
+  var require_removeEmptyProperties = __commonJS({
+    "dist/deflate/removeEmptyProperties.js"(exports) {
+      "use strict";
+      init_process();
+      require_es_array_includes();
+      var __importDefault = function(mod) {
+        return mod && mod.__esModule ? mod : {
+          "default": mod
+        };
+      };
+      Object.defineProperty(exports, "__esModule", {
+        value: true
+      });
+      var si_funciona_1 = __importDefault(require_main());
+      var getNonSerializableKeys_1 = __importDefault(require_getNonSerializableKeys());
+      var isEmpty = (propertyValue) => si_funciona_1.default.emptyObject(propertyValue) || propertyValue === null || typeof propertyValue === "undefined";
+      var removeEmptyProperties = (item, propertiesToDelete = []) => {
+        item.children.forEach((child) => {
+          removeEmptyProperties(child, propertiesToDelete);
+        });
+        const properties = item;
+        const toDelete = propertiesToDelete.concat((0, getNonSerializableKeys_1.default)(item));
+        si_funciona_1.default.objectKeys(item).forEach((property) => {
+          const propertyValue = properties[property];
+          if (isEmpty(propertyValue) || toDelete.includes(property)) {
+            delete properties[property];
+          }
+        });
+        return item;
+      };
+      exports.default = removeEmptyProperties;
+    }
+  });
+
+  // dist/deflate/domItemToJson.js
+  var require_domItemToJson = __commonJS({
+    "dist/deflate/domItemToJson.js"(exports) {
+      "use strict";
+      init_process();
+      require_es_array_includes();
+      require_es_json_stringify();
+      var __importDefault = function(mod) {
+        return mod && mod.__esModule ? mod : {
+          "default": mod
+        };
+      };
+      Object.defineProperty(exports, "__esModule", {
+        value: true
+      });
+      var si_funciona_1 = __importDefault(require_main());
+      var removeEmptyProperties_1 = __importDefault(require_removeEmptyProperties());
+      var useExclusions = /* @__PURE__ */ (function makeExclusions() {
+        let jsonExclusions = [];
+        return (key, value) => {
+          if (key === "jsonExclusions") {
+            jsonExclusions = value;
+            return value;
+          }
+          if (jsonExclusions.includes(key)) {
+            return void 0;
+          }
+          return value;
+        };
+      })();
+      var domItemToJson = (item, {
+        propertiesToDelete = []
+      } = {}) => JSON.stringify((0, removeEmptyProperties_1.default)(si_funciona_1.default.cloneObject(item), ["activeListeners", "element", "parentItem", "body", "head", ...propertiesToDelete]), useExclusions);
+      exports.default = domItemToJson;
+    }
+  });
+
+  // dist/deflate/index.js
+  var require_deflate = __commonJS({
+    "dist/deflate/index.js"(exports) {
+      "use strict";
+      init_process();
+      var __importDefault = function(mod) {
+        return mod && mod.__esModule ? mod : {
+          "default": mod
+        };
+      };
+      Object.defineProperty(exports, "__esModule", {
+        value: true
+      });
+      var domItemToJson_1 = __importDefault(require_domItemToJson());
+      var removeEmptyProperties_1 = __importDefault(require_removeEmptyProperties());
+      exports.default = {
+        domItemToJson: domItemToJson_1.default,
+        removeEmptyProperties: removeEmptyProperties_1.default
+      };
+    }
+  });
+
   // dist/diff/elementHasAttribute.js
   var require_elementHasAttribute = __commonJS({
     "dist/diff/elementHasAttribute.js"(exports) {
@@ -10499,9 +10974,9 @@ var jsonDomRenderOnly = (() => {
     }
   });
 
-  // dist/renderOnly.js
-  var require_renderOnly = __commonJS({
-    "dist/renderOnly.js"(exports, module) {
+  // dist/main.js
+  var require_main3 = __commonJS({
+    "dist/main.js"(exports, module) {
       init_process();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
@@ -10511,13 +10986,14 @@ var jsonDomRenderOnly = (() => {
       var index_1 = __importDefault(require_events());
       var index_2 = __importDefault(require_domItem());
       var index_3 = __importDefault(require_inflate());
-      var index_4 = __importDefault(require_render());
-      var index_5 = __importDefault(require_sync());
-      var index_6 = __importDefault(require_diff());
-      var jsonDomRenderOnly = Object.assign({}, index_1.default, index_2.default, index_3.default, index_4.default, index_5.default, index_6.default);
-      module.exports = jsonDomRenderOnly;
+      var index_4 = __importDefault(require_deflate());
+      var index_5 = __importDefault(require_render());
+      var index_6 = __importDefault(require_sync());
+      var index_7 = __importDefault(require_diff());
+      var treeloom = Object.assign({}, index_1.default, index_2.default, index_3.default, index_4.default, index_5.default, index_6.default, index_7.default);
+      module.exports = treeloom;
     }
   });
-  return require_renderOnly();
+  return require_main3();
 })();
-if (typeof module === 'object' && module && module.exports) { module.exports = jsonDomRenderOnly }
+if (typeof module === 'object' && module && module.exports) { module.exports = treeloom }

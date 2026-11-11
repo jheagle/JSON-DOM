@@ -1,10 +1,10 @@
 {
-  "name": "json-dom",
+  "name": "treeloom",
   "private": true,
   "author": "Joshua Heagle <joshuaheagle@gmail.com> (https://joshuaheagle.com)",
   "license": "MPL-2.0",
   "description": "State management with JSON.",
-  "homepage": "https://github.com/jheagle/json-dom#readme",
+  "homepage": "https://github.com/jheagle/treeloom#readme",
   "keywords": [
     "dom",
     "json",
@@ -12,7 +12,7 @@
   ],
   "version": "1.8.1",
   "bugs": {
-    "url": "https://github.com/jheagle/json-dom/issues"
+    "url": "https://github.com/jheagle/treeloom/issues"
   },
   "scripts": {
     "build": "gulp build",
@@ -45,7 +45,7 @@
     "typedoc": "^0.28.20"
   },
   "resolutions": {},
-  "repository": "github:jheagle/json-dom",
+  "repository": "github:jheagle/treeloom",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "files": [

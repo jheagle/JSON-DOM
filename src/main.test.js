@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import jsonDom from './main'
+import treeloom from './main'
 
 // The names other projects (matrix-dom, battleship, ...) call. Moving a function between folders must never change
 // these; adding one is a deliberate change to this list.
@@ -87,12 +87,12 @@ const publicApi = [
   'withTrait'
 ]
 
-describe('jsonDom public API', () => {
+describe('treeloom public API', () => {
   test('has exactly these functions and objects', () => {
-    expect(Object.keys(jsonDom).sort()).toEqual(publicApi)
+    expect(Object.keys(treeloom).sort()).toEqual(publicApi)
   })
 
   test('every name is a function or a factory', () => {
-    publicApi.forEach(name => expect(typeof jsonDom[name]).toMatch(/function|object/))
+    publicApi.forEach(name => expect(typeof treeloom[name]).toMatch(/function|object/))
   })
 })

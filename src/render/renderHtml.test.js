@@ -51,7 +51,7 @@ describe('renderHtml', () => {
     expect(documentItem.body.children.length).toBe(singletonChildrenBefore)
   })
 
-  // The real scenario this covers: dropping json-dom content into a page which already has real, hand-authored
+  // The real scenario this covers: dropping treeloom content into a page which already has real, hand-authored
   // HTML (see updateDomItems for capturing that content into items first) - a header/menu that needs to render
   // BEFORE the existing content, not after it.
   test('an index inserts item among an already-rendered parent\'s existing children, at that position', () => {
@@ -67,11 +67,11 @@ describe('renderHtml', () => {
     expect(Array.from(parent.element.children).map(el => el.nodeName.toLowerCase())).toEqual(['header', 'main', 'footer'])
   })
 
-  // The real bug this covers: a page with hand-authored HTML that some *other* script (outside json-dom entirely,
+  // The real bug this covers: a page with hand-authored HTML that some *other* script (outside treeloom entirely,
   // e.g. a plugin doing its own direct DOM manipulation) sets an inline style on directly. Capturing that HTML into
   // items via updateDomItems, then inserting a new item ahead of it, must not touch that untracked style -
   // renderHtml used to walk and re-sync parent's whole existing subtree as a side effect of positioning the new
-  // item, reverting anything about existing siblings that json-dom's own items never knew about.
+  // item, reverting anything about existing siblings that treeloom's own items never knew about.
   test('inserting an item does not revert an untracked style on an already-rendered sibling', () => {
     const parent = createDomItem({ nodeName: 'body' })
     parent.element = document.createElement('body')
@@ -79,7 +79,7 @@ describe('renderHtml', () => {
     const existingReal = document.createElement('h4')
     existingReal.textContent = 'Some title'
     parent.element.appendChild(existingReal)
-    // Something outside json-dom (a third-party script) sets this directly on the real element - json-dom's own
+    // Something outside treeloom (a third-party script) sets this directly on the real element - treeloom's own
     // items are never told about it.
     existingReal.style.display = 'none'
 

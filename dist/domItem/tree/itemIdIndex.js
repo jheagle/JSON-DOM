@@ -1,5 +1,8 @@
 "use strict";
 
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -11,7 +14,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.getItemById = exports.unregisterItemIds = exports.registerItemIds = exports.generateItemId = void 0;
 const si_funciona_1 = __importDefault(require("si-funciona"));
 const collect_your_stuff_1 = require("collect-your-stuff");
-/** One lookup index per json-dom process: every root's own ids live in their own scope, so two unrelated trees
+/** One lookup index per treeloom process: every root's own ids live in their own scope, so two unrelated trees
  * (the server's real tree and a client's independently-built one) never collide even though both number their
  * items starting from the same small integers. */
 const itemsById = new collect_your_stuff_1.ScopedCollection();
@@ -60,7 +63,7 @@ const tryGetRoot = item => {
  *   one item, then replicate it N times" helper (si-funciona's buildArray, cloning rather than constructing
  *   fresh - the shape matrix-dom's own buildMatrix uses for a grid's rows/columns/tiles) copies whatever id
  *   the one template already carries into every copy right along with everything else, with no way for
- *   json-dom to know that happened before registration.
+ *   treeloom to know that happened before registration.
  *
  * Catching both here, at the one real choke point every attached item passes through, protects against these
  * patterns (and any other generic cloning or raw merging this codebase does not yet know about) without

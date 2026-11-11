@@ -1,9 +1,9 @@
 {
   "browser": {
-    "name": "jsonDom",
+    "name": "treeloom",
     "bundles": [
       {
-        "name": "jsonDomRenderOnly",
+        "name": "treeloomRenderOnly",
         "main": "dist/renderOnly"
       }
     ]
@@ -11,7 +11,7 @@
   "copyFiles": [
     {
       "from": "browser/*.js",
-      "to": "../joshuaheagle.local/projects/json-dom/browser"
+      "to": "../joshuaheagle.local/projects/treeloom/browser"
     }
   ],
   "docs": {
@@ -19,7 +19,7 @@
     "enabled": true,
     "from": "src",
     "index": "MAIN.md",
-    "to": "../joshuaheagle.local/projects/json-dom/docs",
+    "to": "../joshuaheagle.local/projects/treeloom/docs",
     "inBuild": false,
     "gitRevision": "main"
   },

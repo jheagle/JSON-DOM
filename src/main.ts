@@ -14,7 +14,7 @@ import render from './render/index'
 import sync from './sync/index'
 import diff from './diff/index'
 
-const jsonDom = Object.assign(
+const treeloom = Object.assign(
   {},
   events,
   domItem,
@@ -25,8 +25,8 @@ const jsonDom = Object.assign(
   diff
 )
 
-// `export =` (not `export default`) so the compiled module.exports IS jsonDom directly, not
-// { default: jsonDom } - browserify's standalone UMD wrapper exposes a bundle's module.exports
+// `export =` (not `export default`) so the compiled module.exports IS treeloom directly, not
+// { default: treeloom } - browserify's standalone UMD wrapper exposes a bundle's module.exports
 // as the global/CommonJS/AMD value verbatim, so a default export would otherwise surface as
-// window.jsonDom.default instead of window.jsonDom itself.
-export = jsonDom
+// window.treeloom.default instead of window.treeloom itself.
+export = treeloom

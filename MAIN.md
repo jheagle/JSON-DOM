@@ -1,9 +1,9 @@
-# JSON-DOM
+# treeloom
 
 State management with JSON.
 
-json-dom represents a document as a **Virtual DOM**: a tree of plain objects (the **DomItem tree**) which mirrors the
-real HTML DOM. You build and change the tree; json-dom keeps the real elements in step with it, and can turn the tree
+treeloom represents a document as a **Virtual DOM**: a tree of plain objects (the **DomItem tree**) which mirrors the
+real HTML DOM. You build and change the tree; treeloom keeps the real elements in step with it, and can turn the tree
 into JSON and back.
 
 ## The items
@@ -13,7 +13,7 @@ map of the **traits** it carries. Custom data can sit right on the item, next to
 
 * A **CoreItem** is the generic item. It knows nothing about a real element, so it can live in a back-end which never
   renders anything.
-* A **DomItem** is an item with the `render` trait, which adds the `element` it is mirrored onto. json-dom's render and
+* A **DomItem** is an item with the `render` trait, which adds the `element` it is mirrored onto. treeloom's render and
   sync functions work on these.
 * Other libraries add their own traits (matrix-dom has `matrix.row`, `matrix.column`, ...), see `defineTrait`. In
   TypeScript, `hasTrait(item, 'matrix.row')` narrows an item to what that trait adds.
@@ -33,7 +33,7 @@ Each module of the documentation is a folder of the source:
 ## Example
 
 ```js
-const { createDomItem, documentDomItem, renderHtml, updateElement, domItemToJson, jsonToDomItem } = require('json-dom')
+const { createDomItem, documentDomItem, renderHtml, updateElement, domItemToJson, jsonToDomItem } = require('treeloom')
 
 // Named listeners are registered once on the document item, and items refer to them by name
 const documentItem = documentDomItem({

@@ -1,5 +1,8 @@
 "use strict";
 
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -16,7 +19,7 @@ const withTrait_1 = __importDefault(require("../traits/withTrait"));
  */
 const isPlainChild = child => typeof child === 'object' && child !== null && !child.has;
 /**
- * This is the basic Object for representing a node in json-dom's Virtual DOM (DomItem tree): a generic item (see
+ * This is the basic Object for representing a node in treeloom's Virtual DOM (DomItem tree): a generic item (see
  * {@link createCoreItem}) with the render trait. All incoming attributes will be merged to the specified format, and the
  * given object is completed and returned (it is not copied). Children which are plain objects are completed the same way,
  * all the way down; a child which already has a has map is already an item, and is left alone.
