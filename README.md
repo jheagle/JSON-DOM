@@ -70,4 +70,4 @@ npm run docs      # only the documentation
 
 ## License
 
-MIT, see [LICENSE](LICENSE).
+[Mozilla Public License 2.0](https://mozilla.org/MPL/2.0/) (MPL-2.0), see [LICENSE](LICENSE). In short: changes to this library's own files are shared under the same license; apps that use it can be licensed however you like.

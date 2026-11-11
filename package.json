@@ -2,7 +2,7 @@
   "name": "json-dom",
   "private": true,
   "author": "Joshua Heagle <joshuaheagle@gmail.com> (https://joshuaheagle.com)",
-  "license": "MIT",
+  "license": "MPL-2.0",
   "description": "State management with JSON.",
   "homepage": "https://github.com/jheagle/json-dom#readme",
   "keywords": [
