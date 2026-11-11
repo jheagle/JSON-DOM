@@ -67,3 +67,7 @@ npm run typecheck # the types, and the type tests
 npm run build     # dist/, browser/ and docs/
 npm run docs      # only the documentation
 ```
+
+## License
+
+MIT, see [LICENSE](LICENSE).
