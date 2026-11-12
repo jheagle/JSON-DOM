@@ -5,6 +5,7 @@
 import bindListeners from '../events/functions/bindListeners'
 import deactivateListeners from '../events/functions/deactivateListeners'
 import domItemChanges from '../diff/domItemChanges'
+import { recordApplied } from '../diff/appliedSnapshot'
 import siFunciona from 'si-funciona'
 import generateElement from './generateElement'
 import updateChildNodes from './updateChildNodes'
@@ -97,6 +98,8 @@ const updateElement = (domItem: DomItem): DomItem => {
     // error. kabobCase here is a harmless no-op when the key is already kebab, and a real fix when it is not.
     element.style.setProperty(siFunciona.kabobCase(siFunciona.strAfter(dotKey, '.')), value)
   }
+  // The element now matches the item: the next update compares against this rather than reading the element back
+  recordApplied(domItem)
   return bindListeners(domItem)
 }
 
