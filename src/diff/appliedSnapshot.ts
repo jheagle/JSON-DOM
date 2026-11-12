@@ -18,6 +18,13 @@ export type AppliedSnapshot = {
   style: Record<string, unknown>
 }
 
+/**
+ * Properties the person using the page changes directly (typing, ticking, choosing), so the element is their real current
+ * state, not what was last written. These are compared with the element itself, as before, so an item still puts them
+ * back (a controlled input: the item says '' and what was typed is cleared on the next update).
+ */
+const LIVE_PROPERTIES = ['value', 'checked', 'selected', 'indeterminate']
+
 // Kept beside the item, not on it, so it never travels with the item (deflate, JSON) and goes away with the element
 const snapshots = new WeakMap<object, AppliedSnapshot>()
 
@@ -102,8 +109,14 @@ export const changesFromApplied = (
   }
   const next = describe(domItem)
   const changes = createChangeList()
+  const element = domItem.element as unknown as Record<string, unknown>
   for (const key in next.attributes) {
-    if (next.attributes[key] !== previous.attributes[key]) {
+    const live = LIVE_PROPERTIES.includes(key) && key in element
+    const current = live ? element[key] : previous.attributes[key]
+    const differs = live && typeof current === 'string'
+      ? String(next.attributes[key] ?? '') !== current
+      : next.attributes[key] !== current
+    if (differs) {
       changes.added[propertyName(key)] = next.attributes[key]
     }
   }

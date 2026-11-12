@@ -4,6 +4,7 @@
 
 import siFunciona from 'si-funciona'
 import elementChanges from '../diff/elementChanges'
+import { forgetApplied } from '../diff/appliedSnapshot'
 import type { DomItem } from '../domItem/types'
 
 /**
@@ -37,6 +38,9 @@ const updateDomItem = (config: DomItem): DomItem => {
     }
     siFunciona.dotSet(config as unknown as Record<string, unknown>, dotKey, changes.added[dotKey])
   }
+  // The item now holds what the element has, which may not be what treeloom last wrote: compare the next update with
+  // the element itself again, or setting the item back to the old value would look like no change at all
+  forgetApplied(config.element)
   return config
 }
 

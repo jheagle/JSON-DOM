@@ -112,4 +112,28 @@ describe('an update compares with what treeloom last wrote, not with what the br
     treeloom.updateElement(item)
     expect(Object.keys(item).sort()).toEqual(keysBefore)
   })
+
+  test('a controlled input: what was typed is put back to the item\'s value on the next update, as before', async () => {
+    const item = treeloom.renderHtml(treeloom.createDomItem({ tagName: 'input', attributes: { type: 'text', value: '' } }))
+    item.element.value = 'typed'
+    treeloom.updateElement(item)
+    expect(item.element.value).toBe('')
+  })
+
+  test('a controlled checkbox: a click is put back to the item\'s checked state on the next update, as before', async () => {
+    const item = treeloom.renderHtml(treeloom.createDomItem({ tagName: 'input', attributes: { type: 'checkbox', checked: false } }))
+    item.element.checked = true
+    treeloom.updateElement(item)
+    expect(item.element.checked).toBe(false)
+  })
+
+  test('sync then revert: after updateDomItem adopts a direct change, setting the item back writes it again', async () => {
+    const item = render({ style: { color: 'red' } })
+    item.element.style.color = 'blue'
+    treeloom.updateDomItem(item)
+    expect(item.attributes.style.color).toBe('blue')
+    item.attributes.style.color = 'red'
+    treeloom.updateElement(item)
+    expect(item.element.style.color).toBe('red')
+  })
 })
