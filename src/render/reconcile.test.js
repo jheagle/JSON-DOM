@@ -178,4 +178,24 @@ describe('reconcile', () => {
     expect(element.isConnected).toBe(true)
     expect(cellElements(board)[0].className).toBe('cell')
   })
+
+  test('a named listener the next tree no longer has is detached, also when the next item has no listeners at all', () => {
+    const calls = []
+    registerListener(() => calls.push('third'), 'thirdAction', documentItem)
+    const listeners = { click: [{ listenerFunc: 'thirdAction', listenerArgs: {}, listenerOptions: false }] }
+    const board = renderBoard(boardJson([[1, 'cell', 'A1']], listeners))
+    board.element.click()
+    expect(calls).toEqual(['third'])
+
+    treeloom.reconcile(board, inflate(boardJson([[1, 'cell', 'A1']], {})))
+    board.element.click()
+    expect(calls).toEqual(['third'])
+
+    const again = renderBoard(boardJson([[2, 'cell', 'A2']], listeners))
+    const next = inflate(boardJson([[2, 'cell', 'A2']]))
+    delete next.eventListeners
+    treeloom.reconcile(again, next)
+    again.element.click()
+    expect(calls).toEqual(['third'])
+  })
 })
