@@ -104,3 +104,6 @@ typings/
 
 # VS Code
 .vscode/
+# Generated build output (built by `npm run build`, published to npm)
+/dist/
+/browser/
