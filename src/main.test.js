@@ -68,6 +68,7 @@ const publicApi = [
   'makeForwardingListener',
   'options',
   'receiveForwardedEvent',
+  'reconcile',
   'registerListener',
   'registerListeners',
   'removeChild',

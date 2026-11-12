@@ -87,4 +87,45 @@ describe('updateChildNodes', () => {
     const updated = updateChildNodes(originalItem)
     expect(updated.children).toHaveLength(0)
   })
+
+  test('children that swap places both stay in the page, in the new order (replaceChild used to drop one)', () => {
+    const parent = updateChildNodes(createDomItem({
+      tagName: 'ul',
+      children: ['a', 'b', 'c'].map(name => ({ tagName: 'li', attributes: { className: name } }))
+    }))
+    const [a, b, c] = parent.children
+    parent.children = [c, b, a]
+    updateChildNodes(parent)
+    expect(Array.from(parent.element.childNodes)).toEqual([c.element, b.element, a.element])
+    expect(Array.from(parent.element.childNodes).map(node => node.className)).toEqual(['c', 'b', 'a'])
+  })
+
+  test('a reorder moves as few nodes as it can: one moved to the end is the only one moved, the others keep focus', async () => {
+    const parent = updateChildNodes(createDomItem({
+      tagName: 'ul',
+      children: ['a', 'b', 'c', 'd'].map(name => ({ tagName: 'li', attributes: { className: name, tabIndex: 0 } }))
+    }))
+    document.body.appendChild(parent.element)
+    const [a, b, c, d] = parent.children
+    c.element.focus()
+    const moved = []
+    const observer = new MutationObserver(list => list.forEach(record => record.addedNodes.forEach(node => moved.push(node.className))))
+    observer.observe(parent.element, { childList: true })
+    parent.children = [b, c, d, a]
+    updateChildNodes(parent)
+    await new Promise(resolve => setTimeout(resolve, 0))
+    observer.disconnect()
+    expect(Array.from(parent.element.childNodes).map(node => node.className)).toEqual(['b', 'c', 'd', 'a'])
+    expect(moved).toEqual(['a'])
+    expect(document.activeElement).toBe(c.element)
+    parent.element.remove()
+  })
+
+  test('nodes the element has that aren\'t its children\'s are removed, wherever they are', () => {
+    const parent = updateChildNodes(createDomItem({ tagName: 'ul', children: [{ tagName: 'li', attributes: { className: 'a' } }] }))
+    parent.element.insertBefore(document.createElement('span'), parent.element.firstChild)
+    parent.element.appendChild(document.createTextNode('stray'))
+    updateChildNodes(parent)
+    expect(Array.from(parent.element.childNodes)).toEqual([parent.children[0].element])
+  })
 })

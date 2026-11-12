@@ -46,6 +46,23 @@ const json = domItemToJson(button)    // a string, without the element and the l
 const copy = jsonToDomItem(json)      // an item again, ready to render
 ```
 
+### Updating from a new version of the tree
+
+When a new version of a tree arrives as a whole (a server sending its state as JSON, say), `reconcile` updates the
+rendered tree to match it instead of rendering everything again. Items are matched by id (otherwise by position and node
+name). Matched items keep their elements, listeners and focus, and only what changed is written to the page.
+
+```js
+const { reconcile } = require('treeloom')
+
+reconcile(button, jsonToDomItem(nextJson)) // same <button> element, only the changed attributes written
+```
+
+Updates compare each item with what treeloom last wrote to its element, not with the element itself, so values the
+browser stores in another form (`#333` as `rgb(51, 51, 51)`) don't count as changes. Changes other scripts make directly
+on an element are left alone; form state the user changes (`value`, `checked`, `selected`) is still put back to the
+item's value, as with a controlled input.
+
 ## Documentation
 
 The reference for every function and type is in [`docs/`](docs/index.html) (open `docs/index.html` in a browser). It is
@@ -54,10 +71,10 @@ generated from the TypeScript source, and each module is a folder of `src/`:
 | Module | What it does |
 | --- | --- |
 | `domItem` | Create items, the traits they carry, and find or change items in the tree |
-| `render` | Mirror the tree onto real elements |
+| `render` | Mirror the tree onto real elements, and update a rendered tree from a new version of it (`reconcile`) |
 | `sync` | Read the real elements back into the tree |
 | `inflate`, `deflate` | Turn a tree into JSON, and JSON back into a tree |
-| `diff` | Work out what differs between an item and its element |
+| `diff` | Work out what differs between an item and what was last written to its element |
 | `events` | Attach listeners to the elements of items |
 
 ## Development
