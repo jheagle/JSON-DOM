@@ -17,6 +17,8 @@ npm install treeloom
 It is written in TypeScript and ships its types. In a browser, use `browser/treeloom.min.js` (it defines `treeloom`) -
 or, for a build that renders JSON to HTML and forwards fired events elsewhere instead of running local listener
 functions, `browser/treeloomRenderOnly.min.js` (it defines `treeloomRenderOnly`; see `setForwardEvents`).
+The bundles are in the npm package (not in git), so a CDN serves them too, e.g.
+`https://cdn.jsdelivr.net/npm/treeloom@2/browser/treeloom.min.js`.
 
 ## Example
 
