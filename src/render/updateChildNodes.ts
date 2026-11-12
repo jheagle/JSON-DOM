@@ -18,26 +18,15 @@ const updateChildNodes = (domItem: DomItem): DomItem => {
     return domItem
   }
   const element = domItem.element as Node
-  const previousChildNodes = Array.from(element.childNodes)
-  domItem.children
-    .map((child, index) => {
-      const existing = previousChildNodes.find(childNode => childNode === child.element)
-      let childNode = existing ?? child.element
-      if (!childNode) {
-        childNode = updateElement(child).element
-      }
-      if (!previousChildNodes[index]) {
-        element.appendChild(childNode as Node)
-        return childNode
-      }
-      if (childNode !== previousChildNodes[index]) {
-        element.replaceChild(childNode as Node, previousChildNodes[index])
-      }
-      return childNode
-    })
-    .forEach((childNode, index) => {
-      domItem.children[index].element = childNode as DomElement
-    })
+  domItem.children.forEach((child, index) => {
+    const childNode = (child.element ?? updateElement(child).element) as Node
+    // Put each child's node in its place, moving it if it is elsewhere. insertBefore (not replaceChild) so a node that
+    // is in the way is pushed along rather than detached: when children swap places, both stay in the page.
+    if (element.childNodes[index] !== childNode) {
+      element.insertBefore(childNode, element.childNodes[index] ?? null)
+    }
+    child.element = childNode as DomElement
+  })
   if (element.childNodes.length > domItem.children.length) {
     const maxLength = domItem.children.length
     let nodeToRemove = element.childNodes[maxLength]

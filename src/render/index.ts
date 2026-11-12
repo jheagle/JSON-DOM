@@ -3,6 +3,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import generateElement from './generateElement'
+import reconcile from './reconcile'
 import renderHtml from './renderHtml'
 import updateChildNodes from './updateChildNodes'
 import updateElement from './updateElement'
@@ -10,6 +11,7 @@ import updateElements from './updateElements'
 
 export default {
   generateElement,
+  reconcile,
   renderHtml,
   updateChildNodes,
   updateElement,

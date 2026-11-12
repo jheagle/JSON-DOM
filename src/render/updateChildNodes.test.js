@@ -87,4 +87,16 @@ describe('updateChildNodes', () => {
     const updated = updateChildNodes(originalItem)
     expect(updated.children).toHaveLength(0)
   })
+
+  test('children that swap places both stay in the page, in the new order (replaceChild used to drop one)', () => {
+    const parent = updateChildNodes(createDomItem({
+      tagName: 'ul',
+      children: ['a', 'b', 'c'].map(name => ({ tagName: 'li', attributes: { className: name } }))
+    }))
+    const [a, b, c] = parent.children
+    parent.children = [c, b, a]
+    updateChildNodes(parent)
+    expect(Array.from(parent.element.childNodes)).toEqual([c.element, b.element, a.element])
+    expect(Array.from(parent.element.childNodes).map(node => node.className)).toEqual(['c', 'b', 'a'])
+  })
 })
