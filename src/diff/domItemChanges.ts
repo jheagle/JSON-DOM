@@ -5,6 +5,7 @@
 import siFunciona from 'si-funciona'
 import elementHasAttribute from './elementHasAttribute'
 import createChangeList from './createChangeList'
+import { changesFromApplied } from './appliedSnapshot'
 import type { DomItem, StyleValues } from '../domItem/types'
 import type { compareArrayResult, compareArrayResultMap } from 'si-funciona/dist/helpers/arrays/compareArrays'
 import type { AttributeComparison, ChangeList, DotNotated } from './types'
@@ -96,6 +97,18 @@ const domItemChanges = (domItem: DomItem): ChangeList => {
       changeList.added.nodeValue = domItem.nodeValue
     }
     return changeList
+  }
+  // Compared with what treeloom last wrote to the element when it knows that (see appliedSnapshot): nothing is read
+  // back from the DOM. Not when the node is being replaced (nodeName changed): its new element starts fresh.
+  if (!changeList.added.nodeName) {
+    const fromApplied = changesFromApplied(domItem, (kabobKey: string): string => {
+      const name = attributeName(domItem.attributes, kabobKey)
+      const element = domItem.element as HTMLElement | null
+      return element && name in element && name !== 'form' ? name : kabobKey
+    })
+    if (fromApplied) {
+      return fromApplied
+    }
   }
   const domItemAttributes = kabobCaseAttributes(domItem.attributes)
 
