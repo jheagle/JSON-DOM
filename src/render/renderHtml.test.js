@@ -36,7 +36,7 @@ describe('renderHtml', () => {
     expect(updated.body.children[0].element.nodeName.toLowerCase()).toBe('div')
   })
 
-  // The real bug this covers: battleship (a downstream consumer) builds its own document via documentDomItem (so
+  // The real bug this covers: cloakfall (a downstream consumer) builds its own document via documentDomItem (so
   // its eventActions - the registered listener functions - stay private, not on the public documentItem singleton),
   // then calls renderHtml(item, ownDocument.body) expecting it to append there. Before this fix, the second
   // argument was silently ignored and everything landed on the singleton instead - orphaning it from the document
@@ -132,7 +132,7 @@ describe('renderHtml', () => {
   // to bind, because binding a listener looks up its root via getTopParentItem, which walks the parentItem chain -
   // and renderHtml used to set that chain (setParentItemReferences) only after already rendering and binding
   // listeners for the whole subtree, not before. Threw "Detached child, missing parentItem reference" on every
-  // nested listener in a fresh tree (battleship's own menu, hit on every test that rendered it).
+  // nested listener in a fresh tree (cloakfall's own menu, hit on every test that rendered it).
   test('a listener several levels deep in a fresh tree binds without throwing', () => {
     const ownDocument = documentDomItem({ onClick: () => 'ran' })
     const button = createDomItem({

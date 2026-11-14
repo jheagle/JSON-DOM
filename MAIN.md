@@ -15,7 +15,7 @@ map of the **traits** it carries. Custom data can sit right on the item, next to
   renders anything.
 * A **DomItem** is an item with the `render` trait, which adds the `element` it is mirrored onto. treeloom's render and
   sync functions work on these.
-* Other libraries add their own traits (matrix-dom has `matrix.row`, `matrix.column`, ...), see `defineTrait`. In
+* Other libraries add their own traits (treeloom-matrix has `matrix.row`, `matrix.column`, ...), see `defineTrait`. In
   TypeScript, `hasTrait(item, 'matrix.row')` narrows an item to what that trait adds.
 
 ## The modules

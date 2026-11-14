@@ -55,7 +55,7 @@ const tryGetRoot = (item: DomItem): DomItemRoot | null => {
  *   all, so it has no id (or parentItem, or has map) whatsoever.
  * - A collision (the id is already registered to a *different* item within this same root): a generic "build
  *   one item, then replicate it N times" helper (si-funciona's buildArray, cloning rather than constructing
- *   fresh - the shape matrix-dom's own buildMatrix uses for a grid's rows/columns/tiles) copies whatever id
+ *   fresh - the shape treeloom-matrix's own buildMatrix uses for a grid's rows/columns/tiles) copies whatever id
  *   the one template already carries into every copy right along with everything else, with no way for
  *   treeloom to know that happened before registration.
  *
