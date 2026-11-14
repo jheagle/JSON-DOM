@@ -7,7 +7,7 @@
 
 import treeloom from './main'
 
-// The names other projects (matrix-dom, battleship, ...) call. Moving a function between folders must never change
+// The names other projects (treeloom-matrix, cloakfall, ...) call. Moving a function between folders must never change
 // these; adding one is a deliberate change to this list.
 const publicApi = [
   'activateListener',
